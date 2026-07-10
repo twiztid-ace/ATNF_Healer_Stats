@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>All Thunder No Fury — Healer Analysis</title>
+<title>Crowns — Raid Analysis</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -48,20 +48,21 @@
     color: var(--copper);
     margin: 0 0 10px;
   }
+  .eyebrow a{ color: var(--copper); text-decoration: none; }
   h1{
     font-family:'Cormorant Garamond', serif;
     font-weight: 600;
-    font-size: 40px;
-    line-height: 1.08;
+    font-size: 44px;
+    line-height: 1.05;
     margin: 0 0 8px;
   }
   .subline{ font-size: 14px; color: rgba(19,42,44,0.65); margin: 0; }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
 
   .section{ padding: 32px 48px; }
-  .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: 0 0 20px; }
 
-  .healer-list{ display:flex; flex-direction:column; }
-  .healer-row{
+  .raid-list{ display:flex; flex-direction:column; }
+  .raid-row{
     display:grid;
     grid-template-columns: 1fr auto auto;
     align-items:center;
@@ -72,26 +73,33 @@
     color: var(--ink);
     transition: padding-left 0.15s ease;
   }
-  .healer-row:first-child{ border-top:none; }
-  .healer-row:hover{ padding-left: 10px; }
-  .healer-row:hover .healer-name{ color: var(--copper); }
-  .healer-name{
+  .raid-row:first-child{ border-top:none; }
+  .raid-row:hover{ padding-left: 10px; }
+  .raid-row:hover .raid-title{ color: var(--copper); }
+  .raid-title{
     font-family:'Cormorant Garamond', serif;
     font-weight: 600;
     font-size: 20px;
     transition: color 0.15s ease;
   }
-  .healer-class{
+  .raid-meta{
     font-family:'IBM Plex Mono', monospace;
     font-size: 11px;
     color: rgba(19,42,44,0.5);
   }
-  .healer-arrow{
+  .raid-arrow{
     font-family:'IBM Plex Mono', monospace;
     color: var(--copper);
     opacity: 0.6;
   }
-  .healer-row:hover .healer-arrow{ opacity: 1; }
+  .raid-row:hover .raid-arrow{ opacity: 1; }
+
+  .empty-note{
+    font-size: 13px;
+    color: rgba(19,42,44,0.5);
+    font-style: italic;
+    padding: 12px 4px;
+  }
 
   .footer{
     padding: 24px 48px 32px;
@@ -106,41 +114,23 @@
 <div class="page">
 
   <div class="header">
-    <p class="eyebrow">Guild Healer Analysis</p>
-    <h1>All Thunder No Fury</h1>
-    <p class="subline">Select a healer to view their raid history and per-boss audits.</p>
+    <p class="eyebrow"><a href="../index.html">← All healers</a> &nbsp;·&nbsp; Paladin – Holy</p>
+    <h1>Crowns</h1>
+    <p class="subline">Dreamscythe-US &nbsp;·&nbsp; <span>1 raid night analyzed</span></p>
   </div>
 
   <div class="section">
-    <p class="section-desc">Each healer's page lists every raid night analyzed, broken down boss by boss.</p>
-    <div class="healer-list">
-      <a class="healer-row" href="crowns/index.html">
+    <div class="raid-list">
+      <a class="raid-row" href="2026-07-07/index.html">
         <div>
-          <div class="healer-name">Crowns</div>
+          <div class="raid-title">SSC/TK</div>
+          <div class="raid-meta">July 7, 2026 &nbsp;·&nbsp; report XJp8vAxzM4KtHYyb</div>
         </div>
-        <div class="healer-class">Holy Paladin</div>
-        <div class="healer-arrow">→</div>
+        <div class="raid-meta">10/10 bosses</div>
+        <div class="raid-arrow">→</div>
       </a>
-      <a class="healer-row" href="danceswtrees/index.html">
-        <div><div class="healer-name">Danceswtrees</div></div>
-        <div class="healer-class">Restoration Druid</div>
-        <div class="healer-arrow">→</div>
-      </a>
-      <a class="healer-row" href="vajomee/index.html">
-        <div>
-          <div class="healer-name">Vajomee</div>
-        </div>
-        <div class="healer-class">Restoration Shaman</div>
-        <div class="healer-arrow">→</div>
-      </a>
-      <!-- Add more healers below, following the same pattern once analyzed:
-      <a class="healer-row" href="danceswtrees/index.html">
-        <div><div class="healer-name">Danceswtrees</div></div>
-        <div class="healer-class">Restoration Druid</div>
-        <div class="healer-arrow">→</div>
-      </a>
-      -->
     </div>
+    <div class="empty-note">More raid nights will appear here as they're analyzed.</div>
   </div>
 
   <div class="footer">
