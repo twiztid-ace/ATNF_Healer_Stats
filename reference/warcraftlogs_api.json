@@ -1,0 +1,1174 @@
+{
+    "swagger": "2.0",
+    "host": "classic.warcraftlogs.com",
+    "schemes": [
+        "https"
+    ],
+    "basePath": "/v1",
+    "info": {
+        "version": "1.0.0",
+        "title": "Warcraft Logs v1 API",
+        "description": "The v1 API has been deprecated and is no longer being actively developed. Newer applications should be using the <a href=\"https://www.archon.gg/classic-mop/articles/help/api-documentation\">v2 API</a> instead."
+    },
+    "produces": [
+        "application/json"
+    ],
+    "security":[{"api_key":[]}],
+    "paths": {
+        "/zones": {
+            "get": {
+                "description": "Gets an array of Zone objects. Each zone corresponds to a raid/dungeon instance in the game and has its own set of encounters.\n",
+                 "tags": [
+                    "Zones"
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "An array of zones",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "Zone"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/classes": {
+            "get": {
+                "description": "Gets an array of Class objects. Each Class corresponds to a class in the game.\n",
+                 "tags": [
+                    "Classes"
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "An array of classes",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "Class"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+       "/rankings/encounter/{encounterID}": {
+            "get": {
+                "description": "Gets an object that contains a total count and an array of EncounterRanking objects and a total number of rankings for that encounter. Each EncounterRanking corresponds to a single character or guild/team.\n",
+                 "tags": [
+                    "Rankings"
+                ],
+                "parameters": [
+                	{
+	            		"name": "encounterID",
+		            	"in": "path",
+		            	"type": "integer",
+						"description": "The encounter to collect rankings for. Encounter IDs can be obtained using a /zones request."
+	            	},
+	            	{
+	            		"name": "metric",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "The metric to query for. Valid fight metrics are 'speed', 'execution' and 'feats'. Valid character metrics are 'dps', 'hps', 'bossdps, 'tankhps', or 'playerspeed'. For WoW only, 'krsi' can be used for tank survivability ranks and 'progress' can be used for guild progress info."
+	            	},
+	            	{
+	            		"name": "size",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "The raid size to query for. This is only valid for fixed size raids. Raids with flexible sizing must omit this parameter."
+	            	},
+	            	{
+	            		"name": "difficulty",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "The difficulty setting to query for. Valid difficulty settings are 1 = LFR, 2 = Flex, 3 = Normal, 4 = Heroic, 5 = Mythic, 10 = Challenge Mode, 100 = WildStar/FF. Can be omitted for encounters with only one difficulty setting."
+	            	},
+	            	{
+	            		"name": "partition",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "The partition group to query for. Most zones have only one partition, and this can be omitted. Hellfire Citadel has two partitions (1 for original, 2 for pre-patch). Highmaul and BRF have two partitions (1 for US/EU, 2 for Asia)."
+	            	},
+	            	{
+	            		"name": "class",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "The class to query for if a character metric is specified. Valid class IDs can be obtained from a /classes API request. Optional."
+	            	},
+	            	{
+	            		"name": "spec",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "The spec to query for if a character metric is specified. Valid spec IDs can be obtained from a /classes API request. Optional."
+	            	},
+	            	{
+	            		"name": "bracket",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "The bracket to query for. If omitted or if a value of 0 is specified, then all brackets are examined. Brackets can be obtained from a /zones API request."
+	            	},
+	            	{
+	            		"name": "server",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "A server to filter on. If set, the region must also be specified. This is the slug field in Blizzard terminology."
+	            	},
+	            	{
+	            		"name": "region",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "The short name of a region to filter on (e.g., US, NA, EU)."
+	            	},
+	            	{
+	            		"name": "page",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "The page to examine, starting from 1. If the value is omitted, then 1 is assumed. For example, with a page of 2 and a limit of 300, you will be fetching rankings 301-600."
+	            	},
+	            	{
+	            		"name": "filter",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "A search filter string, limiting the search to specific classes, specs, fight durations, raid sizes, etc. The format should match the string used on the public rankings pages."
+	            	},
+	            	{
+	            		"name": "includeCombatantInfo",
+		            	"in": "query",
+		            	"type": "boolean",
+						"description": "Whether or not to include combatant info like gear and talents. Optional. Defaults to false."
+	            	},
+                    {
+                        "name": "excludeLeaderboard",
+                        "in": "query",
+                        "type": "boolean",
+                        "description": "When true, only include ranks that have a backing log. Otherwise include ranks that came from an official leaderboard."
+                    },
+                    {
+                        "name": "hardModeLevel",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "Hard mode level for WoW Classic. Ignored if unsupported. -1 for any hard mode (including normal mode), 0 for normal mode, and 1-4 for varying hard modes."
+                    },
+                    {
+                        "name": "externalBuffs",
+                        "in": "query",
+                        "type": "integer",
+                        "description": "External buff filter. Most games and zones don't support this. 0 for any externals, 1 to require externals, 2 to exclude externals."
+                    }
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "An object that contains rankings",
+                        "schema": {
+                            "$ref": "EncounterRankings"
+                        }
+                    }
+                }
+            }
+        },
+        "/rankings/character/{characterName}/{serverName}/{serverRegion}": {
+            "get": {
+                "description": "Gets an array of CharacterRanking objects. Each CharacterRanking corresponds to a single rank on a fight for the specified character.\n",
+                 "tags": [
+                    "Rankings"
+                ],
+                "parameters": [
+                	{
+	            		"name": "characterName",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The name of the character to collect rankings for."
+	            	},
+	            	{
+	            		"name": "serverName",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The server that the character is found on. For World of Warcraft this is the 'slug' field returned from their realm status API."
+	            	},
+	            	{
+	            		"name": "serverRegion",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The short region name for the server on which the character is located: US, EU, KR, TW, CN."
+	            	},
+	            	{
+	            		"name": "zone",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "The zone to fetch rankings for. If omitted, the latest open raid zone is used."
+	            	},
+	            	{
+	            		"name": "encounter",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "An encounter within the zone to fetch rankings for. If omitted, all encounters in the zone will be checked."
+	            	},
+	            	{
+	            		"name": "metric",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "The metric to query for. Valid character metrics are 'dps', 'hps', 'bossdps, 'tankhps', or 'playerspeed'. For WoW only, 'krsi' can be used for tank survivability ranks."
+	            	},
+	            	{
+	            		"name": "bracket",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "The bracket to query for. If omitted or if a value of 0 is specified, then all brackets are examined. Brackets can be obtained from a /zones API request."
+	            	},
+	            	{
+	            		"name": "partition",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "The partition group to query for. Most zones have only one partition, and this can be omitted. Hellfire Citadel has two partitions (1 for original, 2 for pre-patch). Highmaul and BRF have two partitions (1 for US/EU, 2 for Asia)."
+	            	},
+	            	{
+	            		"name": "timeframe",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "Whether to compare against today's rankings or to return historical information (where the rank was back when it was earned. The accepted values are 'today' and 'historical', with the default being 'today'."
+	            	},
+	            	{
+	            		"name": "includeCombatantInfo",
+		            	"in": "query",
+		            	"type": "boolean",
+						"description": "Whether or not to include combatant info like gear and talents. Optional. Defaults to false."
+	            	}
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "An array of CharacterRankings",
+                        "schema": {
+                        	"type": "array",
+                        	"items": {
+	                            "$ref": "CharacterRanking"
+	                         }
+                        }
+                    }
+                }
+            }
+        },
+        "/parses/character/{characterName}/{serverName}/{serverRegion}": {
+            "get": {
+                "description": "Obtains all parses for a character in the zone across all specs. Every parse is included and not just rankings.\n",
+                 "tags": [
+                    "Parses"
+                ],
+                "parameters": [
+                	{
+	            		"name": "characterName",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The name of the character to collect rankings for."
+	            	},
+	            	{
+	            		"name": "serverName",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The server that the character is found on. For World of Warcraft this is the 'slug' field returned from their realm status API."
+	            	},
+	            	{
+	            		"name": "serverRegion",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The short region name for the server on which the character is located: US, EU, KR, TW, CN."
+	            	},
+	            	{
+	            		"name": "zone",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "The zone to fetch rankings for. If omitted, the latest open raid zone is used."
+	            	},
+	            	{
+	            		"name": "encounter",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "An encounter within the zone to fetch parses for. If omitted, all encounters in the zone will be checked. If a valid encounter is specified, then historical graph data for the encounter will also be included in the results."
+	            	},
+	            	{
+	            		"name": "metric",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "The metric to query for. Valid character metrics are 'dps', 'hps', 'bossdps, 'tankhps', or 'playerspeed'. For WoW only, 'krsi' can be used for tank survivability ranks."
+	            	},
+	            	{
+	            		"name": "bracket",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "The bracket to query for. If omitted or if a value of 0 is specified, then all brackets are examined. Brackets can be obtained from a /zones API request. The special value -1 can be used to obtain scores by bracket %, i.e., to automatically look only at the bracket each parse falls in." 
+	            	},
+	            	{
+	            		"name": "compare",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "Optional. Whether or not to compare against rankings (0) when computing performance percentiles or to compare against statistics (1). A value of 0 is assumed if omitted."
+	            	},
+	            	{
+	            		"name": "partition",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "The partition group to query for. Most zones have only one partition, and this can be omitted. Hellfire Citadel has two partitions (1 for original, 2 for pre-patch). Highmaul and BRF have two partitions (1 for US/EU, 2 for Asia)."
+	            	},
+	            	{
+	            		"name": "timeframe",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "Whether to compare against today's rankings or to return historical information (where the rank was back when it was earned. The accepted values are 'today' and 'historical', with the default being 'today'."
+	            	},
+	            	{
+	            		"name": "includeCombatantInfo",
+		            	"in": "query",
+		            	"type": "boolean",
+						"description": "Whether or not to include combatant info like gear and talents. Optional. Defaults to false."
+	            	}
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "An array of CharacterRankings",
+                        "schema": {
+                        	"type": "array",
+                        	"items": {
+	                            "$ref": "CharacterRanking"
+	                         }
+                        }
+                    }
+                }
+            }
+        },
+
+		"/reports/guild/{guildName}/{serverName}/{serverRegion}": {
+            "get": {
+                "description": "Gets an array of Report objects. Each Report corresponds to a single calendar report for the specified guild.\n",
+                 "tags": [
+                    "Reports"
+                ],
+                "parameters": [
+                	{
+	            		"name": "guildName",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The name of the guild to collect reports for."
+	            	},
+	            	{
+	            		"name": "serverName",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The server that the guild is found on. For World of Warcraft this is the 'slug' field returned from their realm status API."
+	            	},
+	            	{
+	            		"name": "serverRegion",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The short region name for the server on which the guild is located: US, EU, KR, TW, CN."
+	            	},
+	            	{
+	            		"name": "start",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional start time. This is a UNIX timestamp but with millisecond precision. If omitted, 0 is assumed."
+	            	},
+	            	{
+	            		"name": "end",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional end time. This is a UNIX timestamp but with millisecond precision. If omitted, the current time is assumed."
+	            	}
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "An array of Reports",
+                        "schema": {
+                        	"type": "array",
+                        	"items": {
+	                            "$ref": "Report"
+	                         }
+                        }
+                    }
+                }
+            }
+        },
+		"/reports/user/{userName}": {
+            "get": {
+                "description": "Gets an array of Report objects. Each Report corresponds to a single calendar report for the specified user's personal logs.\n",
+                 "tags": [
+                    "Reports"
+                ],
+                "parameters": [
+                	{
+	            		"name": "userName",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The name of the user to collect reports for."
+	            	},
+	            	{
+	            		"name": "start",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional start time. This is a UNIX timestamp but with millisecond precision. If omitted, 0 is assumed."
+	            	},
+	            	{
+	            		"name": "end",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional end time. This is a UNIX timestamp but with millisecond precision. If omitted, the current time is assumed."
+	            	}
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "An array of Reports",
+                        "schema": {
+                        	"type": "array",
+                        	"items": {
+	                            "$ref": "Report"
+	                         }
+                        }
+                    }
+                }
+            }
+        },
+        "/report/fights/{code}": {
+            "get": {
+                "description": "Gets arrays of fights and the participants in those fights. Each Fight corresponds to a single pull of a boss.\n",
+                 "tags": [
+                    "Report"
+                ],
+                "parameters": [
+                	{
+	            		"name": "code",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The specific report to collect fights and participants for."
+	            	},
+	            	{
+	            		"name": "translate",
+		            	"in": "query",
+		            	"type": "boolean",
+						"description": "An optional flag indicating that the results should be translated into the language of the host (e.g., cn.warcraftlogs.com would get Chinese results)."
+	            	}
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "TBD",
+                        "schema": {
+                        	"type": "array",
+                        	"items": {
+	                            "$ref": "Report"
+	                         }
+                        }
+                    }
+                }
+            }
+        },
+         "/report/events/{view}/{code}": {
+            "get": {
+                "description": "Gets a set of events based off the view you're asking for. This exactly corresponds to the Events view on the site.\n",
+                 "tags": [
+                    "Report"
+                ],
+                "parameters": [
+                	{
+	            		"name": "view",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The type of data requested. Supported values are 'summary', 'damage-done', 'damage-taken', 'healing', 'casts', 'summons', 'buffs', 'debuffs', 'deaths', 'threat', 'resources', 'interrupts' and 'dispels'."
+	            	},
+                	{
+	            		"name": "code",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The specific report to collect table entries for."
+	            	},
+	            	{
+	            		"name": "start",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "A start time. This is a time from the start of the report in milliseconds. If omitted, 0 is assumed."
+	            	},
+	            	{
+	            		"name": "end",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An end time. This is a time from the start of the report in milliseconds. If omitted, 0 is assumed."
+	            	},
+	            	{
+	            		"name": "hostility",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional hostility value of 0 or 1. The default is 0. A value of 0 means to collect data for Friendlies. A value of 1 means to collect data for Enemies."
+	            	},
+	            	{
+	            		"name": "sourceid",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional actor ID to filter to. If set, only events where the ID matches the source (or target for damage-taken) of the event will be returned. The actor's pets will also be included (unless the options field overrides)."
+	            	},
+	            	{
+	            		"name": "sourceinstance",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional actor instance ID to filter to. If set, only events where the instance ID matches the source (or target for damage-taken) of the event will be returned. This is useful to look for all events involving NPC N, where N is the actor instance ID."
+	            	},
+	            	{
+	            		"name": "sourceclass",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "An optional actor class to filter to. If set, only events where the source (or target for damage-taken) involves that class (e.g., Mage) will be returned."
+	            	},
+	            	{
+	            		"name": "targetid",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional actor ID to filter to. If set, only events where the ID matches the target (or source for damage-taken) of the event will be returned. This value is not used in the 'deaths', 'survivability', 'resources' and 'resources-gains' views."
+	            	},
+	            	{
+	            		"name": "targetinstance",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional actor instance ID to filter to. If set, only events where the instance ID matches the target (or source for damage-taken) of the event will be returned. This is useful to look for all events involving NPC N, where N is the actor instance ID. This value is not used in the 'deaths', 'survivability', 'resources' and 'resources-gains' views."
+	            	},
+	            	{
+	            		"name": "targetclass",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "An optional actor class to filter to. If set, only events where the target (or source for damage-taken) involves that class (e.g., Mage) will be returned. This value is not used in the 'deaths', 'survivability', 'resources' and 'resources-gains' views."
+	            	},
+                    {
+	            		"name": "sourceAurasPresent",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "A comma-separated string of aura game IDs. Only matches if the aura is present on the source."
+	            	},
+                    {
+	            		"name": "sourceAurasAbsent",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "A comma-separated string of aura game IDs. Only matches if the aura is absent on the source."
+	            	},
+                    {
+	            		"name": "targetAurasPresent",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "A comma-separated string of aura game IDs. Only matches if the aura is present on the target."
+	            	},
+                    {
+	            		"name": "targetAurasAbsent",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "A comma-separated string of aura game IDs. Only matches if the aura is absent on the target."
+	            	},
+	            	{
+	            		"name": "abilityid",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional ability ID to filter to. If set, only events where the ability matches will be returned. Consolidated abilities (WCL only) are represented using a negative number that matches the ability ID that everything is consolidated under. For the 'deaths' view, this represents a specific killing blow. For the resources views, the abilityid is not an ability but a resource type. Valid resource types can be viewed at https://www.warcraftlogs.com/reports/resource_types/"
+	            	},
+	            	{
+	            		"name": "death",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional death to filter to. Only used for the deaths command. Select the Nth death in the time range that matches all the other filters."
+	            	},
+	            	{
+	            		"name": "options",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "A set of options for what to include/exclude. These correspond to options like Include Overkill in the Damage Done pane. Complete list will be forthcoming. If omitted, appropriate defaults that match WCL's default behavior will be chosen. This value is not used in the 'deaths', 'survivability', 'resources' and 'resources-gains' views."
+	            	},
+	            	{
+	            		"name": "cutoff",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional death cutoff. If set, events after that number of deaths have occurred will not be examined."
+	            	},
+	            	{
+	            		"name": "encounter",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional encounter filter. If set to a specific encounter ID, only fights involving a specific encounter will be considered. The encounter IDs match those used in rankings/statistics."
+	            	},
+	            	{
+	            		"name": "wipes",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional wipes filter. If set to 1, only wipes will be considered."
+	            	},
+	            	{
+	            		"name": "difficulty",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional difficulty filter."
+	            	},
+	            	{
+	            		"name": "filter",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "An optional filter written in WCL's expression language. Events must match the filter to be included."
+	            	},
+	            	{
+	            		"name": "translate",
+		            	"in": "query",
+		            	"type": "boolean",
+						"description": "An optional flag indicating that the results should be translated into the language of the host (e.g., cn.warcraftlogs.com would get Chinese results)."
+	            	}
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "TBD",
+                        "schema": {
+                        	"type": "array",
+                        	"items": {
+	                            "$ref": "Report"
+	                         }
+                        }
+                    }
+                }
+            }
+        },
+        "/report/tables/{view}/{code}": {
+            "get": {
+                "description": "Gets a table of entries, either by actor or ability, of damage, healing and cast totals for each entry. This API exactly follows what is returned for the Tables panes on the site. It can and will change as the needs of those panes do, and as such should never be considered a frozen API. Use at your own risk.\n",
+                 "tags": [
+                    "Report"
+                ],
+                "parameters": [
+                	{
+	            		"name": "view",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The type of data requested. Supported values are 'summary', 'damage-done', 'damage-taken', 'healing', 'casts', 'summons', 'buffs', 'debuffs', 'deaths', 'survivability', 'resources' and 'resources-gains'."
+	            	},
+                	{
+	            		"name": "code",
+		            	"in": "path",
+		            	"type": "string",
+						"description": "The specific report to collect table entries for."
+	            	},
+	            	{
+	            		"name": "start",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "A start time. This is a time from the start of the report in milliseconds. If omitted, 0 is assumed."
+	            	},
+	            	{
+	            		"name": "end",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An end time. This is a time from the start of the report in milliseconds. If omitted, 0 is assumed."
+	            	},
+	            	{
+	            		"name": "hostility",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional hostility value of 0 or 1. The default is 0. A value of 0 means to collect data for Friendlies. A value of 1 means to collect data for Enemies."
+	            	},
+	            	{
+	            		"name": "by",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "An optional parameter indicating how to group entries. They can be grouped by 'source', by 'target', or by 'ability'. This value matches WCL's default behavior if omitted. For buffs and debuffs, a value of 'source' means auras gained by the source, and a value of 'target' means auras cast by the source. This value is not used in the 'deaths', 'survivability', 'resources' and 'resources-gains' views."
+	            	},
+	            	{
+	            		"name": "sourceid",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional actor ID to filter to. If set, only events where the ID matches the source (or target for damage-taken) of the event will be returned. The actor's pets will also be included (unless the options field overrides)."
+	            	},
+	            	{
+	            		"name": "sourceinstance",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional actor instance ID to filter to. If set, only events where the instance ID matches the source (or target for damage-taken) of the event will be returned. This is useful to look for all events involving NPC N, where N is the actor instance ID."
+	            	},
+	            	{
+	            		"name": "sourceclass",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "An optional actor class to filter to. If set, only events where the source (or target for damage-taken) involves that class (e.g., Mage) will be returned."
+	            	},
+	            	{
+	            		"name": "targetid",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional actor ID to filter to. If set, only events where the ID matches the target (or source for damage-taken) of the event will be returned. This value is not used in the 'deaths', 'survivability', 'resources' and 'resources-gains' views."
+	            	},
+	            	{
+	            		"name": "targetinstance",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional actor instance ID to filter to. If set, only events where the instance ID matches the target (or source for damage-taken) of the event will be returned. This is useful to look for all events involving NPC N, where N is the actor instance ID. This value is not used in the 'deaths', 'survivability', 'resources' and 'resources-gains' views."
+	            	},
+	            	{
+	            		"name": "targetclass",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "An optional actor class to filter to. If set, only events where the target (or source for damage-taken) involves that class (e.g., Mage) will be returned. This value is not used in the 'deaths', 'survivability', 'resources' and 'resources-gains' views."
+	            	},
+                    {
+	            		"name": "sourceAurasAbsent",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "A comma-separated string of aura game IDs. Only matches if the aura is absent on the source."
+	            	},
+                    {
+	            		"name": "targetAurasPresent",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "A comma-separated string of aura game IDs. Only matches if the aura is present on the target."
+	            	},
+                    {
+	            		"name": "targetAurasAbsent",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "A comma-separated string of aura game IDs. Only matches if the aura is absent on the target."
+	            	},
+	            	{
+	            		"name": "abilityid",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional ability ID to filter to. If set, only events where the ability matches will be returned. Consolidated abilities (WCL only) are represented using a negative number that matches the ability ID that everything is consolidated under. For the 'deaths' view, this represents a specific killing blow. For the resources views, the abilityid is not an ability but a resource type. Valid resource types can be viewed at https://www.warcraftlogs.com/reports/resource_types/"
+	            	},
+	            	{
+	            		"name": "options",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "A set of options for what to include/exclude. These correspond to options like Include Overkill in the Damage Done pane. Complete list will be forthcoming. If omitted, appropriate defaults that match WCL's default behavior will be chosen. This value is not used in the 'deaths', 'survivability', 'resources' and 'resources-gains' views."
+	            	},
+	            	{
+	            		"name": "cutoff",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional death cutoff. If set, events after that number of deaths have occurred will not be examined."
+	            	},
+	            	{
+	            		"name": "encounter",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional encounter filter. If set to a specific encounter ID, only fights involving a specific encounter will be considered. The encounter IDs match those used in rankings/statistics."
+	            	},
+	            	{
+	            		"name": "wipes",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional wipes filter. If set to 1, only wipes will be considered."
+	            	},
+	            	{
+	            		"name": "difficulty",
+		            	"in": "query",
+		            	"type": "integer",
+						"description": "An optional difficulty filter."
+	            	},
+	            	{
+	            		"name": "filter",
+		            	"in": "query",
+		            	"type": "string",
+						"description": "An optional filter written in WCL's expression language. Events must match the filter to be included."
+	            	},
+	            	{
+	            		"name": "translate",
+		            	"in": "query",
+		            	"type": "boolean",
+						"description": "An optional flag indicating that the results should be translated into the language of the host (e.g., cn.warcraftlogs.com would get Chinese results)."
+	            	}
+                ],
+                "responses": {
+                	"default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "Error"
+                        }
+                    },
+                    "200": {
+                        "description": "TBD",
+                        "schema": {
+                        	"type": "array",
+                        	"items": {
+	                            "$ref": "Report"
+	                         }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Zone": {
+        	"required": [
+	        	"id", "name", "frozen", "encounters"
+        	],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "A unique identifier representing this specific zone."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The English name of the raid zone."
+                },
+                "frozen": {
+                    "type": "boolean",
+                    "description": "Whether or not the rankings and statistics for the zone are frozen. If set, then the results for this zone are never going to change, and you don't have to fetch them again."
+                },
+                "encounters": {
+	                "type": "array",
+	                "description": "The encounters for this zone.",
+	                "items": {
+		                "$ref": "Encounter"
+	                }
+                },
+                "brackets": {
+	                "type": "array",
+	                "description": "The brackets for this zone. Rankings and statistics are collected for each bracket.",
+	                "items": {
+		                "$ref": "Bracket"
+	                }
+                }
+            }
+        },
+        "Encounter": {
+        	"required": [
+	        	"id", "name"
+        	],
+	    	"properties": {
+		    	"id": {
+			    	"type": "integer",
+                    "format": "int32",
+                    "description": "A unique identifier representing this specific encounter."
+		    	},
+                "name": {
+                    "type": "string",
+                    "description": "The English name of the encounter."
+                },
+                "npcID": {
+			    	"type": "integer",
+                    "format": "int32",
+                    "description": "A unique identifier representing the NPC ID for the zone (WoW Only). Used to feed into WoW's progression API."
+		    	}
+	    	}  
+        },
+        "Bracket": {
+        	"required": [
+	        	"id", "name"
+        	],
+	    	"properties": {
+		    	"id": {
+			    	"type": "integer",
+                    "format": "int32",
+                    "description": "A unique identifier representing this specific rankings bracket."
+		    	},
+                "name": {
+                    "type": "string",
+                    "description": "An explanation of what the bracket contains."
+                }
+	    	}  
+        },
+         "Class": {
+        	"required": [
+	        	"id", "name", "specs"
+        	],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int32",
+                    "description": "A unique identifier representing this specific class."
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The English name of the class."
+                },
+                "specs": {
+	                "type": "array",
+	                "description": "The possible specs for this class.",
+	                "items": {
+		                "$ref": "Spec"
+	                }
+                }
+            }
+        },
+        "Spec": {
+        	"required": [
+	        	"id", "name"
+        	],
+	    	"properties": {
+		    	"id": {
+			    	"type": "integer",
+                    "format": "int32",
+                    "description": "A unique identifier representing this specific spec."
+		    	},
+                "name": {
+                    "type": "string",
+                    "description": "The English name of the spec."
+                }
+	    	}  
+        },
+        "EncounterRankings": {
+        	"required": [
+	        	"total", "rankings"
+        	],
+	    	"properties": {
+		    	"total": {
+			    	"type": "integer",
+                    "format": "int32",
+                    "description": "The total number of rankings given the specified filters."
+		    	},
+                "rankings": {
+                    "type": "array",
+                    "description": "An array of EncounterRanking objects.",
+                    "items": {
+	                    "$ref": "EncounterRanking"
+                    }
+                }
+	    	}  
+        },
+        "EncounterRanking": {
+        	"properties": {
+		    	"name": {
+                    "type": "string",
+                    "description": "The name of the character that obtained the ranking."
+                },
+                "total": {
+	                "type": "number",
+                    "description": "For individual rankings, the DPS/HPS value."
+                },
+                "class": {
+	                "type": "integer",
+                    "description": "For individual rankings, the class of the character."
+                },
+				"spec": {
+	                "type": "integer",
+                    "description": "For individual rankings, the spec of the character."
+                },
+                "guild": {
+                    "type": "string",
+                    "description": "The name of the guild that obtained the ranking."
+                },
+                "server": {
+                    "type": "string",
+                    "description": "The server that the ranking was obtained on."
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The short name of the region that the server belongs to."
+                },
+                "duration": {
+                    "type": "number",
+                    "description": "The length of the fight/run in milliseconds."
+                },
+                "startTime": {
+                    "type": "number",
+                    "description": "A timestamp with millisecond precision that indicates when the fight/run happened."
+                },
+                "damageTaken": {
+                    "type": "number",
+                    "description": "For fight rankings, how much damage was taken over the course of the fight."
+                },
+                "deaths": {
+                    "type": "number",
+                    "description": "For fight rankings, how much people died on the fight."
+                },
+                "itemLevel": {
+                    "type": "number",
+                    "description": "For fight rankings, the average item level of the raid. For character rankings, the item level of the character."
+                },
+                "patch": {
+                    "type": "number",
+                    "description": "For challenge mode rankings, what patch they were obtained in."
+                },
+                "reportID": {
+	              	"type": "string",
+	              	"description": "The report ID that contains this ranking."  
+                },
+                "fightID": {
+	              	"type": "number",
+	              	"description": "The fight ID within the report for the fight that contains this ranking."  
+                },
+                "team": {
+	                "type": "array",
+	                "description": "For challenge mode rankings, the team members that made up the team.",
+	                "items": {
+		                "$ref": "TeamMember"
+	                }
+                },
+                "size": {
+	                "type": "integer",
+                    "description": "The size of the raid. Only set for flexible size raids. Remember that flexible raid sizes are all ranked together currently."
+                }
+	    	}
+        },
+        "TeamMember": {
+	        "properties": {
+		        "name": {
+                    "type": "string",
+                    "description": "The name of the character on the team."
+                },
+                "class": {
+                    "type": "integer",
+                    "description": "The class of the character on the team."
+                },
+                "spec": {
+                    "type": "integer",
+                    "description": "The spec of the character on the team."
+                }
+	        }
+        },
+        "CharacterRanking": {
+        	"properties": {
+        		"rank": {
+	                "type": "integer",
+                    "description": "The rank achieved by the character."
+                },
+                "outOf": {
+	            	"type": "integer",
+	            	"description": "The total number of parses. You can use the 'rank' and 'outOf' fields to determine a percentage."
+                },
+		    	"total": {
+	                "type": "number",
+                    "description": "For individual rankings, the DPS/HPS value."
+                },
+                "class": {
+	                "type": "integer",
+                    "description": "For individual rankings, the class of the character."
+                },
+				"spec": {
+	                "type": "integer",
+                    "description": "For individual rankings, the spec of the character."
+                },
+                "guild": {
+                    "type": "string",
+                    "description": "The name of the guild that the character belonged to when they obtained the ranking."
+                },
+                "duration": {
+                    "type": "number",
+                    "description": "The length of the fight/run in milliseconds."
+                },
+                "startTime": {
+                    "type": "number",
+                    "description": "A timestamp with millisecond precision that indicates when the fight/run happened."
+                },
+                "itemLevel": {
+                    "type": "number",
+                    "description": "For fight rankings, the average item level of the raid. For character rankings, the item level of the character."
+                },
+                "patch": {
+                    "type": "number",
+                    "description": "For challenge mode rankings, what patch they were obtained in."
+                },
+                "reportID": {
+	              	"type": "string",
+	              	"description": "The report ID that contains this ranking."  
+                },
+                "fightID": {
+	              	"type": "number",
+	              	"description": "The fight ID within the report for the fight that contains this ranking."  
+                },
+                "difficulty": {
+	                "type": "integer",
+                    "description": "The difficulty setting that this rank was for."
+                },
+                "size": {
+	                "type": "integer",
+                    "description": "The size of the raid. Remember that flexible raid sizes are all ranked together currently."
+                },
+                "estimated": {
+                	"type": "boolean",
+                	"description": "Whether or not this ranking was estimated (if it was outside the cutoff limit of 500)."
+                }
+	    	}
+        },
+		
+		"Report": {
+        	"properties": {
+        		"id": {
+	                "type": "string",
+                    "description": "The report code. Can be viewed on the site with the URL string of /reports/&lt;code&gt;."
+                },
+                "title": {
+                	"type": "string",
+                	"description": "The title for the report."
+                },
+                "owner": {
+                	"type": "string",
+                	"description": "The name of the user that uploaded the report."
+                },
+                "zone": {
+	            	"type": "integer",
+	            	"description": "The zone that the report is for. A value of -1 indicates that the zone for the report is not known."
+                },
+		    	"startTime": {
+	                "type": "number",
+                    "description": "A UNIX timestamp with millisecond precision, indicating the start time of the report as far as logged events."
+                },
+                "endTime": {
+	                "type": "number",
+                    "description": "A UNIX timestamp with millisecond precision, indicating the end time of the report as far as logged events."
+                }
+	    	}
+        },
+        
+        "Error": {
+            "properties": {
+                "status": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "error": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
