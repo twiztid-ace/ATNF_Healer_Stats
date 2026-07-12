@@ -29,13 +29,22 @@
 #   2. Fetches fresh rankings for a boss (1 call, same as before) and diffs the fresh
 #      reportID+fightID+name set against the manifest's currently-active parses for that
 #      boss:
-#        - present in fresh, NOT in manifest-active -> genuinely new, fetch its full data
-#          (this is the only case that costs real per-parse API calls)
-#        - present in BOTH -> still in the Top 100, zero API calls - just refresh its
-#          rank/hps in the manifest from the response we already have in memory
+#        - present in fresh, NO manifest entry at all -> genuinely new, fetch its full
+#          data (this is the only case that costs real per-parse API calls)
+#        - present in BOTH, manifest status "active" -> still in the Top 100, zero API
+#          calls - just refresh its rank/hps in the manifest from the response we
+#          already have in memory
 #        - in manifest-active, NOT in fresh -> dropped out of the Top 100 - move its
-#          healing/casts/consumables files from active\{Boss}\ to archived\{Boss}\ (kept
-#          forever, not deleted) and flip its manifest status to "archived"
+#          healing/casts/consumables/activetime files from active\{Boss}\ to
+#          archived\{Boss}\ (kept forever, not deleted) and flip its manifest status to
+#          "archived"
+#        - present in fresh, manifest status "archived" -> RE-ENTERED the Top 100 after
+#          previously dropping out (fixed 2026-07-12 - see the diff-computation comment
+#          further down for the bug this replaced). Zero API calls, same principle as
+#          the still-active case: a completed log's data can never change, so its files
+#          just move back from archived\{Boss}\ to active\{Boss}\ and its manifest
+#          status flips back to "active" - firstSeenAt is preserved, not overwritten,
+#          since it should reflect the parse's real first appearance, not this re-entry
 #   3. The on-disk rankings_{boss}.json under active\ only gets overwritten - and the
 #      PREVIOUS version archived to archived\rankings_history\{Boss}\{old date}.json -
 #      when that diff found at least one add or drop. A pure rank/HPS reshuffle among the
@@ -550,6 +559,7 @@ $deathsClaimed = [System.Collections.Concurrent.ConcurrentDictionary[string,bool
 $totalNew = 0
 $totalConfirmed = 0
 $totalArchived = 0
+$totalReentered = 0
 $totalFailed = 0
 
 foreach ($bossName in $bosses.Keys) {
@@ -599,8 +609,22 @@ foreach ($bossName in $bosses.Keys) {
         $freshByKey[$key] = [ordered]@{ rank = $k + 1; hps = $r.total; reportID = $r.reportID; fightID = $r.fightID; name = $r.name }
     }
 
+    # ----- 2026-07-12 fix: a parse that drops out of the Top 100 and later re-enters
+    # used to be silently mishandled. $newKeys was originally "fresh AND not currently
+    # active" - that definition doesn't distinguish a genuinely new parse (no manifest
+    # entry at all) from one that's ARCHIVED (has a manifest entry, status=="archived",
+    # its real data already sits on disk under archived\{Boss}\). Both fell into
+    # $newKeys, so a re-entering parse got wastefully re-fetched from the API even
+    # though its completed-log data can never change, its manifest entry got fully
+    # overwritten (losing the real original firstSeenAt), and the stale archived copy
+    # of its files was never cleaned up - leaving the same parse's data in BOTH
+    # active\ and archived\ at once. Fixed by splitting into a real 4th case
+    # ($reenteredKeys) with its own zero-API-call handling (move files back, don't
+    # re-fetch - see below), same principle as $stillActiveKeys costing nothing. -----
     $activeManifestKeys = @($bossEntry.parses.Keys | Where-Object { $bossEntry.parses[$_].status -eq "active" })
-    $newKeys = @($freshByKey.Keys | Where-Object { $activeManifestKeys -notcontains $_ })
+    $archivedManifestKeys = @($bossEntry.parses.Keys | Where-Object { $bossEntry.parses[$_].status -eq "archived" })
+    $newKeys = @($freshByKey.Keys | Where-Object { -not $bossEntry.parses.Contains($_) })
+    $reenteredKeys = @($freshByKey.Keys | Where-Object { $archivedManifestKeys -contains $_ })
     $droppedKeys = @($activeManifestKeys | Where-Object { -not $freshByKey.Contains($_) })
     $stillActiveKeys = @($activeManifestKeys | Where-Object { $freshByKey.Contains($_) })
 
@@ -613,17 +637,28 @@ foreach ($bossName in $bosses.Keys) {
     $totalConfirmed += $stillActiveKeys.Count
 
     # ----- Archive parses that dropped out of the Top 100 -----
+    # Suffix list covers every PER-PARSE file type - "activetime" added 2026-07-12
+    # alongside the re-entry fix above; it was missing here since the original list
+    # predates the 2026-07-12 activeTime addition, meaning every parse archived before
+    # today left its activetime.json orphaned in active\{Boss}\ instead of moving with
+    # the rest of its files (harmless - archived parses don't feed the benchmark
+    # aggregate either way - but real, worth naming rather than leaving silently
+    # inconsistent). `deaths.json` is deliberately NOT in this list - see header note
+    # #4: it's fight-wide, not per-parse, and never archived by design.
     if ($droppedKeys.Count -gt 0) {
         New-Item -ItemType Directory -Force -Path $bossArchivedDir | Out-Null
     }
     foreach ($key in $droppedKeys) {
         $p = $bossEntry.parses[$key]
         $stem = "$($p.reportID)_$($p.fightID)_$($p.safeName)"
-        foreach ($suffix in @("healing_events", "casts_events", "consumables")) {
+        foreach ($suffix in @("healing_events", "casts_events", "consumables", "activetime")) {
             $srcPath = Join-Path $bossActiveDir "$($stem)_$($suffix).json"
             if (Test-Path $srcPath) {
                 Move-Item -Path $srcPath -Destination $bossArchivedDir -Force
-            } else {
+            } elseif ($suffix -ne "activetime") {
+                # activetime.json legitimately won't exist for parses archived before
+                # 2026-07-12 (see comment above) - only warn for the other 3, which
+                # have always been part of a fresh parse's pull.
                 Write-Host "  WARNING: expected $srcPath to archive for dropped parse $key, not found."
             }
         }
@@ -632,9 +667,36 @@ foreach ($bossName in $bosses.Keys) {
     }
     $totalArchived += $droppedKeys.Count
 
+    # ----- Restore parses that re-entered the Top 100 after being archived - zero API
+    # calls, same principle as $stillActiveKeys: a completed log's data can't change,
+    # so the archived copy is just moved back rather than re-fetched. Mirrors the
+    # drop loop above exactly, in reverse. firstSeenAt is deliberately NOT touched -
+    # it should reflect the first time this parse was ever seen, not this re-entry. -----
+    foreach ($key in $reenteredKeys) {
+        $p = $bossEntry.parses[$key]
+        $stem = "$($p.reportID)_$($p.fightID)_$($p.safeName)"
+        foreach ($suffix in @("healing_events", "casts_events", "consumables", "activetime")) {
+            $srcPath = Join-Path $bossArchivedDir "$($stem)_$($suffix).json"
+            if (Test-Path $srcPath) {
+                Move-Item -Path $srcPath -Destination $bossActiveDir -Force
+            } elseif ($suffix -ne "activetime") {
+                Write-Host "  WARNING: expected $srcPath to restore for re-entered parse $key, not found in archived\$bossName."
+            }
+        }
+        $p.status = "active"
+        $p.archivedAt = $null
+        $p.rank = $freshByKey[$key].rank
+        $p.hps = [math]::Round($freshByKey[$key].hps, 1)
+        $p.lastConfirmedInTop100At = $nowIso
+    }
+    if ($reenteredKeys.Count -gt 0) {
+        $totalReentered += $reenteredKeys.Count
+        Write-Host "  $($reenteredKeys.Count) parse(s) RE-ENTERED the Top 100 (restored from archived\, zero API calls): $($reenteredKeys -join ', ')"
+    }
+
     # ----- Conditionally archive+overwrite the rankings snapshot - only on a real
-    # membership change (add or drop), never for a pure rank/HPS reshuffle -----
-    $changed = ($newKeys.Count -gt 0) -or ($droppedKeys.Count -gt 0)
+    # membership change (add, drop, or re-entry), never for a pure rank/HPS reshuffle -----
+    $changed = ($newKeys.Count -gt 0) -or ($droppedKeys.Count -gt 0) -or ($reenteredKeys.Count -gt 0)
     if ($changed) {
         if (Test-Path $activeRankingsPath) {
             $oldSnapshotDate = $bossEntry.rankingsSnapshotDate
@@ -646,7 +708,7 @@ foreach ($bossName in $bosses.Keys) {
         }
         [System.IO.File]::WriteAllText($activeRankingsPath, $rankingsResp.Content, (New-Object System.Text.UTF8Encoding $false))
         $bossEntry.rankingsSnapshotDate = $today
-        Write-Host "  rankings CHANGED ($($newKeys.Count) new, $($droppedKeys.Count) dropped) - snapshot updated"
+        Write-Host "  rankings CHANGED ($($newKeys.Count) new, $($droppedKeys.Count) dropped, $($reenteredKeys.Count) re-entered) - snapshot updated"
     } else {
         Write-Host "  rankings unchanged since $($bossEntry.rankingsSnapshotDate) - not rewriting active\$rankingsFileName"
     }
@@ -729,5 +791,6 @@ Write-Host "  New parses fetched (ok):        $totalNew"
 Write-Host "  New parses failed:              $totalFailed"
 Write-Host "  Still-active (no refetch):      $totalConfirmed"
 Write-Host "  Archived (dropped from Top 100): $totalArchived"
+Write-Host "  Re-entered (restored, no refetch): $totalReentered"
 Write-Host "  Unique reports fetched:         $($fightsCache.Count)"
 Write-Host "  manifest.json:                  $manifestPath"

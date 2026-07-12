@@ -133,6 +133,23 @@ new ones get found — don't let it go stale.
       impact, not a real gearing gap. Raid overview's gear audit section
       rewritten with all of the above, banner changed from "pending" to
       confirmed.
+- [x] **Gear audit check-list formatting fix — real template bug, not just this
+      page (2026-07-12).** The first pass at the rewrite above put full
+      sentences into `.check-note` (the Lurker fishing-pole explanation) - that
+      CSS class is a narrow, right-aligned, small monospace column meant for a
+      short data tag ("item 28765"), not prose; long text there wraps
+      ragged-left in tiny type and squeezes the label column, genuinely hard to
+      read. Fixed in `templates/raid_overview_template.html` (not just the live
+      page) so every future gear audit avoids the same mistake: added a
+      `.check-detail` class (full-width, left-aligned, normal wrapping) for the
+      rare check-item that needs real explanation beyond its one-line label,
+      and rewrote the template's guidance comment to spell out the check-note
+      length rule with a worked example. Applied the same CSS fix to the live
+      `docs/danceswtrees/2026-07-07/index.html` (each page carries its own
+      embedded `<style>` block, not a shared stylesheet) and trimmed every
+      check-note back to a short tag, moving the Lurker explanation into a
+      proper `.check-detail` line and removing duplication between the
+      check-list and the closing coverage-note.
 - [x] **"Union of both spell lists" requirement — now fully verified, not just
       exercised.** The Top100-avg switch (below) surfaced 2 real benchmark-only
       guids (Regrowth 9857/9858, ~0.9%/0.6% of the Top 100 average) that
@@ -247,21 +264,54 @@ new ones get found — don't let it go stale.
 
 ## Real bugs found this session, not yet fixed
 
-- [ ] **A parse that drops out of the Top 100 and later re-enters is mishandled.**
-      Confirmed by re-reading `pull_top100_druid.ps1`'s diff logic: it only checks
-      parses with `status == "active"` to decide what's new, so a re-appearing
-      archived parse gets treated as brand-new — wastefully re-fetched from the
-      API even though identical data already sits in `archived\{Boss}\`, its
-      manifest entry gets overwritten (losing the original `firstSeenAt`), and the
-      stale archived copy is never cleaned up or reconciled. Ends up with the same
-      parse's files in both `active\` and `archived\` at once. Not hit yet in
-      testing (nothing has re-entered across the two live runs so far), but real
-      and findable the moment it happens.
+- [x] **Fixed: a parse that drops out of the Top 100 and later re-enters was
+      mishandled (2026-07-12).** Root cause confirmed by re-reading
+      `pull_top100_druid.ps1`'s diff logic: `$newKeys` was originally "fresh AND
+      not currently active," which doesn't distinguish a genuinely new parse (no
+      manifest entry at all) from a re-entering one (has a manifest entry,
+      `status == "archived"`, real data already sitting on disk under
+      `archived\{Boss}\`) - both fell into `$newKeys`, so a re-entering parse got
+      wastefully re-fetched from the API, its manifest entry was fully
+      overwritten (losing the real original `firstSeenAt`), and the stale
+      archived copy was never cleaned up - leaving the same parse's files in
+      both `active\` and `archived\` at once.
+      Fixed by splitting the diff into a real 4th case (`$reenteredKeys`,
+      computed against `status == "archived"` keys specifically) with its own
+      zero-API-call handling: files move back from `archived\{Boss}\` to
+      `active\{Boss}\` (the exact reverse of the existing drop logic), manifest
+      status flips back to `"active"`, `archivedAt` clears, rank/hps refresh
+      from the in-memory rankings response already fetched this run - but
+      `firstSeenAt` is deliberately left untouched, preserving the parse's real
+      first-appearance date across the archive/re-entry cycle. The rankings
+      snapshot's `$changed` flag (controls whether `active\rankings_{boss}.json`
+      gets rewritten+archived-to-history) now also fires on a real re-entry, not
+      just new/dropped.
+      Found and fixed a related, previously-undiscovered gap while in this code:
+      the drop-archival suffix list (`healing_events`, `casts_events`,
+      `consumables`) never included `activetime` - a real oversight from when
+      Active Time was added earlier this same session without updating this
+      list, meaning every parse archived before this fix left its
+      `activetime.json` orphaned in `active\{Boss}\` instead of moving with the
+      rest of its files. Added `activetime` to both the drop and re-entry
+      suffix lists (matching the existing `deaths.json`-is-never-archived
+      exception, which stays correctly excluded - it's fight-wide, not
+      per-parse, per the original design). Missing `activetime.json` on restore
+      no longer triggers a false warning, since it legitimately won't exist for
+      anything archived before today.
+      Verified with two isolated tests (no real API calls or production file
+      moves): (1) a mock manifest/rankings scenario confirming all 4 diff
+      categories - new/still-active/dropped/reentered - classify correctly; (2)
+      a scratch-directory file-move test confirming the restore loop correctly
+      moves present files back, correctly skips a legitimately-missing
+      `activetime.json` without warning, and leaves the archived directory
+      empty afterward. Not yet exercised against a real re-entry in production
+      (none has occurred across the live runs so far), but the logic is now
+      verified correct in isolation rather than just theoretically fixed.
 - [ ] **`manifest.json` has no pruning, grows indefinitely.** Already ~1.3MB at
       1,000 active parses; archived entries kept forever by design. Not urgent,
       just a scaling note for whatever eventually reads this file often.
 
-## New folder convention — read before building the remaining 9 boss pages
+## Folder convention — v1/v2 side-by-side output
 
 Established this session, real and in use now: v1 and v2 output for the same
 healer+raid-night live side by side, never overwriting each other.

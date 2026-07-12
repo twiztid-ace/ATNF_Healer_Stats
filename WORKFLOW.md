@@ -235,11 +235,11 @@ data\Classes\{Class}\
   manifest.json
   active\
     rankings_{boss}.json           <- current snapshot only, one per boss
-    {Boss}\{reportID}_{fightID}_{playerName}_{healing_events,casts_events,consumables}.json
+    {Boss}\{reportID}_{fightID}_{playerName}_{healing_events,casts_events,consumables,activetime}.json
     {Boss}\{reportID}_{fightID}_deaths.json     <- never archived, see below
     benchmark_summary.csv, benchmark_spell_composition.csv, benchmark_cooldowns.csv, benchmark_buffs.csv
   archived\
-    {Boss}\{reportID}_{fightID}_{playerName}_{...}.json   <- parses dropped from the Top 100, kept forever
+    {Boss}\{reportID}_{fightID}_{playerName}_{...}.json   <- parses dropped from the Top 100, kept forever (moves back to active\ if the parse re-enters, see below)
     rankings_history\{Boss}\{date}.json                    <- only written when membership actually changed
     benchmark_history\{date}\benchmark_*.csv               <- only written on a real day-over-day regen
 ```
@@ -276,20 +276,44 @@ a healing-events file against its rankings entry.
 
 **Per-boss diff algorithm, every run:** fetch fresh rankings (1 call, unchanged),
 build the fresh `{reportID}_{fightID}_{name}` key set, diff against the manifest's
-currently-`active` parses for that boss:
-- **In fresh, not in manifest-active** → genuinely new. Runs the full per-parse fetch
-  (healing/casts/consumables/deaths, unchanged worker logic). Only added to the
-  manifest once fully successful — a partial failure (e.g. healing succeeded, casts
-  didn't) leaves the parse out of the manifest entirely, so the next run's diff sees
-  it as "new" again and retries; the per-file `Test-Path` check already in the worker
-  skips whatever piece already succeeded, only the missing piece is re-fetched.
-- **In both** → still in the Top 100, **zero API calls** — `rank`/`hps`/
-  `lastConfirmedInTop100At` are refreshed from the rankings response already in hand.
+parses for that boss (all four cases below, not just three — see the fix note after):
+- **In fresh, no manifest entry at all** → genuinely new. Runs the full per-parse fetch
+  (healing/casts/consumables/activetime/deaths, unchanged worker logic). Only added to
+  the manifest once fully successful — a partial failure (e.g. healing succeeded,
+  casts didn't) leaves the parse out of the manifest entirely, so the next run's diff
+  sees it as "new" again and retries; the per-file `Test-Path` check already in the
+  worker skips whatever piece already succeeded, only the missing piece is re-fetched.
+- **In both, manifest status `"active"`** → still in the Top 100, **zero API calls** —
+  `rank`/`hps`/`lastConfirmedInTop100At` are refreshed from the rankings response
+  already in hand.
 - **In manifest-active, not in fresh** → dropped out. Its `healing_events`/
-  `casts_events`/`consumables` files move from `active\{Boss}\` to `archived\{Boss}\`
-  (kept forever, never deleted), manifest status flips to `"archived"`.
+  `casts_events`/`consumables`/`activetime` files move from `active\{Boss}\` to
+  `archived\{Boss}\` (kept forever, never deleted), manifest status flips to
+  `"archived"`.
+- **In fresh, manifest status `"archived"`** → **re-entered** the Top 100 after
+  previously dropping out. Also **zero API calls** — the exact reverse of the drop
+  case: files move back from `archived\{Boss}\` to `active\{Boss}\`, manifest status
+  flips back to `"active"`, `archivedAt` clears, `rank`/`hps`/
+  `lastConfirmedInTop100At` refresh from the rankings response already in hand — but
+  `firstSeenAt` is deliberately left untouched, since it should reflect the parse's
+  real first appearance, not this re-entry.
 - `deaths.json` is **never archived**, regardless of whether the parse(s) referencing
   it get archived — fight-wide (not per-parse), tiny, not worth refcounting.
+
+**Bug fixed 2026-07-12: re-entry used to be silently mishandled.** The original diff
+only computed three cases (new/still-active/dropped), and defined "new" as "fresh AND
+not currently active" — that doesn't distinguish a genuinely new parse from a
+re-entering one, so a re-entering parse fell into the "new" bucket: wastefully
+re-fetched from the API even though its completed-log data can never change, its
+manifest entry fully overwritten (losing the real `firstSeenAt`), and its stale
+archived copy never cleaned up — leaving the same parse's files in both `active\` and
+`archived\` at once. Fixed by adding the real 4th case above. While fixing this, also
+found and fixed a related gap: the drop/restore suffix list never included
+`activetime` (added to the pipeline later than the other three file types and never
+wired into archiving) — parses archived before this fix left an orphaned
+`activetime.json` behind in `active\{Boss}\`, harmless (archived parses don't feed the
+benchmark aggregate) but real. Verified via two isolated tests (mock manifest diff +
+scratch-directory file-move), not yet exercised against a real re-entry in production.
 
 **Rankings file is only rewritten (and the old version archived) on a real membership
 change** — defined as at least one add or drop from the diff above, not a pure
