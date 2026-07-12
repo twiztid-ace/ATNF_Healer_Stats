@@ -81,15 +81,26 @@ new ones get found — don't let it go stale.
       against real data with no structural surprises — union-of-spell-lists,
       self/other cooldown targeting, boolean vs. real-% buff display all worked
       as documented. (CLAUDE.md open item #1)
-- [ ] **Extend to the other 8 bosses for Danceswtrees's 2026-07-07 raid night.**
-      Hydross and Leotheras the Blind are done (2/10). Leotheras's build surfaced
-      a real bug (`begincast` double-counting, fixed - see above) and confirmed a
-      second real, consistent finding across both kills so far: Danceswtrees's
-      Lifebloom-over-Regrowth HoT-mix gap vs. the Top 100 average, and a
-      below-average HPM on both. `docs/danceswtrees/2026-07-07/index.html` (the v2
-      raid overview) already has explicit "not migrated" pending rows for the
-      rest, each linking to its real v1 page in the meantime — see "New folder
-      convention" below before touching any of these.
+- [x] **Extend to the other 8 bosses for Danceswtrees's 2026-07-07 raid night —
+      done, all 10/10 bosses now migrated.** Built The Lurker Below, Fathom-Lord
+      Karathress, Morogrim Tidewalker, Lady Vashj, Al'ar, Void Reaver, High
+      Astromancer Solarian, and Kael'thas Sunstrider, each fully real (events
+      data, Top 100 benchmark comparison, real percentile matched by exact
+      report/fight ID). `docs/danceswtrees/2026-07-07/index.html` now shows all
+      10 real rows and a rewritten synthesis note. Real cross-kill findings that
+      only became visible once the full set existed: overheal exceeds the Top
+      100 sample's worst on 8/10 kills; the Lifebloom-over-Regrowth HoT-mix skew
+      (first spotted on Hydross/Leotheras) holds on 8/10 kills, with the two
+      exceptions genuinely boss-driven (Void Reaver's own Top 100 average is
+      itself Regrowth-dominant at 74.8%; Solarian saw an all-in 90.1% Regrowth
+      kill); HPM sits below the Top 100 average on 9/10 kills. Two real,
+      per-kill anomalies: Karathress's active time (80.6%, far below the 99.2%
+      average) is directly explained by Danceswtrees's own death mid-fight,
+      confirmed against that kill's death list — not idle time in a live window.
+      Tree of Life uptime read a real, unexplained 0% on two kills (Morogrim,
+      Solarian) with no death to account for either — flagged, not chased
+      further. Percentile ranged from 23rd (Kael'thas, the weakest kill by
+      nearly every metric) to 84th (Solarian, the strongest).
 - [x] *Mostly resolved:* **Gear audit regression.** Confirmed the `combatantinfo`
       events pull (same mechanism as flask/food) works for getting real gear back
       — pulled it live for Danceswtrees/Hydross and built a real gear audit
