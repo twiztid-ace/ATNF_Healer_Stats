@@ -240,7 +240,7 @@
 
     <div class="consistency-banner pending">
       <div class="consistency-icon">i</div>
-      <div class="consistency-text"><strong>1 of 10 boss kills has been rebuilt under the v2 (events-based) pipeline so far</strong> — Hydross the Unstable, below. The other 9 rows are shown for completeness but are not yet migrated; their real v1 numbers (healing-table-based, still real WCL data, just the older methodology) remain available via the small "(v1)" link on each row until their v2 pages are built.</div>
+      <div class="consistency-text"><strong>2 of 10 boss kills have been rebuilt under the v2 (events-based) pipeline so far</strong> — Hydross the Unstable and Leotheras the Blind, below. The other 8 rows are shown for completeness but are not yet migrated; their real v1 numbers (healing-table-based, still real WCL data, just the older methodology) remain available via the small "(v1)" link on each row until their v2 pages are built.</div>
     </div>
 
     <table class="boss-table">
@@ -268,12 +268,12 @@
           <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
           <td></td>
         </tr>
-        <tr class="pending-row">
-          <td class="boss-name">Leotheras the Blind <a class="v1-link" href="../2026-07-07-v1/healer_audit_leotheras.html">(v1)</a></td>
-          <td class="num-cell">—</td>
-          <td class="num-cell">—</td>
-          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
-          <td></td>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
+          <td class="num-cell">699</td>
+          <td class="num-cell overheal-cell high">66.7%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">46th</span></td>
+          <td class="link-arrow">→</td>
         </tr>
         <tr class="pending-row">
           <td class="boss-name">Fathom-Lord Karathress <a class="v1-link" href="../2026-07-07-v1/healer_audit_karathress.html">(v1)</a></td>
@@ -327,11 +327,11 @@
     </tbody>
     </table>
 
-    <div class="coverage-note">Only Hydross has been rebuilt end-to-end under the v2 pipeline so far — its numbers (563 HPS, 67.9% overheal, 34th percentile) are independently computed from real events data, not carried over from v1. They happen to be very close to v1's own Hydross numbers for this exact fight, which is expected: WORKFLOW.md's validation already confirmed this specific character/fight's healing total matches exactly between the old table and the new events data. That agreement on Hydross should not be read as a guarantee the other 9 bosses will match this closely — several other real fights in this project's history (Leotheras, others) showed real truncation gaps between the two methods, which is the whole reason v2 exists.</div>
+    <div class="coverage-note">Hydross and Leotheras have been rebuilt end-to-end under the v2 pipeline so far — both sets of numbers are independently computed from real events data, not carried over from v1. Both also happen to closely match v1's own totals for the same fights (Leotheras's healing total, 176,374, is the exact case WORKFLOW.md's original truncation-bug writeup used — the *total* was always correct in the old table, only the 5-ability spell breakdown underneath it was silently cut off). That agreement on totals should not be read as a guarantee every remaining boss will match this closely on every field — spell composition specifically showed a real, large truncation gap on this exact Leotheras kill historically, which is the whole reason v2 exists, and each remaining boss's own comparison should be checked on its own terms as it gets built, not assumed from these two.</div>
   </div>
 
   <div class="footer">
-    <span>All data real: Danceswtrees's fight logs (report XJp8vAxzM4KtHYyb) + WCL rankings where pulled — v2 events-based pipeline, 1/10 bosses migrated</span>
+    <span>All data real: Danceswtrees's fight logs (report XJp8vAxzM4KtHYyb) + WCL rankings where pulled — v2 events-based pipeline, 2/10 bosses migrated</span>
     <span>tbc-audit style reference · healer variant · raid overview</span>
   </div>
 

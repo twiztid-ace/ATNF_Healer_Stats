@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Leotheras the Blind</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  /* ===== Header ===== */
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ===== Seal ===== */
+  .seal-wrap{ flex-shrink:0; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  /* ===== Section shell ===== */
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--copper);
+  }
+  .section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+  .section-desc{
+    font-size: 13px;
+    color: rgba(19,42,44,0.6);
+    margin: -12px 0 20px;
+  }
+
+  /* ===== Stat row ===== */
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .stat{
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(19,42,44,0.55);
+    margin-bottom: 6px;
+  }
+  .stat-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  /* ===== Percentile bar ===== */
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{
+    position: absolute;
+    top: -8px;
+    width: 3px;
+    height: 26px;
+    background: var(--ink);
+  }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .pctl-scale{
+    display:flex; justify-content: space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(19,42,44,0.45);
+  }
+
+  /* ===== Spell composition bars ===== */
+  .spell-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items:center;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 13px;
+  }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{
+    height: 8px;
+    background: var(--parchment-dim);
+    border-radius: 4px;
+    overflow:hidden;
+  }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{
+    display:flex; gap: 18px; margin-bottom: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+  .spell-group{ margin-bottom: 6px; }
+  .spell-group:last-child{ margin-bottom: 0; }
+
+  /* ===== Cooldown / consumable table (Druid-specific) ===== */
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cd-table td{
+    padding: 10px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
+
+  /* ===== Target distribution ===== */
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{
+    display:grid;
+    grid-template-columns: 120px 1fr 70px;
+    align-items:center;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  /* ===== Footer ===== */
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC/TK 07.07.2026 · Leotheras the Blind</p>
+      <h1>Danceswtrees</h1>
+      <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; fight <span>24</span> &nbsp;·&nbsp; kill, 252s</p>
+    </div>
+    <div class="seal-wrap">
+      <svg class="seal" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">46</text>
+        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+      </svg>
+      <div class="seal-label">WCL rank, all parses</div>
+    </div>
+  </div>
+
+  <!-- ===== SCORECARD ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid stat-grid-5">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value">699</div>
+        <div class="stat-sub">Top 100: #1 2014 &nbsp;·&nbsp; avg 1500 &nbsp;·&nbsp; median 1468</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value warn">66.7%</div>
+        <div class="stat-sub">Top 100: best 27.6% &nbsp;·&nbsp; median 42.5% &nbsp;·&nbsp; worst 54.3%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">176,374</div>
+        <div class="stat-sub">over 252s kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value good">99.8%</div>
+        <div class="stat-sub">Top 100: #1 100% &nbsp;·&nbsp; avg 99.1% &nbsp;·&nbsp; median 99.6%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value warn">8</div>
+        <div class="stat-sub">this kill, all classes</div>
+      </div>
+    </div>
+
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:46%;" data-label="Danceswtrees · 46th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank 9872 of 18227 Restoration Druid parses on this encounter (all difficulties/partitions, historical). Matched by exact report/fight ID (XJp8vAxzM4KtHYyb, fight 24) — no duplicate-upload fallback needed.</div>
+
+    <div class="coverage-note">HPS (699) and overheal (66.7%) both point the same direction as the Hydross kill: well under the Top 100 median (1468), and worse than every sampled parse's overheal, including the worst (54.3%). Unlike Hydross, this isn't a short-fight artifact — Leotheras ran 252s, a genuinely long kill, so the fight-length caveat that softened Hydross's reading doesn't apply here. Eight raid deaths this kill is also real context: a rougher fight overall, not just a rougher healing performance. Active time (99.8%) is the one stat that held up in line with the Top 100 sample (avg 99.1%, median 99.6%) — the HPS/overheal shortfall isn't from idle time, it points at throughput and healing efficiency instead.</div>
+  </div>
+
+  <!-- ===== SPELL COMPOSITION ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">Danceswtrees's real cast mix on this kill, vs. real Top 100 average on Leotheras the Blind.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>Danceswtrees</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:19.4%"></div></div>
+        <div class="spell-pct">19.4%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:53.2%"></div></div>
+        <div class="spell-pct">53.2%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Lifebloom</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:41.3%"></div></div>
+        <div class="spell-pct">41.3%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:18.5%"></div></div>
+        <div class="spell-pct">18.5%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Rejuvenation</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:13.8%"></div></div>
+        <div class="spell-pct">13.8%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:12.1%"></div></div>
+        <div class="spell-pct">12.1%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Lifebloom <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 33778)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:12.9%"></div></div>
+        <div class="spell-pct">12.9%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.2%"></div></div>
+        <div class="spell-pct">5.2%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Swiftmend</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:5.4%"></div></div>
+        <div class="spell-pct">5.4%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.5%"></div></div>
+        <div class="spell-pct">4.5%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 9858)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3%"></div></div>
+        <div class="spell-pct">3%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Healing Touch</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:7.1%"></div></div>
+        <div class="spell-pct">7.1%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1%"></div></div>
+        <div class="spell-pct">1%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 9857)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.5%"></div></div>
+        <div class="spell-pct">0.5%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Same six spells cast plus two benchmark-only guids never cast (Regrowth 9857/9858, 0.5%/3% of the Top 100 average — the same unidentified pair seen on Hydross, shown honestly as real 0% rows per the union rule). The HoT-mix gap here is the widest seen yet: Lifebloom is dramatically overweighted (41.3% vs. 18.5%, +22.8) while Regrowth is dramatically underweighted (19.4% vs. 53.2%, -33.8) — a much larger version of the exact same pattern Hydross showed (there: +10.8/-10.0). Two real kills now pointing the same direction is worth treating as a real behavioral tendency rather than fight-specific noise: Danceswtrees consistently leans on Lifebloom well past what the Top 100 average does.</div>
+  </div>
+
+  <!-- ===== COOLDOWNS & CONSUMABLES ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Leotheras the Blind.</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">Danceswtrees</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 100 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ability-name">Innervate</td>
+          <td class="num-cell">1</td>
+          <td>self</td>
+          <td class="num-cell">0.9 (76%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Nature's Swiftness</td>
+          <td class="num-cell">2</td>
+          <td>self ×2</td>
+          <td class="num-cell">0.8 (100%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Swiftmend</td>
+          <td class="num-cell">4</td>
+          <td>→ Turbarct ×2, → Captinspanky, → Pepsiweaving</td>
+          <td class="num-cell">3.5 (9%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Rebirth</td>
+          <td class="num-cell">1</td>
+          <td>→ Captinspanky</td>
+          <td class="num-cell">0.3 (0%)</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Tranquility omitted: not cast this kill (0), and the Top 100 average is also
+         0% used on this boss - matching the norm, not a deviation, so it doesn't earn
+         a row (see boss_page_template_druid.html's 2026-07-12 rule). -->
+
+    <div class="stat-grid stat-grid-5" style="margin-top:22px;">
+      <div class="stat">
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Elixir of Draenic Wisdom — Top 100: 74% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 72% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Tree of Life uptime</div>
+        <div class="stat-value good">94%</div>
+        <div class="stat-sub">Top 100 avg: 43.8%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value">1</div>
+        <div class="stat-sub">1x Restore Mana — Top 100 avg 0.6 casts (56% used one)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">HPM</div>
+        <div class="stat-value warn">3.78</div>
+        <div class="stat-sub">Top 100: top1 9.59 &nbsp;·&nbsp; avg 6.34 &nbsp;·&nbsp; median 6.16</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Innervate was genuinely self-cast this time (confirmed via a real resolved target, not a null-target artifact) — matching the Top 100 sample's majority pattern here (76% self), the opposite lean from the Hydross kill. Nature's Swiftness was used twice, above the Top 100 average of 0.8 — this fight ran long enough (252s vs. Hydross's 143s) for a second NS cooldown cycle, and it was taken. Swiftmend (4 casts, all to others) sits slightly above the Top 100 average (3.5) and correctly non-self, matching the sample's pattern (9% self). The real standout: Rebirth landed on Captinspanky at 4490421ms, 30.6 seconds after Captinspanky's first death (4459826ms) — a clean, verified battle-rez save, well above the Top 100 average of 0.3 casts (most of the sample never needed one this kill). Captinspanky died a second time near the very end (4629615ms, 2.7s before the kill) — past any point a second rez was possible. HPM (3.78) is well below both the Top 100 average and median (6.34/6.16), the same mana-efficiency gap seen on Hydross and consistent with the overheal problem above.</div>
+  </div>
+
+  <!-- ===== TARGET DISTRIBUTION ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of Danceswtrees's healing on this kill (69.7% coverage) vs. Top 100 average on Leotheras the Blind (51.1% coverage, 15.7% to top target).</p>
+
+    <div class="target-list">
+      <div class="target-row">
+        <div>Turbarct</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
+        <div class="target-pct">17.9%</div>
+      </div>
+      <div class="target-row">
+        <div>Jotes</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:90.6%"></div></div>
+        <div class="target-pct">16.2%</div>
+      </div>
+      <div class="target-row">
+        <div>Paladanwood</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:75.5%"></div></div>
+        <div class="target-pct">13.5%</div>
+      </div>
+      <div class="target-row">
+        <div>Deepbowlz</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:71.3%"></div></div>
+        <div class="target-pct">12.8%</div>
+      </div>
+      <div class="target-row">
+        <div>Raezy</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:51.4%"></div></div>
+        <div class="target-pct">9.2%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Coverage (69.7% vs. the Top 100's 51.1%, a real +18.6 point gap) shows the same narrower-than-average target spread seen on Hydross — and this time across a much bigger, more chaotic fight (19 distinct recipients here vs. Hydross's 6), so concentrating 69.7% of total healing on just 5 of them is a real, consistent pattern, not an artifact of a small raid or a quiet fight. Top target share (17.9% vs. 15.7%) is a real but small gap, +2.2 points, well inside the ±5 range that's shown to be normal variance — not a finding on its own.</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Danceswtrees's fight log (XJp8vAxzM4KtHYyb, fight 24) + Top 100 Leotheras the Blind benchmark (n=100)</span>
+    <span>tbc-audit style reference · healer variant · Resto Druid</span>
+  </div>
+
+</div>
+
+</body>
+</html>

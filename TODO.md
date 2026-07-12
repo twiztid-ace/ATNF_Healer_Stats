@@ -6,6 +6,71 @@ it where relevant, but this file is for *tracking status* (open/in-progress/done
 WORKFLOW.md stays the deep explanation of *why*. Update this as items get fixed or
 new ones get found — don't let it go stale.
 
+## Requested, not started
+
+(empty right now — see "Active Time" below for the item that used to live here)
+
+## Active Time — resolved, better than expected (2026-07-12)
+
+- [x] **Brought back "Active Time" as a real 5th Scorecard stat, with a real
+      Top 100 comparison (top1/avg/median, same pattern as HPS/HPM).** Dropped
+      2026-07-11 on the stated premise that no event carries an equivalent field
+      once healing/casts moved off the healing TABLE - that premise was never
+      actually tested. Investigated per the project's "test one real thing
+      before guessing" rule: Step 0 was to check whether the healing TABLE's
+      top-level per-player `activeTime`/`activeTimeReduced` scalars (as opposed
+      to its truncation-prone nested `abilities[]` array - the actual reason the
+      endpoint was abandoned) still worked. They do - pulled it live for
+      Danceswtrees's real Hydross kill and got `activeTime=138449ms/143007ms
+      =96.8%`, exactly matching the number already recorded on the
+      pre-events-rewrite v1 page, and cross-validated `total`/`overheal` on the
+      same response against the events-based numbers (also exact match). This
+      made the events-based GCD-reconstruction fallback (mixing real
+      begincast→cast measured time with an assumed flat 1.5s GCD for instant
+      casts - an estimate, not exact data) unnecessary. Same "test before
+      assuming it's gone" pattern that resurrected HPM.
+      **Built into the pipeline the same day:** both `pull_top100_druid.ps1`
+      and `pull_character_TEMPLATE.ps1` now fetch this via one extra table call
+      per parse/fight (same shape as the existing `deaths` call), saved as
+      `*_activetime.json`. Backfilled for Danceswtrees's 10 already-pulled boss
+      kills (`scripts/backfill_activetime_danceswtrees.ps1`) and all ~1,000
+      already-active Druid Top 100 parses (`scripts/backfill_activetime_top100_druid.ps1`,
+      RunspacePool-parallelized, `-MaxThreads 10`) - both one-off scripts, not
+      part of the recurring pipeline (new parses get it inline going forward).
+      The Top 100 backfill's first run hit a real encoding bug: reading
+      `manifest.json` without `-Encoding UTF8` mangled every non-ASCII player
+      name (Chinese/Korean/accented Latin) into mojibake, silently failing the
+      later name-match against the healing table response (21/100 failures in
+      the first batch, all non-ASCII names, 0 ASCII-name failures) - the exact
+      BOM/encoding gotcha class CLAUDE.md already flags. Fixed by matching
+      `pull_top100_druid.ps1`'s existing convention (`-Encoding UTF8` on every
+      manifest read); rerun completed with 0 failures.
+      `summarize_class_benchmarks.ps1` computes `ActiveTimePct` per parse (same
+      pattern as HPM - `$null`/excluded if the file is missing, e.g. not yet
+      backfilled) and adds `ActiveTime_Top1`/`_Top100Avg`/`_Median`/
+      `_SampleUsed` to `benchmark_summary.csv`. `boss_page_template_druid.html`'s
+      Scorecard is back to 5 stats (`.stat-grid-5`): HPS, Overheal, Effective
+      healing, Active time, Raid deaths (kept, not replaced). WORKFLOW.md
+      updated (the old "no equivalent field" claim corrected in 3 places).
+
+## Real bugs found while building the Leotheras page (2026-07-12)
+
+- [x] **Fixed: `begincast` events were double-counting cast-time cooldowns and
+      inflating their self%.** Found while building Danceswtrees's Leotheras page
+      — her one real Rebirth cast (on Captinspanky) was showing as 2 events, one
+      of them marked "self." Root cause: WCL logs a separate `"type":"begincast"`
+      event for any ability with a real cast time (Rebirth, Tranquility -
+      Innervate/Swiftmend/Nature's Swiftness/Dark Rune are all instant and never
+      generate one), and that begincast event carries no resolved target
+      (`target: {"name":"Environment",...}`, same shape as the self-only-spell
+      case the 2026-07-12 self-cast fix already handles) - so it was both
+      double-counting the real cast AND getting miscounted as self via that same
+      null-target fallback. Fixed by excluding `type == "begincast"` from the
+      cooldown-guid match in `summarize_class_benchmarks.ps1`. Only affects
+      Rebirth and Tranquility (the only two cast-time abilities in the tracked
+      set) - Innervate/Swiftmend/NS/Dark Rune counts were never affected.
+      Regenerated Druid's `benchmark_cooldowns.csv` to confirm.
+
 ## Blocking the "best version" report — do these first
 
 - [x] **Build one real v2 boss page end-to-end.** Done for Danceswtrees / Hydross
@@ -16,10 +81,14 @@ new ones get found — don't let it go stale.
       against real data with no structural surprises — union-of-spell-lists,
       self/other cooldown targeting, boolean vs. real-% buff display all worked
       as documented. (CLAUDE.md open item #1)
-- [ ] **Extend to the other 9 bosses for Danceswtrees's 2026-07-07 raid night.**
-      Only Hydross is done. `docs/danceswtrees/2026-07-07/index.html` (the v2 raid
-      overview) already has explicit "not migrated" pending rows for the rest,
-      each linking to its real v1 page in the meantime — see "New folder
+- [ ] **Extend to the other 8 bosses for Danceswtrees's 2026-07-07 raid night.**
+      Hydross and Leotheras the Blind are done (2/10). Leotheras's build surfaced
+      a real bug (`begincast` double-counting, fixed - see above) and confirmed a
+      second real, consistent finding across both kills so far: Danceswtrees's
+      Lifebloom-over-Regrowth HoT-mix gap vs. the Top 100 average, and a
+      below-average HPM on both. `docs/danceswtrees/2026-07-07/index.html` (the v2
+      raid overview) already has explicit "not migrated" pending rows for the
+      rest, each linking to its real v1 page in the meantime — see "New folder
       convention" below before touching any of these.
 - [x] *Mostly resolved:* **Gear audit regression.** Confirmed the `combatantinfo`
       events pull (same mechanism as flask/food) works for getting real gear back

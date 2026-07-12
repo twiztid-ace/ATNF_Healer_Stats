@@ -111,6 +111,27 @@ for any class, not just Druid — should be treated as unverified, not just "pos
 little off." The new output files are named `_healing_events.json`/`_casts_events.json`
 specifically so old and new data can never look identical in a folder listing.
 
+**Active time — re-discovered, not gone (2026-07-12).** When healing/casts moved off
+the table endpoint, "Active time" (`activeTime`/`activeTimeReduced`) was dropped from
+the Scorecard on the stated premise that no event carries an equivalent field, and
+"Raid deaths" took its place as the 4th stat. That premise was never actually tested —
+it was just abandoned along with the rest of the table endpoint. Re-checked later
+(same "test before assuming it's gone" instinct that resurrected HPM — see the HPM
+section below): the truncation bug is specifically in the table response's nested
+`abilities[]`/`targets[]` breakdown arrays, not in every field on the response. The
+top-level per-player `activeTime`/`activeTimeReduced` scalars are untouched by it.
+Verified for real: pulled `/report/tables/healing/{code}?start=X&end=Y&api_key=...`
+for Danceswtrees's real Hydross kill and got `activeTime=138449`, fight
+duration=143007ms → 96.8%, exactly matching the number already recorded on the
+pre-events-rewrite v1 page. `total`/`overheal` on that same entry also matched the
+events-based numbers exactly (further cross-validation), and the response's
+`abilities[]` array WAS confirmed still truncated at 5 entries in this same test —
+so the truncation bug is real and reproducible, it just doesn't reach this field.
+Both pull scripts now fetch this via one extra table call per parse/fight (same shape
+as the existing `deaths` call, matched by player name in the response) and save it as
+`*_activetime.json`. The Scorecard is back to 5 stats: HPS, Overheal, Effective
+healing, Active time, Raid deaths.
+
 **Consumables note (unchanged by this fix):** mana potions/Dark Runes still show up
 fine as cast events (e.g. `"Restore Mana"` for a mana potion's proc) — that part of the
 original ask was never affected by the truncation bug, since the character-level total
@@ -608,9 +629,11 @@ tokens for every new healer/raid — don't reinvent the palette each time.
 generic base (Scorecard → Spell composition → Target distribution). `boss_page_template_druid.html`
 is the Resto Druid variant — same base plus a "Cooldowns & consumables" section (see
 below) inserted as section 03 with a Target column for cooldown casts, pushing Target
-distribution to 04. The Scorecard's 4th stat is "Raid deaths," not "Active time" (see
-"Why healing/casts moved to events, not tables" for why that field is gone). Section
-03 shows real flask/food/Tree of Life data as of 2026-07-11 (see "Buff uptime —
+distribution to 04. The Scorecard is 5 stats (`.stat-grid-5`): HPS, Overheal,
+Effective healing, Active time, Raid deaths — Active time was re-discovered as a real,
+exact field on 2026-07-12 (see "Active time — re-discovered, not gone" above), not an
+estimate. Section 03 shows real flask/food/Tree of Life data as of 2026-07-11 (see
+"Buff uptime —
 fixed" above) — it briefly showed a visible "unavailable" note instead, between the
 table-based bug being found and the events-based fix landing later the same day. Use
 the Druid variant for every Druid boss page; keep using the generic template for
@@ -630,10 +653,12 @@ template's Cooldowns & Consumables section.
 **Boss page** (per kill):
 1. Header: character name, class/spec, report+fight IDs, percentile badge (number
    only, NO letter grades — this was an explicit correction, keep it)
-2. Scorecard: HPS, overheal, effective healing, raid deaths this kill (NOT "active
-   time" — that field came from the healing table and has no events-based equivalent,
-   dropped 2026-07-11, see "Why healing/casts moved to events, not tables") — each
-   compared against real Top 100 benchmark numbers where available
+2. Scorecard: HPS, overheal, effective healing, active time, raid deaths this kill —
+   active time is a real field from the healing table's top-level per-player
+   `activeTime`/`activeTimeReduced` scalars (re-discovered 2026-07-12, see "Active
+   time — re-discovered, not gone" — NOT the truncation-affected `abilities[]` array
+   from that same endpoint) — each compared against real Top 100 benchmark numbers
+   where available
 3. Spell composition: character's cast mix vs. Top 100 average, grouped by ability
    guid, never by name (gotcha #2), and never merged across different guids that share
    a name without checking first (gotcha #20 — e.g. Lifebloom's HoT-tick and

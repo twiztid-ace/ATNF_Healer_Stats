@@ -115,8 +115,8 @@
     border-radius: 3px;
     overflow:hidden;
   }
-  /* 2026-07-12: cooldowns/consumables stat row grew a 5th stat (HPM) - scoped modifier
-     so the Scorecard's own stat-grid (still 4 real stats) is untouched. */
+  /* 2026-07-12: cooldowns/consumables stat row grew a 5th stat (HPM); the Scorecard
+     grew its own 5th stat (Active Time) the same day - both now use this modifier. */
   .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
   .stat{
     padding: 16px 18px;
@@ -322,7 +322,7 @@
       <span class="section-num">01</span>
       <h2 class="section-title">Scorecard</h2>
     </div>
-    <div class="stat-grid">
+    <div class="stat-grid stat-grid-5">
       <div class="stat">
         <div class="stat-label">HPS</div>
         <div class="stat-value">{{HPS}}</div>
@@ -339,12 +339,23 @@
         <div class="stat-sub">over {{DURATION_S}}s kill</div>
       </div>
       <div class="stat">
-        <!-- Active time was dropped 2026-07-11: it came from the healing TABLE's
-             activeTime/activeTimeReduced fields, which no longer get pulled now that
-             healing/casts moved to /report/events (see WORKFLOW.md) - no event carries
-             an equivalent field. Raid deaths (from the fight's deaths table, unaffected
-             by the redesign) replaces it - real data, and it sets up the death-timing
-             cross-reference already called for in section 03's coverage-note. -->
+        <!-- Active time was dropped 2026-07-11 on the stated premise that no event
+             carries an equivalent field once healing/casts moved to /report/events -
+             re-added 2026-07-12 after re-checking that premise (same "test before
+             assuming it's gone" pattern that resurrected HPM): the healing TABLE's
+             top-level per-player activeTime/activeTimeReduced fields were never
+             actually confirmed broken, just abandoned along with the whole endpoint
+             when the truncation-prone abilities[] array killed it for spell
+             composition. That truncation doesn't touch these top-level scalars - one
+             extra table call (same shape as `deaths`) gets the real field back, no
+             estimate involved. Verified against Danceswtrees's real Hydross kill:
+             138449ms/143007ms = 96.8%, exactly matching the number recorded on the
+             pre-events-rewrite v1 page. -->
+        <div class="stat-label">Active time</div>
+        <div class="stat-value">{{ACTIVE_TIME_PCT}}%</div>
+        <div class="stat-sub">Top 100: #1 {{ACTIVE_TIME_TOP1}}% &nbsp;·&nbsp; avg {{ACTIVE_TIME_TOP100AVG}}% &nbsp;·&nbsp; median {{ACTIVE_TIME_MEDIAN}}%</div>
+      </div>
+      <div class="stat">
         <div class="stat-label">Raid deaths</div>
         <div class="stat-value">{{DEATH_COUNT}}</div>
         <div class="stat-sub">this kill, all classes</div>

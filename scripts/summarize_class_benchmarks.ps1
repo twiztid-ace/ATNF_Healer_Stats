@@ -428,7 +428,20 @@ foreach ($bossFolder in $bosses.Keys) {
                     # never exercising the empty-collection collapse). This outer-wrap
                     # form is the same safe idiom already used two lines below for
                     # $selfCount and $manaMatched, which never showed this bug.
-                    $matched = @(if ($guidList.Count -gt 0) { $castsData.events | Where-Object { $guidList -contains $_.ability.guid } })
+                    # Excludes "begincast" events (2026-07-12 fix) - WCL logs a separate
+                    # begincast event for any ability with a real cast time (Rebirth,
+                    # Tranquility - NOT Innervate/Swiftmend/NS/Dark Rune, which are all
+                    # instant and never generate one), BEFORE the target resolves, so it
+                    # always carries target={"name":"Environment",...} same as the
+                    # self-only-spell case below. Without this exclusion, a single real
+                    # Rebirth cast on someone else produced TWO matched events (the
+                    # begincast, phantom-self due to the null target, plus the real "cast"
+                    # with the correct target) - confirmed on real data: Danceswtrees's one
+                    # real Rebirth cast on Leotheras (target=Captinspanky) was being counted
+                    # as 2 events, one incorrectly "self." This double-counted the ability's
+                    # total cast count AND inflated its self% for every player who had a
+                    # real cast-time cooldown cast logged, not just this one case.
+                    $matched = @(if ($guidList.Count -gt 0) { $castsData.events | Where-Object { ($guidList -contains $_.ability.guid) -and ($_.type -ne "begincast") } })
                     # A null/empty targetName means the raw event carried no real targetID
                     # at all (WCL logs self-only-castable spells like Nature's Swiftness
                     # with target={"name":"Environment","id":-1,...} instead of a real
@@ -478,6 +491,24 @@ foreach ($bossFolder in $bosses.Keys) {
         # produce a meaningful HPM, so both cases fall through to $null here.
         $hpm = if ($manaSpent -and $manaSpent -gt 0) { $total / $manaSpent } else { $null }
 
+        # ----- Active Time, from the sibling *_activetime.json (2026-07-12 addition) -
+        # real activeTimePct field pulled from the healing TABLE's top-level per-player
+        # activeTime/activeTimeReduced scalars (see pull_top100_druid.ps1's header note
+        # by the fetch itself for why this is a real re-discovered field, not an
+        # estimate - same pattern as the HPM/classResources discovery). $null here if
+        # the file is missing (parses pulled before 2026-07-12, not yet backfilled) or
+        # unparseable - excluded from the aggregate entirely, same treatment as HPM. -----
+        $activeTimePct = $null
+        $activeTimeFile = $file.FullName -replace '_healing_events\.json$', '_activetime.json'
+        if (Test-Path $activeTimeFile) {
+            try {
+                $activeTimeData = Get-Content $activeTimeFile -Raw -Encoding UTF8 | ConvertFrom-Json
+                $activeTimePct = $activeTimeData.activeTimePct
+            } catch {
+                $activeTimePct = $null
+            }
+        }
+
         $records += [PSCustomObject]@{
             PlayerName    = $playerName
             HPS           = $hps
@@ -485,6 +516,7 @@ foreach ($bossFolder in $bosses.Keys) {
             OverhealPct   = $overhealPct
             CoveragePct   = $coveragePct
             Top1Pct       = $top1Pct
+            ActiveTimePct = $activeTimePct
             Abilities     = $abilities
             Cooldowns     = $cooldownCounts
             BuffUptimes   = $buffUptimes
@@ -526,6 +558,19 @@ foreach ($bossFolder in $bosses.Keys) {
         $hpmMedian = $hpmSorted[[int]($hpmSampleUsed/2)].HPM
     }
 
+    # ----- Active Time across the sample that has it - excludes any parse whose
+    # *_activetime.json is missing (not yet backfilled) or unparseable, same pattern
+    # as HPM above. -----
+    $sampleWithActiveTime = @($sorted | Where-Object { $_.ActiveTimePct -ne $null })
+    $activeTimeSampleUsed = $sampleWithActiveTime.Count
+    $activeTimeTop1 = $null; $activeTimeTop100Avg = $null; $activeTimeMedian = $null
+    if ($activeTimeSampleUsed -gt 0) {
+        $activeTimeSorted = $sampleWithActiveTime | Sort-Object -Property ActiveTimePct -Descending
+        $activeTimeTop1 = $activeTimeSorted[0].ActiveTimePct
+        $activeTimeTop100Avg = ($sampleWithActiveTime | Measure-Object -Property ActiveTimePct -Average).Average
+        $activeTimeMedian = $activeTimeSorted[[int]($activeTimeSampleUsed/2)].ActiveTimePct
+    }
+
     $summaryRows += [PSCustomObject]@{
         Boss = $bossName
         HPS_Top1 = [math]::Round($top1, 0)
@@ -534,6 +579,9 @@ foreach ($bossFolder in $bosses.Keys) {
         HPM_Top1 = if ($null -ne $hpmTop1) { [math]::Round($hpmTop1, 2) } else { "" }
         HPM_Top100Avg = if ($null -ne $hpmTop100Avg) { [math]::Round($hpmTop100Avg, 2) } else { "" }
         HPM_Median = if ($null -ne $hpmMedian) { [math]::Round($hpmMedian, 2) } else { "" }
+        ActiveTime_Top1 = if ($null -ne $activeTimeTop1) { [math]::Round($activeTimeTop1, 1) } else { "" }
+        ActiveTime_Top100Avg = if ($null -ne $activeTimeTop100Avg) { [math]::Round($activeTimeTop100Avg, 1) } else { "" }
+        ActiveTime_Median = if ($null -ne $activeTimeMedian) { [math]::Round($activeTimeMedian, 1) } else { "" }
         Overheal_Best = [math]::Round($ohBest, 1)
         Overheal_Median = [math]::Round($ohMedian, 1)
         Overheal_Worst = [math]::Round($ohWorst, 1)
@@ -541,6 +589,7 @@ foreach ($bossFolder in $bosses.Keys) {
         Top100_TargetTop1Pct = [math]::Round($top1PctAvg, 1)
         SampleSize = $n
         HPM_SampleUsed = $hpmSampleUsed
+        ActiveTime_SampleUsed = $activeTimeSampleUsed
     }
 
     # ----- Aggregate spell composition across the full Top 100 sample, strictly by guid -----

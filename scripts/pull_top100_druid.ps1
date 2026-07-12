@@ -480,6 +480,48 @@ $workerScript = {
         }
     }
 
+    # --- active time (2026-07-12 addition) - real activeTime/activeTimeReduced fields
+    # from the healing TABLE, NOT a reconstruction. This project moved off the healing
+    # TABLE entirely for spell composition because its nested abilities[] array
+    # silently truncates at 5 entries (see WORKFLOW.md gotcha #15) - but that
+    # truncation is specific to the nested array. The top-level activeTime/
+    # activeTimeReduced scalar fields on each player's entry are NOT part of that
+    # truncated array and were never actually confirmed broken - just abandoned
+    # along with the whole endpoint. Verified for real: pulled this exact call for
+    # Danceswtrees's Hydross kill and got activeTime=138449ms/143007ms=96.8%,
+    # matching the number already recorded in the pre-events-rewrite v1 page exactly.
+    # sourceclass=Druid returns every Druid in that report+fight in one response (like
+    # `deaths` does for the whole raid) - matched by real player name, same pattern
+    # `deaths`/old-era pulls already used for this exact table. ---
+    $activeTimeOutFile = Join-Path $outDir "$($reportID)_$($fightID)_$($safeName)_activetime.json"
+    if (-not (Test-Path $activeTimeOutFile)) {
+        $atUrl = "$baseUrl/report/tables/healing/$reportID`?start=$start&end=$end&sourceclass=$className&api_key=$apiKey"
+        try {
+            $atResp = Invoke-WebRequest -Uri $atUrl -UseBasicParsing -ErrorAction Stop
+            $atData = $atResp.Content | ConvertFrom-Json
+            $atEntry = $atData.entries | Where-Object { $_.name -eq $playerName } | Select-Object -First 1
+            if (-not $atEntry) {
+                $result.Messages.Add("[$i] FAILED activetime for $reportID/$fightID ($playerName) - no matching entry in healing table response")
+                $parseOk = $false
+            } else {
+                $duration = $end - $start
+                $activeTimePct = if ($duration -gt 0) { [math]::Round(($atEntry.activeTime / $duration) * 100, 1) } else { 0 }
+                $activeTimeReducedPct = if ($duration -gt 0) { [math]::Round(($atEntry.activeTimeReduced / $duration) * 100, 1) } else { 0 }
+                $atOut = [PSCustomObject]@{
+                    activeTime = $atEntry.activeTime
+                    activeTimeReduced = $atEntry.activeTimeReduced
+                    activeTimePct = $activeTimePct
+                    activeTimeReducedPct = $activeTimeReducedPct
+                }
+                $jsonText = $atOut | ConvertTo-Json -Depth 5
+                [System.IO.File]::WriteAllText($activeTimeOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
+            }
+        } catch {
+            $result.Messages.Add("[$i] FAILED activetime healing-table call for $reportID/$fightID ($playerName) - $_")
+            $parseOk = $false
+        }
+    }
+
     # --- deaths (fight-wide, once per report+fight, NEVER archived - see header note) ---
     $deathsOutFile = Join-Path $outDir "$($reportID)_$($fightID)_deaths.json"
     if (-not (Test-Path $deathsOutFile)) {

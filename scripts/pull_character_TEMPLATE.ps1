@@ -580,6 +580,49 @@ foreach ($fight in $bossFights) {
         Start-Sleep -Milliseconds 250
     }
 
+    # --- active time (2026-07-12 addition) - real activeTime/activeTimeReduced fields
+    # from the healing TABLE, NOT a reconstruction. See pull_top100_druid.ps1's header
+    # note above the matching block for the full story: this project moved off the
+    # healing TABLE for spell composition because its nested abilities[] array
+    # silently truncates at 5 entries (WORKFLOW.md gotcha #15), but the top-level
+    # activeTime/activeTimeReduced scalar fields on each player's entry are outside
+    # that truncated array and were never actually confirmed broken - just abandoned
+    # along with the whole endpoint. Verified for real against this exact character's
+    # Hydross kill: activeTime=138449ms/143007ms=96.8%, matching the number already
+    # recorded in the pre-events-rewrite v1 page exactly. No sourceclass filter here
+    # (unlike the Top 100 pull) since this is already scoped to one known character -
+    # matched by real player name in the unfiltered response. ---
+    $activeTimeOutFile = Join-Path $outDir "$($label)_activetime.json"
+    if (-not (Test-Path $activeTimeOutFile)) {
+        $atUrl = "$baseUrl/report/tables/healing/$ReportCode`?start=$($fight.start_time)&end=$($fight.end_time)&api_key=$apiKey"
+        try {
+            $atResp = Invoke-WebRequest -Uri $atUrl -UseBasicParsing -ErrorAction Stop
+            $atData = $atResp.Content | ConvertFrom-Json
+            $atEntry = $atData.entries | Where-Object { $_.name -eq $CharacterName } | Select-Object -First 1
+            if (-not $atEntry) {
+                Write-Host "  $($label)_activetime.json - FAILED (no matching entry in healing table response)"
+                $fightOk = $false
+            } else {
+                $duration = $fight.end_time - $fight.start_time
+                $activeTimePct = if ($duration -gt 0) { [math]::Round(($atEntry.activeTime / $duration) * 100, 1) } else { 0 }
+                $activeTimeReducedPct = if ($duration -gt 0) { [math]::Round(($atEntry.activeTimeReduced / $duration) * 100, 1) } else { 0 }
+                $atOut = [PSCustomObject]@{
+                    activeTime = $atEntry.activeTime
+                    activeTimeReduced = $atEntry.activeTimeReduced
+                    activeTimePct = $activeTimePct
+                    activeTimeReducedPct = $activeTimeReducedPct
+                }
+                $jsonText = $atOut | ConvertTo-Json -Depth 5
+                [System.IO.File]::WriteAllText($activeTimeOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
+                Write-Host "  $($label)_activetime.json - OK (activeTime=$activeTimePct%)"
+            }
+        } catch {
+            Write-Host "  $($label)_activetime.json - FAILED: $_"
+            $fightOk = $false
+        }
+        Start-Sleep -Milliseconds 250
+    }
+
     # --- deaths (table view, fight-wide, not class-scoped - unchanged) ---
     $deathsOutFile = Join-Path $outDir "$($label)_deaths.json"
     if (-not (Test-Path $deathsOutFile)) {

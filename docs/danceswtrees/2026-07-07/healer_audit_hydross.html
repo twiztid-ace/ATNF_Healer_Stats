@@ -115,6 +115,7 @@
     border-radius: 3px;
     overflow:hidden;
   }
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
   .stat{
     padding: 16px 18px;
     border-right: 1px solid var(--line);
@@ -277,7 +278,7 @@
       <span class="section-num">01</span>
       <h2 class="section-title">Scorecard</h2>
     </div>
-    <div class="stat-grid">
+    <div class="stat-grid stat-grid-5">
       <div class="stat">
         <div class="stat-label">HPS</div>
         <div class="stat-value">563</div>
@@ -294,6 +295,11 @@
         <div class="stat-sub">over 143s kill</div>
       </div>
       <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value warn">96.8%</div>
+        <div class="stat-sub">Top 100: #1 99.9% &nbsp;·&nbsp; avg 99.3% &nbsp;·&nbsp; median 99.4%</div>
+      </div>
+      <div class="stat">
         <div class="stat-label">Raid deaths</div>
         <div class="stat-value good">0</div>
         <div class="stat-sub">this kill, all classes</div>
@@ -306,7 +312,7 @@
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
     <div class="stat-sub" style="margin-top:6px;">WCL rank 11684 of 17739 Restoration Druid parses on this encounter (all difficulties/partitions, historical). Matched by exact report/fight ID (XJp8vAxzM4KtHYyb, fight 6) — no duplicate-upload fallback needed.</div>
 
-    <div class="coverage-note">Both halves of the score are weak on this kill: HPS (563) sits well under even the Top 100 median (1221), and overheal (67.9%) is worse than every Top 100 parse sampled, including the worst (58%). The fight itself was short (143s) — Hydross kills of this length can inflate overheal simply by giving HoTs less time to get "used up" before targets are already topped, so some of this gap is plausibly fight-length noise rather than pure output — but a 563 HPS / 67.9% overheal combination this far outside the observed Top 100 range is still the dominant real finding here, not a rounding artifact.</div>
+    <div class="coverage-note">Both halves of the score are weak on this kill: HPS (563) sits well under even the Top 100 median (1221), and overheal (67.9%) is worse than every Top 100 parse sampled, including the worst (58%). The fight itself was short (143s) — Hydross kills of this length can inflate overheal simply by giving HoTs less time to get "used up" before targets are already topped, so some of this gap is plausibly fight-length noise rather than pure output — but a 563 HPS / 67.9% overheal combination this far outside the observed Top 100 range is still the dominant real finding here, not a rounding artifact. Active time (96.8%) trails the Top 100 sample slightly (avg 99.3%, median 99.4%) — roughly 4 seconds of idle time over the 143s kill that a near-full Top 100 parse wouldn't show — a real but small gap next to the HPS/overheal shortfall, not the main story on this kill.</div>
   </div>
 
   <!-- ===== SPELL COMPOSITION ===== -->
@@ -426,7 +432,7 @@
       </div>
     </div>
 
-    <div class="coverage-note">Union of both spell lists: Danceswtrees's 6 cast spells plus 2 benchmark-only guids she never cast (Regrowth guids 9857/9858, 0.9%/0.6% of the Top 100 average — likely a lower-rank or talent/glyph-modified version of Regrowth logged under a separate guid, not investigated further; shown honestly as 0% rather than omitted, per the union rule). The real gap is a HoT-mix shift, not a missing spell: Lifebloom is overweighted (52.3% vs. 41.5%, +10.8) while Regrowth (guid 26980) is underweighted (17.8% vs. 27.8%, -10.0), a HoT-stacking style that leans harder on Lifebloom than the Top 100 average does. Lifebloom's bloom-burst effect (guid 33778, the instant heal on expiry) landed once for 20 total healing — essentially never let a stack expire naturally this kill, consistent with active re-application rather than passive uptime. Healing Touch is elevated (7.9% vs. 1.4%) almost entirely because of one Nature's Swiftness-empowered cast late in the fight (see section 03) landing disproportionately large in an otherwise low-total kill.</div>
+    <div class="coverage-note">Union of both spell lists: Danceswtrees's 6 cast spells plus 2 benchmark-only guids never cast (Regrowth guids 9857/9858, 0.9%/0.6% of the Top 100 average — likely a lower-rank or talent/glyph-modified version of Regrowth logged under a separate guid, not investigated further; shown honestly as 0% rather than omitted, per the union rule). The real gap is a HoT-mix shift, not a missing spell: Lifebloom is overweighted (52.3% vs. 41.5%, +10.8) while Regrowth (guid 26980) is underweighted (17.8% vs. 27.8%, -10.0), a HoT-stacking style that leans harder on Lifebloom than the Top 100 average does. Lifebloom's bloom-burst effect (guid 33778, the instant heal on expiry) landed once for 20 total healing — essentially never let a stack expire naturally this kill, consistent with active re-application rather than passive uptime. Healing Touch is elevated (7.9% vs. 1.4%) almost entirely because of one Nature's Swiftness-empowered cast late in the fight (see section 03) landing disproportionately large in an otherwise low-total kill.</div>
   </div>
 
   <!-- ===== COOLDOWNS & CONSUMABLES ===== -->
@@ -467,7 +473,7 @@
         </tr>
       </tbody>
     </table>
-    <!-- Tranquility omitted: she didn't cast it (0), and the Top 100 average is also
+    <!-- Tranquility omitted: not cast this kill (0), and the Top 100 average is also
          0% used on this boss - matching the norm, not a deviation, so it doesn't earn
          a row (see boss_page_template_druid.html's 2026-07-12 rule). -->
 
@@ -499,7 +505,7 @@
       </div>
     </div>
 
-    <div class="coverage-note">Innervate went to Captinspanky rather than self — worth flagging that this now reads differently at the full Top 100 sample size than it did against just the Top 10: the broader sample mostly self-casts Innervate (66% self), so giving it away puts her in the minority pattern here, not the majority one. Nature's Swiftness usage (1 cast, self) matches the Top 100 sample closely — 84% used it, and of those, 100% self-cast it (mechanically the only option, since it's a self-only buff). The real standout: Nature's Swiftness (2557268ms) and Healing Touch (2557281ms) landed 13 milliseconds apart on Jotes, in the final ~2 seconds of the kill (fight ends at 2559468ms) — a real, verified NS→instant-Healing-Touch combo, not a coincidence of timing. Tree of Life uptime (98.5%) is more than double the Top 100 average (44.9%) — she stayed in Tree Form for essentially the entire kill, dropping out only for that one final instant-cast window. HPM (3.45) is well below both the Top 100 average and median (5.82) — a real mana-efficiency gap that lines up with the scorecard's overheal finding: 23,306 real mana was spent this kill, but with 67.9% overheal, a large share of what that mana bought never counted as effective healing. Zero raid deaths this kill, so there's no cooldown-timing/death correlation to draw — trivially nothing to correlate against.</div>
+    <div class="coverage-note">Innervate went to Captinspanky rather than self — worth flagging that this now reads differently at the full Top 100 sample size than it did against just the Top 10: the broader sample mostly self-casts Innervate (66% self), so giving it away is the minority pattern here, not the majority one. Nature's Swiftness usage (1 cast, self) matches the Top 100 sample closely — 84% used it, and of those, 100% self-cast it (mechanically the only option, since it's a self-only buff). The real standout: Nature's Swiftness (2557268ms) and Healing Touch (2557281ms) landed 13 milliseconds apart on Jotes, in the final ~2 seconds of the kill (fight ends at 2559468ms) — a real, verified NS→instant-Healing-Touch combo, not a coincidence of timing. Tree of Life uptime (98.5%) is more than double the Top 100 average (44.9%) — Tree Form stayed active for essentially the entire kill, dropping out only for that one final instant-cast window. HPM (3.45) is well below both the Top 100 average and median (5.82) — a real mana-efficiency gap that lines up with the scorecard's overheal finding: 23,306 real mana was spent this kill, but with 67.9% overheal, a large share of what that mana bought never counted as effective healing. Zero raid deaths this kill, so there's no cooldown-timing/death correlation to draw — trivially nothing to correlate against.</div>
   </div>
 
   <!-- ===== TARGET DISTRIBUTION ===== -->

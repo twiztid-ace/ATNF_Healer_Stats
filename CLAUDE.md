@@ -236,6 +236,11 @@ Not included here (repo-specific, never shared in the source conversation):
   this pattern (ask for one small diagnostic, read the real response, THEN write
   code) caught almost every bug in WORKFLOW.md's gotcha list. Don't skip it just
   because you can now run things yourself.
+- **No gendered pronouns in any report/page prose** (added 2026-07-12) — refer to
+  the healer by name (e.g. "Danceswtrees") or restructure the sentence, don't use
+  "she/her/he/him". This crept in through free-form coverage-note writing (not the
+  templates themselves, which never had this problem) on the first two real v2
+  boss pages and had to be swept out after the fact — write clean the first time.
 
 ## Hosting — GitHub Pages
 
