@@ -17,8 +17,48 @@
 #   benchmark_buffs.csv                 <- one row per boss (Top 10 flask/food/Tree of Life)
 #
 # ============================================================================
-# 2026-07-11 REWRITE: reads events, not tables, for healing/casts. Two real bugs fixed
-# in the process, both confirmed against actual pulled data before this rewrite:
+# 2026-07-12: ACTIVE/ARCHIVED + MANIFEST AWARE, DUAL-MODE
+# ============================================================================
+# pull_top100_druid.ps1 no longer writes into a fresh data\Classes\{Class}\{date}\ folder
+# every run - it maintains one persistent data\Classes\{Class}\active\ folder (only
+# currently-in-the-Top-100 parses) plus data\Classes\{Class}\archived\ (parses that have
+# dropped out, kept forever) and a manifest.json tracking per-boss pull dates and
+# per-parse status. Paladin/Priest/Shaman are NOT on this model yet - they're still
+# both v1 (healing TABLE, not events) AND the old date-stamped-folder convention, pulled
+# by pull_top100_paladin.ps1/pull_top100_priest_holy.ps1/pull_top100_shaman.ps1.
+#
+# This script supports BOTH conventions, chosen by whether -DateFolder is passed:
+#   - -DateFolder omitted -> active/archived model: reads/writes
+#     data\Classes\{Class}\active\, tracks benchmarkGeneratedDate in manifest.json,
+#     archives the previous CSV set to archived\benchmark_history\{date}\ on a real
+#     day-over-day regen. This is the only mode Druid supports (it has no date folder
+#     to point at anymore - migrate_class_to_active.ps1 already converted it).
+#   - -DateFolder {date} passed -> old mode, unchanged from before this rewrite: reads/
+#     writes data\Classes\{Class}\{date}\ directly, no manifest, no staleness tracking,
+#     no CSV history. This is what Paladin/Priest/Shaman still need until they're
+#     ported to the active/archived model (see WORKFLOW.md gotcha #25).
+#
+# STALENESS: manifest.json's top-level `benchmarkGeneratedDate` is a plain "yyyy-MM-dd"
+# string, never a boolean flag (a stored true/false would silently go wrong the instant
+# the date rolls over - see pull_top100_druid.ps1's header for the same reasoning applied
+# to lastPulledDate/rankingsSnapshotDate). Staleness is always computed fresh by comparing
+# to today's date: generated today = fresh, generated any earlier day = stale. This script
+# prints that comparison at the start for visibility, but ALWAYS regenerates all four CSVs
+# regardless - recomputation is local/free (no API calls), so there's no reason to skip
+# it, only a reason to tell the person whether the numbers they're about to get were
+# already fresh or not.
+#
+# CSV HISTORY: previously, re-running this script silently overwrote the four CSVs with
+# no history kept. Now, before writing, if active\benchmark_summary.csv already exists
+# AND manifest.benchmarkGeneratedDate is an earlier date than today (i.e. this is a real
+# new day's regeneration, not a same-day re-run), the existing four CSVs are copied to
+# archived\benchmark_history\{that old date}\ before being overwritten - one folder per
+# calendar day the numbers actually changed, no duplicate entries for same-day re-runs.
+#
+# ============================================================================
+# ORIGINAL 2026-07-11 REWRITE NOTES (still accurate, unrelated to the above): reads
+# events, not tables, for healing/casts. Two real bugs fixed in the process, both
+# confirmed against actual pulled data before this rewrite:
 # ============================================================================
 # 1. TRUNCATION: the old healing/casts TABLE views silently capped their per-player
 #    "abilities" array at 5 entries (see WORKFLOW.md gotcha list). This script now reads
@@ -66,20 +106,81 @@
 #
 # Run this from your repo ROOT directory (same place you ran the pull script from).
 #
-# Usage: powershell -ExecutionPolicy Bypass -File summarize_class_benchmarks.ps1 -ClassName Druid -DateFolder 2026-07-10
+# Usage: powershell -ExecutionPolicy Bypass -File summarize_class_benchmarks.ps1 -ClassName Druid
+#        powershell -ExecutionPolicy Bypass -File summarize_class_benchmarks.ps1 -ClassName Paladin -DateFolder 2026-07-10
 
 param(
     [Parameter(Mandatory=$true)][string]$ClassName,
-    [Parameter(Mandatory=$true)][string]$DateFolder
+    [string]$DateFolder = $null
 )
 
 $classesRoot = "data\Classes"
-$classDateDir = Join-Path (Join-Path $classesRoot $ClassName) $DateFolder
+$classDir = Join-Path $classesRoot $ClassName
+$today = Get-Date -Format "yyyy-MM-dd"
+$usingActiveModel = [string]::IsNullOrWhiteSpace($DateFolder)
 
-if (-not (Test-Path $classDateDir)) {
-    Write-Host "ERROR: $classDateDir not found."
-    exit 1
+# ===== Manifest load/save - see pull_top100_druid.ps1 for why PSCustomObject gets
+# converted to plain ordered hashtables before mutation. No arrays appear anywhere in
+# this schema, so a straightforward recursive walk is all that's needed. Only used in
+# the active-model branch below - the old date-folder mode has no manifest. =====
+function ConvertTo-OrderedHashtableLocal {
+    param($InputObject)
+    if ($InputObject -is [System.Array]) {
+        return @($InputObject | ForEach-Object { ConvertTo-OrderedHashtableLocal $_ })
+    } elseif ($InputObject -is [PSCustomObject]) {
+        $hash = [ordered]@{}
+        foreach ($prop in $InputObject.PSObject.Properties) {
+            $hash[$prop.Name] = ConvertTo-OrderedHashtableLocal $prop.Value
+        }
+        return $hash
+    } else {
+        return $InputObject
+    }
 }
+function Save-ManifestLocal {
+    param($Manifest, $Path)
+    $jsonText = $Manifest | ConvertTo-Json -Depth 12
+    [System.IO.File]::WriteAllText($Path, $jsonText, (New-Object System.Text.UTF8Encoding $false))
+}
+
+$manifest = $null
+$priorGeneratedDate = $null
+
+if ($usingActiveModel) {
+    $workDir = Join-Path $classDir "active"
+    $archivedDir = Join-Path $classDir "archived"
+    $manifestPath = Join-Path $classDir "manifest.json"
+
+    if (-not (Test-Path $workDir)) {
+        Write-Host "ERROR: $workDir not found. Either run pull_top100_druid.ps1 first (it"
+        Write-Host "       creates active\/manifest.json), or pass -DateFolder {date} if this"
+        Write-Host "       class is still on the old date-stamped-folder convention."
+        exit 1
+    }
+    if (-not (Test-Path $manifestPath)) {
+        Write-Host "ERROR: $manifestPath not found - needed for staleness tracking under the"
+        Write-Host "       active/archived model. Run pull_top100_druid.ps1 first."
+        exit 1
+    }
+
+    $manifest = ConvertTo-OrderedHashtableLocal (Get-Content $manifestPath -Raw -Encoding UTF8 | ConvertFrom-Json)
+    $priorGeneratedDate = $manifest.benchmarkGeneratedDate
+    if ($priorGeneratedDate -eq $today) {
+        Write-Host "Benchmark already generated today ($today) - regenerating anyway (recomputation is free), same-day re-run won't create a new history snapshot."
+    } elseif ($null -eq $priorGeneratedDate) {
+        Write-Host "No prior benchmark generation recorded - this will be the first."
+    } else {
+        Write-Host "Benchmark last generated $priorGeneratedDate - STALE relative to today ($today), regenerating."
+    }
+} else {
+    $workDir = Join-Path $classDir $DateFolder
+    if (-not (Test-Path $workDir)) {
+        Write-Host "ERROR: $workDir not found."
+        exit 1
+    }
+    Write-Host "Using the old date-folder convention ($DateFolder) - no manifest/staleness tracking or CSV history for this class yet (see WORKFLOW.md gotcha #25)."
+}
+Write-Host ""
 
 # boss folder name -> (rankings filename, display name) - matches pull_top100_druid.ps1
 $bosses = [ordered]@{
@@ -144,8 +245,8 @@ $buffRows = @()
 foreach ($bossFolder in $bosses.Keys) {
     $bossInfo = $bosses[$bossFolder]
     $bossName = $bossInfo.display
-    $bossDir = Join-Path $classDateDir $bossFolder
-    $rankingsFile = Join-Path $classDateDir $bossInfo.file
+    $bossDir = Join-Path $workDir $bossFolder
+    $rankingsFile = Join-Path $workDir $bossInfo.file
 
     if (-not (Test-Path $bossDir)) {
         Write-Host "SKIP: $bossDir not found."
@@ -346,7 +447,7 @@ foreach ($bossFolder in $bosses.Keys) {
         }
     }
     $nameCounts = @{}
-    foreach ($guid in $spellAgg.Keys) { 
+    foreach ($guid in $spellAgg.Keys) {
         $n = $spellAgg[$guid].Name
         if (-not $nameCounts.ContainsKey($n)) { $nameCounts[$n] = 0 }
         $nameCounts[$n]++
@@ -411,10 +512,28 @@ foreach ($bossFolder in $bosses.Keys) {
     }
 }
 
-$outSummary = Join-Path $classDateDir "benchmark_summary.csv"
-$outSpells = Join-Path $classDateDir "benchmark_spell_composition.csv"
-$outCooldowns = Join-Path $classDateDir "benchmark_cooldowns.csv"
-$outBuffs = Join-Path $classDateDir "benchmark_buffs.csv"
+$outSummary = Join-Path $workDir "benchmark_summary.csv"
+$outSpells = Join-Path $workDir "benchmark_spell_composition.csv"
+$outCooldowns = Join-Path $workDir "benchmark_cooldowns.csv"
+$outBuffs = Join-Path $workDir "benchmark_buffs.csv"
+
+# ===== Archive the previous CSV set before overwriting - active-model only (the old
+# date-folder mode has no archived\ to put history in, and each date folder is already
+# its own implicit snapshot). Only archives if a previous set actually exists AND it
+# was generated on an earlier calendar day than today (a same-day re-run just overwrites
+# in place, no duplicate history entry for the same day). Archived under the date the
+# OLD set was valid for (manifest's prior benchmarkGeneratedDate), not today's date -
+# see header comment. =====
+if ($usingActiveModel -and (Test-Path $outSummary) -and $priorGeneratedDate -and ($priorGeneratedDate -ne $today)) {
+    $historyDir = Join-Path (Join-Path $archivedDir "benchmark_history") $priorGeneratedDate
+    New-Item -ItemType Directory -Force -Path $historyDir | Out-Null
+    foreach ($f in @($outSummary, $outSpells, $outCooldowns, $outBuffs)) {
+        if (Test-Path $f) {
+            Copy-Item -Path $f -Destination $historyDir -Force
+        }
+    }
+    Write-Host "Archived previous ($priorGeneratedDate) benchmark CSVs to $historyDir"
+}
 
 # -Encoding UTF8 is required here - Export-Csv's default encoding on Windows PowerShell
 # 5.1 is NOT UTF-8 (varies, but can't represent characters outside its codepage), and
@@ -431,11 +550,19 @@ $spellCompRows | Sort-Object Boss, @{Expression="Top10Pct";Descending=$true} | E
 $cooldownRows | Sort-Object Boss, Ability | Export-Csv -Path $outCooldowns -NoTypeInformation -Encoding UTF8
 $buffRows | Sort-Object Boss | Export-Csv -Path $outBuffs -NoTypeInformation -Encoding UTF8
 
+if ($usingActiveModel) {
+    $manifest.benchmarkGeneratedDate = $today
+    Save-ManifestLocal -Manifest $manifest -Path $manifestPath
+}
+
 Write-Host ""
 Write-Host "Done. Wrote:"
 Write-Host "  $outSummary"
 Write-Host "  $outSpells"
 Write-Host "  $outCooldowns"
 Write-Host "  $outBuffs"
+if ($usingActiveModel) {
+    Write-Host "Updated manifest.json benchmarkGeneratedDate -> $today"
+}
 Write-Host ""
 Write-Host "Upload all four CSVs to project knowledge - small, text-based, no zip needed."

@@ -5,7 +5,7 @@ log data from Warcraft Logs' v1 API, benchmark it against Top 100 parses, and ge
 a static HTML site auditing each healer's performance per boss kill.
 
 **Read `WORKFLOW.md` first, in full, before touching anything.** It is the single
-source of truth for this project — API endpoints, file formats, known bugs, and 24
+source of truth for this project — API endpoints, file formats, known bugs, and 25
 numbered "gotchas" documenting real mistakes already made and fixed. Assume anything
 not in WORKFLOW.md is unverified. This file is just a map to get you oriented quickly;
 WORKFLOW.md has the actual depth.
@@ -48,6 +48,26 @@ main way to get confused here.
   state" below). No v2 healer site has been generated yet — `examples/` has one
   reference page but it's out of date (see below).
 
+## Data model — active/archived + manifest.json (Druid/v2 only)
+
+Replaced the old "fresh date-stamped folder every pull" convention for Druid on
+2026-07-12, because that convention re-fetched all ~1,000 Top 100 parses from the
+WCL API on every single run even though the vast majority don't change between
+runs and a completed log's data can never change once pulled. Full design
+rationale, manifest schema, and the exact diff algorithm are in WORKFLOW.md's
+"Active/archived data model" section — read that before touching either pull
+script. The short version:
+- `data\Classes\Druid\manifest.json` tracks per-boss `lastPulledDate`/
+  `rankingsSnapshotDate` and per-parse `active`/`archived` status.
+- `active\` holds only what's currently in a boss's Top 100. `archived\` holds
+  everything that's ever dropped out, kept forever, never deleted.
+- Staleness is always a plain `yyyy-MM-dd` date compared to today at read time —
+  never a stored boolean (see WORKFLOW.md for why that matters).
+- Paladin/Priest/Shaman are NOT on this model yet — they're still v1 AND still the
+  old date-folder convention (two separate things that happen to both be old on
+  those three classes right now, don't conflate "needs the events rewrite" with
+  "needs the active/archived migration" when scoping future work on them).
+
 ## Repo structure
 
 ```
@@ -56,15 +76,26 @@ CLAUDE.md                            <- this file
 
 scripts/
   pull_character_TEMPLATE.ps1        <- pulls one specific healer's full raid night (v2, events-based)
-  pull_top100_druid.ps1              <- Top 100 Resto Druid benchmark pull, v2/enhanced, parallelized
-  pull_top100_paladin.ps1            <- Top 100 Paladin/Holy pull — v1/simple, healing TABLE only
-  pull_top100_priest_holy.ps1        <- Top 100 Priest/Holy pull — v1/simple, healing TABLE only
-  pull_top100_shaman.ps1             <- Top 100 Resto Shaman pull — v1/simple, healing TABLE only
+  pull_top100_druid.ps1              <- Top 100 Resto Druid benchmark pull, v2/enhanced, parallelized,
+                                         diff-based against manifest.json (active/archived model, see
+                                         "Data model" below) — only fetches genuinely new parses
+  pull_top100_paladin.ps1            <- Top 100 Paladin/Holy pull — v1/simple, healing TABLE only,
+                                         still the old date-stamped-folder convention
+  pull_top100_priest_holy.ps1        <- Top 100 Priest/Holy pull — v1/simple, healing TABLE only,
+                                         still the old date-stamped-folder convention
+  pull_top100_shaman.ps1             <- Top 100 Resto Shaman pull — v1/simple, healing TABLE only,
+                                         still the old date-stamped-folder convention
   pull_top100_TEMPLATE.ps1           <- generic template these three v1 scripts were generated
                                          from; still the base for any new v1-style class pull
-  summarize_class_benchmarks.ps1     <- condenses raw Top 100 pulls into benchmark_*.csv files
-                                         (Druid-specific cooldown/buff columns only apply once
-                                         run against v2-style Druid data)
+  migrate_class_to_active.ps1        <- ONE-TIME migration tool, date-folder -> active/archived +
+                                         manifest.json. Already run for Druid (2026-07-12, migrated
+                                         the 2026-07-10 pull) - only needed again when porting
+                                         another class off the v1 date-folder convention
+  summarize_class_benchmarks.ps1     <- reads data\Classes\{Class}\active\, writes benchmark_*.csv
+                                         there too (Druid-specific cooldown/buff columns only apply
+                                         once run against v2-style Druid data); archives the previous
+                                         CSV set to archived\benchmark_history\{date}\ on a real
+                                         day-over-day regen, see "Data model" below
 
 templates/
   design_tokens.md                   <- the site's design system (colors, type, layout rules)
@@ -89,7 +120,21 @@ examples/
                                          rough visual reference, not as ground truth for either
                                          generation's current data shape.
 
-Live v1 site output (already generated, at repo root — not templates, actual pages):
+data/Classes/Druid/  (v2 — active/archived + manifest.json, see "Data model" below)
+  manifest.json                      <- per-boss lastPulledDate/rankingsSnapshotDate, per-parse
+                                         active/archived status; class-level benchmarkGeneratedDate
+  active/                            <- current Top 100 only
+    rankings_{boss}.json, {Boss}/{reportID}_{fightID}_{playerName}_*.json, benchmark_*.csv
+  archived/                          <- kept forever, never deleted
+    {Boss}/{...}                     <- parses dropped from the Top 100
+    rankings_history/{Boss}/{date}.json      <- only when membership actually changed
+    benchmark_history/{date}/benchmark_*.csv <- only on a real day-over-day regen
+
+data/Classes/{Paladin,Priest,Shaman}/  (v1 — still the old convention)
+  {date}/rankings_{boss}.json, {BossName}/{reportID}_{fightID}_{playerName}.json, benchmark_*.csv
+
+docs/  (v1 site output — already generated, not templates, actual pages. Moved here
+        2026-07-12 for GitHub Pages, see "Hosting" below — this is now the real path)
   index.html                         <- site homepage, links to all 4 healers below
   crowns/, danceswtrees/, lippies/, vajomee/
     index.html                       <- per-healer raid-night list
@@ -119,44 +164,49 @@ Not included here (repo-specific, never shared in the source conversation):
   truncation), cooldown/utility tracking with self-vs-other targets, buff uptime
   (flask/food snapshot + real Tree of Life interval reconstruction), the Druid boss
   page template.
-- `pull_top100_druid.ps1` (RunspacePool, `-MaxThreads 10` default, thread-safe via
-  `ConcurrentDictionary` + a `TryAdd`-based claim mechanism for `deaths`) has
-  actually been run for **5 of 10 bosses** as of the last check: Hydross,
-  Karathress, Leotheras, Lurker, Morogrim — confirmed by listing
-  `data\Classes\Druid\2026-07-10\` directly. Vashj, Al'ar, Void Reaver, Solarian,
-  and Kael'thas have not been pulled yet. **Verify this against the actual folder
-  before trusting a boss count someone recalls from memory** — this number has
+- All **10 of 10 bosses** pulled and confirmed on disk under
+  `data\Classes\Druid\active\` (1,000 parses as of the 2026-07-12 migration).
+  `pull_top100_druid.ps1` (RunspacePool, `-MaxThreads 10` default) now reads/writes
+  the active/archived + `manifest.json` model instead of a fresh date folder per
+  run — see "Data model" below for the full design. Live-tested twice on real API
+  data: once with only rankings unchanged (0 new, 8/8 bosses skipped correctly),
+  once with real churn (Leotheras/Karathress: 2 new + 2 dropped each, archived and
+  re-fetched correctly). **Verify boss/parse counts against `manifest.json` or the
+  actual folder before trusting a number someone recalls from memory** — this has
   drifted from reality before.
-- `summarize_class_benchmarks.ps1` has NOT yet been run against this Druid pull —
-  no `benchmark_*.csv` files exist in `data\Classes\Druid\2026-07-10\` yet.
+- `summarize_class_benchmarks.ps1` has been run against the full active Druid set —
+  all four `benchmark_*.csv` files exist in `data\Classes\Druid\active\`, generated
+  2026-07-12. Also updated to the active/archived model (no more `-DateFolder`,
+  reads `active\` directly, archives the previous CSV set to
+  `archived\benchmark_history\{date}\` on a real day-over-day regen).
 - No v2 healer site (raid overview + boss pages built from real Druid events data)
   has been generated yet for any healer.
 
 **Explicitly open, in priority-ish order:**
-1. Finish the remaining 5 Druid bosses through `pull_top100_druid.ps1`, then run
-   `summarize_class_benchmarks.ps1` before trusting a complete Druid benchmark
-   dataset.
-2. Generate an actual v2 healer site (at least one full raid night) to prove the
+1. Generate an actual v2 healer site (at least one full raid night) to prove the
    enhanced pipeline end-to-end, including a raid overview page — see gear-audit
    regression note below, this hasn't been exercised since the events-based rewrite.
-3. Gear audit has an undiscovered-but-expected regression: the old healing *table*
+2. Gear audit has an undiscovered-but-expected regression: the old healing *table*
    embedded `gear` per player for free; healing *events* don't carry it at all.
    Nobody's built a raid overview page since the events-based rewrite, so this
    hasn't been hit yet, but it will be — see WORKFLOW.md's "Regression to know
    about" note for the fix (a `combatantinfo` events pull).
-4. `resources`/`resources-gains` (HPM, mana-over-time) were abandoned after
+3. `resources`/`resources-gains` (HPM, mana-over-time) were abandoned after
    `resourcetype=mana`/`resourcetype=0` both failed — but the real swagger spec
    later revealed the correct param name is `abilityid`, and **nobody's gone back
    and actually tested it**. Cheap, real opportunity if you want it.
-5. Tranquility's guid is unknown/unobserved — `$cooldownGuids["Tranquility"]` is an
+4. Tranquility's guid is unknown/unobserved — `$cooldownGuids["Tranquility"]` is an
    empty array in both pull scripts and will silently show 0 forever until someone
    adds the real guid once it's actually seen in a pull.
-6. Paladin/Priest/Shaman are still on the v1/simple, truncation-prone table
-   approach — none of the events-based/cooldown/buff-uptime work has been ported to
+5. Paladin/Priest/Shaman are still on the v1/simple, truncation-prone table
+   approach AND the old date-stamped-folder convention — none of the events-based/
+   cooldown/buff-uptime work OR the active/archived data model has been ported to
    them yet. Porting a class means: writing its own `pull_top100_{class}.ps1` on
-   the Druid model (not the TEMPLATE model), and its own
-   `boss_page_template_{class}.html` per WORKFLOW.md's "Site structure" section.
-7. One narrow, accepted gap: ~0.5% of Top 100 parses (1 real case observed) have no
+   the Druid model (not the TEMPLATE model, which includes the active/archived
+   diff logic for free), running `migrate_class_to_active.ps1` once against its
+   existing date-folder pull, and its own `boss_page_template_{class}.html` per
+   WORKFLOW.md's "Site structure" section.
+6. One narrow, accepted gap: ~0.5% of Top 100 parses (1 real case observed) have no
    `combatantinfo` snapshot even within the 2-minute backward buffer, likely a
    late-joining player — currently just reported as a failure for that one player's
    consumables data, not chased further.
@@ -203,25 +253,26 @@ folder**, not a dedicated `gh-pages` branch. GitHub Pages supports serving from
 SourceTree — a plain commit+push to `docs/` is enough to publish, no branch
 switching required.
 
-**What this means for the current repo layout — not done yet, real migration
-required:** the live v1 site output (`index.html`, `crowns/`, `danceswtrees/`,
-`lippies/`, `vajomee/`) currently sits at the **repo root**, alongside `scripts/`,
-`data/`, `templates/`, `reference/`. To use the `/docs` scheme as intended (site
-output separated from code/raw data), these need to move under a new `docs/`
-folder at repo root, preserving their internal structure exactly — the pages use
-relative links (`../index.html`, etc.), so moving the whole tree together keeps
-those working; moving pieces individually would break them. `scripts/`, `data/`,
-`templates/`, `reference/`, `examples/`, `WORKFLOW.md`, `CLAUDE.md` stay where they
-are — Pages only serves what's inside `docs/`, so keeping them at root just means
-they're not web-served (still visible in the repo browser itself, since the repo
-is public — Pages scoping doesn't hide them, it just keeps them out of the
-served site).
+**Migration done (2026-07-12).** The live v1 site output (`index.html`, `crowns/`,
+`danceswtrees/`, `lippies/`, `vajomee/`) now lives under `docs/` at repo root,
+moved as one whole tree (not piecemeal) specifically so the pages' relative links
+(`../index.html`, etc.) kept resolving correctly — spot-checked after the move:
+`docs/index.html`'s healer links, `docs/danceswtrees/index.html`'s `../index.html`
+back-link, and its raid-date subfolder link all still resolve. `scripts/`, `data/`,
+`templates/`, `reference/`, `examples/`, `WORKFLOW.md`, `CLAUDE.md`, `TODO.md` stay
+at repo root — Pages only serves what's inside `docs/`, so keeping them at root
+just means they're not web-served (still visible in the repo browser itself, since
+the repo is public — Pages scoping doesn't hide them, it just keeps them out of
+the served site). This was a working-tree-only change — nothing staged/committed,
+that's still the person's to do via SourceTree.
 
-**One-time setup on github.com (not doable via git/API from here):**
+**Still open — one-time setup on github.com (not doable via git/API from here):**
 1. Confirm repo visibility: Settings → General → Danger Zone → should already say
    Public.
-2. After the `docs/` migration lands on `master`: Settings → Pages → Source →
-   "Deploy from a branch" → Branch: `master`, folder: `/docs` → Save.
+2. Once the `docs/` migration is committed/pushed to `master`: Settings → Pages →
+   Source → "Deploy from a branch" → Branch: `master`, folder: `/docs` → Save.
+   **Not done yet** — the folder move is real, but the GitHub Pages toggle itself
+   hasn't been flipped, so nothing is actually being served yet.
 3. Resulting URL: `https://twiztid-ace.github.io/WC_log_analysis/` — a **project
    site**, served from a subpath, not domain root. Smoke-test the first deploy
    specifically for any accidentally-absolute (`/index.html`-style) links; the
@@ -233,7 +284,7 @@ served site).
 (typically under a minute), no separate build step, since this has always been
 plain static HTML/CSS with no bundler.
 
-**Not done automatically by writing this section:** the `docs/` folder migration
-and the GitHub Pages toggle itself are both real, visible changes (one moves
-already-linked files, the other exposes a public URL) — confirm before either
-happens rather than assuming this documentation update means it's live.
+**Status: folder migration done, Pages toggle still not flipped.** The GitHub
+Pages setting itself is a real, visible change (exposes a public URL) — confirm
+before flipping it on github.com rather than assuming this documentation update
+means it's live.

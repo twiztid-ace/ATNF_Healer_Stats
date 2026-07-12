@@ -20,7 +20,10 @@ using Warcraft Logs data. Read this first before starting any new healer analysi
    for other classes), then run `summarize_class_benchmarks.ps1` to condense it into
    four benchmark CSVs (see "Data delivery convention" below) — this is what actually
    gets referenced for spell composition, target distribution, and (Druid only, as of
-   2026-07-11) cooldown/consumable and self-buff comparisons, not the raw files.
+   2026-07-11) cooldown/consumable and self-buff comparisons, not the raw files. For
+   Druid specifically, both scripts operate on an `active`/`archived` + `manifest.json`
+   layout, not a fresh date folder per run — see "Active/archived data model" below
+   before running either one.
 6. Build the site pages (see "Site structure" below) using real data only — never
    fabricate or estimate numbers we haven't actually pulled.
 ## API basics
@@ -192,6 +195,130 @@ Output changed from `*_buffs.json` (table format, broken) to `*_consumables.json
 `benchmark_buffs.csv` is produced again by `summarize_class_benchmarks.ps1`, and
 `boss_page_template_druid.html`'s Cooldowns & Consumables section shows real
 flask/food/Tree of Life data again instead of the "temporarily unavailable" note.
+
+### Active/archived data model — replaces date-stamped folders (2026-07-12, Druid only)
+
+Every Top 100 pull used to create a fresh `data\Classes\{Class}\{date}\` folder and
+re-fetch all ~1,000 parses from scratch, even though the vast majority of a boss's
+Top 100 doesn't change between runs, and a completed log's healing/casts/consumables
+data can never change once pulled — that's pure wasted API budget against WCL's
+800-calls/hour cap. `pull_top100_druid.ps1` and `summarize_class_benchmarks.ps1` were
+both rewritten to fix this. `pull_top100_paladin.ps1`/`pull_top100_priest_holy.ps1`/
+`pull_top100_shaman.ps1` are NOT on this model — they're still both v1 (table-based)
+AND the old date-folder convention, two separate things that happen to coincide on
+those three classes today.
+
+**Layout:**
+```
+data\Classes\{Class}\
+  manifest.json
+  active\
+    rankings_{boss}.json           <- current snapshot only, one per boss
+    {Boss}\{reportID}_{fightID}_{playerName}_{healing_events,casts_events,consumables}.json
+    {Boss}\{reportID}_{fightID}_deaths.json     <- never archived, see below
+    benchmark_summary.csv, benchmark_spell_composition.csv, benchmark_cooldowns.csv, benchmark_buffs.csv
+  archived\
+    {Boss}\{reportID}_{fightID}_{playerName}_{...}.json   <- parses dropped from the Top 100, kept forever
+    rankings_history\{Boss}\{date}.json                    <- only written when membership actually changed
+    benchmark_history\{date}\benchmark_*.csv               <- only written on a real day-over-day regen
+```
+
+**manifest.json schema:**
+```json
+{
+  "schemaVersion": 2,
+  "className": "Druid",
+  "classID": 2,
+  "specID": 4,
+  "benchmarkGeneratedDate": "2026-07-12",
+  "bosses": {
+    "Hydross": {
+      "encounterID": 100623,
+      "lastPulledDate": "2026-07-12",
+      "rankingsSnapshotDate": "2026-07-10",
+      "parses": {
+        "1QMqcBHgTZV3WALD_4_Ceeta": {
+          "reportID": "1QMqcBHgTZV3WALD", "fightID": 4, "playerName": "Ceeta", "safeName": "Ceeta",
+          "status": "active", "rank": 80, "hps": 1173.7,
+          "firstSeenAt": "2026-07-10T00:00:00Z",
+          "lastConfirmedInTop100At": "2026-07-12T07:48:32Z",
+          "archivedAt": null
+        }
+      }
+    }
+  }
+}
+```
+Parse keys are `{reportID}_{fightID}_{playerName}` — the same identity already used
+in filenames, matching how `summarize_class_benchmarks.ps1` has always cross-referenced
+a healing-events file against its rankings entry.
+
+**Per-boss diff algorithm, every run:** fetch fresh rankings (1 call, unchanged),
+build the fresh `{reportID}_{fightID}_{name}` key set, diff against the manifest's
+currently-`active` parses for that boss:
+- **In fresh, not in manifest-active** → genuinely new. Runs the full per-parse fetch
+  (healing/casts/consumables/deaths, unchanged worker logic). Only added to the
+  manifest once fully successful — a partial failure (e.g. healing succeeded, casts
+  didn't) leaves the parse out of the manifest entirely, so the next run's diff sees
+  it as "new" again and retries; the per-file `Test-Path` check already in the worker
+  skips whatever piece already succeeded, only the missing piece is re-fetched.
+- **In both** → still in the Top 100, **zero API calls** — `rank`/`hps`/
+  `lastConfirmedInTop100At` are refreshed from the rankings response already in hand.
+- **In manifest-active, not in fresh** → dropped out. Its `healing_events`/
+  `casts_events`/`consumables` files move from `active\{Boss}\` to `archived\{Boss}\`
+  (kept forever, never deleted), manifest status flips to `"archived"`.
+- `deaths.json` is **never archived**, regardless of whether the parse(s) referencing
+  it get archived — fight-wide (not per-parse), tiny, not worth refcounting.
+
+**Rankings file is only rewritten (and the old version archived) on a real membership
+change** — defined as at least one add or drop from the diff above, not a pure
+rank/HPS reshuffle among the same 100 people (which shouldn't happen anyway, since a
+completed log's HPS for a fixed report+fight+player is a fixed fact — the only way the
+list moves is someone new entering or someone dropping off, which the membership diff
+already catches). The old snapshot is archived to
+`archived\rankings_history\{Boss}\{the date it was captured}.json` before being
+overwritten — named for when it was valid, not when it got replaced.
+
+**Staleness is always a plain `yyyy-MM-dd` date, compared to today at read time — never
+a stored boolean.** A stored `isStale: true/false` flag would silently go wrong the
+instant the date rolls over past midnight with nothing having re-checked it. Two such
+date fields exist: `bosses.{Boss}.lastPulledDate` (advances every successful check,
+even a no-op one — "we confirmed this is current as of today") and
+`bosses.{Boss}.rankingsSnapshotDate` (only advances when content actually changed —
+so "Hydross's Top 100 hasn't moved since 2026-07-09" is a readable fact straight out
+of the manifest). `benchmarkGeneratedDate` is the same idea at the class level (the
+four CSVs bundle every boss into one file each, so there's no per-boss version of it).
+`summarize_class_benchmarks.ps1` always regenerates all four CSVs regardless of this
+comparison — recomputation is local/free, no API calls — the date comparison is purely
+informational (and drives whether the previous CSV set gets archived, see below), not
+a gate on whether to run.
+
+**CSV history:** before `summarize_class_benchmarks.ps1` overwrites `active\
+benchmark_*.csv`, if a previous set exists AND `manifest.benchmarkGeneratedDate` is an
+earlier calendar date than today (i.e. this is a real new day's regen, not a same-day
+re-run), the existing four CSVs are copied to
+`archived\benchmark_history\{that old date}\` first. Re-running twice on the same
+calendar date just overwrites `active\` in place — one folder per day the numbers
+actually changed, not one per run.
+
+**Migration:** `scripts\migrate_class_to_active.ps1 -ClassName {Class} -DateFolder
+{date}` converts an existing date-folder pull into this layout — everything on disk
+becomes the first `active\` snapshot (nothing to diff against yet, so every parse
+currently present is recorded `"active"` with `firstSeenAt`/`lastConfirmedInTop100At`
+both set to the given date). Already run once, for Druid, against the 2026-07-10 pull.
+Only needs to run again when a v1 class gets ported to this model — not something that
+runs repeatedly.
+
+**Real validation (2026-07-12):** live-tested against the actual WCL API twice.
+First: single-boss run (Hydross) where rankings were genuinely unchanged — correctly
+skipped all 100 per-parse fetches and the rankings rewrite, only `lastPulledDate`
+advanced. Second: full 10-boss run — 8 bosses unchanged (0 API calls beyond the
+rankings check each), Leotheras and Karathress both had real churn (2 new + 2 dropped
+each), correctly archived the 2 dropped parses' files and the old rankings snapshot,
+correctly fetched the 2 new parses (4 total, 0 failed). Total API usage for that
+10-boss run: ~10 rankings calls + ~16-20 calls for the 4 new parses, versus roughly
+4,000+ calls the old date-folder approach would have burned re-fetching all 1,000
+parses from scratch every time.
  
 ## SSC/TK reference IDs
  
@@ -326,20 +453,33 @@ The raw Top 100 dataset (rankings + 1000 fight files per class) is also too larg
 too granular to be useful there even if zip were supported — what the analysis actually
 needs is the *derived* benchmark numbers, not the raw files.
  
-Workflow:
-1. Pull the raw data locally with `pull_top100_druid.ps1` (or `pull_top100_TEMPLATE.ps1`
-   for other classes) into `data\Classes\{Class}\{date}\`.
+Workflow (Druid, v2 — active/archived model, see "Active/archived data model" above):
+1. Run `pull_top100_druid.ps1` from the repo root. Reads/writes
+   `data\Classes\Druid\manifest.json` and `data\Classes\Druid\active\` directly - no
+   date folder to pick, there's only ever one current active set. Safe to re-run
+   often; it only spends real API calls on parses that are genuinely new to a boss's
+   Top 100.
+2. Run `summarize_class_benchmarks.ps1 -ClassName Druid` from the repo root (no
+   `-DateFolder` param anymore). Reads `data\Classes\Druid\active\*_healing_events.json`/
+   `*_casts_events.json`/`*_consumables.json` (real per-event data, not the truncated
+   tables — see "Why healing/casts moved to events, not tables") and computes, per
+   boss: HPS top1/top10avg/median, overheal best/median/worst, Top 10 spell
+   composition % (grouped by guid, never merged across different guids that share a
+   name — gotcha #20), Top 10 target coverage/concentration %, and Top 10 average
+   cooldown/consumable cast counts with a self-vs-other-target split, plus Top 10
+   flask/food active-at-pull-start % and average real Tree of Life uptime % (see
+   "Buff uptime — fixed" above).
+3. This writes small CSVs into `data\Classes\Druid\active\` (the previous set gets
+   archived to `archived\benchmark_history\{date}\` first, on a real day-over-day
+   regen):
+
+Workflow (other classes, v1 — still the old date-folder convention, see gotcha #25):
+1. Pull the raw data locally with `pull_top100_{class}.ps1` (or
+   `pull_top100_TEMPLATE.ps1` for a class that doesn't have one yet) into
+   `data\Classes\{Class}\{date}\`.
 2. Run `summarize_class_benchmarks.ps1 -ClassName {Class} -DateFolder {date}` from the
-   repo root. This reads `*_healing_events.json`/`*_casts_events.json`/
-   `*_consumables.json` (real per-event data, not the truncated tables — see "Why
-   healing/casts moved to events, not tables") and computes, per boss: HPS top1/
-   top10avg/median, overheal best/median/worst, Top 10 spell composition % (grouped
-   by guid, never merged across different guids that share a name — gotcha #20),
-   Top 10 target coverage/concentration %, and — for classes with a casts/consumables
-   pull (Druid, as of 2026-07-11) — Top 10 average cooldown/consumable cast counts
-   with a self-vs-other-target split, plus Top 10 flask/food active-at-pull-start %
-   and average real Tree of Life uptime % (see "Buff uptime — fixed" above).
-3. This writes small CSVs into that same folder:
+   repo root — the `-DateFolder` param still exists for this path.
+3. This writes small CSVs into that same date folder:
    - `benchmark_summary.csv` — one row per boss (HPS, overheal, target stats)
    - `benchmark_spell_composition.csv` — one row per boss+spell-guid (Top 10 avg % of
      healing; spell name may have `(guid N)` appended when two different guids share a
@@ -394,35 +534,37 @@ Generated site output (HTML pages) — zip, never individual file shares: once t
 Do not share the generated pages one-by-one as individual files (e.g. via a present-files-style tool). Sharing them individually flattens the directory structure — there is no folder in the delivered output, so ../index.html- and healer_audit_{boss}.html-style relative links between pages break, and same-named files at different levels (the healer's raid-list index.html vs. a given raid's overview index.html) collide/overwrite each other once flattened. Always zip the whole {healername}/ folder from the repo root and share that single archive instead, so the person can unzip it locally with the hierarchy — and therefore the relative links — intact.
  
 ## Folder structure convention (local, before summarizing)
- 
+
+**Two conventions coexist right now — see gotcha #25.** Druid is on the active/archived
++ manifest.json model (see "Active/archived data model" above); Paladin/Priest/Shaman
+are still on the older date-stamped-folder convention below, since they haven't been
+ported to the events-based pipeline (and, as part of that, the active/archived model)
+yet.
+
 ```
 {repo root}/
   apikey.txt              <- gitignored, just the raw key on one line
   .gitignore               <- must include "apikey.txt"
   pull_top100_druid.ps1    <- Resto Druid, healing/casts via events (sourceid-scoped),
-                                buffs/deaths via tables alongside
+                                buffs/deaths via tables alongside, active/archived +
+                                manifest.json model (see "Active/archived data model")
   pull_top100_{class}.ps1  <- other classes, or use the generic TEMPLATE (healing table
-                                only for now — no casts/buffs/deaths/events rewrite until
-                                extended per-class, same as the boss page template split,
-                                see Site structure)
+                                only for now — no casts/buffs/deaths/events rewrite, and
+                                no active/archived model, until extended per-class, same
+                                as the boss page template split, see Site structure)
   data/
     Classes/
-      {ClassName}/
+      Druid/                         <- active/archived + manifest.json, see
+                                          "Active/archived data model" above for the
+                                          full layout - NOT this date-folder shape
+      {OtherClassName}/              <- Paladin, Priest, Shaman - old convention, below
         {date}/
           rankings_hydross.json       <- Top 100 rankings, one file per boss
           rankings_lurker.json
           ... (10 total)
           {BossFolderName}/           <- e.g. "Hydross", "VoidReaver" (no spaces)
-            {reportID}_{fightID}_{playerName}_healing_events.json  <- COMPLETE per-event
-                                                                        healing, Druid only
-            {reportID}_{fightID}_{playerName}_casts_events.json    <- COMPLETE per-event
-                                                                        casts w/ real targets,
-                                                                        Druid only
-            {reportID}_{fightID}_{playerName}_consumables.json     <- Druid pipeline only,
-                                                                        flask/food + real
-                                                                        Tree of Life uptime
-            {reportID}_{fightID}_deaths.json                       <- Druid pipeline only,
-                                                                        once per report+fight
+            {reportID}_{fightID}_{playerName}.json  <- healing TABLE (v1, truncation-
+                                                          prone, see gotcha #15)
 ```
  
 Individual character report pulls (for the specific healer being analyzed, not the
@@ -752,6 +894,21 @@ overview. Extensible — new raid nights get added as new dated entries.
     re-run picks it up fresh, same as any other failed call). This same claim
     pattern generalizes to any per-report+fight (not per-player) resource that
     needs to move into a parallel worker in the future.
+25. **Two Top 100 data conventions coexist — don't assume every class is on the
+    newer one.** Druid moved to the active/archived + manifest.json model (see
+    "Active/archived data model" above) on 2026-07-12; Paladin/Priest/Shaman are
+    still on the older date-stamped-folder convention (`data\Classes\{Class}\
+    {date}\`) AND still v1 (healing TABLE, not events) — two separate facts that
+    happen to both be true for those three classes right now, don't conflate them
+    when scoping future work (a class could in principle get ported to events
+    without also getting the active/archived treatment, or vice versa, though in
+    practice they've shipped together so far). `summarize_class_benchmarks.ps1`
+    is shared across all classes and supports both: pass `-DateFolder {date}` for
+    a class still on the old convention, omit it for Druid. Passing `-DateFolder`
+    for Druid, or omitting it for a class that has no `active\` folder yet, both
+    fail fast with an explicit error rather than silently doing the wrong thing -
+    if a new class script is added, decide up front which convention it's on
+    rather than assuming.
 
 ## Copyright / IP note
  
