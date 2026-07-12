@@ -1,0 +1,360 @@
+# build_boss_report_data.ps1
+#
+# Generalizes two one-off computation scripts written by hand in an earlier session
+# (compute_danceswtrees_remaining_bosses.ps1, and the ad hoc gear-diff logic used to
+# build the raid overview's gear audit) into one reusable, per-character tool. Makes
+# ZERO API calls and touches nothing but files already pulled to disk by
+# pull_character_TEMPLATE.ps1 / pull_top100_{class}.ps1 / summarize_class_benchmarks.ps1
+# - this script's only job is turning those raw files into one clean JSON with every
+# real number needed to author a healer's boss pages + raid overview, so nothing
+# downstream (the generate-healer-report skill, or a person) has to re-read
+# multi-thousand-event raw JSON or hand-compute a percentage.
+#
+# Usage (run from repo root, same convention as every other script here):
+#   powershell -ExecutionPolicy Bypass -File scripts\build_boss_report_data.ps1 -CharacterName "Danceswtrees" -ReportCode "XJp8vAxzM4KtHYyb" -ClassName "Druid"
+#
+# Output: data\Characters\{CharacterName}\{raidDate}\{ReportCode}_report_data.json
+# (raidDate isn't a parameter - it's resolved by finding the real fights_{ReportCode}.json
+# pull_character_TEMPLATE.ps1 already wrote, wherever under that character's folder it
+# landed, same lookup pattern that script itself uses for cache reuse).
+
+param(
+    [Parameter(Mandatory=$true)][string]$CharacterName,
+    [Parameter(Mandatory=$true)][string]$ReportCode,
+    [Parameter(Mandatory=$true)][string]$ClassName
+)
+
+$ErrorActionPreference = "Stop"
+
+# ===== Class-specific cooldown/utility watch list, matched by real GUID - ONLY Druid
+# is populated today (same real, verified guids already used in
+# summarize_class_benchmarks.ps1 and pull_top100_druid.ps1, not re-derived). Every
+# other class hard-stops below rather than guessing at guids or silently producing an
+# empty cooldowns section - see the generate-healer-report skill's class-generality
+# caveat for why. Add a real, verified entry here (and confirm the matching
+# pull_top100_{class}.ps1 + boss_page_template_{class}.html actually exist) before
+# trusting this script for another class. =====
+$cooldownGuidsByClass = @{
+    "Druid" = [ordered]@{
+        "Innervate"          = @(29166)
+        "Nature's Swiftness" = @(17116)
+        "Swiftmend"          = @(18562)
+        "Tranquility"        = @()
+        "Rebirth"            = @(26994)
+        "Dark Rune"          = @(27869)
+    }
+}
+$manaPotionNameByClass = @{
+    "Druid" = "Restore Mana"
+}
+
+if (-not $cooldownGuidsByClass.ContainsKey($ClassName)) {
+    Write-Host "ERROR: '$ClassName' has no real cooldown-guid table in this script yet - only Druid is wired up today."
+    Write-Host "       Add a real, VERIFIED guid table for '$ClassName' (never guess at guids) before running this for that class."
+    exit 1
+}
+$cooldownGuids = $cooldownGuidsByClass[$ClassName]
+$manaPotionName = $manaPotionNameByClass[$ClassName]
+
+# ===== Boss metadata - shared across every class, SSC/TK bosses are class-independent.
+# encounterID -> slug (matches pull_character_TEMPLATE.ps1's filename convention),
+# FolderName (matches data\Classes\{Class}\active\{FolderName}\), Display (matches the
+# "Boss" column in every benchmark_*.csv, from summarize_class_benchmarks.ps1).
+# Deliberately a PLAIN hashtable, not [ordered] - order doesn't matter here (lookup
+# only, never iterated for display order) and [ordered]@{} with bare INTEGER keys has
+# a real, silent .NET gotcha: System.Collections.Specialized.OrderedDictionary has a
+# positional `this[int index]` indexer that Int32 keys resolve to INSTEAD OF the
+# key-based `this[object key]` overload, so `$orderedDict[100623]` silently returns
+# $null (no error) even though `.Contains(100623)` correctly returns $true - hit this
+# for real while building this script (bossMeta.Contains() said true, every lookup
+# still returned null). Confirmed via isolated repro against a plain @{} (works) vs.
+# [ordered]@{} (silently broken) with the identical integer key. Matches
+# pull_character_TEMPLATE.ps1's own $bossSlugs table, which already uses a plain
+# hashtable for exactly this key shape - never change this one to [ordered]@{}. =====
+$bossMeta = @{
+    100623 = @{ Slug = "hydross";    FolderName = "Hydross";    Display = "Hydross the Unstable" }
+    100624 = @{ Slug = "lurker";     FolderName = "Lurker";     Display = "The Lurker Below" }
+    100625 = @{ Slug = "leotheras";  FolderName = "Leotheras";  Display = "Leotheras the Blind" }
+    100626 = @{ Slug = "karathress"; FolderName = "Karathress"; Display = "Fathom-Lord Karathress" }
+    100627 = @{ Slug = "morogrim";   FolderName = "Morogrim";   Display = "Morogrim Tidewalker" }
+    100628 = @{ Slug = "vashj";      FolderName = "Vashj";      Display = "Lady Vashj" }
+    100730 = @{ Slug = "alar";       FolderName = "Alar";       Display = "Al'ar" }
+    100731 = @{ Slug = "voidreaver"; FolderName = "VoidReaver"; Display = "Void Reaver" }
+    100732 = @{ Slug = "solarian";   FolderName = "Solarian";   Display = "High Astromancer Solarian" }
+    100733 = @{ Slug = "kaelthas";   FolderName = "Kaelthas";   Display = "Kael'thas Sunstrider" }
+}
+
+# ===== Locate this character's data folder for this exact report - search rather than
+# require a -DateFolder param, since pull_character_TEMPLATE.ps1 derives the raid date
+# from the report title, not from anything this script would otherwise know. =====
+$charRoot = Join-Path "data\Characters" $CharacterName
+if (-not (Test-Path $charRoot)) {
+    Write-Host "ERROR: $charRoot not found - run pull_character_TEMPLATE.ps1 for '$CharacterName' first."
+    exit 1
+}
+$fightsFile = Get-ChildItem -Path $charRoot -Recurse -Filter "fights_$ReportCode.json" -ErrorAction SilentlyContinue | Select-Object -First 1
+if (-not $fightsFile) {
+    Write-Host "ERROR: no fights_$ReportCode.json found anywhere under $charRoot - run pull_character_TEMPLATE.ps1 -ReportCode $ReportCode -CharacterName $CharacterName first."
+    exit 1
+}
+$charDir = $fightsFile.DirectoryName
+Write-Host "Character data folder: $charDir"
+
+$fightsData = Get-Content $fightsFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
+
+$safeCharName = ($CharacterName.ToLower() -replace '[\\/:*?"<>|]', '_')
+$allParsesPath = Join-Path $charDir "$($safeCharName)_all_parses.json"
+$allParses = if (Test-Path $allParsesPath) { Get-Content $allParsesPath -Raw -Encoding UTF8 | ConvertFrom-Json } else {
+    Write-Host "  WARNING: $allParsesPath not found - percentile/rank will be blank for every boss."
+    @()
+}
+
+$benchDir = Join-Path (Join-Path "data\Classes" $ClassName) "active"
+if (-not (Test-Path $benchDir)) {
+    Write-Host "ERROR: $benchDir not found - run pull_top100_$($ClassName.ToLower()).ps1 then summarize_class_benchmarks.ps1 -ClassName $ClassName first."
+    exit 1
+}
+$bmSummary = Import-Csv (Join-Path $benchDir "benchmark_summary.csv")
+$bmSpells = Import-Csv (Join-Path $benchDir "benchmark_spell_composition.csv")
+$bmCooldowns = Import-Csv (Join-Path $benchDir "benchmark_cooldowns.csv")
+$bmBuffs = Import-Csv (Join-Path $benchDir "benchmark_buffs.csv")
+
+$bossFights = @($fightsData.fights | Where-Object { $_.boss -ne 0 -and $_.kill -eq $true })
+Write-Host "$($bossFights.Count) boss kill(s) found for $CharacterName in report $ReportCode."
+
+$results = [ordered]@{}
+$gearByBoss = [ordered]@{}
+
+foreach ($fight in $bossFights) {
+    $bossID = $fight.boss
+    if (-not $bossMeta.Contains($bossID)) {
+        Write-Host "  WARNING: boss id $bossID ('$($fight.name)') has no known slug/display mapping - skipping. Add it to `$bossMeta` in this script if it's a real boss this pipeline should cover."
+        continue
+    }
+    $meta = $bossMeta[$bossID]
+    $fightIDPadded = "{0:D2}" -f $fight.id
+    $label = "fight$($fightIDPadded)_$($meta.Slug)"
+    $start = $fight.start_time
+    $end = $fight.end_time
+    $duration = $end - $start
+
+    $healingPath = Join-Path $charDir "$($label)_healing_events.json"
+    $castsPath = Join-Path $charDir "$($label)_casts_events.json"
+    $consumablesPath = Join-Path $charDir "$($label)_consumables.json"
+    $activeTimePath = Join-Path $charDir "$($label)_activetime.json"
+    $deathsPath = Join-Path $charDir "$($label)_deaths.json"
+    $gearPath = Join-Path $charDir "$($label)_gear.json"
+
+    if (-not (Test-Path $healingPath) -or -not (Test-Path $castsPath)) {
+        Write-Host "  WARNING: $label - missing healing_events or casts_events, skipping this boss entirely."
+        continue
+    }
+
+    $healingData = Get-Content $healingPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $castsData = Get-Content $castsPath -Raw -Encoding UTF8 | ConvertFrom-Json
+    $consumablesData = if (Test-Path $consumablesPath) { Get-Content $consumablesPath -Raw -Encoding UTF8 | ConvertFrom-Json } else { $null }
+    $activeTimeData = if (Test-Path $activeTimePath) { Get-Content $activeTimePath -Raw -Encoding UTF8 | ConvertFrom-Json } else { $null }
+    $deathsData = if (Test-Path $deathsPath) { Get-Content $deathsPath -Raw -Encoding UTF8 | ConvertFrom-Json } else { $null }
+    $gearData = if (Test-Path $gearPath) { Get-Content $gearPath -Raw -Encoding UTF8 | ConvertFrom-Json } else { $null }
+
+    $total = $healingData.totalAmount
+    $overheal = $healingData.totalOverheal
+    $rawHealing = $total + $overheal
+    $overhealPct = if ($rawHealing -gt 0) { [math]::Round(($overheal / $rawHealing) * 100, 1) } else { 0 }
+    $hps = if ($duration -gt 0) { [math]::Round($total / ($duration / 1000), 0) } else { 0 }
+
+    # ----- Spell composition, strictly by guid (never by display name - two guids can
+    # share a display name and mean genuinely different things, see WORKFLOW.md) -----
+    $abilities = @{}
+    foreach ($ev in $healingData.events) {
+        if ($ev.ability -and $ev.amount) {
+            $guid = $ev.ability.guid
+            if (-not $abilities.ContainsKey($guid)) { $abilities[$guid] = [PSCustomObject]@{ Name = $ev.ability.name; Total = 0.0 } }
+            $abilities[$guid].Total += $ev.amount
+        }
+    }
+    $spellRows = @()
+    foreach ($guid in $abilities.Keys) {
+        $pct = if ($total -gt 0) { [math]::Round(($abilities[$guid].Total / $total) * 100, 1) } else { 0 }
+        $spellRows += [PSCustomObject]@{ Guid = $guid; Name = $abilities[$guid].Name; Total = [math]::Round($abilities[$guid].Total, 0); Pct = $pct }
+    }
+    $spellRows = @($spellRows | Sort-Object -Property Total -Descending)
+
+    # ----- Target distribution -----
+    $targets = @{}
+    foreach ($ev in $healingData.events) {
+        if ($ev.targetName -and $ev.amount) {
+            if (-not $targets.ContainsKey($ev.targetName)) { $targets[$ev.targetName] = 0.0 }
+            $targets[$ev.targetName] += $ev.amount
+        }
+    }
+    $sortedTargets = @($targets.GetEnumerator() | Sort-Object -Property Value -Descending)
+    $top5 = @($sortedTargets | Select-Object -First 5)
+    $top5Sum = ($top5 | Measure-Object -Property Value -Sum).Sum
+    if ($null -eq $top5Sum) { $top5Sum = 0 }
+    $coveragePct = if ($total -gt 0) { [math]::Round(($top5Sum / $total) * 100, 1) } else { 0 }
+    $top1Pct = if ($sortedTargets.Count -gt 0 -and $total -gt 0) { [math]::Round(($sortedTargets[0].Value / $total) * 100, 1) } else { 0 }
+    $topAmount = if ($top5.Count -gt 0) { $top5[0].Value } else { 1 }
+    $targetRows = @()
+    foreach ($t in $top5) {
+        $pct = if ($total -gt 0) { [math]::Round(($t.Value / $total) * 100, 1) } else { 0 }
+        $barWidth = if ($topAmount -gt 0) { [math]::Round(($t.Value / $topAmount) * 100, 1) } else { 0 }
+        $targetRows += [PSCustomObject]@{ Name = $t.Name; Pct = $pct; BarWidth = $barWidth; Amount = [math]::Round($t.Value, 0) }
+    }
+
+    # ----- Cooldowns/utility, excluding begincast (real bug fixed earlier this
+    # project: a begincast phantom-event double-counts a cast-time cooldown and
+    # falsely marks it self - see WORKFLOW.md). Real per-cast target names included,
+    # not just a count - the whole point of the events-based redesign. -----
+    $cooldownRows = [ordered]@{}
+    foreach ($cdName in $cooldownGuids.Keys) {
+        $guidList = $cooldownGuids[$cdName]
+        $matched = @(if ($guidList.Count -gt 0) { $castsData.events | Where-Object { ($guidList -contains $_.ability.guid) -and ($_.type -ne "begincast") } })
+        $targetList = @()
+        foreach ($m in $matched) {
+            $isSelf = ($m.sourceName -eq $m.targetName) -or [string]::IsNullOrEmpty($m.targetName)
+            $targetList += [PSCustomObject]@{ Target = $(if ($isSelf) { "self" } else { $m.targetName }); Timestamp = $m.timestamp }
+        }
+        $selfCount = @($targetList | Where-Object { $_.Target -eq "self" }).Count
+        $cooldownRows[$cdName] = [PSCustomObject]@{ Count = $matched.Count; SelfCount = $selfCount; Targets = $targetList }
+    }
+    if ($manaPotionName) {
+        $manaMatched = @($castsData.events | Where-Object { $_.ability.name -eq $manaPotionName })
+        $cooldownRows["Mana Potion"] = [PSCustomObject]@{ Count = $manaMatched.Count; SelfCount = $manaMatched.Count; Targets = @() }
+    }
+
+    # ----- HPM, from classResources[0].max on every cast event that carries one -----
+    $manaSpent = 0.0
+    foreach ($ev in $castsData.events) {
+        if ($ev.classResources -and $ev.classResources.Count -gt 0) {
+            $manaSpent += $ev.classResources[0].max
+        }
+    }
+    $hpm = if ($manaSpent -gt 0) { [math]::Round($total / $manaSpent, 2) } else { $null }
+
+    $activeTimePct = if ($activeTimeData) { $activeTimeData.activeTimePct } else { $null }
+
+    $deathCount = if ($deathsData) { @($deathsData.entries).Count } else { $null }
+    $deathList = @()
+    if ($deathsData) {
+        foreach ($d in $deathsData.entries) { $deathList += [PSCustomObject]@{ Name = $d.name; Timestamp = $d.timestamp } }
+    }
+
+    # ----- Percentile/rank, matched by EXACT reportID+fightID - never the
+    # character's all-time best on this boss, a specific pull's real result -----
+    $parseMatch = $allParses | Where-Object { $_.reportID -eq $ReportCode -and $_.fightID -eq $fight.id } | Select-Object -First 1
+    $percentile = if ($parseMatch) { [math]::Round($parseMatch.percentile, 0) } else { $null }
+    $rank = if ($parseMatch) { $parseMatch.rank } else { $null }
+    $outOf = if ($parseMatch) { $parseMatch.outOf } else { $null }
+    if (-not $parseMatch) {
+        Write-Host "  WARNING: $label - no matching entry in $($safeCharName)_all_parses.json for reportID=$ReportCode fightID=$($fight.id) - percentile/rank will be blank."
+    }
+
+    # ----- Benchmark comparisons -----
+    $bmRow = $bmSummary | Where-Object { $_.Boss -eq $meta.Display } | Select-Object -First 1
+    $bmSpellRows = @($bmSpells | Where-Object { $_.Boss -eq $meta.Display })
+    $bmCdRows = @($bmCooldowns | Where-Object { $_.Boss -eq $meta.Display })
+    $bmBuffRow = $bmBuffs | Where-Object { $_.Boss -eq $meta.Display } | Select-Object -First 1
+    if (-not $bmRow) {
+        Write-Host "  WARNING: $label - no benchmark_summary.csv row for '$($meta.Display)' - Top 100 comparisons will be blank. Re-run summarize_class_benchmarks.ps1 -ClassName $ClassName if this boss should have data."
+    }
+
+    $results[$meta.Slug] = [PSCustomObject]@{
+        Display             = $meta.Display
+        FightID             = $fight.id
+        Duration            = $duration
+        Total               = [math]::Round($total, 0)
+        Overheal            = [math]::Round($overheal, 0)
+        OverhealPct         = $overhealPct
+        HPS                 = $hps
+        SpellRows           = $spellRows
+        TargetRows          = $targetRows
+        CoveragePct         = $coveragePct
+        Top1Pct             = $top1Pct
+        DistinctTargetCount = $sortedTargets.Count
+        CooldownRows        = $cooldownRows
+        ManaSpent           = [math]::Round($manaSpent, 0)
+        HPM                 = $hpm
+        ActiveTimePct       = $activeTimePct
+        DeathCount          = $deathCount
+        DeathList           = $deathList
+        Percentile          = $percentile
+        Rank                = $rank
+        OutOf               = $outOf
+        FlaskActive         = if ($consumablesData) { [bool]$consumablesData.flaskActive } else { $null }
+        FlaskName           = if ($consumablesData) { $consumablesData.flaskName } else { $null }
+        FoodActive          = if ($consumablesData) { [bool]$consumablesData.foodActive } else { $null }
+        FoodName            = if ($consumablesData) { $consumablesData.foodName } else { $null }
+        TreeOfLifePct       = if ($consumablesData) { $consumablesData.treeOfLifeUptimePct } else { $null }
+        BM                  = $bmRow
+        BMSpells            = $bmSpellRows
+        BMCooldowns         = $bmCdRows
+        BMBuffs             = $bmBuffRow
+    }
+
+    if ($gearData -and $gearData.gear) {
+        $gearByBoss[$meta.Slug] = $gearData.gear
+    }
+}
+
+# ----- Gear diff across every kill with a real gear.json - purely factual (which
+# slots vary, and what's equipped on each kill where they do). No interpretation
+# baked in here - e.g. whether a mainhand swap is a benign fishing-pole moment or a
+# real gearing gap is a judgment call for whoever reads this, not this script. -----
+$gearDiff = $null
+if ($gearByBoss.Count -gt 0) {
+    $bossSlugsWithGear = @($gearByBoss.Keys)
+    $firstSlug = $bossSlugsWithGear[0]
+    $slotCount = $gearByBoss[$firstSlug].Count
+    $slotDiffs = @()
+    for ($i = 0; $i -lt $slotCount; $i++) {
+        $variants = [ordered]@{}
+        foreach ($slug in $bossSlugsWithGear) {
+            $g = $gearByBoss[$slug][$i]
+            $gemIds = if ($g.gems) { ($g.gems | ForEach-Object { $_.id }) -join "," } else { "" }
+            $sig = "$($g.id)|$($g.permanentEnchant)|$($g.temporaryEnchant)|$gemIds"
+            if (-not $variants.Contains($sig)) {
+                $variants[$sig] = [PSCustomObject]@{ Item = $g; Bosses = New-Object System.Collections.Generic.List[string] }
+            }
+            $variants[$sig].Bosses.Add($slug)
+        }
+        if ($variants.Count -gt 1) {
+            $variantList = @()
+            foreach ($v in $variants.Values) {
+                $variantList += [PSCustomObject]@{
+                    ItemId            = $v.Item.id
+                    PermanentEnchant  = $v.Item.permanentEnchant
+                    TemporaryEnchant  = $v.Item.temporaryEnchant
+                    Icon              = $v.Item.icon
+                    SeenOn            = @($v.Bosses)
+                }
+            }
+            $slotDiffs += [PSCustomObject]@{ SlotIndex = $i; Icon = $gearByBoss[$firstSlug][$i].icon; Variants = $variantList }
+        }
+    }
+    $gearDiff = [PSCustomObject]@{
+        BossesCompared           = $bossSlugsWithGear
+        SlotCount                = $slotCount
+        DifferingSlots           = $slotDiffs
+        ConsistentAcrossAllKills = ($slotDiffs.Count -eq 0)
+        BaselineGear             = $gearByBoss[$firstSlug]
+    }
+} else {
+    Write-Host "  WARNING: no *_gear.json files found for any boss - gear audit section will have no real data. Run the updated pull_character_TEMPLATE.ps1 (adds gear.json alongside consumables.json) if this character's data predates that."
+}
+
+$output = [PSCustomObject]@{
+    CharacterName = $CharacterName
+    ClassName     = $ClassName
+    ReportCode    = $ReportCode
+    Bosses        = $results
+    GearDiff      = $gearDiff
+}
+
+$outPath = Join-Path $charDir "$($ReportCode)_report_data.json"
+$jsonText = $output | ConvertTo-Json -Depth 12
+[System.IO.File]::WriteAllText($outPath, $jsonText, (New-Object System.Text.UTF8Encoding $false))
+
+Write-Host ""
+Write-Host "Wrote $outPath"
+Write-Host "$($results.Count) boss kill(s) processed."
