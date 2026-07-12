@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Morogrim Tidewalker</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{ font-size: 14px; color: rgba(19,42,44,0.65); margin: 0; }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  .seal-wrap{ flex-shrink:0; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
+  .section-num{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--copper); }
+  .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
+  .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .stat{ padding: 16px 18px; border-right: 1px solid var(--line); }
+  .stat:last-child{ border-right:none; }
+  .stat-label{ font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(19,42,44,0.55); margin-bottom: 6px; }
+  .stat-value{ font-family:'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{ position: absolute; top: -8px; width: 3px; height: 26px; background: var(--ink); }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace; font-size: 11px; white-space: nowrap; color: var(--ink);
+  }
+  .pctl-scale{ display:flex; justify-content: space-between; font-family:'IBM Plex Mono', monospace; font-size: 10px; color: rgba(19,42,44,0.45); }
+
+  .spell-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items:center;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 13px;
+  }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{ height: 8px; background: var(--parchment-dim); border-radius: 4px; overflow:hidden; }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{ display:flex; gap: 18px; margin-bottom: 14px; font-family:'IBM Plex Mono', monospace; font-size: 11px; }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+  .spell-group{ margin-bottom: 6px; }
+  .spell-group:last-child{ margin-bottom: 0; }
+
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left; font-family:'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.05em; color: rgba(19,42,44,0.5); padding: 8px 10px; border-bottom: 1px solid var(--line);
+  }
+  .cd-table td{ padding: 10px 10px; border-bottom: 1px dashed var(--line); vertical-align: middle; }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
+
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{ display:grid; grid-template-columns: 120px 1fr 70px; align-items:center; gap: 12px; font-size: 13px; }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .coverage-note{ margin-top: 14px; font-size: 12px; color: rgba(19,42,44,0.6); border-left: 3px solid var(--gold); padding-left: 12px; }
+
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC/TK 06.30.2026 · Morogrim Tidewalker</p>
+      <h1>Danceswtrees</h1>
+      <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>Fm9XdWYtz8VCLnwg</span> &nbsp;·&nbsp; fight <span>41</span> &nbsp;·&nbsp; kill, 317s</p>
+    </div>
+    <div class="seal-wrap">
+      <svg class="seal" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#132A2C">N/A</text>
+        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+      </svg>
+      <div class="seal-label">WCL rank, all parses</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid stat-grid-5">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value">1163</div>
+        <div class="stat-sub">Top 100: #1 1672 &nbsp;·&nbsp; avg 1439 &nbsp;·&nbsp; median 1413</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value">41.8%</div>
+        <div class="stat-sub">Top 100: best 23.7% &nbsp;·&nbsp; median 39.8% &nbsp;·&nbsp; worst 51.1%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">368,388</div>
+        <div class="stat-sub">over 317s kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value good">99.9%</div>
+        <div class="stat-sub">Top 100: #1 100% &nbsp;·&nbsp; avg 99.2% &nbsp;·&nbsp; median 99.5%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value">2</div>
+        <div class="stat-sub">this kill, all classes</div>
+      </div>
+    </div>
+
+    <div class="stat-sub" style="margin-top:18px;">This exact kill (report Fm9XdWYtz8VCLnwg, fight 41) hasn't appeared in Danceswtrees's WCL parse history yet — percentile/rank is genuinely unavailable, not estimated.</div>
+
+    <div class="coverage-note">The most balanced scorecard of the raid night so far: HPS (1163) still trails the Top 100 median (1413), but overheal (41.8%) sits close to the sample's own median (39.8%) and stays well inside the observed range — a real improvement over Hydross through Karathress, where overheal ran past even the sample's worst parse. Active time (99.9%) is again near the top of the sample.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">Danceswtrees's real cast mix on this kill, vs. real Top 100 average on Morogrim Tidewalker.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>Danceswtrees</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Lifebloom</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:60.9%"></div></div>
+        <div class="spell-pct">60.9%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:37%"></div></div>
+        <div class="spell-pct">37.0%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Lifebloom <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(bloom, guid 33778)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:15.3%"></div></div>
+        <div class="spell-pct">15.3%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:9.5%"></div></div>
+        <div class="spell-pct">9.5%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:11.6%"></div></div>
+        <div class="spell-pct">11.6%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:29.2%"></div></div>
+        <div class="spell-pct">29.2%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Rejuvenation</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:9.5%"></div></div>
+        <div class="spell-pct">9.5%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:14.5%"></div></div>
+        <div class="spell-pct">14.5%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Healing Touch</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:1.6%"></div></div>
+        <div class="spell-pct">1.6%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1%"></div></div>
+        <div class="spell-pct">1.0%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Swiftmend</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:1%"></div></div>
+        <div class="spell-pct">1.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.6%"></div></div>
+        <div class="spell-pct">5.6%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 9858)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.1%"></div></div>
+        <div class="spell-pct">1.1%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Tranquility</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.1%"></div></div>
+        <div class="spell-pct">1.1%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Same overweighted-Lifebloom / underweighted-Regrowth shape seen on Leotheras and Karathress, though noticeably smaller here: 60.9% vs. 37.0% (+23.9) and 11.6% vs. 29.2% (-17.6). Union of both lists adds two benchmark-only rows never cast (Regrowth guid 9858 at 1.1%, Tranquility at 1.1%), shown honestly at 0%.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, and self-buff status on this kill, vs. real Top 100 average on Morogrim Tidewalker.</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">Danceswtrees</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 100 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ability-name">Innervate</td>
+          <td class="num-cell">1</td>
+          <td>self</td>
+          <td class="num-cell">0.9 (70%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Nature's Swiftness</td>
+          <td class="num-cell">1</td>
+          <td>self</td>
+          <td class="num-cell">1 (100%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Swiftmend</td>
+          <td class="num-cell">2</td>
+          <td>→ Zamnes ×2</td>
+          <td class="num-cell">5.2 (6%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Rebirth</td>
+          <td class="num-cell">1</td>
+          <td>→ Érel</td>
+          <td class="num-cell">0.2 (0%)</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Tranquility omitted from this cooldown table: 0 cast, Top 100 usage rate is
+         also 0% here per benchmark_cooldowns.csv - matching norm (the small 1.1%
+         figure in section 02 comes from the separate spell-composition aggregate,
+         a different summarization pass; both are shown as computed, not reconciled). -->
+
+    <div class="stat-grid stat-grid-5" style="margin-top:22px;">
+      <div class="stat">
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Elixir of Draenic Wisdom — Top 100: 77% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 74% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Tree of Life uptime</div>
+        <div class="stat-value warn">0%</div>
+        <div class="stat-sub">Top 100 avg: 52.9%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value">2</div>
+        <div class="stat-sub">2x Mana Potion — Top 100 avg 1 cast (64% used one)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">HPM</div>
+        <div class="stat-value">6.85</div>
+        <div class="stat-sub">Top 100: top1 10.16 &nbsp;·&nbsp; avg 7.1 &nbsp;·&nbsp; median 7.04</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">The clearest death-to-cooldown correlation of the raid night: Érel died at the 6,197.8s mark and was battle-rezzed just 3.9 seconds later — faster than the equivalent save on Hydross. Both Swiftmends went to Zamnes, matching the sample's near-universal "give it away" pattern (94% not-self). Innervate and Nature's Swiftness were both self-cast, matching the sample's own majority. HPM (6.85) is the closest to its Top 100 average of any kill this raid night (avg 7.1, a gap of only -0.25) — the strongest mana-efficiency showing so far.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of Danceswtrees's healing on this kill (67.5% coverage) vs. Top 100 average on Morogrim Tidewalker (67.5% coverage, 38.7% to top target).</p>
+
+    <div class="target-list">
+      <div class="target-row">
+        <div>Zamnes</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
+        <div class="target-pct">38.7%</div>
+      </div>
+      <div class="target-row">
+        <div>Turbozool</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:26.6%"></div></div>
+        <div class="target-pct">10.3%</div>
+      </div>
+      <div class="target-row">
+        <div>Érel</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:17.6%"></div></div>
+        <div class="target-pct">6.8%</div>
+      </div>
+      <div class="target-row">
+        <div>Danceswtrees</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:16.7%"></div></div>
+        <div class="target-pct">6.5%</div>
+      </div>
+      <div class="target-row">
+        <div>Hardtag</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:13.5%"></div></div>
+        <div class="target-pct">5.2%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">A genuine outlier for this raid night: coverage (67.5%) and top-target concentration (38.7%) both match the Top 100 average to the decimal point. Every other kill so far has run several points narrower/more tank-concentrated than the sample — this is the one kill where Danceswtrees's real target spread lines up with the norm almost exactly, across 22 distinct targets touched overall.</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Danceswtrees's fight log (Fm9XdWYtz8VCLnwg, fight 41) + Top 100 Morogrim Tidewalker benchmark (n=100)</span>
+    <span>tbc-audit style reference · healer variant · Resto Druid</span>
+  </div>
+
+</div>
+
+</body>
+</html>

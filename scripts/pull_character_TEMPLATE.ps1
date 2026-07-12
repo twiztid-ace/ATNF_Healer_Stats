@@ -104,6 +104,25 @@
 #   # overrides - NOTE: these now only support Step 5 (parse history). Step 4 needs a
 #   # real report-local actor ID and is skipped if the character isn't in friendlies[]:
 #   powershell -ExecutionPolicy Bypass -File pull_character_TEMPLATE.ps1 -ReportCode "XJp8vAxzM4KtHYyb" -CharacterName "Crowns" -Server "Dreamscythe" -Region "US" -Class "Paladin"
+#
+#   # thread count - gentler/faster than the default of 10:
+#   powershell -ExecutionPolicy Bypass -File pull_character_TEMPLATE.ps1 -ReportCode "XJp8vAxzM4KtHYyb" -CharacterName "Crowns" -MaxThreads 5
+#
+# ============================================================================
+# PARALLELIZED (2026-07-12): Step 4 (the per-boss-kill pulls - healing events, casts
+# events, consumables+gear, activetime, deaths) runs across multiple threads via a
+# RunspacePool, same pattern and same rationale as pull_top100_druid.ps1's own
+# parallelization - see that script's header for the full writeup on why concurrency
+# here (bounded by -MaxThreads, default 10) doesn't make WCL's 800-calls/hour rate
+# limit meaningfully worse than the old sequential-with-250ms-sleeps approach already
+# was. Each boss kill's output files are entirely its own (no shared report+fight
+# key the way Top 100 parses from DIFFERENT reports could collide on deaths) - so
+# unlike that script, no ConcurrentDictionary claim-registry is needed here, every
+# fight in $bossFights is simply dispatched as its own independent job. The
+# report-wide fights list, friendlies lookup, and Tree of Life interval
+# reconstruction all still happen once, sequentially, BEFORE the pool spins up -
+# only the per-fight work is parallel.
+# ============================================================================
 
 param(
     [Parameter(Mandatory=$true)][string]$ReportCode,
@@ -111,7 +130,8 @@ param(
     [string]$Server,        # optional override - Step 5 only, see note above
     [string]$Region,        # optional override - Step 5 only, see note above
     [string]$Class,         # optional override - Step 5 only, see note above
-    [string]$DateOverride   # optional override - only used if the date can't be parsed from the report title
+    [string]$DateOverride,  # optional override - only used if the date can't be parsed from the report title
+    [int]$MaxThreads = 10   # per-boss-kill pulls run concurrently, bounded by this - see PARALLELIZED note above
 )
 
 $ErrorActionPreference = "Stop"
@@ -136,6 +156,8 @@ if ([string]::IsNullOrWhiteSpace($apiKey)) {
     Write-Host "ERROR: $apiKeyFile is empty."
     exit 1
 }
+
+Write-Host "Running with -MaxThreads $MaxThreads (default 10 - lower this if you see rate-limit failures)"
 
 # ===== SSC/TK encounter ID -> boss-file slug (fixed reference, matches pull_top100_TEMPLATE.ps1) =====
 $bossSlugs = @{
@@ -542,50 +564,153 @@ if ($CharacterID -and (-not $bossFights -or $bossFights.Count -eq 0)) {
 $totalDone = 0
 $totalFailed = 0
 
-foreach ($fight in $bossFights) {
-    $fightIDPadded = "{0:D2}" -f $fight.id
-    $slug = Get-BossSlug $fight.boss $fight.name
-    $label = "fight$($fightIDPadded)_$($slug)"
+# Self-contained per-boss-kill worker, runs in an isolated runspace with NO access to
+# the outer script's functions/variables - everything it needs (report code, API key,
+# the character's report-local ID, the actor-name lookup, the already-reconstructed
+# Tree of Life intervals) is passed in as an argument, same pattern as
+# pull_top100_druid.ps1's $workerScript. Local re-implementations of
+# Get-CharacterEvents/Get-CombatantInfoSnapshot/Get-TreeOfLifeUptimePct below are
+# functionally identical to the script-scope versions above (kept for Step 5's use
+# and as the readable reference copy) - see those for the full rationale comments.
+$workerScript = {
+    param(
+        $fightID, $bossSlug, $startTime, $endTime, $baseUrl, $apiKey, $reportCode,
+        $characterID, $characterName, $actorNames, $treeOfLifeIntervals, $outDir
+    )
+
+    $fightIDPadded = "{0:D2}" -f $fightID
+    $label = "fight$($fightIDPadded)_$($bossSlug)"
+
+    $result = [PSCustomObject]@{
+        Ok = $true
+        Messages = New-Object System.Collections.Generic.List[string]
+    }
+
+    function Resolve-ActorNameLocal($id) {
+        if ($id -eq $null) { return $null }
+        $key = [int]$id
+        if ($actorNames.ContainsKey($key)) { return $actorNames[$key] }
+        return "Unknown_$key"
+    }
+
+    function Get-EventsLocal {
+        param($View, $OutFile)
+        if (Test-Path $OutFile) { return $true }
+        $url = "$baseUrl/report/events/$View/$reportCode`?start=$startTime&end=$endTime&sourceid=$characterID&api_key=$apiKey"
+        try {
+            $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
+            $data = $resp.Content | ConvertFrom-Json
+        } catch {
+            $result.Messages.Add("  $label - FAILED ($View events): $_")
+            return $false
+        }
+        $events = @($data.events)
+        foreach ($ev in $events) {
+            $srcName = Resolve-ActorNameLocal $ev.sourceID
+            $tgtName = if ($ev.targetID -ne $null) { Resolve-ActorNameLocal $ev.targetID } else { $srcName }
+            $ev | Add-Member -NotePropertyName "sourceName" -NotePropertyValue $srcName -Force
+            $ev | Add-Member -NotePropertyName "targetName" -NotePropertyValue $tgtName -Force
+        }
+        $totalAmount = ($events | Measure-Object -Property amount -Sum -ErrorAction SilentlyContinue).Sum
+        if ($null -eq $totalAmount) { $totalAmount = 0 }
+        $totalOverheal = ($events | Measure-Object -Property overheal -Sum -ErrorAction SilentlyContinue).Sum
+        if ($null -eq $totalOverheal) { $totalOverheal = 0 }
+        $out = [PSCustomObject]@{
+            sourceID      = $characterID
+            sourceName    = $characterName
+            view          = $View
+            eventCount    = $events.Count
+            totalAmount   = $totalAmount
+            totalOverheal = $totalOverheal
+            events        = $events
+        }
+        $jsonText = $out | ConvertTo-Json -Depth 15
+        [System.IO.File]::WriteAllText($OutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
+        if ($events.Count -ge 2900) {
+            $result.Messages.Add("  $label - $View events: $($events.Count) (HIGH - verify this wasn't silently capped, see script header)")
+        } else {
+            $result.Messages.Add("  $label - $View events: $($events.Count), total=$totalAmount, overheal=$totalOverheal")
+        }
+        return $true
+    }
+
+    function Get-CombatantInfoSnapshotLocal {
+        $bufferMs = 120000
+        $queryStart = [Math]::Max(0, $startTime - $bufferMs)
+        $url = "$baseUrl/report/events/$reportCode`?start=$queryStart&end=$endTime&filter=type%3D%22combatantinfo%22&api_key=$apiKey"
+        try {
+            $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
+            $data = $resp.Content | ConvertFrom-Json
+        } catch {
+            $result.Messages.Add("  $label - combatantinfo request FAILED (network/API error) - $_")
+            return $null
+        }
+        $candidates = @($data.events | Where-Object { $_.sourceID -eq $characterID })
+        if ($candidates.Count -eq 0) {
+            $result.Messages.Add("  $label - combatantinfo request OK but found $($data.events.Count) total entries, NONE for sourceID=$characterID even with a $($bufferMs/1000)s backward buffer")
+            return $null
+        }
+        $closest = $candidates | Sort-Object { [Math]::Abs($_.timestamp - $startTime) } | Select-Object -First 1
+        $gapMs = $closest.timestamp - $startTime
+        if ($gapMs -gt 2000) {
+            $gapS = [math]::Round($gapMs / 1000, 1)
+            $result.Messages.Add("  $label - WARNING: closest combatantinfo snapshot is ${gapS}s AFTER fight start - no earlier snapshot found even with the backward buffer (consumable/gear status may not reflect the true pull-start state)")
+        } elseif ($gapMs -lt -1000) {
+            $gapS = [math]::Round((-$gapMs) / 1000, 1)
+            $result.Messages.Add("  $label - combatantinfo snapshot found ${gapS}s before official fight start (using it - this is expected, see script header)")
+        }
+        if (-not $closest.auras -and -not $closest.gear) {
+            $result.Messages.Add("  $label - combatantinfo entry found for sourceID=$characterID but it has neither auras nor gear fields")
+            return $null
+        }
+        return $closest
+    }
+
+    function Get-TreeOfLifeUptimePctLocal {
+        param($Intervals, $FightStart, $FightEnd)
+        $overlap = 0
+        foreach ($iv in $Intervals) {
+            $ovStart = [Math]::Max($iv.Start, $FightStart)
+            $ovEnd = [Math]::Min($iv.End, $FightEnd)
+            if ($ovEnd -gt $ovStart) { $overlap += ($ovEnd - $ovStart) }
+        }
+        $duration = $FightEnd - $FightStart
+        if ($duration -le 0) { return 0 }
+        return [math]::Round(($overlap / $duration) * 100, 1)
+    }
+
     $fightOk = $true
 
     # --- healing events (replaces the truncated healing TABLE) ---
     $healingOutFile = Join-Path $outDir "$($label)_healing_events.json"
-    if (-not (Get-CharacterEvents -View "healing" -OutFile $healingOutFile -StartTime $fight.start_time -EndTime $fight.end_time -FightLabel $label)) {
-        $fightOk = $false
-    }
-    Start-Sleep -Milliseconds 250
+    if (-not (Get-EventsLocal -View "healing" -OutFile $healingOutFile)) { $fightOk = $false }
 
     # --- casts events (replaces the truncated casts TABLE, now with real targets) ---
     $castsOutFile = Join-Path $outDir "$($label)_casts_events.json"
-    if (-not (Get-CharacterEvents -View "casts" -OutFile $castsOutFile -StartTime $fight.start_time -EndTime $fight.end_time -FightLabel $label)) {
-        $fightOk = $false
-    }
-    Start-Sleep -Milliseconds 250
+    if (-not (Get-EventsLocal -View "casts" -OutFile $castsOutFile)) { $fightOk = $false }
 
     # --- consumables (flask/food snapshot + Tree of Life uptime, replaces the broken
-    #     buffs table - see the redesign note above Get-TreeOfLifeIntervals for why)
-    #     AND gear (real combatantinfo .gear[], added 2026-07-12 - see the header note
-    #     on Get-CombatantInfoSnapshot for why these two share one API call). Each
-    #     output file is independently guarded so a re-run against an already-pulled
-    #     report backfills whichever one is missing without re-deriving the other. ---
+    #     buffs table) AND gear (real combatantinfo .gear[]) - share one API call.
+    #     Each output file is independently guarded so a re-run against an
+    #     already-pulled report backfills whichever one is missing. ---
     $consumablesOutFile = Join-Path $outDir "$($label)_consumables.json"
     $gearOutFile = Join-Path $outDir "$($label)_gear.json"
     $needsConsumables = -not (Test-Path $consumablesOutFile)
     $needsGear = -not (Test-Path $gearOutFile)
     if ($needsConsumables -or $needsGear) {
-        $snapshot = Get-CombatantInfoSnapshot -StartTime $fight.start_time -EndTime $fight.end_time -FightLabel $label
+        $snapshot = Get-CombatantInfoSnapshotLocal
         if ($null -eq $snapshot) {
-            Write-Host "  $label - FAILED (combatantinfo snapshot unavailable for consumables/gear)"
+            $result.Messages.Add("  $label - FAILED (combatantinfo snapshot unavailable for consumables/gear)")
             $fightOk = $false
         } else {
             if ($needsConsumables) {
                 if (-not $snapshot.auras) {
-                    Write-Host "  $($label)_consumables.json - FAILED (snapshot has no auras field)"
+                    $result.Messages.Add("  $($label)_consumables.json - FAILED (snapshot has no auras field)")
                     $fightOk = $false
                 } else {
                     $flask = $snapshot.auras | Where-Object { $_.name -match 'Flask|Elixir' } | Select-Object -First 1
                     $food = $snapshot.auras | Where-Object { $_.name -eq 'Well Fed' } | Select-Object -First 1
-                    $treeOfLifePct = Get-TreeOfLifeUptimePct -Intervals $treeOfLifeIntervals -FightStart $fight.start_time -FightEnd $fight.end_time
+                    $treeOfLifePct = Get-TreeOfLifeUptimePctLocal -Intervals $treeOfLifeIntervals -FightStart $startTime -FightEnd $endTime
                     $out = [PSCustomObject]@{
                         flaskActive        = [bool]$flask
                         flaskName          = if ($flask) { $flask.name } else { $null }
@@ -595,12 +720,12 @@ foreach ($fight in $bossFights) {
                     }
                     $jsonText = $out | ConvertTo-Json -Depth 5
                     [System.IO.File]::WriteAllText($consumablesOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
-                    Write-Host "  $($label)_consumables.json - OK (flask=$([bool]$flask) food=$([bool]$food) treeOfLife=$treeOfLifePct%)"
+                    $result.Messages.Add("  $($label)_consumables.json - OK (flask=$([bool]$flask) food=$([bool]$food) treeOfLife=$treeOfLifePct%)")
                 }
             }
             if ($needsGear) {
                 if (-not $snapshot.gear) {
-                    Write-Host "  $($label)_gear.json - FAILED (snapshot has no gear field)"
+                    $result.Messages.Add("  $($label)_gear.json - FAILED (snapshot has no gear field)")
                     $fightOk = $false
                 } else {
                     $gearOut = [PSCustomObject]@{
@@ -610,37 +735,30 @@ foreach ($fight in $bossFights) {
                     $jsonText = $gearOut | ConvertTo-Json -Depth 8
                     [System.IO.File]::WriteAllText($gearOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
                     $filledCount = @($snapshot.gear | Where-Object { $_.id -and $_.id -ne 0 }).Count
-                    Write-Host "  $($label)_gear.json - OK ($filledCount/$($snapshot.gear.Count) slots filled)"
+                    $result.Messages.Add("  $($label)_gear.json - OK ($filledCount/$($snapshot.gear.Count) slots filled)")
                 }
             }
         }
-        Start-Sleep -Milliseconds 250
     }
 
-    # --- active time (2026-07-12 addition) - real activeTime/activeTimeReduced fields
-    # from the healing TABLE, NOT a reconstruction. See pull_top100_druid.ps1's header
-    # note above the matching block for the full story: this project moved off the
-    # healing TABLE for spell composition because its nested abilities[] array
-    # silently truncates at 5 entries (WORKFLOW.md gotcha #15), but the top-level
-    # activeTime/activeTimeReduced scalar fields on each player's entry are outside
-    # that truncated array and were never actually confirmed broken - just abandoned
-    # along with the whole endpoint. Verified for real against this exact character's
-    # Hydross kill: activeTime=138449ms/143007ms=96.8%, matching the number already
-    # recorded in the pre-events-rewrite v1 page exactly. No sourceclass filter here
-    # (unlike the Top 100 pull) since this is already scoped to one known character -
-    # matched by real player name in the unfiltered response. ---
+    # --- active time - real activeTime/activeTimeReduced fields from the healing
+    # TABLE, NOT a reconstruction - see the script-scope version above for the full
+    # validation writeup on why the table's truncated abilities[] array doesn't taint
+    # these top-level scalar fields. No sourceclass filter here since this is already
+    # scoped to one known character - matched by real player name in the unfiltered
+    # response. ---
     $activeTimeOutFile = Join-Path $outDir "$($label)_activetime.json"
     if (-not (Test-Path $activeTimeOutFile)) {
-        $atUrl = "$baseUrl/report/tables/healing/$ReportCode`?start=$($fight.start_time)&end=$($fight.end_time)&api_key=$apiKey"
+        $atUrl = "$baseUrl/report/tables/healing/$reportCode`?start=$startTime&end=$endTime&api_key=$apiKey"
         try {
             $atResp = Invoke-WebRequest -Uri $atUrl -UseBasicParsing -ErrorAction Stop
             $atData = $atResp.Content | ConvertFrom-Json
-            $atEntry = $atData.entries | Where-Object { $_.name -eq $CharacterName } | Select-Object -First 1
+            $atEntry = $atData.entries | Where-Object { $_.name -eq $characterName } | Select-Object -First 1
             if (-not $atEntry) {
-                Write-Host "  $($label)_activetime.json - FAILED (no matching entry in healing table response)"
+                $result.Messages.Add("  $($label)_activetime.json - FAILED (no matching entry in healing table response)")
                 $fightOk = $false
             } else {
-                $duration = $fight.end_time - $fight.start_time
+                $duration = $endTime - $startTime
                 $activeTimePct = if ($duration -gt 0) { [math]::Round(($atEntry.activeTime / $duration) * 100, 1) } else { 0 }
                 $activeTimeReducedPct = if ($duration -gt 0) { [math]::Round(($atEntry.activeTimeReduced / $duration) * 100, 1) } else { 0 }
                 $atOut = [PSCustomObject]@{
@@ -651,30 +769,73 @@ foreach ($fight in $bossFights) {
                 }
                 $jsonText = $atOut | ConvertTo-Json -Depth 5
                 [System.IO.File]::WriteAllText($activeTimeOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
-                Write-Host "  $($label)_activetime.json - OK (activeTime=$activeTimePct%)"
+                $result.Messages.Add("  $($label)_activetime.json - OK (activeTime=$activeTimePct%)")
             }
         } catch {
-            Write-Host "  $($label)_activetime.json - FAILED: $_"
+            $result.Messages.Add("  $($label)_activetime.json - FAILED: $_")
             $fightOk = $false
         }
-        Start-Sleep -Milliseconds 250
     }
 
     # --- deaths (table view, fight-wide, not class-scoped - unchanged) ---
     $deathsOutFile = Join-Path $outDir "$($label)_deaths.json"
     if (-not (Test-Path $deathsOutFile)) {
-        $deathsUrl = "$baseUrl/report/tables/deaths/$ReportCode`?start=$($fight.start_time)&end=$($fight.end_time)&api_key=$apiKey"
+        $deathsUrl = "$baseUrl/report/tables/deaths/$reportCode`?start=$startTime&end=$endTime&api_key=$apiKey"
         try {
             Invoke-WebRequest -Uri $deathsUrl -OutFile $deathsOutFile -UseBasicParsing
-            Write-Host "  $($label)_deaths.json - OK"
+            $result.Messages.Add("  $($label)_deaths.json - OK")
         } catch {
-            Write-Host "  $($label)_deaths.json - FAILED: $_"
+            $result.Messages.Add("  $($label)_deaths.json - FAILED: $_")
             # not counted against $fightOk - deaths isn't a per-healer data point
         }
-        Start-Sleep -Milliseconds 250
     }
 
-    if ($fightOk) { $totalDone++ } else { $totalFailed++ }
+    $result.Ok = $fightOk
+    return $result
+}
+
+if ($bossFights -and $bossFights.Count -gt 0) {
+    Write-Host "  fetching $($bossFights.Count) boss kill(s) ($MaxThreads threads)..."
+    $pool = [runspacefactory]::CreateRunspacePool(1, $MaxThreads)
+    $pool.Open()
+
+    $jobs = New-Object System.Collections.Generic.List[object]
+    foreach ($fight in $bossFights) {
+        $slug = Get-BossSlug $fight.boss $fight.name
+        $ps = [powershell]::Create()
+        $ps.RunspacePool = $pool
+        [void]$ps.AddScript($workerScript.ToString()).
+            AddArgument($fight.id).
+            AddArgument($slug).
+            AddArgument($fight.start_time).
+            AddArgument($fight.end_time).
+            AddArgument($baseUrl).
+            AddArgument($apiKey).
+            AddArgument($ReportCode).
+            AddArgument($CharacterID).
+            AddArgument($CharacterName).
+            AddArgument($actorNames).
+            AddArgument($treeOfLifeIntervals).
+            AddArgument($outDir)
+        $handle = $ps.BeginInvoke()
+        $jobs.Add([PSCustomObject]@{ Pipe = $ps; Handle = $handle })
+    }
+
+    foreach ($job in $jobs) {
+        try {
+            $result = $job.Pipe.EndInvoke($job.Handle)
+            foreach ($msg in $result.Messages) { Write-Host $msg }
+            if ($result.Ok) { $totalDone++ } else { $totalFailed++ }
+        } catch {
+            Write-Host "  Worker threw unexpectedly: $_"
+            $totalFailed++
+        } finally {
+            $job.Pipe.Dispose()
+        }
+    }
+
+    $pool.Close()
+    $pool.Dispose()
 }
 Write-Host ""
 
