@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Raid Audit — Danceswtrees — SSC / TK July 7, 2026</title>
+<title>Raid Audit — Danceswtrees — SSC / TK July 7, 2026 (v2)</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -73,7 +73,7 @@
   .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
   .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
 
-  /* ===== Consistency banner ===== */
+  /* ===== Consistency / status banners ===== */
   .consistency-banner{
     display:flex;
     align-items:center;
@@ -84,12 +84,17 @@
     padding: 14px 18px;
     margin-bottom: 22px;
   }
+  .consistency-banner.pending{
+    background: rgba(217,178,92,0.14);
+    border-color: rgba(217,178,92,0.45);
+  }
   .consistency-icon{
     width: 26px; height: 26px; border-radius: 50%;
     background: var(--moss); color: var(--parchment);
     display:flex; align-items:center; justify-content:center;
     font-weight: 700; font-size: 14px; flex-shrink:0;
   }
+  .consistency-banner.pending .consistency-icon{ background: var(--gold); color: var(--ink); }
   .consistency-text{ font-size: 13px; }
   .consistency-text strong{ font-family:'IBM Plex Mono', monospace; }
 
@@ -112,6 +117,7 @@
   }
   .check-icon.ok{ background: var(--moss); color: var(--parchment); }
   .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-icon.note{ background: var(--gold); color: var(--ink); }
   .check-note{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: rgba(19,42,44,0.55); text-align:right; }
 
   .coverage-note{
@@ -140,9 +146,11 @@
     vertical-align: middle;
   }
   .boss-table tr:last-child td{ border-bottom:none; }
+  .boss-table tr.pending-row{ opacity: 0.55; }
   .boss-name{ font-weight: 600; }
   .boss-name a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper); }
   .boss-name a:hover{ color: var(--copper); }
+  .boss-name .v1-link{ font-family:'IBM Plex Mono', monospace; font-size: 10px; font-weight:400; color: rgba(19,42,44,0.45); border-bottom:none; margin-left: 6px; }
   .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
   .pctl-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
   .pctl-pill{
@@ -173,53 +181,53 @@
 
   <!-- ===== HEADER ===== -->
   <div class="header">
-    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — SSC / TK — July 7, 2026</p>
+    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — SSC / TK — July 7, 2026 · v2</p>
     <h1>Danceswtrees</h1>
     <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; 10/10 bosses killed</p>
   </div>
 
-  <!-- ===== GEAR AUDIT (RAID-WIDE, SINGLE CHECK) ===== -->
+  <!-- ===== GEAR AUDIT ===== -->
   <div class="section">
     <div class="section-head">
       <span class="section-num">01</span>
       <h2 class="section-title">Gear audit</h2>
     </div>
-    <p class="section-desc">One audit for the whole raid night — gear was checked against every one of the 10 kills below.</p>
+    <p class="section-desc">v2 methodology: real <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;">combatantinfo</span> snapshot, not the old healing table's embedded gear field.</p>
 
-    <div class="consistency-banner">
-      <div class="consistency-icon">✓</div>
-      <div class="consistency-text">Loadout is <strong>identical across 9 of the 10 boss kills</strong> — same items, enchants, and gems in all 19 slots on every fight except The Lurker Below, where mainhand and offhand were swapped out (see below). No mid-raid regear or reenchant otherwise.</div>
+    <div class="consistency-banner pending">
+      <div class="consistency-icon">i</div>
+      <div class="consistency-text">Based on <strong>one real combatantinfo snapshot (Hydross, fight 6 only)</strong> — not yet cross-checked against the other 9 kills the way a complete v2 audit requires. <a href="../2026-07-07-v1/index.html" style="color:var(--ink);">v1's independently-built audit</a> found gear consistent across 9 of 10 kills (one weapon swap on The Lurker Below) — this snapshot is consistent with that, but hasn't re-verified it kill-by-kill under the v2 method yet.</div>
     </div>
 
     <div class="check-list">
       <div class="check-item">
         <div class="check-icon ok">✓</div>
-        <div>Meta gem: Bracing Earthstorm Diamond, socketed and active</div>
-        <div class="check-note">+26 Healing / +9 Spell Dmg / 2% reduced threat — 12 red gems vs. 0 blue clears the activation requirement easily</div>
+        <div>17 of 17 real equipment slots filled (excluding shirt/tabard)</div>
+        <div class="check-note">avg item level 120 — matches parses/character's own ilvlKeyOrPatch field exactly</div>
       </div>
       <div class="check-item">
         <div class="check-icon ok">✓</div>
-        <div>Gem strategy: all 12 non-meta sockets filled with Teardrop Living Ruby</div>
-        <div class="check-note">pure red/healing gemming, no hybrid or hollow socket-bonus gems</div>
-      </div>
-      <div class="check-item">
-        <div class="check-icon ok">✓</div>
-        <div>Weapon enchant: +43 Spell Power on Light's Justice</div>
-        <div class="check-note">plus Brilliant Mana Oil temporary enchant applied</div>
+        <div>Mainhand carries both a permanent enchant and an active temporary weapon oil</div>
+        <div class="check-note">item 28771, enchant 2343 + temp enchant 2629</div>
       </div>
       <div class="check-item">
         <div class="check-icon bad">!</div>
-        <div>Back (Stainless Cloak of the Pure Hearted) carries no permanent enchant</div>
-        <div class="check-note">8 of 9 eligible slots enchanted — cloak is the one gap</div>
+        <div>Back slot (item 28765) carries no permanent enchant</div>
+        <div class="check-note">confirmed independently — matches v1's finding for the same slot</div>
       </div>
       <div class="check-item">
-        <div class="check-icon bad">!</div>
-        <div>Mainhand/offhand swapped to Seth's Graphite Fishing Pole for The Lurker Below</div>
-        <div class="check-note">ilvl 125→60, +43 spell power enchant lost for that fight only</div>
+        <div class="check-icon note">i</div>
+        <div>One gear slot shows no item equipped</div>
+        <div class="check-note">generic empty-slot icon in the raw data — can't identify which slot from this alone</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon note">i</div>
+        <div>Trinket 2 (item 25634) is quality 2 (uncommon) — every other equipped item is quality 3–4</div>
+        <div class="check-note">the one below-epic item in an otherwise epic-quality kit</div>
       </div>
     </div>
 
-    <div class="coverage-note">Ring enchants aren't flagged — they're self-only via Enchanting in this era. The fishing pole swap is almost certainly a deliberate underwater-mobility choice for the Lurker Below encounter rather than an oversight, but it's worth noting it lines up with that fight's 29.6th-percentile result (second-lowest of the night) — losing the weapon's spell power enchant for a full encounter is a real cost even when the swap itself is intentional. The bare cloak slot is a small, easy fix: any of the standard +spell power or +healing back enchants would close this gap with no tradeoff.</div>
+    <div class="coverage-note">Gem count came out slightly different from v1's write-up when recounted directly from this snapshot: 13 non-meta gems (all the same red gem, item 24029) plus 1 meta gem in the head slot, vs. v1's stated "12 non-meta sockets" — a minor discrepancy worth noting rather than silently picking one number, since it's a real difference between what v1 recorded and what this snapshot actually shows. Ring enchants aren't flagged, per this era's self-only Enchanting restriction. The empty slot and the sub-epic trinket are both real, verifiable-from-data findings that v1's original audit didn't call out — worth a closer look once the other 9 kills get their own v2 snapshots.</div>
   </div>
 
   <!-- ===== PER-BOSS SUMMARY ===== -->
@@ -228,11 +236,11 @@
       <span class="section-num">02</span>
       <h2 class="section-title">Per-boss summary</h2>
     </div>
-    <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own fight logs. Percentile is pulled from the real WCL ranking for each exact report/fight ID — click a boss name for the full audit.</p>
+    <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own events-based fight logs. Percentile is pulled from the real WCL ranking for the exact report/fight ID.</p>
 
-    <div class="consistency-banner" style="background: rgba(181,80,58,0.10); border-color: rgba(181,80,58,0.35);">
-      <div class="consistency-icon" style="background: var(--rust);">!</div>
-      <div class="consistency-text"><strong>Overheal ran above the Top 10 median on 8 of the 10 kills tonight — often by 15 to 23 points — and tracks closely with a Lifebloom-heavy cast mix.</strong> On 8 of 10 bosses Lifebloom carried more of total healing than the Top 10 average, in several cases (Morogrim +30.5pts, Void Reaver +37.9pts, Al'ar +20.7pts) by a wide margin, with Regrowth and Rejuvenation correspondingly under-cast. The two kills that inverted this — Void Reaver and High Astromancer Solarian, both Regrowth-heavy relative to benchmark — produced two of the three best percentiles of the raid (39th and 83.8th) and two of the three lowest overheal numbers. That correlation shows up consistently enough to be worth a real look at Lifebloom refresh/uptime habits rather than treating each fight as independent variance — see each boss page's spell composition section for the exact numbers.</div>
+    <div class="consistency-banner pending">
+      <div class="consistency-icon">i</div>
+      <div class="consistency-text"><strong>1 of 10 boss kills has been rebuilt under the v2 (events-based) pipeline so far</strong> — Hydross the Unstable, below. The other 9 rows are shown for completeness but are not yet migrated; their real v1 numbers (healing-table-based, still real WCL data, just the older methodology) remain available via the small "(v1)" link on each row until their v2 pages are built.</div>
     </div>
 
     <table class="boss-table">
@@ -253,77 +261,77 @@
           <td class="pctl-cell"><span class="pctl-pill has-data">34th</span></td>
           <td class="link-arrow">→</td>
         </tr>
-        <tr>
-          <td class="boss-name"><a href="healer_audit_lurker.html">The Lurker Below</a></td>
-          <td class="num-cell">645</td>
-          <td class="num-cell overheal-cell">53.8%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">30th</span></td>
-          <td class="link-arrow">→</td>
+        <tr class="pending-row">
+          <td class="boss-name">The Lurker Below <a class="v1-link" href="../2026-07-07-v1/healer_audit_lurker.html">(v1)</a></td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">—</td>
+          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
+          <td></td>
         </tr>
-        <tr>
-          <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
-          <td class="num-cell">700</td>
-          <td class="num-cell overheal-cell high">66.7%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">46th</span></td>
-          <td class="link-arrow">→</td>
+        <tr class="pending-row">
+          <td class="boss-name">Leotheras the Blind <a class="v1-link" href="../2026-07-07-v1/healer_audit_leotheras.html">(v1)</a></td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">—</td>
+          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
+          <td></td>
         </tr>
-        <tr>
-          <td class="boss-name"><a href="healer_audit_karathress.html">Fathom-Lord Karathress</a></td>
-          <td class="num-cell">1145</td>
-          <td class="num-cell overheal-cell">35.3%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">70th</span></td>
-          <td class="link-arrow">→</td>
+        <tr class="pending-row">
+          <td class="boss-name">Fathom-Lord Karathress <a class="v1-link" href="../2026-07-07-v1/healer_audit_karathress.html">(v1)</a></td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">—</td>
+          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
+          <td></td>
         </tr>
-        <tr>
-          <td class="boss-name"><a href="healer_audit_morogrim.html">Morogrim Tidewalker</a></td>
-          <td class="num-cell">892</td>
-          <td class="num-cell overheal-cell">57.4%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">65th</span></td>
-          <td class="link-arrow">→</td>
+        <tr class="pending-row">
+          <td class="boss-name">Morogrim Tidewalker <a class="v1-link" href="../2026-07-07-v1/healer_audit_morogrim.html">(v1)</a></td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">—</td>
+          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
+          <td></td>
         </tr>
-        <tr>
-          <td class="boss-name"><a href="healer_audit_vashj.html">Lady Vashj</a></td>
-          <td class="num-cell">665</td>
-          <td class="num-cell overheal-cell high">63.2%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">54th</span></td>
-          <td class="link-arrow">→</td>
+        <tr class="pending-row">
+          <td class="boss-name">Lady Vashj <a class="v1-link" href="../2026-07-07-v1/healer_audit_vashj.html">(v1)</a></td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">—</td>
+          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
+          <td></td>
         </tr>
-        <tr>
-          <td class="boss-name"><a href="healer_audit_alar.html">Al'ar</a></td>
-          <td class="num-cell">568</td>
-          <td class="num-cell overheal-cell high">69.2%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">50th</span></td>
-          <td class="link-arrow">→</td>
+        <tr class="pending-row">
+          <td class="boss-name">Al'ar <a class="v1-link" href="../2026-07-07-v1/healer_audit_alar.html">(v1)</a></td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">—</td>
+          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
+          <td></td>
         </tr>
-        <tr>
-          <td class="boss-name"><a href="healer_audit_voidreaver.html">Void Reaver</a></td>
-          <td class="num-cell">1241</td>
-          <td class="num-cell overheal-cell">38.7%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">39th</span></td>
-          <td class="link-arrow">→</td>
+        <tr class="pending-row">
+          <td class="boss-name">Void Reaver <a class="v1-link" href="../2026-07-07-v1/healer_audit_voidreaver.html">(v1)</a></td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">—</td>
+          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
+          <td></td>
         </tr>
-        <tr>
-          <td class="boss-name"><a href="healer_audit_solarian.html">High Astromancer Solarian</a></td>
-          <td class="num-cell">643</td>
-          <td class="num-cell overheal-cell">52.0%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">84th</span></td>
-          <td class="link-arrow">→</td>
+        <tr class="pending-row">
+          <td class="boss-name">High Astromancer Solarian <a class="v1-link" href="../2026-07-07-v1/healer_audit_solarian.html">(v1)</a></td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">—</td>
+          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
+          <td></td>
         </tr>
-        <tr>
-          <td class="boss-name"><a href="healer_audit_kaelthas.html">Kael'thas Sunstrider</a></td>
-          <td class="num-cell">477</td>
-          <td class="num-cell overheal-cell high">72.2%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">23th</span></td>
-          <td class="link-arrow">→</td>
+        <tr class="pending-row">
+          <td class="boss-name">Kael'thas Sunstrider <a class="v1-link" href="../2026-07-07-v1/healer_audit_kaelthas.html">(v1)</a></td>
+          <td class="num-cell">—</td>
+          <td class="num-cell">—</td>
+          <td class="pctl-cell"><span class="pctl-pill pending">not migrated</span></td>
+          <td></td>
         </tr>
     </tbody>
     </table>
 
-    <div class="coverage-note">Lowest-percentile kills — Kael'thas Sunstrider (22.6th), The Lurker Below (29.6th), and Hydross the Unstable (34.0th) — are the priority reads for a full breakdown; all three combine high overheal with an above-average Lifebloom share. High Astromancer Solarian (83.8th) is the standout kill and, notably, the one fight where the spell mix leaned into Regrowth instead. All ten percentiles were matched via exact report/fight ID against Danceswtrees's parses — no duplicate-upload fallback was needed this raid.</div>
+    <div class="coverage-note">Only Hydross has been rebuilt end-to-end under the v2 pipeline so far — its numbers (563 HPS, 67.9% overheal, 34th percentile) are independently computed from real events data, not carried over from v1. They happen to be very close to v1's own Hydross numbers for this exact fight, which is expected: WORKFLOW.md's validation already confirmed this specific character/fight's healing total matches exactly between the old table and the new events data. That agreement on Hydross should not be read as a guarantee the other 9 bosses will match this closely — several other real fights in this project's history (Leotheras, others) showed real truncation gaps between the two methods, which is the whole reason v2 exists.</div>
   </div>
 
   <div class="footer">
-    <span>All data real: Danceswtrees's fight logs (report XJp8vAxzM4KtHYyb) + WCL rankings where pulled</span>
+    <span>All data real: Danceswtrees's fight logs (report XJp8vAxzM4KtHYyb) + WCL rankings where pulled — v2 events-based pipeline, 1/10 bosses migrated</span>
     <span>tbc-audit style reference · healer variant · raid overview</span>
   </div>
 

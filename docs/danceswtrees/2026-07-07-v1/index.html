@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Raid Audit — Danceswtrees — SSC / TK July 7, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
+  .section-num{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--copper); }
+  .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
+  .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
+
+  /* ===== Consistency banner ===== */
+  .consistency-banner{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: rgba(95,122,82,0.12);
+    border: 1px solid rgba(95,122,82,0.35);
+    border-radius: 3px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+  }
+  .consistency-icon{
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--moss); color: var(--parchment);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 700; font-size: 14px; flex-shrink:0;
+  }
+  .consistency-text{ font-size: 13px; }
+  .consistency-text strong{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ===== Checklist ===== */
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px; border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px; font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-note{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: rgba(19,42,44,0.55); text-align:right; }
+
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  /* ===== Boss table ===== */
+  .boss-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .boss-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .boss-table td{
+    padding: 12px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .boss-table tr:last-child td{ border-bottom:none; }
+  .boss-name{ font-weight: 600; }
+  .boss-name a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper); }
+  .boss-name a:hover{ color: var(--copper); }
+  .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-pill{
+    display:inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    background: var(--parchment-dim);
+  }
+  .pctl-pill.has-data{ background: rgba(201,122,61,0.15); color: var(--ink); font-weight:600; }
+  .pctl-pill.pending{ color: rgba(19,42,44,0.4); font-style: italic; font-weight:400; }
+  .overheal-cell.high{ color: var(--rust); font-weight:600; }
+  .link-arrow{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--copper); }
+
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — SSC / TK — July 7, 2026</p>
+    <h1>Danceswtrees</h1>
+    <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; 10/10 bosses killed</p>
+  </div>
+
+  <!-- ===== GEAR AUDIT (RAID-WIDE, SINGLE CHECK) ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Gear audit</h2>
+    </div>
+    <p class="section-desc">One audit for the whole raid night — gear was checked against every one of the 10 kills below.</p>
+
+    <div class="consistency-banner">
+      <div class="consistency-icon">✓</div>
+      <div class="consistency-text">Loadout is <strong>identical across 9 of the 10 boss kills</strong> — same items, enchants, and gems in all 19 slots on every fight except The Lurker Below, where mainhand and offhand were swapped out (see below). No mid-raid regear or reenchant otherwise.</div>
+    </div>
+
+    <div class="check-list">
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Meta gem: Bracing Earthstorm Diamond, socketed and active</div>
+        <div class="check-note">+26 Healing / +9 Spell Dmg / 2% reduced threat — 12 red gems vs. 0 blue clears the activation requirement easily</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Gem strategy: all 12 non-meta sockets filled with Teardrop Living Ruby</div>
+        <div class="check-note">pure red/healing gemming, no hybrid or hollow socket-bonus gems</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Weapon enchant: +43 Spell Power on Light's Justice</div>
+        <div class="check-note">plus Brilliant Mana Oil temporary enchant applied</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon bad">!</div>
+        <div>Back (Stainless Cloak of the Pure Hearted) carries no permanent enchant</div>
+        <div class="check-note">8 of 9 eligible slots enchanted — cloak is the one gap</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon bad">!</div>
+        <div>Mainhand/offhand swapped to Seth's Graphite Fishing Pole for The Lurker Below</div>
+        <div class="check-note">ilvl 125→60, +43 spell power enchant lost for that fight only</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Ring enchants aren't flagged — they're self-only via Enchanting in this era. The fishing pole swap is almost certainly a deliberate underwater-mobility choice for the Lurker Below encounter rather than an oversight, but it's worth noting it lines up with that fight's 29.6th-percentile result (second-lowest of the night) — losing the weapon's spell power enchant for a full encounter is a real cost even when the swap itself is intentional. The bare cloak slot is a small, easy fix: any of the standard +spell power or +healing back enchants would close this gap with no tradeoff.</div>
+  </div>
+
+  <!-- ===== PER-BOSS SUMMARY ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Per-boss summary</h2>
+    </div>
+    <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own fight logs. Percentile is pulled from the real WCL ranking for each exact report/fight ID — click a boss name for the full audit.</p>
+
+    <div class="consistency-banner" style="background: rgba(181,80,58,0.10); border-color: rgba(181,80,58,0.35);">
+      <div class="consistency-icon" style="background: var(--rust);">!</div>
+      <div class="consistency-text"><strong>Overheal ran above the Top 10 median on 8 of the 10 kills tonight — often by 15 to 23 points — and tracks closely with a Lifebloom-heavy cast mix.</strong> On 8 of 10 bosses Lifebloom carried more of total healing than the Top 10 average, in several cases (Morogrim +30.5pts, Void Reaver +37.9pts, Al'ar +20.7pts) by a wide margin, with Regrowth and Rejuvenation correspondingly under-cast. The two kills that inverted this — Void Reaver and High Astromancer Solarian, both Regrowth-heavy relative to benchmark — produced two of the three best percentiles of the raid (39th and 83.8th) and two of the three lowest overheal numbers. That correlation shows up consistently enough to be worth a real look at Lifebloom refresh/uptime habits rather than treating each fight as independent variance — see each boss page's spell composition section for the exact numbers.</div>
+    </div>
+
+    <table class="boss-table">
+      <thead>
+        <tr>
+          <th>Boss</th>
+          <th style="text-align:right;">HPS</th>
+          <th style="text-align:right;">Overheal</th>
+          <th style="text-align:right;">WCL Percentile</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_hydross.html">Hydross the Unstable</a></td>
+          <td class="num-cell">563</td>
+          <td class="num-cell overheal-cell high">67.9%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">34th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_lurker.html">The Lurker Below</a></td>
+          <td class="num-cell">645</td>
+          <td class="num-cell overheal-cell">53.8%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">30th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
+          <td class="num-cell">700</td>
+          <td class="num-cell overheal-cell high">66.7%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">46th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_karathress.html">Fathom-Lord Karathress</a></td>
+          <td class="num-cell">1145</td>
+          <td class="num-cell overheal-cell">35.3%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">70th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_morogrim.html">Morogrim Tidewalker</a></td>
+          <td class="num-cell">892</td>
+          <td class="num-cell overheal-cell">57.4%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">65th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_vashj.html">Lady Vashj</a></td>
+          <td class="num-cell">665</td>
+          <td class="num-cell overheal-cell high">63.2%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">54th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_alar.html">Al'ar</a></td>
+          <td class="num-cell">568</td>
+          <td class="num-cell overheal-cell high">69.2%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">50th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_voidreaver.html">Void Reaver</a></td>
+          <td class="num-cell">1241</td>
+          <td class="num-cell overheal-cell">38.7%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">39th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_solarian.html">High Astromancer Solarian</a></td>
+          <td class="num-cell">643</td>
+          <td class="num-cell overheal-cell">52.0%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">84th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_kaelthas.html">Kael'thas Sunstrider</a></td>
+          <td class="num-cell">477</td>
+          <td class="num-cell overheal-cell high">72.2%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">23th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+    </tbody>
+    </table>
+
+    <div class="coverage-note">Lowest-percentile kills — Kael'thas Sunstrider (22.6th), The Lurker Below (29.6th), and Hydross the Unstable (34.0th) — are the priority reads for a full breakdown; all three combine high overheal with an above-average Lifebloom share. High Astromancer Solarian (83.8th) is the standout kill and, notably, the one fight where the spell mix leaned into Regrowth instead. All ten percentiles were matched via exact report/fight ID against Danceswtrees's parses — no duplicate-upload fallback was needed this raid.</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Danceswtrees's fight logs (report XJp8vAxzM4KtHYyb) + WCL rankings where pulled</span>
+    <span>tbc-audit style reference · healer variant · raid overview</span>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -194,34 +194,29 @@
     font-size: 11px;
   }
   .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+  .spell-group{ margin-bottom: 6px; }
+  .spell-group:last-child{ margin-bottom: 0; }
 
-  /* ===== Checklist ===== */
-  .check-list{ display:flex; flex-direction:column; }
-  .check-item{
-    display:grid;
-    grid-template-columns: 22px 1fr auto;
-    align-items:center;
-    gap: 12px;
-    padding: 10px 0;
-    border-top: 1px dashed var(--line);
-    font-size: 13px;
-  }
-  .check-item:first-child{ border-top:none; }
-  .check-icon{
-    width: 18px; height: 18px;
-    border-radius: 50%;
-    display:flex; align-items:center; justify-content:center;
-    font-size: 11px;
-    font-weight: 700;
-  }
-  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
-  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
-  .check-note{
+  /* ===== Cooldown / consumable table (Druid-specific) ===== */
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left;
     font-family:'IBM Plex Mono', monospace;
-    font-size: 11px;
-    color: rgba(19,42,44,0.55);
-    text-align:right;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
   }
+  .cd-table td{
+    padding: 10px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
 
   /* ===== Target distribution ===== */
   .target-list{ display:flex; flex-direction:column; gap:8px; }
@@ -252,18 +247,6 @@
     display:flex;
     justify-content: space-between;
   }
-
-  .placeholder-tag{
-    display:inline-block;
-    margin-left: 10px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size: 10px;
-    color: var(--copper);
-    border: 1px solid var(--copper);
-    border-radius: 20px;
-    padding: 2px 8px;
-    vertical-align: middle;
-  }
 </style>
 </head>
 <body>
@@ -273,7 +256,7 @@
   <!-- ===== HEADER ===== -->
   <div class="header">
     <div>
-      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK · Hydross the Unstable</p>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC/TK 07.07.2026 · Hydross the Unstable</p>
       <h1>Danceswtrees</h1>
       <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; fight <span>6</span> &nbsp;·&nbsp; kill, 143s</p>
     </div>
@@ -298,12 +281,12 @@
       <div class="stat">
         <div class="stat-label">HPS</div>
         <div class="stat-value">563</div>
-        <div class="stat-sub">Top 100: #1 1,680 &nbsp;·&nbsp; top10avg 1,489 &nbsp;·&nbsp; median 1,220</div>
+        <div class="stat-sub">Top 100: #1 1680 &nbsp;·&nbsp; top10avg 1512 &nbsp;·&nbsp; median 1221</div>
       </div>
       <div class="stat">
         <div class="stat-label">Overheal</div>
-        <div class="stat-value">67.9%</div>
-        <div class="stat-sub">Top 100: best 34.4% &nbsp;·&nbsp; median 47.5% &nbsp;·&nbsp; worst 58%</div>
+        <div class="stat-value warn">67.9%</div>
+        <div class="stat-sub">Top 100: best 34.4% &nbsp;·&nbsp; median 47.1% &nbsp;·&nbsp; worst 58%</div>
       </div>
       <div class="stat">
         <div class="stat-label">Effective healing</div>
@@ -311,19 +294,19 @@
         <div class="stat-sub">over 143s kill</div>
       </div>
       <div class="stat">
-        <div class="stat-label">Active time</div>
-        <div class="stat-value">96.8%</div>
-        <div class="stat-sub">GCD-active vs. fight length</div>
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value good">0</div>
+        <div class="stat-sub">this kill, all classes</div>
       </div>
     </div>
 
     <div class="pctl-track">
-      <div class="pctl-marker" style="left:34.0%;" data-label="Danceswtrees · 34th"></div>
+      <div class="pctl-marker" style="left:34%;" data-label="Danceswtrees · 34th"></div>
     </div>
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
-    <div class="stat-sub" style="margin-top:6px;">WCL rank 11,622 of 17,621 Restoration Druid parses on this encounter (all difficulties/partitions, historical). Matched via exact report/fight ID.</div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank 11684 of 17739 Restoration Druid parses on this encounter (all difficulties/partitions, historical). Matched by exact report/fight ID (XJp8vAxzM4KtHYyb, fight 6) — no duplicate-upload fallback needed.</div>
 
-    <div class="coverage-note">34th percentile at 563 HPS, well under the Top 10 average (1,489) and below the raw median (1,220) too. Active time was excellent (96.8%), so this isn't a downtime problem — overheal at 67.9% (vs. a 47.5% median) is where the gap actually lives. It's a short, clean 143s kill, so there's limited room for a slow start to average out.</div>
+    <div class="coverage-note">Both halves of the score are weak on this kill: HPS (563) sits well under even the Top 100 median (1221), and overheal (67.9%) is worse than every Top 100 parse sampled, including the worst (58%). The fight itself was short (143s) — Hydross kills of this length can inflate overheal simply by giving HoTs less time to get "used up" before targets are already topped, so some of this gap is plausibly fight-length noise rather than pure output — but a 563 HPS / 67.9% overheal combination this far outside the observed Top 100 range is still the dominant real finding here, not a rounding artifact.</div>
   </div>
 
   <!-- ===== SPELL COMPOSITION ===== -->
@@ -339,76 +322,170 @@
       <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 10 avg</span>
     </div>
 
-    <div class="spell-row compare-row">
-      <div class="spell-name">Lifebloom</div>
-      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:52.3%"></div></div>
-      <div class="spell-pct">52.3%</div>
-    </div>
-    <div class="spell-row compare-row">
-      <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:47.5%"></div></div>
-      <div class="spell-pct">47.5%</div>
-    </div>
-
-    <div class="spell-row compare-row">
-      <div class="spell-name">Regrowth</div>
-      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:17.8%"></div></div>
-      <div class="spell-pct">17.8%</div>
-    </div>
-    <div class="spell-row compare-row">
-      <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:27.7%"></div></div>
-      <div class="spell-pct">27.7%</div>
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Lifebloom</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:52.3%"></div></div>
+        <div class="spell-pct">52.3%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:39.8%"></div></div>
+        <div class="spell-pct">39.8%</div>
+      </div>
     </div>
 
-    <div class="spell-row compare-row">
-      <div class="spell-name">Rejuvenation</div>
-      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:16.1%"></div></div>
-      <div class="spell-pct">16.1%</div>
-    </div>
-    <div class="spell-row compare-row">
-      <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:11.7%"></div></div>
-      <div class="spell-pct">11.7%</div>
-    </div>
-
-    <div class="spell-row compare-row">
-      <div class="spell-name">Healing Touch</div>
-      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:7.9%"></div></div>
-      <div class="spell-pct">7.9%</div>
-    </div>
-    <div class="spell-row compare-row">
-      <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.0%"></div></div>
-      <div class="spell-pct">0.0%</div>
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:17.8%"></div></div>
+        <div class="spell-pct">17.8%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:32.2%"></div></div>
+        <div class="spell-pct">32.2%</div>
+      </div>
     </div>
 
-    <div class="spell-row compare-row">
-      <div class="spell-name">Swiftmend</div>
-      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:5.9%"></div></div>
-      <div class="spell-pct">5.9%</div>
-    </div>
-    <div class="spell-row compare-row">
-      <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.0%"></div></div>
-      <div class="spell-pct">5.0%</div>
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Rejuvenation</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:16.1%"></div></div>
+        <div class="spell-pct">16.1%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:16%"></div></div>
+        <div class="spell-pct">16%</div>
+      </div>
     </div>
 
-    <div class="coverage-note">Lifebloom carried 52.3% of healing here, above the 47.5% Top 10 average, while Regrowth was under-weighted (17.8% vs. 27.7%) — a swap that trades a highly efficient HoT for the heavier-hitting one without the throughput to show for it. Healing Touch also shows up at 7.9%, a slow, expensive cast the Top 10 sample doesn't use on this fight at all; worth a look given how little movement Hydross demands.</div>
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Healing Touch</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:7.9%"></div></div>
+        <div class="spell-pct">7.9%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.7%"></div></div>
+        <div class="spell-pct">1.7%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Swiftmend</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:5.9%"></div></div>
+        <div class="spell-pct">5.9%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5%"></div></div>
+        <div class="spell-pct">5%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Lifebloom <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 33778)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.6%"></div></div>
+        <div class="spell-pct">4.6%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Same six spells on both sides — no benchmark spell went uncast. The real gap is a HoT-mix shift, not a missing spell: Lifebloom is overweighted (52.3% vs. 39.8%, +12.5) while Regrowth is underweighted (17.8% vs. 32.2%, -14.4), a HoT-stacking style that leans harder on Lifebloom than the Top 10 average does. Lifebloom's bloom-burst effect (guid 33778, the instant heal on expiry) landed once for 20 total healing — essentially never let a stack expire naturally this kill, consistent with active re-application rather than passive uptime. Healing Touch is elevated (7.9% vs. 1.7%) almost entirely because of one Nature's Swiftness-empowered cast late in the fight (see section 03) landing disproportionately large in an otherwise low-total kill.</div>
+  </div>
+
+  <!-- ===== COOLDOWNS & CONSUMABLES ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, and self-buff status on this kill, vs. real Top 10 aggregate on Hydross the Unstable.</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">Danceswtrees</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 10 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ability-name">Innervate</td>
+          <td class="num-cell">1</td>
+          <td>→ Captinspanky</td>
+          <td class="num-cell">0.7 (29%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Nature's Swiftness</td>
+          <td class="num-cell">1</td>
+          <td>self</td>
+          <td class="num-cell">1 (0%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Swiftmend</td>
+          <td class="num-cell">3</td>
+          <td>→ Jotes ×3</td>
+          <td class="num-cell">2.6 (8%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Tranquility</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0 (—)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="stat-grid" style="margin-top:22px;">
+      <div class="stat">
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Elixir of Draenic Wisdom — Top 10: 90% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Well Fed — Top 10: 90% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Tree of Life uptime</div>
+        <div class="stat-value good">98.5%</div>
+        <div class="stat-sub">Top 10 avg: 47.7%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value">0</div>
+        <div class="stat-sub">None used this kill — Top 10 avg 0.6 casts (60% used one)</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Innervate went to Captinspanky rather than self, matching the Top 10's mostly-not-self pattern (71% went to someone else). Nature's Swiftness usage (1 cast) matches the Top 10 exactly (100% used it once). The real standout: Nature's Swiftness (2557268ms) and Healing Touch (2557281ms) landed 13 milliseconds apart on Jotes, in the final ~2 seconds of the kill (fight ends at 2559468ms) — a real, verified NS→instant-Healing-Touch combo, not a coincidence of timing. Tree of Life uptime (98.5%) is more than double the Top 10 average (47.7%) — she stayed in Tree Form for essentially the entire kill, dropping out only for that one final instant-cast window. Zero raid deaths this kill, so there's no cooldown-timing/death correlation to draw — trivially nothing to correlate against.</div>
   </div>
 
   <!-- ===== TARGET DISTRIBUTION ===== -->
   <div class="section">
     <div class="section-head">
-      <span class="section-num">03</span>
+      <span class="section-num">04</span>
       <h2 class="section-title">Target distribution</h2>
     </div>
-    <p class="section-desc">Top 5 recipients of Danceswtrees's healing on this kill (98.7% coverage) vs. Top 10 average on Hydross the Unstable (78.6% coverage, 49.8% to top target).</p>
+    <p class="section-desc">Top 5 recipients of Danceswtrees's healing on this kill (98.7% coverage) vs. Top 10 average on Hydross the Unstable (78.2% coverage, 49.2% to top target).</p>
 
     <div class="target-list">
       <div class="target-row">
         <div>Jotes</div>
-        <div class="target-bar-track"><div class="target-bar-fill" style="width:100.0%"></div></div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
         <div class="target-pct">54.7%</div>
       </div>
       <div class="target-row">
@@ -432,12 +509,13 @@
         <div class="target-pct">1.3%</div>
       </div>
     </div>
-    <div class="coverage-note">98.7% coverage in the top 5 (vs. 78.6% for Top 10) with 54.7% of all healing landing on a single target (Jotes) — well past the ~±5 point noise band around the 49.8% benchmark. This was a very narrow, single-target-heavy healing pattern for a 25-man kill; worth confirming whether that was an explicit assignment or a HoT-tracking habit.</div>
+
+    <div class="coverage-note">Coverage (98.7% vs. Top 10's 78.2%, a real +20.5 point gap) shows a genuinely narrower target spread than average — only 6 distinct targets received healing all kill, essentially two people (Jotes, Turbarct). Top target concentration (54.7% vs. 49.2%) is a smaller gap, +5.5 points, right at the edge of the ±5 range that's shown to be normal variance rather than a real targeting difference — the coverage gap is the one worth calling a real finding here, not the top-1 gap on its own.</div>
   </div>
 
   <div class="footer">
-    <span>All data real: Danceswtrees's fight log (XJp8vAxzM4KtHYyb, fight 6) + Top 100 Hydross the Unstable benchmark (n=79)</span>
-    <span>tbc-audit style reference · healer variant</span>
+    <span>All data real: Danceswtrees's fight log (XJp8vAxzM4KtHYyb, fight 6) + Top 100 Hydross the Unstable benchmark (n=100)</span>
+    <span>tbc-audit style reference · healer variant · Resto Druid</span>
   </div>
 
 </div>

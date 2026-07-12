@@ -8,25 +8,51 @@ new ones get found — don't let it go stale.
 
 ## Blocking the "best version" report — do these first
 
-- [ ] **Build one real v2 boss page end-to-end**, at least one full raid night,
-      using real Druid v2 data. Nothing has actually exercised
-      `boss_page_template_druid.html` against this shape of data yet — this is the
-      fastest way to surface whichever of the items below actually bites first.
-      (CLAUDE.md open item #1)
-- [ ] **Gear audit regression** — healing *events* carry no `gear` field (the old
-      healing *table* did, which is what the raid overview's gear audit reads).
-      Needs a `combatantinfo` events pull (same mechanism already used for
-      flask/food) before any raid overview page can show gear. Will hit on the
-      very first v2 raid overview built.
-- [ ] **Verify "union of both spell lists" is actually implemented.** WORKFLOW.md
-      documents this as a real bug caught once before (benchmark-only spells the
-      character never cast get silently hidden from the comparison if you don't
-      union both lists) — fixed conceptually in the design, never exercised
-      against real Druid v2 data since no v2 boss page exists yet.
-- [ ] **Re-verify `pull_character_TEMPLATE.ps1`'s output still lines up** with the
-      current `benchmark_*.csv` column names/shape. Untouched this session while
-      everything else changed — do one real test pull before trusting the
-      character-side of the pipeline is still in sync with the benchmark side.
+- [x] **Build one real v2 boss page end-to-end.** Done for Danceswtrees / Hydross
+      the Unstable (2026-07-07): `docs/danceswtrees/2026-07-07/healer_audit_hydross.html`,
+      built entirely from real data (healing/casts events, consumables, real WCL
+      percentile cross-matched by exact report/fight ID, real Top 10 benchmark
+      comparison). `boss_page_template_druid.html`'s placeholder set held up
+      against real data with no structural surprises — union-of-spell-lists,
+      self/other cooldown targeting, boolean vs. real-% buff display all worked
+      as documented. (CLAUDE.md open item #1)
+- [ ] **Extend to the other 9 bosses for Danceswtrees's 2026-07-07 raid night.**
+      Only Hydross is done. `docs/danceswtrees/2026-07-07/index.html` (the v2 raid
+      overview) already has explicit "not migrated" pending rows for the rest,
+      each linking to its real v1 page in the meantime — see "New folder
+      convention" below before touching any of these.
+- [x] *Mostly resolved:* **Gear audit regression.** Confirmed the `combatantinfo`
+      events pull (same mechanism as flask/food) works for getting real gear back
+      — pulled it live for Danceswtrees/Hydross and built a real gear audit
+      section in the v2 raid overview from it. Also discovered `parses/character`
+      responses already include a real average item level in the
+      `ilvlKeyOrPatch` field (verified: matched the combatantinfo-computed
+      average, 120, exactly) — a future boss page's header `{{ITEM_LEVEL}}` may
+      not need a fresh combatantinfo pull at all, just this field. Still open:
+      the audit is scoped to ONE fight's snapshot — WORKFLOW.md's "confirm gear
+      is identical across all kills before presenting one audit" rule hasn't
+      been satisfied yet, since the other 9 kills have no v2 combatantinfo pull.
+- [ ] **Two new real findings from that one gear snapshot, unresolved:** (1) a gem
+      recount directly from the raw data gives 13 non-meta gems, not the 12 v1's
+      original audit stated — a real discrepancy between v1's write-up and what
+      the data actually shows, not yet reconciled either direction. (2) one gear
+      slot shows no item equipped (generic empty-slot icon in the raw
+      `combatantinfo` response) — real, but which slot it is couldn't be
+      determined from the data alone this session.
+- [x] *Partially verified:* **"Union of both spell lists" requirement.** Exercised
+      against real data on the Hydross page — mechanism works. Caveat: Danceswtrees's
+      6 cast spells happened to exactly match the benchmark's 6 tracked spells, so
+      this didn't actually test the "benchmark-only spell never cast, must still
+      show as 0%" edge case. Still worth watching for on a future boss/character
+      where the lists genuinely diverge.
+- [x] *Reviewed, not live-tested:* **`pull_character_TEMPLATE.ps1` compatibility.**
+      Read the full script this session — output field shapes (`sourceName`,
+      `totalAmount`, `totalOverheal`, `events[]`, `flaskActive`/`foodActive`/
+      `treeOfLifeUptimePct`) match what the Hydross page consumed with no
+      adjustment needed. All Danceswtrees data used was from an existing pre-session
+      pull, though — this confirms the format still lines up, not that a *fresh*
+      run of the script still works end-to-end. A real live test pull is still
+      worth doing at some point.
 
 ## Known data gaps / report-copy caveats
 
