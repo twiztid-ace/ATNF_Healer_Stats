@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Raid Audit — Danceswtrees — SSC / TK July 7, 2026 (v2)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
+  .section-num{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--copper); }
+  .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
+  .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
+
+  /* ===== Consistency / status banners ===== */
+  .consistency-banner{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: rgba(95,122,82,0.12);
+    border: 1px solid rgba(95,122,82,0.35);
+    border-radius: 3px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+  }
+  .consistency-banner.pending{
+    background: rgba(217,178,92,0.14);
+    border-color: rgba(217,178,92,0.45);
+  }
+  .consistency-icon{
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--moss); color: var(--parchment);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 700; font-size: 14px; flex-shrink:0;
+  }
+  .consistency-banner.pending .consistency-icon{ background: var(--gold); color: var(--ink); }
+  .consistency-text{ font-size: 13px; }
+  .consistency-text strong{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ===== Checklist ===== */
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px; border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px; font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-icon.note{ background: var(--gold); color: var(--ink); }
+  .check-note{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: rgba(19,42,44,0.55); text-align:right; }
+
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  /* ===== Boss table ===== */
+  .boss-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .boss-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .boss-table td{
+    padding: 12px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .boss-table tr:last-child td{ border-bottom:none; }
+  .boss-table tr.pending-row{ opacity: 0.55; }
+  .boss-name{ font-weight: 600; }
+  .boss-name a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper); }
+  .boss-name a:hover{ color: var(--copper); }
+  .boss-name .v1-link{ font-family:'IBM Plex Mono', monospace; font-size: 10px; font-weight:400; color: rgba(19,42,44,0.45); border-bottom:none; margin-left: 6px; }
+  .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-pill{
+    display:inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    background: var(--parchment-dim);
+  }
+  .pctl-pill.has-data{ background: rgba(201,122,61,0.15); color: var(--ink); font-weight:600; }
+  .pctl-pill.pending{ color: rgba(19,42,44,0.4); font-style: italic; font-weight:400; }
+  .overheal-cell.high{ color: var(--rust); font-weight:600; }
+  .link-arrow{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--copper); }
+
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — SSC / TK — July 7, 2026 · v2</p>
+    <h1>Danceswtrees</h1>
+    <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; 10/10 bosses killed</p>
+  </div>
+
+  <!-- ===== GEAR AUDIT ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Gear audit</h2>
+    </div>
+    <p class="section-desc">v2 methodology: real <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;">combatantinfo</span> snapshot, not the old healing table's embedded gear field.</p>
+
+    <div class="consistency-banner pending">
+      <div class="consistency-icon">i</div>
+      <div class="consistency-text">Based on <strong>one real combatantinfo snapshot (Hydross, fight 6 only)</strong> — not yet cross-checked against the other 9 kills the way a complete v2 audit requires. <a href="../2026-07-07-v1/index.html" style="color:var(--ink);">v1's independently-built audit</a> found gear consistent across 9 of 10 kills (one weapon swap on The Lurker Below) — this snapshot is consistent with that, but hasn't re-verified it kill-by-kill under the v2 method yet.</div>
+    </div>
+
+    <div class="check-list">
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>17 of 17 real equipment slots filled (excluding shirt/tabard)</div>
+        <div class="check-note">avg item level 120 — matches parses/character's own ilvlKeyOrPatch field exactly</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Mainhand carries both a permanent enchant and an active temporary weapon oil</div>
+        <div class="check-note">item 28771, enchant 2343 + temp enchant 2629</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon bad">!</div>
+        <div>Back slot (item 28765) carries no permanent enchant</div>
+        <div class="check-note">confirmed independently — matches v1's finding for the same slot</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon note">i</div>
+        <div>One gear slot shows no item equipped</div>
+        <div class="check-note">generic empty-slot icon in the raw data — can't identify which slot from this alone</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon note">i</div>
+        <div>Trinket 2 (item 25634) is quality 2 (uncommon) — every other equipped item is quality 3–4</div>
+        <div class="check-note">the one below-epic item in an otherwise epic-quality kit</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Gem count came out slightly different from v1's write-up when recounted directly from this snapshot: 13 non-meta gems (all the same red gem, item 24029) plus 1 meta gem in the head slot, vs. v1's stated "12 non-meta sockets" — a minor discrepancy worth noting rather than silently picking one number, since it's a real difference between what v1 recorded and what this snapshot actually shows. Ring enchants aren't flagged, per this era's self-only Enchanting restriction. The empty slot and the sub-epic trinket are both real, verifiable-from-data findings that v1's original audit didn't call out — worth a closer look once the other 9 kills get their own v2 snapshots.</div>
+  </div>
+
+  <!-- ===== PER-BOSS SUMMARY ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Per-boss summary</h2>
+    </div>
+    <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own events-based fight logs. Percentile is pulled from the real WCL ranking for the exact report/fight ID.</p>
+
+    <div class="consistency-banner">
+      <div class="consistency-icon">✓</div>
+      <div class="consistency-text"><strong>All 10 boss kills have been rebuilt under the v2 (events-based) pipeline.</strong> Each page below is built from Danceswtrees's real events data (healing, casts, consumables, deaths, active time) cross-referenced against a real Top 100 benchmark for that boss. The v1 pages remain available via each row's small "(v1)" link for reference.</div>
+    </div>
+
+    <table class="boss-table">
+      <thead>
+        <tr>
+          <th>Boss</th>
+          <th style="text-align:right;">HPS</th>
+          <th style="text-align:right;">Overheal</th>
+          <th style="text-align:right;">WCL Percentile</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_hydross.html">Hydross the Unstable</a></td>
+          <td class="num-cell">563</td>
+          <td class="num-cell overheal-cell high">67.9%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">34th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_lurker.html">The Lurker Below</a></td>
+          <td class="num-cell">646</td>
+          <td class="num-cell overheal-cell high">53.8%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">30th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
+          <td class="num-cell">699</td>
+          <td class="num-cell overheal-cell high">66.7%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">46th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_karathress.html">Fathom-Lord Karathress</a></td>
+          <td class="num-cell">1144</td>
+          <td class="num-cell">35.3%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">70th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_morogrim.html">Morogrim Tidewalker</a></td>
+          <td class="num-cell">891</td>
+          <td class="num-cell overheal-cell high">57.4%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">64th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_vashj.html">Lady Vashj</a></td>
+          <td class="num-cell">665</td>
+          <td class="num-cell overheal-cell high">63.2%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">54th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_alar.html">Al'ar</a></td>
+          <td class="num-cell">569</td>
+          <td class="num-cell overheal-cell high">69.2%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">50th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_voidreaver.html">Void Reaver</a></td>
+          <td class="num-cell">1241</td>
+          <td class="num-cell overheal-cell high">38.7%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">39th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_solarian.html">High Astromancer Solarian</a></td>
+          <td class="num-cell">644</td>
+          <td class="num-cell">52%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">84th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_kaelthas.html">Kael'thas Sunstrider</a></td>
+          <td class="num-cell">477</td>
+          <td class="num-cell overheal-cell high">72.2%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">23rd</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+    </tbody>
+    </table>
+
+    <div class="coverage-note">Across all 10 real kills, three patterns hold up consistently enough to call raid-night-level findings rather than one-off noise. <strong>Overheal exceeds the Top 100 sample's single worst sampled parse on 8 of 10 kills</strong> (all but Karathress and Solarian) — a real, recurring gap, not fight-specific bad luck. <strong>Lifebloom is overweighted against Regrowth on 8 of 10 kills</strong>, with Al'ar (+17.2) and Karathress (+23.6) the largest gaps — the two exceptions are genuinely boss-driven: Void Reaver's own Top 100 average is itself Regrowth-dominant (74.8%), and Solarian saw an all-in Regrowth approach (90.1%) that crowded out Lifebloom entirely. <strong>HPM sits below the Top 100 average on 9 of 10 kills</strong>, Karathress the sole exception (8.55 vs. avg 8.07) — a consistent mana-efficiency gap that tracks the overheal pattern (mana spent on healing that doesn't count as effective). Two real anomalies worth flagging on their own: Karathress's active time (80.6%, far below the 99.2% average) is directly explained by Danceswtrees's own death mid-fight, visible in that kill's death list — not idle time in a live window. Tree of Life uptime read 0% on two kills (Morogrim, Solarian) with no death to explain either — a real, unresolved gap worth a closer look. Percentile ranged from 23rd (Kael'thas, the weakest kill by nearly every metric) to 84th (Solarian, the strongest) — a wide spread across one raid night, underscoring that per-boss variance is real and each page's findings shouldn't be assumed to generalize to the others.</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Danceswtrees's fight logs (report XJp8vAxzM4KtHYyb) + WCL rankings where pulled — v2 events-based pipeline, 10/10 bosses migrated</span>
+    <span>tbc-audit style reference · healer variant · raid overview</span>
+  </div>
+
+</div>
+
+</body>
+</html>

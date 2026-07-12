@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Lady Vashj</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  /* ===== Header ===== */
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ===== Seal ===== */
+  .seal-wrap{ flex-shrink:0; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  /* ===== Section shell ===== */
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--copper);
+  }
+  .section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+  .section-desc{
+    font-size: 13px;
+    color: rgba(19,42,44,0.6);
+    margin: -12px 0 20px;
+  }
+
+  /* ===== Stat row ===== */
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  /* 2026-07-12: cooldowns/consumables stat row grew a 5th stat (HPM); the Scorecard
+     grew its own 5th stat (Active Time) the same day - both now use this modifier. */
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .stat{
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(19,42,44,0.55);
+    margin-bottom: 6px;
+  }
+  .stat-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  /* ===== Percentile bar ===== */
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{
+    position: absolute;
+    top: -8px;
+    width: 3px;
+    height: 26px;
+    background: var(--ink);
+  }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .pctl-scale{
+    display:flex; justify-content: space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(19,42,44,0.45);
+  }
+
+  /* ===== Spell composition bars ===== */
+  .spell-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items:center;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 13px;
+  }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{
+    height: 8px;
+    background: var(--parchment-dim);
+    border-radius: 4px;
+    overflow:hidden;
+  }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{
+    display:flex; gap: 18px; margin-bottom: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+
+  /* ===== Checklist ===== */
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.55);
+    text-align:right;
+  }
+
+  /* ===== Cooldown / consumable table (Druid-specific) =====
+       Deliberately NOT the ok/bad check-list pattern - cooldown counts and consumable
+       uptime are informational stats, not pass/fail checks, and design_tokens.md is
+       explicit that the numbers should carry the finding rather than the container
+       editorializing with color. Plain table + a coverage-note for the actual read. */
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cd-table td{
+    padding: 10px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
+
+  /* ===== Target distribution ===== */
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{
+    display:grid;
+    grid-template-columns: 120px 1fr 70px;
+    align-items:center;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  /* ===== Footer ===== */
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .placeholder-tag{
+    display:inline-block;
+    margin-left: 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--copper);
+    border: 1px solid var(--copper);
+    border-radius: 20px;
+    padding: 2px 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — {{RAID_TITLE}} · {{BOSS_NAME}}</p>
+      <h1>{{HEALER_NAME}}</h1>
+      <p class="subline">{{HEALER_CLASS_SPEC}} &nbsp;·&nbsp; ilvl {{ITEM_LEVEL}} &nbsp;·&nbsp; report <span>{{REPORT_CODE}}</span> &nbsp;·&nbsp; fight <span>{{FIGHT_ID}}</span> &nbsp;·&nbsp; kill, {{DURATION_S}}s</p>
+    </div>
+    <div class="seal-wrap">
+      <svg class="seal" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">{{PERCENTILE}}</text>
+        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+      </svg>
+      <div class="seal-label">WCL rank, all parses</div>
+    </div>
+  </div>
+
+  <!-- ===== SCORECARD ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid stat-grid-5">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value">{{HPS}}</div>
+        <div class="stat-sub">Top 100: #1 {{HPS_TOP1}} &nbsp;·&nbsp; avg {{HPS_TOP100AVG}} &nbsp;·&nbsp; median {{HPS_MEDIAN}}</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value">{{OVERHEAL_PCT}}%</div>
+        <div class="stat-sub">Top 100: best {{OVERHEAL_BEST}}% &nbsp;·&nbsp; median {{OVERHEAL_MEDIAN}}% &nbsp;·&nbsp; worst {{OVERHEAL_WORST}}%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">{{TOTAL_HEALING}}</div>
+        <div class="stat-sub">over {{DURATION_S}}s kill</div>
+      </div>
+      <div class="stat">
+        <!-- Active time was dropped 2026-07-11 on the stated premise that no event
+             carries an equivalent field once healing/casts moved to /report/events -
+             re-added 2026-07-12 after re-checking that premise (same "test before
+             assuming it's gone" pattern that resurrected HPM): the healing TABLE's
+             top-level per-player activeTime/activeTimeReduced fields were never
+             actually confirmed broken, just abandoned along with the whole endpoint
+             when the truncation-prone abilities[] array killed it for spell
+             composition. That truncation doesn't touch these top-level scalars - one
+             extra table call (same shape as `deaths`) gets the real field back, no
+             estimate involved. Verified against Danceswtrees's real Hydross kill:
+             138449ms/143007ms = 96.8%, exactly matching the number recorded on the
+             pre-events-rewrite v1 page. -->
+        <div class="stat-label">Active time</div>
+        <div class="stat-value">{{ACTIVE_TIME_PCT}}%</div>
+        <div class="stat-sub">Top 100: #1 {{ACTIVE_TIME_TOP1}}% &nbsp;·&nbsp; avg {{ACTIVE_TIME_TOP100AVG}}% &nbsp;·&nbsp; median {{ACTIVE_TIME_MEDIAN}}%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value">{{DEATH_COUNT}}</div>
+        <div class="stat-sub">this kill, all classes</div>
+      </div>
+    </div>
+
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:{{PERCENTILE}}%;" data-label="{{HEALER_NAME}} · {{PERCENTILE}}th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank {{RANK}} of {{OUT_OF}} {{HEALER_CLASS_SPEC}} parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
+
+    <div class="coverage-note">{{SCORECARD_FINDING}} — one to two sentences interpreting the percentile + overheal together, noting any fight-duration/difficulty caveats if the pull was unusually fast or slow vs. typical parses.</div>
+  </div>
+
+  <!-- ===== SPELL COMPOSITION ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">{{HEALER_NAME}}'s real cast mix on this kill, vs. real Top 100 average on {{BOSS_NAME}}.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>{{HEALER_NAME}}</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
+    </div>
+
+    <!-- One pair of rows per spell. Copy this block for each spell in the UNION of both
+         spell lists - the character's own casts AND any Top 100 benchmark spell they never
+         cast (show as 0.0% rather than omitting the row - see WORKFLOW.md gotcha about this).
+         This is HEALING THROUGHPUT spells only (Rejuvenation, Regrowth, Lifebloom, Tranquility,
+         Swiftmend as % of total healing, etc.) - Innervate/NS/Rebirth are utility, not healing
+         throughput, and belong in section 03 below instead, not here. -->
+    <div class="spell-row compare-row">
+      <div class="spell-name">{{SPELL_NAME}}</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:{{SPELL_PCT_CHARACTER}}%"></div></div>
+      <div class="spell-pct">{{SPELL_PCT_CHARACTER}}%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:{{SPELL_PCT_BENCHMARK}}%"></div></div>
+      <div class="spell-pct">{{SPELL_PCT_BENCHMARK}}%</div>
+    </div>
+
+    <div class="coverage-note">{{SPELL_COMPOSITION_FINDING}} — note the biggest gaps between character and benchmark. Flag any benchmark spell the character cast 0% of, if the gap is meaningful (e.g. missing a passive totem/cooldown that's essentially free healing).</div>
+  </div>
+
+  <!-- ===== COOLDOWNS & CONSUMABLES (Druid-specific) ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on {{BOSS_NAME}}. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> (see WORKFLOW.md) - match abilities by guid, not localized name (gotcha #2).</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">{{HEALER_NAME}}</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 100 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- One row per tracked cooldown/utility ability, from *_casts_events.json.
+             Innervate, Nature's Swiftness, and Swiftmend are always shown - real usage
+             (including zero) is itself the finding for these three.
+
+             Tranquility is DIFFERENT (2026-07-12 rule): only include its row when the
+             character's own usage doesn't line up with benchmark_cooldowns.csv's
+             Top100UsedPct for that boss - i.e. it's a real deviation worth a reader's
+             attention, not routine. Concretely, using Top100UsedPct for Tranquility:
+               - Character cast it (count > 0) AND Top100UsedPct <= 20% (rare in the
+                 sample) -> INCLUDE, this is a real "did something most don't" finding.
+               - Character did NOT cast it (count == 0) AND Top100UsedPct >= 50% (most
+                 of the sample DID) -> INCLUDE, this is a real gap worth naming.
+               - Anything else (cast it and it's common; didn't cast it and it's rare;
+                 or Top100UsedPct sits in the 20-50% dead zone either way) -> OMIT the
+                 row entirely. Most kills will land here, including any kill where
+                 nobody in the sample casts it at all (Top100UsedPct == 0%,
+                 character also 0) - that's the character matching the norm, not a
+                 finding, and doesn't deserve a permanent row on every page.
+             Only add a Rebirth row if a battle-rez was actually relevant/used on this
+             specific kill - don't pad every page with a permanent 0 row for an ability
+             that had no reason to be cast here (same reasoning as Tranquility above,
+             applied as a simpler always-omit-unless-relevant rule since Rebirth's
+             benchmark usage is situational enough that a Top100UsedPct comparison
+             isn't as meaningful).
+
+             Target column: list each real cast's target by name (e.g. "→ Captinspanky"),
+             or "self" if source==target, or "—" if never cast. If cast more than once on
+             different targets, list all of them ("→ Jotes ×3" if same target repeated,
+             or "→ Jotes, → Captinspanky" if split) - this column is the entire point of
+             the 2026-07-11 events-based redesign, don't collapse it back into a bare
+             count. Top 100 self% comes straight from benchmark_cooldowns.csv's
+             Top100SelfPct column - leave blank (not 0%) if that column was blank there
+             too (means nobody in the sample cast it, self% is undefined, not zero). -->
+        <tr>
+          <td class="ability-name">{{COOLDOWN_NAME}}</td>
+          <td class="num-cell">{{COOLDOWN_CASTS}}</td>
+          <td>{{COOLDOWN_TARGET}}</td>
+          <td class="num-cell">{{COOLDOWN_BENCHMARK}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="stat-grid stat-grid-5" style="margin-top:22px;">
+      <div class="stat">
+        <!-- flask/food are booleans from the pull-start combatantinfo snapshot, not a
+             computed uptime % - these buffs outlast any single fight (1-2hr duration),
+             so "active at pull start" reliably stands in for "active the whole fight".
+             Show "Yes"/"No", not a percentage - showing 100%/0% would imply precision
+             this data doesn't have. -->
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value">{{FLASK_ACTIVE}}</div>
+        <div class="stat-sub">{{FLASK_NAME}} — Top 100: {{FLASK_BENCHMARK_PCT}}% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value">{{FOOD_ACTIVE}}</div>
+        <div class="stat-sub">{{FOOD_NAME}} — Top 100: {{FOOD_BENCHMARK_PCT}}% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <!-- Tree of Life IS a real reconstructed uptime % (apply/remove event interval
+             reconstruction, guid 33891 only - see WORKFLOW.md), unlike flask/food above.
+             Omit this whole .stat block if the character isn't talented into Tree of
+             Life - don't show 0% for a form the build never had access to. -->
+        <div class="stat-label">Tree of Life uptime</div>
+        <div class="stat-value">{{TREE_OF_LIFE_PCT}}%</div>
+        <div class="stat-sub">Top 100 avg: {{TREE_OF_LIFE_BENCHMARK_PCT}}% — omit this stat if not talented, not 0%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value">{{MANA_CONSUMABLE_COUNT}}</div>
+        <div class="stat-sub">{{MANA_CONSUMABLE_DETAIL}} — e.g. "1x Restore Mana", from *_casts_events.json (consumables register as casts, matched by name not guid - see benchmark_cooldowns.csv note on "Mana Potion")</div>
+      </div>
+      <div class="stat">
+        <!-- Added 2026-07-12 once resources/resources-gains was confirmed dead and HPM
+             turned out to be computable from *_casts_events.json's classResources field
+             instead (see WORKFLOW.md gotcha #11 and summarize_class_benchmarks.ps1's own
+             header note for the full writeup) - effective healing / total real mana cost
+             summed across every cast that carries a classResources entry. Same "effective,
+             not raw" healing definition HPS already uses, so the two are directly
+             comparable in spirit (throughput vs. throughput-per-mana). Leave this whole
+             stat out entirely if HPM_SampleUsed in benchmark_summary.csv is 0 for this
+             boss (no benchmark comparison available), rather than showing a benchmark
+             value of "0" or blank next to a real character number - same principle as
+             omitting Tree of Life for a non-Tree build. -->
+        <div class="stat-label">HPM</div>
+        <div class="stat-value">{{HPM}}</div>
+        <div class="stat-sub">Top 100: top1 {{HPM_TOP1}} &nbsp;·&nbsp; avg {{HPM_TOP100AVG}} &nbsp;·&nbsp; median {{HPM_MEDIAN}}</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">{{COOLDOWN_FINDING}} — one to two sentences: how cooldown usage AND targeting compares to the Top 100 average (e.g. "cast Innervate on the offhealer rather than self, matching the sample's mostly-not-self pattern" is a real finding; "cast Swiftmend 3x, all on the tank" is too), how flask/food/Tree of Life compares to the Top 100 benchmark if there's a real gap worth naming, and whether any raid death on this kill (per the fight's *_deaths.json, shown in the scorecard above) occurred in a window where a relevant cooldown had already been spent. Only make the death-correlation claim if it's actually true for this specific fight - most kills will show no meaningful correlation (including a 0-death kill, where there's trivially nothing to correlate), and that's fine to say plainly rather than reaching for a finding that isn't there.</div>
+  </div>
+
+  <!-- ===== TARGET DISTRIBUTION ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of {{HEALER_NAME}}'s healing on this kill ({{COVERAGE_PCT}}% coverage) vs. Top 100 average on {{BOSS_NAME}} ({{BENCHMARK_COVERAGE_PCT}}% coverage, {{BENCHMARK_TOP1_PCT}}% to top target).</p>
+
+    <div class="target-list">
+      <!-- One row per target, up to 5 (WCL truncates the targets array at 5). Sort descending
+           by amount. Compute the bar width as a % of the TOP target's amount, not of total
+           healing, so the visual bars stay comparable to each other. -->
+      <div class="target-row">
+        <div>{{TARGET_NAME}}</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:{{TARGET_BAR_WIDTH}}%"></div></div>
+        <div class="target-pct">{{TARGET_PCT}}%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">{{TARGET_FINDING}} — state the top target's % vs. the Top 100 benchmark average explicitly, and whether the gap (if any) represents a real targeting difference or falls within normal variance (roughly ±5 points has shown to be noise in practice).</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: {{HEALER_NAME}}'s fight log ({{REPORT_CODE}}, fight {{FIGHT_ID}}) + Top 100 {{BOSS_NAME}} benchmark (n={{BENCHMARK_N}})</span>
+    <span>tbc-audit style reference · healer variant · Resto Druid</span>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Void Reaver</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  /* ===== Header ===== */
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ===== Seal ===== */
+  .seal-wrap{ flex-shrink:0; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  /* ===== Section shell ===== */
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--copper);
+  }
+  .section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+  .section-desc{
+    font-size: 13px;
+    color: rgba(19,42,44,0.6);
+    margin: -12px 0 20px;
+  }
+
+  /* ===== Stat row ===== */
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .stat{
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(19,42,44,0.55);
+    margin-bottom: 6px;
+  }
+  .stat-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  /* ===== Percentile bar ===== */
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{
+    position: absolute;
+    top: -8px;
+    width: 3px;
+    height: 26px;
+    background: var(--ink);
+  }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .pctl-scale{
+    display:flex; justify-content: space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(19,42,44,0.45);
+  }
+
+  /* ===== Spell composition bars ===== */
+  .spell-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items:center;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 13px;
+  }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{
+    height: 8px;
+    background: var(--parchment-dim);
+    border-radius: 4px;
+    overflow:hidden;
+  }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{
+    display:flex; gap: 18px; margin-bottom: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+  .spell-group{ margin-bottom: 6px; }
+  .spell-group:last-child{ margin-bottom: 0; }
+
+  /* ===== Cooldown / consumable table (Druid-specific) ===== */
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cd-table td{
+    padding: 10px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
+
+  /* ===== Target distribution ===== */
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{
+    display:grid;
+    grid-template-columns: 120px 1fr 70px;
+    align-items:center;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  /* ===== Footer ===== */
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC/TK 07.07.2026 · Void Reaver</p>
+      <h1>Danceswtrees</h1>
+      <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; fight <span>65</span> &nbsp;·&nbsp; kill, 238s</p>
+    </div>
+    <div class="seal-wrap">
+      <svg class="seal" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">39</text>
+        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+      </svg>
+      <div class="seal-label">WCL rank, all parses</div>
+    </div>
+  </div>
+
+  <!-- ===== SCORECARD ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid stat-grid-5">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value">1241</div>
+        <div class="stat-sub">Top 100: #1 3222 &nbsp;·&nbsp; avg 2443 &nbsp;·&nbsp; median 2386</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value warn">38.7%</div>
+        <div class="stat-sub">Top 100: best 10.4% &nbsp;·&nbsp; median 22.8% &nbsp;·&nbsp; worst 33.2%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">295,399</div>
+        <div class="stat-sub">over 238s kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value">98.3%</div>
+        <div class="stat-sub">Top 100: #1 100% &nbsp;·&nbsp; avg 98.8% &nbsp;·&nbsp; median 99.4%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value warn">6</div>
+        <div class="stat-sub">this kill, all classes</div>
+      </div>
+    </div>
+
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:39%;" data-label="Danceswtrees · 39th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank 10672 of 17500 Restoration Druid parses on this encounter (all difficulties/partitions, historical). Matched by exact report/fight ID (XJp8vAxzM4KtHYyb, fight 65) — no duplicate-upload fallback needed.</div>
+
+    <div class="coverage-note">HPS (1241) is the widest relative shortfall of the raid night against the Top 100 average (2443) — barely half. Overheal (38.7%) again exceeds the sampled worst (33.2%), though the margin is tighter than most kills. Six raid deaths this kill, the most of any boss analyzed so far — real, rough-fight context alongside the healing shortfall. Active time (98.3%) stays close to the Top 100 sample despite the death count, since none of the six deaths were Danceswtrees's own.</div>
+  </div>
+
+  <!-- ===== SPELL COMPOSITION ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">Danceswtrees's real cast mix on this kill, vs. real Top 100 average on Void Reaver.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>Danceswtrees</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:47.8%"></div></div>
+        <div class="spell-pct">47.8%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:74.8%"></div></div>
+        <div class="spell-pct">74.8%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Lifebloom</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:33.6%"></div></div>
+        <div class="spell-pct">33.6%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5%"></div></div>
+        <div class="spell-pct">5.0%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Rejuvenation</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:8.5%"></div></div>
+        <div class="spell-pct">8.5%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.9%"></div></div>
+        <div class="spell-pct">5.9%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Lifebloom <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 33778)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:7.2%"></div></div>
+        <div class="spell-pct">7.2%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:2.8%"></div></div>
+        <div class="spell-pct">2.8%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Healing Touch</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:2%"></div></div>
+        <div class="spell-pct">2.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Swiftmend</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.9%"></div></div>
+        <div class="spell-pct">0.9%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.9%"></div></div>
+        <div class="spell-pct">1.9%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 9858)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.1%"></div></div>
+        <div class="spell-pct">5.1%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 9856)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.5%"></div></div>
+        <div class="spell-pct">1.5%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Regrowth <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 9857)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.2%"></div></div>
+        <div class="spell-pct">1.2%</div>
+      </div>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Tranquility</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.2%"></div></div>
+        <div class="spell-pct">1.2%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">The most important finding of the raid night is here: Void Reaver's real Top 100 average is Regrowth-dominant (74.8%!) with Lifebloom's two guids combined at just 7.8% — the opposite of every other boss checked so far, where the sample leans heavily on Lifebloom. Danceswtrees's cast mix here (Regrowth 47.8%, Lifebloom 33.6%+7.2%=40.8% combined) looks like the same Lifebloom-leaning approach used on every other kill this raid night, not adapted to this specific boss — the real gap is boss-relative, not a fixed personal habit: Regrowth is underweighted by -27.0 points here (the largest single gap of the night), and combined Lifebloom is overweighted by roughly +33 points. Four benchmark-only guids never cast this kill (Regrowth 9858/9856/9857 and Tranquility, 5.1%/1.5%/1.2%/1.2% of the average, shown honestly as 0% rows per the union rule).</div>
+  </div>
+
+  <!-- ===== COOLDOWNS & CONSUMABLES ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Void Reaver.</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">Danceswtrees</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 100 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ability-name">Innervate</td>
+          <td class="num-cell">1</td>
+          <td>self</td>
+          <td class="num-cell">1.0 (93%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Nature's Swiftness</td>
+          <td class="num-cell">1</td>
+          <td>self</td>
+          <td class="num-cell">0.6 (100%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Swiftmend</td>
+          <td class="num-cell">1</td>
+          <td>→ Jotes</td>
+          <td class="num-cell">2.3 (12%)</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Tranquility omitted from this table: 0 casts, Top 100 cooldown-table usage also
+         0% (the guid is still unobserved - separate from the real 1.2% share it shows
+         in the spell composition table above). Rebirth omitted: not cast this kill
+         despite 6 raid deaths - real, but Top 100 usage on this boss is only 8%, so it
+         stays under this rule's "not cast" deviation threshold (50%). -->
+
+    <div class="stat-grid stat-grid-5" style="margin-top:22px;">
+      <div class="stat">
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Elixir of Draenic Wisdom — Top 100: 55% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 54% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Tree of Life uptime</div>
+        <div class="stat-value good">100%</div>
+        <div class="stat-sub">Top 100 avg: 44.5%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value">2</div>
+        <div class="stat-sub">2x Restore Mana — Top 100 avg 0.7 casts (53% used one)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">HPM</div>
+        <div class="stat-value warn">7.25</div>
+        <div class="stat-sub">Top 100: top1 10.66 &nbsp;·&nbsp; avg 8.32 &nbsp;·&nbsp; median 8.3</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Innervate and Nature's Swiftness were both self-cast this kill, matching the sample's majority pattern for each (93%/100% self). Swiftmend (1 cast, correctly non-self) is well under the Top 100 average (2.3). Tree of Life uptime (100%) held for the entire fight, more than double the Top 100 average (44.5%). HPM (7.25) is below the Top 100 average and median (8.32/8.3), but proportionally the closest to par of any kill checked so far (87% of the average, vs. the roughly 55–65% ratio typical on other kills). Six raid deaths this kill, spread across a roughly 94-second window (11111461ms–11205631ms) — none land right after a tracked cooldown was spent, so there's no direct cooldown-timing correlation to draw despite the death count.</div>
+  </div>
+
+  <!-- ===== TARGET DISTRIBUTION ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of Danceswtrees's healing on this kill (63.5% coverage) vs. Top 100 average on Void Reaver (37.5% coverage, 9.3% to top target).</p>
+
+    <div class="target-list">
+      <div class="target-row">
+        <div>Jotes</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
+        <div class="target-pct">26.4%</div>
+      </div>
+      <div class="target-row">
+        <div>Paladanwood</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:43.5%"></div></div>
+        <div class="target-pct">11.5%</div>
+      </div>
+      <div class="target-row">
+        <div>Turbarct</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:33.5%"></div></div>
+        <div class="target-pct">8.9%</div>
+      </div>
+      <div class="target-row">
+        <div>Sackajaweeba</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:33.4%"></div></div>
+        <div class="target-pct">8.8%</div>
+      </div>
+      <div class="target-row">
+        <div>Banepain</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:29.7%"></div></div>
+        <div class="target-pct">7.9%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">The largest targeting gap of the raid night: coverage (63.5% vs. the Top 100's 37.5%, +26.0 points) and top target share (26.4% vs. 9.3%, +17.1 points) are both dramatically past the ±5 noise range. The Top 100 sample spreads healing far more evenly on this boss than on any other checked so far (only 9.3% to the average top target) — consistent with the spell-composition finding above that this boss's typical healing pattern (fast, spammable Regrowth) looks structurally different from what Danceswtrees actually did here.</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Danceswtrees's fight log (XJp8vAxzM4KtHYyb, fight 65) + Top 100 Void Reaver benchmark (n=100)</span>
+    <span>tbc-audit style reference · healer variant · Resto Druid</span>
+  </div>
+
+</div>
+
+</body>
+</html>
