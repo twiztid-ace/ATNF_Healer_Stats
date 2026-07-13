@@ -362,7 +362,7 @@ if (-not $CharacterID) {
     Write-Host "  SKIPPED - no report-local actor ID for '$CharacterName' (see warning above)."
     $bossFights = @()
 } else {
-    $bossFights = $fightsData.fights | Where-Object { $_.boss -ne 0 -and $_.kill -eq $true }
+    $bossFights = @($fightsData.fights | Where-Object { $_.boss -ne 0 -and $_.kill -eq $true })
 }
 
 if ($CharacterID -and (-not $bossFights -or $bossFights.Count -eq 0)) {
