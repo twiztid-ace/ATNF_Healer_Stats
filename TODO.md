@@ -18,10 +18,20 @@ of a report's kills show up per encounter — not yet confirmed which. The pages
 were written honestly ("hasn't appeared in WCL's parse history yet"), not
 fabricated, per the pipeline's own rule.
 
-**Follow-up:** re-run `build_boss_report_data.ps1` against this report at a later
-date to see if the missing 8 percentiles resolve once WCL finishes indexing. If
-they never resolve, investigate the real cause (rate limit on this endpoint,
-zone/metric param issue, or a genuine per-encounter cap on `/parses/character/`).
+**Tested 2026-07-12:** deleted `danceswtrees_all_parses.json` and re-pulled it fresh
+(the original pull had a bad connection, so this was suspected as a possible
+cause). Result: identical — 69 total parse entries both before and after, still
+only the one Lurker match from this report. This rules out "bad connection during
+the original pull" as the cause — the endpoint itself consistently doesn't return
+most of this report's kills, on two independent fetches. Re-ran
+`build_boss_report_data.ps1` too; output unchanged, no page updates needed.
+
+**Follow-up:** re-run `build_boss_report_data.ps1` against this report again at a
+later date (days/weeks out) to see if the missing 8 percentiles resolve once WCL
+finishes indexing, if that's really what's happening. If they never resolve,
+investigate the real cause more directly (rate limit on this endpoint, zone/metric
+param issue, or a genuine per-encounter cap on `/parses/character/` that simply
+excludes most parses from a report unless they're a personal-best).
 
 ## 2. `pull_character_TEMPLATE.ps1` can silently leave a 0-byte corrupted file
 

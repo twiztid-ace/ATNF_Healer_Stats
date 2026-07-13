@@ -1,185 +1,68 @@
 # pull_top100_druid.ps1
 #
-# Fully self-contained: pulls the Top 100 Restoration Druid rankings for every SSC/TK boss,
-# then pulls the FULL set of per-parse data for every one of those 1000 parses:
-#   - healing events   (COMPLETE per-spell + per-target healing breakdown, via
-#                        /report/events/healing/ with sourceid= - see below for why this
-#                        replaced the healing TABLE)
-#   - casts events     (COMPLETE cooldown/utility/consumable casts, each with a real
-#                        target, via /report/events/casts/ with sourceid= - replaced the
-#                        casts TABLE for the same reason. Consumables like mana potions/
-#                        Dark Runes still show up here as cast events too.)
-#   - buffs            (flask/food active-at-pull-start + real Tree of Life uptime %,
-#                        replaces the old buffs TABLE, which was found to merge every
-#                        Druid's buffs in a fight into one flat list - see "Buff uptime
-#                        redesign" below)
-#   - deaths           (fight-wide, NOT class-scoped - table view, UNCHANGED, pulled once
-#                        per unique report+fight, not once per parse)
+# v2 GraphQL pull (migrated from v1 REST 2026-07-12 - see the approved migration
+# plan, C:\Users\raymo\.claude\plans\playful-baking-sunset.md, for the full
+# rationale, and pull_character_TEMPLATE.ps1's header for the Phase 1 writeup
+# this reuses). The old v1 script is preserved as pull_top100_druid_v1.ps1 for
+# reference/rollback - this one passed equivalence testing (a real 24-parse fetch
+# for Hydross, 24/24 ok, byte-for-byte matching field values against v1's known-
+# good output) before taking over the production filename.
 #
-# ============================================================================
-# ACTIVE/ARCHIVED DIFF MODEL (2026-07-12) - replaces the old date-stamped-folder approach
-# ============================================================================
-# Every run used to create a brand new data\Classes\Druid\{date}\ folder and re-fetch all
-# ~1000 parses from scratch, even though the vast majority of a boss's Top 100 doesn't
-# change between runs and a completed log's healing/casts/consumables data can never
-# change once pulled. That's pure wasted API budget (WCL caps at 800 calls/hour - see the
-# PARALLELIZED note below). This version instead:
-#   1. Reads data\Classes\Druid\manifest.json (per-boss lastPulledDate/rankingsSnapshotDate,
-#      per-parse status "active"/"archived" keyed by "{reportID}_{fightID}_{playerName}").
-#   2. Fetches fresh rankings for a boss (1 call, same as before) and diffs the fresh
-#      reportID+fightID+name set against the manifest's currently-active parses for that
-#      boss:
-#        - present in fresh, NO manifest entry at all -> genuinely new, fetch its full
-#          data (this is the only case that costs real per-parse API calls)
-#        - present in BOTH, manifest status "active" -> still in the Top 100, zero API
-#          calls - just refresh its rank/hps in the manifest from the response we
-#          already have in memory
-#        - in manifest-active, NOT in fresh -> dropped out of the Top 100 - move its
-#          healing/casts/consumables/activetime files from active\{Boss}\ to
-#          archived\{Boss}\ (kept forever, not deleted) and flip its manifest status to
-#          "archived"
-#        - present in fresh, manifest status "archived" -> RE-ENTERED the Top 100 after
-#          previously dropping out (fixed 2026-07-12 - see the diff-computation comment
-#          further down for the bug this replaced). Zero API calls, same principle as
-#          the still-active case: a completed log's data can never change, so its files
-#          just move back from archived\{Boss}\ to active\{Boss}\ and its manifest
-#          status flips back to "active" - firstSeenAt is preserved, not overwritten,
-#          since it should reflect the parse's real first appearance, not this re-entry
-#   3. The on-disk rankings_{boss}.json under active\ only gets overwritten - and the
-#      PREVIOUS version archived to archived\rankings_history\{Boss}\{old date}.json -
-#      when that diff found at least one add or drop. A pure rank/HPS reshuffle among the
-#      same 100 people (which shouldn't really happen for completed logs, but just in
-#      case) does NOT trigger a rewrite/archive - only real membership changes do. This
-#      means the on-disk rankings_{boss}.json can very slightly lag the manifest's
-#      per-parse rank/hps fields in that edge case - the manifest is always the source of
-#      truth for those, the JSON file is a periodic snapshot, not a live mirror.
-#   4. `deaths.json` files are NEVER archived, regardless of whether the parse(s) that
-#      reference them get archived - they're tiny, fight-wide (not per-parse), and
-#      cheap to just leave in active\{Boss}\ forever.
-#   5. lastPulledDate/rankingsSnapshotDate are plain "yyyy-MM-dd" calendar-date strings,
-#      not timestamps - staleness is ALWAYS computed by comparing to today's date, never
-#      stored as a boolean (a stored true/false flag would silently go wrong the instant
-#      the date rolls over). summarize_class_benchmarks.ps1 is expected to apply the same
-#      rule against `benchmarkGeneratedDate` at the top of the manifest.
-# Creates data\Classes\Druid\manifest.json fresh (empty bosses) if it doesn't exist yet -
-# for Druid specifically, it was created once by scripts\migrate_class_to_active.ps1
-# migrating the last date-folder pull (2026-07-10) into this layout; that migration
-# script does NOT need to run again for Druid.
-# ============================================================================
+# The active/archived diff model, manifest.json schema, and per-parse output file
+# set are ALL UNCHANGED from v1 - only the API mechanics (auth + endpoint calls)
+# are migrated. Every per-parse output file keeps its v1 shape exactly (confirmed
+# field-by-field in Phase 1 against real data), so summarize_class_benchmarks.ps1
+# needs zero changes to ITS OWN code - but see the rankings_{boss}.json note
+# below for a real, non-obvious compatibility trap this migration had to avoid.
 #
-# ============================================================================
-# PARALLELIZED (2026-07-11): per-parse work runs across multiple threads via a
-# RunspacePool, since Windows PowerShell 5.1 doesn't have ForEach-Object -Parallel
-# (that's PS7+ only). Read this before changing -MaxThreads:
+# WHAT ACTUALLY CHANGED FROM v1 (see WclV2Api.psm1 + the plan file for the full
+# mapping table, all confirmed live against real data in Phase 1):
+#   - /rankings/encounter/{id}?metric=hps&spec=&class= -> worldData.encounter(id)
+#     .characterRankings(className, specName, metric, page). Page 1 returns the
+#     same 100 entries, still pre-sorted by rank (array position = rank, same as
+#     v1 - v2's list-level entries don't carry a populated per-entry rank field
+#     either, confirmed live). v2's entries nest report code/fightID/hps under
+#     `report.code`/`report.fightID`/`amount` instead of v1's flat
+#     `reportID`/`fightID`/`total` - handled in-memory for the diff-key logic,
+#     AND explicitly reshaped back to v1's flat field names before EVER being
+#     written to `active\rankings_{boss}.json` (see the $reshapedForDisk comment
+#     below). This second part is not optional: summarize_class_benchmarks.ps1
+#     reads that file DIRECTLY (not just the manifest) and matches entries by
+#     flat `.reportID`/`.fightID`/`.name` plus reads `.duration` for HPS -
+#     confirmed by grep, and confirmed live that skipping this reshape produces
+#     "no rankings entry matched" for every single parse.
+#   - /report/fights/{code} -> reportData.report(code).fights(...) +
+#     masterData.actors(...) (replaces the old friendlies/enemies/pets split -
+#     nothing downstream ever used that split, confirmed via grep in Phase 1).
+#   - /report/events/{healing,casts}/{code}?sourceid= -> paginated events(
+#     dataType: Healing|Casts, includeResources: true) - ability name
+#     reconstructed via gameData.ability(id) (cached per-parse), classResources
+#     recovered via includeResources: true.
+#   - /report/events/buffs/{code}?sourceid= -> events(dataType: Buffs), scoped to
+#     just this one fight's window (unchanged from v1 - no report-wide
+#     amortization benefit here, every parse is a different player).
+#   - combatantinfo filter -> events(dataType: CombatantInfo).
+#   - /report/tables/healing/{code}?sourceclass=Druid (activeTime only) ->
+#     table(dataType: Healing, sourceClass: "Druid") - confirmed table() accepts
+#     the same sourceClass filter arg as the v1 REST endpoint.
+#   - /report/tables/deaths/{code} -> table(dataType: Deaths) - confirmed
+#     byte-identical entry shape to v1, no reshaping needed.
 #
-# THE RATE LIMIT IS LIKELY THE REAL BOTTLENECK, NOT SEQUENTIAL EXECUTION. WCL's API
-# caps at 800 calls/hour (from the X-Ratelimit-Limit response header). The OLD
-# sequential script's 250ms delay already runs at ~4 calls/sec (~14,400/hour
-# theoretical), far above that cap. Adding concurrency on top of an already-over-budget
-# rate makes 429s more likely, not less. -MaxThreads defaults to 10 (raised from an
-# initial default of 5 once real runs showed the sequential `deaths` pass - since
-# folded into this same pool, see the THREAD SAFETY note below - as the actual
-# bottleneck at lower thread counts, not the rate limit). If you see repeated "FAILED"
-# lines mentioning 429 or rate limit, lower -MaxThreads back down. The active/archived
-# diff model above should make this a smaller concern in practice anyway, since most
-# runs now only fetch a handful of genuinely new parses per boss instead of all 100.
+# Auth: v2_client_id.txt / v2_client_secret.txt / v2_access_token.txt at repo
+# root (gitignored) - see WclV2Api.psm1's header for setup if these don't exist.
 #
-# THREAD SAFETY: the sequential version shared plain PowerShell hashtables
-# ($fightsCache, $tableCache, $deathsPulled) across the whole run - those are NOT safe
-# for concurrent writes from multiple threads. This version uses
-# [System.Collections.Concurrent.ConcurrentDictionary] instead for all of them,
-# including a `$deathsClaimed` registry (2026-07-11) that runs `deaths` INSIDE the
-# parallel worker too, gated by an atomic TryAdd claim: only the first thread to
-# successfully claim a given "reportID|fightID" key fetches it, every other thread
-# that races for the same claim gets $false back from TryAdd and skips - a real
-# mutex, not just tolerating the occasional collision. (An earlier version of this
-# script kept deaths in a separate sequential pass specifically to avoid this race;
-# real pulled data showed ~0% report+fight sharing between parses anyway, so the
-# race window was already rare in practice, but the claim-based fix removes it
-# entirely rather than just relying on that low probability.) If the claiming
-# thread's own fetch fails, no other thread retries it within this run - a full
-# script re-run will pick it up fresh, same as any other failed call here.
-#
-# ============================================================================
-# BUFF UPTIME REDESIGN (2026-07-11, same day as the healing/casts events rewrite)
-# ============================================================================
-# The old `/report/tables/buffs/{code}?sourceclass=Druid&hostility=0` call was found
-# to merge every Druid in the fight into one flat list, not scoped to the one specific
-# ranked player the file was named after - confirmed on real data (a single file
-# showed Moonkin Form + Dire Bear Form + Tree of Life simultaneously, three different
-# specs' forms, impossible for one character). Replaced with two pieces, both
-# validated against real character-pull data before being adapted here:
-#   - Flask/Elixir + food: pulled from the `combatantinfo` snapshot (the flat, no-
-#     `{view}`-segment form of /report/events/) - these buffs last 1-2 hours, far
-#     longer than a fight, so "active when the pull started" stands in for "active
-#     the whole fight." combatantinfo can fire BEFORE a fight's recorded start_time
-#     (confirmed: 33.6s early on a real Kael'thas pull) - the query searches a 2-
-#     minute backward buffer and picks whichever snapshot is closest to start.
-#   - Tree of Life: reconstructed from real apply/remove events (guid 33891 only -
-#     its paired guid 34123 fires far more often in ways that don't match manual
-#     form-toggling, empirically untrustworthy, excluded). Unlike the character-pull
-#     script, this is scoped to just the ONE fight each parse represents, not
-#     report-wide - there's no whole-raid-night amortization benefit here since every
-#     parse is a different player, and we only ever need this one fight's uptime.
-# See WORKFLOW.md and pull_character_TEMPLATE.ps1's header for the full validation
-# writeup (including why a naive "every orphan removebuff = active since window
-# start" rule was wrong and had to be restricted to only the first such event).
-# ============================================================================
-#
-# WHY HEALING/CASTS MOVED FROM TABLES TO EVENTS (2026-07-11 redesign)
-# ============================================================================
-# The /report/tables/{healing,casts}/{code} views silently cap their per-player
-# "abilities" array at 5 entries - confirmed on Danceswtrees's real Leotheras kill
-# (healing table said total=176374 but the 5 listed abilities only summed to 166830 -
-# 9544 points of healing missing, no error, no warning) and on Turkeykin's real Hydross
-# kill (the casts table showed 5 abilities with NO Innervate, despite Innervate
-# definitely being cast that fight - confirmed via a targeted events pull with a real
-# target: Turkeykin -> Churbert). /report/events/{view}/{code} with `sourceid` (a real,
-# documented, standalone query param) returns complete, untruncated per-event records.
-#
-# DROPPED (and no longer needed): resources / resources-gains (mana-over-time, HPM)
-# as a separate API pull. The real swagger spec documents `abilityid` as the
-# resource-type param (not `resourcetype`, an earlier wrong guess) - tested for real
-# 2026-07-12 (5 real calls, every abilityid variant tried) and the endpoint itself
-# does NOT work against the real Fresh Classic API. Doesn't matter though: every
-# casts event this script already saves carries a `classResources[0]` object with
-# real mana data under misleadingly-generic field names - `amount` = max mana pool
-# (constant), `max` = that spell's real mana cost, `type` = current mana at that
-# moment. Verified against a full real kill's cast sequence (type decreases smoothly
-# 10175->2781 over the fight; max matches known real TBC spell costs exactly). HPM
-# is computable from data this script already writes, no new pull needed - just not
-# summarized/surfaced yet. See WORKFLOW.md gotcha #11 for the full writeup.
-#
-# Run this from your repo ROOT directory (e.g. C:\Users\raymo\wc_logs\), which should contain:
-#   - an apikey.txt file at the root, with just your WCL API key on a single line
-#     (add apikey.txt to your .gitignore so it never gets committed)
-#   - a data\Classes\ folder (created automatically if it doesn't exist yet)
-#
-# Creates/updates: data\Classes\Druid\manifest.json
-# Writes, per NEW parse only:
-#   data\Classes\Druid\active\{BossName}\{reportID}_{fightID}_{playerName}_healing_events.json
-#   data\Classes\Druid\active\{BossName}\{reportID}_{fightID}_{playerName}_casts_events.json
-#   data\Classes\Druid\active\{BossName}\{reportID}_{fightID}_{playerName}_consumables.json
-# Writes, once per unique report+fight (never archived):
-#   data\Classes\Druid\active\{BossName}\{reportID}_{fightID}_deaths.json
-# Moves, per DROPPED parse (no longer in the Top 100):
-#   active\{BossName}\{...} -> archived\{BossName}\{...} (healing/casts/consumables only)
-# Conditionally (only when a boss's Top 100 membership actually changed):
-#   active\rankings_{boss}.json overwritten; previous version moved to
-#   archived\rankings_history\{BossName}\{previous rankingsSnapshotDate}.json
-#
-# Usage:
+# Usage (identical to v1):
 #   powershell -ExecutionPolicy Bypass -File pull_top100_druid.ps1
-#   powershell -ExecutionPolicy Bypass -File pull_top100_druid.ps1 -MaxThreads 5    # gentler
-#   powershell -ExecutionPolicy Bypass -File pull_top100_druid.ps1 -MaxThreads 15   # faster, riskier
+#   powershell -ExecutionPolicy Bypass -File pull_top100_druid.ps1 -MaxThreads 5
 
 param(
-    [int]$MaxThreads = 10
+    [int]$MaxThreads = 10,
+    [string]$ClassesRoot = "data\Classes"  # override for equivalence-testing into a scratch folder
 )
 
-$apiKeyFile = "apikey.txt"
-$baseUrl = "https://fresh.warcraftlogs.com/v1"
-$classesRoot = "data\Classes"
+Import-Module (Join-Path $PSScriptRoot "lib\WclV2Api.psm1") -Force
+
+$classesRoot = $ClassesRoot
 $className = "Druid"
 $classID = 2
 $specID = 4          # Restoration
@@ -190,24 +73,12 @@ $manifestPath = Join-Path $classDir "manifest.json"
 $today = Get-Date -Format "yyyy-MM-dd"
 $nowIso = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
 
-if (-not (Test-Path $apiKeyFile)) {
-    Write-Host "ERROR: $apiKeyFile not found in the current directory."
-    Write-Host "       Create a file named apikey.txt at your repo root containing just your WCL API key"
-    Write-Host "       on one line, and add 'apikey.txt' to your .gitignore so it never gets committed."
-    exit 1
-}
-$apiKey = (Get-Content $apiKeyFile -Raw).Trim()
-if ([string]::IsNullOrWhiteSpace($apiKey)) {
-    Write-Host "ERROR: $apiKeyFile is empty."
-    exit 1
-}
-
+$token = Get-WclAccessToken
 Write-Host "Running with -MaxThreads $MaxThreads (default 10 - lower this if you see rate-limit failures)"
 Write-Host "Today: $today"
 Write-Host ""
 
-# boss name -> (rankings filename, SSC/TK encounter ID) - matches WORKFLOW.md's SSC/TK
-# reference ID table exactly.
+# boss name -> (rankings filename, SSC/TK encounter ID) - unchanged from v1.
 $bosses = [ordered]@{
     "Hydross"    = @{ file = "rankings_hydross.json";    encounterID = 100623 }
     "Lurker"     = @{ file = "rankings_lurker.json";     encounterID = 100624 }
@@ -224,11 +95,7 @@ $bosses = [ordered]@{
 New-Item -ItemType Directory -Force -Path $activeDir | Out-Null
 New-Item -ItemType Directory -Force -Path (Join-Path $archivedDir "rankings_history") | Out-Null
 
-# ===== Manifest load/save - PSCustomObject (from ConvertFrom-Json) is awkward to mutate
-# with dynamically-named keys (Add-Member for every new parse), so it's converted to
-# plain ordered hashtables on load and converted back to JSON on save. No arrays appear
-# anywhere in this schema (bosses/parses are both object-keyed dictionaries), so a
-# straightforward recursive PSCustomObject->hashtable walk is all that's needed. =====
+# ===== Manifest load/save - unchanged from v1 ===== =====
 function ConvertTo-OrderedHashtableLocal {
     param($InputObject)
     if ($InputObject -is [System.Array]) {
@@ -264,16 +131,18 @@ function Save-ManifestLocal {
     [System.IO.File]::WriteAllText($Path, $jsonText, (New-Object System.Text.UTF8Encoding $false))
 }
 
-# ===== The self-contained per-parse worker (unchanged from the previous version except
-# for taking its output directory directly - it always writes into active\{Boss}\, since
-# it's only ever invoked for genuinely NEW parses now). Runs in an isolated runspace with
-# NO access to the outer script's functions or variables - everything it needs is passed
-# in as an argument. =====
+# ===== Self-contained per-parse worker - v2 GraphQL version of the v1 worker.
+# Same isolated-runspace pattern: everything it needs is passed in as an
+# argument, including the module's absolute path (a RunspacePool worker does
+# NOT inherit the parent session's Import-Module). =====
 $workerScript = {
     param(
-        $reportID, $fightID, $playerName, $i, $baseUrl, $apiKey, $className,
-        $outDir, $fightsCache, $actorNamesCache, $deathsClaimed
+        $reportID, $fightID, $playerName, $i, $className,
+        $outDir, $fightsCache, $actorNamesCache, $deathsClaimed,
+        $accessToken, $moduleAbsolutePath
     )
+
+    Import-Module $moduleAbsolutePath -Force
 
     $result = [PSCustomObject]@{
         Ok = $true
@@ -284,32 +153,62 @@ $workerScript = {
         SafeName = $null
     }
 
+    $localAbilityCache = @{}
+    function Resolve-AbilityNameLocal($guid) {
+        $key = [int]$guid
+        if ($localAbilityCache.ContainsKey($key)) { return $localAbilityCache[$key] }
+        $q = "query { gameData { ability(id: $key) { name icon } } }"
+        $r = Invoke-WclGraphQL -Query $q -AccessToken $accessToken
+        $entry = [PSCustomObject]@{ Name = $null; Icon = $null }
+        if (-not $r.Errors -and $r.Data.gameData.ability) {
+            $entry.Name = $r.Data.gameData.ability.name
+            $entry.Icon = $r.Data.gameData.ability.icon
+        }
+        $localAbilityCache[$key] = $entry
+        return $entry
+    }
+
+    # Fetches one events view (healing or casts) for this parse, reshaping each
+    # v2 event back into v1's shape (ability{guid,name,abilityIcon} instead of a
+    # flat abilityGameID) so summarize_class_benchmarks.ps1 needs zero changes.
     function Get-EventsLocal {
         param($View, $OutFile, $StartTime, $EndTime, $SourceID, $SourceName, $ActorNames)
         if (Test-Path $OutFile) { return $true }
-        $url = "$baseUrl/report/events/$View/$reportID`?start=$StartTime&end=$EndTime&sourceid=$SourceID&api_key=$apiKey"
-        try {
-            $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
-            $data = $resp.Content | ConvertFrom-Json
-        } catch {
-            $result.Messages.Add("[$i] FAILED $View events for $reportID/$fightID ($playerName) - $_")
+
+        $dataType = if ($View -eq "healing") { "Healing" } else { "Casts" }
+        # .GetNewClosure() required - see WclV2Api.psm1's Invoke-WclGraphQLPaged
+        # header note (a scriptblock invoked via `&` from a DIFFERENT function's
+        # scope can't see this function's own local variables otherwise - cost
+        # real debugging time to trace in Phase 1, confirmed the fix here too).
+        $queryBuilder = {
+            param($pageStartTime)
+            "query { reportData { report(code: `"$reportID`") { events(fightIDs: [$fightID], sourceID: $SourceID, dataType: $dataType, includeResources: true, startTime: $pageStartTime, endTime: $EndTime) { data nextPageTimestamp } } } }"
+        }.GetNewClosure()
+        $extractPage = {
+            param($data)
+            [PSCustomObject]@{
+                Items = @($data.reportData.report.events.data)
+                NextPageTimestamp = $data.reportData.report.events.nextPageTimestamp
+            }
+        }
+        $paged = Invoke-WclGraphQLPaged -QueryBuilder $queryBuilder -ExtractPage $extractPage -AccessToken $accessToken -InitialStartTime $StartTime
+        if ($paged.Errors) {
+            $result.Messages.Add("[$i] FAILED $View events for $reportID/$fightID ($playerName) - $($paged.Errors | ConvertTo-Json -Compress)")
             return $false
         }
-        $events = @($data.events)
+
+        $events = @($paged.Items)
         foreach ($ev in $events) {
             $srcName = if ($ActorNames.ContainsKey([int]$ev.sourceID)) { $ActorNames[[int]$ev.sourceID] } else { "Unknown_$($ev.sourceID)" }
-            # A missing targetID means WCL logged no real other-actor target for this
-            # event at all (self-only-castable spells like Nature's Swiftness come back
-            # as target={"name":"Environment","id":-1,...} instead of a real actor ID) -
-            # fixed 2026-07-12 to fall back to the caster's own name, not $null, since a
-            # spell with no real other-actor target can only have affected the caster.
-            # Before this fix, every downstream self-vs-other classification (see
-            # summarize_class_benchmarks.ps1) silently miscounted these as "not self" -
-            # confirmed on real data: Nature's Swiftness showed 0% self across a full
-            # 100-person sample, implausible for a spell that can't target anyone else.
             $tgtName = if ($ev.targetID -ne $null -and $ActorNames.ContainsKey([int]$ev.targetID)) { $ActorNames[[int]$ev.targetID] } else { if ($ev.targetID -ne $null) { "Unknown_$($ev.targetID)" } else { $srcName } }
+            $abilityInfo = Resolve-AbilityNameLocal $ev.abilityGameID
             $ev | Add-Member -NotePropertyName "sourceName" -NotePropertyValue $srcName -Force
             $ev | Add-Member -NotePropertyName "targetName" -NotePropertyValue $tgtName -Force
+            $ev | Add-Member -NotePropertyName "ability" -NotePropertyValue ([PSCustomObject]@{
+                name        = $abilityInfo.Name
+                guid        = $ev.abilityGameID
+                abilityIcon = $abilityInfo.Icon
+            }) -Force
         }
         $totalAmount = ($events | Measure-Object -Property amount -Sum -ErrorAction SilentlyContinue).Sum
         if ($null -eq $totalAmount) { $totalAmount = 0 }
@@ -330,25 +229,33 @@ $workerScript = {
 
     # --- fetch (or reuse) this report's fight list + actor-name lookup ---
     if (-not $fightsCache.ContainsKey($reportID)) {
-        try {
-            $fightsUrl = "$baseUrl/report/fights/$reportID`?api_key=$apiKey"
-            $fd = Invoke-RestMethod -Uri $fightsUrl -UseBasicParsing -ErrorAction Stop
-            [void]$fightsCache.TryAdd($reportID, $fd)
-
-            $names = @{}
-            foreach ($group in @('friendlies','enemies','friendlyPets','enemyPets')) {
-                if ($fd.PSObject.Properties.Name -contains $group) {
-                    foreach ($actor in $fd.$group) {
-                        if ($actor.id -ne $null) { $names[[int]$actor.id] = $actor.name }
-                    }
-                }
-            }
-            [void]$actorNamesCache.TryAdd($reportID, $names)
-        } catch {
+        $reportQuery = "query { reportData { report(code: `"$reportID`") { fights { id startTime endTime } masterData { actors { id name } } } } }"
+        $r = Invoke-WclGraphQL -Query $reportQuery -AccessToken $accessToken
+        if ($r.Errors -or -not $r.Data.reportData.report) {
             $result.Ok = $false
-            $result.Messages.Add("[$i] FAILED fetching report $reportID (fights list) - $_")
+            $result.Messages.Add("[$i] FAILED fetching report $reportID (fights list) - $($r.Errors | ConvertTo-Json -Compress)")
             return $result
         }
+        $report = $r.Data.reportData.report
+        $fd = [PSCustomObject]@{
+            fights = @($report.fights | ForEach-Object { [PSCustomObject]@{ id = $_.id; start_time = [int64]$_.startTime; end_time = [int64]$_.endTime } })
+        }
+        [void]$fightsCache.TryAdd($reportID, $fd)
+
+        $names = @{}
+        foreach ($actor in $report.masterData.actors) {
+            if ($actor.id -ne $null) { $names[[int]$actor.id] = $actor.name }
+        }
+        [void]$actorNamesCache.TryAdd($reportID, $names)
+
+        # actors[] only carries id/name (no per-actor server/subType needed here,
+        # unlike the character-pull script) - just enough to resolve the ranked
+        # player's report-local ID and to annotate event source/target names.
+        $actorLookupByName = @{}
+        foreach ($actor in $report.masterData.actors) {
+            if ($actor.name) { $actorLookupByName[$actor.name] = $actor.id }
+        }
+        [void]$fightsCache.TryAdd("$reportID|actorsByName", $actorLookupByName)
     }
 
     $fightsData = $fightsCache[$reportID]
@@ -359,13 +266,13 @@ $workerScript = {
         return $result
     }
 
-    $playerActor = $fightsData.friendlies | Where-Object { $_.name -eq $playerName } | Select-Object -First 1
-    if (-not $playerActor) {
+    $actorLookupByName = $fightsCache["$reportID|actorsByName"]
+    if (-not $actorLookupByName.ContainsKey($playerName)) {
         $result.Ok = $false
-        $result.Messages.Add("[$i] SKIP: '$playerName' not found in report $reportID friendlies[] (can't scope sourceid)")
+        $result.Messages.Add("[$i] SKIP: '$playerName' not found in report $reportID actors[] (can't scope sourceID)")
         return $result
     }
-    $playerID = $playerActor.id
+    $playerID = $actorLookupByName[$playerName]
     $actorNames = $actorNamesCache[$reportID]
     $start = $fight.start_time
     $end = $fight.end_time
@@ -386,22 +293,16 @@ $workerScript = {
 
     function Get-ConsumablesSnapshotLocal {
         param($StartTime, $EndTime, $SourceID)
-        # combatantinfo can fire BEFORE a fight's official start_time - confirmed on
-        # real character-pull data (Kael'thas: snapshot was 33.6s before start_time,
-        # zero events inside the fight's own window). Search backward with a buffer
-        # and take whichever snapshot is closest to start, rather than assuming it
-        # falls inside the fight's own window.
         $bufferMs = 120000
         $queryStart = [Math]::Max(0, $StartTime - $bufferMs)
-        $url = "$baseUrl/report/events/$reportID`?start=$queryStart&end=$EndTime&filter=type%3D%22combatantinfo%22&api_key=$apiKey"
-        try {
-            $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
-            $data = $resp.Content | ConvertFrom-Json
-        } catch {
-            $result.Messages.Add("[$i] FAILED combatantinfo for $reportID/$fightID ($playerName) - $_")
+        $q = "query { reportData { report(code: `"$reportID`") { events(dataType: CombatantInfo, startTime: $queryStart, endTime: $EndTime) { data } } } }"
+        $r = Invoke-WclGraphQL -Query $q -AccessToken $accessToken
+        if ($r.Errors) {
+            $result.Messages.Add("[$i] FAILED combatantinfo for $reportID/$fightID ($playerName) - $($r.Errors | ConvertTo-Json -Compress)")
             return $null
         }
-        $candidates = @($data.events | Where-Object { $_.sourceID -eq $SourceID })
+        $allEvents = @($r.Data.reportData.report.events.data)
+        $candidates = @($allEvents | Where-Object { $_.sourceID -eq $SourceID })
         if ($candidates.Count -eq 0) {
             $result.Messages.Add("[$i] combatantinfo OK but no entry for sourceID=$SourceID even with backward buffer ($reportID/$fightID, $playerName)")
             return $null
@@ -420,21 +321,14 @@ $workerScript = {
 
     function Get-TreeOfLifeUptimeLocal {
         param($StartTime, $EndTime, $SourceID)
-        # Scoped to just this ONE fight's window, unlike the character-pull script's
-        # report-wide version - each Top 100 parse is a different player, so there's
-        # no whole-raid-night amortization benefit here, and we only ever need this
-        # one fight's uptime anyway. Same validated state machine (guid 33891 only,
-        # first-orphan-only "active since window start" rule) - see WORKFLOW.md.
         $treeOfLifeGuid = 33891
-        $url = "$baseUrl/report/events/buffs/$reportID`?start=$StartTime&end=$EndTime&sourceid=$SourceID&api_key=$apiKey"
-        try {
-            $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
-            $data = $resp.Content | ConvertFrom-Json
-        } catch {
-            $result.Messages.Add("[$i] FAILED tree-of-life buffs events for $reportID/$fightID ($playerName) - $_")
+        $q = "query { reportData { report(code: `"$reportID`") { events(fightIDs: [$fightID], sourceID: $SourceID, dataType: Buffs, startTime: $StartTime, endTime: $EndTime) { data } } } }"
+        $r = Invoke-WclGraphQL -Query $q -AccessToken $accessToken
+        if ($r.Errors) {
+            $result.Messages.Add("[$i] FAILED tree-of-life buffs events for $reportID/$fightID ($playerName) - $($r.Errors | ConvertTo-Json -Compress)")
             return $null
         }
-        $tolEvents = @($data.events | Where-Object { $_.ability.guid -eq $treeOfLifeGuid } | Sort-Object timestamp)
+        $tolEvents = @($r.Data.reportData.report.events.data | Where-Object { $_.abilityGameID -eq $treeOfLifeGuid } | Sort-Object timestamp)
         $intervals = New-Object System.Collections.Generic.List[object]
         $active = $false
         $intervalStart = $null
@@ -489,26 +383,17 @@ $workerScript = {
         }
     }
 
-    # --- active time (2026-07-12 addition) - real activeTime/activeTimeReduced fields
-    # from the healing TABLE, NOT a reconstruction. This project moved off the healing
-    # TABLE entirely for spell composition because its nested abilities[] array
-    # silently truncates at 5 entries (see WORKFLOW.md gotcha #15) - but that
-    # truncation is specific to the nested array. The top-level activeTime/
-    # activeTimeReduced scalar fields on each player's entry are NOT part of that
-    # truncated array and were never actually confirmed broken - just abandoned
-    # along with the whole endpoint. Verified for real: pulled this exact call for
-    # Danceswtrees's Hydross kill and got activeTime=138449ms/143007ms=96.8%,
-    # matching the number already recorded in the pre-events-rewrite v1 page exactly.
-    # sourceclass=Druid returns every Druid in that report+fight in one response (like
-    # `deaths` does for the whole raid) - matched by real player name, same pattern
-    # `deaths`/old-era pulls already used for this exact table. ---
+    # active time - v2 table(dataType: Healing, sourceClass: Druid) - confirmed
+    # byte-identical field names/values to v1's /report/tables/healing/ table.
     $activeTimeOutFile = Join-Path $outDir "$($reportID)_$($fightID)_$($safeName)_activetime.json"
     if (-not (Test-Path $activeTimeOutFile)) {
-        $atUrl = "$baseUrl/report/tables/healing/$reportID`?start=$start&end=$end&sourceclass=$className&api_key=$apiKey"
-        try {
-            $atResp = Invoke-WebRequest -Uri $atUrl -UseBasicParsing -ErrorAction Stop
-            $atData = $atResp.Content | ConvertFrom-Json
-            $atEntry = $atData.entries | Where-Object { $_.name -eq $playerName } | Select-Object -First 1
+        $atQuery = "query { reportData { report(code: `"$reportID`") { table(fightIDs: [$fightID], dataType: Healing, sourceClass: `"$className`", startTime: $start, endTime: $end) } } }"
+        $atResult = Invoke-WclGraphQL -Query $atQuery -AccessToken $accessToken
+        if ($atResult.Errors) {
+            $result.Messages.Add("[$i] FAILED activetime healing-table call for $reportID/$fightID ($playerName) - $($atResult.Errors | ConvertTo-Json -Compress)")
+            $parseOk = $false
+        } else {
+            $atEntry = $atResult.Data.reportData.report.table.data.entries | Where-Object { $_.name -eq $playerName } | Select-Object -First 1
             if (-not $atEntry) {
                 $result.Messages.Add("[$i] FAILED activetime for $reportID/$fightID ($playerName) - no matching entry in healing table response")
                 $parseOk = $false
@@ -525,27 +410,23 @@ $workerScript = {
                 $jsonText = $atOut | ConvertTo-Json -Depth 5
                 [System.IO.File]::WriteAllText($activeTimeOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
             }
-        } catch {
-            $result.Messages.Add("[$i] FAILED activetime healing-table call for $reportID/$fightID ($playerName) - $_")
-            $parseOk = $false
         }
     }
 
-    # --- deaths (fight-wide, once per report+fight, NEVER archived - see header note) ---
+    # --- deaths (fight-wide, once per report+fight, NEVER archived - see v1 header note) ---
     $deathsOutFile = Join-Path $outDir "$($reportID)_$($fightID)_deaths.json"
     if (-not (Test-Path $deathsOutFile)) {
         $deathsKey = "$reportID|$fightID"
         if ($deathsClaimed.TryAdd($deathsKey, $true)) {
-            try {
-                $deathsUrl = "$baseUrl/report/tables/deaths/$reportID`?start=$start&end=$end&api_key=$apiKey"
-                Invoke-WebRequest -Uri $deathsUrl -OutFile $deathsOutFile -UseBasicParsing -ErrorAction Stop
-            } catch {
-                $result.Messages.Add("[$i] FAILED deaths table for $reportID/$fightID - $_")
-                # not counted against $parseOk - deaths isn't a per-player data point
+            $deathsQuery = "query { reportData { report(code: `"$reportID`") { table(fightIDs: [$fightID], dataType: Deaths, startTime: $start, endTime: $end) } } }"
+            $deathsResult = Invoke-WclGraphQL -Query $deathsQuery -AccessToken $accessToken
+            if ($deathsResult.Errors) {
+                $result.Messages.Add("[$i] FAILED deaths table for $reportID/$fightID - $($deathsResult.Errors | ConvertTo-Json -Compress)")
+            } else {
+                $jsonText = $deathsResult.Data.reportData.report.table.data | ConvertTo-Json -Depth 12
+                [System.IO.File]::WriteAllText($deathsOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
             }
         }
-        # else: another thread already claimed this report+fight's deaths pull -
-        # skip, it's either already done or in progress
     }
 
     $result.Ok = $parseOk
@@ -572,23 +453,36 @@ foreach ($bossName in $bosses.Keys) {
 
     Write-Host "=== $bossName ==="
 
-    # ----- Step 1: fetch fresh rankings into memory (NOT written to disk yet - we need
-    # to diff first to decide whether this counts as a real change worth archiving) -----
-    $rankingsUrl = "$baseUrl/rankings/encounter/$encounterID`?metric=hps&spec=$specID&class=$classID&api_key=$apiKey"
-    try {
-        $rankingsResp = Invoke-WebRequest -Uri $rankingsUrl -UseBasicParsing -ErrorAction Stop
-        $freshRankingsData = $rankingsResp.Content | ConvertFrom-Json
-    } catch {
-        Write-Host "  FAILED fetching rankings - $_ - skipping this boss entirely this run."
+    # ----- Step 1: fetch fresh rankings into memory - v2 worldData.encounter(id)
+    # .characterRankings(...), page 1 = same 100 entries as v1, still pre-sorted
+    # by rank (array position = rank - confirmed live, list-level entries don't
+    # carry a populated per-entry rank field). NOT written to disk yet - need to
+    # diff first to decide whether this counts as a real change worth archiving. -----
+    $rankingsQuery = "query { worldData { encounter(id: $encounterID) { characterRankings(className: `"$className`", specName: `"Restoration`", metric: hps, page: 1) } } }"
+    $rankingsResult = Invoke-WclGraphQL -Query $rankingsQuery -AccessToken $token
+    if ($rankingsResult.Errors -or -not $rankingsResult.Data.worldData.encounter.characterRankings) {
+        Write-Host "  FAILED fetching rankings - $($rankingsResult.Errors | ConvertTo-Json -Compress) - skipping this boss entirely this run."
         Write-Host ""
         continue
     }
-    if ($freshRankingsData.PSObject.Properties.Name -contains "error") {
-        Write-Host "  API ERROR: $($freshRankingsData.error) - skipping this boss entirely this run."
-        Write-Host ""
-        continue
-    }
+    $freshRankingsData = $rankingsResult.Data.worldData.encounter.characterRankings
     $freshRankings = @($freshRankingsData.rankings)
+
+    # v2's entries nest report code/fightID under a `report` object and use
+    # `amount` instead of v1's `total` - reshape to v1's exact FLAT field names
+    # before this ever reaches disk. Confirmed via grep that
+    # summarize_class_benchmarks.ps1 reads rankings_{boss}.json DIRECTLY (not
+    # just the manifest) and matches by flat `.reportID`/`.fightID`/`.name`,
+    # plus reads `.duration` for HPS - all four preserved here exactly.
+    $reshapedForDisk = @($freshRankings | ForEach-Object {
+        [PSCustomObject]@{
+            name     = $_.name
+            reportID = $_.report.code
+            fightID  = $_.report.fightID
+            duration = $_.duration
+            total    = $_.amount
+        }
+    })
     Write-Host "  got $($freshRankings.Count) fresh rankings"
 
     if (-not $manifest.bosses.Contains($bossName)) {
@@ -601,26 +495,16 @@ foreach ($bossName in $bosses.Keys) {
     }
     $bossEntry = $manifest.bosses[$bossName]
 
-    # ----- Build the fresh key set and diff against manifest-active parses -----
+    # ----- Build the fresh key set and diff against manifest-active parses.
+    # report.code/report.fightID (nested, v2 shape) replace v1's flat
+    # reportID/fightID - the only real difference in this whole diff block. -----
     $freshByKey = [ordered]@{}
     for ($k = 0; $k -lt $freshRankings.Count; $k++) {
         $r = $freshRankings[$k]
-        $key = "$($r.reportID)_$($r.fightID)_$($r.name)"
-        $freshByKey[$key] = [ordered]@{ rank = $k + 1; hps = $r.total; reportID = $r.reportID; fightID = $r.fightID; name = $r.name }
+        $key = "$($r.report.code)_$($r.report.fightID)_$($r.name)"
+        $freshByKey[$key] = [ordered]@{ rank = $k + 1; hps = $r.amount; reportID = $r.report.code; fightID = $r.report.fightID; name = $r.name }
     }
 
-    # ----- 2026-07-12 fix: a parse that drops out of the Top 100 and later re-enters
-    # used to be silently mishandled. $newKeys was originally "fresh AND not currently
-    # active" - that definition doesn't distinguish a genuinely new parse (no manifest
-    # entry at all) from one that's ARCHIVED (has a manifest entry, status=="archived",
-    # its real data already sits on disk under archived\{Boss}\). Both fell into
-    # $newKeys, so a re-entering parse got wastefully re-fetched from the API even
-    # though its completed-log data can never change, its manifest entry got fully
-    # overwritten (losing the real original firstSeenAt), and the stale archived copy
-    # of its files was never cleaned up - leaving the same parse's data in BOTH
-    # active\ and archived\ at once. Fixed by splitting into a real 4th case
-    # ($reenteredKeys) with its own zero-API-call handling (move files back, don't
-    # re-fetch - see below), same principle as $stillActiveKeys costing nothing. -----
     $activeManifestKeys = @($bossEntry.parses.Keys | Where-Object { $bossEntry.parses[$_].status -eq "active" })
     $archivedManifestKeys = @($bossEntry.parses.Keys | Where-Object { $bossEntry.parses[$_].status -eq "archived" })
     $newKeys = @($freshByKey.Keys | Where-Object { -not $bossEntry.parses.Contains($_) })
@@ -628,7 +512,6 @@ foreach ($bossName in $bosses.Keys) {
     $droppedKeys = @($activeManifestKeys | Where-Object { -not $freshByKey.Contains($_) })
     $stillActiveKeys = @($activeManifestKeys | Where-Object { $freshByKey.Contains($_) })
 
-    # ----- Refresh rank/hps for parses still in the Top 100 - free, already in memory -----
     foreach ($key in $stillActiveKeys) {
         $bossEntry.parses[$key].rank = $freshByKey[$key].rank
         $bossEntry.parses[$key].hps = [math]::Round($freshByKey[$key].hps, 1)
@@ -636,15 +519,6 @@ foreach ($bossName in $bosses.Keys) {
     }
     $totalConfirmed += $stillActiveKeys.Count
 
-    # ----- Archive parses that dropped out of the Top 100 -----
-    # Suffix list covers every PER-PARSE file type - "activetime" added 2026-07-12
-    # alongside the re-entry fix above; it was missing here since the original list
-    # predates the 2026-07-12 activeTime addition, meaning every parse archived before
-    # today left its activetime.json orphaned in active\{Boss}\ instead of moving with
-    # the rest of its files (harmless - archived parses don't feed the benchmark
-    # aggregate either way - but real, worth naming rather than leaving silently
-    # inconsistent). `deaths.json` is deliberately NOT in this list - see header note
-    # #4: it's fight-wide, not per-parse, and never archived by design.
     if ($droppedKeys.Count -gt 0) {
         New-Item -ItemType Directory -Force -Path $bossArchivedDir | Out-Null
     }
@@ -656,9 +530,6 @@ foreach ($bossName in $bosses.Keys) {
             if (Test-Path $srcPath) {
                 Move-Item -Path $srcPath -Destination $bossArchivedDir -Force
             } elseif ($suffix -ne "activetime") {
-                # activetime.json legitimately won't exist for parses archived before
-                # 2026-07-12 (see comment above) - only warn for the other 3, which
-                # have always been part of a fresh parse's pull.
                 Write-Host "  WARNING: expected $srcPath to archive for dropped parse $key, not found."
             }
         }
@@ -667,11 +538,6 @@ foreach ($bossName in $bosses.Keys) {
     }
     $totalArchived += $droppedKeys.Count
 
-    # ----- Restore parses that re-entered the Top 100 after being archived - zero API
-    # calls, same principle as $stillActiveKeys: a completed log's data can't change,
-    # so the archived copy is just moved back rather than re-fetched. Mirrors the
-    # drop loop above exactly, in reverse. firstSeenAt is deliberately NOT touched -
-    # it should reflect the first time this parse was ever seen, not this re-entry. -----
     foreach ($key in $reenteredKeys) {
         $p = $bossEntry.parses[$key]
         $stem = "$($p.reportID)_$($p.fightID)_$($p.safeName)"
@@ -694,8 +560,6 @@ foreach ($bossName in $bosses.Keys) {
         Write-Host "  $($reenteredKeys.Count) parse(s) RE-ENTERED the Top 100 (restored from archived\, zero API calls): $($reenteredKeys -join ', ')"
     }
 
-    # ----- Conditionally archive+overwrite the rankings snapshot - only on a real
-    # membership change (add, drop, or re-entry), never for a pure rank/HPS reshuffle -----
     $changed = ($newKeys.Count -gt 0) -or ($droppedKeys.Count -gt 0) -or ($reenteredKeys.Count -gt 0)
     if ($changed) {
         if (Test-Path $activeRankingsPath) {
@@ -706,7 +570,11 @@ foreach ($bossName in $bosses.Keys) {
             $archivedRankingsPath = Join-Path $rankingsHistoryDir "$oldSnapshotDate.json"
             Move-Item -Path $activeRankingsPath -Destination $archivedRankingsPath -Force
         }
-        [System.IO.File]::WriteAllText($activeRankingsPath, $rankingsResp.Content, (New-Object System.Text.UTF8Encoding $false))
+        # $reshapedForDisk (v1's flat shape), not $freshRankingsData (v2's nested
+        # shape) - see the reshaping comment above where $reshapedForDisk is built.
+        $rankingsOut = [PSCustomObject]@{ rankings = $reshapedForDisk }
+        $rankingsJsonText = $rankingsOut | ConvertTo-Json -Depth 10
+        [System.IO.File]::WriteAllText($activeRankingsPath, $rankingsJsonText, (New-Object System.Text.UTF8Encoding $false))
         $bossEntry.rankingsSnapshotDate = $today
         Write-Host "  rankings CHANGED ($($newKeys.Count) new, $($droppedKeys.Count) dropped, $($reenteredKeys.Count) re-entered) - snapshot updated"
     } else {
@@ -714,7 +582,6 @@ foreach ($bossName in $bosses.Keys) {
     }
     $bossEntry.lastPulledDate = $today
 
-    # ----- Step 2: fetch full per-parse data for genuinely NEW parses only, in parallel -----
     if ($newKeys.Count -eq 0) {
         Write-Host "  no new parses to fetch"
         Save-ManifestLocal -Manifest $manifest -Path $manifestPath
@@ -723,6 +590,7 @@ foreach ($bossName in $bosses.Keys) {
     }
 
     Write-Host "  fetching $($newKeys.Count) new parses ($MaxThreads threads)..."
+    $moduleAbsolutePath = Join-Path $PSScriptRoot "lib\WclV2Api.psm1"
     $pool = [runspacefactory]::CreateRunspacePool(1, $MaxThreads)
     $pool.Open()
 
@@ -733,7 +601,18 @@ foreach ($bossName in $bosses.Keys) {
         $entry = $freshByKey[$key]
         $ps = [powershell]::Create()
         $ps.RunspacePool = $pool
-        [void]$ps.AddScript($workerScript.ToString()).AddArgument($entry.reportID).AddArgument($entry.fightID).AddArgument($entry.name).AddArgument($i).AddArgument($baseUrl).AddArgument($apiKey).AddArgument($className).AddArgument($bossActiveDir).AddArgument($fightsCache).AddArgument($actorNamesCache).AddArgument($deathsClaimed)
+        [void]$ps.AddScript($workerScript.ToString()).
+            AddArgument($entry.reportID).
+            AddArgument($entry.fightID).
+            AddArgument($entry.name).
+            AddArgument($i).
+            AddArgument($className).
+            AddArgument($bossActiveDir).
+            AddArgument($fightsCache).
+            AddArgument($actorNamesCache).
+            AddArgument($deathsClaimed).
+            AddArgument($token).
+            AddArgument($moduleAbsolutePath)
         $handle = $ps.BeginInvoke()
         $jobs.Add([PSCustomObject]@{ Pipe = $ps; Handle = $handle; Key = $key })
     }
@@ -760,10 +639,6 @@ foreach ($bossName in $bosses.Keys) {
                 }
                 $bossNewOk++
             } else {
-                # Not added to the manifest - stays absent from manifest-active, so
-                # next run's diff sees it as "new" again and retries. Any files that
-                # DID succeed before the failure are still on disk and get skipped
-                # (Test-Path) on that retry - only the missing piece is re-fetched.
                 $bossNewFailed++
             }
         } catch {

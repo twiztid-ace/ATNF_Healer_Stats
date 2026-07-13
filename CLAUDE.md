@@ -1,11 +1,14 @@
 # ATNF Healer Analysis — Claude Code orientation
 
 This is a WoW Classic (TBC/SSC-TK era) raid healer analysis pipeline: pull real combat
-log data from Warcraft Logs' v1 API, benchmark it against Top 100 parses, and generate
-a static HTML site auditing each healer's performance per boss kill.
+log data from Warcraft Logs, benchmark it against Top 100 parses, and generate
+a static HTML site auditing each healer's performance per boss kill. The Druid
+pipeline (`pull_character_TEMPLATE.ps1`, `pull_top100_druid.ps1`) now pulls that data
+via WCL's **v2 GraphQL API** (migrated 2026-07-12, see WORKFLOW.md's "v2 GraphQL API"
+section) — Paladin/Priest/Shaman still use the original v1 REST API.
 
 **Read `WORKFLOW.md` first, in full, before touching anything.** It is the single
-source of truth for this project — API endpoints, file formats, known bugs, and 25
+source of truth for this project — API endpoints, file formats, known bugs, and 28
 numbered "gotchas" documenting real mistakes already made and fixed. Assume anything
 not in WORKFLOW.md is unverified. This file is just a map to get you oriented quickly;
 WORKFLOW.md has the actual depth.
@@ -33,6 +36,15 @@ This project has a **simple v1** (already shipped, live on 4 healer sites) and a
 **enhanced v2** (in progress, Druid-only so far). Reading the repo cold, both look
 like "real output" — they're not at the same maturity, and mixing them up is the
 main way to get confused here.
+
+**Naming collision to watch for:** this "v1/v2" is about *methodology* (simple
+gear-check vs. events-based enhanced pipeline) — a completely different axis from
+the WCL "v1 REST API / v2 GraphQL API" distinction mentioned above. Druid is on
+methodology-v2 AND API-v2; Paladin/Priest/Shaman are on methodology-v1 AND API-v1
+today, which is why the two axes haven't visibly diverged yet — but they're
+independent, and a future partial port (e.g. API-only migration without the
+events-based rewrite) would split them. Don't assume "v2" means the same thing in
+every sentence of this file or WORKFLOW.md without checking which axis it's on.
 
 - **v1 (simple)**: gear check + basic spell composition + a couple of other checks,
   built on the old `/report/tables/` healing view (5-entry truncation bug and all —
@@ -75,16 +87,25 @@ WORKFLOW.md                          <- read this first, full pipeline documenta
 CLAUDE.md                            <- this file
 
 scripts/
-  pull_character_TEMPLATE.ps1        <- pulls one specific healer's full raid night (v2, events-based)
-  pull_top100_druid.ps1              <- Top 100 Resto Druid benchmark pull, v2/enhanced, parallelized,
-                                         diff-based against manifest.json (active/archived model, see
-                                         "Data model" below) — only fetches genuinely new parses
-  pull_top100_paladin.ps1            <- Top 100 Paladin/Holy pull — v1/simple, healing TABLE only,
-                                         still the old date-stamped-folder convention
-  pull_top100_priest_holy.ps1        <- Top 100 Priest/Holy pull — v1/simple, healing TABLE only,
-                                         still the old date-stamped-folder convention
-  pull_top100_shaman.ps1             <- Top 100 Resto Shaman pull — v1/simple, healing TABLE only,
-                                         still the old date-stamped-folder convention
+  pull_character_TEMPLATE.ps1        <- pulls one specific healer's full raid night (methodology-v2,
+                                         events-based; migrated to the v2 GraphQL API 2026-07-12).
+                                         Old v1-API version preserved as
+                                         pull_character_TEMPLATE_v1.ps1.
+  pull_top100_druid.ps1              <- Top 100 Resto Druid benchmark pull, methodology-v2,
+                                         parallelized, diff-based against manifest.json
+                                         (active/archived model, see "Data model" below) — only
+                                         fetches genuinely new parses. Migrated to the v2 GraphQL
+                                         API 2026-07-12; old version preserved as
+                                         pull_top100_druid_v1.ps1.
+  pull_top100_paladin.ps1            <- Top 100 Paladin/Holy pull — methodology-v1/simple, healing
+                                         TABLE only, still the old date-stamped-folder convention
+                                         AND the v1 REST API
+  pull_top100_priest_holy.ps1        <- Top 100 Priest/Holy pull — methodology-v1/simple, healing
+                                         TABLE only, still the old date-stamped-folder convention
+                                         AND the v1 REST API
+  pull_top100_shaman.ps1             <- Top 100 Resto Shaman pull — methodology-v1/simple, healing
+                                         TABLE only, still the old date-stamped-folder convention
+                                         AND the v1 REST API
   pull_top100_TEMPLATE.ps1           <- generic template these three v1 scripts were generated
                                          from; still the base for any new v1-style class pull
   migrate_class_to_active.ps1        <- ONE-TIME migration tool, date-folder -> active/archived +
@@ -95,7 +116,13 @@ scripts/
                                          there too (Druid-specific cooldown/buff columns only apply
                                          once run against v2-style Druid data); archives the previous
                                          CSV set to archived\benchmark_history\{date}\ on a real
-                                         day-over-day regen, see "Data model" below
+                                         day-over-day regen, see "Data model" below. Makes zero API
+                                         calls itself, so unaffected by the v1/v2 API migration.
+  lib/WclV2Api.psm1                  <- shared module for the v2 GraphQL API (OAuth token fetch/
+                                         cache, generic query POST, paginated events() wrapper).
+                                         Used by pull_character_TEMPLATE.ps1 and
+                                         pull_top100_druid.ps1 only — see WORKFLOW.md's "v2 GraphQL
+                                         API" section for the full endpoint mapping and auth setup.
 
 templates/
   design_tokens.md                   <- the site's design system (colors, type, layout rules)
@@ -143,7 +170,9 @@ docs/  (v1 site output — already generated, not templates, actual pages. Moved
 ```
 
 Not included here (repo-specific, never shared in the source conversation):
-`apikey.txt` (gitignored, WCL API key), `.gitignore`.
+`apikey.txt` (gitignored, v1 REST API key, still used by Paladin/Priest/Shaman
+scripts), `v2_client_id.txt`/`v2_client_secret.txt`/`v2_access_token.txt`
+(gitignored, v2 GraphQL OAuth credentials used by `WclV2Api.psm1`), `.gitignore`.
 
 ## Current state — what's solid vs. what's open
 
@@ -160,6 +189,16 @@ Not included here (repo-specific, never shared in the source conversation):
   gotcha #15) — do not treat it as equivalent to Druid's v2 data.
 
 **v2 (enhanced) — in progress, Druid only:**
+- `pull_character_TEMPLATE.ps1` and `pull_top100_druid.ps1` were migrated from the
+  v1 REST API to the v2 GraphQL API on 2026-07-12 (this was originally just meant
+  to fix a null-percentile bug — v1's percentile endpoints are structurally
+  incapable of returning an exact report+fight match — but the fix was expanded to
+  a full API migration once the root cause was understood). Both were
+  equivalence-tested against real already-pulled data before the old v1-API
+  versions were preserved as `*_v1.ps1` and the new versions promoted to the
+  production filenames. Full mapping/rationale in WORKFLOW.md's "v2 GraphQL API"
+  section. Paladin/Priest/Shaman pull scripts are explicitly NOT part of this —
+  they still use the v1 REST API and `apikey.txt`.
 - Pipeline validated end to end on real data: events-based healing/casts (no
   truncation), cooldown/utility tracking with self-vs-other targets, buff uptime
   (flask/food snapshot + real Tree of Life interval reconstruction), the Druid boss

@@ -21,7 +21,8 @@
 param(
     [Parameter(Mandatory=$true)][string]$CharacterName,
     [Parameter(Mandatory=$true)][string]$ReportCode,
-    [Parameter(Mandatory=$true)][string]$ClassName
+    [Parameter(Mandatory=$true)][string]$ClassName,
+    [string]$CharactersRoot = "data\Characters"  # override for equivalence-testing against a scratch pull
 )
 
 $ErrorActionPreference = "Stop"
@@ -87,7 +88,7 @@ $bossMeta = @{
 # ===== Locate this character's data folder for this exact report - search rather than
 # require a -DateFolder param, since pull_character_TEMPLATE.ps1 derives the raid date
 # from the report title, not from anything this script would otherwise know. =====
-$charRoot = Join-Path "data\Characters" $CharacterName
+$charRoot = Join-Path $CharactersRoot $CharacterName
 if (-not (Test-Path $charRoot)) {
     Write-Host "ERROR: $charRoot not found - run pull_character_TEMPLATE.ps1 for '$CharacterName' first."
     exit 1
@@ -102,11 +103,21 @@ Write-Host "Character data folder: $charDir"
 
 $fightsData = Get-Content $fightsFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
 
-$safeCharName = ($CharacterName.ToLower() -replace '[\\/:*?"<>|]', '_')
-$allParsesPath = Join-Path $charDir "$($safeCharName)_all_parses.json"
-$allParses = if (Test-Path $allParsesPath) { Get-Content $allParsesPath -Raw -Encoding UTF8 | ConvertFrom-Json } else {
-    Write-Host "  WARNING: $allParsesPath not found - percentile/rank will be blank for every boss."
-    @()
+# ===== Percentile/rank source (v2 migration, see the approved migration plan) =====
+# Was: {name}_all_parses.json (v1 /parses/character/), fuzzy-matched by
+# reportID+fightID against the character's WHOLE parse history - confirmed live
+# to be structurally incomplete (only returns a capped "notable parses" list, not
+# every real kill - 8 of 9 kills in a real report came back unmatched even after
+# a fresh re-pull with a stable connection, ruling out a connection/timing issue).
+# Now: {ReportCode}_v2_rankings.json (v2 reportData.report(code).rankings(
+# fightIDs:[...])), pulled once per report by pull_character_v2.ps1/
+# pull_character_TEMPLATE.ps1 (once the migration lands) - exact by construction,
+# every fight ID requested either has a real healer entry or it doesn't, no fuzzy
+# matching against a separately-fetched blob at all.
+$rankingsPath = Join-Path $charDir "$($ReportCode)_v2_rankings.json"
+$rankingsData = if (Test-Path $rankingsPath) { Get-Content $rankingsPath -Raw -Encoding UTF8 | ConvertFrom-Json } else {
+    Write-Host "  WARNING: $rankingsPath not found - percentile/rank will be blank for every boss."
+    $null
 }
 
 $benchDir = Join-Path (Join-Path "data\Classes" $ClassName) "active"
@@ -240,14 +251,16 @@ foreach ($fight in $bossFights) {
         foreach ($d in $deathsData.entries) { $deathList += [PSCustomObject]@{ Name = $d.name; Timestamp = $d.timestamp } }
     }
 
-    # ----- Percentile/rank, matched by EXACT reportID+fightID - never the
-    # character's all-time best on this boss, a specific pull's real result -----
-    $parseMatch = $allParses | Where-Object { $_.reportID -eq $ReportCode -and $_.fightID -eq $fight.id } | Select-Object -First 1
-    $percentile = if ($parseMatch) { [math]::Round($parseMatch.percentile, 0) } else { $null }
-    $rank = if ($parseMatch) { $parseMatch.rank } else { $null }
-    $outOf = if ($parseMatch) { $parseMatch.outOf } else { $null }
-    if (-not $parseMatch) {
-        Write-Host "  WARNING: $label - no matching entry in $($safeCharName)_all_parses.json for reportID=$ReportCode fightID=$($fight.id) - percentile/rank will be blank."
+    # ----- Percentile/rank, matched by EXACT fightID within this report's own
+    # v2 rankings pull - see the loading comment above for why this replaced the
+    # old all_parses.json fuzzy match. -----
+    $rankingFight = if ($rankingsData) { $rankingsData.data | Where-Object { $_.fightID -eq $fight.id } | Select-Object -First 1 } else { $null }
+    $healerMatch = if ($rankingFight) { $rankingFight.roles.healers.characters | Where-Object { $_.name -eq $CharacterName } | Select-Object -First 1 } else { $null }
+    $percentile = if ($healerMatch) { [math]::Round($healerMatch.rankPercent, 0) } else { $null }
+    $rank = if ($healerMatch) { $healerMatch.rank } else { $null }
+    $outOf = if ($healerMatch) { $healerMatch.totalParses } else { $null }
+    if (-not $healerMatch) {
+        Write-Host "  WARNING: $label - no matching healer entry in $($ReportCode)_v2_rankings.json for fightID=$($fight.id) - percentile/rank will be blank."
     }
 
     # ----- Benchmark comparisons -----

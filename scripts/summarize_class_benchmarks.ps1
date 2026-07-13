@@ -172,10 +172,11 @@
 
 param(
     [Parameter(Mandatory=$true)][string]$ClassName,
+    [string]$ClassesRootOverride,  # equivalence-testing only, e.g. against a scratch pull
     [string]$DateFolder = $null
 )
 
-$classesRoot = "data\Classes"
+$classesRoot = if ($ClassesRootOverride) { $ClassesRootOverride } else { "data\Classes" }
 $classDir = Join-Path $classesRoot $ClassName
 $today = Get-Date -Format "yyyy-MM-dd"
 $usingActiveModel = [string]::IsNullOrWhiteSpace($DateFolder)

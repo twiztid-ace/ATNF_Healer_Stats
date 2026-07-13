@@ -1,165 +1,75 @@
 # pull_character_TEMPLATE.ps1
 #
-# Pulls one character's full raid-night data set for the ATNF Healer Analysis pipeline,
-# steps 1-4 of WORKFLOW.md, fully automated - no manual JSON inspection or filled-in
-# placeholders required.
+# v2 GraphQL pull (migrated from v1 REST 2026-07-12 - see the approved migration
+# plan, C:\Users\raymo\.claude\plans\playful-baking-sunset.md, for the full
+# rationale). The old v1 script is preserved as pull_character_TEMPLATE_v1.ps1 for
+# reference/rollback - this one passed a full equivalence check against a real,
+# already-pulled character+report (Danceswtrees, report Fm9XdWYtz8VCLnwg, all 9
+# boss kills byte-for-byte matched on every event/consumables/gear/activetime/
+# deaths field build_boss_report_data.ps1 actually reads) before taking over the
+# production filename.
 #
-# Given a report code (or full report URL) and a character name, this:
-#   1. Fetches (or reuses a cached copy of) the report's fight list
-#   2. Reads the raid date straight from the report title
-#   3. Looks up the character's class/server/region AND report-local numeric actor ID
-#      from the report's own friendlies[] list (no need to already know these - only
-#      pass -Server/-Region/-Class to override, e.g. if the character isn't in this
-#      particular report for some reason - see the note on that below, since it now
-#      limits what Step 4 can do)
-#   4. Pulls, per boss kill (boss != 0 && kill == true):
-#        - healing events   (COMPLETE per-spell + per-target healing breakdown, via
-#                             /report/events/healing/ with sourceid= - see below for why
-#                             this replaced the healing TABLE)
-#        - casts events     (COMPLETE cooldown/utility/consumable casts, each with a
-#                             real target, via /report/events/casts/ with sourceid= -
-#                             replaced the casts TABLE for the same reason)
-#        - consumables       (flask/food active-at-pull-start + real Tree of Life uptime
-#                              %, replaces the buffs table - see "Buff uptime redesign"
-#                              below for why the table version was actually wrong, not
-#                              just unverified)
-#        - gear              (real combatantinfo .gear[] snapshot - added 2026-07-12.
-#                              Same one combatantinfo call as consumables above, not a
-#                              second API round-trip - see Get-CombatantInfoSnapshot's
-#                              header note. Lets a raid overview's gear audit be built
-#                              from every kill, not a single one-off pull, and catches
-#                              real mid-raid gear changes - e.g. a weapon swap between
-#                              kills - that one snapshot can't see.)
-#        - deaths table     (fight-wide raid death list, not class-scoped - unchanged)
-#   5. Pulls the character's full parse history (for real per-fight WCL percentiles)
+# WHY THIS MIGRATION (short version - see the plan file for the full writeup):
+# v1's only percentile sources (/parses/character/, /rankings/character/) return
+# either an incomplete "notable parses" list or a single personal-best entry -
+# neither can answer "what was this exact report+fight's percentile," which is
+# structurally why 8 of 9 kills in a real report came back with null percentile
+# even after a fresh re-pull. v2's reportData.report(code).rankings(fightIDs:[...])
+# answers that exactly, confirmed live against real data this session.
 #
-# ============================================================================
-# WHY THIS PULLS EVENTS INSTEAD OF TABLES FOR HEALING/CASTS (2026-07-11 redesign)
-# ============================================================================
-# The /report/tables/{healing,casts}/{code} views silently cap their per-player
-# "abilities" array at 5 entries - confirmed by cross-checking against real
-# /report/events data during a live debugging session. The table's entry-level
-# `total` stays accurate; only the per-spell breakdown gets truncated, with NO
-# error and NO visible signal. This was caught two ways on the same real report:
-#   - Danceswtrees's Leotheras kill: healing table said total=176374 but the 5
-#     listed abilities only summed to 166830 (9544 missing). The equivalent
-#     /report/events/healing/ pull (sourceid-scoped) summed to exactly 176374 -
-#     a perfect match, confirming events are complete and the table wasn't.
-#   - Turkeykin's Hydross kill: the casts table showed 5 abilities (Starfire,
-#     Moonfire, Faerie Fire, Force of Nature, Spell Power) with NO Innervate,
-#     despite Innervate definitely being cast that fight (confirmed via a
-#     targeted /report/events pull with a real target: Turkeykin -> Churbert).
-# This affects EVERY previously-pulled healing/casts table file - both spell
-# composition and cooldown/utility counts built on those files should be treated
-# as unverified until re-pulled with this script.
+# Every other v1 call this script made also has a confirmed, live-tested v2
+# equivalent (see WclV2Api.psm1 and the plan file's mapping table). All output
+# FILE SHAPES are preserved exactly as v1 produced them, so build_boss_report_data.ps1
+# needs no changes except where it reads percentile from (see step 5 below) -
+# confirmed via grep that it only reads $fightsData.fights[].boss/.kill/.start_time/
+# .end_time (not the old friendlies/enemies/pets split), so the flat v2 actors[]
+# list is a safe, real simplification there, not a compatibility risk.
 #
-# The correct endpoint is /report/events/{view}/{code} with `sourceid` as a real,
-# documented, standalone query parameter (confirmed against the actual v1 swagger
-# spec - NOT `source.id`, `sourceID`, or a bare `source=` param, all of which were
-# tried first and silently ignored rather than erroring, which cost real time to
-# track down). There is no documented pagination/limit override for this endpoint;
-# a real 3983-event unfiltered pull for one fight came back complete (last event
-# landed within 90ms of the fight's actual end), which is reassuring but not a
-# guarantee for busier/longer fights - this script logs the event count returned
-# for every pull so unusually round or suspiciously large counts are visible in
-# the console output rather than silently trusted.
+# Auth: v2_client_id.txt / v2_client_secret.txt / v2_access_token.txt at repo
+# root (gitignored, same convention as apikey.txt) - see WclV2Api.psm1's header
+# for how to register a client if these don't exist yet.
 #
-# CONSEQUENCE FOR CHARACTERS NOT IN THIS REPORT'S friendlies[]: sourceid is a
-# report-local numeric actor ID, only resolvable from friendlies[]. If -Class/
-# -Server/-Region overrides are used because the character genuinely isn't in
-# this report, Step 4 (fight-level pulls) is skipped entirely - there is no
-# sourceid to scope the events calls to, and if the character wasn't in this
-# report they have no events in it anyway. Step 5 (parse history) still runs
-# since it only needs name/server/region, not a report-local ID.
-#
-# NOT a separate pull, and doesn't need to be: resources / resources-gains
-# (mana-over-time, HPM) as an API endpoint is confirmed dead (tested for real
-# 2026-07-12, every `abilityid` variant, see WORKFLOW.md gotcha #11) - but every
-# casts event this script already saves carries a `classResources[0]` object with
-# real mana data under misleadingly-generic field names (`amount`=max mana pool,
-# `max`=that spell's real mana cost, `type`=current mana at that moment - verified
-# against a full real kill's cast sequence). HPM is already computable from
-# `*_casts_events.json`, no new pull needed here.
-#
-# Run this from your repo ROOT directory, which should contain:
-#   - an apikey.txt file at the root, with just your WCL API key on a single line
-#     (add apikey.txt to your .gitignore so it never gets committed)
-#   - a data\Characters\ folder (created automatically if it doesn't exist yet)
-#
-# Result: data\Characters\{CharacterName}\{date}\
-#           fights_{reportCode}.json
+# Result (SAME shape as v1): data\Characters\{CharacterName}\{date}\
+#           fights_{reportCode}.json          <- reshaped to v1's field names (see Step 1)
 #           fight{fightID}_{bossSlug}_healing_events.json   <- one per boss kill
 #           fight{fightID}_{bossSlug}_casts_events.json
-#           fight{fightID}_{bossSlug}_consumables.json      <- flask/food snapshot + real Tree of Life %
-#           fight{fightID}_{bossSlug}_gear.json              <- real combatantinfo gear[]/talents snapshot
+#           fight{fightID}_{bossSlug}_consumables.json
+#           fight{fightID}_{bossSlug}_gear.json
+#           fight{fightID}_{bossSlug}_activetime.json
 #           fight{fightID}_{bossSlug}_deaths.json
-#           {charactername}_all_parses.json
+#           {reportCode}_v2_rankings.json     <- NEW: replaces {charactername}_all_parses.json
 #
 # Usage:
 #   powershell -ExecutionPolicy Bypass -File pull_character_TEMPLATE.ps1 -ReportCode "XJp8vAxzM4KtHYyb" -CharacterName "Crowns"
-#
-#   # or paste the full report URL directly:
-#   powershell -ExecutionPolicy Bypass -File pull_character_TEMPLATE.ps1 -ReportCode "https://fresh.warcraftlogs.com/reports/XJp8vAxzM4KtHYyb" -CharacterName "Crowns"
-#
-#   # overrides - NOTE: these now only support Step 5 (parse history). Step 4 needs a
-#   # real report-local actor ID and is skipped if the character isn't in friendlies[]:
-#   powershell -ExecutionPolicy Bypass -File pull_character_TEMPLATE.ps1 -ReportCode "XJp8vAxzM4KtHYyb" -CharacterName "Crowns" -Server "Dreamscythe" -Region "US" -Class "Paladin"
-#
-#   # thread count - gentler/faster than the default of 10:
 #   powershell -ExecutionPolicy Bypass -File pull_character_TEMPLATE.ps1 -ReportCode "XJp8vAxzM4KtHYyb" -CharacterName "Crowns" -MaxThreads 5
-#
-# ============================================================================
-# PARALLELIZED (2026-07-12): Step 4 (the per-boss-kill pulls - healing events, casts
-# events, consumables+gear, activetime, deaths) runs across multiple threads via a
-# RunspacePool, same pattern and same rationale as pull_top100_druid.ps1's own
-# parallelization - see that script's header for the full writeup on why concurrency
-# here (bounded by -MaxThreads, default 10) doesn't make WCL's 800-calls/hour rate
-# limit meaningfully worse than the old sequential-with-250ms-sleeps approach already
-# was. Each boss kill's output files are entirely its own (no shared report+fight
-# key the way Top 100 parses from DIFFERENT reports could collide on deaths) - so
-# unlike that script, no ConcurrentDictionary claim-registry is needed here, every
-# fight in $bossFights is simply dispatched as its own independent job. The
-# report-wide fights list, friendlies lookup, and Tree of Life interval
-# reconstruction all still happen once, sequentially, BEFORE the pool spins up -
-# only the per-fight work is parallel.
-# ============================================================================
 
 param(
     [Parameter(Mandatory=$true)][string]$ReportCode,
     [Parameter(Mandatory=$true)][string]$CharacterName,
-    [string]$Server,        # optional override - Step 5 only, see note above
-    [string]$Region,        # optional override - Step 5 only, see note above
-    [string]$Class,         # optional override - Step 5 only, see note above
+    [string]$Server,        # optional override - only matters if the character isn't in this report
+    [string]$Region,        # optional override - only matters if the character isn't in this report
+    [string]$Class,         # optional override - only matters if the character isn't in this report
     [string]$DateOverride,  # optional override - only used if the date can't be parsed from the report title
-    [int]$MaxThreads = 10   # per-boss-kill pulls run concurrently, bounded by this - see PARALLELIZED note above
+    [int]$MaxThreads = 10,  # per-boss-kill pulls run concurrently, bounded by this
+    [string]$CharactersRoot = "data\Characters"  # override for equivalence-testing into a scratch folder without
+                                                  # relocating apikey/v2 credential files (which stay repo-root-relative)
 )
 
 $ErrorActionPreference = "Stop"
-$apiKeyFile = "apikey.txt"
-$baseUrl = "https://fresh.warcraftlogs.com/v1"
-$charactersRoot = "data\Characters"
+$charactersRoot = $CharactersRoot
+
+Import-Module (Join-Path $PSScriptRoot "lib\WclV2Api.psm1") -Force
 
 # ===== Resolve report code from a bare code or a full report URL =====
 if ($ReportCode -match "warcraftlogs\.com/reports/([A-Za-z0-9]+)") {
     $ReportCode = $Matches[1]
 }
 
-# ===== API key =====
-if (-not (Test-Path $apiKeyFile)) {
-    Write-Host "ERROR: $apiKeyFile not found in the current directory."
-    Write-Host "       Create a file named apikey.txt at your repo root containing just your WCL API key"
-    Write-Host "       on one line, and add 'apikey.txt' to your .gitignore so it never gets committed."
-    exit 1
-}
-$apiKey = (Get-Content $apiKeyFile -Raw).Trim()
-if ([string]::IsNullOrWhiteSpace($apiKey)) {
-    Write-Host "ERROR: $apiKeyFile is empty."
-    exit 1
-}
-
 Write-Host "Running with -MaxThreads $MaxThreads (default 10 - lower this if you see rate-limit failures)"
+$token = Get-WclAccessToken
+Write-Host ""
 
-# ===== SSC/TK encounter ID -> boss-file slug (fixed reference, matches pull_top100_TEMPLATE.ps1) =====
+# ===== SSC/TK encounter ID -> boss-file slug (unchanged from v1) =====
 $bossSlugs = @{
     100623 = "hydross"
     100624 = "lurker"
@@ -177,12 +87,17 @@ function Get-BossSlug($bossID, $bossName) {
     if ($bossSlugs.ContainsKey($bossID)) {
         return $bossSlugs[$bossID]
     }
-    # Defensive fallback for anything outside the known SSC/TK set:
-    # lowercase the encounter name and strip everything but letters/digits.
     return ($bossName.ToLower() -replace '[^a-z0-9]', '')
 }
 
 # ===== STEP 1: Get the fight list - reuse a cached copy from ANY character's folder if one exists =====
+# Same cross-character caching as v1. The saved file's shape is reshaped to v1's
+# field names (fights[].boss/.kill/.start_time/.end_time, snake_case) since that's
+# exactly and only what build_boss_report_data.ps1 reads (confirmed via grep) -
+# the old friendlies/enemies/friendlyPets/enemyPets 4-way split is replaced by one
+# flat `actors[]` list (v2's own model - ReportActor doesn't carry a
+# friendly/hostile flag at all, and nothing downstream ever used that split
+# either), used only to rebuild $actorNames on a cache-hit.
 Write-Host "=== Step 1: Fight list for report $ReportCode ==="
 
 $cachedFightsFile = $null
@@ -190,47 +105,74 @@ if (Test-Path $charactersRoot) {
     $cachedFightsFile = Get-ChildItem -Path $charactersRoot -Recurse -Filter "fights_$ReportCode.json" -ErrorAction SilentlyContinue | Select-Object -First 1
 }
 
-# $fightsSourcePath tracks a byte-correct file on disk (never a string that's been
-# round-tripped through Get-Content/Set-Content's default encoding, which is not
-# reliably UTF-8 on Windows PowerShell 5.1 - see WORKFLOW.md gotcha #14). It gets
-# Copy-Item'd into this character's folder further down, not re-serialized. It's only
-# read AS a string (with -Encoding UTF8 forced explicitly) for JSON parsing below,
-# never written back out from that string.
 if ($cachedFightsFile) {
     Write-Host "  Found cached fights file: $($cachedFightsFile.FullName) - reusing, not re-fetching."
-    $fightsSourcePath = $cachedFightsFile.FullName
+    $fightsData = Get-Content $cachedFightsFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
 } else {
     Write-Host "  Not cached anywhere yet - fetching from the API..."
-    $fightsUrl = "$baseUrl/report/fights/$ReportCode`?api_key=$apiKey"
-    $tempFightsFile = Join-Path $env:TEMP "fights_$ReportCode`_$([guid]::NewGuid()).json"
-    try {
-        Invoke-WebRequest -Uri $fightsUrl -OutFile $tempFightsFile -UseBasicParsing
-        $fightsSourcePath = $tempFightsFile
-    } catch {
-        Write-Host "ERROR: failed to fetch fight list for $ReportCode - $_"
+    $reportQuery = @"
+query {
+  reportData {
+    report(code: "$ReportCode") {
+      title
+      startTime
+      endTime
+      region { compactName }
+      fights { id encounterID name kill startTime endTime }
+      masterData { actors { id name type subType server } }
+    }
+  }
+}
+"@
+    $reportResult = Invoke-WclGraphQL -Query $reportQuery -AccessToken $token
+    if ($reportResult.Errors) {
+        Write-Host "ERROR: failed to fetch fight list for $ReportCode`: $($reportResult.Errors | ConvertTo-Json -Compress)"
+        Write-Host "       (This usually means the report is private - the owner needs to make it public.)"
         exit 1
     }
-}
+    $report = $reportResult.Data.reportData.report
+    if (-not $report) {
+        Write-Host "ERROR: report $ReportCode returned no data - check the code is correct and the report is public."
+        exit 1
+    }
 
-$fightsRaw = Get-Content $fightsSourcePath -Raw -Encoding UTF8
-$fightsData = $fightsRaw | ConvertFrom-Json
-if ($fightsData.PSObject.Properties.Name -contains "error") {
-    Write-Host "ERROR: API returned an error for report $ReportCode`: $($fightsData.error)"
-    Write-Host "       (This usually means the report is private - the owner needs to make it public.)"
-    exit 1
+    $reshapedFights = @($report.fights | ForEach-Object {
+        [PSCustomObject]@{
+            id         = $_.id
+            boss       = $_.encounterID
+            name       = $_.name
+            kill       = $_.kill
+            start_time = [int64]$_.startTime
+            end_time   = [int64]$_.endTime
+        }
+    })
+    $reshapedActors = @($report.masterData.actors | ForEach-Object {
+        [PSCustomObject]@{
+            id     = $_.id
+            name   = $_.name
+            type   = $_.type
+            subType = $_.subType
+            server = $_.server
+        }
+    })
+    $fightsData = [PSCustomObject]@{
+        title  = $report.title
+        start  = [int64]$report.startTime
+        end    = [int64]$report.endTime
+        region = $report.region.compactName
+        fights = $reshapedFights
+        actors = $reshapedActors
+    }
 }
 
 # Build a report-local actor ID -> name lookup, used to annotate raw sourceID/targetID
-# fields on events with real names before saving. Covers players, NPCs, and pets -
+# fields on events with real names before saving. v2's actors[] list already
+# covers players, NPCs, AND pets in one flat list (unlike v1's 4-way split) -
 # events can target any of these (e.g. Innervate targets a player, a boss debuff-cast
 # targets an NPC add, a pet heal targets a pet).
 $actorNames = @{}
-foreach ($group in @('friendlies','enemies','friendlyPets','enemyPets')) {
-    if ($fightsData.PSObject.Properties.Name -contains $group) {
-        foreach ($actor in $fightsData.$group) {
-            if ($actor.id -ne $null) { $actorNames[[int]$actor.id] = $actor.name }
-        }
-    }
+foreach ($actor in $fightsData.actors) {
+    if ($actor.id -ne $null) { $actorNames[[int]$actor.id] = $actor.name }
 }
 
 function Resolve-ActorName($id) {
@@ -240,8 +182,7 @@ function Resolve-ActorName($id) {
     return "Unknown_$key"
 }
 
-# ===== STEP 2: Determine the raid date from the report title =====
-# Titles look like "SSC / TK 07.07.2026" -> MM.DD.YYYY
+# ===== STEP 2: Determine the raid date from the report title (unchanged from v1) =====
 $raidDate = $null
 if ($DateOverride) {
     $raidDate = $DateOverride
@@ -251,7 +192,6 @@ if ($DateOverride) {
     $year = $Matches[3]
     $raidDate = "$year-$month-$day"
 } elseif ($fightsData.start) {
-    # Fallback: derive from the report's top-level start epoch (ms)
     $raidDate = [DateTimeOffset]::FromUnixTimeMilliseconds([int64]$fightsData.start).UtcDateTime.ToString("yyyy-MM-dd")
     Write-Host "  WARNING: couldn't parse a date out of the report title ('$($fightsData.title)') - derived $raidDate from the report's start timestamp instead. Pass -DateOverride if this is wrong."
 } else {
@@ -260,27 +200,30 @@ if ($DateOverride) {
 }
 Write-Host "  Raid date: $raidDate"
 
-# ===== STEP 3: Resolve class/server/region/ID from friendlies[] =====
-$friendly = $fightsData.friendlies | Where-Object { $_.name -eq $CharacterName } | Select-Object -First 1
+# ===== STEP 3: Resolve class/server/region/ID from the actors list =====
+# v2's ReportActor.subType is the class name (equivalent to v1 friendlies[].type);
+# region isn't a per-actor field in v2's model (report-wide instead), so it comes
+# from $fightsData.region (captured from report.region.compactName above).
+$friendly = $fightsData.actors | Where-Object { $_.name -eq $CharacterName -and $_.type -eq "Player" } | Select-Object -First 1
 $CharacterID = $null
 
 if ($friendly) {
-    if (-not $Class)  { $Class  = $friendly.type }
+    if (-not $Class)  { $Class  = $friendly.subType }
     if (-not $Server) { $Server = $friendly.server }
-    if (-not $Region) { $Region = $friendly.region }
+    if (-not $Region) { $Region = $fightsData.region }
     $CharacterID = $friendly.id
-    Write-Host "  Found '$CharacterName' in friendlies[]: $Class, $Server-$Region, report-local id=$CharacterID"
+    Write-Host "  Found '$CharacterName' in actors[]: $Class, $Server-$Region, report-local id=$CharacterID"
 } else {
     if (-not $Class -or -not $Server -or -not $Region) {
-        Write-Host "ERROR: '$CharacterName' was not found in this report's friendlies[] list."
+        Write-Host "ERROR: '$CharacterName' was not found in this report's actors[] list."
         Write-Host "       Re-run with -Class, -Server, and -Region supplied explicitly if this character"
         Write-Host "       genuinely isn't in this report (e.g. resolving them from a different raid)."
         exit 1
     }
-    Write-Host "  '$CharacterName' not in friendlies[] - using supplied overrides: $Class, $Server-$Region"
+    Write-Host "  '$CharacterName' not in actors[] - using supplied overrides: $Class, $Server-$Region"
     Write-Host "  WARNING: no report-local actor ID available for '$CharacterName' - Step 4 (fight-level"
-    Write-Host "           healing/casts/buffs/deaths pulls) will be SKIPPED. Only Step 5 (parse history)"
-    Write-Host "           will run. This is expected if the character truly isn't in this report."
+    Write-Host "           healing/casts/buffs/deaths pulls) will be SKIPPED. Only Step 5 (rankings) will run."
+    Write-Host "           This is expected if the character truly isn't in this report."
 }
 
 # ===== Set up output folder =====
@@ -289,152 +232,77 @@ New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 Write-Host "  Output folder: $outDir"
 Write-Host ""
 
-# Write/copy the fights file into this character's folder too (per WORKFLOW.md convention -
-# every character folder gets its own copy, even though the underlying data is shared/reused).
-# Copy-Item, not Set-Content($fightsRaw) - see the $fightsSourcePath comment above for why.
 $fightsOutFile = Join-Path $outDir "fights_$ReportCode.json"
 if (-not (Test-Path $fightsOutFile)) {
-    Copy-Item -Path $fightsSourcePath -Destination $fightsOutFile
+    $jsonText = $fightsData | ConvertTo-Json -Depth 10
+    [System.IO.File]::WriteAllText($fightsOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
 }
 
-# Fetches one events view (healing or casts) for this character for one fight, annotates
-# each event with resolved source/target names, and saves it with a small summary header.
-# Returns $true on success, $false on failure (network/parse error - NOT "zero events",
-# which is a legitimate result, e.g. a fight where the character cast nothing of that type).
-function Get-CharacterEvents {
-    param(
-        [string]$View,        # "healing" or "casts"
-        [string]$OutFile,
-        [int]$StartTime,
-        [int]$EndTime,
-        [string]$FightLabel   # for console messages only
-    )
-    if (Test-Path $OutFile) { return $true }
-
-    $url = "$baseUrl/report/events/$View/$ReportCode`?start=$StartTime&end=$EndTime&sourceid=$CharacterID&api_key=$apiKey"
-    try {
-        $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
-        $data = $resp.Content | ConvertFrom-Json
-    } catch {
-        Write-Host "  $FightLabel - FAILED ($View events): $_"
-        return $false
+# Resolves an ability guid to its real display name, via gameData.ability(id) -
+# cached so a re-seen guid within this run costs no extra API call. Ability NAME
+# is genuinely load-bearing downstream (confirmed via grep of
+# build_boss_report_data.ps1: populates the spell-composition table's Name field,
+# AND matches Mana Potion casts by name rather than guid), so this isn't cosmetic -
+# v2's events() only returns a flat abilityGameID by default, unlike v1's embedded
+# ability{name,guid,type,abilityIcon} object, so this lookup is a required part of
+# reconstructing the old shape, not an optional nicety.
+$abilityNameCache = @{}
+function Resolve-AbilityName($guid, $accessToken) {
+    $key = [int]$guid
+    if ($abilityNameCache.ContainsKey($key)) { return $abilityNameCache[$key] }
+    $query = "query { gameData { ability(id: $key) { name icon } } }"
+    $result = Invoke-WclGraphQL -Query $query -AccessToken $accessToken
+    $name = $null
+    $icon = $null
+    if (-not $result.Errors -and $result.Data.gameData.ability) {
+        $name = $result.Data.gameData.ability.name
+        $icon = $result.Data.gameData.ability.icon
     }
-
-    $events = @($data.events)
-    foreach ($ev in $events) {
-        $srcName = Resolve-ActorName $ev.sourceID
-        # A missing targetID means WCL logged no real other-actor target for this event
-        # at all (self-only-castable spells like Nature's Swiftness come back as
-        # target={"name":"Environment","id":-1,...} instead of a real actor ID) - fixed
-        # 2026-07-12 to fall back to the caster's own name, not $null/Resolve-ActorName's
-        # own null-passthrough, since a spell with no real other-actor target can only
-        # have affected the caster. Before this fix, every downstream self-vs-other
-        # classification (see summarize_class_benchmarks.ps1) silently miscounted these
-        # as "not self" - confirmed on real data: Nature's Swiftness showed 0% self
-        # across a full 100-person Top 100 sample, implausible for a spell that can't
-        # target anyone else.
-        $tgtName = if ($ev.targetID -ne $null) { Resolve-ActorName $ev.targetID } else { $srcName }
-        $ev | Add-Member -NotePropertyName "sourceName" -NotePropertyValue $srcName -Force
-        $ev | Add-Member -NotePropertyName "targetName" -NotePropertyValue $tgtName -Force
-    }
-
-    # -ErrorAction SilentlyContinue on these two: Measure-Object throws a hard error
-    # (not just an empty result) when NONE of the input objects have the requested
-    # property at all - which is exactly the case for "casts" events, since cast-type
-    # events don't carry amount/overheal the way heal-type events do. SilentlyContinue
-    # here means "no such property anywhere" resolves to $null -> falls through to the
-    # 0 default below, instead of killing the whole script (this script sets
-    # $ErrorActionPreference = "Stop" globally, which otherwise promotes even this into
-    # a terminating error).
-    $totalAmount = ($events | Measure-Object -Property amount -Sum -ErrorAction SilentlyContinue).Sum
-    if ($null -eq $totalAmount) { $totalAmount = 0 }
-    $totalOverheal = ($events | Measure-Object -Property overheal -Sum -ErrorAction SilentlyContinue).Sum
-    if ($null -eq $totalOverheal) { $totalOverheal = 0 }
-
-    $out = [PSCustomObject]@{
-        sourceID      = $CharacterID
-        sourceName    = $CharacterName
-        view          = $View
-        eventCount    = $events.Count
-        totalAmount   = $totalAmount
-        totalOverheal = $totalOverheal
-        events        = $events
-    }
-
-    # [System.IO.File]::WriteAllText with an explicit UTF8Encoding($false), not
-    # Set-Content -Encoding UTF8 - on Windows PowerShell 5.1, -Encoding UTF8 always
-    # prepends a byte-order-mark (BOM), unlike every other file this script writes
-    # (which go through Invoke-WebRequest -OutFile and are BOM-free, matching the raw
-    # API response). The BOM doesn't corrupt the character data itself, but it's
-    # inconsistent with the rest of the pipeline and breaks strict JSON parsers that
-    # don't expect one (caught by cross-checking the real output with a plain
-    # json.load() - PowerShell's own ConvertFrom-Json tolerates a BOM silently, so this
-    # was invisible from inside PowerShell itself).
-    $jsonText = $out | ConvertTo-Json -Depth 15
-    [System.IO.File]::WriteAllText($OutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
-
-    # No documented pagination for this endpoint (confirmed against the real v1 swagger
-    # spec), and a real 3983-event unfiltered test came back complete with no cutoff -
-    # but that's not a guarantee for every fight. Flag anything suspiciously large so it
-    # gets a manual look rather than silently trusted.
-    if ($events.Count -ge 2900) {
-        Write-Host "  $FightLabel - $View events: $($events.Count) (HIGH - verify this wasn't silently capped, see script header)"
-    } else {
-        Write-Host "  $FightLabel - $View events: $($events.Count), total=$totalAmount, overheal=$totalOverheal"
-    }
-    return $true
+    $entry = [PSCustomObject]@{ Name = $name; Icon = $icon }
+    $abilityNameCache[$key] = $entry
+    return $entry
 }
 
-# ===== Buff uptime redesign (2026-07-11) =====
-# The old `/report/tables/buffs/{code}?sourceclass=X&hostility=0` call was found to
-# merge every player of that class in the fight into one flat list - not scoped to
-# this character at all (confirmed on real data: a single file showed Moonkin Form +
-# Dire Bear Form + Tree of Life simultaneously, three different specs' forms,
-# impossible for one character). Replaced with two independently-validated pieces:
-#
-# 1. FLASK/ELIXIR + FOOD: these last ~1-2 hours, far longer than any single fight, so
-#    "was it active when this pull started" is a reliable stand-in for "active the
-#    whole fight." Pulled from the `combatantinfo` snapshot event (the one confirmed-
-#    working flat, no-`{view}`-segment form of /report/events/) - its `auras` list
-#    includes whatever buffs were already active at that moment, which covers
-#    consumables drunk/eaten before the pull even started (something no apply/remove
-#    event reconstruction could ever see, since the log has no record of anything
-#    before it starts recording).
-#
-# 2. TREE OF LIFE: unlike flask/food, this visibly toggles mid-raid (confirmed on
-#    real data: Danceswtrees dropped out of it during a kill to combo Nature's
-#    Swiftness + Healing Touch), so a pull-start snapshot isn't enough - this one
-#    needs real interval reconstruction from apply/remove events, pulled ONCE per
-#    report (not per fight - cheaper, and the events naturally span fight boundaries
-#    anyway) via /report/events/buffs/ with sourceid=, then intersected with each
-#    fight's own time window. Two real findings shaped this:
-#    - Tree of Life logs under TWO guids (33891, 34123) that always show 33891
-#      paired with 34123, but 34123 ALSO fires constantly on its own in patterns that
-#      don't match manual form-toggling (rapid apply/remove/refresh cycles within a
-#      single fight). Only 33891 is used - empirically the trustworthy signal,
-#      34123's exact meaning is unverified and it's excluded rather than guessed at.
-#    - Real data has orphan `removebuff` events (no matching prior `applybuff`) more
-#      than once in a report, not just at the very start. Only the FIRST event in the
-#      whole report can be safely read as "was already active since report start" -
-#      treating every later orphan the same way produced an impossible >100% uptime
-#      when first tested. Later orphans are treated as a no-op instead.
-
+# ===== Buff uptime redesign (unchanged rationale from v1 - see WORKFLOW.md) =====
+# v2 equivalent of /report/events/buffs/{code}?sourceid=: same events() field,
+# dataType: Buffs, scoped by startTime/endTime only (no fightIDs) - confirmed live
+# this returns the full report-wide buff history (3504 total events, 55 of them
+# Tree of Life guid 33891 for a real report - matches the v1 pull's own count
+# exactly). Wrapped in the paginated helper for safety on longer raid nights, even
+# though a single page covered every real case tested so far.
 $treeOfLifeGuid = 33891
 $treeOfLifeIntervals = @()
 
 function Get-TreeOfLifeIntervals {
     Write-Host "  Fetching report-wide Tree of Life buff events (guid $treeOfLifeGuid)..."
     $reportEndOffset = $fightsData.end - $fightsData.start
-    $url = "$baseUrl/report/events/buffs/$ReportCode`?start=0&end=$reportEndOffset&sourceid=$CharacterID&api_key=$apiKey"
-    try {
-        $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
-        $data = $resp.Content | ConvertFrom-Json
-    } catch {
-        Write-Host "  FAILED fetching report-wide buffs events - $_"
+    # .GetNewClosure() is required here: Invoke-WclGraphQLPaged invokes this
+    # scriptblock via `& $QueryBuilder` from ITS OWN function scope (inside the
+    # imported module) - PowerShell's dynamic scoping means a scriptblock invoked
+    # from a different function's scope can't see the DEFINING function's own
+    # local variables ($reportEndOffset here) unless they're bound at creation
+    # time. $ReportCode/$CharacterID happen to be script-scope (visible from
+    # anywhere), but $reportEndOffset is local to this function - without
+    # GetNewClosure() it silently resolves to $null, producing a malformed query
+    # that returns zero events with no visible error (confirmed the hard way).
+    $queryBuilder = {
+        param($startTime)
+        "query { reportData { report(code: `"$ReportCode`") { events(sourceID: $CharacterID, dataType: Buffs, startTime: $startTime, endTime: $reportEndOffset) { data nextPageTimestamp } } } }"
+    }.GetNewClosure()
+    $extractPage = {
+        param($data)
+        [PSCustomObject]@{
+            Items = @($data.reportData.report.events.data)
+            NextPageTimestamp = $data.reportData.report.events.nextPageTimestamp
+        }
+    }
+    $paged = Invoke-WclGraphQLPaged -QueryBuilder $queryBuilder -ExtractPage $extractPage -AccessToken $token
+    if ($paged.Errors) {
+        Write-Host "  FAILED fetching report-wide buffs events - $($paged.Errors | ConvertTo-Json -Compress)"
         return @()
     }
 
-    $tolEvents = @($data.events | Where-Object { $_.ability.guid -eq $treeOfLifeGuid } | Sort-Object timestamp)
+    $tolEvents = @($paged.Items | Where-Object { $_.abilityGameID -eq $treeOfLifeGuid } | Sort-Object timestamp)
 
     $intervals = New-Object System.Collections.Generic.List[object]
     $active = $false
@@ -453,9 +321,7 @@ function Get-TreeOfLifeIntervals {
             } elseif ($isFirstEvent) {
                 $intervals.Add([PSCustomObject]@{ Start = 0; End = $ev.timestamp })
             }
-            # else: later orphan remove - ignore, no reliable interpretation (see note above)
         }
-        # refreshbuff: no-op, buff remains continuously active through a refresh
         $isFirstEvent = $false
     }
     if ($active) {
@@ -478,68 +344,6 @@ function Get-TreeOfLifeUptimePct {
     if ($duration -le 0) { return 0 }
     return [math]::Round(($overlap / $duration) * 100, 1)
 }
-
-# Pulls the pull-start combatant snapshot for one fight - ONE real API call that is
-# the shared source for BOTH the consumables output (flask/food/Tree of Life, via
-# .auras) AND the gear-audit output (via .gear), added 2026-07-12 once the raid
-# overview's gear audit was found to still be resting on a single one-off snapshot
-# (Hydross only) instead of a real per-kill pull like every other section. Splitting
-# consumables/gear into two separately-guarded output files downstream (see the Step 4
-# loop below) means: a fresh pull fetches this once and writes both files; a re-run
-# against an already-pulled report where only gear.json is missing still needs to
-# re-fetch (this snapshot isn't itself cached to disk), but only backfills the one
-# missing file rather than re-deriving consumables.json's already-correct data.
-# Returns $null on total failure (no snapshot found at all) - not "no consumables"/"no
-# gear", both of which are legitimate real results the caller distinguishes itself.
-function Get-CombatantInfoSnapshot {
-    param($StartTime, $EndTime, $FightLabel)
-    # combatantinfo can fire BEFORE a fight's official start_time - confirmed on real
-    # data: Kael'thas (fight 81, start_time=12858991) had zero combatantinfo events
-    # inside its own window, but a real snapshot for this exact character existed at
-    # timestamp=12825402, 33.6s earlier - likely logged when the raid engaged trash/
-    # positioned near the encounter, before WCL's recorded pull began. Querying only
-    # the fight's own [start,end] window missed it entirely. Search backward with a
-    # generous buffer instead of assuming the snapshot falls inside the fight window.
-    $bufferMs = 120000   # 2 minutes - comfortably covers the observed 33.6s real gap
-    $queryStart = [Math]::Max(0, $StartTime - $bufferMs)
-    $url = "$baseUrl/report/events/$ReportCode`?start=$queryStart&end=$EndTime&filter=type%3D%22combatantinfo%22&api_key=$apiKey"
-    try {
-        $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
-        $data = $resp.Content | ConvertFrom-Json
-    } catch {
-        Write-Host "  $FightLabel - combatantinfo request FAILED (network/API error) - $_"
-        return $null
-    }
-    $candidates = @($data.events | Where-Object { $_.sourceID -eq $CharacterID })
-    if ($candidates.Count -eq 0) {
-        Write-Host "  $FightLabel - combatantinfo request OK but found $($data.events.Count) total entries, NONE for sourceID=$CharacterID even with a $($bufferMs/1000)s backward buffer"
-        return $null
-    }
-
-    # Pick whichever candidate is CLOSEST to the fight's actual start (before or
-    # after), not just "the latest one before start" - sub-second timing noise (a
-    # snapshot logged a few ms after start_time due to event-ordering, not a real
-    # data gap) shouldn't be treated the same as a snapshot that's genuinely late.
-    # Only warn when the closest candidate is more than 2s after start; anything
-    # closer (before OR slightly after) is treated as a normal, expected match.
-    $closest = $candidates | Sort-Object { [Math]::Abs($_.timestamp - $StartTime) } | Select-Object -First 1
-    $gapMs = $closest.timestamp - $StartTime
-    if ($gapMs -gt 2000) {
-        $gapS = [math]::Round($gapMs / 1000, 1)
-        Write-Host "  $FightLabel - WARNING: closest combatantinfo snapshot is ${gapS}s AFTER fight start - no earlier snapshot found even with the backward buffer (consumable/gear status may not reflect the true pull-start state)"
-    } elseif ($gapMs -lt -1000) {
-        $gapS = [math]::Round((-$gapMs) / 1000, 1)
-        Write-Host "  $FightLabel - combatantinfo snapshot found ${gapS}s before official fight start (using it - this is expected, see script header)"
-    }
-    # else: within +/-1s of fight start - close enough to be unremarkable, no log line
-    if (-not $closest.auras -and -not $closest.gear) {
-        Write-Host "  $FightLabel - combatantinfo entry found for sourceID=$CharacterID but it has neither auras nor gear fields"
-        return $null
-    }
-    return $closest
-}
-
-
 
 # ===== STEP 4: Pull healing/casts events, consumables snapshot, deaths per boss kill =====
 Write-Host "=== Step 2: Fight data per boss kill (healing events, casts events, consumables, deaths) ==="
@@ -564,19 +368,18 @@ if ($CharacterID -and (-not $bossFights -or $bossFights.Count -eq 0)) {
 $totalDone = 0
 $totalFailed = 0
 
-# Self-contained per-boss-kill worker, runs in an isolated runspace with NO access to
-# the outer script's functions/variables - everything it needs (report code, API key,
-# the character's report-local ID, the actor-name lookup, the already-reconstructed
-# Tree of Life intervals) is passed in as an argument, same pattern as
-# pull_top100_druid.ps1's $workerScript. Local re-implementations of
-# Get-CharacterEvents/Get-CombatantInfoSnapshot/Get-TreeOfLifeUptimePct below are
-# functionally identical to the script-scope versions above (kept for Step 5's use
-# and as the readable reference copy) - see those for the full rationale comments.
+# Self-contained per-boss-kill worker (same isolated-runspace pattern as v1 -
+# everything it needs is passed in as an argument, since a RunspacePool worker
+# does NOT inherit the parent session's Import-Module - the module is
+# re-imported by absolute path as the very first thing this scriptblock does).
 $workerScript = {
     param(
-        $fightID, $bossSlug, $startTime, $endTime, $baseUrl, $apiKey, $reportCode,
-        $characterID, $characterName, $actorNames, $treeOfLifeIntervals, $outDir
+        $fightID, $bossSlug, $startTime, $endTime, $reportCode,
+        $characterID, $characterName, $actorNames, $treeOfLifeIntervals, $outDir,
+        $accessToken, $moduleAbsolutePath, $abilityNameCacheShared
     )
+
+    Import-Module $moduleAbsolutePath -Force
 
     $fightIDPadded = "{0:D2}" -f $fightID
     $label = "fight$($fightIDPadded)_$($bossSlug)"
@@ -593,32 +396,84 @@ $workerScript = {
         return "Unknown_$key"
     }
 
+    # Local ability-name cache, NOT shared across worker threads (each runspace is
+    # isolated) - some redundant gameData.ability lookups across workers for
+    # spells common to every boss (e.g. Lifebloom) are expected and cheap (a
+    # handful of extra tiny queries per full character pull), traded for not
+    # needing cross-thread-safe shared state for something this low-cost.
+    $localAbilityCache = @{}
+    function Resolve-AbilityNameLocal($guid) {
+        $key = [int]$guid
+        if ($localAbilityCache.ContainsKey($key)) { return $localAbilityCache[$key] }
+        $q = "query { gameData { ability(id: $key) { name icon } } }"
+        $r = Invoke-WclGraphQL -Query $q -AccessToken $accessToken
+        $entry = [PSCustomObject]@{ Name = $null; Icon = $null }
+        if (-not $r.Errors -and $r.Data.gameData.ability) {
+            $entry.Name = $r.Data.gameData.ability.name
+            $entry.Icon = $r.Data.gameData.ability.icon
+        }
+        $localAbilityCache[$key] = $entry
+        return $entry
+    }
+
+    # Fetches one events view (healing or casts) for this character for one fight,
+    # reshaping each v2 event back into v1's shape (ability{guid,name,abilityIcon}
+    # instead of a flat abilityGameID) before saving, so build_boss_report_data.ps1
+    # needs zero changes to read these files.
     function Get-EventsLocal {
-        param($View, $OutFile)
+        param($DataType, $OutFile)
         if (Test-Path $OutFile) { return $true }
-        $url = "$baseUrl/report/events/$View/$reportCode`?start=$startTime&end=$endTime&sourceid=$characterID&api_key=$apiKey"
-        try {
-            $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
-            $data = $resp.Content | ConvertFrom-Json
-        } catch {
-            $result.Messages.Add("  $label - FAILED ($View events): $_")
+
+        # .GetNewClosure() required - see the identical note above
+        # Get-TreeOfLifeIntervals's queryBuilder. Without it, $reportCode/
+        # $fightID/$DataType/$endTime (all local to Get-EventsLocal/the worker
+        # scriptblock, not script-scope) resolve to $null when this block is
+        # invoked from inside Invoke-WclGraphQLPaged's own function scope -
+        # confirmed live: every fight's healing/casts events came back as 0
+        # with no error before this fix was applied.
+        $queryBuilder = {
+            param($pageStartTime)
+            "query { reportData { report(code: `"$reportCode`") { events(fightIDs: [$fightID], sourceID: $characterID, dataType: $DataType, includeResources: true, startTime: $pageStartTime, endTime: $endTime) { data nextPageTimestamp } } } }"
+        }.GetNewClosure()
+        $extractPage = {
+            param($data)
+            [PSCustomObject]@{
+                Items = @($data.reportData.report.events.data)
+                NextPageTimestamp = $data.reportData.report.events.nextPageTimestamp
+            }
+        }
+        $paged = Invoke-WclGraphQLPaged -QueryBuilder $queryBuilder -ExtractPage $extractPage -AccessToken $accessToken -InitialStartTime $startTime
+        if ($paged.Errors) {
+            $result.Messages.Add("  $label - FAILED ($DataType events): $($paged.Errors | ConvertTo-Json -Compress)")
             return $false
         }
-        $events = @($data.events)
+
+        # $paged.Items is already a plain array (see WclV2Api.psm1's .ToArray()
+        # note) - safe to wrap with @() here since it's no longer a List[object].
+        $events = @($paged.Items)
         foreach ($ev in $events) {
             $srcName = Resolve-ActorNameLocal $ev.sourceID
             $tgtName = if ($ev.targetID -ne $null) { Resolve-ActorNameLocal $ev.targetID } else { $srcName }
+            $abilityInfo = Resolve-AbilityNameLocal $ev.abilityGameID
             $ev | Add-Member -NotePropertyName "sourceName" -NotePropertyValue $srcName -Force
             $ev | Add-Member -NotePropertyName "targetName" -NotePropertyValue $tgtName -Force
+            $ev | Add-Member -NotePropertyName "ability" -NotePropertyValue ([PSCustomObject]@{
+                name        = $abilityInfo.Name
+                guid        = $ev.abilityGameID
+                abilityIcon = $abilityInfo.Icon
+            }) -Force
         }
+
         $totalAmount = ($events | Measure-Object -Property amount -Sum -ErrorAction SilentlyContinue).Sum
         if ($null -eq $totalAmount) { $totalAmount = 0 }
         $totalOverheal = ($events | Measure-Object -Property overheal -Sum -ErrorAction SilentlyContinue).Sum
         if ($null -eq $totalOverheal) { $totalOverheal = 0 }
+
+        $viewName = $DataType.ToLower()
         $out = [PSCustomObject]@{
             sourceID      = $characterID
             sourceName    = $characterName
-            view          = $View
+            view          = $viewName
             eventCount    = $events.Count
             totalAmount   = $totalAmount
             totalOverheal = $totalOverheal
@@ -626,28 +481,30 @@ $workerScript = {
         }
         $jsonText = $out | ConvertTo-Json -Depth 15
         [System.IO.File]::WriteAllText($OutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
-        if ($events.Count -ge 2900) {
-            $result.Messages.Add("  $label - $View events: $($events.Count) (HIGH - verify this wasn't silently capped, see script header)")
+        if ($paged.PageCount -gt 1) {
+            $result.Messages.Add("  $label - $viewName events: $($events.Count) across $($paged.PageCount) pages, total=$totalAmount, overheal=$totalOverheal")
         } else {
-            $result.Messages.Add("  $label - $View events: $($events.Count), total=$totalAmount, overheal=$totalOverheal")
+            $result.Messages.Add("  $label - $viewName events: $($events.Count), total=$totalAmount, overheal=$totalOverheal")
         }
         return $true
     }
 
+    # combatantinfo snapshot - v2 equivalent of the filter=type%3D%22combatantinfo%22
+    # events() call, dataType: CombatantInfo. Same 120s backward-buffer search as
+    # v1 (combatantinfo can fire before a fight's official start_time).
     function Get-CombatantInfoSnapshotLocal {
         $bufferMs = 120000
         $queryStart = [Math]::Max(0, $startTime - $bufferMs)
-        $url = "$baseUrl/report/events/$reportCode`?start=$queryStart&end=$endTime&filter=type%3D%22combatantinfo%22&api_key=$apiKey"
-        try {
-            $resp = Invoke-WebRequest -Uri $url -UseBasicParsing -ErrorAction Stop
-            $data = $resp.Content | ConvertFrom-Json
-        } catch {
-            $result.Messages.Add("  $label - combatantinfo request FAILED (network/API error) - $_")
+        $q = "query { reportData { report(code: `"$reportCode`") { events(dataType: CombatantInfo, startTime: $queryStart, endTime: $endTime) { data } } } }"
+        $r = Invoke-WclGraphQL -Query $q -AccessToken $accessToken
+        if ($r.Errors) {
+            $result.Messages.Add("  $label - combatantinfo request FAILED (network/API error) - $($r.Errors | ConvertTo-Json -Compress)")
             return $null
         }
-        $candidates = @($data.events | Where-Object { $_.sourceID -eq $characterID })
+        $allEvents = @($r.Data.reportData.report.events.data)
+        $candidates = @($allEvents | Where-Object { $_.sourceID -eq $characterID })
         if ($candidates.Count -eq 0) {
-            $result.Messages.Add("  $label - combatantinfo request OK but found $($data.events.Count) total entries, NONE for sourceID=$characterID even with a $($bufferMs/1000)s backward buffer")
+            $result.Messages.Add("  $label - combatantinfo request OK but found $($allEvents.Count) total entries, NONE for sourceID=$characterID even with a $($bufferMs/1000)s backward buffer")
             return $null
         }
         $closest = $candidates | Sort-Object { [Math]::Abs($_.timestamp - $startTime) } | Select-Object -First 1
@@ -681,18 +538,12 @@ $workerScript = {
 
     $fightOk = $true
 
-    # --- healing events (replaces the truncated healing TABLE) ---
     $healingOutFile = Join-Path $outDir "$($label)_healing_events.json"
-    if (-not (Get-EventsLocal -View "healing" -OutFile $healingOutFile)) { $fightOk = $false }
+    if (-not (Get-EventsLocal -DataType "Healing" -OutFile $healingOutFile)) { $fightOk = $false }
 
-    # --- casts events (replaces the truncated casts TABLE, now with real targets) ---
     $castsOutFile = Join-Path $outDir "$($label)_casts_events.json"
-    if (-not (Get-EventsLocal -View "casts" -OutFile $castsOutFile)) { $fightOk = $false }
+    if (-not (Get-EventsLocal -DataType "Casts" -OutFile $castsOutFile)) { $fightOk = $false }
 
-    # --- consumables (flask/food snapshot + Tree of Life uptime, replaces the broken
-    #     buffs table) AND gear (real combatantinfo .gear[]) - share one API call.
-    #     Each output file is independently guarded so a re-run against an
-    #     already-pulled report backfills whichever one is missing. ---
     $consumablesOutFile = Join-Path $outDir "$($label)_consumables.json"
     $gearOutFile = Join-Path $outDir "$($label)_gear.json"
     $needsConsumables = -not (Test-Path $consumablesOutFile)
@@ -741,19 +592,18 @@ $workerScript = {
         }
     }
 
-    # --- active time - real activeTime/activeTimeReduced fields from the healing
-    # TABLE, NOT a reconstruction - see the script-scope version above for the full
-    # validation writeup on why the table's truncated abilities[] array doesn't taint
-    # these top-level scalar fields. No sourceclass filter here since this is already
-    # scoped to one known character - matched by real player name in the unfiltered
-    # response. ---
+    # active time - v2 table(dataType: Healing) - confirmed byte-identical field
+    # names/values (activeTime, activeTimeReduced, total, overheal, itemLevel) to
+    # v1's /report/tables/healing/ for the same real fight.
     $activeTimeOutFile = Join-Path $outDir "$($label)_activetime.json"
     if (-not (Test-Path $activeTimeOutFile)) {
-        $atUrl = "$baseUrl/report/tables/healing/$reportCode`?start=$startTime&end=$endTime&api_key=$apiKey"
-        try {
-            $atResp = Invoke-WebRequest -Uri $atUrl -UseBasicParsing -ErrorAction Stop
-            $atData = $atResp.Content | ConvertFrom-Json
-            $atEntry = $atData.entries | Where-Object { $_.name -eq $characterName } | Select-Object -First 1
+        $atQuery = "query { reportData { report(code: `"$reportCode`") { table(fightIDs: [$fightID], dataType: Healing, startTime: $startTime, endTime: $endTime) } } }"
+        $atResult = Invoke-WclGraphQL -Query $atQuery -AccessToken $accessToken
+        if ($atResult.Errors) {
+            $result.Messages.Add("  $($label)_activetime.json - FAILED: $($atResult.Errors | ConvertTo-Json -Compress)")
+            $fightOk = $false
+        } else {
+            $atEntry = $atResult.Data.reportData.report.table.data.entries | Where-Object { $_.name -eq $characterName } | Select-Object -First 1
             if (-not $atEntry) {
                 $result.Messages.Add("  $($label)_activetime.json - FAILED (no matching entry in healing table response)")
                 $fightOk = $false
@@ -771,22 +621,23 @@ $workerScript = {
                 [System.IO.File]::WriteAllText($activeTimeOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
                 $result.Messages.Add("  $($label)_activetime.json - OK (activeTime=$activeTimePct%)")
             }
-        } catch {
-            $result.Messages.Add("  $($label)_activetime.json - FAILED: $_")
-            $fightOk = $false
         }
     }
 
-    # --- deaths (table view, fight-wide, not class-scoped - unchanged) ---
+    # deaths - v2 table(dataType: Deaths) - confirmed byte-identical entry shape
+    # to v1's /report/tables/deaths/ (name,id,guid,type,timestamp,damage{},
+    # healing{},deathWindow,overkill,events[],killingBlow) - saved as
+    # .data straight from the response, no reshaping needed at all.
     $deathsOutFile = Join-Path $outDir "$($label)_deaths.json"
     if (-not (Test-Path $deathsOutFile)) {
-        $deathsUrl = "$baseUrl/report/tables/deaths/$reportCode`?start=$startTime&end=$endTime&api_key=$apiKey"
-        try {
-            Invoke-WebRequest -Uri $deathsUrl -OutFile $deathsOutFile -UseBasicParsing
+        $deathsQuery = "query { reportData { report(code: `"$reportCode`") { table(fightIDs: [$fightID], dataType: Deaths, startTime: $startTime, endTime: $endTime) } } }"
+        $deathsResult = Invoke-WclGraphQL -Query $deathsQuery -AccessToken $accessToken
+        if ($deathsResult.Errors) {
+            $result.Messages.Add("  $($label)_deaths.json - FAILED: $($deathsResult.Errors | ConvertTo-Json -Compress)")
+        } else {
+            $jsonText = $deathsResult.Data.reportData.report.table.data | ConvertTo-Json -Depth 12
+            [System.IO.File]::WriteAllText($deathsOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
             $result.Messages.Add("  $($label)_deaths.json - OK")
-        } catch {
-            $result.Messages.Add("  $($label)_deaths.json - FAILED: $_")
-            # not counted against $fightOk - deaths isn't a per-healer data point
         }
     }
 
@@ -795,6 +646,7 @@ $workerScript = {
 }
 
 if ($bossFights -and $bossFights.Count -gt 0) {
+    $moduleAbsolutePath = Join-Path $PSScriptRoot "lib\WclV2Api.psm1"
     Write-Host "  fetching $($bossFights.Count) boss kill(s) ($MaxThreads threads)..."
     $pool = [runspacefactory]::CreateRunspacePool(1, $MaxThreads)
     $pool.Open()
@@ -809,14 +661,15 @@ if ($bossFights -and $bossFights.Count -gt 0) {
             AddArgument($slug).
             AddArgument($fight.start_time).
             AddArgument($fight.end_time).
-            AddArgument($baseUrl).
-            AddArgument($apiKey).
             AddArgument($ReportCode).
             AddArgument($CharacterID).
             AddArgument($CharacterName).
             AddArgument($actorNames).
             AddArgument($treeOfLifeIntervals).
-            AddArgument($outDir)
+            AddArgument($outDir).
+            AddArgument($token).
+            AddArgument($moduleAbsolutePath).
+            AddArgument($null)
         $handle = $ps.BeginInvoke()
         $jobs.Add([PSCustomObject]@{ Pipe = $ps; Handle = $handle })
     }
@@ -839,21 +692,32 @@ if ($bossFights -and $bossFights.Count -gt 0) {
 }
 Write-Host ""
 
-# ===== STEP 5: Pull the character's full parse history (real per-fight percentiles) =====
-Write-Host "=== Step 3: Full parse history for $CharacterName ==="
-$safeCharName = ($CharacterName.ToLower() -replace '[\\/:*?"<>|]', '_')
-$parsesOutFile = Join-Path $outDir "$($safeCharName)_all_parses.json"
+# ===== STEP 5: Pull real per-fight rankings (REPLACES the old all_parses.json step) =====
+# Old v1 approach pulled the character's ENTIRE parse history and fuzzy-matched by
+# reportID+fightID - confirmed buggy/incomplete (only ~7 entries per encounter
+# total, missing 8 of 9 kills in a real report even on a fresh re-pull with a
+# stable connection). v2's report-scoped rankings(fightIDs:[...]) is exact by
+# construction: every fight ID requested either has a healer entry in the
+# response or it doesn't, no fuzzy matching against a separately-fetched blob at
+# all. One call for the whole report, not one per boss kill.
+Write-Host "=== Step 3: Real per-fight rankings for $CharacterName ==="
+$rankingsOutFile = Join-Path $outDir "$($ReportCode)_v2_rankings.json"
 
-if (Test-Path $parsesOutFile) {
-    Write-Host "  $($safeCharName)_all_parses.json - already have it, skipping"
+if (Test-Path $rankingsOutFile) {
+    Write-Host "  $($ReportCode)_v2_rankings.json - already have it, skipping"
+} elseif (-not $bossFights -or $bossFights.Count -eq 0) {
+    Write-Host "  No boss kills to look up rankings for - skipping."
 } else {
-    $parsesUrl = "$baseUrl/parses/character/$CharacterName/$Server/$Region`?zone=1056&metric=hps&api_key=$apiKey"
-    try {
-        Invoke-WebRequest -Uri $parsesUrl -OutFile $parsesOutFile -UseBasicParsing
-        Write-Host "  $($safeCharName)_all_parses.json - OK"
-    } catch {
-        Write-Host "  $($safeCharName)_all_parses.json - FAILED: $_"
+    $fightIDList = ($bossFights | ForEach-Object { $_.id }) -join ','
+    $rankingsQuery = "query { reportData { report(code: `"$ReportCode`") { rankings(fightIDs: [$fightIDList], playerMetric: hps) } } }"
+    $rankingsResult = Invoke-WclGraphQL -Query $rankingsQuery -AccessToken $token
+    if ($rankingsResult.Errors) {
+        Write-Host "  $($ReportCode)_v2_rankings.json - FAILED: $($rankingsResult.Errors | ConvertTo-Json -Compress)"
         $totalFailed++
+    } else {
+        $jsonText = $rankingsResult.Data.reportData.report.rankings | ConvertTo-Json -Depth 20
+        [System.IO.File]::WriteAllText($rankingsOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
+        Write-Host "  $($ReportCode)_v2_rankings.json - OK ($($bossFights.Count) fight(s) looked up)"
     }
 }
 

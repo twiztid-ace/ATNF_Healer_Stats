@@ -7,17 +7,21 @@ using Warcraft Logs data. Read this first before starting any new healer analysi
  
 1. Get the character's name + a WCL report link for the raid night to analyze.
 2. Pull that report's fight list (confirms roster, class/spec, boss kill timestamps).
-3. Pull the healer's healing and casts data via `/report/events/{healing,casts}/`
-   scoped to that player's `sourceid`, plus the fight's `buffs` and `deaths` tables
-   (see "Why healing/casts moved to events, not tables" below for why this isn't the
-   `/report/tables/` view you'd reach for first). For Resto Druid this is fully
-   automated via `pull_character_TEMPLATE.ps1` — see that script's own header comment
-   for usage.
-4. Pull the healer's real WCL percentile for each fight (via parses/character) — also
-   handled by `pull_character_TEMPLATE.ps1`.
+3. Pull the healer's healing and casts data — complete per-event breakdowns, not
+   the truncated table view (see "Why healing/casts moved to events, not tables"
+   below), plus flask/food/Tree-of-Life and deaths. For Resto Druid this is fully
+   automated via `pull_character_TEMPLATE.ps1`, migrated to the **v2 GraphQL API**
+   2026-07-12 (see "v2 GraphQL API (Druid pipeline)" below) — see that script's
+   own header comment for usage. Other classes' manual/scripted pulls still use
+   v1 REST (`/report/events/{healing,casts}/` with `sourceid=`).
+4. Pull the healer's real WCL percentile for each fight — for Druid, a single
+   exact per-fight rankings call as part of step 3 above (v2); for other classes,
+   the v1 `parses/character` endpoint, which is fuzzy-matched and confirmed
+   structurally incomplete (see the v2 section's "why this migration happened").
 5. (Optional, for deeper analysis) Pull Top 100 benchmark data for the healer's
-   class/spec on each boss via `pull_top100_druid.ps1` (or `pull_top100_TEMPLATE.ps1`
-   for other classes), then run `summarize_class_benchmarks.ps1` to condense it into
+   class/spec on each boss via `pull_top100_druid.ps1` (v2 GraphQL, migrated
+   2026-07-12) or `pull_top100_TEMPLATE.ps1`/other classes' scripts (still v1
+   REST), then run `summarize_class_benchmarks.ps1` to condense it into
    four benchmark CSVs (see "Data delivery convention" below) — this is what actually
    gets referenced for spell composition, target distribution, and (Druid only, as of
    2026-07-11) cooldown/consumable and self-buff comparisons, not the raw files. For
@@ -27,6 +31,18 @@ using Warcraft Logs data. Read this first before starting any new healer analysi
 6. Build the site pages (see "Site structure" below) using real data only — never
    fabricate or estimate numbers we haven't actually pulled.
 ## API basics
+
+**Two API versions coexist now — don't conflate them.** This section (and "Key
+endpoints", and the manual curl walkthrough further down) documents the **v1 REST
+API**, still the live mechanics for `pull_top100_paladin.ps1`/
+`pull_top100_priest_holy.ps1`/`pull_top100_shaman.ps1` and their manual-pull
+fallback. `pull_character_TEMPLATE.ps1` and `pull_top100_druid.ps1` were migrated
+to the **v2 GraphQL API** on 2026-07-12 — see "v2 GraphQL API (Druid pipeline)"
+right after "Key endpoints" below for that API's own auth model, endpoint
+mapping, and the real bugs its migration surfaced. The v1 content below remains
+accurate for the three classes still on it, and the underlying data
+model/methodology lessons (guid-based grouping, no letter grades, gear audit
+design, etc.) apply identically regardless of which API version pulled the data.
  
 - **Base URL**: `https://fresh.warcraftlogs.com/v1`
 - **Auth**: query param `api_key=...` (read from `apikey.txt` at repo root — never
@@ -52,6 +68,81 @@ using Warcraft Logs data. Read this first before starting any new healer analysi
  
 Use `parses/character` (not `rankings/character`) when you need the percentile for a
 *specific* fight rather than the character's all-time best on that boss.
+
+## v2 GraphQL API (Druid pipeline only, migrated 2026-07-12)
+
+**Why this migration happened.** `parses/character` above (v1's "get every parse"
+endpoint) turned out to be structurally incomplete — real-tested against
+Danceswtrees's report `Fm9XdWYtz8VCLnwg`, it returned a match for only 1 of 9 real
+boss kills, even after deleting the cached file and re-pulling fresh (ruling out a
+stale-cache or bad-connection explanation). `rankings/character` (the "best parse
+only" endpoint) can't help either — by design it only has one entry per
+character+encounter. Neither v1 endpoint can answer "what was this exact
+report+fight's percentile," which turns out to be exactly what WCL's own site
+uses internally to show a percentile on the Healing tab of a specific pull.
+v2's `reportData.report(code).rankings(fightIDs:[...], playerMetric: hps)`
+answers that directly and exactly — confirmed live, matched Danceswtrees's own
+computed HPS on all 9 real kills.
+
+**Scope: only `pull_character_TEMPLATE.ps1` and `pull_top100_druid.ps1`.** Both
+were fully migrated and passed real equivalence testing (byte-for-byte matching
+field values against known-good v1 output) before taking over their production
+filenames — the old v1 versions are preserved as `pull_character_TEMPLATE_v1.ps1`
+/ `pull_top100_druid_v1.ps1` for reference/rollback, untouched otherwise.
+Paladin/Priest/Shaman remain on v1 REST — migrating their auth/endpoints to v2 is
+a separate future decision, deliberately not bundled with their still-open
+events-based methodology modernization (see gotcha #25) so the two don't get
+conflated.
+
+**Auth**: OAuth2 client-credentials grant, not a query-string API key.
+- Register a client at `https://www.warcraftlogs.com/api/clients/` (Name: anything;
+  Redirect URL: a placeholder like `http://localhost` — required by the form, unused
+  by this grant type).
+- Token endpoint: `https://www.warcraftlogs.com/oauth/token`,
+  `curl -u {client_id}:{client_secret} -d grant_type=client_credentials ...`.
+- GraphQL endpoint: `https://www.warcraftlogs.com/api/v2/client`,
+  `Authorization: Bearer <token>` header.
+- Three files at repo root, gitignored like `apikey.txt`: `v2_client_id.txt`,
+  `v2_client_secret.txt`, `v2_access_token.txt` (the last one auto-created/
+  refreshed — real tokens observed to last ~360 days).
+- All of this is wrapped in **`scripts\lib\WclV2Api.psm1`** — `Get-WclAccessToken`,
+  `Invoke-WclGraphQL`, `Invoke-WclGraphQLPaged`. Any new v2 script should
+  `Import-Module` this rather than reimplementing auth/query plumbing.
+
+**Confirmed v1 → v2 endpoint mapping** (every row tested live against real data,
+not assumed from docs):
+
+| v1 REST | v2 GraphQL | Real difference to know about |
+|---|---|---|
+| `/report/fights/{code}` | `reportData.report(code).fights(...)` + `masterData.actors(...)` | v2's unified `actors[]` replaces v1's friendlies/enemies/friendlyPets/enemyPets 4-way split — confirmed nothing downstream ever needed that split |
+| `/report/events/{healing,casts}/{code}?sourceid=` | `events(fightIDs, sourceID, dataType: Healing\|Casts, includeResources: true)` | **Now genuinely paginated** (`{data, nextPageTimestamp}`) — v1's completeness was an unverified assumption (see gotcha #15's own header); event shape is leaner by default (`abilityGameID` flat int instead of `ability{name,guid,type,abilityIcon}`) — ability name reconstructed via `gameData.ability(id)`, cached per unique guid |
+| `/report/events/buffs/{code}?sourceid=` | `events(dataType: Buffs, ...)` | same |
+| `combatantinfo` filter | `events(dataType: CombatantInfo, ...)` | same |
+| `/report/tables/healing/{code}` (activeTime only) | `table(dataType: Healing, ...)` | confirmed byte-identical field values |
+| `/report/tables/deaths/{code}` | `table(dataType: Deaths, ...)` | confirmed byte-identical entry shape, no reshaping needed |
+| `/rankings/encounter/{id}?metric=hps&spec=&class=` | `worldData.encounter(id).characterRankings(className, specName, metric, page)` | page 1 = same 100 entries, still rank-ordered by array position (v2 entries don't carry a populated per-entry `rank` field either) — but `report.code`/`report.fightID`/`amount` are NESTED, replacing v1's flat `reportID`/`fightID`/`total` — **must be reshaped back to v1's flat names before ever touching disk**, see gotcha #28 |
+| `/parses/character/...` (the broken one) | `reportData.report(code).rankings(fightIDs:[...], playerMetric: hps)`, called once per report | replaces the whole endpoint — exact by construction, no fuzzy matching |
+
+**Output file shapes are unchanged from v1** — every migrated pull script
+reconstructs v1's exact field names before writing to disk, so
+`build_boss_report_data.ps1`/`summarize_class_benchmarks.ps1` needed no changes
+to their own logic, with two narrow, deliberate exceptions: (1)
+`build_boss_report_data.ps1`'s percentile lookup now reads a new
+`{reportCode}_v2_rankings.json` (exact per-fight match) instead of fuzzy-matching
+against `{name}_all_parses.json`; (2) `rankings_{boss}.json` gets explicitly
+reshaped before being written (see gotcha #28) since
+`summarize_class_benchmarks.ps1` reads that file directly.
+
+**Rate limits**: v1 was 800 calls/hour flat. v2 is 3600 **points**/hour
+(`rateLimitData{limitPerHour, pointsSpentThisHour, pointsResetIn}`), cost scales
+with query complexity rather than 1-call-1-unit — batching multiple fights into
+one query (e.g. all of one report's boss kills' rankings in a single call) is
+cheaper than a 1:1 REST-style translation, not just more convenient.
+
+Full migration rationale, the phased rollout, and the verification steps taken
+are recorded in the (approved, executed) migration plan —
+`C:\Users\raymo\.claude\plans\playful-baking-sunset.md` — if the reasoning behind
+a specific design choice here ever needs re-deriving.
 
 ### Why healing/casts moved to events, not tables (2026-07-11)
 
@@ -400,6 +491,14 @@ walkthrough below is kept as a reference for understanding what the script is do
 and as a fallback if the script doesn't fit a specific case (e.g. a character who
 needs to be resolved from a different report than the one being analyzed).
 
+**Note: the curl commands below document v1 REST mechanics.**
+`pull_character_TEMPLATE.ps1` itself was migrated to the v2 GraphQL API on
+2026-07-12 (see "v2 GraphQL API (Druid pipeline)" above) — its real, current
+mechanics are GraphQL queries via `WclV2Api.psm1`, not the v1 curl calls below.
+This walkthrough remains accurate as the conceptual data model (what gets
+pulled, in what shape, and why) and is still the literal mechanics for any
+manual pull or for a class whose script hasn't been migrated yet.
+
 This is the step-by-step recipe for step 1-4 of the pipeline above, generalized from
 how we did it for Danceswtrees, Crowns, and Vajomee. Replace `{REPORT_CODE}`,
 `{CHARACTER_NAME}`, `{SERVER}`, `{REGION}`, and the boss time ranges with the real
@@ -513,7 +612,10 @@ The raw Top 100 dataset (rankings + 1000 fight files per class) is also too larg
 too granular to be useful there even if zip were supported — what the analysis actually
 needs is the *derived* benchmark numbers, not the raw files.
  
-Workflow (Druid, v2 — active/archived model, see "Active/archived data model" above):
+Workflow (Druid, v2 — active/archived model, see "Active/archived data model" above.
+NOTE: this "v2" refers to the manifest's `schemaVersion`/data-layout, a different
+"v2" from the v2 GraphQL API the script itself now calls — see "v2 GraphQL API
+(Druid pipeline)" above, they're unrelated version numbers that happen to coincide):
 1. Run `pull_top100_druid.ps1` from the repo root. Reads/writes
    `data\Classes\Druid\manifest.json` and `data\Classes\Druid\active\` directly - no
    date folder to pick, there's only ever one current active set. Safe to re-run
@@ -606,15 +708,24 @@ yet.
 
 ```
 {repo root}/
-  apikey.txt              <- gitignored, just the raw key on one line
-  .gitignore               <- must include "apikey.txt"
-  pull_top100_druid.ps1    <- Resto Druid, healing/casts via events (sourceid-scoped),
-                                buffs/deaths via tables alongside, active/archived +
-                                manifest.json model (see "Active/archived data model")
-  pull_top100_{class}.ps1  <- other classes, or use the generic TEMPLATE (healing table
-                                only for now — no casts/buffs/deaths/events rewrite, and
-                                no active/archived model, until extended per-class, same
-                                as the boss page template split, see Site structure)
+  apikey.txt              <- gitignored, just the raw key on one line (v1 REST auth,
+                                still used by the non-Druid pull_top100_* scripts)
+  v2_client_id.txt         <- gitignored, v2 GraphQL auth (Druid pipeline only) - see
+  v2_client_secret.txt        "v2 GraphQL API (Druid pipeline)" above for setup
+  v2_access_token.txt      <- gitignored, auto-created/refreshed by WclV2Api.psm1
+  .gitignore               <- must include all of the above
+  scripts\lib\WclV2Api.psm1 <- shared v2 GraphQL auth + query helpers, see "v2 GraphQL
+                                API (Druid pipeline)" above
+  pull_top100_druid.ps1    <- Resto Druid, v2 GraphQL (migrated 2026-07-12 - see "v2
+                                GraphQL API" above), healing/casts via paginated events,
+                                buffs/deaths via table(), active/archived +
+                                manifest.json model (see "Active/archived data model").
+                                Old v1 version preserved as pull_top100_druid_v1.ps1.
+  pull_top100_{class}.ps1  <- other classes, still v1 REST, or use the generic TEMPLATE
+                                (healing table only for now — no casts/buffs/deaths/
+                                events rewrite, and no active/archived model, until
+                                extended per-class, same as the boss page template
+                                split, see Site structure)
   data/
     Classes/
       Druid/                         <- active/archived + manifest.json, see
@@ -1034,6 +1145,68 @@ overview. Extensible — new raid nights get added as new dated entries.
     fail fast with an explicit error rather than silently doing the wrong thing -
     if a new class script is added, decide up front which convention it's on
     rather than assuming.
+26. **A PowerShell scriptblock stored in a variable and invoked via `&` from a
+    DIFFERENT function's scope cannot see the ORIGINAL function's local
+    variables — they silently resolve to `$null`, not an error.** Hit this
+    migrating `pull_character_TEMPLATE.ps1` to v2: `Invoke-WclGraphQLPaged` (in
+    `WclV2Api.psm1`) takes a `$QueryBuilder` scriptblock and invokes it via
+    `& $QueryBuilder $startTime` from its OWN function scope. The scriptblock was
+    defined inside `Get-EventsLocal`, referencing that function's own locals
+    (`$reportCode`, `$fightID`, `$DataType`, `$endTime`) — none of which are
+    visible from `Invoke-WclGraphQLPaged`'s scope, since PowerShell's dynamic
+    scoping only walks up through the SCRIPT/global scope, not a sibling
+    function's locals. Every one of these resolved to `$null`, producing a
+    syntactically-valid but semantically-empty GraphQL query
+    (`report(code: "")`, `fightIDs: []`, etc) that came back with ZERO events and
+    NO error anywhere in the chain — every fight's healing/casts events silently
+    returned 0 before this was traced. (A sibling scriptblock in the SAME bug
+    session, `Get-TreeOfLifeIntervals`'s own queryBuilder, worked by pure luck —
+    it only referenced script-scope variables like `$ReportCode`/`$CharacterID`,
+    which ARE visible from anywhere in the same script's call stack.) **Fix:
+    call `.GetNewClosure()` on any scriptblock passed to a helper that invokes it
+    via `&`/`.Invoke()`, if that scriptblock references anything other than
+    genuine script-scope variables** — this snapshots the referenced variables'
+    current values at creation time regardless of where it's later invoked from.
+27. **Windows PowerShell 5.1: wrapping a `System.Collections.Generic.List[object]`
+    of `PSCustomObject` elements in `@()` throws "Argument types do not match" —
+    as a NON-terminating error, not a crash.** Confirmed via an isolated repro:
+    `@($list)` on a 3-item `List[object]` of `[PSCustomObject]` threw that exact
+    error while `$list.Count` (checked immediately before) still correctly
+    reported 3. Because it's non-terminating and the affected runspace's
+    `$ErrorActionPreference` was the PowerShell default (`Continue`, not
+    `Stop`), the assignment silently completed anyway — with an EMPTY array,
+    not an exception that would have surfaced the problem. This is exactly how
+    gotcha #26 first presented before its real cause was isolated: `paged.Items`
+    (returned as a `List[object]` from `Invoke-WclGraphQLPaged`) reported
+    `.Count = 478` correctly, but `$events = @($paged.Items)` immediately after
+    produced `$events.Count = 0`, with nothing in between the two lines except
+    that one wrapping expression. **Fix: never wrap a `List[T]` with `@()` in
+    PS5.1 — call the list's own `.ToArray()` method instead**, a plain .NET
+    method that doesn't go through PowerShell's array-coercion machinery at all.
+    `Invoke-WclGraphQLPaged` now returns `.Items` as an already-`.ToArray()`'d
+    plain array specifically so callers never have to remember this themselves.
+    (Wrapping the RESULT of piping a `List[T]` through `Where-Object`/
+    `Sort-Object` etc. in `@()` is NOT affected — the pipeline already unrolls it
+    into individual objects before `@()` ever sees a `List[T]` directly; only a
+    bare, unpiped `@($someListVariable)` hits this.)
+28. **A file written by one script but read DIRECTLY (not just via a shared
+    manifest) by a different script has an implicit shape contract that's easy
+    to miss when migrating just the writer.** `pull_top100_druid.ps1`'s v2
+    migration initially saved `active\rankings_{boss}.json` with v2's own nested
+    shape (`rankings[].report.code`/`.report.fightID`/`.amount`) since that's
+    what the API naturally returns. This silently broke
+    `summarize_class_benchmarks.ps1`, which reads that file DIRECTLY (not just
+    the manifest) and matches each parse by flat `.reportID`/`.fightID`/`.name`,
+    plus reads `.duration` for HPS — confirmed via grep before assuming, and
+    confirmed live that skipping the reshape produces "no rankings entry
+    matched" for every single parse of every boss. Fixed by explicitly
+    reshaping each ranking entry back to v1's flat field names before the
+    `ConvertTo-Json`/`WriteAllText` call, never persisting v2's nested shape to
+    disk at all. General lesson: before migrating a script that WRITES a file,
+    grep the whole repo for every other script that READS that file's specific
+    filename, not just the ones that call the migrated script directly — a
+    shared manifest can hide the fact that a second consumer reads the raw
+    output file too.
 
 ## Copyright / IP note
  
