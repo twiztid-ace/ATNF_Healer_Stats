@@ -1,0 +1,596 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Subtlep",
+                        "id":  20,
+                        "guid":  72845632,
+                        "type":  "Paladin",
+                        "icon":  "Paladin-Protection",
+                        "timestamp":  6201360,
+                        "fight":  52,
+                        "damage":  {
+                                       "total":  22961,
+                                       "totalReduced":  20656,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  33356,
+                                       "blocked":  1740,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  18168,
+                                                             "totalReduced":  15863,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  3,
+                                                             "name":  "Falling",
+                                                             "total":  2568,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  34121,
+                                                             "name":  "Flame Buffet",
+                                                             "total":  2225,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Al\u0027ar",
+                                                           "total":  17988,
+                                                           "totalReduced":  15683,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  2568,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Ember of Al\u0027ar",
+                                                           "total":  2405,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  5624,
+                                        "totalReduced":  3319,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  379,
+                                                              "name":  "Earth Shield",
+                                                              "total":  2384,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_skinofearth.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25218,
+                                                              "name":  "Power Word: Shield",
+                                                              "total":  2305,
+                                                              "totalReduced":  0,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_powerwordshield.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25222,
+                                                              "name":  "Renew",
+                                                              "total":  935,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_renew.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  1,
+                                                                    "name":  "Melee",
+                                                                    "total":  4489,
+                                                                    "totalReduced":  2184,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  34121,
+                                                                    "name":  "Flame Buffet",
+                                                                    "total":  1135,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_fireball.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Kachicoh",
+                                                            "total":  3240,
+                                                            "totalReduced":  935,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Ocelot",
+                                                            "total":  2384,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  10078,
+                        "overkill":  0,
+                        "events":  [
+                                       {
+                                           "timestamp":  6201360,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Falling",
+                                                           "guid":  3,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  52,
+                                           "hitType":  1,
+                                           "amount":  2568,
+                                           "unmitigatedAmount":  2568,
+                                           "overkill":  0,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  6201358,
+                                           "type":  "damage",
+                                           "sourceID":  312,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  52,
+                                           "hitType":  4,
+                                           "amount":  2083,
+                                           "mitigated":  8836,
+                                           "unmitigatedAmount":  13224,
+                                           "blocked":  290,
+                                           "absorbed":  2305,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  6199282,
+                                           "type":  "damage",
+                                           "sourceID":  312,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  52,
+                                           "hitType":  15,
+                                           "amount":  6938,
+                                           "mitigated":  6136,
+                                           "unmitigatedAmount":  13074,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Falling",
+                                            "guid":  3,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Subtlep",
+                        "id":  20,
+                        "guid":  72845632,
+                        "type":  "Paladin",
+                        "icon":  "Paladin-Protection",
+                        "timestamp":  6228623,
+                        "fight":  52,
+                        "damage":  {
+                                       "total":  20601,
+                                       "totalReduced":  18296,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  17764,
+                                       "blocked":  290,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  10341,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  34133,
+                                                             "name":  "Ember Blast",
+                                                             "total":  7583,
+                                                             "totalReduced":  5278,
+                                                             "type":  4,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  34121,
+                                                             "name":  "Flame Buffet",
+                                                             "total":  1905,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  3,
+                                                             "name":  "Falling",
+                                                             "total":  772,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Al\u0027ar",
+                                                           "total":  12246,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Ember of Al\u0027ar",
+                                                           "total":  7583,
+                                                           "totalReduced":  5278,
+                                                           "type":  "NPC"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  772,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  7736,
+                                        "totalReduced":  5431,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25218,
+                                                              "name":  "Power Word: Shield",
+                                                              "total":  2305,
+                                                              "totalReduced":  0,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_powerwordshield.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25222,
+                                                              "name":  "Renew",
+                                                              "total":  2267,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_renew.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  33110,
+                                                              "name":  "Prayer of Mending",
+                                                              "total":  1733,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_prayerofmendingtga.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  379,
+                                                              "name":  "Earth Shield",
+                                                              "total":  1431,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_skinofearth.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  34133,
+                                                                    "name":  "Ember Blast",
+                                                                    "total":  6224,
+                                                                    "totalReduced":  3919,
+                                                                    "type":  4,
+                                                                    "icon":  "trade_engineering.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  3,
+                                                                    "name":  "Falling",
+                                                                    "total":  756,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Accidentel",
+                                                            "total":  4000,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Kachicoh",
+                                                            "total":  2305,
+                                                            "totalReduced":  0,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Ocelot",
+                                                            "total":  1431,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  7572,
+                        "overkill":  198,
+                        "events":  [
+                                       {
+                                           "timestamp":  6228606,
+                                           "type":  "damage",
+                                           "sourceID":  312,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  52,
+                                           "hitType":  4,
+                                           "amount":  4495,
+                                           "mitigated":  8198,
+                                           "unmitigatedAmount":  12891,
+                                           "overkill":  198,
+                                           "blocked":  290,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  6226687,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Falling",
+                                                           "guid":  3,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  52,
+                                           "hitType":  1,
+                                           "amount":  772,
+                                           "unmitigatedAmount":  772,
+                                           "overkill":  0,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  6226677,
+                                           "type":  "damage",
+                                           "sourceID":  312,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  52,
+                                           "hitType":  1,
+                                           "amount":  5648,
+                                           "mitigated":  8961,
+                                           "unmitigatedAmount":  14609,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Subtlep",
+                        "id":  20,
+                        "guid":  72845632,
+                        "type":  "Paladin",
+                        "icon":  "Paladin-Protection",
+                        "timestamp":  6350755,
+                        "fight":  52,
+                        "damage":  {
+                                       "total":  30919,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  20366,
+                                       "blocked":  1475,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  30919,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Al\u0027ar",
+                                                           "total":  24957,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Ember of Al\u0027ar",
+                                                           "total":  5962,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  13183,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  7454,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25213,
+                                                              "name":  "Greater Heal",
+                                                              "total":  4298,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_greaterheal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  379,
+                                                              "name":  "Earth Shield",
+                                                              "total":  1431,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_skinofearth.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  1,
+                                                                    "name":  "Melee",
+                                                                    "total":  13183,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Ocelot",
+                                                            "total":  5007,
+                                                            "type":  "Shaman"
+                                                        },
+                                                        {
+                                                            "name":  "Accidentel",
+                                                            "total":  4298,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Spoonybard",
+                                                            "total":  3878,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  3996,
+                        "overkill":  4119,
+                        "events":  [
+                                       {
+                                           "timestamp":  6350736,
+                                           "type":  "damage",
+                                           "sourceID":  312,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  52,
+                                           "hitType":  4,
+                                           "amount":  3804,
+                                           "mitigated":  6400,
+                                           "unmitigatedAmount":  14323,
+                                           "overkill":  4119,
+                                           "blocked":  295,
+                                           "isAoE":  false,
+                                           "targetMarker":  8
+                                       },
+                                       {
+                                           "timestamp":  6350529,
+                                           "type":  "damage",
+                                           "sourceID":  313,
+                                           "sourceInstance":  5,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  52,
+                                           "hitType":  4,
+                                           "amount":  1549,
+                                           "mitigated":  1892,
+                                           "unmitigatedAmount":  3441,
+                                           "blocked":  295,
+                                           "isAoE":  false,
+                                           "targetMarker":  8
+                                       },
+                                       {
+                                           "timestamp":  6350181,
+                                           "type":  "damage",
+                                           "sourceID":  313,
+                                           "sourceInstance":  4,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  52,
+                                           "hitType":  1,
+                                           "amount":  1352,
+                                           "mitigated":  1191,
+                                           "unmitigatedAmount":  2543,
+                                           "isAoE":  false,
+                                           "sourceMarker":  7,
+                                           "targetMarker":  8
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    }
+                ]
+}

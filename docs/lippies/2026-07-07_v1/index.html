@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Raid Audit — Lippies — SSC / TK July 7, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+ 
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+ 
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+ 
+  .page{
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+ 
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+ 
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
+  .section-num{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--copper); }
+  .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
+  .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
+ 
+  /* ===== Consistency banner ===== */
+  .consistency-banner{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: rgba(95,122,82,0.12);
+    border: 1px solid rgba(95,122,82,0.35);
+    border-radius: 3px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+  }
+  .consistency-icon{
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--moss); color: var(--parchment);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 700; font-size: 14px; flex-shrink:0;
+  }
+  .consistency-text{ font-size: 13px; }
+  .consistency-text strong{ font-family:'IBM Plex Mono', monospace; }
+ 
+  /* ===== Checklist ===== */
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px; border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px; font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-note{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: rgba(19,42,44,0.55); text-align:right; }
+ 
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+ 
+  /* ===== Boss table ===== */
+  .boss-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .boss-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .boss-table td{
+    padding: 12px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .boss-table tr:last-child td{ border-bottom:none; }
+  .boss-name{ font-weight: 600; }
+  .boss-name a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper); }
+  .boss-name a:hover{ color: var(--copper); }
+  .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-pill{
+    display:inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    background: var(--parchment-dim);
+  }
+  .pctl-pill.has-data{ background: rgba(201,122,61,0.15); color: var(--ink); font-weight:600; }
+  .pctl-pill.pending{ color: rgba(19,42,44,0.4); font-style: italic; font-weight:400; }
+  .overheal-cell.high{ color: var(--rust); font-weight:600; }
+  .link-arrow{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--copper); }
+ 
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+ 
+<div class="page">
+ 
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — SSC / TK — July 7, 2026</p>
+    <h1>Lippies</h1>
+    <p class="subline">Holy Priest &nbsp;·&nbsp; ilvl 124 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; 10/10 bosses killed</p>
+  </div>
+ 
+  <!-- ===== GEAR AUDIT (RAID-WIDE, SINGLE CHECK) ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Gear audit</h2>
+    </div>
+    <p class="section-desc">One audit for the whole raid night — gear was checked against every one of the 10 kills below.</p>
+ 
+    <div class="consistency-banner">
+      <div class="consistency-icon">✓</div>
+      <div class="consistency-text">Loadout is <strong>consistent for 9 of the 10 kills, with one real mid-raid upgrade</strong> across all 10 boss kills — confirm by diffing gear/enchant/gem IDs across every fight before writing this, don't assume from one fight. If gear DID change mid-raid, say so explicitly here instead.</div>
+    </div>
+ 
+    <div class="check-list">
+      <!-- One row per gear finding. Copy this block for each check. Use check-icon "ok" (moss) or "bad" (rust).
+           NEVER flag missing ring enchants - they are self-only in this era, see WORKFLOW.md gotcha #6. -->
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Weapon upgraded mid-raid</div>
+        <div class="check-note">Blue Diamond Witchwand (ilvl 115) → Luminescent Rod of the Naaru (ilvl 134), first seen on the Al'ar kill</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon bad">!</div>
+        <div>Boots carry no permanent enchant</div>
+        <div class="check-note">Soul-Strider Boots — feet is a fair-game enchant slot, empty across all 10 kills</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon bad">!</div>
+        <div>Cloak carries no permanent enchant</div>
+        <div class="check-note">Stainless Cloak of the Pure Hearted — back is a fair-game enchant slot, empty across all 10 kills</div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>All other fair-game slots enchanted</div>
+        <div class="check-note">Head, shoulder, chest, legs, wrist, hands, and weapon all carry appropriate enchants across every kill</div>
+      </div>
+    </div>
+ 
+    <div class="coverage-note">Loadout is otherwise stable and well-enchanted all night. The wand upgrade (Al'ar onward) is the only equipment change across the raid; the two missing enchants (boots, cloak) are the only real gear gaps and are consistent across every kill, not isolated to one fight — one or two sentences of real interpretation, e.g. a weapon-tier gap, missing tier-set piece, etc. Only include if there's a genuine finding.</div>
+  </div>
+ 
+  <!-- ===== PER-BOSS SUMMARY ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Per-boss summary</h2>
+    </div>
+    <p class="section-desc">HPS and overheal are real, computed from Lippies's own fight logs. Percentile is only shown where we've pulled the real WCL ranking for that exact pull — click a boss name for the full audit.</p>
+ 
+    <div class="consistency-banner" style="background: rgba(181,80,58,0.10); border-color: rgba(181,80,58,0.35);">
+      <div class="consistency-icon" style="background: var(--rust);">!</div>
+      <div class="consistency-text"><strong>Circle of Healing usage trails the Top 10 benchmark on all 10 boss kills, no exceptions.</strong> The gap averages ~41 percentage points below the Top 10 average across the raid — smallest on High Astromancer Solarian (0.5pts under) and largest on Leotheras the Blind (76.5pts under, 2.8% vs. a 79.3% benchmark). Flash Heal fills most of the difference. This is the single most consistent gap across the whole raid night, and it shows up on every individual boss page below.</div>
+    </div>
+ 
+    <table class="boss-table">
+      <thead>
+        <tr>
+          <th>Boss</th>
+          <th style="text-align:right;">HPS</th>
+          <th style="text-align:right;">Overheal</th>
+          <th style="text-align:right;">WCL Percentile</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- One row per boss killed this raid. Copy this block for each of the 10 bosses.
+             Only include a link + arrow once that boss's full page has actually been built;
+             otherwise leave the boss name unlinked and the percentile pill class="pending". -->
+        <tr>
+          <td class="boss-name"><a href="healer_audit_hydross.html">Hydross the Unstable</a></td>
+          <td class="num-cell">435</td>
+          <td class="num-cell overheal-cell high">72.7%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">15.8th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_lurker.html">The Lurker Below</a></td>
+          <td class="num-cell">696</td>
+          <td class="num-cell">44.7%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">24.3th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
+          <td class="num-cell">744</td>
+          <td class="num-cell">47.4%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">31.7th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_karathress.html">Fathom-Lord Karathress</a></td>
+          <td class="num-cell">977</td>
+          <td class="num-cell">27.3%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">34.1th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_morogrim.html">Morogrim Tidewalker</a></td>
+          <td class="num-cell">728</td>
+          <td class="num-cell overheal-cell high">55.2%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">19.7th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_vashj.html">Lady Vashj</a></td>
+          <td class="num-cell">556</td>
+          <td class="num-cell overheal-cell high">50.6%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">17.8th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_alar.html">Al'ar</a></td>
+          <td class="num-cell">410</td>
+          <td class="num-cell overheal-cell high">67.1%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">12.9th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_voidreaver.html">Void Reaver</a></td>
+          <td class="num-cell">1,585</td>
+          <td class="num-cell">47.2%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">10.5th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_solarian.html">High Astromancer Solarian</a></td>
+          <td class="num-cell">526</td>
+          <td class="num-cell overheal-cell high">71.5%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">10.6th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_kaelthas.html">Kael'thas Sunstrider</a></td>
+          <td class="num-cell">450</td>
+          <td class="num-cell overheal-cell high">66.6%</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">7.1th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+    </tbody>
+    </table>
+ 
+    <div class="coverage-note">Kael'thas Sunstrider (7.1th), Void Reaver (10.5th), and High Astromancer Solarian (10.6th) are the lowest-percentile kills and the top priorities for a deeper look — see their individual pages above. All 10 percentiles were matched via an exact reportID+fightID lookup against Lippies' own parse history; none required the duplicate-raid-upload fallback — call out the lowest-percentile bosses as priorities for a full breakdown, and note if any percentile was matched via a duplicate raid upload rather than an exact report/fight ID (see WORKFLOW.md gotcha #5).</div>
+  </div>
+ 
+  <div class="footer">
+    <span>All data real: Lippies's fight logs (report XJp8vAxzM4KtHYyb) + WCL rankings where pulled</span>
+    <span>tbc-audit style reference · healer variant · raid overview</span>
+  </div>
+ 
+</div>
+ 
+</body>
+</html>
+ 

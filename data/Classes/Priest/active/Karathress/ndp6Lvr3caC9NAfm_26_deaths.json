@@ -1,0 +1,132 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Odsina",
+                        "id":  20,
+                        "guid":  74187407,
+                        "type":  "Druid",
+                        "icon":  "Druid-Restoration",
+                        "timestamp":  2414593,
+                        "fight":  26,
+                        "damage":  {
+                                       "total":  12471,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  38441,
+                                                             "name":  "Cataclysmic Bolt",
+                                                             "total":  7626,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowfury.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  38296,
+                                                             "name":  "Scorch",
+                                                             "total":  4845,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_searingtotem.jpg",
+                                                             "petName":  "Spitfire Totem"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Fathom-Lord Karathress",
+                                                           "total":  7626,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Spitfire Totem",
+                                                           "total":  4845,
+                                                           "type":  "Pet"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1059,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34866,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  1059,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  38296,
+                                                                    "name":  "Scorch",
+                                                                    "total":  1059,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_searingtotem.jpg",
+                                                                    "petName":  "Spitfire Totem"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Nosebleed",
+                                                            "total":  1059,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  2457,
+                        "overkill":  2168,
+                        "events":  [
+                                       {
+                                           "timestamp":  2414577,
+                                           "type":  "damage",
+                                           "sourceID":  142,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Cataclysmic Bolt",
+                                                           "guid":  38441,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowfury.jpg"
+                                                       },
+                                           "fight":  26,
+                                           "hitType":  1,
+                                           "amount":  5458,
+                                           "unmitigatedAmount":  7626,
+                                           "overkill":  2168,
+                                           "isAoE":  false,
+                                           "sourceMarker":  6
+                                       },
+                                       {
+                                           "timestamp":  2412120,
+                                           "type":  "damage",
+                                           "sourceID":  148,
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scorch",
+                                                           "guid":  38296,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_searingtotem.jpg"
+                                                       },
+                                           "fight":  26,
+                                           "hitType":  1,
+                                           "amount":  4845,
+                                           "unmitigatedAmount":  4845,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Cataclysmic Bolt",
+                                            "guid":  38441,
+                                            "type":  32,
+                                            "abilityIcon":  "spell_shadow_shadowfury.jpg"
+                                        }
+                    }
+                ]
+}

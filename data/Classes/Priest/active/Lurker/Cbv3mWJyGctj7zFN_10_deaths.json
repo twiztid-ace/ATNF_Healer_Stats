@@ -1,0 +1,201 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Notgiri",
+                        "id":  19,
+                        "guid":  48331826,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  1722621,
+                        "fight":  10,
+                        "damage":  {
+                                       "total":  12752,
+                                       "totalReduced":  10910,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  5286,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  3990,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37478,
+                                                             "name":  "Geyser",
+                                                             "total":  3476,
+                                                             "totalReduced":  1634,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_frostblast.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  9276,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  3476,
+                                                           "totalReduced":  1634,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  3811,
+                                        "totalReduced":  1969,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  33110,
+                                                              "name":  "Prayer of Mending",
+                                                              "total":  1969,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_prayerofmendingtga.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25218,
+                                                              "name":  "Power Word: Shield",
+                                                              "total":  1842,
+                                                              "totalReduced":  0,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_powerwordshield.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37478,
+                                                                    "name":  "Geyser",
+                                                                    "total":  1842,
+                                                                    "totalReduced":  0,
+                                                                    "type":  16,
+                                                                    "icon":  "spell_frost_frostblast.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  1469,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  500,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Mykir",
+                                                            "total":  1969,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Notgiri",
+                                                            "total":  1842,
+                                                            "totalReduced":  0,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  21070,
+                        "overkill":  214,
+                        "events":  [
+                                       {
+                                           "timestamp":  1722620,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  19,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  10,
+                                           "hitType":  1,
+                                           "amount":  286,
+                                           "unmitigatedAmount":  500,
+                                           "overkill":  214,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  1720991,
+                                           "type":  "damage",
+                                           "sourceID":  101,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  19,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Geyser",
+                                                           "guid":  37478,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_frostblast.jpg"
+                                                       },
+                                           "fight":  10,
+                                           "hitType":  1,
+                                           "amount":  1634,
+                                           "unmitigatedAmount":  3476,
+                                           "absorbed":  1842,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  1719605,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  19,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  10,
+                                           "hitType":  1,
+                                           "amount":  2706,
+                                           "unmitigatedAmount":  2706,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Scalding Water",
+                                            "guid":  37284,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                        }
+                    }
+                ]
+}

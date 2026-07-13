@@ -1,0 +1,161 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Erarjac",
+                        "id":  3,
+                        "guid":  46760650,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Enhancement",
+                        "timestamp":  34254779,
+                        "fight":  74,
+                        "damage":  {
+                                       "total":  14341,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  2843,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  39414,
+                                                             "name":  "Arcane Missiles",
+                                                             "total":  6750,
+                                                             "type":  64,
+                                                             "icon":  "spell_nature_starfall.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  42787,
+                                                             "name":  "Wrath of the Astromancer",
+                                                             "total":  5812,
+                                                             "type":  64,
+                                                             "icon":  "spell_nature_wispsplode.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  33009,
+                                                             "name":  "Blinding Light",
+                                                             "total":  1779,
+                                                             "type":  64,
+                                                             "icon":  "spell_nature_starfall.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "High Astromancer Solarian",
+                                                           "total":  8529,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Erarjac",
+                                                           "total":  5812,
+                                                           "type":  "Shaman"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1534,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34866,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  1534,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  39414,
+                                                                    "name":  "Arcane Missiles",
+                                                                    "total":  1534,
+                                                                    "type":  64,
+                                                                    "icon":  "spell_nature_starfall.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Holiestpeepo",
+                                                            "total":  1534,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  2869,
+                        "overkill":  3658,
+                        "events":  [
+                                       {
+                                           "timestamp":  34254747,
+                                           "type":  "damage",
+                                           "sourceID":  3,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  3,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Wrath of the Astromancer",
+                                                           "guid":  42787,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_wispsplode.jpg"
+                                                       },
+                                           "fight":  74,
+                                           "hitType":  1,
+                                           "amount":  2154,
+                                           "unmitigatedAmount":  5812,
+                                           "overkill":  3658,
+                                           "isAoE":  true,
+                                           "sourceMarker":  8,
+                                           "targetMarker":  8
+                                       },
+                                       {
+                                           "timestamp":  34254126,
+                                           "type":  "damage",
+                                           "sourceID":  213,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  3,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Arcane Missiles",
+                                                           "guid":  39414,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_starfall.jpg"
+                                                       },
+                                           "fight":  74,
+                                           "hitType":  1,
+                                           "amount":  3000,
+                                           "unmitigatedAmount":  3000,
+                                           "isAoE":  false,
+                                           "targetMarker":  8
+                                       },
+                                       {
+                                           "timestamp":  34253469,
+                                           "type":  "damage",
+                                           "sourceID":  213,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  3,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Blinding Light",
+                                                           "guid":  33009,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_starfall.jpg"
+                                                       },
+                                           "fight":  74,
+                                           "hitType":  16,
+                                           "amount":  1779,
+                                           "mitigated":  593,
+                                           "unmitigatedAmount":  2372,
+                                           "resisted":  593,
+                                           "isAoE":  true,
+                                           "targetMarker":  8
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Wrath of the Astromancer",
+                                            "guid":  42787,
+                                            "type":  64,
+                                            "abilityIcon":  "spell_nature_wispsplode.jpg"
+                                        }
+                    }
+                ]
+}

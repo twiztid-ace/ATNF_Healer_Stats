@@ -1,0 +1,324 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Holydunder",
+                        "id":  33,
+                        "guid":  54317795,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  5572239,
+                        "fight":  21,
+                        "damage":  {
+                                       "total":  10414,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37852,
+                                                             "name":  "Watery Grave Explosion",
+                                                             "total":  4833,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_arcticwinds.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  4827,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  3,
+                                                             "name":  "Falling",
+                                                             "total":  754,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  5581,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Holydunder",
+                                                           "total":  4833,
+                                                           "type":  "Priest"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  2469,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  33110,
+                                                              "name":  "Prayer of Mending",
+                                                              "total":  1969,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_prayerofmendingtga.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  39373,
+                                                              "name":  "Shadowmend",
+                                                              "total":  500,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  2453,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37852,
+                                                                    "name":  "Watery Grave Explosion",
+                                                                    "total":  16,
+                                                                    "type":  16,
+                                                                    "icon":  "spell_frost_arcticwinds.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Strungol",
+                                                            "total":  1969,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Holydunder",
+                                                            "total":  500,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  21288,
+                        "overkill":  0,
+                        "events":  [
+                                       {
+                                           "timestamp":  5572230,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  33,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Falling",
+                                                           "guid":  3,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  21,
+                                           "hitType":  1,
+                                           "amount":  754,
+                                           "unmitigatedAmount":  754,
+                                           "overkill":  0,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  5569404,
+                                           "type":  "damage",
+                                           "sourceID":  33,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  33,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Watery Grave Explosion",
+                                                           "guid":  37852,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_arcticwinds.jpg"
+                                                       },
+                                           "fight":  21,
+                                           "hitType":  1,
+                                           "amount":  4833,
+                                           "unmitigatedAmount":  4833,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  5563835,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  33,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  21,
+                                           "hitType":  1,
+                                           "amount":  2108,
+                                           "unmitigatedAmount":  2108,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Falling",
+                                            "guid":  3,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Beleif",
+                        "id":  28,
+                        "guid":  57434483,
+                        "type":  "Mage",
+                        "icon":  "Mage-Arcane",
+                        "timestamp":  5602658,
+                        "fight":  21,
+                        "damage":  {
+                                       "total":  11079,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  48,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37871,
+                                                             "name":  "Freeze",
+                                                             "total":  6625,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_glacier.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  4179,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  275,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Water Globule",
+                                                           "total":  6900,
+                                                           "type":  "NPC"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  4179,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  1600,
+                        "overkill":  1926,
+                        "events":  [
+                                       {
+                                           "timestamp":  5602644,
+                                           "type":  "damage",
+                                           "sourceID":  117,
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  28,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Freeze",
+                                                           "guid":  37871,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_glacier.jpg"
+                                                       },
+                                           "fight":  21,
+                                           "hitType":  1,
+                                           "amount":  4699,
+                                           "unmitigatedAmount":  6625,
+                                           "overkill":  1926,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  5602513,
+                                           "type":  "damage",
+                                           "sourceID":  117,
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  28,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  21,
+                                           "hitType":  1,
+                                           "amount":  275,
+                                           "mitigated":  48,
+                                           "unmitigatedAmount":  323,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  5601044,
+                                           "type":  "damage",
+                                           "sourceID":  114,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  28,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Earthquake",
+                                                           "guid":  37764,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  21,
+                                           "hitType":  1,
+                                           "amount":  4179,
+                                           "unmitigatedAmount":  4179,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Freeze",
+                                            "guid":  37871,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_glacier.jpg"
+                                        }
+                    }
+                ]
+}

@@ -308,6 +308,25 @@ $cooldownGuidsByClass = @{
         "Ancestral Swiftness" = @(16188)
         "Dark Rune"           = @(27869)
     }
+    # Confirmed against a real Lippies report (XJp8vAxzM4KtHYyb, 10 real boss
+    # kills, 1,959 real cast events) before this entry was added - see
+    # pull_top100_priest_holy.ps1's header for the full discovery writeup.
+    # Shadowfiend (self-only, ~once/fight, real mana cost 157) is the
+    # mana-cooldown analog to Innervate/Mana Tide Totem. Power Word: Shield is
+    # tracked with self-vs-other targeting like Swiftmend/Earth Shield (100%
+    # other-targeted in the real sample). Chakra and Blessing of Life are both
+    # self-only, ~once/fight, free. Fear Ward is other-targeted but rare (~once
+    # per 3 fights). No Rebirth-equivalent exists for Priest in this TBC
+    # ruleset (confirmed absent across all 1,959 real cast events despite real
+    # deaths occurring) - not included here, not force-mapped.
+    "Priest" = [ordered]@{
+        "Shadowfiend"        = @(34433)
+        "Power Word: Shield" = @(10899)
+        "Chakra"             = @(14751)
+        "Blessing of Life"   = @(38332)
+        "Fear Ward"          = @(6346)
+        "Dark Rune"          = @(27869)
+    }
 }
 if (-not $cooldownGuidsByClass.ContainsKey($ClassName)) {
     Write-Host "ERROR: no cooldown/utility guid table defined for class '$ClassName' in"
@@ -324,9 +343,12 @@ $cooldownGuids = $cooldownGuidsByClass[$ClassName]
 # Same treatment as the cooldown table above: class-keyed, not a flat assumption that
 # every class's consumable is named identically. Confirmed "Restore Mana" (guid 28499)
 # in real Shaman cast data before adding that entry, not assumed to carry over unchanged.
+# Priest's real cast data showed the same "Restore Mana" display name under TWO guids
+# (41617, 41618) - matching by name already handles this correctly, no new logic needed.
 $manaPotionNameByClass = @{
     "Druid"  = "Restore Mana"
     "Shaman" = "Restore Mana"
+    "Priest" = "Restore Mana"
 }
 $manaPotionName = $manaPotionNameByClass[$ClassName]
 
@@ -518,7 +540,26 @@ foreach ($bossFolder in $bosses.Keys) {
                     # real data: Nature's Swiftness showed 0% self across the full
                     # 100-person Hydross sample, implausible for a spell that mechanically
                     # can't be cast on anyone else).
-                    $selfCount = @($matched | Where-Object { $_.sourceName -eq $_.targetName -or [string]::IsNullOrEmpty($_.targetName) }).Count
+                    #
+                    # SECOND FIX (2026-07-13, found while building Lippies's real v2 report):
+                    # the null/empty check above assumed the pull scripts leave targetName
+                    # genuinely null for this case - they don't, not anymore. The current
+                    # Get-EventsLocal resolves targetID=-1 to the actor-name lookup, which
+                    # returns the literal string "Environment" whenever the report's own
+                    # masterData.actors[] happens to include that special id=-1 entry (real,
+                    # confirmed on Lippies's report XJp8vAxzM4KtHYyb - Shadowfiend/Chakra/
+                    # Blessing of Life all showed targetName="Environment" for every single
+                    # cast) or "Unknown_-1" when it doesn't - neither is null/empty, so
+                    # neither was ever caught by this check. Confirmed this already caused a
+                    # small real inaccuracy in already-shipped Druid data too: one real
+                    # Nature's Swiftness cast in the Hydross Top 100 sample had
+                    # targetName="Environment", pulling that ability's Top100SelfPct down to
+                    # 99% instead of the mechanically-required ~100% - small here only
+                    # because most OTHER reports in that sample apparently don't have a
+                    # resolvable id=-1 actor, so they hit the null branch instead and were
+                    # already correctly caught. Fixed by also treating a literal
+                    # "Environment" targetName as self.
+                    $selfCount = @($matched | Where-Object { $_.sourceName -eq $_.targetName -or [string]::IsNullOrEmpty($_.targetName) -or $_.targetName -eq "Environment" }).Count
                     $cooldownCounts[$cdName] = [PSCustomObject]@{ Count = $matched.Count; SelfCount = $selfCount }
                 }
                 $manaMatched = @($castsData.events | Where-Object { $_.ability.name -eq $manaPotionName })

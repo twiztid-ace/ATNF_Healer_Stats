@@ -28,19 +28,24 @@ runbook for *this specific task*, not a replacement for those.
 
 ## Before starting: confirm the class is supported
 
-Step 2 resolves the character's class. **Only Druid and Shaman are on the real v2
-pipeline today** (`pull_top100_druid.ps1`/`pull_top100_shaman.ps1`,
-`boss_page_template_druid.html`/`boss_page_template_shaman.html`, and the
-cooldown-guid tables in `build_boss_report_data.ps1` cover only these two).
-Paladin/Priest are still v1 (truncation-prone healing TABLE, old
-date-stamped-folder convention) — running this pipeline against them will produce
-wrong or missing data, not just incomplete data.
+Step 2 resolves the character's class. **Druid, Shaman, and Priest (Holy) are on
+the real v2 pipeline today** (`pull_top100_druid.ps1`/`pull_top100_shaman.ps1`/
+`pull_top100_priest_holy.ps1`,
+`boss_page_template_druid.html`/`boss_page_template_shaman.html`/
+`boss_page_template_priest.html`, and the cooldown-guid tables in
+`build_boss_report_data.ps1` cover all three — Priest added 2026-07-13, ported the
+same way Shaman was: real-data discovery pass against a real Lippies report
+before writing any guid table, see `pull_top100_priest_holy.ps1`'s header).
+Paladin is still v1 (truncation-prone healing TABLE, old date-stamped-folder
+convention) — running this pipeline against it will produce wrong or missing
+data, not just incomplete data.
 
-**If the resolved class isn't Druid or Shaman: stop and tell the user clearly** —
-name the class, say it isn't on the v2 pipeline yet, and don't proceed past step 2.
-Don't attempt a "best effort" fallback (e.g. quietly reusing Druid's or Shaman's
-cooldown list or template for an unsupported class) — that would produce a report
-with fabricated-looking numbers for abilities that class doesn't even have.
+**If the resolved class isn't Druid, Shaman, or Priest: stop and tell the user
+clearly** — name the class, say it isn't on the v2 pipeline yet, and don't
+proceed past step 2. Don't attempt a "best effort" fallback (e.g. quietly reusing
+another class's cooldown list or template for an unsupported class) — that would
+produce a report with fabricated-looking numbers for abilities that class doesn't
+even have.
 
 ## Pipeline
 
@@ -70,9 +75,10 @@ output carefully:
 ```
 powershell -ExecutionPolicy Bypass -File scripts\pull_top100_druid.ps1
 powershell -ExecutionPolicy Bypass -File scripts\pull_top100_shaman.ps1
+powershell -ExecutionPolicy Bypass -File scripts\pull_top100_priest_holy.ps1
 ```
-Dispatch to whichever script matches the resolved class from step 2 (Druid or
-Shaman today — see the gate above; if/when Paladin/Priest get their own
+Dispatch to whichever script matches the resolved class from step 2 (Druid,
+Shaman, or Priest today — see the gate above; if/when Paladin gets its own
 `pull_top100_{class}.ps1` on this same model, dispatch to that instead, same
 invocation shape). This is diff-based against `manifest.json` — it only makes real
 API calls for parses that are genuinely new or have re-entered the Top 100 since
@@ -165,8 +171,9 @@ Concretely, before writing a page:
   it at all) — omit the row.
 - **Rebirth only gets a row if it's actually relevant to this kill** (a real death
   it could plausibly answer) — don't pad every page with a permanent 0 row. This
-  concept doesn't exist for Shaman at all — confirmed no battle-rez equivalent in
-  this TBC ruleset (see `pull_top100_shaman.ps1`'s header) — so Shaman pages never
+  concept doesn't exist for Shaman or Priest at all — confirmed no battle-rez
+  equivalent in this TBC ruleset for either class (see `pull_top100_shaman.ps1`'s
+  and `pull_top100_priest_holy.ps1`'s headers) — so Shaman and Priest pages never
   have this row, not even a permanent 0.
 - **No letter grades, ever** — percentile numbers only.
 - **No gendered pronouns anywhere in generated prose** — use the character's name

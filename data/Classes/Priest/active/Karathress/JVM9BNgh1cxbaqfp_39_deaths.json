@@ -1,0 +1,120 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Jevinheals",
+                        "id":  30,
+                        "guid":  73976454,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  4962494,
+                        "fight":  39,
+                        "damage":  {
+                                       "total":  9729,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  38441,
+                                                             "name":  "Cataclysmic Bolt",
+                                                             "total":  7212,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowfury.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  2517,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Fathom-Lord Karathress",
+                                                           "total":  7212,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  2517,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  637,
+                        "overkill":  988,
+                        "events":  [
+                                       {
+                                           "timestamp":  4962487,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  30,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  39,
+                                           "hitType":  1,
+                                           "amount":  1529,
+                                           "unmitigatedAmount":  2517,
+                                           "overkill":  988,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  4961850,
+                                           "type":  "damage",
+                                           "sourceID":  266,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  30,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Cataclysmic Bolt",
+                                                           "guid":  38441,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowfury.jpg"
+                                                       },
+                                           "fight":  39,
+                                           "hitType":  1,
+                                           "amount":  7212,
+                                           "unmitigatedAmount":  7212,
+                                           "isAoE":  false,
+                                           "sourceMarker":  6
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Shadow Word: Death",
+                                            "guid":  32409,
+                                            "type":  32,
+                                            "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                        }
+                    }
+                ]
+}

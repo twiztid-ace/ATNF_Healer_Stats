@@ -1,0 +1,160 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Looni",
+                        "id":  26,
+                        "guid":  44372885,
+                        "type":  "Mage",
+                        "icon":  "Mage-Arcane",
+                        "timestamp":  10899314,
+                        "fight":  65,
+                        "damage":  {
+                                       "total":  10194,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  1401,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  38441,
+                                                             "name":  "Cataclysmic Bolt",
+                                                             "total":  5755,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowfury.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  38335,
+                                                             "name":  "Water Bolt Volley",
+                                                             "total":  4439,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_frostbolt.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Fathom-Lord Karathress",
+                                                           "total":  5755,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Fathom-Guard Caribdis",
+                                                           "total":  4439,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1280,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  15290,
+                                                              "name":  "Vampiric Embrace",
+                                                              "total":  1280,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  38335,
+                                                                    "name":  "Water Bolt Volley",
+                                                                    "total":  1034,
+                                                                    "type":  16,
+                                                                    "icon":  "spell_frost_frostbolt.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  38441,
+                                                                    "name":  "Cataclysmic Bolt",
+                                                                    "total":  246,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_shadowfury.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Euneekpriest",
+                                                            "total":  1280,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  8100,
+                        "overkill":  61,
+                        "events":  [
+                                       {
+                                           "timestamp":  10899306,
+                                           "type":  "damage",
+                                           "sourceID":  274,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  26,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Water Bolt Volley",
+                                                           "guid":  38335,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_frostbolt.jpg"
+                                                       },
+                                           "fight":  65,
+                                           "hitType":  1,
+                                           "amount":  2977,
+                                           "unmitigatedAmount":  3038,
+                                           "overkill":  61,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       },
+                                       {
+                                           "timestamp":  10898198,
+                                           "type":  "damage",
+                                           "sourceID":  276,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  26,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Cataclysmic Bolt",
+                                                           "guid":  38441,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowfury.jpg"
+                                                       },
+                                           "fight":  65,
+                                           "hitType":  1,
+                                           "amount":  5755,
+                                           "unmitigatedAmount":  5755,
+                                           "isAoE":  false,
+                                           "sourceMarker":  4
+                                       },
+                                       {
+                                           "timestamp":  10891206,
+                                           "type":  "damage",
+                                           "sourceID":  274,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  26,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Water Bolt Volley",
+                                                           "guid":  38335,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_frostbolt.jpg"
+                                                       },
+                                           "fight":  65,
+                                           "hitType":  16,
+                                           "amount":  1401,
+                                           "mitigated":  1401,
+                                           "unmitigatedAmount":  2802,
+                                           "resisted":  1401,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Water Bolt Volley",
+                                            "guid":  38335,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_frostbolt.jpg"
+                                        }
+                    }
+                ]
+}

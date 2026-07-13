@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Lady Vashj</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  /* ===== Header ===== */
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ===== Seal ===== */
+  .seal-wrap{ flex-shrink:0; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  /* ===== Section shell ===== */
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--copper);
+  }
+  .section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+  .section-desc{
+    font-size: 13px;
+    color: rgba(19,42,44,0.6);
+    margin: -12px 0 20px;
+  }
+
+  /* ===== Stat row ===== */
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .stat{
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(19,42,44,0.55);
+    margin-bottom: 6px;
+  }
+  .stat-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  /* ===== Percentile bar ===== */
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{
+    position: absolute;
+    top: -8px;
+    width: 3px;
+    height: 26px;
+    background: var(--ink);
+  }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .pctl-scale{
+    display:flex; justify-content: space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(19,42,44,0.45);
+  }
+
+  /* ===== Spell composition bars ===== */
+  .spell-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items:center;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 13px;
+  }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{
+    height: 8px;
+    background: var(--parchment-dim);
+    border-radius: 4px;
+    overflow:hidden;
+  }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{
+    display:flex; gap: 18px; margin-bottom: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+
+  /* ===== Checklist ===== */
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.55);
+    text-align:right;
+  }
+
+  /* ===== Target distribution ===== */
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{
+    display:grid;
+    grid-template-columns: 120px 1fr 70px;
+    align-items:center;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  /* ===== Footer ===== */
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .placeholder-tag{
+    display:inline-block;
+    margin-left: 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--copper);
+    border: 1px solid var(--copper);
+    border-radius: 20px;
+    padding: 2px 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK · Morogrim Tidewalker</p>
+      <h1>Lippies</h1>
+      <p class="subline">Holy Priest &nbsp;·&nbsp; ilvl 124 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; fight <span>41</span> &nbsp;·&nbsp; kill, 213s</p>
+    </div>
+    <div class="seal-wrap">
+      <svg class="seal" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">19.7</text>
+        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+      </svg>
+      <div class="seal-label">WCL rank, all parses</div>
+    </div>
+  </div>
+
+  <!-- ===== SCORECARD ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value">728</div>
+        <div class="stat-sub">Top 100: #1 2,077 &nbsp;·&nbsp; top10avg 1,817 &nbsp;·&nbsp; median 1,409</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value">55.2%</div>
+        <div class="stat-sub">Top 100: best 16.7% &nbsp;·&nbsp; median 31.3% &nbsp;·&nbsp; worst 45.4%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">155,155</div>
+        <div class="stat-sub">over 213s kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value">99.1%</div>
+        <div class="stat-sub">GCD-active vs. fight length</div>
+      </div>
+    </div>
+
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:19.7%;" data-label="Lippies · 19.7th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank 20,300 of 25,278 Holy Priest parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
+
+    <div class="coverage-note">99.1% active time again, but only 19.7th percentile with 55.2% overheal — the throughput is being spent, it's just landing on top of other heals more often than the Top 10 baseline. — one to two sentences interpreting the percentile + overheal together, noting any fight-duration/difficulty caveats if the pull was unusually fast or slow vs. typical parses.</div>
+  </div>
+
+  <!-- ===== SPELL COMPOSITION ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">Lippies's real cast mix on this kill, vs. real Top 10 aggregate on Morogrim Tidewalker.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>Lippies</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 10 avg</span>
+    </div>
+
+    
+    
+    <!-- One pair of rows per spell. Copy this block for each spell in the UNION of both
+         spell lists - the character's own casts AND any Top 10 benchmark spell they never
+         cast (show as 0.0% rather than omitting the row - see WORKFLOW.md gotcha about this). -->
+    <div class="spell-row compare-row">
+      <div class="spell-name">Circle of Healing</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:15.8%"></div></div>
+      <div class="spell-pct">15.8%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:61.5%"></div></div>
+      <div class="spell-pct">61.5%</div>
+    </div>
+
+        <div class="spell-row compare-row">
+      <div class="spell-name">Flash Heal</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:52.9%"></div></div>
+      <div class="spell-pct">52.9%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:12.7%"></div></div>
+      <div class="spell-pct">12.7%</div>
+    </div>
+
+        <div class="spell-row compare-row">
+      <div class="spell-name">Prayer of Mending</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:20.2%"></div></div>
+      <div class="spell-pct">20.2%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:7.4%"></div></div>
+      <div class="spell-pct">7.4%</div>
+    </div>
+
+        <div class="spell-row compare-row">
+      <div class="spell-name">Renew</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:10.2%"></div></div>
+      <div class="spell-pct">10.2%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:7.4%"></div></div>
+      <div class="spell-pct">7.4%</div>
+    </div>
+
+        <div class="spell-row compare-row">
+      <div class="spell-name">Power Word: Shield</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.9%"></div></div>
+      <div class="spell-pct">0.9%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.1%"></div></div>
+      <div class="spell-pct">4.1%</div>
+    </div>
+
+        <div class="spell-row compare-row">
+      <div class="spell-name">Prayer of Healing</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.6%"></div></div>
+      <div class="spell-pct">3.6%</div>
+    </div>
+
+        <div class="spell-row compare-row">
+      <div class="spell-name">Greater Heal</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:2.6%"></div></div>
+      <div class="spell-pct">2.6%</div>
+    </div>
+
+        <div class="spell-row compare-row">
+      <div class="spell-name">Binding Heal</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.8%"></div></div>
+      <div class="spell-pct">0.8%</div>
+    </div>
+    
+
+    
+
+    
+
+    <div class="coverage-note">Same pattern again: Circle of Healing at 15.8% vs. 61.5% benchmark, made up for with Flash Heal (52.9%) and Prayer of Mending (20.2% vs. 7.4%). Power Word: Shield sits at 0.0% here (4.1% benchmark) — a small but real gap. — note the biggest gaps between character and benchmark, and whether active time (shown above) helps explain any HPS gap independent of rotation shape. Flag any benchmark spell the character cast 0% of, if the gap is meaningful (e.g. missing a passive totem/cooldown that's essentially free healing).</div>
+  </div>
+
+  <!-- ===== TARGET DISTRIBUTION ===== -->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of Lippies's healing on this kill (70.1% coverage) vs. Top 10 average on Morogrim Tidewalker (43.9% coverage, 15.7% to top target).</p>
+
+    <div class="target-list">
+      <!-- One row per target, up to 5 (WCL truncates the targets array at 5). Sort descending
+           by amount. Compute the bar width as a % of the TOP target's amount, not of total
+           healing, so the visual bars stay comparable to each other. -->
+      <div class="target-row">
+        <div>Turbarct</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:100.0%"></div></div>
+        <div class="target-pct">48.3%</div>
+      </div>
+      <div class="target-row">
+        <div>Vajony</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:16.2%"></div></div>
+        <div class="target-pct">7.8%</div>
+      </div>
+      <div class="target-row">
+        <div>Destromental</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:10.2%"></div></div>
+        <div class="target-pct">4.9%</div>
+      </div>
+      <div class="target-row">
+        <div>Paladanwood</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:9.7%"></div></div>
+        <div class="target-pct">4.7%</div>
+      </div>
+      <div class="target-row">
+        <div>Jotes</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:8.9%"></div></div>
+        <div class="target-pct">4.3%</div>
+      </div>
+    </div>
+    
+    <div class="coverage-note">Turbarct alone took 48.3% of total healing here, more than triple the 15.7% Top 10 top-target average — this is a real concentration outlier, not noise, and likely reflects a specific tank-damage pattern on this pull rather than a general targeting habit (it doesn't repeat on any other boss this raid). — state the top target's % vs. the Top 10 benchmark average explicitly, and whether the gap (if any) represents a real targeting difference or falls within normal variance (roughly ±5 points has shown to be noise in practice).</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Lippies's fight log (XJp8vAxzM4KtHYyb, fight 41) + Top 100 Morogrim Tidewalker benchmark (n=87)</span>
+    <span>tbc-audit style reference · healer variant</span>
+  </div>
+
+</div>
+
+</body>
+</html>

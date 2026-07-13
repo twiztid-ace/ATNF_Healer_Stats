@@ -1,0 +1,187 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Zzjy",
+                        "id":  28,
+                        "guid":  54266138,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  13709623,
+                        "fight":  80,
+                        "damage":  {
+                                       "total":  10755,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  611,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37852,
+                                                             "name":  "Watery Grave Explosion",
+                                                             "total":  5312,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_arcticwinds.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  3462,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  1981,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Zzjy",
+                                                           "total":  5312,
+                                                           "type":  "Priest"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  3462,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  1981,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1209,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34866,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  967,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  39373,
+                                                              "name":  "Shadowmend",
+                                                              "total":  242,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37764,
+                                                                    "name":  "Earthquake",
+                                                                    "total":  1112,
+                                                                    "type":  1,
+                                                                    "icon":  "spell_nature_earthquake.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  97,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Leeshaarj",
+                                                            "total":  967,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Zzjy",
+                                                            "total":  242,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  10870,
+                        "overkill":  755,
+                        "events":  [
+                                       {
+                                           "timestamp":  13709610,
+                                           "type":  "damage",
+                                           "sourceID":  28,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  28,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Watery Grave Explosion",
+                                                           "guid":  37852,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_arcticwinds.jpg"
+                                                       },
+                                           "fight":  80,
+                                           "hitType":  1,
+                                           "amount":  4557,
+                                           "unmitigatedAmount":  5312,
+                                           "overkill":  755,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  13704323,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  28,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  80,
+                                           "hitType":  1,
+                                           "amount":  1981,
+                                           "unmitigatedAmount":  1981,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  13698740,
+                                           "type":  "damage",
+                                           "sourceID":  332,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  28,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Earthquake",
+                                                           "guid":  37764,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  80,
+                                           "hitType":  1,
+                                           "amount":  3462,
+                                           "mitigated":  611,
+                                           "unmitigatedAmount":  4073,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Watery Grave Explosion",
+                                            "guid":  37852,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_arcticwinds.jpg"
+                                        }
+                    }
+                ]
+}

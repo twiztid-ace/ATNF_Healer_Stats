@@ -1,0 +1,175 @@
+{
+    "entries":  [
+                    {
+                        "name":  "세인트지니",
+                        "id":  60,
+                        "guid":  15795605,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  9657028,
+                        "fight":  57,
+                        "damage":  {
+                                       "total":  12112,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  6128,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37478,
+                                                             "name":  "Geyser",
+                                                             "total":  3496,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_frostblast.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  2488,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  8616,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  3496,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  3049,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  15290,
+                                                              "name":  "Vampiric Embrace",
+                                                              "total":  3049,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  1556,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  1493,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "세인트지니",
+                                                            "total":  3049,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  12654,
+                        "overkill":  282,
+                        "events":  [
+                                       {
+                                           "timestamp":  9657025,
+                                           "type":  "damage",
+                                           "sourceID":  255,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  60,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Geyser",
+                                                           "guid":  37478,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_frostblast.jpg"
+                                                       },
+                                           "fight":  57,
+                                           "hitType":  1,
+                                           "amount":  3214,
+                                           "unmitigatedAmount":  3496,
+                                           "overkill":  282,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  9656475,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  60,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  57,
+                                           "hitType":  1,
+                                           "amount":  3909,
+                                           "unmitigatedAmount":  3909,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  9656380,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  60,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  57,
+                                           "hitType":  1,
+                                           "amount":  498,
+                                           "unmitigatedAmount":  498,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Geyser",
+                                            "guid":  37478,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_frostblast.jpg"
+                                        }
+                    }
+                ]
+}

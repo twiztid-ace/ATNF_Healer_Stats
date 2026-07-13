@@ -57,14 +57,37 @@ $cooldownGuidsByClass = @{
         "Ancestral Swiftness" = @(16188)
         "Dark Rune"           = @(27869)
     }
+    # Confirmed against a real Lippies report (XJp8vAxzM4KtHYyb, 10 real boss
+    # kills, 1,959 real cast events) before this entry was added - see
+    # pull_top100_priest_holy.ps1's header for the full discovery writeup.
+    # Shadowfiend is the mana-cooldown analog to Innervate/Mana Tide Totem
+    # (self-only, ~once/fight, real mana cost 157). Power Word: Shield is
+    # tracked with self-vs-other targeting like Swiftmend/Earth Shield (100%
+    # other-targeted in the real sample). Chakra and Blessing of Life are both
+    # self-only, ~once/fight, free. Fear Ward is other-targeted but rare (~once
+    # per 3 fights) - still always shown, same treatment as every other
+    # tracked cooldown here (real usage, including zero, is itself the
+    # finding). No Rebirth-equivalent exists for Priest in this TBC ruleset -
+    # confirmed absent across all 1,959 real cast events despite real deaths
+    # occurring, so it's omitted here rather than force-mapped or left as a
+    # permanent zero row.
+    "Priest" = [ordered]@{
+        "Shadowfiend"        = @(34433)
+        "Power Word: Shield" = @(10899)
+        "Chakra"             = @(14751)
+        "Blessing of Life"   = @(38332)
+        "Fear Ward"          = @(6346)
+        "Dark Rune"          = @(27869)
+    }
 }
 $manaPotionNameByClass = @{
     "Druid"  = "Restore Mana"
     "Shaman" = "Restore Mana"
+    "Priest" = "Restore Mana"
 }
 
 if (-not $cooldownGuidsByClass.ContainsKey($ClassName)) {
-    Write-Host "ERROR: '$ClassName' has no real cooldown-guid table in this script yet - only Druid and Shaman are wired up today."
+    Write-Host "ERROR: '$ClassName' has no real cooldown-guid table in this script yet - only Druid, Shaman, and Priest are wired up today."
     Write-Host "       Add a real, VERIFIED guid table for '$ClassName' (never guess at guids) before running this for that class."
     exit 1
 }
@@ -235,9 +258,23 @@ foreach ($fight in $bossFights) {
     foreach ($cdName in $cooldownGuids.Keys) {
         $guidList = $cooldownGuids[$cdName]
         $matched = @(if ($guidList.Count -gt 0) { $castsData.events | Where-Object { ($guidList -contains $_.ability.guid) -and ($_.type -ne "begincast") } })
+        # A self-only-castable spell has no real other-actor target at all - WCL logs
+        # this as targetID=-1, which the pull scripts' actor-name lookup resolves to
+        # the literal string "Environment" whenever the report's own masterData.actors[]
+        # happens to include that special id=-1 entry (real, confirmed live on Lippies'
+        # report XJp8vAxzM4KtHYyb - Shadowfiend/Chakra/Blessing of Life ALL showed
+        # Target="Environment" instead of "self" here before this fix), or "Unknown_-1"
+        # when it doesn't. Neither is null/empty, so the original check
+        # (sourceName -eq targetName, or IsNullOrEmpty) missed both - confirmed this was
+        # ALREADY a small real inaccuracy in already-shipped Druid data too (a real
+        # Nature's Swiftness cast on Hydross showed targetName="Environment", not null;
+        # Top100SelfPct read 99% instead of the mechanically-required ~100%). Fixed by
+        # also treating a literal "Environment" targetName as self - a spell logged
+        # against the Environment pseudo-actor mechanically cannot have gone to a real
+        # other player.
         $targetList = @()
         foreach ($m in $matched) {
-            $isSelf = ($m.sourceName -eq $m.targetName) -or [string]::IsNullOrEmpty($m.targetName)
+            $isSelf = ($m.sourceName -eq $m.targetName) -or [string]::IsNullOrEmpty($m.targetName) -or ($m.targetName -eq "Environment")
             $targetList += [PSCustomObject]@{ Target = $(if ($isSelf) { "self" } else { $m.targetName }); Timestamp = $m.timestamp }
         }
         $selfCount = @($targetList | Where-Object { $_.Target -eq "self" }).Count

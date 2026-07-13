@@ -1,0 +1,164 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Shlongfrau",
+                        "id":  22,
+                        "guid":  48472311,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Restoration",
+                        "timestamp":  6587303,
+                        "fight":  42,
+                        "damage":  {
+                                       "total":  12787,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  8226,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  8440,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  3931,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  41932,
+                                                             "name":  "Carnivorous Bite",
+                                                             "total":  416,
+                                                             "type":  1,
+                                                             "icon":  "ability_druid_rake.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Tidewalker Lurker",
+                                                           "total":  8856,
+                                                           "type":  "NPC"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  3931,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  2201,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34866,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  2201,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37764,
+                                                                    "name":  "Earthquake",
+                                                                    "total":  2201,
+                                                                    "type":  1,
+                                                                    "icon":  "spell_nature_earthquake.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Mykir",
+                                                            "total":  2201,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  18075,
+                        "overkill":  452,
+                        "events":  [
+                                       {
+                                           "timestamp":  6587271,
+                                           "type":  "damage",
+                                           "sourceID":  153,
+                                           "sourceInstance":  11,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  42,
+                                           "hitType":  1,
+                                           "amount":  1097,
+                                           "mitigated":  1069,
+                                           "unmitigatedAmount":  2166,
+                                           "isAoE":  false,
+                                           "targetMarker":  1
+                                       },
+                                       {
+                                           "timestamp":  6587271,
+                                           "type":  "damage",
+                                           "sourceID":  153,
+                                           "sourceInstance":  12,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  42,
+                                           "hitType":  1,
+                                           "amount":  454,
+                                           "mitigated":  883,
+                                           "unmitigatedAmount":  1789,
+                                           "overkill":  452,
+                                           "isAoE":  false,
+                                           "targetMarker":  1
+                                       },
+                                       {
+                                           "timestamp":  6584898,
+                                           "type":  "damage",
+                                           "sourceID":  153,
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Carnivorous Bite",
+                                                           "guid":  41932,
+                                                           "type":  1,
+                                                           "abilityIcon":  "ability_druid_rake.jpg"
+                                                       },
+                                           "fight":  42,
+                                           "hitType":  1,
+                                           "amount":  416,
+                                           "unmitigatedAmount":  416,
+                                           "isAoE":  false,
+                                           "tick":  true,
+                                           "targetMarker":  1
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    }
+                ]
+}

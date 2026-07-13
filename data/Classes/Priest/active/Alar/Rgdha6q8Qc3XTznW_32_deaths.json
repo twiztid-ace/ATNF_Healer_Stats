@@ -1,0 +1,447 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Kimchidru",
+                        "id":  3,
+                        "guid":  51898584,
+                        "type":  "Druid",
+                        "icon":  "Druid-Balance",
+                        "timestamp":  4139144,
+                        "fight":  32,
+                        "damage":  {
+                                       "total":  13739,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  35181,
+                                                             "name":  "Dive Bomb",
+                                                             "total":  5767,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  35369,
+                                                             "name":  "Rebirth",
+                                                             "total":  5246,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_burnout.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  34121,
+                                                             "name":  "Flame Buffet",
+                                                             "total":  2243,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  3,
+                                                             "name":  "Falling",
+                                                             "total":  483,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Al\u0027ar",
+                                                           "total":  13256,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  483,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  3487,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  27237,
+                                                              "name":  "Master Healthstone",
+                                                              "total":  2496,
+                                                              "type":  1,
+                                                              "icon":  "inv_stone_04.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34866,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  991,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  35369,
+                                                                    "name":  "Rebirth",
+                                                                    "total":  2496,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_burnout.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  35181,
+                                                                    "name":  "Dive Bomb",
+                                                                    "total":  991,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_fireball02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Kimchidru",
+                                                            "total":  2496,
+                                                            "type":  "Druid"
+                                                        },
+                                                        {
+                                                            "name":  "Puppiduppi",
+                                                            "total":  991,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  7829,
+                        "overkill":  84,
+                        "events":  [
+                                       {
+                                           "timestamp":  4139069,
+                                           "type":  "damage",
+                                           "sourceID":  130,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  3,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Flame Buffet",
+                                                           "guid":  34121,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_fireball.jpg"
+                                                       },
+                                           "fight":  32,
+                                           "hitType":  1,
+                                           "amount":  2159,
+                                           "unmitigatedAmount":  2243,
+                                           "overkill":  84,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  4138234,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  3,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Falling",
+                                                           "guid":  3,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  32,
+                                           "hitType":  1,
+                                           "amount":  483,
+                                           "unmitigatedAmount":  483,
+                                           "overkill":  0,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  4135792,
+                                           "type":  "damage",
+                                           "sourceID":  130,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  3,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Rebirth",
+                                                           "guid":  35369,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_burnout.jpg"
+                                                       },
+                                           "fight":  32,
+                                           "hitType":  1,
+                                           "amount":  5246,
+                                           "unmitigatedAmount":  5246,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Flame Buffet",
+                                            "guid":  34121,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_fireball.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Negaisa",
+                        "id":  16,
+                        "guid":  42780334,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Fury",
+                        "timestamp":  4140641,
+                        "fight":  32,
+                        "damage":  {
+                                       "total":  21010,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  35181,
+                                                             "name":  "Dive Bomb",
+                                                             "total":  6725,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  35412,
+                                                             "name":  "Charge",
+                                                             "total":  6210,
+                                                             "type":  4,
+                                                             "icon":  "ability_warrior_charge.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  35383,
+                                                             "name":  "Flame Patch",
+                                                             "total":  6010,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_lavaspawn.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  34121,
+                                                             "name":  "Flame Buffet",
+                                                             "total":  2065,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Al\u0027ar",
+                                                           "total":  15000,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  6010,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  5264,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34866,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  3520,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  1354,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  30340,
+                                                              "name":  "Bloodthirst",
+                                                              "total":  390,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_bloodlust.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  35383,
+                                                                    "name":  "Flame Patch",
+                                                                    "total":  4723,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_lavaspawn.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  34121,
+                                                                    "name":  "Flame Buffet",
+                                                                    "total":  541,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_fireball.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Puppiduppi",
+                                                            "total":  3520,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Negaisa",
+                                                            "total":  1744,
+                                                            "type":  "Warrior"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  31681,
+                        "overkill":  4462,
+                        "events":  [
+                                       {
+                                           "timestamp":  4140638,
+                                           "type":  "damage",
+                                           "sourceID":  130,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  16,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Charge",
+                                                           "guid":  35412,
+                                                           "type":  4,
+                                                           "abilityIcon":  "ability_warrior_charge.jpg"
+                                                       },
+                                           "fight":  32,
+                                           "hitType":  1,
+                                           "amount":  1748,
+                                           "unmitigatedAmount":  5133,
+                                           "overkill":  4462,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  4139070,
+                                           "type":  "damage",
+                                           "sourceID":  130,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  16,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Flame Buffet",
+                                                           "guid":  34121,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_fireball.jpg"
+                                                       },
+                                           "fight":  32,
+                                           "hitType":  1,
+                                           "amount":  2065,
+                                           "unmitigatedAmount":  1877,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  4131242,
+                                           "type":  "damage",
+                                           "sourceID":  130,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  16,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Dive Bomb",
+                                                           "guid":  35181,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_fireball02.jpg"
+                                                       },
+                                           "fight":  32,
+                                           "hitType":  1,
+                                           "amount":  6725,
+                                           "unmitigatedAmount":  6113,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Charge",
+                                            "guid":  35412,
+                                            "type":  4,
+                                            "abilityIcon":  "ability_warrior_charge.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Negaisa",
+                        "id":  16,
+                        "guid":  42780334,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Fury",
+                        "timestamp":  4184627,
+                        "fight":  32,
+                        "damage":  {
+                                       "total":  6753,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  35181,
+                                                             "name":  "Dive Bomb",
+                                                             "total":  6753,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Al\u0027ar",
+                                                           "total":  6753,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  0,
+                        "overkill":  1808,
+                        "events":  [
+                                       {
+                                           "timestamp":  4184606,
+                                           "type":  "damage",
+                                           "sourceID":  130,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  16,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Dive Bomb",
+                                                           "guid":  35181,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_fireball02.jpg"
+                                                       },
+                                           "fight":  32,
+                                           "hitType":  1,
+                                           "amount":  4945,
+                                           "unmitigatedAmount":  6139,
+                                           "overkill":  1808,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Dive Bomb",
+                                            "guid":  35181,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_fireball02.jpg"
+                                        }
+                    }
+                ]
+}

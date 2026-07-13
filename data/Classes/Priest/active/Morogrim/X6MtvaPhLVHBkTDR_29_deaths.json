@@ -1,0 +1,170 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Plzdontjump",
+                        "id":  17,
+                        "guid":  67108105,
+                        "type":  "Priest",
+                        "icon":  "Priest-Discipline",
+                        "timestamp":  2653058,
+                        "fight":  29,
+                        "damage":  {
+                                       "total":  10314,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37852,
+                                                             "name":  "Watery Grave Explosion",
+                                                             "total":  5125,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_arcticwinds.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  3963,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  3,
+                                                             "name":  "Falling",
+                                                             "total":  1226,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Plzdontjump",
+                                                           "total":  5125,
+                                                           "type":  "Priest"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  3963,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  1226,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  735,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25222,
+                                                              "name":  "Renew",
+                                                              "total":  735,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_renew.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  3,
+                                                                    "name":  "Falling",
+                                                                    "total":  735,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Plzdontjump",
+                                                            "total":  735,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  5355,
+                        "overkill":  408,
+                        "events":  [
+                                       {
+                                           "timestamp":  2653022,
+                                           "type":  "damage",
+                                           "sourceID":  125,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  17,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Earthquake",
+                                                           "guid":  37764,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  29,
+                                           "hitType":  1,
+                                           "amount":  3555,
+                                           "unmitigatedAmount":  3963,
+                                           "overkill":  408,
+                                           "isAoE":  true,
+                                           "targetMarker":  5
+                                       },
+                                       {
+                                           "timestamp":  2650686,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  17,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Falling",
+                                                           "guid":  3,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  29,
+                                           "hitType":  1,
+                                           "amount":  1226,
+                                           "unmitigatedAmount":  1226,
+                                           "overkill":  0,
+                                           "isAoE":  false,
+                                           "targetMarker":  5
+                                       },
+                                       {
+                                           "timestamp":  2647667,
+                                           "type":  "damage",
+                                           "sourceID":  17,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  17,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Watery Grave Explosion",
+                                                           "guid":  37852,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_arcticwinds.jpg"
+                                                       },
+                                           "fight":  29,
+                                           "hitType":  1,
+                                           "amount":  5125,
+                                           "unmitigatedAmount":  5125,
+                                           "isAoE":  true,
+                                           "sourceMarker":  5,
+                                           "targetMarker":  5
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Earthquake",
+                                            "guid":  37764,
+                                            "type":  1,
+                                            "abilityIcon":  "spell_nature_earthquake.jpg"
+                                        }
+                    }
+                ]
+}
