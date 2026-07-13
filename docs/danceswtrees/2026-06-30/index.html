@@ -227,12 +227,7 @@
       <span class="section-num">02</span>
       <h2 class="section-title">Per-boss summary</h2>
     </div>
-    <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own events-based fight logs. Percentile is only shown where this exact report/fight ID has already appeared in Danceswtrees's WCL parse history — click a boss name for the full audit.</p>
-
-    <div class="consistency-banner pending">
-      <div class="consistency-icon">!</div>
-      <div class="consistency-text"><strong>Percentile data is only available for 1 of 9 kills (The Lurker Below, 64th).</strong> The other 8 kills from this exact report haven't shown up in Danceswtrees's WCL parse history yet — WCL appears to index a report's ranked parses with some lag, not all at once. This is a genuine data gap, not a fabricated number left blank.</div>
-    </div>
+    <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own events-based fight logs. Percentile is the exact report/fight rank pulled from WCL's v2 API — click a boss name for the full audit.</p>
 
     <table class="boss-table">
       <thead>
@@ -249,73 +244,73 @@
           <td class="boss-name"><a href="healer_audit_hydross.html">Hydross the Unstable</a></td>
           <td class="num-cell">818</td>
           <td class="num-cell overheal-cell">53.1%</td>
-          <td class="pctl-cell"><span class="pctl-pill pending">pending</span></td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">79th</span></td>
           <td class="link-arrow">→</td>
         </tr>
         <tr>
           <td class="boss-name"><a href="healer_audit_lurker.html">The Lurker Below</a></td>
           <td class="num-cell">855</td>
           <td class="num-cell overheal-cell high">53.3%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">64th</span></td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">63rd</span></td>
           <td class="link-arrow">→</td>
         </tr>
         <tr>
           <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
           <td class="num-cell">773</td>
           <td class="num-cell overheal-cell high">63.3%</td>
-          <td class="pctl-cell"><span class="pctl-pill pending">pending</span></td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">58th</span></td>
           <td class="link-arrow">→</td>
         </tr>
         <tr>
           <td class="boss-name"><a href="healer_audit_karathress.html">Fathom-Lord Karathress</a></td>
           <td class="num-cell">1314</td>
           <td class="num-cell overheal-cell high">49.3%</td>
-          <td class="pctl-cell"><span class="pctl-pill pending">pending</span></td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">87th</span></td>
           <td class="link-arrow">→</td>
         </tr>
         <tr>
           <td class="boss-name"><a href="healer_audit_morogrim.html">Morogrim Tidewalker</a></td>
           <td class="num-cell">1163</td>
           <td class="num-cell overheal-cell">41.8%</td>
-          <td class="pctl-cell"><span class="pctl-pill pending">pending</span></td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">95th</span></td>
           <td class="link-arrow">→</td>
         </tr>
         <tr>
           <td class="boss-name"><a href="healer_audit_vashj.html">Lady Vashj</a></td>
           <td class="num-cell">933</td>
           <td class="num-cell overheal-cell">45.9%</td>
-          <td class="pctl-cell"><span class="pctl-pill pending">pending</span></td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">95th</span></td>
           <td class="link-arrow">→</td>
         </tr>
         <tr>
           <td class="boss-name"><a href="healer_audit_alar.html">Al'ar</a></td>
           <td class="num-cell">831</td>
           <td class="num-cell overheal-cell">56.3%</td>
-          <td class="pctl-cell"><span class="pctl-pill pending">pending</span></td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">94th</span></td>
           <td class="link-arrow">→</td>
         </tr>
         <tr>
           <td class="boss-name"><a href="healer_audit_voidreaver.html">Void Reaver</a></td>
           <td class="num-cell">1385</td>
           <td class="num-cell overheal-cell high">39.4%</td>
-          <td class="pctl-cell"><span class="pctl-pill pending">pending</span></td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">56th</span></td>
           <td class="link-arrow">→</td>
         </tr>
         <tr>
           <td class="boss-name"><a href="healer_audit_solarian.html">High Astromancer Solarian</a></td>
           <td class="num-cell">541</td>
           <td class="num-cell overheal-cell high">67.4%</td>
-          <td class="pctl-cell"><span class="pctl-pill pending">pending</span></td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">66th</span></td>
           <td class="link-arrow">→</td>
         </tr>
     </tbody>
     </table>
 
-    <div class="coverage-note">Kael'thas Sunstrider wasn't killed this raid night (9 of 10 SSC/TK bosses downed) — no page exists for it, correctly, rather than a placeholder. Four real patterns hold up across the 9 real kills: <strong>HPS trails the Top 100 average on every single kill</strong>, no exceptions. <strong>Overheal exceeds the Top 100 sample's single worst parse on 5 of 9 kills</strong> (Lurker, Leotheras, Karathress, Void Reaver, Solarian) — a real, recurring gap on more than half the night, not one-off bad luck. <strong>Lifebloom ran hotter than its own Top 100 benchmark share on all 9 kills</strong>, but the size of that gap varies enormously by boss — from a modest +7.5 points on Solarian and +7.7 on Vashj up to +65.7 on Void Reaver, +47.8 on Leotheras, and +46.7 on Karathress (three of the last four kills of the night). Void Reaver stands out specifically because the sample's own approach there is Regrowth-dominant (75.5%), not Lifebloom-led like every other boss — Danceswtrees's real cast mix doesn't adapt to that. Solarian is the one kill where Danceswtrees's own dominant spell (Regrowth, 65.7%) actually matches the sample's own dominant spell there (59.6%), even though Lifebloom is still individually overweighted. <strong>Tree of Life saw real, heavy use on only 2 of 9 kills</strong> (Vashj 93.7%, Solarian 100%) and read a flat 0% on the other 7 — a consistent, worth-investigating pattern rather than fight-by-fight noise. Three real, verified death-to-Rebirth correlations were found across the night (Hydross 34.5s, Morogrim 3.9s, Al'ar 3.8s after each respective death) — see each boss page's cooldowns section for the specifics.</div>
+    <div class="coverage-note">Kael'thas Sunstrider wasn't killed this raid night (9 of 10 SSC/TK bosses downed) — no page exists for it, correctly, rather than a placeholder. Four real patterns hold up across the 9 real kills: <strong>HPS trails the Top 100 average on every single kill</strong>, no exceptions. <strong>Overheal exceeds the Top 100 sample's single worst parse on 5 of 9 kills</strong> (Lurker, Leotheras, Karathress, Void Reaver, Solarian) — a real, recurring gap on more than half the night, not one-off bad luck. <strong>Lifebloom ran hotter than its own Top 100 benchmark share on all 9 kills</strong>, but the size of that gap varies enormously by boss — from a modest +7.5 points on Solarian and +8.2 on Vashj up to +65.8 on Void Reaver, +47.3 on Leotheras, and +46.1 on Karathress (three of the last four kills of the night). Void Reaver stands out specifically because the sample's own approach there is Regrowth-dominant (75.6%), not Lifebloom-led like every other boss — Danceswtrees's real cast mix doesn't adapt to that. Solarian is the one kill where Danceswtrees's own dominant spell (Regrowth, 65.7%) actually matches the sample's own dominant spell there (59.6%), even though Lifebloom is still individually overweighted. <strong>Tree of Life saw real, heavy use on only 2 of 9 kills</strong> (Vashj 93.7%, Solarian 100%) and read a flat 0% on the other 7 — a consistent, worth-investigating pattern rather than fight-by-fight noise. Three real, verified death-to-Rebirth correlations were found across the night (Hydross 34.5s, Morogrim 3.9s, Al'ar 3.8s after each respective death) — see each boss page's cooldowns section for the specifics.</div>
   </div>
 
   <div class="footer">
-    <span>All data real: Danceswtrees's fight logs (report Fm9XdWYtz8VCLnwg) + WCL rankings where pulled — v2 events-based pipeline, 9/10 bosses killed</span>
+    <span>All data real: Danceswtrees's fight logs (report Fm9XdWYtz8VCLnwg) + WCL rankings for all 9 kills — v2 events-based pipeline, 9/10 bosses killed</span>
     <span>tbc-audit style reference · healer variant · raid overview</span>
   </div>
 

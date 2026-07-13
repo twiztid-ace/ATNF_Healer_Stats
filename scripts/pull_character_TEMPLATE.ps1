@@ -106,9 +106,15 @@ if (Test-Path $charactersRoot) {
 }
 
 if ($cachedFightsFile) {
+    $cachedCandidate = Get-Content $cachedFightsFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
+}
+if ($cachedFightsFile -and $cachedCandidate.PSObject.Properties.Name -contains "actors") {
     Write-Host "  Found cached fights file: $($cachedFightsFile.FullName) - reusing, not re-fetching."
-    $fightsData = Get-Content $cachedFightsFile.FullName -Raw -Encoding UTF8 | ConvertFrom-Json
+    $fightsData = $cachedCandidate
 } else {
+    if ($cachedFightsFile) {
+        Write-Host "  Found cached fights file: $($cachedFightsFile.FullName), but it's the old pre-migration v1 shape (no actors[]) - ignoring it and re-fetching from the v2 API."
+    }
     Write-Host "  Not cached anywhere yet - fetching from the API..."
     $reportQuery = @"
 query {

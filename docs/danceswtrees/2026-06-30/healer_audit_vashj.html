@@ -175,7 +175,7 @@
       <svg class="seal" viewBox="0 0 120 120">
         <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
         <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
-        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#132A2C">N/A</text>
+        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">95</text>
         <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
       </svg>
       <div class="seal-label">WCL rank, all parses</div>
@@ -191,7 +191,7 @@
       <div class="stat">
         <div class="stat-label">HPS</div>
         <div class="stat-value">933</div>
-        <div class="stat-sub">Top 100: #1 1336 &nbsp;·&nbsp; avg 1135 &nbsp;·&nbsp; median 1114</div>
+        <div class="stat-sub">Top 100: #1 1336 &nbsp;·&nbsp; avg 1136 &nbsp;·&nbsp; median 1114</div>
       </div>
       <div class="stat">
         <div class="stat-label">Overheal</div>
@@ -206,7 +206,7 @@
       <div class="stat">
         <div class="stat-label">Active time</div>
         <div class="stat-value warn">95.8%</div>
-        <div class="stat-sub">Top 100: #1 100% &nbsp;·&nbsp; avg 99.2% &nbsp;·&nbsp; median 99.7%</div>
+        <div class="stat-sub">Top 100: #1 100% &nbsp;·&nbsp; avg 99.2% &nbsp;·&nbsp; median 99.8%</div>
       </div>
       <div class="stat">
         <div class="stat-label">Raid deaths</div>
@@ -215,7 +215,11 @@
       </div>
     </div>
 
-    <div class="stat-sub" style="margin-top:18px;">This exact kill (report Fm9XdWYtz8VCLnwg, fight 43) hasn't appeared in Danceswtrees's WCL parse history yet — percentile/rank is genuinely unavailable, not estimated.</div>
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:95%;" data-label="Danceswtrees · 95th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank ~843 of 16874 Restoration Druid parses on this encounter (all difficulties/partitions, historical). Matched by exact report/fight ID (Fm9XdWYtz8VCLnwg, fight 43).</div>
 
     <div class="coverage-note">Overheal (45.9%) lands almost exactly on the Top 100 median (44.8%) — the closest-to-typical overheal result of the raid night. The real outlier is active time: 95.8%, well below the sample's average (99.2%) and median (99.7%), a genuine gap rather than noise. This kill's own death list explains it directly — Danceswtrees died at the 7,559.6s mark, inside a dense end-of-fight cluster of 6 deaths within 12 seconds (see target distribution below) — the reduced active time is real downtime from that death, not idle behavior earlier in the pull.</div>
   </div>
@@ -240,8 +244,8 @@
       </div>
       <div class="spell-row compare-row">
         <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:46.8%"></div></div>
-        <div class="spell-pct">46.8%</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:46.3%"></div></div>
+        <div class="spell-pct">46.3%</div>
       </div>
     </div>
 
@@ -266,8 +270,8 @@
       </div>
       <div class="spell-row compare-row">
         <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:11.3%"></div></div>
-        <div class="spell-pct">11.3%</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:11.9%"></div></div>
+        <div class="spell-pct">11.9%</div>
       </div>
     </div>
 
@@ -279,8 +283,8 @@
       </div>
       <div class="spell-row compare-row">
         <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:12.5%"></div></div>
-        <div class="spell-pct">12.5%</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:12.4%"></div></div>
+        <div class="spell-pct">12.4%</div>
       </div>
     </div>
 
@@ -292,8 +296,8 @@
       </div>
       <div class="spell-row compare-row">
         <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.3%"></div></div>
-        <div class="spell-pct">4.3%</div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.4%"></div></div>
+        <div class="spell-pct">4.4%</div>
       </div>
     </div>
 
@@ -323,7 +327,20 @@
       </div>
     </div>
 
-    <div class="coverage-note">A much smaller gap than the last three kills: Lifebloom (54.5% vs. 46.8%, +7.7) and Regrowth (27.7% vs. 21.3%, +6.4) are both only modestly overweighted, at the expense of Rejuvenation (6.9% vs. 11.3%, -4.4) and the Lifebloom bloom-burst specifically (5.5% vs. 12.5%, -7.0 — the largest single gap on this kill). Swiftmend and Healing Touch both track the benchmark closely. One benchmark-only row (Regrowth guid 9858, 1.2%) was never cast, shown at 0%.</div>
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Rejuvenation <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 26981)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+        <div class="spell-pct">0.0%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.5%"></div></div>
+        <div class="spell-pct">0.5%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">A much smaller gap than the last three kills: Lifebloom (54.5% vs. 46.3%, +8.2) and Regrowth (27.7% vs. 21.3%, +6.4) are both only modestly overweighted, at the expense of Rejuvenation (6.9% vs. 11.9%, -5.0) and the Lifebloom bloom-burst specifically (5.5% vs. 12.4%, -6.9 — the largest single gap on this kill). Swiftmend and Healing Touch both track the benchmark closely. Two benchmark-only rows (Regrowth guid 9858 at 1.2%, Rejuvenation guid 26981 at 0.5%) were never cast, shown at 0%.</div>
   </div>
 
   <div class="section">
@@ -347,19 +364,19 @@
           <td class="ability-name">Innervate</td>
           <td class="num-cell">1</td>
           <td>self</td>
-          <td class="num-cell">1.1 (86%)</td>
+          <td class="num-cell">1.1 (87%)</td>
         </tr>
         <tr>
           <td class="ability-name">Nature's Swiftness</td>
           <td class="num-cell">1</td>
           <td>self</td>
-          <td class="num-cell">1.4 (100%)</td>
+          <td class="num-cell">1.4 (98%)</td>
         </tr>
         <tr>
           <td class="ability-name">Swiftmend</td>
           <td class="num-cell">7</td>
           <td>→ Zamnes ×5, → Kansk, → Érel</td>
-          <td class="num-cell">6.8 (6%)</td>
+          <td class="num-cell">7 (5%)</td>
         </tr>
         <tr>
           <td class="ability-name">Rebirth</td>
@@ -385,21 +402,21 @@
       <div class="stat">
         <div class="stat-label">Tree of Life uptime</div>
         <div class="stat-value good">93.7%</div>
-        <div class="stat-sub">Top 100 avg: 66.8%</div>
+        <div class="stat-sub">Top 100 avg: 65.7%</div>
       </div>
       <div class="stat">
         <div class="stat-label">Mana consumables</div>
         <div class="stat-value">4</div>
-        <div class="stat-sub">4x Mana Potion — Top 100 avg 2.2 casts (74% used one)</div>
+        <div class="stat-sub">4x Mana Potion — Top 100 avg 2.3 casts (74% used one)</div>
       </div>
       <div class="stat">
         <div class="stat-label">HPM</div>
         <div class="stat-value">6.19</div>
-        <div class="stat-sub">Top 100: top1 8.74 &nbsp;·&nbsp; avg 6.91 &nbsp;·&nbsp; median 6.95</div>
+        <div class="stat-sub">Top 100: top1 8.74 &nbsp;·&nbsp; avg 6.88 &nbsp;·&nbsp; median 6.91</div>
       </div>
     </div>
 
-    <div class="coverage-note">Largebingus died once at the 7,261.4s mark, was battle-rezzed 154.6 seconds later (7,416.1s), then died a second time at 7,570.7s inside the fight's final death cluster — a real, traceable death → rez → second death sequence, not just a routine cooldown use. Swiftmend was cast 7 times, right in line with the Top 100 average (6.8), all given away rather than self-cast, matching the sample's 94% not-self norm. Tree of Life uptime (93.7%) is a real standout — well above the Top 100 average (66.8%) on this specific kill, on this fight's long duration a sustained Tree form clearly paid off. HPM (6.19) trails the average modestly (6.91), a smaller gap than most of tonight's other kills.</div>
+    <div class="coverage-note">Largebingus died once at the 7,261.4s mark, was battle-rezzed 154.6 seconds later (7,416.1s), then died a second time at 7,570.7s inside the fight's final death cluster — a real, traceable death → rez → second death sequence, not just a routine cooldown use. Swiftmend was cast 7 times, right in line with the Top 100 average (7), all given away rather than self-cast, matching the sample's 95% not-self norm. Tree of Life uptime (93.7%) is a real standout — well above the Top 100 average (65.7%) on this specific kill, on this fight's long duration a sustained Tree form clearly paid off. HPM (6.19) trails the average modestly (6.88), a smaller gap than most of tonight's other kills.</div>
   </div>
 
   <div class="section">
@@ -407,7 +424,7 @@
       <span class="section-num">04</span>
       <h2 class="section-title">Target distribution</h2>
     </div>
-    <p class="section-desc">Top 5 recipients of Danceswtrees's healing on this kill (66.6% coverage) vs. Top 100 average on Lady Vashj (50.8% coverage, 21.2% to top target).</p>
+    <p class="section-desc">Top 5 recipients of Danceswtrees's healing on this kill (66.6% coverage) vs. Top 100 average on Lady Vashj (50.9% coverage, 21.2% to top target).</p>
 
     <div class="target-list">
       <div class="target-row">
@@ -437,7 +454,7 @@
       </div>
     </div>
 
-    <div class="coverage-note">Top-target concentration is the largest gap of the raid night: 44.9% to Zamnes alone vs. the sample's 21.2% (+23.7, more than double). Coverage (66.6% vs. 50.8%, +15.8) is also well past normal variance. The fight's final seconds saw a dense death cluster spanning just 12 seconds (Danceswtrees, Sixdegrees, Grobaladin, Largebingus, Zamnes, Wubblez, in addition to Nicole and Jonnypork earlier) — consistent with a long, grinding kill that came down to the wire rather than a clean finish.</div>
+    <div class="coverage-note">Top-target concentration is the largest gap of the raid night: 44.9% to Zamnes alone vs. the sample's 21.2% (+23.7, more than double). Coverage (66.6% vs. 50.9%, +15.7) is also well past normal variance. The fight's final seconds saw a dense death cluster spanning just 12 seconds (Danceswtrees, Sixdegrees, Grobaladin, Largebingus, Zamnes, Wubblez, in addition to Nicole and Jonnypork earlier) — consistent with a long, grinding kill that came down to the wire rather than a clean finish.</div>
   </div>
 
   <div class="footer">
