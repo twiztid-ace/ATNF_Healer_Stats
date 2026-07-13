@@ -1,0 +1,142 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Cavalanche",
+                        "id":  34,
+                        "guid":  77556194,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Enhancement",
+                        "timestamp":  10225365,
+                        "fight":  70,
+                        "damage":  {
+                                       "total":  11172,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  89,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37871,
+                                                             "name":  "Freeze",
+                                                             "total":  7096,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_glacier.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  3904,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  172,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Water Globule",
+                                                           "total":  7268,
+                                                           "type":  "NPC"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  3904,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  3251,
+                        "overkill":  1393,
+                        "events":  [
+                                       {
+                                           "timestamp":  10225362,
+                                           "type":  "damage",
+                                           "sourceID":  343,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  34,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Earthquake",
+                                                           "guid":  37764,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  70,
+                                           "hitType":  1,
+                                           "amount":  2511,
+                                           "unmitigatedAmount":  3904,
+                                           "overkill":  1393,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  10223723,
+                                           "type":  "damage",
+                                           "sourceID":  353,
+                                           "sourceInstance":  3,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  34,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Freeze",
+                                                           "guid":  37871,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_glacier.jpg"
+                                                       },
+                                           "fight":  70,
+                                           "hitType":  1,
+                                           "amount":  7096,
+                                           "unmitigatedAmount":  7096,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  10222111,
+                                           "type":  "damage",
+                                           "sourceID":  353,
+                                           "sourceInstance":  3,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  34,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  70,
+                                           "hitType":  1,
+                                           "amount":  172,
+                                           "mitigated":  89,
+                                           "unmitigatedAmount":  261,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Earthquake",
+                                            "guid":  37764,
+                                            "type":  1,
+                                            "abilityIcon":  "spell_nature_earthquake.jpg"
+                                        }
+                    }
+                ]
+}

@@ -23,11 +23,17 @@ param(
     [Parameter(Mandatory=$true)][string]$DateFolder
 )
 
-# Only Druid is wired up as of this migration - extend this table before running against
+# Only Druid and Shaman are wired up here - extend this table before running against
 # another class (matches the classID/specID values already hardcoded per-class across
-# the pull_top100_*.ps1 scripts and WORKFLOW.md's class/spec reference table).
+# the pull_top100_*.ps1 scripts and WORKFLOW.md's class/spec reference table). Shaman's
+# entry is housekeeping only - it was NOT actually migrated forward through this tool
+# (its old data\Classes\Shaman\{date}\ folder has no *_healing_events.json files to move,
+# since the old pull_top100_shaman.ps1 only ever pulled a raw healing TABLE - see
+# pull_top100_shaman.ps1's header). The new script bootstraps its own empty
+# active\/archived\/manifest.json from scratch instead.
 $classInfo = @{
-    "Druid" = @{ classID = 2; specID = 4 }
+    "Druid"  = @{ classID = 2; specID = 4 }
+    "Shaman" = @{ classID = 9; specID = 3 }
 }
 if (-not $classInfo.ContainsKey($ClassName)) {
     Write-Host "ERROR: no classID/specID entry for '$ClassName' in this script's `$classInfo table - add one first."

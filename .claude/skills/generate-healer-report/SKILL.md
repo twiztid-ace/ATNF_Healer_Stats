@@ -28,18 +28,19 @@ runbook for *this specific task*, not a replacement for those.
 
 ## Before starting: confirm the class is supported
 
-Step 2 resolves the character's class. **Only Druid is on the real v2 pipeline
-today** (`pull_top100_druid.ps1`, `boss_page_template_druid.html`, and the
-cooldown-guid table in `build_boss_report_data.ps1` only cover Druid).
-Paladin/Priest/Shaman are still v1 (truncation-prone healing TABLE, old
+Step 2 resolves the character's class. **Only Druid and Shaman are on the real v2
+pipeline today** (`pull_top100_druid.ps1`/`pull_top100_shaman.ps1`,
+`boss_page_template_druid.html`/`boss_page_template_shaman.html`, and the
+cooldown-guid tables in `build_boss_report_data.ps1` cover only these two).
+Paladin/Priest are still v1 (truncation-prone healing TABLE, old
 date-stamped-folder convention) — running this pipeline against them will produce
 wrong or missing data, not just incomplete data.
 
-**If the resolved class isn't Druid: stop and tell the user clearly** — name the
-class, say it isn't on the v2 pipeline yet, and don't proceed past step 2. Don't
-attempt a "best effort" fallback (e.g. quietly reusing Druid's cooldown list or
-template) — that would produce a report with fabricated-looking numbers for
-abilities that class doesn't even have.
+**If the resolved class isn't Druid or Shaman: stop and tell the user clearly** —
+name the class, say it isn't on the v2 pipeline yet, and don't proceed past step 2.
+Don't attempt a "best effort" fallback (e.g. quietly reusing Druid's or Shaman's
+cooldown list or template for an unsupported class) — that would produce a report
+with fabricated-looking numbers for abilities that class doesn't even have.
 
 ## Pipeline
 
@@ -68,12 +69,14 @@ output carefully:
 ### 3. Update the matching class's Top 100 benchmark data
 ```
 powershell -ExecutionPolicy Bypass -File scripts\pull_top100_druid.ps1
+powershell -ExecutionPolicy Bypass -File scripts\pull_top100_shaman.ps1
 ```
-(Only Druid exists today — see the gate above. If/when other classes get their own
-`pull_top100_{class}.ps1`, dispatch to that instead, same invocation shape.) This is
-diff-based against `manifest.json` — it only makes real API calls for parses that
-are genuinely new or have re-entered the Top 100 since the last run, so running it
-here is cheap even if it was run recently.
+Dispatch to whichever script matches the resolved class from step 2 (Druid or
+Shaman today — see the gate above; if/when Paladin/Priest get their own
+`pull_top100_{class}.ps1` on this same model, dispatch to that instead, same
+invocation shape). This is diff-based against `manifest.json` — it only makes real
+API calls for parses that are genuinely new or have re-entered the Top 100 since
+the last run, so running it here is cheap even if it was run recently.
 
 ### 4. Run the summarization
 ```
@@ -154,13 +157,17 @@ Concretely, before writing a page:
 - **Union of both spell lists.** A benchmark-only spell (in `BMSpells` but not in
   the character's `SpellRows`) still gets a real row showing 0%, never omitted —
   that's the actual point of the comparison.
-- **Tranquility's cooldown-table row is conditional**, not always-shown and not
-  always-omitted: only include it when the character's usage is a real deviation
-  from `Top100UsedPct` — cast it when ≤20% of the sample does, or didn't cast it
-  when ≥50% of the sample did. Anything else (including the common case where
-  nobody in the sample casts it at all) — omit the row.
+- **Tranquility's cooldown-table row is conditional** (Druid only — Shaman has no
+  equivalent concept, see below), not always-shown and not always-omitted: only
+  include it when the character's usage is a real deviation from `Top100UsedPct` —
+  cast it when ≤20% of the sample does, or didn't cast it when ≥50% of the sample
+  did. Anything else (including the common case where nobody in the sample casts
+  it at all) — omit the row.
 - **Rebirth only gets a row if it's actually relevant to this kill** (a real death
-  it could plausibly answer) — don't pad every page with a permanent 0 row.
+  it could plausibly answer) — don't pad every page with a permanent 0 row. This
+  concept doesn't exist for Shaman at all — confirmed no battle-rez equivalent in
+  this TBC ruleset (see `pull_top100_shaman.ps1`'s header) — so Shaman pages never
+  have this row, not even a permanent 0.
 - **No letter grades, ever** — percentile numbers only.
 - **No gendered pronouns anywhere in generated prose** — use the character's name
   or restructure the sentence.

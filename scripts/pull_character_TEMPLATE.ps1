@@ -640,6 +640,16 @@ $workerScript = {
         $deathsResult = Invoke-WclGraphQL -Query $deathsQuery -AccessToken $accessToken
         if ($deathsResult.Errors) {
             $result.Messages.Add("  $($label)_deaths.json - FAILED: $($deathsResult.Errors | ConvertTo-Json -Compress)")
+            # 2026-07-12 fix (found in the Top-100 scripts while porting Shaman,
+            # applied here too for consistency): this was the one sub-fetch that
+            # didn't gate $fightOk on its own success, so a deaths-only failure
+            # could report this boss kill as "fully pulled" in the summary count
+            # at the end of the run even with a missing deaths.json. This script
+            # has no manifest gating re-dispatch (every boss kill gets a worker
+            # again on a full re-run, only individual files are Test-Path-skipped),
+            # so the practical impact here is a misleading summary count rather
+            # than a permanent gap - still worth reporting honestly.
+            $fightOk = $false
         } else {
             $jsonText = $deathsResult.Data.reportData.report.table.data | ConvertTo-Json -Depth 12
             [System.IO.File]::WriteAllText($deathsOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))

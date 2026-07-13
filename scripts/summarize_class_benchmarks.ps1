@@ -84,20 +84,22 @@
 # every run - it maintains one persistent data\Classes\{Class}\active\ folder (only
 # currently-in-the-Top-100 parses) plus data\Classes\{Class}\archived\ (parses that have
 # dropped out, kept forever) and a manifest.json tracking per-boss pull dates and
-# per-parse status. Paladin/Priest/Shaman are NOT on this model yet - they're still
-# both v1 (healing TABLE, not events) AND the old date-stamped-folder convention, pulled
-# by pull_top100_paladin.ps1/pull_top100_priest_holy.ps1/pull_top100_shaman.ps1.
+# per-parse status. Shaman was ported to this same model 2026-07-12 (pilot class for
+# Phase 3, see the plan file at C:\Users\raymo\.claude\plans\playful-baking-sunset.md) via
+# pull_top100_shaman.ps1. Paladin/Priest are NOT on this model yet - they're still both v1
+# (healing TABLE, not events) AND the old date-stamped-folder convention, pulled by
+# pull_top100_paladin.ps1/pull_top100_priest_holy.ps1.
 #
 # This script supports BOTH conventions, chosen by whether -DateFolder is passed:
 #   - -DateFolder omitted -> active/archived model: reads/writes
 #     data\Classes\{Class}\active\, tracks benchmarkGeneratedDate in manifest.json,
 #     archives the previous CSV set to archived\benchmark_history\{date}\ on a real
-#     day-over-day regen. This is the only mode Druid supports (it has no date folder
-#     to point at anymore - migrate_class_to_active.ps1 already converted it).
+#     day-over-day regen. This is the mode Druid and Shaman both use now (neither has a
+#     date folder to point at anymore).
 #   - -DateFolder {date} passed -> old mode, unchanged from before this rewrite: reads/
 #     writes data\Classes\{Class}\{date}\ directly, no manifest, no staleness tracking,
-#     no CSV history. This is what Paladin/Priest/Shaman still need until they're
-#     ported to the active/archived model (see WORKFLOW.md gotcha #25).
+#     no CSV history. This is what Paladin/Priest still need until they're ported to the
+#     active/archived model (see WORKFLOW.md gotcha #25).
 #
 # STALENESS: manifest.json's top-level `benchmarkGeneratedDate` is a plain "yyyy-MM-dd"
 # string, never a boolean flag (a stored true/false would silently go wrong the instant
@@ -115,6 +117,25 @@
 # new day's regeneration, not a same-day re-run), the existing four CSVs are copied to
 # archived\benchmark_history\{that old date}\ before being overwritten - one folder per
 # calendar day the numbers actually changed, no duplicate entries for same-day re-runs.
+#
+# ============================================================================
+# 2026-07-12: COOLDOWN GUID TABLE + TREE-OF-LIFE COLUMN MADE CLASS-AWARE (PHASE 3, SHAMAN PORT)
+# ============================================================================
+# Found while porting Shaman to the active/archived model: $cooldownGuids and the mana
+# potion name were a single flat, UNGATED table applied unconditionally regardless of
+# -ClassName - running this script for any class other than Druid would have silently
+# computed cooldown-benchmark numbers using Druid's ability guids instead of erroring
+# or using that class's own real cooldowns. Same problem for the Tree of Life buff
+# column, computed unconditionally from a field that simply won't exist in a non-Druid
+# class's *_consumables.json. Both are now class-keyed ($cooldownGuidsByClass,
+# $manaPotionNameByClass, $classesWithBuffUptime) with a hard-stop for any class not yet
+# added - see pull_top100_shaman.ps1's header for how Shaman's real cooldown guids
+# (Earth Shield, Mana Tide Totem, Ancestral Swiftness) and the lack of a real
+# Tree-of-Life-equivalent were confirmed against real pulled data before being added
+# here, not guessed. This also protects Druid's own numbers going forward - the old
+# ungated table only happened to be correct because Druid was the only class ever run
+# through it.
+# ============================================================================
 #
 # ============================================================================
 # ORIGINAL 2026-07-11 REWRITE NOTES (still accurate, unrelated to the above): reads
@@ -168,6 +189,7 @@
 # Run this from your repo ROOT directory (same place you ran the pull script from).
 #
 # Usage: powershell -ExecutionPolicy Bypass -File summarize_class_benchmarks.ps1 -ClassName Druid
+#        powershell -ExecutionPolicy Bypass -File summarize_class_benchmarks.ps1 -ClassName Shaman
 #        powershell -ExecutionPolicy Bypass -File summarize_class_benchmarks.ps1 -ClassName Paladin -DateFolder 2026-07-10
 
 param(
@@ -258,26 +280,69 @@ $bosses = [ordered]@{
     "Kaelthas"   = @{ file = "rankings_kaelthas.json";   display = "Kael'thas Sunstrider" }
 }
 
-# ===== Cooldown/utility watch list (Druid-specific), matched by GUID - real guids
-# extracted from actual pulled data, not guessed. Tranquility still empty; add its guid
-# here once it's actually observed in a pull (see WORKFLOW.md). =====
-$cooldownGuids = [ordered]@{
-    "Innervate"          = @(29166)
-    "Nature's Swiftness" = @(17116)
-    "Swiftmend"          = @(18562)
-    "Tranquility"        = @()
-    "Rebirth"            = @(26994)
-    "Dark Rune"          = @(27869)
+# ===== Cooldown/utility watch list, keyed by class - real guids extracted from
+# actual pulled data per class, never guessed (see each class's pull script header
+# for the specific real-data verification). This used to be a single flat,
+# UNGATED table (Druid's guids only) applied unconditionally regardless of
+# -ClassName - running this script for any other class would have silently
+# computed cooldown-benchmark numbers using Druid's ability guids instead of
+# erroring. Now class-keyed (mirrors build_boss_report_data.ps1's
+# $cooldownGuidsByClass) with a hard-stop for any class not yet added here. =====
+$cooldownGuidsByClass = @{
+    "Druid" = [ordered]@{
+        "Innervate"          = @(29166)
+        "Nature's Swiftness" = @(17116)
+        "Swiftmend"          = @(18562)
+        "Tranquility"        = @()
+        "Rebirth"            = @(26994)
+        "Dark Rune"          = @(27869)
+    }
+    # Confirmed against a real Vajomee report (Z4zNt28raQ6GLbkC, 9 real boss
+    # kills) before this entry was added - see pull_top100_shaman.ps1's header
+    # for the full discovery writeup. No Rebirth-equivalent exists for Shaman
+    # in this TBC ruleset (confirmed absent across all 9 real kills despite
+    # real deaths occurring in them) - not included here, not force-mapped.
+    "Shaman" = [ordered]@{
+        "Earth Shield"        = @(32594)
+        "Mana Tide Totem"     = @(16190)
+        "Ancestral Swiftness" = @(16188)
+        "Dark Rune"           = @(27869)
+    }
 }
+if (-not $cooldownGuidsByClass.ContainsKey($ClassName)) {
+    Write-Host "ERROR: no cooldown/utility guid table defined for class '$ClassName' in"
+    Write-Host "       this script. Add a real-data-verified entry to `$cooldownGuidsByClass"
+    Write-Host "       before running this for a new class - see pull_top100_druid.ps1's or"
+    Write-Host "       pull_top100_shaman.ps1's header for how each class's guids were"
+    Write-Host "       confirmed against real pulled data first, not guessed."
+    exit 1
+}
+$cooldownGuids = $cooldownGuidsByClass[$ClassName]
+
 # Matched by NAME instead of guid - real data shows 3+ different guids for this single
 # effect (different mana potion tiers/items), so name is the more stable match here.
-$manaPotionName = "Restore Mana"
+# Same treatment as the cooldown table above: class-keyed, not a flat assumption that
+# every class's consumable is named identically. Confirmed "Restore Mana" (guid 28499)
+# in real Shaman cast data before adding that entry, not assumed to carry over unchanged.
+$manaPotionNameByClass = @{
+    "Druid"  = "Restore Mana"
+    "Shaman" = "Restore Mana"
+}
+$manaPotionName = $manaPotionNameByClass[$ClassName]
 
-# ===== Self-buff uptime: no watch-list constants needed here - flask/elixir/food
-# matching and Tree of Life guid selection already happened at pull time (see
-# pull_top100_druid.ps1's Get-ConsumablesSnapshotLocal / Get-TreeOfLifeUptimeLocal).
-# This script just reads the already-computed flaskActive/foodActive/
-# treeOfLifeUptimePct fields straight out of each *_consumables.json. =====
+# ===== Self-buff uptime (Tree-of-Life-style form/shield uptime): Druid-only so
+# far. Confirmed against real Shaman data (see pull_top100_shaman.ps1's header)
+# that no equivalent exists worth this same interval-reconstruction treatment -
+# Water Shield showed no sustained/toggled uptime pattern, just periodic
+# maintenance recasts. Rather than force a blank/fake column onto every other
+# class, this is an explicit per-class flag: only classes listed here get a
+# buff-uptime column in benchmark_buffs.csv at all. flask/elixir/food matching
+# and Tree of Life guid selection happen at pull time (see
+# pull_top100_druid.ps1's Get-ConsumablesSnapshotLocal / Get-TreeOfLifeUptimeLocal)
+# - this script just reads the already-computed fields straight out of each
+# *_consumables.json when the class has them. =====
+$classesWithBuffUptime = @("Druid")
+$hasBuffUptime = $classesWithBuffUptime -contains $ClassName
 
 function Test-IsAscii($s) {
     if ($null -eq $s) { return $false }
@@ -476,9 +541,11 @@ foreach ($bossFolder in $bosses.Keys) {
             try {
                 $consumablesData = Get-Content $consumablesFile -Raw -Encoding UTF8 | ConvertFrom-Json
                 $buffUptimes = [PSCustomObject]@{
-                    FlaskActive   = [bool]$consumablesData.flaskActive
-                    FoodActive    = [bool]$consumablesData.foodActive
-                    TreeOfLifePct = $consumablesData.treeOfLifeUptimePct
+                    FlaskActive = [bool]$consumablesData.flaskActive
+                    FoodActive  = [bool]$consumablesData.foodActive
+                }
+                if ($hasBuffUptime) {
+                    $buffUptimes | Add-Member -NotePropertyName "TreeOfLifePct" -NotePropertyValue $consumablesData.treeOfLifeUptimePct
                 }
             } catch {
                 $consumablesFailCount++
@@ -667,15 +734,18 @@ foreach ($bossFolder in $bosses.Keys) {
     if ($buffSampleUsed -gt 0) {
         $flaskCount = @($sampleWithBuffs | Where-Object { $_.BuffUptimes.FlaskActive }).Count
         $foodCount = @($sampleWithBuffs | Where-Object { $_.BuffUptimes.FoodActive }).Count
-        $treeAvg = ($sampleWithBuffs | ForEach-Object { $_.BuffUptimes.TreeOfLifePct } | Measure-Object -Average).Average
 
-        $buffRows += [PSCustomObject]@{
+        $buffRow = [PSCustomObject]@{
             Boss = $bossName
             Top100FlaskActivePct = [math]::Round(($flaskCount / $buffSampleUsed) * 100, 0)
             Top100FoodActivePct  = [math]::Round(($foodCount / $buffSampleUsed) * 100, 0)
-            Top100TreeOfLifeAvgUptimePct = [math]::Round($treeAvg, 1)
-            SampleUsed = $buffSampleUsed
         }
+        if ($hasBuffUptime) {
+            $treeAvg = ($sampleWithBuffs | ForEach-Object { $_.BuffUptimes.TreeOfLifePct } | Measure-Object -Average).Average
+            $buffRow | Add-Member -NotePropertyName "Top100TreeOfLifeAvgUptimePct" -NotePropertyValue ([math]::Round($treeAvg, 1))
+        }
+        $buffRow | Add-Member -NotePropertyName "SampleUsed" -NotePropertyValue $buffSampleUsed
+        $buffRows += $buffRow
     } else {
         Write-Host "  NOTE: no buff data aggregated for $bossName (no players had a parseable consumables file)."
     }

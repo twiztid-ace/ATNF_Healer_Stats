@@ -1,0 +1,501 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Themnuts",
+                        "id":  2,
+                        "guid":  53667003,
+                        "type":  "Paladin",
+                        "icon":  "Paladin-Retribution",
+                        "timestamp":  8204582,
+                        "fight":  58,
+                        "damage":  {
+                                       "total":  17679,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37018,
+                                                             "name":  "Conflagration",
+                                                             "total":  9000,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_incinerate.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37036,
+                                                             "name":  "Bomb",
+                                                             "total":  8679,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_selfdestruct.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Grand Astromancer Capernian",
+                                                           "total":  9000,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Master Engineer Telonicus",
+                                                           "total":  8679,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  7642,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  26982,
+                                                              "name":  "Rejuvenation",
+                                                              "total":  2801,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_rejuvenation.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  33110,
+                                                              "name":  "Prayer of Mending",
+                                                              "total":  2053,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_prayerofmendingtga.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  1712,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34866,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  1076,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37018,
+                                                                    "name":  "Conflagration",
+                                                                    "total":  7642,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_incinerate.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Hardy",
+                                                            "total":  3129,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Celestíná",
+                                                            "total":  2801,
+                                                            "type":  "Druid"
+                                                        },
+                                                        {
+                                                            "name":  "Rryu",
+                                                            "total":  1712,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  12703,
+                        "overkill":  290,
+                        "events":  [
+                                       {
+                                           "timestamp":  8204563,
+                                           "type":  "damage",
+                                           "sourceID":  861,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  2,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Bomb",
+                                                           "guid":  37036,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_selfdestruct.jpg"
+                                                       },
+                                           "fight":  58,
+                                           "hitType":  1,
+                                           "amount":  8389,
+                                           "unmitigatedAmount":  8679,
+                                           "overkill":  290,
+                                           "isAoE":  true,
+                                           "sourceMarker":  4
+                                       },
+                                       {
+                                           "timestamp":  8200859,
+                                           "type":  "damage",
+                                           "sourceID":  860,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  2,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Conflagration",
+                                                           "guid":  37018,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_incinerate.jpg"
+                                                       },
+                                           "fight":  58,
+                                           "hitType":  1,
+                                           "amount":  900,
+                                           "unmitigatedAmount":  900,
+                                           "isAoE":  true,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  8199867,
+                                           "type":  "damage",
+                                           "sourceID":  860,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  2,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Conflagration",
+                                                           "guid":  37018,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_incinerate.jpg"
+                                                       },
+                                           "fight":  58,
+                                           "hitType":  1,
+                                           "amount":  900,
+                                           "unmitigatedAmount":  900,
+                                           "isAoE":  true,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Bomb",
+                                            "guid":  37036,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_selfdestruct.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Naerzhul",
+                        "id":  8,
+                        "guid":  42930288,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Enhancement",
+                        "timestamp":  8208074,
+                        "fight":  58,
+                        "damage":  {
+                                       "total":  15726,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37036,
+                                                             "name":  "Bomb",
+                                                             "total":  15726,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_selfdestruct.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Master Engineer Telonicus",
+                                                           "total":  15726,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  5142,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25235,
+                                                              "name":  "Flash Heal",
+                                                              "total":  2763,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_flashheal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  10623,
+                                                              "name":  "Chain Heal",
+                                                              "total":  1481,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  898,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37036,
+                                                                    "name":  "Bomb",
+                                                                    "total":  5142,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_selfdestruct.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Hardy",
+                                                            "total":  2763,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Rryu",
+                                                            "total":  1481,
+                                                            "type":  "Shaman"
+                                                        },
+                                                        {
+                                                            "name":  "Takishaman",
+                                                            "total":  898,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  3510,
+                        "overkill":  1045,
+                        "events":  [
+                                       {
+                                           "timestamp":  8208072,
+                                           "type":  "damage",
+                                           "sourceID":  861,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Bomb",
+                                                           "guid":  37036,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_selfdestruct.jpg"
+                                                       },
+                                           "fight":  58,
+                                           "hitType":  1,
+                                           "amount":  7444,
+                                           "unmitigatedAmount":  8489,
+                                           "overkill":  1045,
+                                           "isAoE":  true,
+                                           "sourceMarker":  4
+                                       },
+                                       {
+                                           "timestamp":  8204562,
+                                           "type":  "damage",
+                                           "sourceID":  861,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Bomb",
+                                                           "guid":  37036,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_selfdestruct.jpg"
+                                                       },
+                                           "fight":  58,
+                                           "hitType":  1,
+                                           "amount":  7237,
+                                           "unmitigatedAmount":  7237,
+                                           "isAoE":  true,
+                                           "sourceMarker":  4
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Bomb",
+                                            "guid":  37036,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_selfdestruct.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Naerzhul",
+                        "id":  8,
+                        "guid":  42930288,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Enhancement",
+                        "timestamp":  8497271,
+                        "fight":  58,
+                        "damage":  {
+                                       "total":  5277,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  2598,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  35873,
+                                                             "name":  "Nether Beam",
+                                                             "total":  3350,
+                                                             "type":  64,
+                                                             "icon":  "spell_nature_chainlightning.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  35859,
+                                                             "name":  "Nether Vapor",
+                                                             "total":  1423,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_gathershadows.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  36822,
+                                                             "name":  "Shock Barrier",
+                                                             "total":  504,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_lightningshield.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Kael\u0027thas Sunstrider",
+                                                           "total":  3854,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Nether Vapor",
+                                                           "total":  1423,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1001,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  898,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  103,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  35873,
+                                                                    "name":  "Nether Beam",
+                                                                    "total":  792,
+                                                                    "type":  64,
+                                                                    "icon":  "spell_nature_chainlightning.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  36822,
+                                                                    "name":  "Shock Barrier",
+                                                                    "total":  106,
+                                                                    "type":  1,
+                                                                    "icon":  "spell_nature_lightningshield.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  35859,
+                                                                    "name":  "Nether Vapor",
+                                                                    "total":  103,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_gathershadows.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Rryu",
+                                                            "total":  898,
+                                                            "type":  "Shaman"
+                                                        },
+                                                        {
+                                                            "name":  "Naerzhul",
+                                                            "total":  103,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  7259,
+                        "overkill":  984,
+                        "events":  [
+                                       {
+                                           "timestamp":  8497250,
+                                           "type":  "damage",
+                                           "sourceID":  866,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Nether Beam",
+                                                           "guid":  35873,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_chainlightning.jpg"
+                                                       },
+                                           "fight":  58,
+                                           "hitType":  1,
+                                           "amount":  448,
+                                           "mitigated":  614,
+                                           "unmitigatedAmount":  2046,
+                                           "overkill":  984,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  8497085,
+                                           "type":  "damage",
+                                           "sourceID":  880,
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Nether Vapor",
+                                                           "guid":  35859,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_gathershadows.jpg"
+                                                       },
+                                           "fight":  58,
+                                           "hitType":  1,
+                                           "amount":  374,
+                                           "mitigated":  696,
+                                           "unmitigatedAmount":  1070,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  8495083,
+                                           "type":  "damage",
+                                           "sourceID":  880,
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Nether Vapor",
+                                                           "guid":  35859,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_gathershadows.jpg"
+                                                       },
+                                           "fight":  58,
+                                           "hitType":  1,
+                                           "amount":  551,
+                                           "mitigated":  552,
+                                           "unmitigatedAmount":  1103,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Nether Beam",
+                                            "guid":  35873,
+                                            "type":  64,
+                                            "abilityIcon":  "spell_nature_chainlightning.jpg"
+                                        }
+                    }
+                ]
+}

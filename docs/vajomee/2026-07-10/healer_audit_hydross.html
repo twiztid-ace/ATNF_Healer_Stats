@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Hydross the Unstable</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  .seal-wrap{ flex-shrink:0; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--copper);
+  }
+  .section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+  .section-desc{
+    font-size: 13px;
+    color: rgba(19,42,44,0.6);
+    margin: -12px 0 20px;
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .stat{
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(19,42,44,0.55);
+    margin-bottom: 6px;
+  }
+  .stat-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{
+    position: absolute;
+    top: -8px;
+    width: 3px;
+    height: 26px;
+    background: var(--ink);
+  }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .pctl-scale{
+    display:flex; justify-content: space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(19,42,44,0.45);
+  }
+
+  .spell-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items:center;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 13px;
+  }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{
+    height: 8px;
+    background: var(--parchment-dim);
+    border-radius: 4px;
+    overflow:hidden;
+  }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{
+    display:flex; gap: 18px; margin-bottom: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cd-table td{
+    padding: 10px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
+
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{
+    display:grid;
+    grid-template-columns: 120px 1fr 70px;
+    align-items:center;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — ATNF SSC/TK 07.10.2026 · Hydross the Unstable</p>
+      <h1>Vajomee</h1>
+      <p class="subline">Restoration Shaman &nbsp;·&nbsp; ilvl 121 &nbsp;·&nbsp; report <span>Z4zNt28raQ6GLbkC</span> &nbsp;·&nbsp; fight <span>8</span> &nbsp;·&nbsp; kill, 208s</p>
+    </div>
+    <div class="seal-wrap">
+      <svg class="seal" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">27</text>
+        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+      </svg>
+      <div class="seal-label">WCL rank, all parses</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid stat-grid-5">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value warn">492</div>
+        <div class="stat-sub">Top 100: #1 2077 &nbsp;·&nbsp; avg 1463 &nbsp;·&nbsp; median 1410</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value warn">62%</div>
+        <div class="stat-sub">Top 100: best 11.9% &nbsp;·&nbsp; median 41.4% &nbsp;·&nbsp; worst 60.4%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">102,268</div>
+        <div class="stat-sub">over 208s kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value warn">78.9%</div>
+        <div class="stat-sub">Top 100: #1 100% &nbsp;·&nbsp; avg 96.4% &nbsp;·&nbsp; median 96.9%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value warn">15</div>
+        <div class="stat-sub">this kill, all classes</div>
+      </div>
+    </div>
+
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:27%;" data-label="Vajomee · 27th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank ~20209 of 27684 Restoration Shaman parses on this encounter (all difficulties/partitions, historical). Matched by exact report/fight ID (Z4zNt28raQ6GLbkC, fight 8).</div>
+
+    <div class="coverage-note">The weakest kill of the raid night by a wide margin: overheal (62%) sits outside the entire Top 100 sample's range, worse than even its single worst parse (60.4%), and active time (78.9%) is nearly 18 points under the sample average (96.4%) — the lowest active time of any kill this raid night. The 15 raid deaths landed in a dense ~57-second cluster (1,692.0s-1,748.7s), suggesting this pull went badly for the raid as a whole, not just for Vajomee's own output — active time this low, on a kill this chaotic, reads as a real casualty of the fight falling apart rather than a routine mana/positioning gap.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">Vajomee's real cast mix on this kill, vs. real Top 100 average on Hydross the Unstable.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>Vajomee</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
+    </div>
+
+    <div class="spell-group">
+      <div class="spell-row compare-row">
+        <div class="spell-name">Chain Heal <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 10623)</span></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:47.7%"></div></div>
+        <div class="spell-pct">47.7%</div>
+      </div>
+      <div class="spell-row compare-row">
+        <div class="spell-name"></div>
+        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.8%"></div></div>
+        <div class="spell-pct">1.8%</div>
+      </div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Chain Heal <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 25423)</span></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:37.2%"></div></div>
+      <div class="spell-pct">37.2%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:68.2%"></div></div>
+      <div class="spell-pct">68.2%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Earth Shield</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:9.3%"></div></div>
+      <div class="spell-pct">9.3%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:9.4%"></div></div>
+      <div class="spell-pct">9.4%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Healing Wave</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:4.8%"></div></div>
+      <div class="spell-pct">4.8%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:8.1%"></div></div>
+      <div class="spell-pct">8.1%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Lesser Healing Wave</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:1%"></div></div>
+      <div class="spell-pct">1.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.1%"></div></div>
+      <div class="spell-pct">5.1%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Chain Heal <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 25422)</span></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.4%"></div></div>
+      <div class="spell-pct">3.4%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Healing Stream</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.4%"></div></div>
+      <div class="spell-pct">1.4%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Chain Heal <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 1064)</span></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.8%"></div></div>
+      <div class="spell-pct">0.8%</div>
+    </div>
+
+    <div class="coverage-note">The two Chain Heal guids are essentially inverted between Vajomee and the sample: Vajomee casts guid 10623 as her primary rank (47.7%, vs. only 1.8% in the Top 100 average) and guid 25423 second (37.2%, vs. 68.2% in the sample, where it's the dominant rank). Both guids are real, distinct casts (confirmed via the pull's guid-grouping, not a display-name artifact) — this is a genuine rank-choice difference, not noise, and lines up with the low HPM (3.21 vs. the sample's 6.35) noted in the cooldowns section below. Earth Shield (9.3% vs. 9.4%) matches the benchmark closely; Healing Stream Totem's real, if small, share of the sample's healing (1.4%) wasn't cast at all this kill.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Hydross the Unstable.</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">Vajomee</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 100 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ability-name">Earth Shield</td>
+          <td class="num-cell">2</td>
+          <td>→ Captinhelp ×2</td>
+          <td class="num-cell">1.9 (2%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Mana Tide Totem</td>
+          <td class="num-cell">1</td>
+          <td>party</td>
+          <td class="num-cell">0.6 (0%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Ancestral Swiftness</td>
+          <td class="num-cell">1</td>
+          <td>party</td>
+          <td class="num-cell">0.8 (0%)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Dark Rune</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0.1 (0%)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="stat-grid stat-grid-5" style="margin-top:22px;">
+      <div class="stat">
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Elixir of Draenic Wisdom — Top 100: 78% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value good">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 96% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value warn">0</div>
+        <div class="stat-sub">None cast — Top 100 avg 0.5 casts (46% used one)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">HPM</div>
+        <div class="stat-value warn">3.21</div>
+        <div class="stat-sub">Top 100: top1 8.68 &nbsp;·&nbsp; avg 6.35 &nbsp;·&nbsp; median 6.28</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">HPM (3.21) is roughly half the Top 100 average (6.35) — the weakest mana-efficiency showing of the raid night, consistent with the inverted Chain-Heal-rank pattern noted above. No mana potion was used despite 46% of the sample using one on this boss. Earth Shield stayed on Captinhelp both times it was applied, matching the sample's near-universal not-self pattern (2%). With 15 deaths inside a single ~57-second window, no individual cooldown-to-death correlation stands out as meaningful — this reads as a broader raid-wide failure on this pull rather than one traceable to a specific missed cooldown.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of Vajomee's healing on this kill (77.1% coverage) vs. Top 100 average on Hydross the Unstable (77.3% coverage, 47.5% to top target).</p>
+
+    <div class="target-list">
+      <div class="target-row">
+        <div>Captinhelp</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
+        <div class="target-pct">33.4%</div>
+      </div>
+      <div class="target-row">
+        <div>Rolopally</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:46.6%"></div></div>
+        <div class="target-pct">15.6%</div>
+      </div>
+      <div class="target-row">
+        <div>Lasmur</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:32.8%"></div></div>
+        <div class="target-pct">11%</div>
+      </div>
+      <div class="target-row">
+        <div>Luffydonoo</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:27.4%"></div></div>
+        <div class="target-pct">9.1%</div>
+      </div>
+      <div class="target-row">
+        <div>Vajomee</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:24.3%"></div></div>
+        <div class="target-pct">8.1%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Coverage (77.1% vs. 77.3%) matches the Top 100 average almost exactly. Top-target concentration (33.4% vs. 47.5%, -14.1) runs the other way — Vajomee's healing on this kill was spread more evenly across the top 5 than the sample's norm, which tends to concentrate more heavily on a single tank target. Consistent with a real, chaotic multi-death fight rather than a clean single-tank-focused pull.</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Vajomee's fight log (Z4zNt28raQ6GLbkC, fight 8) + Top 100 Hydross the Unstable benchmark (n=100)</span>
+    <span>tbc-audit style reference · healer variant · Restoration Shaman</span>
+  </div>
+
+</div>
+
+</body>
+</html>

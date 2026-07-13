@@ -1,0 +1,1119 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Torgroth",
+                        "id":  21,
+                        "guid":  54123686,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Enhancement",
+                        "timestamp":  320028,
+                        "fight":  3,
+                        "damage":  {
+                                       "total":  15562,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  3706,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37363,
+                                                             "name":  "Whirl",
+                                                             "total":  6263,
+                                                             "type":  1,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  6000,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37478,
+                                                             "name":  "Geyser",
+                                                             "total":  3299,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_frostblast.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  9562,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  6000,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  5516,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34865,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  3938,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  1578,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  3659,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37363,
+                                                                    "name":  "Whirl",
+                                                                    "total":  1857,
+                                                                    "type":  1,
+                                                                    "icon":  "trade_engineering.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Bigdogx",
+                                                            "total":  3938,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Torgroth",
+                                                            "total":  1578,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  33796,
+                        "overkill":  177,
+                        "events":  [
+                                       {
+                                           "timestamp":  320026,
+                                           "type":  "damage",
+                                           "sourceID":  73,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  21,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Geyser",
+                                                           "guid":  37478,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_frostblast.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  3122,
+                                           "unmitigatedAmount":  3299,
+                                           "overkill":  177,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  318966,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  21,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  500,
+                                           "unmitigatedAmount":  500,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  317778,
+                                           "type":  "damage",
+                                           "sourceID":  73,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  21,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Whirl",
+                                                           "guid":  37363,
+                                                           "type":  1,
+                                                           "abilityIcon":  "trade_engineering.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  3648,
+                                           "mitigated":  1930,
+                                           "unmitigatedAmount":  5578,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Geyser",
+                                            "guid":  37478,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_frostblast.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Hologramm",
+                        "id":  36,
+                        "guid":  49841571,
+                        "type":  "Rogue",
+                        "icon":  "Rogue-Combat",
+                        "timestamp":  320031,
+                        "fight":  3,
+                        "damage":  {
+                                       "total":  26466,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  4672,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37363,
+                                                             "name":  "Whirl",
+                                                             "total":  10281,
+                                                             "type":  1,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  9472,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37478,
+                                                             "name":  "Geyser",
+                                                             "total":  6713,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_frostblast.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  16994,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  9472,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  16596,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34865,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  9652,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25422,
+                                                              "name":  "Chain Heal",
+                                                              "total":  3757,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  2752,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  435,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  7115,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37363,
+                                                                    "name":  "Whirl",
+                                                                    "total":  6076,
+                                                                    "type":  1,
+                                                                    "icon":  "trade_engineering.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37478,
+                                                                    "name":  "Geyser",
+                                                                    "total":  3405,
+                                                                    "type":  16,
+                                                                    "icon":  "spell_frost_frostblast.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Bigdogx",
+                                                            "total":  9652,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Dungeóns",
+                                                            "total":  3757,
+                                                            "type":  "Shaman"
+                                                        },
+                                                        {
+                                                            "name":  "Hologramm",
+                                                            "total":  2752,
+                                                            "type":  "Rogue"
+                                                        },
+                                                        {
+                                                            "name":  "Fineillbeamu",
+                                                            "total":  435,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  53531,
+                        "overkill":  36,
+                        "events":  [
+                                       {
+                                           "timestamp":  320025,
+                                           "type":  "damage",
+                                           "sourceID":  73,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  36,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Geyser",
+                                                           "guid":  37478,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_frostblast.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  3272,
+                                           "unmitigatedAmount":  3308,
+                                           "overkill":  36,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  319113,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  36,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  500,
+                                           "unmitigatedAmount":  500,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  317778,
+                                           "type":  "damage",
+                                           "sourceID":  73,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  36,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Whirl",
+                                                           "guid":  37363,
+                                                           "type":  1,
+                                                           "abilityIcon":  "trade_engineering.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  3391,
+                                           "mitigated":  1427,
+                                           "unmitigatedAmount":  4818,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Geyser",
+                                            "guid":  37478,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_frostblast.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Fionnà",
+                        "id":  54,
+                        "guid":  98202963,
+                        "type":  "Paladin",
+                        "icon":  "Paladin-Retribution",
+                        "timestamp":  320037,
+                        "fight":  3,
+                        "damage":  {
+                                       "total":  20514,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  3954,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37478,
+                                                             "name":  "Geyser",
+                                                             "total":  6660,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_frostblast.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  6500,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37363,
+                                                             "name":  "Whirl",
+                                                             "total":  5938,
+                                                             "type":  1,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32220,
+                                                             "name":  "Judgement of Blood",
+                                                             "total":  749,
+                                                             "type":  2,
+                                                             "icon":  "spell_shadow_lifedrain.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32221,
+                                                             "name":  "Seal of Blood",
+                                                             "total":  667,
+                                                             "type":  2,
+                                                             "icon":  "spell_holy_sealofblood.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  12598,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  6500,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Fionnà",
+                                                           "total":  1416,
+                                                           "type":  "Paladin"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  9704,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25422,
+                                                              "name":  "Chain Heal",
+                                                              "total":  5003,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34865,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  3946,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  755,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37478,
+                                                                    "name":  "Geyser",
+                                                                    "total":  3381,
+                                                                    "type":  16,
+                                                                    "icon":  "spell_frost_frostblast.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  3336,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37363,
+                                                                    "name":  "Whirl",
+                                                                    "total":  2517,
+                                                                    "type":  1,
+                                                                    "icon":  "trade_engineering.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  32221,
+                                                                    "name":  "Seal of Blood",
+                                                                    "total":  271,
+                                                                    "type":  2,
+                                                                    "icon":  "spell_holy_sealofblood.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  32220,
+                                                                    "name":  "Judgement of Blood",
+                                                                    "total":  199,
+                                                                    "type":  2,
+                                                                    "icon":  "spell_shadow_lifedrain.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Dungeóns",
+                                                            "total":  5003,
+                                                            "type":  "Shaman"
+                                                        },
+                                                        {
+                                                            "name":  "Bigdogx",
+                                                            "total":  3946,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Fionnà",
+                                                            "total":  755,
+                                                            "type":  "Paladin"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  35904,
+                        "overkill":  1383,
+                        "events":  [
+                                       {
+                                           "timestamp":  320024,
+                                           "type":  "damage",
+                                           "sourceID":  73,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  54,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Geyser",
+                                                           "guid":  37478,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_frostblast.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  1896,
+                                           "unmitigatedAmount":  3279,
+                                           "overkill":  1383,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  319671,
+                                           "type":  "damage",
+                                           "sourceID":  54,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  54,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Judgement of Blood",
+                                                           "guid":  32220,
+                                                           "type":  2,
+                                                           "abilityIcon":  "spell_shadow_lifedrain.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  200,
+                                           "unmitigatedAmount":  200,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  317778,
+                                           "type":  "damage",
+                                           "sourceID":  73,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  54,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Whirl",
+                                                           "guid":  37363,
+                                                           "type":  1,
+                                                           "abilityIcon":  "trade_engineering.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  3421,
+                                           "mitigated":  2073,
+                                           "unmitigatedAmount":  5494,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Geyser",
+                                            "guid":  37478,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_frostblast.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Bigdogx",
+                        "id":  3,
+                        "guid":  54633729,
+                        "type":  "Priest",
+                        "icon":  "Priest-Holy",
+                        "timestamp":  346374,
+                        "fight":  3,
+                        "damage":  {
+                                       "total":  17019,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  733,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37478,
+                                                             "name":  "Geyser",
+                                                             "total":  7063,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_frostblast.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  5489,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37363,
+                                                             "name":  "Whirl",
+                                                             "total":  4467,
+                                                             "type":  1,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  11530,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  5489,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  2523,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34865,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  2523,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37478,
+                                                                    "name":  "Geyser",
+                                                                    "total":  2023,
+                                                                    "type":  16,
+                                                                    "icon":  "spell_frost_frostblast.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  500,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Bigdogx",
+                                                            "total":  2523,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  55878,
+                        "overkill":  2886,
+                        "events":  [
+                                       {
+                                           "timestamp":  345184,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  3,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  497,
+                                           "unmitigatedAmount":  497,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  342189,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  3,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  497,
+                                           "unmitigatedAmount":  497,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  339193,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  3,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  497,
+                                           "unmitigatedAmount":  497,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ]
+                    },
+                    {
+                        "name":  "Thiccrussian",
+                        "id":  26,
+                        "guid":  54628807,
+                        "type":  "Warlock",
+                        "icon":  "Warlock-Affliction",
+                        "timestamp":  368420,
+                        "fight":  3,
+                        "damage":  {
+                                       "total":  2968,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  532,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37790,
+                                                             "name":  "Spread Shot",
+                                                             "total":  2968,
+                                                             "type":  1,
+                                                             "icon":  "ability_upgrademoonglaive.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Coilfang Ambusher",
+                                                           "total":  2968,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  0,
+                        "overkill":  1080,
+                        "events":  [
+                                       {
+                                           "timestamp":  368394,
+                                           "type":  "damage",
+                                           "sourceID":  87,
+                                           "sourceInstance":  6,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  26,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Spread Shot",
+                                                           "guid":  37790,
+                                                           "type":  1,
+                                                           "abilityIcon":  "ability_upgrademoonglaive.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  1888,
+                                           "mitigated":  532,
+                                           "unmitigatedAmount":  3500,
+                                           "overkill":  1080,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Spread Shot",
+                                            "guid":  37790,
+                                            "type":  1,
+                                            "abilityIcon":  "ability_upgrademoonglaive.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Trumping",
+                        "id":  37,
+                        "guid":  49997286,
+                        "type":  "Warlock",
+                        "icon":  "Warlock-Destruction",
+                        "timestamp":  394437,
+                        "fight":  3,
+                        "damage":  {
+                                       "total":  10453,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  1672,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  10453,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  10453,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  0,
+                        "overkill":  1841,
+                        "events":  [
+                                       {
+                                           "timestamp":  394412,
+                                           "type":  "damage",
+                                           "sourceID":  73,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  37,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  8612,
+                                           "mitigated":  1672,
+                                           "unmitigatedAmount":  12125,
+                                           "overkill":  1841,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Baddesttank",
+                        "id":  14,
+                        "guid":  99269948,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Fury",
+                        "timestamp":  424769,
+                        "fight":  3,
+                        "damage":  {
+                                       "total":  10981,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  1998,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37478,
+                                                             "name":  "Geyser",
+                                                             "total":  4078,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_frostblast.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  3998,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37363,
+                                                             "name":  "Whirl",
+                                                             "total":  2905,
+                                                             "type":  1,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  6983,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  3998,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1110,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  1020,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  30340,
+                                                              "name":  "Bloodthirst",
+                                                              "total":  90,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_bloodlust.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  1110,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Baddesttank",
+                                                            "total":  1110,
+                                                            "type":  "Warrior"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  30318,
+                        "overkill":  378,
+                        "events":  [
+                                       {
+                                           "timestamp":  424748,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  14,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  122,
+                                           "unmitigatedAmount":  500,
+                                           "overkill":  378,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  423625,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  14,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  500,
+                                           "unmitigatedAmount":  500,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  421982,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  14,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  500,
+                                           "unmitigatedAmount":  500,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Scalding Water",
+                                            "guid":  37284,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                        }
+                    }
+                ]
+}

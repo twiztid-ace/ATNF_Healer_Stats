@@ -1,0 +1,115 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Trum",
+                        "id":  35,
+                        "guid":  42610029,
+                        "type":  "Priest",
+                        "icon":  "Priest-Discipline",
+                        "timestamp":  4695020,
+                        "fight":  36,
+                        "damage":  {
+                                       "total":  10258,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  2575,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  7778,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  38145,
+                                                             "name":  "Forked Lightning",
+                                                             "total":  2480,
+                                                             "type":  8,
+                                                             "icon":  "spell_nature_chainlightning.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Coilfang Elite",
+                                                           "total":  7778,
+                                                           "type":  "NPC"
+                                                       },
+                                                       {
+                                                           "name":  "Lady Vashj",
+                                                           "total":  2480,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  7657,
+                        "overkill":  827,
+                        "events":  [
+                                       {
+                                           "timestamp":  4695002,
+                                           "type":  "damage",
+                                           "sourceID":  179,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  35,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Forked Lightning",
+                                                           "guid":  38145,
+                                                           "type":  8,
+                                                           "abilityIcon":  "spell_nature_chainlightning.jpg"
+                                                       },
+                                           "fight":  36,
+                                           "hitType":  1,
+                                           "amount":  1653,
+                                           "unmitigatedAmount":  2480,
+                                           "overkill":  827,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  4687345,
+                                           "type":  "damage",
+                                           "sourceID":  185,
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  35,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  36,
+                                           "hitType":  1,
+                                           "amount":  7778,
+                                           "mitigated":  2575,
+                                           "unmitigatedAmount":  10353,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Forked Lightning",
+                                            "guid":  38145,
+                                            "type":  8,
+                                            "abilityIcon":  "spell_nature_chainlightning.jpg"
+                                        }
+                    }
+                ]
+}

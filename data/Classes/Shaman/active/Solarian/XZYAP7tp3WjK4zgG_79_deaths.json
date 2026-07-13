@@ -1,0 +1,161 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Blueworld",
+                        "id":  8,
+                        "guid":  65616463,
+                        "type":  "Hunter",
+                        "icon":  "Hunter-BeastMastery",
+                        "timestamp":  10060183,
+                        "fight":  79,
+                        "damage":  {
+                                       "total":  12268,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  2250,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  39414,
+                                                             "name":  "Arcane Missiles",
+                                                             "total":  6750,
+                                                             "type":  64,
+                                                             "icon":  "spell_nature_starfall.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  42787,
+                                                             "name":  "Wrath of the Astromancer",
+                                                             "total":  5518,
+                                                             "type":  64,
+                                                             "icon":  "spell_nature_wispsplode.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "High Astromancer Solarian",
+                                                           "total":  6750,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Blueworld",
+                                                           "total":  5518,
+                                                           "type":  "Hunter"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1788,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  26982,
+                                                              "name":  "Rejuvenation",
+                                                              "total":  993,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_rejuvenation.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  33763,
+                                                              "name":  "Lifebloom",
+                                                              "total":  795,
+                                                              "type":  8,
+                                                              "icon":  "inv_misc_herb_felblossom.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  39414,
+                                                                    "name":  "Arcane Missiles",
+                                                                    "total":  1788,
+                                                                    "type":  64,
+                                                                    "icon":  "spell_nature_starfall.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Yôruichi",
+                                                            "total":  1788,
+                                                            "type":  "Druid"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  3080,
+                        "overkill":  837,
+                        "events":  [
+                                       {
+                                           "timestamp":  10060173,
+                                           "type":  "damage",
+                                           "sourceID":  8,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Wrath of the Astromancer",
+                                                           "guid":  42787,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_wispsplode.jpg"
+                                                       },
+                                           "fight":  79,
+                                           "hitType":  1,
+                                           "amount":  4681,
+                                           "unmitigatedAmount":  5518,
+                                           "overkill":  837,
+                                           "isAoE":  true,
+                                           "sourceMarker":  8,
+                                           "targetMarker":  8
+                                       },
+                                       {
+                                           "timestamp":  10059799,
+                                           "type":  "damage",
+                                           "sourceID":  592,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Arcane Missiles",
+                                                           "guid":  39414,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_starfall.jpg"
+                                                       },
+                                           "fight":  79,
+                                           "hitType":  16,
+                                           "amount":  1500,
+                                           "mitigated":  1500,
+                                           "unmitigatedAmount":  3000,
+                                           "resisted":  1500,
+                                           "isAoE":  false,
+                                           "targetMarker":  8
+                                       },
+                                       {
+                                           "timestamp":  10058459,
+                                           "type":  "damage",
+                                           "sourceID":  592,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Arcane Missiles",
+                                                           "guid":  39414,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_starfall.jpg"
+                                                       },
+                                           "fight":  79,
+                                           "hitType":  1,
+                                           "amount":  3000,
+                                           "unmitigatedAmount":  3000,
+                                           "isAoE":  false,
+                                           "targetMarker":  8
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Wrath of the Astromancer",
+                                            "guid":  42787,
+                                            "type":  64,
+                                            "abilityIcon":  "spell_nature_wispsplode.jpg"
+                                        }
+                    }
+                ]
+}

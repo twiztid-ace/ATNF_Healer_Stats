@@ -1,0 +1,190 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Vikoji",
+                        "id":  13,
+                        "guid":  54013016,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  9101824,
+                        "fight":  66,
+                        "damage":  {
+                                       "total":  11320,
+                                       "totalReduced":  9500,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  42787,
+                                                             "name":  "Wrath of the Astromancer",
+                                                             "total":  6442,
+                                                             "totalReduced":  4622,
+                                                             "type":  64,
+                                                             "icon":  "spell_nature_wispsplode.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  2517,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  33009,
+                                                             "name":  "Blinding Light",
+                                                             "total":  2361,
+                                                             "type":  64,
+                                                             "icon":  "spell_nature_starfall.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Vikoji",
+                                                           "total":  6442,
+                                                           "totalReduced":  4622,
+                                                           "type":  "Priest"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  2517,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "High Astromancer Solarian",
+                                                           "total":  2361,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1934,
+                                        "totalReduced":  114,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25218,
+                                                              "name":  "Power Word: Shield",
+                                                              "total":  1820,
+                                                              "totalReduced":  0,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_powerwordshield.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  39373,
+                                                              "name":  "Shadowmend",
+                                                              "total":  114,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  42787,
+                                                                    "name":  "Wrath of the Astromancer",
+                                                                    "total":  1883,
+                                                                    "totalReduced":  63,
+                                                                    "type":  64,
+                                                                    "icon":  "spell_nature_wispsplode.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  51,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Vikoji",
+                                                            "total":  1934,
+                                                            "totalReduced":  114,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  1569,
+                        "overkill":  1545,
+                        "events":  [
+                                       {
+                                           "timestamp":  9101790,
+                                           "type":  "damage",
+                                           "sourceID":  217,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  13,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Blinding Light",
+                                                           "guid":  33009,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_starfall.jpg"
+                                                       },
+                                           "fight":  66,
+                                           "hitType":  1,
+                                           "amount":  816,
+                                           "unmitigatedAmount":  2361,
+                                           "overkill":  1545,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  9101427,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  13,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  66,
+                                           "hitType":  1,
+                                           "amount":  2517,
+                                           "unmitigatedAmount":  2517,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  9100222,
+                                           "type":  "damage",
+                                           "sourceID":  13,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  13,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Wrath of the Astromancer",
+                                                           "guid":  42787,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_wispsplode.jpg"
+                                                       },
+                                           "fight":  66,
+                                           "hitType":  1,
+                                           "amount":  4622,
+                                           "unmitigatedAmount":  6442,
+                                           "absorbed":  1820,
+                                           "isAoE":  true,
+                                           "sourceMarker":  8,
+                                           "targetMarker":  8
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Blinding Light",
+                                            "guid":  33009,
+                                            "type":  64,
+                                            "abilityIcon":  "spell_nature_starfall.jpg"
+                                        }
+                    }
+                ]
+}

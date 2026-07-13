@@ -2,13 +2,15 @@
 
 This is a WoW Classic (TBC/SSC-TK era) raid healer analysis pipeline: pull real combat
 log data from Warcraft Logs, benchmark it against Top 100 parses, and generate
-a static HTML site auditing each healer's performance per boss kill. The Druid
-pipeline (`pull_character_TEMPLATE.ps1`, `pull_top100_druid.ps1`) now pulls that data
-via WCL's **v2 GraphQL API** (migrated 2026-07-12, see WORKFLOW.md's "v2 GraphQL API"
-section) — Paladin/Priest/Shaman still use the original v1 REST API.
+a static HTML site auditing each healer's performance per boss kill. The Druid and
+Shaman pipelines (`pull_character_TEMPLATE.ps1` — shared/class-agnostic —,
+`pull_top100_druid.ps1`, `pull_top100_shaman.ps1`) pull that data via WCL's **v2
+GraphQL API** (Druid migrated 2026-07-12, Shaman ported the same day as its own
+"Phase 3" pilot — see WORKFLOW.md's "v2 GraphQL API" section) — Paladin/Priest still
+use the original v1 REST API.
 
 **Read `WORKFLOW.md` first, in full, before touching anything.** It is the single
-source of truth for this project — API endpoints, file formats, known bugs, and 28
+source of truth for this project — API endpoints, file formats, known bugs, and 31
 numbered "gotchas" documenting real mistakes already made and fixed. Assume anything
 not in WORKFLOW.md is unverified. This file is just a map to get you oriented quickly;
 WORKFLOW.md has the actual depth.
@@ -33,18 +35,20 @@ behave identically on PowerShell 7+/pwsh on Linux/Mac — test before trusting.
 ## Two generations of this pipeline — don't confuse them
 
 This project has a **simple v1** (already shipped, live on 4 healer sites) and an
-**enhanced v2** (in progress, Druid-only so far). Reading the repo cold, both look
-like "real output" — they're not at the same maturity, and mixing them up is the
-main way to get confused here.
+**enhanced v2** (in progress — Druid and, as of 2026-07-12, Shaman). Reading the
+repo cold, both look like "real output" — they're not at the same maturity, and
+mixing them up is the main way to get confused here.
 
 **Naming collision to watch for:** this "v1/v2" is about *methodology* (simple
 gear-check vs. events-based enhanced pipeline) — a completely different axis from
-the WCL "v1 REST API / v2 GraphQL API" distinction mentioned above. Druid is on
-methodology-v2 AND API-v2; Paladin/Priest/Shaman are on methodology-v1 AND API-v1
-today, which is why the two axes haven't visibly diverged yet — but they're
-independent, and a future partial port (e.g. API-only migration without the
-events-based rewrite) would split them. Don't assume "v2" means the same thing in
-every sentence of this file or WORKFLOW.md without checking which axis it's on.
+the WCL "v1 REST API / v2 GraphQL API" distinction mentioned above. Druid and
+Shaman are both on methodology-v2 AND API-v2; Paladin/Priest are on methodology-v1
+AND API-v1. The two axes had NOT visibly diverged until Shaman's port — Shaman
+went from v1/v1 straight to v2/v2 in one pass (the "Phase 3" pilot), same as
+Druid's own history, so this project still hasn't seen a *partial* port (e.g.
+API-only migration without the events-based rewrite) that would actually split the
+two axes apart for one class. Don't assume "v2" means the same thing in every
+sentence of this file or WORKFLOW.md without checking which axis it's on.
 
 - **v1 (simple)**: gear check + basic spell composition + a couple of other checks,
   built on the old `/report/tables/` healing view (5-entry truncation bug and all —
@@ -54,30 +58,36 @@ every sentence of this file or WORKFLOW.md without checking which axis it's on.
   snapshot of the *old* methodology, not a template for new output — regenerating
   them with the v2 pipeline is future work, not done.
 - **v2 (enhanced)**: events-based healing/casts (no truncation), cooldown/utility
-  tracking with self-vs-other targets, real buff uptime (flask/food snapshot + Tree
-  of Life interval reconstruction), Top 100 benchmarking, CSV summarization. Only
-  **Resto Druid** has this so far, and it's mid-pull, not complete (see "Current
-  state" below). No v2 healer site has been generated yet — `examples/` has one
+  tracking with self-vs-other targets (Druid: Innervate/Nature's Swiftness/
+  Swiftmend/Rebirth/Dark Rune, real buff uptime via Tree of Life interval
+  reconstruction; Shaman: Earth Shield/Mana Tide Totem/Ancestral Swiftness/Dark
+  Rune — no Rebirth-equivalent or self-buff-uptime concept exists for Shaman in
+  this TBC ruleset, confirmed against real data, not assumed), Top 100
+  benchmarking, CSV summarization. **Resto Druid and Resto Shaman** both have this
+  now (see "Current state" below). One full v2 healer site has been generated for
+  each (Danceswtrees/Druid and Vajomee/Shaman) — `examples/` has one older
   reference page but it's out of date (see below).
 
-## Data model — active/archived + manifest.json (Druid/v2 only)
+## Data model — active/archived + manifest.json (Druid and Shaman only)
 
 Replaced the old "fresh date-stamped folder every pull" convention for Druid on
 2026-07-12, because that convention re-fetched all ~1,000 Top 100 parses from the
 WCL API on every single run even though the vast majority don't change between
-runs and a completed log's data can never change once pulled. Full design
-rationale, manifest schema, and the exact diff algorithm are in WORKFLOW.md's
-"Active/archived data model" section — read that before touching either pull
-script. The short version:
-- `data\Classes\Druid\manifest.json` tracks per-boss `lastPulledDate`/
+runs and a completed log's data can never change once pulled. Shaman was built
+directly on this model from day one when it was ported the same day (no old
+date-folder data existed worth migrating forward — see WORKFLOW.md's "v2 GraphQL
+API" section for why). Full design rationale, manifest schema, and the exact diff
+algorithm are in WORKFLOW.md's "Active/archived data model" section — read that
+before touching any pull script. The short version:
+- `data\Classes\{Druid,Shaman}\manifest.json` tracks per-boss `lastPulledDate`/
   `rankingsSnapshotDate` and per-parse `active`/`archived` status.
 - `active\` holds only what's currently in a boss's Top 100. `archived\` holds
   everything that's ever dropped out, kept forever, never deleted.
 - Staleness is always a plain `yyyy-MM-dd` date compared to today at read time —
   never a stored boolean (see WORKFLOW.md for why that matters).
-- Paladin/Priest/Shaman are NOT on this model yet — they're still v1 AND still the
+- Paladin/Priest are NOT on this model yet — they're still v1 AND still the
   old date-folder convention (two separate things that happen to both be old on
-  those three classes right now, don't conflate "needs the events rewrite" with
+  those two classes right now, don't conflate "needs the events rewrite" with
   "needs the active/archived migration" when scoping future work on them).
 
 ## Repo structure
@@ -97,31 +107,49 @@ scripts/
                                          fetches genuinely new parses. Migrated to the v2 GraphQL
                                          API 2026-07-12; old version preserved as
                                          pull_top100_druid_v1.ps1.
+  pull_top100_shaman.ps1             <- Top 100 Resto Shaman benchmark pull, methodology-v2,
+                                         parallelized, diff-based against manifest.json (active/
+                                         archived model) — ported to the v2 GraphQL API 2026-07-12
+                                         as the Phase 3 pilot class (see the plan file at
+                                         C:\Users\raymo\.claude\plans\playful-baking-sunset.md).
+                                         Real cooldowns (Earth Shield/Mana Tide Totem/Ancestral
+                                         Swiftness/Dark Rune) confirmed against a real Vajomee
+                                         report before being wired up - no Rebirth-equivalent or
+                                         Tree-of-Life-equivalent exists for Shaman, confirmed absent
+                                         from real data, not assumed. Old v1-API version preserved as
+                                         pull_top100_shaman_v1.ps1.
   pull_top100_paladin.ps1            <- Top 100 Paladin/Holy pull — methodology-v1/simple, healing
                                          TABLE only, still the old date-stamped-folder convention
                                          AND the v1 REST API
   pull_top100_priest_holy.ps1        <- Top 100 Priest/Holy pull — methodology-v1/simple, healing
                                          TABLE only, still the old date-stamped-folder convention
                                          AND the v1 REST API
-  pull_top100_shaman.ps1             <- Top 100 Resto Shaman pull — methodology-v1/simple, healing
-                                         TABLE only, still the old date-stamped-folder convention
-                                         AND the v1 REST API
-  pull_top100_TEMPLATE.ps1           <- generic template these three v1 scripts were generated
-                                         from; still the base for any new v1-style class pull
+  pull_top100_TEMPLATE.ps1           <- generic template the still-v1 Paladin/Priest scripts were
+                                         generated from; still the base for any new v1-style class
+                                         pull (pull_top100_druid.ps1/pull_top100_shaman.ps1 are the
+                                         better reference for a new v2-style class pull instead)
   migrate_class_to_active.ps1        <- ONE-TIME migration tool, date-folder -> active/archived +
                                          manifest.json. Already run for Druid (2026-07-12, migrated
-                                         the 2026-07-10 pull) - only needed again when porting
-                                         another class off the v1 date-folder convention
+                                         the 2026-07-10 pull). Has a Shaman classID/specID entry too
+                                         (housekeeping only - Shaman's old date-folder data had
+                                         nothing events-shaped to migrate forward, so this tool was
+                                         NOT actually run for it; pull_top100_shaman.ps1 bootstrapped
+                                         its own empty manifest from scratch instead) - only needed
+                                         again when porting Paladin/Priest off the old convention.
   summarize_class_benchmarks.ps1     <- reads data\Classes\{Class}\active\, writes benchmark_*.csv
-                                         there too (Druid-specific cooldown/buff columns only apply
-                                         once run against v2-style Druid data); archives the previous
-                                         CSV set to archived\benchmark_history\{date}\ on a real
-                                         day-over-day regen, see "Data model" below. Makes zero API
-                                         calls itself, so unaffected by the v1/v2 API migration.
+                                         there too. Cooldown-guid table and Tree-of-Life buff column
+                                         are class-keyed (fixed 2026-07-12 while porting Shaman - see
+                                         WORKFLOW.md gotcha #29/#30 area - this used to be a single
+                                         flat, ungated Druid-only table that would have silently
+                                         miscomputed cooldown numbers for any other class); archives
+                                         the previous CSV set to archived\benchmark_history\{date}\
+                                         on a real day-over-day regen, see "Data model" below. Makes
+                                         zero API calls itself, so unaffected by the v1/v2 API
+                                         migration.
   lib/WclV2Api.psm1                  <- shared module for the v2 GraphQL API (OAuth token fetch/
                                          cache, generic query POST, paginated events() wrapper).
-                                         Used by pull_character_TEMPLATE.ps1 and
-                                         pull_top100_druid.ps1 only — see WORKFLOW.md's "v2 GraphQL
+                                         Used by pull_character_TEMPLATE.ps1, pull_top100_druid.ps1,
+                                         and pull_top100_shaman.ps1 — see WORKFLOW.md's "v2 GraphQL
                                          API" section for the full endpoint mapping and auth setup.
 
 templates/
@@ -129,6 +157,11 @@ templates/
   boss_page_template.html            <- generic per-boss-kill page (any class, v1-style data)
   boss_page_template_druid.html      <- Resto Druid variant (extra cooldowns/consumables section,
                                          needs v2-style events/consumables data to fill in)
+  boss_page_template_shaman.html     <- Resto Shaman variant, added 2026-07-12 - same section shape
+                                         as the Druid template, but with Shaman's real cooldowns
+                                         (Earth Shield/Mana Tide Totem/Ancestral Swiftness) and no
+                                         Rebirth row or Tree-of-Life-equivalent stat (neither concept
+                                         exists for this class - see pull_top100_shaman.ps1's header)
   raid_overview_template.html        <- per-raid-night page (gear audit + 10-boss summary)
   healer_raidlist_template.html      <- per-healer page (list of raid nights analyzed)
   site_index_template.html           <- site homepage (list of healers)
@@ -147,7 +180,7 @@ examples/
                                          rough visual reference, not as ground truth for either
                                          generation's current data shape.
 
-data/Classes/Druid/  (v2 — active/archived + manifest.json, see "Data model" below)
+data/Classes/{Druid,Shaman}/  (v2 — active/archived + manifest.json, see "Data model" below)
   manifest.json                      <- per-boss lastPulledDate/rankingsSnapshotDate, per-parse
                                          active/archived status; class-level benchmarkGeneratedDate
   active/                            <- current Top 100 only
@@ -157,108 +190,118 @@ data/Classes/Druid/  (v2 — active/archived + manifest.json, see "Data model" b
     rankings_history/{Boss}/{date}.json      <- only when membership actually changed
     benchmark_history/{date}/benchmark_*.csv <- only on a real day-over-day regen
 
-data/Classes/{Paladin,Priest,Shaman}/  (v1 — still the old convention)
+data/Classes/Shaman/2026-07-10/     <- OLD v1 pull, preserved untouched (no *_healing_events.json
+                                        files, so migrate_class_to_active.ps1 was never run against
+                                        it - see "Data model" above) - not the active data anymore
+
+data/Classes/{Paladin,Priest}/  (v1 — still the old convention)
   {date}/rankings_{boss}.json, {BossName}/{reportID}_{fightID}_{playerName}.json, benchmark_*.csv
 
-docs/  (v1 site output — already generated, not templates, actual pages. Moved here
-        2026-07-12 for GitHub Pages, see "Hosting" below — this is now the real path)
-  index.html                         <- site homepage, links to all 4 healers below
+docs/  (already generated, not templates, actual pages. v1 output moved here 2026-07-12 for
+        GitHub Pages, see "Hosting" below — this is now the real path for ALL generated output,
+        v1 and v2 alike; a healer folder can contain BOTH generations in different date
+        subfolders, e.g. docs\vajomee\2026-07-03\ is v1, docs\vajomee\2026-07-10\ is v2 - check
+        the date folder, not just the healer name, before assuming which methodology a page uses)
+  index.html                         <- site homepage, links to all healers below
   crowns/, danceswtrees/, lippies/, vajomee/
     index.html                       <- per-healer raid-night list
     {date}/index.html                <- raid overview for that night
-    {date}/healer_audit_{boss}.html  <- one per boss kill (v1 methodology)
+    {date}/healer_audit_{boss}.html  <- one per boss kill (v1 or v2 methodology depending on
+                                         which pipeline generated that specific date folder)
 ```
 
 Not included here (repo-specific, never shared in the source conversation):
-`apikey.txt` (gitignored, v1 REST API key, still used by Paladin/Priest/Shaman
-scripts), `v2_client_id.txt`/`v2_client_secret.txt`/`v2_access_token.txt`
-(gitignored, v2 GraphQL OAuth credentials used by `WclV2Api.psm1`), `.gitignore`.
+`apikey.txt` (gitignored, v1 REST API key, still used by Paladin/Priest scripts),
+`v2_client_id.txt`/`v2_client_secret.txt`/`v2_access_token.txt` (gitignored, v2
+GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
+`pull_character_TEMPLATE.ps1`, `pull_top100_druid.ps1`, and
+`pull_top100_shaman.ps1`), `.gitignore`.
 
 ## Current state — what's solid vs. what's open
 
 **v1 (simple) — shipped:**
-- 4 healer sites fully built and live at repo root (`crowns/`, `danceswtrees/`,
+- 4 healer sites fully built and live under `docs/` (`crowns/`, `danceswtrees/`,
   `lippies/`, `vajomee/`), each with all 10 SSC/TK boss kills for one raid night.
   This is the old gear-check + basic-spell-composition methodology — not being
   extended further, only kept as-is until v2 replaces it per class.
-- `pull_top100_paladin.ps1`, `pull_top100_priest_holy.ps1`, `pull_top100_shaman.ps1`
-  have all been run — `data\Classes\{Paladin,Priest,Shaman}\2026-07-10\` is
-  populated for all 10 bosses, with `benchmark_summary.csv` and
-  `benchmark_spell_composition.csv` already generated for at least Paladin and
-  Priest. This is v1-generation data (healing table, 5-entry truncation risk per
-  gotcha #15) — do not treat it as equivalent to Druid's v2 data.
+- `pull_top100_paladin.ps1`, `pull_top100_priest_holy.ps1` have both been run —
+  `data\Classes\{Paladin,Priest}\2026-07-10\` is populated for all 10 bosses, with
+  `benchmark_summary.csv` and `benchmark_spell_composition.csv` already generated.
+  This is v1-generation data (healing table, 5-entry truncation risk per gotcha
+  #15) — do not treat it as equivalent to Druid's/Shaman's v2 data.
+  `data\Classes\Shaman\2026-07-10\` still exists too (the old v1 pull, preserved
+  untouched on disk, same convention as keeping `*_v1.ps1` scripts around) but is
+  no longer the active data for that class — see below.
 
-**v2 (enhanced) — in progress, Druid only:**
-- `pull_character_TEMPLATE.ps1` and `pull_top100_druid.ps1` were migrated from the
-  v1 REST API to the v2 GraphQL API on 2026-07-12 (this was originally just meant
-  to fix a null-percentile bug — v1's percentile endpoints are structurally
-  incapable of returning an exact report+fight match — but the fix was expanded to
-  a full API migration once the root cause was understood). Both were
-  equivalence-tested against real already-pulled data before the old v1-API
-  versions were preserved as `*_v1.ps1` and the new versions promoted to the
-  production filenames. Full mapping/rationale in WORKFLOW.md's "v2 GraphQL API"
-  section. Paladin/Priest/Shaman pull scripts are explicitly NOT part of this —
-  they still use the v1 REST API and `apikey.txt`.
-- Pipeline validated end to end on real data: events-based healing/casts (no
-  truncation), cooldown/utility tracking with self-vs-other targets, buff uptime
-  (flask/food snapshot + real Tree of Life interval reconstruction), the Druid boss
-  page template.
-- All **10 of 10 bosses** pulled and confirmed on disk under
-  `data\Classes\Druid\active\` (1,000 parses as of the 2026-07-12 migration).
-  `pull_top100_druid.ps1` (RunspacePool, `-MaxThreads 10` default) now reads/writes
-  the active/archived + `manifest.json` model instead of a fresh date folder per
-  run — see "Data model" below for the full design. Live-tested twice on real API
-  data: once with only rankings unchanged (0 new, 8/8 bosses skipped correctly),
-  once with real churn (Leotheras/Karathress: 2 new + 2 dropped each, archived and
-  re-fetched correctly). **Verify boss/parse counts against `manifest.json` or the
-  actual folder before trusting a number someone recalls from memory** — this has
-  drifted from reality before.
-- `summarize_class_benchmarks.ps1` has been run against the full active Druid set —
-  all four `benchmark_*.csv` files exist in `data\Classes\Druid\active\`, generated
-  2026-07-12. Also updated to the active/archived model (no more `-DateFolder`,
-  reads `active\` directly, archives the previous CSV set to
-  `archived\benchmark_history\{date}\` on a real day-over-day regen).
-- No v2 healer site (raid overview + boss pages built from real Druid events data)
-  has been generated yet for any healer.
+**v2 (enhanced) — Druid and Shaman:**
+- `pull_character_TEMPLATE.ps1` (shared/class-agnostic) and `pull_top100_druid.ps1`
+  were migrated from the v1 REST API to the v2 GraphQL API on 2026-07-12 (this was
+  originally just meant to fix a null-percentile bug — v1's percentile endpoints
+  are structurally incapable of returning an exact report+fight match — but the
+  fix was expanded to a full API migration once the root cause was understood).
+  `pull_top100_shaman.ps1` was ported the same day, as the "Phase 3" pilot class
+  for extending this same v2 architecture beyond Druid — modeled directly on
+  `pull_top100_druid.ps1` since the old v1 Shaman script shared almost nothing
+  structurally with it (sequential, single healing-TABLE-per-parse, no
+  casts/consumables/activetime/deaths at all). All three were equivalence/smoke
+  tested against real data before the old v1-API versions were preserved as
+  `*_v1.ps1` and the new versions promoted to the production filenames. Full
+  mapping/rationale for both classes in WORKFLOW.md's "v2 GraphQL API" section
+  (the durable copy — plan files are session-scoped working documents, and the
+  plan file at `C:\Users\raymo\.claude\plans\playful-baking-sunset.md` now holds
+  only the Shaman port's own plan, having been overwritten after the Druid
+  migration's plan was already executed). Paladin/Priest pull scripts are
+  explicitly NOT part of this — they still use the v1 REST API and `apikey.txt`.
+- Pipeline validated end to end on real data for both classes: events-based
+  healing/casts (no truncation), cooldown/utility tracking with self-vs-other
+  targets (Druid: Innervate/Nature's Swiftness/Swiftmend/Rebirth/Dark Rune with
+  real Tree of Life buff uptime; Shaman: Earth Shield/Mana Tide Totem/Ancestral
+  Swiftness/Dark Rune, confirmed against a real Vajomee report — no
+  Rebirth-equivalent or self-buff-uptime concept exists for Shaman in this TBC
+  ruleset), each class's own boss page template.
+- All **10 of 10 bosses** pulled and confirmed on disk for Druid
+  (`data\Classes\Druid\active\`, 1,000 parses) and Shaman
+  (`data\Classes\Shaman\active\`, ~995/1,000 — a handful of parses hit the known
+  ~0.5% combatantinfo-snapshot gap, see item 5 below). Both use the same
+  RunspacePool + active/archived + `manifest.json` model — see "Data model" below.
+  **Verify boss/parse counts against `manifest.json` or the actual folder before
+  trusting a number someone recalls from memory** — this has drifted from reality
+  before.
+- `summarize_class_benchmarks.ps1` has been run against both classes' full active
+  sets — all four `benchmark_*.csv` files exist for each in their own
+  `data\Classes\{Class}\active\`. Its cooldown-guid table and Tree-of-Life buff
+  column were made class-keyed while porting Shaman (previously a single flat,
+  ungated Druid-only table that would have silently miscomputed cooldown numbers
+  for any other class — see WORKFLOW.md gotcha #29/#30 area).
+- Two full v2 healer sites have been generated end-to-end: Danceswtrees/Druid
+  (`docs\danceswtrees\2026-06-30\`) and Vajomee/Shaman (`docs\vajomee\2026-07-10\`)
+  — each a real raid overview + one page per boss kill, built from real
+  `build_boss_report_data.ps1` output, not templated filler.
 
 **Explicitly open, in priority-ish order:**
-1. Generate an actual v2 healer site (at least one full raid night) to prove the
-   enhanced pipeline end-to-end, including a raid overview page — see gear-audit
-   regression note below, this hasn't been exercised since the events-based rewrite.
-2. Gear audit has an undiscovered-but-expected regression: the old healing *table*
-   embedded `gear` per player for free; healing *events* don't carry it at all.
-   Nobody's built a raid overview page since the events-based rewrite, so this
-   hasn't been hit yet, but it will be — see WORKFLOW.md's "Regression to know
-   about" note for the fix (a `combatantinfo` events pull).
-3. `resources`/`resources-gains` (HPM, mana-over-time) — **the API endpoint is
-   confirmed dead (2026-07-12, 5 real test calls, every variant of `abilityid`
-   tried, all identical failure), but it doesn't matter: we already have real
-   mana data from a different source.** Every `*_casts_events.json` file already
-   pulled (character AND Top 100 benchmark data alike) carries a
-   `classResources[0]` object per cast event — `amount` = max mana pool
-   (constant), `max` = that spell's real mana cost, `type` = current mana at
-   that moment (despite the misleading field name). Verified by tracing a full
-   real kill's cast sequence: `type` decreases smoothly from 10175 to 2781 over
-   the fight, and `max` matches known real TBC spell costs exactly (Lifebloom
-   220, Regrowth 675, Healing Touch 935, etc). HPM and a real mana-over-time
-   trace are both computable right now, from data already on disk, no new pull
-   needed — just not built into `summarize_class_benchmarks.ps1` or the boss
-   page template yet. See WORKFLOW.md gotcha #11 for the full writeup.
-4. Tranquility's guid is unknown/unobserved — `$cooldownGuids["Tranquility"]` is an
-   empty array in both pull scripts and will silently show 0 forever until someone
-   adds the real guid once it's actually seen in a pull.
-5. Paladin/Priest/Shaman are still on the v1/simple, truncation-prone table
-   approach AND the old date-stamped-folder convention — none of the events-based/
+1. Tranquility's guid is unknown/unobserved (Druid-only concept) —
+   `$cooldownGuids["Tranquility"]` is an empty array in both Druid-touching
+   scripts and will silently show 0 forever until someone adds the real guid once
+   it's actually seen in a pull.
+2. Paladin/Priest are still on the v1/simple, truncation-prone table approach AND
+   the old date-stamped-folder convention — none of the events-based/
    cooldown/buff-uptime work OR the active/archived data model has been ported to
-   them yet. Porting a class means: writing its own `pull_top100_{class}.ps1` on
-   the Druid model (not the TEMPLATE model, which includes the active/archived
-   diff logic for free), running `migrate_class_to_active.ps1` once against its
-   existing date-folder pull, and its own `boss_page_template_{class}.html` per
-   WORKFLOW.md's "Site structure" section.
-6. One narrow, accepted gap: ~0.5% of Top 100 parses (1 real case observed) have no
-   `combatantinfo` snapshot even within the 2-minute backward buffer, likely a
-   late-joining player — currently just reported as a failure for that one player's
-   consumables data, not chased further.
+   them yet. Porting a class now has TWO real, proven references instead of one —
+   `pull_top100_druid.ps1` and `pull_top100_shaman.ps1` — plus a repeatable
+   playbook from the Shaman port: (a) a real-data discovery pass BEFORE writing
+   any class-specific guid table (never assume a class's cooldown kit or
+   self-buff-uptime concept from memory), (b) build the new pull script as a
+   separate file modeled on the existing v2 scripts, smoke-test on one boss into a
+   scratch folder, then promote, (c) add the class's entries to
+   `build_boss_report_data.ps1`'s and `summarize_class_benchmarks.ps1`'s
+   class-keyed tables, (d) build `boss_page_template_{class}.html` from the
+   Druid/Shaman templates' section *shape*, not their specific content, (e) extend
+   the generate-healer-report skill's class gate once proven end-to-end.
+3. One narrow, accepted gap, reconfirmed with real Shaman data at almost exactly
+   the same rate: ~0.5% of Top 100 parses (1 case for Druid, ~5 for Shaman) have
+   no `combatantinfo` snapshot even within the 2-minute backward buffer, likely a
+   late-joining player — currently just reported as a failure for that one
+   player's consumables data, not chased further.
 
 ## Ground rules (condensed from WORKFLOW.md — read the real thing for why)
 
@@ -280,6 +323,14 @@ scripts), `v2_client_id.txt`/`v2_client_secret.txt`/`v2_access_token.txt`
   "she/her/he/him". This crept in through free-form coverage-note writing (not the
   templates themselves, which never had this problem) on the first two real v2
   boss pages and had to be swept out after the fact — write clean the first time.
+- **The v2 GraphQL API's rate limit resets on a rolling hourly clock, confirmed
+  live 2026-07-12** — hit a real full lockout mid-session (a day of heavy pulling:
+  a Danceswtrees re-pull, a Vajomee pull, a full Druid Top 100 pull, and two Shaman
+  Top 100 pull attempts all in the same session) where even the lightweight
+  `rateLimitData { pointsSpentThisHour pointsResetIn }` diagnostic query itself
+  returned 429. Don't keep retrying a burst of 429s hoping it clears in a minute —
+  check `rateLimitData.pointsResetIn` (when it isn't itself rate-limited) or just
+  wait out the rest of the current clock hour before retrying a big pull.
 
 ## Hosting — GitHub Pages
 

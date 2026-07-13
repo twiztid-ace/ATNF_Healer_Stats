@@ -1,0 +1,181 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Winallday",
+                        "id":  12,
+                        "guid":  54556869,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Arms",
+                        "timestamp":  4203011,
+                        "fight":  5,
+                        "damage":  {
+                                       "total":  11743,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37852,
+                                                             "name":  "Watery Grave Explosion",
+                                                             "total":  6011,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_arcticwinds.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  4402,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  3,
+                                                             "name":  "Falling",
+                                                             "total":  1330,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Winallday",
+                                                           "total":  6011,
+                                                           "type":  "Warrior"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  4402,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  1330,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1150,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  805,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  27163,
+                                                              "name":  "Judgement of Light",
+                                                              "total":  345,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_healingaura.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37764,
+                                                                    "name":  "Earthquake",
+                                                                    "total":  1150,
+                                                                    "type":  1,
+                                                                    "icon":  "spell_nature_earthquake.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Kahmoony",
+                                                            "total":  805,
+                                                            "type":  "Shaman"
+                                                        },
+                                                        {
+                                                            "name":  "Winallday",
+                                                            "total":  345,
+                                                            "type":  "Warrior"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  15840,
+                        "overkill":  0,
+                        "events":  [
+                                       {
+                                           "timestamp":  4202991,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  12,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Falling",
+                                                           "guid":  3,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  1330,
+                                           "unmitigatedAmount":  1330,
+                                           "overkill":  0,
+                                           "isAoE":  false,
+                                           "targetMarker":  1
+                                       },
+                                       {
+                                           "timestamp":  4200029,
+                                           "type":  "damage",
+                                           "sourceID":  12,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  12,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Watery Grave Explosion",
+                                                           "guid":  37852,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_arcticwinds.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  6011,
+                                           "unmitigatedAmount":  5464,
+                                           "isAoE":  true,
+                                           "sourceMarker":  1,
+                                           "targetMarker":  1
+                                       },
+                                       {
+                                           "timestamp":  4187151,
+                                           "type":  "damage",
+                                           "sourceID":  82,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  12,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Earthquake",
+                                                           "guid":  37764,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  4402,
+                                           "unmitigatedAmount":  4002,
+                                           "isAoE":  true,
+                                           "targetMarker":  4
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Falling",
+                                            "guid":  3,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    }
+                ]
+}

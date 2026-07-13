@@ -1,0 +1,157 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Shádows",
+                        "id":  9,
+                        "guid":  74227253,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  2453097,
+                        "fight":  16,
+                        "damage":  {
+                                       "total":  9227,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  750,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  39414,
+                                                             "name":  "Arcane Missiles",
+                                                             "total":  5250,
+                                                             "type":  64,
+                                                             "icon":  "spell_nature_starfall.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  3977,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "High Astromancer Solarian",
+                                                           "total":  5250,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  3977,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  80,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  39373,
+                                                              "name":  "Shadowmend",
+                                                              "total":  80,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  80,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Shádows",
+                                                            "total":  80,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  996,
+                        "overkill":  1266,
+                        "events":  [
+                                       {
+                                           "timestamp":  2453080,
+                                           "type":  "damage",
+                                           "sourceID":  110,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  9,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Arcane Missiles",
+                                                           "guid":  39414,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_starfall.jpg"
+                                                       },
+                                           "fight":  16,
+                                           "hitType":  16,
+                                           "amount":  984,
+                                           "mitigated":  750,
+                                           "unmitigatedAmount":  3000,
+                                           "resisted":  750,
+                                           "overkill":  1266,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  2452581,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  9,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  16,
+                                           "hitType":  1,
+                                           "amount":  3977,
+                                           "unmitigatedAmount":  3977,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  2452084,
+                                           "type":  "damage",
+                                           "sourceID":  110,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  9,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Arcane Missiles",
+                                                           "guid":  39414,
+                                                           "type":  64,
+                                                           "abilityIcon":  "spell_nature_starfall.jpg"
+                                                       },
+                                           "fight":  16,
+                                           "hitType":  1,
+                                           "amount":  3000,
+                                           "unmitigatedAmount":  3000,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Arcane Missiles",
+                                            "guid":  39414,
+                                            "type":  64,
+                                            "abilityIcon":  "spell_nature_starfall.jpg"
+                                        }
+                    }
+                ]
+}

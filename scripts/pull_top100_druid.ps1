@@ -8,6 +8,21 @@
 # for Hydross, 24/24 ok, byte-for-byte matching field values against v1's known-
 # good output) before taking over the production filename.
 #
+# 2026-07-12 PERFORMANCE FIX (found while porting Shaman, Phase 3): the
+# gameData.ability() name-resolution cache used to be a per-worker LOCAL
+# hashtable, reset to empty every single parse (each parse runs in its own
+# isolated RunspacePool worker). At this script's real scale (~100 parses per
+# boss x 10 bosses) that meant every parse re-resolved the same handful of
+# common ability guids via its own API call - up to tens of thousands of
+# redundant gameData.ability() calls per full run, a real and significant
+# contributor to v2 feeling slower than v1 despite v1 never needing this call
+# at all (v1's raw REST response already embedded ability name/guid/icon
+# directly in every event). Fixed by promoting it to a ConcurrentDictionary
+# shared across the whole run, same pattern as $fightsCache/$actorNamesCache
+# below. This same per-worker pattern is intentionally left alone in
+# pull_character_TEMPLATE.ps1, where only ~9-10 workers run per character pull
+# and the redundant-call cost is genuinely negligible at that scale.
+#
 # The active/archived diff model, manifest.json schema, and per-parse output file
 # set are ALL UNCHANGED from v1 - only the API mechanics (auth + endpoint calls)
 # are migrated. Every per-parse output file keeps its v1 shape exactly (confirmed
@@ -138,7 +153,7 @@ function Save-ManifestLocal {
 $workerScript = {
     param(
         $reportID, $fightID, $playerName, $i, $className,
-        $outDir, $fightsCache, $actorNamesCache, $deathsClaimed,
+        $outDir, $fightsCache, $actorNamesCache, $deathsClaimed, $abilityCache,
         $accessToken, $moduleAbsolutePath
     )
 
@@ -153,10 +168,21 @@ $workerScript = {
         SafeName = $null
     }
 
-    $localAbilityCache = @{}
+    # Shared ConcurrentDictionary across every parse in this run, NOT a
+    # per-worker local hashtable (2026-07-12 fix - see this file's header dated
+    # note). At Top-100 scale (~1000 parses/run) a per-worker cache meant every
+    # single parse re-resolved the same handful of common ability guids
+    # (Lifebloom, Regrowth, etc.) via its own gameData.ability() call - up to
+    # tens of thousands of redundant API calls per full run, a real and
+    # significant chunk of why a full pull was slower than expected. This same
+    # per-worker pattern is still correct and intentionally left alone in
+    # pull_character_TEMPLATE.ps1, where only ~9-10 workers run per character
+    # pull and the redundant-call cost is genuinely negligible - only the
+    # Top-100 scripts run at a scale where sharing this cache actually matters.
     function Resolve-AbilityNameLocal($guid) {
         $key = [int]$guid
-        if ($localAbilityCache.ContainsKey($key)) { return $localAbilityCache[$key] }
+        $cached = $null
+        if ($abilityCache.TryGetValue($key, [ref]$cached)) { return $cached }
         $q = "query { gameData { ability(id: $key) { name icon } } }"
         $r = Invoke-WclGraphQL -Query $q -AccessToken $accessToken
         $entry = [PSCustomObject]@{ Name = $null; Icon = $null }
@@ -164,7 +190,7 @@ $workerScript = {
             $entry.Name = $r.Data.gameData.ability.name
             $entry.Icon = $r.Data.gameData.ability.icon
         }
-        $localAbilityCache[$key] = $entry
+        [void]$abilityCache.TryAdd($key, $entry)
         return $entry
     }
 
@@ -427,6 +453,21 @@ $workerScript = {
                 [System.IO.File]::WriteAllText($deathsOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
             }
         }
+        # 2026-07-12 fix (found while porting Shaman, real rate-limit restarts):
+        # re-check the file after the attempt (or after losing the claim race to
+        # a different worker for the same report+fight) - if it's still missing
+        # for ANY reason, this parse must NOT be marked complete below, or a
+        # deaths-only 429 would silently leave a permanently-missing file (this
+        # was the one sub-fetch here that didn't already gate $parseOk on its
+        # own success - healing/casts/consumables/activetime all did). Checking
+        # actual file existence rather than "did I personally fail" also
+        # correctly covers the non-claiming worker's case, since it never
+        # attempted the fetch at all and wouldn't otherwise know whether the
+        # claimer succeeded. Restores the "a full re-run picks it up fresh"
+        # behavior WORKFLOW.md gotcha #24 already describes as the intent.
+        if (-not (Test-Path $deathsOutFile)) {
+            $parseOk = $false
+        }
     }
 
     $result.Ok = $parseOk
@@ -436,6 +477,9 @@ $workerScript = {
 $fightsCache = [System.Collections.Concurrent.ConcurrentDictionary[string,object]]::new()
 $actorNamesCache = [System.Collections.Concurrent.ConcurrentDictionary[string,object]]::new()
 $deathsClaimed = [System.Collections.Concurrent.ConcurrentDictionary[string,bool]]::new()
+# Shared across the WHOLE run (every boss, every parse) - see the worker
+# scriptblock's comment above for why this replaces a per-worker local cache.
+$abilityCache = [System.Collections.Concurrent.ConcurrentDictionary[int,object]]::new()
 
 $totalNew = 0
 $totalConfirmed = 0
@@ -611,6 +655,7 @@ foreach ($bossName in $bosses.Keys) {
             AddArgument($fightsCache).
             AddArgument($actorNamesCache).
             AddArgument($deathsClaimed).
+            AddArgument($abilityCache).
             AddArgument($token).
             AddArgument($moduleAbsolutePath)
         $handle = $ps.BeginInvoke()

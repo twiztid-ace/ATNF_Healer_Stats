@@ -27,9 +27,10 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-# ===== Class-specific cooldown/utility watch list, matched by real GUID - ONLY Druid
-# is populated today (same real, verified guids already used in
-# summarize_class_benchmarks.ps1 and pull_top100_druid.ps1, not re-derived). Every
+# ===== Class-specific cooldown/utility watch list, matched by real GUID - only Druid
+# and Shaman are populated today (same real, verified guids already used in
+# summarize_class_benchmarks.ps1 and each class's pull_top100_{class}.ps1, not
+# re-derived - Shaman's were confirmed against a real Vajomee report, see below). Every
 # other class hard-stops below rather than guessing at guids or silently producing an
 # empty cooldowns section - see the generate-healer-report skill's class-generality
 # caveat for why. Add a real, verified entry here (and confirm the matching
@@ -44,13 +45,26 @@ $cooldownGuidsByClass = @{
         "Rebirth"            = @(26994)
         "Dark Rune"          = @(27869)
     }
+    # Confirmed against a real Vajomee report (Z4zNt28raQ6GLbkC, 9 real boss
+    # kills) before this entry was added - see pull_top100_shaman.ps1's header
+    # for the full discovery writeup. No Rebirth-equivalent exists for Shaman
+    # in this TBC ruleset - confirmed absent across all 9 real kills despite
+    # real deaths occurring in them, so it's omitted here rather than
+    # force-mapped or left as a permanent zero row.
+    "Shaman" = [ordered]@{
+        "Earth Shield"        = @(32594)
+        "Mana Tide Totem"     = @(16190)
+        "Ancestral Swiftness" = @(16188)
+        "Dark Rune"           = @(27869)
+    }
 }
 $manaPotionNameByClass = @{
-    "Druid" = "Restore Mana"
+    "Druid"  = "Restore Mana"
+    "Shaman" = "Restore Mana"
 }
 
 if (-not $cooldownGuidsByClass.ContainsKey($ClassName)) {
-    Write-Host "ERROR: '$ClassName' has no real cooldown-guid table in this script yet - only Druid is wired up today."
+    Write-Host "ERROR: '$ClassName' has no real cooldown-guid table in this script yet - only Druid and Shaman are wired up today."
     Write-Host "       Add a real, VERIFIED guid table for '$ClassName' (never guess at guids) before running this for that class."
     exit 1
 }
