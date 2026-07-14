@@ -1,0 +1,91 @@
+{
+  "CharacterName": "Crowns",
+  "ReportCode": "XJp8vAxzM4KtHYyb",
+  "BossFindings": {
+    "hydross": {
+      "SCORECARD_FINDING": "35th percentile reflects HPS well under the Top 100 median (447 vs 1329) — but HPM (5.36, see section 03) actually beats the Top 100 average (4.06) and sits close to the #1 parse (6.47), so this isn't an efficiency problem: Crowns is casting smaller, cheaper heals (Flash of Light at 89.9% of output, see section 02) more mana-efficiently than the field, just producing less raw throughput per second than the Holy-Light-heavy parses that top this boss's Top 100.",
+      "SPELL_COMPOSITION_FINDING": "Crowns leans overwhelmingly on Flash of Light (89.9%) where the Top 100 sample leans on Holy Light instead — across its five real guids (27136, 25292, 10329, 10328, 27135), Holy Light accounts for 92.6% of the Top 100 average mix on this boss, none of which Crowns cast this kill (the real guid-1042 Holy Light entry at 3.8% is a different, rarer rank absent from the Top 100 sample entirely). This Flash-of-Light-heavy pattern recurs on every boss this raid night — a consistent style choice, not a one-fight anomaly.",
+      "COOLDOWN_FINDING": "Holy Shock cast twice this kill (Coday, Jotes) — more than the Top 100 average of about once every 2.5 fights (25% usage) — but Divine Favor (72% typical usage) and Mana Potion (80% typical usage) both went unused here, the two most common omissions relative to norm on this kill. Zero deaths this kill, so no cooldown/death correlation to check. Flask and food buffs matched at 100%, well above the Top 100 average (46%/71%).",
+      "TARGET_FINDING": "Top target (15.6%) sits dramatically below the Top 100 average's top target (88.3%) — the widest gap of the raid night. This reads as a real difference in healing assignment (broad, raid-wide coverage across 17 distinct targets) rather than the tank-focused style that dominates this boss's Top 100 sample, not a targeting problem."
+    },
+    "lurker": {
+      "SCORECARD_FINDING": "68th percentile despite raw HPS (660) sitting well under the Top 100 median (1304) — the two metrics aren't computed the same way (this page's HPS is a straight event-sum, WCL's percentile is its own points-based ranking), so a gap between them isn't a contradiction. Active time (84.3%) is the real soft spot here, meaningfully below the Top 100 average (90.8%).",
+      "SPELL_COMPOSITION_FINDING": "Same Flash-of-Light lean as every other kill this raid (57% here vs. the Top 100 average's 14.8%), though less extreme than Hydross — Crowns does cast the Top 100's dominant Holy Light rank here (guid 27136, 37.8% vs. benchmark 65.7%), just less of it.",
+      "COOLDOWN_FINDING": "Three real deaths this kill (Captinspanky, Vajony, Hatchpeppers, all within a 97-second window) — none land near a spent cooldown; the only cooldown cast this fight (Holy Shock, self) was about 17 seconds before the first death and unrelated to it. Hand of Protection (4% typical usage) and Divine Shield (28% typical usage) both went unused, but neither is common enough in the Top 100 sample to call this kill's absence a real deviation.",
+      "TARGET_FINDING": "Top target (14.7%) is well below the Top 100 average (60.1%) — the same broad-spread pattern as every other kill this raid, and overall coverage (56.6%) trails the benchmark's 84.3% too."
+    },
+    "leotheras": {
+      "SCORECARD_FINDING": "74th percentile on a genuinely rough kill for the raid — 8 deaths, the most of any boss this night. HPM (4.6, see section 03) is the one kill this raid where mana efficiency falls slightly below the Top 100 average (5.08) rather than above it, and spell mix here (66.2% Holy Light, 31.8% Flash of Light) is the closest match to the Top 100's own mix of any boss tonight (see section 02) — the Flash-of-Light lean seen elsewhere in this raid is weakest here.",
+      "SPELL_COMPOSITION_FINDING": "The closest match to the Top 100's own spell mix of any boss this raid — Holy Light (66.2%) and Flash of Light (31.8%) both land within about 4-16 points of the benchmark average (70.3%/16.1%), a real, meaningful narrowing of this raid's usual Flash-of-Light lean.",
+      "COOLDOWN_FINDING": "The raid's deadliest kill (8 real deaths) also shows the fullest real cooldown usage of the raid — Holy Shock, Divine Favor, Divine Shield, and Hand of Protection (on Churbert) were all cast at least once, matching or exceeding Top 100 usage rates on every one of the four. Divine Shield is self-only, so its timing near two of the raid's deaths (within about 7 seconds) isn't a real save-or-miss on this fight; Hand of Protection landed on Churbert well outside the window of either of Churbert's own two deaths this kill (about 85 seconds either way).",
+      "TARGET_FINDING": "Top target (13.5%) is the closest to the Top 100 average of any kill this raid (20.9%, a 7.4-point gap, near the edge of normal variance) — this boss's Top 100 sample is itself less tank-concentrated than most others, narrowing the usual gap."
+    },
+    "karathress": {
+      "SCORECARD_FINDING": "75th percentile, with overheal (19.6%) genuinely better than the Top 100 median (29.8%) and HPM (7.13, see section 03) well above the Top 100 average (4.81) — one of the stronger efficiency showings of the raid night, even though raw HPS (875) still trails the median (1558).",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light (69.4%) dominates again here, far above the Top 100 average (10.3%) — Karathress is one of this raid's more extreme Flash-of-Light-lean kills, second only to Solarian and Hydross.",
+      "COOLDOWN_FINDING": "Three real deaths this kill (Shlicktree, Deepbowlz, Danceswtrees); the only cooldown near them in time (Divine Shield, self, about 21-32 seconds before) is a self-only defensive that can't be read as a missed save for someone else. Cleanse (3% typical usage) and Hand of Protection (2% typical) both went unused, but neither is common enough in the Top 100 sample for that to be a real gap.",
+      "TARGET_FINDING": "Top target (31.4%) trails the Top 100 average (66.3%) by a wide margin, though this is Crowns's highest top-target share of the raid alongside Morogrim — still a broader spread than the benchmark's tank-focused norm on this boss."
+    },
+    "morogrim": {
+      "SCORECARD_FINDING": "4th percentile is the clear low point of the whole raid night — the next-lowest kill is 35th (Hydross). Raw HPS (338) sits at just 28% of the Top 100 average (1210) on this kill, the largest output gap of any boss tonight, while HPM (4.69, see section 03) matches the Top 100 median (4.69) almost exactly — this reads as a real throughput shortfall specific to this kill, not a mana-efficiency problem.",
+      "SPELL_COMPOSITION_FINDING": "Consistent with the rest of the raid, Flash of Light (63.5%) outweighs the Top 100 average (18.3%) by a wide margin. A real guid-1042 Holy Light entry (11.7%) — the same rare rank seen on Hydross and Alar — doesn't appear in this boss's Top 100 benchmark at all. This spell mix looks similar in shape to Crowns's other kills tonight, so it isn't what explains this kill's throughput crash (see the scorecard above).",
+      "COOLDOWN_FINDING": "Zero real deaths this kill, so no cooldown/death correlation to check. Holy Shock, Divine Favor, and Divine Shield were all cast once (self each time), broadly in line with this boss's Top 100 usage rates (61%, 79%, 43% respectively). The real story on this kill is throughput and active time (72%, the lowest of the raid alongside Alar and Kael'thas), not cooldown usage — see the scorecard above.",
+      "TARGET_FINDING": "Top target (32.1%) — Crowns's highest of the raid alongside Karathress — still sits well under the Top 100 average (67.3%). Coverage (69.9%) is closer to the benchmark (87%) than on most other kills."
+    },
+    "vashj": {
+      "SCORECARD_FINDING": "86th percentile, the second-best of the raid night. Overheal (23.8%) and HPM (7.69, see section 03) both sit close to or above the Top 100 norm on this long, 498-second kill. Four of the fight's five deaths land within a 20-second window early in the pull (see section 03) — a real cluster worth noting, though not one this healer's own cooldown timing can be tied to.",
+      "SPELL_COMPOSITION_FINDING": "The Top 100 benchmark itself is unusually Flash-of-Light-leaning on this boss already (54.4%, the highest of any boss this raid) — Crowns pushes further still (88.9%), the widest raw percentage-point gap of the raid (34.5 points), though not the widest relative gap given the benchmark's own lean here.",
+      "COOLDOWN_FINDING": "Divine Shield was not cast at all this kill, despite 57% of the Top 100 sample using it at least once on Vashj — the largest single-cooldown deviation from norm of any boss this raid night, worth flagging given this fight's real chain-damage mechanics. Cleanse, by contrast, was used heavily and well-targeted (7 casts across 6 different raiders — Whitewolf, Pepsiweaving, Paladanwood, Churbert twice, Lippies, Turkeykin — vs. a Top 100 average of 2 casts), the strongest real cooldown usage of the raid night. Four of the fight's five deaths cluster within a 20-second window early in the pull; none line up with a cooldown Crowns had just spent.",
+      "TARGET_FINDING": "Top target (13.1%) and overall coverage (47.9%) both land close to the Top 100 average (17.8% / 50.1%) — the smallest targeting gap of the raid, on a boss whose Top 100 sample itself spreads healing more broadly than most (the lowest benchmark top-target share of any boss this raid)."
+    },
+    "alar": {
+      "SCORECARD_FINDING": "41st percentile — HPS (399) sits at roughly 40% of the Top 100 average (1003), one of the wider output gaps of the raid, though HPM (5.92, see section 03) is still above the Top 100 average (5.28), continuing this raid's pattern of mana-efficient but lower-throughput healing.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light (68.3%) again outpaces the Top 100 average (26.2%) — consistent with every other kill this raid.",
+      "COOLDOWN_FINDING": "Divine Shield went unused again here (42% of the Top 100 sample casts it at least once on Al'ar) — a smaller echo of the same gap seen on Lady Vashj. Zero real deaths this kill, so no cooldown/death correlation to check.",
+      "TARGET_FINDING": "Top target (13.6%) trails the Top 100 average (36.2%) by a wide margin, continuing this raid's broad-spread pattern."
+    },
+    "voidreaver": {
+      "SCORECARD_FINDING": "90th percentile — the best of the raid night alongside Solarian. Active time (98.5%) is the highest of any kill this raid, and HPM (6.7, see section 03) sits comfortably above the Top 100 average (5.47). Six real deaths this kill (the most of any boss besides Leotheras), including two that land at the same timestamp — see section 03.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light (55.5%) vs. the Top 100 average (11.2%) — the smallest raw Flash-of-Light/Holy-Light split of the raid by percentage points, though the underlying lean is the same as every other kill. Crowns cast no Holy Shock this fight, matching the Top 100 sample's own near-negligible use of it here (0.6%).",
+      "COOLDOWN_FINDING": "Six real deaths this kill, including two landing at the exact same timestamp (Churbert, Purehentai) — a real double-death, but none of this kill's utility cooldowns (Hand of Protection, Divine Shield, Cleanse) are common enough in the Top 100 sample here (7%, 13%, 0% usage) for their absence to read as a missed opportunity. Active time (98.5%) and HPM (6.7, above the 5.47 Top 100 average) are the real strengths of this kill.",
+      "TARGET_FINDING": "Top target (11.4%) and overall coverage (43.5%) both trail the Top 100 average (26.1% / 67.1%) noticeably — the most target-diffuse kill of the raid by distinct-target count (22)."
+    },
+    "solarian": {
+      "SCORECARD_FINDING": "93rd percentile, the best kill of the raid night. HPM (7.4, see section 03) is nearly double the Top 100 average (4.45) — the most mana-efficient kill of the raid — even though raw HPS (786) still trails the median (1476). Spell mix here is the most extreme expression of this raid's Flash-of-Light lean: 98.2% of output, vs. the Top 100 average's Holy-Light-dominant mix (see section 02).",
+      "SPELL_COMPOSITION_FINDING": "The most extreme expression of this raid's Flash-of-Light lean: 98.2% of Crowns's output this kill, against a Top 100 average that's still Holy-Light-dominant (70.5%) — Crowns casts almost no Holy Light at all on this particular boss.",
+      "COOLDOWN_FINDING": "Zero real deaths this kill. Holy Shock's single cast landed on Captinspanky rather than self — a genuinely other-targeted use, consistent with 98% of this boss's Top 100 sample casting it on someone other than themselves (self%: 2%). This is the raid's best kill by percentile (93rd) and by mana efficiency (HPM 7.4, see the scorecard).",
+      "TARGET_FINDING": "Top target (11.2%) and coverage (42.9%) both trail the Top 100 average — consistent with the raid-wide broad-spread pattern, on the kill where Crowns's spell mix is also the most extreme (see section 02)."
+    },
+    "kaelthas": {
+      "SCORECARD_FINDING": "74th percentile on the raid's longest kill (476s) and lowest active-time reading (68.5%, vs. the Top 100 average of 83%) — four real deaths this kill, including two landing at the exact same timestamp (see section 03). HPM (5.66, see section 03) is essentially even with the Top 100 average (5.69), a rare kill this raid where mana efficiency isn't a clear relative strength.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light (74.3%) still leads, but the gap narrows here because the Top 100 average itself leans more toward Flash of Light on this boss (36.8%, the second-highest benchmark Flash-of-Light share of the raid after Lady Vashj) than on most others.",
+      "COOLDOWN_FINDING": "Four real deaths this kill, including two at the exact same timestamp (Deepbowlz, Vinnyvoss). Divine Shield (self) was cast about 1.4 seconds after Banepain's death — most plausibly a reactive self-preservation cast in response to raid wipe pressure, not something that could have prevented that specific death (Divine Shield only protects the caster). This is the raid's longest kill (476s) and lowest active-time reading (68.5%, see the scorecard).",
+      "TARGET_FINDING": "Top target (16%) and coverage (47.6%) both trail the Top 100 average (25.2% / 62.8%), consistent with every other kill this raid — the broad-spread pattern holds even on this, the raid's longest fight."
+    }
+  },
+  "RaidOverview": {
+    "GEAR_CONSISTENCY_FINDING": "consistent across 9 of 10 real combatantinfo snapshots",
+    "GEAR_FINDING_NOTE": "Ring enchants aren't flagged, per this era's self-only Enchanting restriction. No belt enchant exists in this ruleset either, so its absence isn't a gap. This is a clean, fully-enchanted loadout — the only real gear findings this raid night are two deliberate, single-kill equipment swaps, not omissions.",
+    "RAID_WARNING_BANNER": "<strong>Morogrim Tidewalker is a dramatic single-kill outlier — 4th percentile</strong>, the lowest of the raid night by a wide margin (the next-lowest is Hydross at 35th) — driven by raw HPS sitting at just 28% of the Top 100 average on that kill (338 vs. 1210), the largest single-kill output gap of the raid, despite HPM there (4.69) matching the Top 100 median almost exactly. Separately, target-distribution concentration (see each boss page's section 04) sits well below the Top 100 average on 8 of 10 kills — a consistent, raid-wide pattern of broader healing assignment than the tank-focused style common among Top 100 parses, not a targeting problem, and consistent with Crowns's raid-wide lean on Flash of Light over Holy Light (see each boss page's section 02).",
+    "RAID_SUMMARY_FINDING": "6 of 10 kills land at or above the 68th percentile (Lurker, Leotheras, Karathress, Lady Vashj, Void Reaver, Solarian, Kael'thas); Hydross (35th) and Al'ar (41st) are real, if less severe, soft spots, and Morogrim (4th) is the standalone low point flagged above. HPM sits at or above the Top 100 average on 7 of 10 kills, a genuine relative strength running through most of the raid — this reads as a fast, mana-efficient, Flash-of-Light-leaning healing style that trades some raw HPS for broader raid-wide coverage, rather than a single consistent weakness. All 10 percentiles are exact report+fight WCL rankings, not fuzzy-matched.",
+    "GearCheckItems": [
+      {
+        "Icon": "ok",
+        "Description": "Every enchantable slot (helm, shoulder, chest, legs, boots, bracer, gloves, cloak, mainhand, offhand) carries a real permanent enchant, on all 10 kills",
+        "Detail": "10/10 enchants"
+      },
+      {
+        "Icon": "note",
+        "Description": "Mainhand and offhand were swapped for a Fishing Pole (no offhand) on The Lurker Below only",
+        "Detail": "item 19022",
+        "LongDetail": "A real, benign swap, not a gearing gap — every other kill (Hydross through Kael'thas Sunstrider, all but Lurker) equips the standard mace (item 28771) + shield (item 29458) combo; Lurker alone shows a fishing pole in mainhand with no offhand equipped, confirmed from real combatantinfo snapshots on both sides of the swap, consistent with fishing during that specific pull."
+      },
+      {
+        "Icon": "note",
+        "Description": "Trinket (second slot) was swapped for a different real trinket on Void Reaver only",
+        "Detail": "item 28590 → 28727",
+        "LongDetail": "Every other kill carries the same real trinket (item 28590); Void Reaver alone shows a different real trinket (item 28727) equipped instead — a deliberate per-encounter swap, not a gearing gap."
+      }
+    ]
+  }
+}
