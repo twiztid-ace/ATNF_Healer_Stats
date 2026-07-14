@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Crowns — Morogrim Tidewalker</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  .seal-wrap{ flex-shrink:0; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
+  .section-num{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--copper); }
+  .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
+  .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .stat{ padding: 16px 18px; border-right: 1px solid var(--line); }
+  .stat:last-child{ border-right:none; }
+  .stat-label{ font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(19,42,44,0.55); margin-bottom: 6px; }
+  .stat-value{ font-family:'IBM Plex Mono', monospace; font-size: 22px; font-weight: 600; }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{ position: absolute; top: -8px; width: 3px; height: 26px; background: var(--ink); }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute; top: -22px; left: 50%; transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace; font-size: 11px; white-space: nowrap; color: var(--ink);
+  }
+  .pctl-scale{ display:flex; justify-content: space-between; font-family:'IBM Plex Mono', monospace; font-size: 10px; color: rgba(19,42,44,0.45); }
+
+  .spell-row{ display:grid; grid-template-columns: 140px 1fr 60px; align-items:center; gap: 14px; padding: 9px 0; font-size: 13px; }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{ height: 8px; background: var(--parchment-dim); border-radius: 4px; overflow:hidden; }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{ display:flex; gap: 18px; margin-bottom: 14px; font-family:'IBM Plex Mono', monospace; font-size: 11px; }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left; font-family:'IBM Plex Mono', monospace; font-size: 10px; text-transform: uppercase;
+    letter-spacing: 0.05em; color: rgba(19,42,44,0.5); padding: 8px 10px; border-bottom: 1px solid var(--line);
+  }
+  .cd-table td{ padding: 10px 10px; border-bottom: 1px dashed var(--line); vertical-align: middle; }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
+
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{ display:grid; grid-template-columns: 120px 1fr 70px; align-items:center; gap: 12px; font-size: 13px; }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .coverage-note{ margin-top: 14px; font-size: 12px; color: rgba(19,42,44,0.6); border-left: 3px solid var(--gold); padding-left: 12px; }
+
+  .footer{
+    padding: 24px 48px 32px; font-family:'IBM Plex Mono', monospace; font-size: 11px;
+    color: rgba(19,42,44,0.4); display:flex; justify-content: space-between;
+  }
+  .placeholder-tag{
+    display:inline-block; margin-left: 10px; font-family:'IBM Plex Mono', monospace; font-size: 10px;
+    color: var(--copper); border: 1px solid var(--copper); border-radius: 20px; padding: 2px 8px; vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — July 7, 2026 · v2 · Morogrim Tidewalker</p>
+      <h1>Crowns</h1>
+      <p class="subline">Holy Paladin &nbsp;·&nbsp; ilvl 126 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; fight <span>41</span> &nbsp;·&nbsp; kill, 213s</p>
+    </div>
+    <div class="seal-wrap">
+      <svg class="seal" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
+        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
+        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">4</text>
+        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+      </svg>
+      <div class="seal-label">WCL rank, all parses</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid stat-grid-5">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value warn">338</div>
+        <div class="stat-sub">Top 100: #1 1619 &nbsp;·&nbsp; avg 1210 &nbsp;·&nbsp; median 1179</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value">43.6%</div>
+        <div class="stat-sub">Top 100: best 16.7% &nbsp;·&nbsp; median 35.6% &nbsp;·&nbsp; worst 51.6%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">71,970</div>
+        <div class="stat-sub">over 213s kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value">72%</div>
+        <div class="stat-sub">Top 100: #1 99.5% &nbsp;·&nbsp; avg 95.5% &nbsp;·&nbsp; median 97%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value">0</div>
+        <div class="stat-sub">this kill, all classes</div>
+      </div>
+    </div>
+
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:4%;" data-label="Crowns · 4th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank ~21066 of 21944 Holy Paladin parses on this encounter (all difficulties/partitions, historical).</div>
+
+    <div class="coverage-note">4th percentile is the clear low point of the whole raid night — the next-lowest kill is 35th (Hydross). Raw HPS (338) sits at just 28% of the Top 100 average (1210) on this kill, the largest output gap of any boss tonight, while HPM (4.69, see section 03) matches the Top 100 median (4.69) almost exactly — this reads as a real throughput shortfall specific to this kill, not a mana-efficiency problem.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">Crowns's real cast mix on this kill, vs. real Top 100 average on Morogrim Tidewalker.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>Crowns</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Flash of Light</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:63.5%"></div></div>
+      <div class="spell-pct">63.5%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:18.3%"></div></div>
+      <div class="spell-pct">18.3%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Holy Light (guid 27136)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:21.9%"></div></div>
+      <div class="spell-pct">21.9%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:62.4%"></div></div>
+      <div class="spell-pct">62.4%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Holy Light (guid 1042)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:11.7%"></div></div>
+      <div class="spell-pct">11.7%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Holy Light (guid 25292)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:8.2%"></div></div>
+      <div class="spell-pct">8.2%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Holy Light (guid 10329)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.1%"></div></div>
+      <div class="spell-pct">5.1%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Holy Shock (guid 33074)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:3%"></div></div>
+      <div class="spell-pct">3.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.2%"></div></div>
+      <div class="spell-pct">1.2%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Holy Light (guid 10328)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:2.5%"></div></div>
+      <div class="spell-pct">2.5%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Holy Light (guid 27135)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.9%"></div></div>
+      <div class="spell-pct">0.9%</div>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Lay on Hands</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.7%"></div></div>
+      <div class="spell-pct">0.7%</div>
+    </div>
+
+    <div class="coverage-note">Consistent with the rest of the raid, Flash of Light (63.5%) outweighs the Top 100 average (18.3%) by a wide margin. A real guid-1042 Holy Light entry (11.7%) — the same rare rank seen on Hydross and Alar — doesn't appear in this boss's Top 100 benchmark at all. This spell mix looks similar in shape to Crowns's other kills tonight, so it isn't what explains this kill's throughput crash (see the scorecard above).</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Morogrim Tidewalker. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> — match abilities by guid, not localized name.</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">Crowns</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 100 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="ability-name">Holy Shock</td><td class="num-cell">1</td><td>self</td><td class="num-cell">1.4 avg (14% self)</td></tr>
+        <tr><td class="ability-name">Divine Favor</td><td class="num-cell">1</td><td>self</td><td class="num-cell">1.1 avg (100% self)</td></tr>
+        <tr><td class="ability-name">Divine Shield</td><td class="num-cell">1</td><td>self</td><td class="num-cell">0.4 avg (100% self)</td></tr>
+        <tr><td class="ability-name">Cleanse</td><td class="num-cell">0</td><td>—</td><td class="num-cell">0.1 avg (0% self)</td></tr>
+        <tr><td class="ability-name">Hand of Protection</td><td class="num-cell">0</td><td>—</td><td class="num-cell">0.2 avg (8% self)</td></tr>
+        <tr><td class="ability-name">Blessing of Freedom</td><td class="num-cell">0</td><td>—</td><td class="num-cell">0 avg (0% self)</td></tr>
+        <tr><td class="ability-name">Dark Rune</td><td class="num-cell">0</td><td>—</td><td class="num-cell">0.3 avg (100% self)</td></tr>
+        <tr><td class="ability-name">Mana Potion</td><td class="num-cell">0</td><td>—</td><td class="num-cell">1.2 avg (100% self)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="stat-grid stat-grid-5" style="margin-top:22px;">
+      <div class="stat">
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value">Yes</div>
+        <div class="stat-sub">Elixir of Draenic Wisdom — Top 100: 55% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 68% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value">0</div>
+        <div class="stat-sub">none used this kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">HPM</div>
+        <div class="stat-value">4.69</div>
+        <div class="stat-sub">Top 100: top1 7.42 &nbsp;·&nbsp; avg 4.92 &nbsp;·&nbsp; median 4.69</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Zero real deaths this kill, so no cooldown/death correlation to check. Holy Shock, Divine Favor, and Divine Shield were all cast once (self each time), broadly in line with this boss's Top 100 usage rates (61%, 79%, 43% respectively). The real story on this kill is throughput and active time (72%, the lowest of the raid alongside Alar and Kael'thas), not cooldown usage — see the scorecard above.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of Crowns's healing on this kill (69.9% coverage) vs. Top 100 average on Morogrim Tidewalker (87% coverage, 67.3% to top target).</p>
+
+    <div class="target-list">
+      <div class="target-row"><div>Turbarct</div><div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div><div class="target-pct">32.1%</div></div>
+      <div class="target-row"><div>Crowns</div><div class="target-bar-track"><div class="target-bar-fill" style="width:40%"></div></div><div class="target-pct">12.8%</div></div>
+      <div class="target-row"><div>Pepsiweaving</div><div class="target-bar-track"><div class="target-bar-fill" style="width:35.3%"></div></div><div class="target-pct">11.3%</div></div>
+      <div class="target-row"><div>Raezy</div><div class="target-bar-track"><div class="target-bar-fill" style="width:23.3%"></div></div><div class="target-pct">7.5%</div></div>
+      <div class="target-row"><div>Purehentai</div><div class="target-bar-track"><div class="target-bar-fill" style="width:19%"></div></div><div class="target-pct">6.1%</div></div>
+    </div>
+
+    <div class="coverage-note">Top target (32.1%) — Crowns's highest of the raid alongside Karathress — still sits well under the Top 100 average (67.3%). Coverage (69.9%) is closer to the benchmark (87%) than on most other kills.</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Crowns's fight log (XJp8vAxzM4KtHYyb, fight 41) + Top 100 Morogrim Tidewalker benchmark (n=100)</span>
+    <span>tbc-audit style reference · healer variant · Holy Paladin</span>
+  </div>
+
+</div>
+
+</body>
+</html>
