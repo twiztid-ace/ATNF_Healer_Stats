@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Healer Audit — Lady Vashj</title>
+<title>Healer Audit — {{HEALER_NAME}} — {{BOSS_NAME}}</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -354,7 +354,7 @@
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
     <div class="stat-sub" style="margin-top:6px;">WCL rank {{RANK}} of {{OUT_OF}} {{HEALER_CLASS_SPEC}} parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
 
-    <div class="coverage-note">{{SCORECARD_FINDING}} — one to two sentences interpreting the percentile + overheal together, noting any fight-duration/difficulty caveats if the pull was unusually fast or slow vs. typical parses.</div>
+    <div class="coverage-note"><!--@SLOT:SCORECARD_FINDING-->{{SCORECARD_FINDING}} — one to two sentences interpreting the percentile + overheal together, noting any fight-duration/difficulty caveats if the pull was unusually fast or slow vs. typical parses.<!--@ENDSLOT--></div>
   </div>
 
   <!-- ===== SPELL COMPOSITION ===== -->
@@ -381,6 +381,7 @@
          amount) counts toward spell composition here, while its CAST/targeting (who each
          bounce chain was started on) could be tracked in section 03 the same way Swiftmend/
          Earth Shield are, if the character's usage warrants calling it out. -->
+    <!--@LOOP:SPELL_ROW-->
     <div class="spell-row compare-row">
       <div class="spell-name">{{SPELL_NAME}}</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:{{SPELL_PCT_CHARACTER}}%"></div></div>
@@ -391,8 +392,9 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:{{SPELL_PCT_BENCHMARK}}%"></div></div>
       <div class="spell-pct">{{SPELL_PCT_BENCHMARK}}%</div>
     </div>
+    <!--@ENDLOOP:SPELL_ROW-->
 
-    <div class="coverage-note">{{SPELL_COMPOSITION_FINDING}} — note the biggest gaps between character and benchmark. Flag any benchmark spell the character cast 0% of, if the gap is meaningful (e.g. missing a cheap AoE heal that's essentially free efficiency).</div>
+    <div class="coverage-note"><!--@SLOT:SPELL_COMPOSITION_FINDING-->{{SPELL_COMPOSITION_FINDING}} — note the biggest gaps between character and benchmark. Flag any benchmark spell the character cast 0% of, if the gap is meaningful (e.g. missing a cheap AoE heal that's essentially free efficiency).<!--@ENDSLOT--></div>
   </div>
 
   <!-- ===== COOLDOWNS & CONSUMABLES (Priest-specific) =====
@@ -458,12 +460,14 @@
              Top 100 self% comes straight from benchmark_cooldowns.csv's Top100SelfPct
              column - leave blank (not 0%) if that column was blank there too (means
              nobody in the sample cast it). -->
+        <!--@LOOP:CD_ROW-->
         <tr>
           <td class="ability-name">{{COOLDOWN_NAME}}</td>
           <td class="num-cell">{{COOLDOWN_CASTS}}</td>
           <td>{{COOLDOWN_TARGET}}</td>
           <td class="num-cell">{{COOLDOWN_BENCHMARK}}</td>
         </tr>
+        <!--@ENDLOOP:CD_ROW-->
       </tbody>
     </table>
 
@@ -500,7 +504,7 @@
       </div>
     </div>
 
-    <div class="coverage-note">{{COOLDOWN_FINDING}} — one to two sentences: how cooldown usage AND targeting compares to the Top 100 average (e.g. "Power Word: Shield rotated across the raid's melee, matching the sample's spread-target pattern" is a real finding; "cast Shadowfiend once per fight" alone is not, unless the timing or count is a real outlier), how flask/food/mana efficiency compares to the Top 100 benchmark if there's a real gap worth naming, and whether any raid death on this kill (per the fight's *_deaths.json, shown in the scorecard above) occurred in a window where Power Word: Shield had already fallen off its target or Fear Ward wasn't up. Only make a death-correlation claim if it's actually true for this specific fight - most kills won't show one, and that's fine to say plainly rather than reaching for a finding that isn't there.</div>
+    <div class="coverage-note"><!--@SLOT:COOLDOWN_FINDING-->{{COOLDOWN_FINDING}} — one to two sentences: how cooldown usage AND targeting compares to the Top 100 average (e.g. "Power Word: Shield rotated across the raid's melee, matching the sample's spread-target pattern" is a real finding; "cast Shadowfiend once per fight" alone is not, unless the timing or count is a real outlier), how flask/food/mana efficiency compares to the Top 100 benchmark if there's a real gap worth naming, and whether any raid death on this kill (per the fight's *_deaths.json, shown in the scorecard above) occurred in a window where Power Word: Shield had already fallen off its target or Fear Ward wasn't up. Only make a death-correlation claim if it's actually true for this specific fight - most kills won't show one, and that's fine to say plainly rather than reaching for a finding that isn't there.<!--@ENDSLOT--></div>
   </div>
 
   <!-- ===== TARGET DISTRIBUTION ===== -->
@@ -515,14 +519,16 @@
       <!-- One row per target, up to 5 (WCL truncates the targets array at 5). Sort descending
            by amount. Compute the bar width as a % of the TOP target's amount, not of total
            healing, so the visual bars stay comparable to each other. -->
+      <!--@LOOP:TARGET_ROW-->
       <div class="target-row">
         <div>{{TARGET_NAME}}</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:{{TARGET_BAR_WIDTH}}%"></div></div>
         <div class="target-pct">{{TARGET_PCT}}%</div>
       </div>
+      <!--@ENDLOOP:TARGET_ROW-->
     </div>
 
-    <div class="coverage-note">{{TARGET_FINDING}} — state the top target's % vs. the Top 100 benchmark average explicitly, and whether the gap (if any) represents a real targeting difference or falls within normal variance (roughly ±5 points has shown to be noise in practice).</div>
+    <div class="coverage-note"><!--@SLOT:TARGET_FINDING-->{{TARGET_FINDING}} — state the top target's % vs. the Top 100 benchmark average explicitly, and whether the gap (if any) represents a real targeting difference or falls within normal variance (roughly ±5 points has shown to be noise in practice).<!--@ENDSLOT--></div>
   </div>
 
   <div class="footer">

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Raid Audit — {{HEALER_NAME}} — {{RAID_TITLE}} {{RAID_DATE_DISPLAY}}</title>
+<title>Raid Audit — {{HEALER_NAME}} — {{RAID_TITLE}} — {{RAID_DATE_DISPLAY}}</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
  
@@ -199,11 +199,11 @@
       <span class="section-num">01</span>
       <h2 class="section-title">Gear audit</h2>
     </div>
-    <p class="section-desc">One audit for the whole raid night — gear was checked against every one of the 10 kills below.</p>
+    <p class="section-desc">One audit for the whole raid night — gear was checked against every one of the {{N_KILLS}} kills below.</p>
  
     <div class="consistency-banner">
       <div class="consistency-icon">✓</div>
-      <div class="consistency-text">Loadout is <strong>{{GEAR_CONSISTENCY_FINDING}}</strong> across all {{N_KILLS}} boss kills — confirm by diffing gear/enchant/gem IDs across every fight before writing this, don't assume from one fight. If gear DID change mid-raid, say so explicitly here instead.</div>
+      <div class="consistency-text">Loadout is <strong><!--@SLOT:GEAR_CONSISTENCY_FINDING-->{{GEAR_CONSISTENCY_FINDING}}<!--@ENDSLOT--></strong> across all {{N_KILLS}} boss kills — confirm by diffing gear/enchant/gem IDs across every fight before writing this, don't assume from one fight. If gear DID change mid-raid, say so explicitly here instead.</div>
     </div>
  
     <div class="check-list">
@@ -228,11 +228,14 @@
              coverage-note if the explanation belongs to ONE specific row, not the
              section as a whole.
            NEVER flag missing ring enchants - they are self-only in this era, see WORKFLOW.md gotcha #6. -->
+      <!--@LOOP:GEAR_CHECK_ITEM-->
       <div class="check-item">
-        <div class="check-icon ok">✓</div>
+        <div class="check-icon {{CHECK_ICON_CLASS}}">{{CHECK_ICON_GLYPH}}</div>
         <div>{{CHECK_DESCRIPTION}}</div>
         <div class="check-note">{{CHECK_DETAIL}}</div>
+        <div class="check-detail">{{CHECK_LONG_DETAIL}}</div>
       </div>
+      <!--@ENDLOOP:GEAR_CHECK_ITEM-->
       <!-- Example of a check-item that needs the extra explanation line - delete this
            example block, it's here to show the pattern, not to ship as real content:
       <div class="check-item">
@@ -244,7 +247,7 @@
       -->
     </div>
 
-    <div class="coverage-note">{{GEAR_FINDING_NOTE}} — one or two sentences of real interpretation that apply to the section as a whole (e.g. a weapon-tier gap, missing tier-set piece), not a restatement of any single check-item's own label or check-detail. Only include if there's a genuine finding left to add.</div>
+    <div class="coverage-note"><!--@SLOT:GEAR_FINDING_NOTE-->{{GEAR_FINDING_NOTE}} — one or two sentences of real interpretation that apply to the section as a whole (e.g. a weapon-tier gap, missing tier-set piece), not a restatement of any single check-item's own label or check-detail. Only include if there's a genuine finding left to add.<!--@ENDSLOT--></div>
   </div>
  
   <!-- ===== PER-BOSS SUMMARY ===== -->
@@ -255,10 +258,12 @@
     </div>
     <p class="section-desc">HPS and overheal are real, computed from {{HEALER_NAME}}'s own fight logs. Percentile is only shown where we've pulled the real WCL ranking for that exact pull — click a boss name for the full audit.</p>
  
+    <!--@OPTIONAL:RAID_WARNING_BANNER-->
     <div class="consistency-banner" style="background: rgba(181,80,58,0.10); border-color: rgba(181,80,58,0.35);">
       <div class="consistency-icon" style="background: var(--rust);">!</div>
-      <div class="consistency-text"><strong>Zero Healing Stream Totem casts across all 10 boss kills.</strong> Every Top 100 parse on every boss uses it — averaging 4.2% of total healing (as high as 9.9% on Void Reaver) — for what's essentially free, passive healing once dropped. This is the single most consistent, easiest-to-fix gap across the whole raid night, and it shows up on every individual boss page below.</div>
+      <div class="consistency-text"><!--@SLOT:RAID_WARNING_BANNER--><strong>Zero Healing Stream Totem casts across all 10 boss kills.</strong> Every Top 100 parse on every boss uses it — averaging 4.2% of total healing (as high as 9.9% on Void Reaver) — for what's essentially free, passive healing once dropped. This is the single most consistent, easiest-to-fix gap across the whole raid night, and it shows up on every individual boss page below.<!--@ENDSLOT--></div>
     </div>
+    <!--@ENDOPTIONAL:RAID_WARNING_BANNER-->
  
     <table class="boss-table">
       <thead>
@@ -274,6 +279,7 @@
         <!-- One row per boss killed this raid. Copy this block for each of the 10 bosses.
              Only include a link + arrow once that boss's full page has actually been built;
              otherwise leave the boss name unlinked and the percentile pill class="pending". -->
+        <!--@LOOP:BOSS_SUMMARY_ROW-->
         <tr>
           <td class="boss-name"><a href="healer_audit_{{BOSS_SLUG}}.html">{{BOSS_NAME}}</a></td>
           <td class="num-cell">{{HPS}}</td>
@@ -281,10 +287,11 @@
           <td class="pctl-cell"><span class="pctl-pill has-data">{{PERCENTILE}}th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        <!--@ENDLOOP:BOSS_SUMMARY_ROW-->
     </tbody>
     </table>
- 
-    <div class="coverage-note">{{RAID_SUMMARY_FINDING}} — call out the lowest-percentile bosses as priorities for a full breakdown, and note if any percentile was matched via a duplicate raid upload rather than an exact report/fight ID (see WORKFLOW.md gotcha #5).</div>
+
+    <div class="coverage-note"><!--@SLOT:RAID_SUMMARY_FINDING-->{{RAID_SUMMARY_FINDING}} — call out the lowest-percentile bosses as priorities for a full breakdown, and note if any percentile was matched via a duplicate raid upload rather than an exact report/fight ID (see WORKFLOW.md gotcha #5).<!--@ENDSLOT--></div>
   </div>
  
   <div class="footer">

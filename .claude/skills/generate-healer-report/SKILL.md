@@ -108,100 +108,156 @@ benchmark row or missing gear files will be called out there, not silently absen
 from the JSON.
 
 **This step makes zero API calls.** Everything after this point is read-only against
-files already on disk — steps 6-7 should never need to touch the network.
+files already on disk — steps 6-9 should never need to touch the network.
 
-### 6. Build the report pages
-Read `<code>_report_data.json` from step 5. For every boss present in its `Bosses`
-object, build `docs\<healer>\<date>\healer_audit_<bossSlug>.html` from
-`templates\boss_page_template_<class>.html` (lowercase the class name for the
-filename — `boss_page_template_druid.html`). Then build
-`docs\<healer>\<date>\index.html` from `templates\raid_overview_template.html`,
-using the same JSON's per-boss summary rows and the `GearDiff` object for the gear
-audit section.
+### 6. Compute analysis flags (script, no LLM)
+```
+powershell -ExecutionPolicy Bypass -File scripts\build_boss_analysis.ps1 -CharacterName "<name>" -ReportCode "<code>" -ClassName "<Class>"
+```
+Writes `<code>_analysis.json` next to `report_data.json` — pre-computes every
+script-safe numeric judgment call so step 7 is verification and wording, not
+arithmetic: per-boss HPS/overheal/HPM/active-time deviation flags vs. the Top 100
+`BM` row, spell-composition gaps, per-cooldown `Deviates` flags (cast it while
+≤20% of the sample does, or didn't cast it while ≥50% did — this generalizes the
+Tranquility rule below to every tracked cooldown for every class),
+`TranquilityInclude` (Druid only, `null` otherwise), `RebirthCandidates` (raw
+death/cast facts only, no include/omit decision — Druid only), `SelfDeaths`,
+nearest-cooldown-to-each-death lookups, canned-caveat tags (see below), and a
+gear analysis (missing-enchant flags, differing-slot annotations) built from the
+same 19-slot/enchantable-slot tables `scripts\lib\ReportRenderLib.psm1` uses
+everywhere else in this pipeline. Zero API calls, zero judgment calls of its own.
 
-**If `docs\<healer>\<date>\` already has real v2 pages from a prior run, rebuild
-them from the current data — don't skip.** Benchmark data can shift between runs
-(new Top 100 parses, re-entries), so a stale page is a real correctness problem, not
-just a missed optimization. **Never write into a `\<date>-v1\` folder** — that's the
-frozen, git-tracked original v1 output; if a `-v1` sibling exists for this
-healer+date, leave it untouched.
+### 7. Author findings.json (the only step touching an LLM)
+Read `<code>_report_data.json` **and** `<code>_analysis.json`. Write
+`data\Characters\<name>\<date>\<code>_findings.json` containing only the
+free-text strings the analysis script can't produce on its own — per boss slug,
+`SCORECARD_FINDING`, `SPELL_COMPOSITION_FINDING`, `COOLDOWN_FINDING`, and
+`TARGET_FINDING` (each 1-2 plain-text sentences, no markup), plus a
+`RaidOverview` object with `GEAR_CONSISTENCY_FINDING`, `GEAR_FINDING_NOTE`,
+`RAID_SUMMARY_FINDING`, an optional `RAID_WARNING_BANNER` (may contain `<strong>`
+tags — this is the one field the renderer doesn't escape), and an optional
+`GearCheckItems[]` array of `{Icon: "ok"|"bad"|"note", Description, Detail,
+LongDetail?}` for **interpretive** gear notes only (a deliberate weapon/trinket
+swap, a positive "all consumables active every kill" confirmation) — never
+duplicate the mechanical slot-fill-count or missing-enchant rows the renderer
+already generates from `GearAnalysis` on its own. Druid pages may also need
+`IncludeRebirthRow: true` on a boss slug (omit or `false` otherwise) — this is
+the one include/omit call `analysis.json` deliberately leaves to judgment, since
+no numeric threshold exists for "a real death Rebirth could plausibly answer."
 
-**This is the one step that genuinely needs real judgment — it cannot be
-mechanical.** The JSON from step 5 gives you exact numbers; the template gives you
-structure; but every coverage-note needs a real finding, not templated boilerplate.
-Concretely, before writing a page:
-- Compare this boss's HPS/overheal/HPM/active-time against its own `BM` row (Top 1,
-  average, median) — state the real gap, not just the numbers.
-- Check `DeathList` timestamps against `CooldownRows` timestamps for the same
-  fight — a death shortly after a cooldown was already spent, or a cooldown used
-  shortly before a death, is a real, checkable correlation worth naming. Most kills
-  won't show one; say so plainly rather than reaching for a connection that isn't
-  there.
-- Compare this boss's `BMSpells` against the character's own `SpellRows` — is the
-  gap consistent with what you've seen on other bosses in this same run, or is it
-  boss-specific (e.g. a boss whose own Top 100 average leans toward a different
-  spell than every other boss does)? Say which.
-- Look at `GearDiff.DifferingSlots` — if a slot varies only on this boss, that's
-  worth a real, specific note (a weapon swap, a missing enchant that only shows up
-  here). Don't just report "consistent" if it isn't.
+The analysis file's `Flag`/`GapPoints`/`Deviates` fields tell you *where* to look
+and *whether* something is a real deviation; you still decide what's worth
+saying and how to phrase it. Concretely, before writing each boss's findings:
+- Use `Deviations.*.Flag` and the real Top 1/avg/median numbers to state the
+  real gap, not just repeat the numbers already visible in the stat grid.
+- Use `DeathsNearestCooldown` to judge whether a death-to-cooldown timing is a
+  real, checkable correlation or coincidence — most kills won't show one; say so
+  plainly rather than reaching for a connection that isn't there.
+- Use `SpellGaps`/`TopSpellGap` to say whether this boss's composition gap is
+  consistent with the rest of the run or boss-specific, and why.
+- Use `GearAnalysis.DifferingSlotsAnnotated` to write a real, specific note for
+  any slot that varies only on this boss — don't just say "consistent" if the
+  mechanical checklist already shows otherwise.
+- **`CannedCaveats`** flags two fixed, already-documented facts — write the
+  actual sentence yourself (the analysis file only tells you *when* it applies):
+  `priest_pws_benchmark_bias` (Power Word: Shield's ~0% Top100UsedPct is a real
+  ranking-metric bias, not a norm — don't read a Priest's own Shield usage as
+  "overusing" it relative to this benchmark) and `paladin_holy_shock_guid_split`
+  (Holy Shock's cast is guid 33072, its heal lands under a *different* real guid,
+  33074 — don't claim Holy Shock "doesn't heal" for a Paladin).
 
-### 7. Update existing pages
-- **`docs\<healer>\index.html`** (healer's raid-night list): add a new
-  `<a class="raid-row">` entry for this raid night if the report code isn't already
-  listed there. If this file doesn't exist yet (brand-new healer), create it
-  following the pattern in an existing one (e.g. `docs\danceswtrees\index.html`).
-- **`docs\index.html`** (site homepage): only touched for a genuinely new healer —
-  add one `<a class="healer-row">` entry, following the existing pattern. An
-  existing healer's new raid night does **not** need a change here; v1/v2 and
-  raid-night listing both live inside the healer's own hub page.
+**Validate before moving on**: every boss slug in `report_data.json.Bosses` has
+all 4 required keys non-empty in `BossFindings`, and `RaidOverview` has its 3
+required keys (`GEAR_CONSISTENCY_FINDING`, `GEAR_FINDING_NOTE`,
+`RAID_SUMMARY_FINDING`) non-empty. `render_healer_report.ps1` in the next step
+also checks this and refuses to write a page on any gap — don't rely on it
+catching a typo'd boss slug for you, though; check the slug names match
+`report_data.json` exactly.
 
-## Rules that came from real bugs — apply these while authoring pages
+### 8. Render boss pages + raid overview (script, no LLM)
+```
+powershell -ExecutionPolicy Bypass -File scripts\render_healer_report.ps1 -CharacterName "<name>" -ReportCode "<code>" -ClassName "<Class>" -RaidTitle "<title>"
+```
+Merges `report_data.json` + `analysis.json` + `findings.json` + the class's boss
+template + `raid_overview_template.html` into
+`docs\<healer>\<date>\healer_audit_<bossSlug>.html` (one per boss) and
+`docs\<healer>\<date>\index.html` — deterministic, safe to re-run any time
+benchmark data shifts (new Top 100 parses, re-entries) since it always rebuilds
+from the current JSON. **Refuses to write into any `\<date>-v1\`-suffixed output
+folder** — that guard is enforced in code, not just documented here. If it exits
+with an "unfilled `{{TOKEN}}`" error, that means a required findings.json key is
+missing or misspelled — fix `findings.json`, don't patch the rendered HTML by hand.
 
-- **Guid-based grouping only, never by display name.** Two guids can share a
+### 9. Update hub pages (script, no LLM)
+```
+powershell -ExecutionPolicy Bypass -File scripts\update_hub_pages.ps1 -CharacterName "<name>" -RaidDate "<date>" -ReportCode "<code>" -ClassName "<Class>" -BossesKilled <N> -RaidTitle "<title>" [-IsNewHealer]
+```
+Surgical upsert only — inserts one new raid-row into `docs\<healer>\index.html`
+(creating the file from `healer_raidlist_template.html` if this is a brand-new
+healer) and, only with `-IsNewHealer`, one new healer-row into `docs\index.html`.
+Every existing row in both files is left byte-for-byte untouched; re-running it
+for a report code that's already listed is a safe no-op (it detects the
+duplicate and skips). `-BossesKilled` is the boss count actually killed this
+raid night (e.g. `9` for a raid that downed 9 of 10 bosses) — don't hardcode 10.
+
+## Rules that came from real bugs
+
+Most of these are now enforced mechanically (in `build_boss_analysis.ps1`,
+`scripts\lib\ReportRenderLib.psm1`, or `render_healer_report.ps1`) rather than
+needing to be remembered while writing prose — noted below so you know where to
+look if a rendered page looks wrong, rather than re-deriving the fix by hand.
+
+- **Guid-based grouping only, never by display name** — enforced by
+  `build_boss_report_data.ps1`'s already-guid-grouped `SpellRows`/`CooldownRows`
+  and by the renderer's own spell-name collision logic (a `(guid N)` suffix is
+  only added when a display name is genuinely ambiguous). Two guids can share a
   display name and mean genuinely different things (e.g. Lifebloom's HoT-tick vs.
-  bloom-burst) — `build_boss_report_data.ps1`'s `SpellRows`/`CooldownRows` are
-  already guid-grouped; don't re-merge by name when writing prose.
-- **Union of both spell lists.** A benchmark-only spell (in `BMSpells` but not in
-  the character's `SpellRows`) still gets a real row showing 0%, never omitted —
-  that's the actual point of the comparison.
-- **Tranquility's cooldown-table row is conditional** (Druid only — Shaman has no
-  equivalent concept, see below), not always-shown and not always-omitted: only
-  include it when the character's usage is a real deviation from `Top100UsedPct` —
-  cast it when ≤20% of the sample does, or didn't cast it when ≥50% of the sample
-  did. Anything else (including the common case where nobody in the sample casts
-  it at all) — omit the row.
-- **Rebirth only gets a row if it's actually relevant to this kill** (a real death
-  it could plausibly answer) — don't pad every page with a permanent 0 row. This
-  concept doesn't exist for Shaman, Priest, or Paladin at all — confirmed no
-  battle-rez equivalent in this TBC ruleset's in-combat cast data for any of the
-  three (see `pull_top100_shaman.ps1`'s, `pull_top100_priest_holy.ps1`'s, and
-  `pull_top100_paladin.ps1`'s headers — Paladin's own resurrection spell,
-  Redemption, exists but can't be cast on an in-combat target in this ruleset, so
-  it was never going to appear in a boss-kill-window pull regardless) — so
-  Shaman, Priest, and Paladin pages never have this row, not even a permanent 0.
-- **No letter grades, ever** — percentile numbers only.
+  bloom-burst) — never re-merge by name when writing findings.json prose.
+- **Union of both spell lists** — the renderer always includes a benchmark-only
+  spell (in `BMSpells` but not the character's `SpellRows`) as a real 0% row,
+  never omitted. Nothing to do here except reference the real gap in prose.
+- **Tranquility's row is conditional** (Druid only) — `analysis.json`'s
+  `TranquilityInclude` already applies the exact rule (cast it while ≤20% of the
+  sample does, or didn't cast it while ≥50% did) and the renderer honors it
+  automatically; you never decide this by hand anymore.
+- **Rebirth only gets a row if it's actually relevant to this kill** — this is
+  the one row the renderer can't decide on its own (no numeric threshold exists
+  for "a real death it could plausibly answer"). Set `IncludeRebirthRow: true`
+  in `findings.json` for a boss slug when `analysis.json`'s `RebirthCandidates`
+  shows a real, plausible case; omit it (or `false`) otherwise. This concept
+  doesn't exist for Shaman, Priest, or Paladin at all (no battle-rez equivalent
+  in this TBC ruleset's in-combat cast data — Paladin's Redemption exists but
+  can't target an in-combat ally) — the renderer already skips this row entirely
+  for those three classes regardless of what `findings.json` says.
+- **No letter grades, ever** — percentile numbers only. Nothing in the template
+  or renderer produces a letter grade, so this only matters for findings.json prose.
 - **No gendered pronouns anywhere in generated prose** — use the character's name
-  or restructure the sentence.
-- **Never fabricate or estimate a number that wasn't actually computed by
-  `build_boss_report_data.ps1` or pulled by the earlier scripts.** If something's
-  missing (the script's Warning output will say so), say so explicitly in the page
-  rather than guessing or silently omitting.
-- **`.check-note` (in the raid overview's gear-audit check-list) is a short data
-  tag only** — an item id, an enchant id, a number — never a sentence. It's a
-  narrow, right-aligned, small monospace column; real prose there wraps badly. Use
-  `.check-detail` (full-width, left-aligned, normal wrapping — see
-  `templates\raid_overview_template.html`'s CSS) for a check-item that genuinely
-  needs more explanation than its one-line label.
-- **Coverage-notes state a real finding, or say plainly there isn't one** — never
-  pad with restated numbers already visible in the stat grid above them.
+  or restructure the sentence. This only applies to what you write in
+  `findings.json`; nothing else in the pipeline generates free text.
+- **Never fabricate or estimate a number** — every number on a rendered page now
+  comes mechanically from `report_data.json`/`analysis.json`/the benchmark CSVs,
+  so this mostly matters for the findings.json prose itself: don't state a number
+  you haven't verified against those files. If something's genuinely missing, the
+  script's own Warning output already says so — reflect that plainly rather than
+  guessing.
+- **`.check-note` is a short data tag only** — the mechanical gear-checklist items
+  the renderer generates already follow this; if you add an interpretive
+  `GearCheckItems` entry, keep its `Detail` field just as short (an item id, a
+  number) and put any real explanation in `LongDetail` instead.
+- **Findings state a real finding, or say plainly there isn't one** — never pad
+  with restated numbers already visible in the stat grid above them.
 
 ## Verification before calling this done
 
-- Spot-check 2-3 of the numbers actually written into each generated page against
-  the raw `<code>_report_data.json` — a copy/transcription mistake here is exactly
-  the kind of thing that's easy to make and easy to catch.
+- `render_healer_report.ps1` already refuses to write a page with an unfilled
+  `{{TOKEN}}` or a `-v1`-suffixed output folder — a clean run is a real signal,
+  not just an absence of errors.
+- Spot-check 2-3 numbers on one rendered page against the raw
+  `<code>_report_data.json`/`<code>_analysis.json` — a copy/transcription mistake
+  in `findings.json`'s prose (a stated number that doesn't match the real data)
+  is the one class of error the scripts can't catch for you.
 - Confirm no `-v1` folder was touched (`git status` should show only new files
-  under the plain `\<date>\` folder, plus the two index pages from step 7 if they
+  under the plain `\<date>\` folder, plus the two hub pages from step 9 if they
   changed).
-- Confirm the raid-night count in `docs\<healer>\index.html` matches the number of
-  real boss pages actually built.
+- Confirm the raid-night count in `docs\<healer>\index.html` (bumped
+  automatically by step 9) matches the number of real boss pages actually built.

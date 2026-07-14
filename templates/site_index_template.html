@@ -115,6 +115,7 @@
     <p class="section-desc">Each healer's page lists every raid night analyzed, broken down boss by boss.</p>
     <div class="healer-list">
       <!-- One entry per healer analyzed. Copy this block for each new healer. -->
+      <!--@LOOP:HEALER_ROW-->
       <a class="healer-row" href="{{HEALER_SLUG}}/index.html">
         <div>
           <div class="healer-name">{{HEALER_NAME}}</div>
@@ -122,6 +123,7 @@
         <div class="healer-class">{{HEALER_CLASS_SPEC}}</div>
         <div class="healer-arrow">→</div>
       </a>
+      <!--@ENDLOOP:HEALER_ROW-->
 </div>
   </div>
 
