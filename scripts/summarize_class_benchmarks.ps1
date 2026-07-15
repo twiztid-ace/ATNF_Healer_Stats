@@ -421,6 +421,15 @@ $summaryRows = @()
 $spellCompRows = @()
 $cooldownRows = @()
 $buffRows = @()
+# Real per-guid mana cost, accumulated across the WHOLE class's Top 100
+# sample (every boss, every parse) - not boss-scoped, since a spell rank's
+# mana cost is a fixed property of that guid in this ruleset, not something
+# that varies by encounter. Lets build_boss_analysis.ps1's Spell Ranks
+# section show a real cost for a rank the audited character never cast this
+# specific kill, as long as SOMEONE in the Top 100 sample cast it - a real
+# observed fact, not a guess. First-seen value is kept if a later real
+# observation somehow disagrees (logged, not silently overwritten).
+$manaCostByGuidAgg = @{}
 
 foreach ($bossFolder in $bosses.Keys) {
     $bossInfo = $bosses[$bossFolder]
@@ -526,7 +535,37 @@ foreach ($bossFolder in $bosses.Keys) {
                 $manaSpent = 0.0
                 foreach ($ev in $castsData.events) {
                     if ($ev.classResources -and $ev.classResources.Count -gt 0) {
-                        $manaSpent += $ev.classResources[0].max
+                        $cost = $ev.classResources[0].max
+                        $manaSpent += $cost
+                        if ($ev.ability -and $ev.ability.guid) {
+                            $guidKey = [string]$ev.ability.guid
+                            if (-not $manaCostByGuidAgg.ContainsKey($guidKey)) {
+                                $manaCostByGuidAgg[$guidKey] = [PSCustomObject]@{
+                                    Guid = $ev.ability.guid; Name = $ev.ability.name; ManaCost = $cost; SampleCount = 1
+                                }
+                            } else {
+                                $manaCostByGuidAgg[$guidKey].SampleCount += 1
+                                $existing = $manaCostByGuidAgg[$guidKey].ManaCost
+                                if ($existing -ne $cost) {
+                                    if ($existing -eq 0 -and $cost -ne 0) {
+                                        # A real spell rank costing exactly 0 mana is not
+                                        # plausible for any of these healing-throughput
+                                        # spells - a 0 seen before a genuine nonzero cost is
+                                        # itself the anomaly (e.g. an out-of-mana-capped cast
+                                        # logging max=0), not a competing "first-seen" real
+                                        # value. Self-heal by preferring the nonzero one
+                                        # whenever it's seen, regardless of arrival order.
+                                        $manaCostByGuidAgg[$guidKey].ManaCost = $cost
+                                    } elseif ($cost -ne 0) {
+                                        # Two genuinely different NONZERO costs for the same
+                                        # guid - a real, rare discrepancy worth a human look
+                                        # (unlike the common 0-vs-real case above, which is
+                                        # expected noise and handled silently).
+                                        Write-Host "  NOTE: guid $guidKey ($($ev.ability.name)) mana cost varies across the sample: $existing vs $cost - keeping $existing."
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
 
@@ -612,8 +651,17 @@ foreach ($bossFolder in $bosses.Keys) {
         if (Test-Path $consumablesFile) {
             try {
                 $consumablesData = Get-Content $consumablesFile -Raw -Encoding UTF8 | ConvertFrom-Json
+                # BattleElixirActive/GuardianElixirActive read as $null (not $false) when
+                # the underlying consumables.json predates the 2026-07-15 elixir-
+                # classification fix (see WclV2Api.psm1's Get-ConsumableClassification) -
+                # every currently-pulled real parse is in this state until a real re-pull
+                # happens. $null is treated as "unknown", excluded from the % denominator
+                # below, so a not-yet-repulled sample renders as blank data, never a
+                # fabricated 0%.
                 $buffUptimes = [PSCustomObject]@{
                     FlaskActive = [bool]$consumablesData.flaskActive
+                    BattleElixirActive = if ($consumablesData.PSObject.Properties.Name -contains "battleElixirActive") { [bool]$consumablesData.battleElixirActive } else { $null }
+                    GuardianElixirActive = if ($consumablesData.PSObject.Properties.Name -contains "guardianElixirActive") { [bool]$consumablesData.guardianElixirActive } else { $null }
                     FoodActive  = [bool]$consumablesData.foodActive
                 }
                 if ($hasBuffUptime) {
@@ -806,10 +854,19 @@ foreach ($bossFolder in $bosses.Keys) {
     if ($buffSampleUsed -gt 0) {
         $flaskCount = @($sampleWithBuffs | Where-Object { $_.BuffUptimes.FlaskActive }).Count
         $foodCount = @($sampleWithBuffs | Where-Object { $_.BuffUptimes.FoodActive }).Count
+        # Battle/Guardian Elixir % is computed only over parses that actually have the
+        # field (see the $null-vs-$false note above) - a sample with zero real data
+        # yet renders as blank, not a fabricated 0%.
+        $battleElixirSample = @($sampleWithBuffs | Where-Object { $null -ne $_.BuffUptimes.BattleElixirActive })
+        $guardianElixirSample = @($sampleWithBuffs | Where-Object { $null -ne $_.BuffUptimes.GuardianElixirActive })
+        $battleElixirCount = @($battleElixirSample | Where-Object { $_.BuffUptimes.BattleElixirActive }).Count
+        $guardianElixirCount = @($guardianElixirSample | Where-Object { $_.BuffUptimes.GuardianElixirActive }).Count
 
         $buffRow = [PSCustomObject]@{
             Boss = $bossName
             Top100FlaskActivePct = [math]::Round(($flaskCount / $buffSampleUsed) * 100, 0)
+            Top100BattleElixirActivePct = if ($battleElixirSample.Count -gt 0) { [math]::Round(($battleElixirCount / $battleElixirSample.Count) * 100, 0) } else { "" }
+            Top100GuardianElixirActivePct = if ($guardianElixirSample.Count -gt 0) { [math]::Round(($guardianElixirCount / $guardianElixirSample.Count) * 100, 0) } else { "" }
             Top100FoodActivePct  = [math]::Round(($foodCount / $buffSampleUsed) * 100, 0)
         }
         if ($hasBuffUptime) {
@@ -827,6 +884,7 @@ $outSummary = Join-Path $workDir "benchmark_summary.csv"
 $outSpells = Join-Path $workDir "benchmark_spell_composition.csv"
 $outCooldowns = Join-Path $workDir "benchmark_cooldowns.csv"
 $outBuffs = Join-Path $workDir "benchmark_buffs.csv"
+$outManaCost = Join-Path $workDir "benchmark_manacost_by_guid.csv"
 
 # ===== Archive the previous CSV set before overwriting - active-model only (the old
 # date-folder mode has no archived\ to put history in, and each date folder is already
@@ -838,7 +896,7 @@ $outBuffs = Join-Path $workDir "benchmark_buffs.csv"
 if ($usingActiveModel -and (Test-Path $outSummary) -and $priorGeneratedDate -and ($priorGeneratedDate -ne $today)) {
     $historyDir = Join-Path (Join-Path $archivedDir "benchmark_history") $priorGeneratedDate
     New-Item -ItemType Directory -Force -Path $historyDir | Out-Null
-    foreach ($f in @($outSummary, $outSpells, $outCooldowns, $outBuffs)) {
+    foreach ($f in @($outSummary, $outSpells, $outCooldowns, $outBuffs, $outManaCost)) {
         if (Test-Path $f) {
             Copy-Item -Path $f -Destination $historyDir -Force
         }
@@ -860,6 +918,7 @@ $summaryRows | Export-Csv -Path $outSummary -NoTypeInformation -Encoding UTF8
 $spellCompRows | Sort-Object Boss, @{Expression="Top100Pct";Descending=$true} | Export-Csv -Path $outSpells -NoTypeInformation -Encoding UTF8
 $cooldownRows | Sort-Object Boss, Ability | Export-Csv -Path $outCooldowns -NoTypeInformation -Encoding UTF8
 $buffRows | Sort-Object Boss | Export-Csv -Path $outBuffs -NoTypeInformation -Encoding UTF8
+$manaCostByGuidAgg.Values | Sort-Object Name, Guid | Export-Csv -Path $outManaCost -NoTypeInformation -Encoding UTF8
 
 if ($usingActiveModel) {
     $manifest.benchmarkGeneratedDate = $today

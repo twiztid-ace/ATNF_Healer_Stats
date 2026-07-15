@@ -321,13 +321,20 @@ $workerScript = {
         }
         $closest = $candidates | Sort-Object { [Math]::Abs($_.timestamp - $StartTime) } | Select-Object -First 1
         if (-not $closest.auras) { return $null }
-        $flask = $closest.auras | Where-Object { $_.name -match 'Flask|Elixir' } | Select-Object -First 1
+        $consumableClass = Get-ConsumableClassification -Auras $closest.auras
+        $flask = $consumableClass.Flask
+        $battleElixir = $consumableClass.BattleElixir
+        $guardianElixir = $consumableClass.GuardianElixir
         $food = $closest.auras | Where-Object { $_.name -eq 'Well Fed' } | Select-Object -First 1
         return [PSCustomObject]@{
-            flaskActive = [bool]$flask
-            flaskName   = if ($flask) { $flask.name } else { $null }
-            foodActive  = [bool]$food
-            foodName    = if ($food) { $food.name } else { $null }
+            flaskActive          = [bool]$flask
+            flaskName            = if ($flask) { $flask.name } else { $null }
+            battleElixirActive   = [bool]$battleElixir
+            battleElixirName     = if ($battleElixir) { $battleElixir.name } else { $null }
+            guardianElixirActive = [bool]$guardianElixir
+            guardianElixirName   = if ($guardianElixir) { $guardianElixir.name } else { $null }
+            foodActive           = [bool]$food
+            foodName             = if ($food) { $food.name } else { $null }
         }
     }
 
@@ -342,10 +349,14 @@ $workerScript = {
             $parseOk = $false
         } else {
             $out = [PSCustomObject]@{
-                flaskActive = $snapshot.flaskActive
-                flaskName   = $snapshot.flaskName
-                foodActive  = $snapshot.foodActive
-                foodName    = $snapshot.foodName
+                flaskActive          = $snapshot.flaskActive
+                flaskName            = $snapshot.flaskName
+                battleElixirActive   = $snapshot.battleElixirActive
+                battleElixirName     = $snapshot.battleElixirName
+                guardianElixirActive = $snapshot.guardianElixirActive
+                guardianElixirName   = $snapshot.guardianElixirName
+                foodActive           = $snapshot.foodActive
+                foodName             = $snapshot.foodName
             }
             $jsonText = $out | ConvertTo-Json -Depth 5
             [System.IO.File]::WriteAllText($consumablesOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))

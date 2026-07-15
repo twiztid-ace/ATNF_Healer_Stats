@@ -212,6 +212,22 @@ $bmSummary = Import-Csv (Join-Path $benchDir "benchmark_summary.csv")
 $bmSpells = Import-Csv (Join-Path $benchDir "benchmark_spell_composition.csv")
 $bmCooldowns = Import-Csv (Join-Path $benchDir "benchmark_cooldowns.csv")
 $bmBuffs = Import-Csv (Join-Path $benchDir "benchmark_buffs.csv")
+# Real per-guid mana cost observed ANYWHERE in the Top 100 sample (added
+# 2026-07-15, see summarize_class_benchmarks.ps1's $manaCostByGuidAgg) - used
+# as a fallback in build_boss_analysis.ps1's Spell Ranks section for a rank
+# the audited character never cast this specific kill. Kept as a SEPARATE
+# lookup from the character's own real ManaCostByGuid below, never merged
+# silently - a boss's own build_boss_analysis.ps1 output should always be
+# able to tell which source a shown mana cost actually came from.
+$manaCostPath = Join-Path $benchDir "benchmark_manacost_by_guid.csv"
+$bmManaCostByGuid = if (Test-Path $manaCostPath) {
+    $lookup = @{}
+    foreach ($row in Import-Csv $manaCostPath) { $lookup[$row.Guid] = [double]$row.ManaCost }
+    $lookup
+} else {
+    Write-Host "  WARNING: $manaCostPath not found - Spell Ranks section won't have a benchmark fallback for mana costs the character didn't cast this kill. Re-run summarize_class_benchmarks.ps1 -ClassName $ClassName to generate it."
+    @{}
+}
 
 $allBossPulls = @($fightsData.fights | Where-Object { $_.boss -ne 0 })
 $bossFights = @($allBossPulls | Where-Object { $_.kill -eq $true })
@@ -259,10 +275,15 @@ foreach ($fight in $bossFights) {
     $hps = if ($duration -gt 0) { [math]::Round($total / ($duration / 1000), 0) } else { 0 }
 
     # ----- Spell composition, strictly by guid (never by display name - two guids can
-    # share a display name and mean genuinely different things, see WORKFLOW.md) -----
+    # share a display name and mean genuinely different things, see WORKFLOW.md).
+    # Healthstones (warlock-crafted consumable items, usable by any class - "Healthstone",
+    # "Master Healthstone", "Fel Healthstone", etc.) are real heal events that land here
+    # by the same guid-grouping logic, but they're a consumable item use, not a spell in
+    # this character's own rotation - excluded from spell composition entirely rather
+    # than counted as if it were a real cast ability. -----
     $abilities = @{}
     foreach ($ev in $healingData.events) {
-        if ($ev.ability -and $ev.amount) {
+        if ($ev.ability -and $ev.amount -and $ev.ability.name -notlike "*Healthstone*") {
             $guid = $ev.ability.guid
             if (-not $abilities.ContainsKey($guid)) { $abilities[$guid] = [PSCustomObject]@{ Name = $ev.ability.name; Total = 0.0 } }
             $abilities[$guid].Total += $ev.amount
@@ -383,6 +404,116 @@ foreach ($fight in $bossFights) {
         Write-Host "  WARNING: $label - no matching healer entry in $($ReportCode)_v2_rankings.json for fightID=$($fight.id) - percentile/rank will be blank."
     }
 
+    # ----- iLvl Healing Rank (added 2026-07-15, renamed from "same-raid healer
+    # comparison" the same day once a second, parallel metric was added below)
+    # - this IS the site's real "HPS Performance Comparison (By Item Level)"
+    # metric (the "ilvl%" column on WCL's own Healing table, confirmed live
+    # against this exact report/fight: tooltip reads "HPS Performance
+    # Comparison (By Item Level) 59% for ... ilvl Restoration Druids (20864
+    # parses)") - $healerMatch.rankPercent above already IS this value,
+    # already read as this boss's "Percentile". What this ranks is THIS
+    # character against every OTHER real tracked-spec healer in the SAME raid
+    # on this SAME fight, using each one's own real rankPercent - all already
+    # present in $rankingFight.roles.healers.characters since the very first
+    # v2 rankings pull for this report. Zero new API calls, applies
+    # retroactively to every already-pulled report - this data was always
+    # written to {code}_v2_rankings.json in full, just never read past the
+    # audited character's own row.
+    $trackedHealerSpecKeys = @("Druid|Restoration", "Shaman|Restoration", "Priest|Holy", "Paladin|Holy")
+    $ilvlHealingRankRows = @()
+    if ($rankingFight -and $rankingFight.roles.healers.characters) {
+        $ilvlHealingRankHealers = @($rankingFight.roles.healers.characters | Where-Object {
+            $trackedHealerSpecKeys -contains "$($_.class)|$($_.spec)"
+        } | Sort-Object -Property rankPercent -Descending)
+        $ilvlHealingRankRows = @($ilvlHealingRankHealers | ForEach-Object {
+            [PSCustomObject]@{
+                Name = $_.name; Class = $_.class; Spec = $_.spec
+                RankPercent = [math]::Round($_.rankPercent, 0)
+                ItemLevelBracket = $_.bracketData; TotalParses = $_.totalParses
+                IsCharacter = ($_.name -eq $CharacterName)
+            }
+        })
+    }
+    $ilvlHealingRank = $null
+    for ($h = 0; $h -lt $ilvlHealingRankRows.Count; $h++) {
+        if ($ilvlHealingRankRows[$h].IsCharacter) { $ilvlHealingRank = $h + 1; break }
+    }
+    $ilvlHealingRankCount = $ilvlHealingRankRows.Count
+
+    # ----- Raw Healing Rank (added 2026-07-15) - a second, independent
+    # comparison against the same 4 tracked healer specs in the same raid on
+    # the same fight, this time ranked by real raw total healing done (the
+    # table(dataType: Healing) entry's own "total" field) rather than WCL's
+    # ilvl-normalized percentile above. Captured by pull_character_TEMPLATE.ps1
+    # into {label}_activetime.json's sameRaidHealersRawHealing (added the same
+    # day) - a real API field (every player's own row in the same table()
+    # response already fetched for THIS character's activeTime, previously
+    # discarded for every row but the audited character's own). Population can
+    # differ slightly from the ilvl metric above (different WCL endpoint,
+    # confirmed on real data: Maulgar's ilvl-rank comparison has 5 tracked
+    # healers including one who parsed as a real 0, while the same fight's
+    # healing-table entries only show 4 - a player entirely absent from one
+    # endpoint's response is real, not a bug to paper over). -----
+    $rawHealingRankRows = @()
+    if ($activeTimeData -and $activeTimeData.sameRaidHealersRawHealing) {
+        $rawHealingHealers = @($activeTimeData.sameRaidHealersRawHealing | Sort-Object -Property Total -Descending)
+        $rawHealingRankRows = @($rawHealingHealers | ForEach-Object {
+            [PSCustomObject]@{
+                Name = $_.Name; Total = [math]::Round($_.Total, 0); ItemLevel = $_.ItemLevel
+                IsCharacter = ($_.Name -eq $CharacterName)
+            }
+        })
+    }
+    $rawHealingRank = $null
+    for ($h = 0; $h -lt $rawHealingRankRows.Count; $h++) {
+        if ($rawHealingRankRows[$h].IsCharacter) { $rawHealingRank = $h + 1; break }
+    }
+    $rawHealingRankCount = $rawHealingRankRows.Count
+    $itemLevelBracket = if ($healerMatch) { $healerMatch.bracketData } else { $null }
+
+    # ----- Healer Ranking (merged view, added for the boss page's own
+    # "Healer ranking" section) - union of both metrics above, keyed by real
+    # player name. A healer can be real in one list and absent from the other
+    # (different WCL endpoints - see the Raw Healing Rank comment above); that
+    # shows as a real "no data" ($null), never a fabricated 0. Sorted by raw
+    # healing total descending (missing-total rows sort last) since that's
+    # this section's primary bar chart. BarWidth is scaled against the TOP
+    # real raw-healing total (same convention as TargetRows above, so the two
+    # bar-chart sections read consistently); TotalPct is each healer's real
+    # share of the SUM of every shown healer's raw total (a distinct,
+    # genuinely meaningful number, not the same thing as BarWidth). -----
+    $healerRankingByName = [ordered]@{}
+    foreach ($h in $rawHealingRankRows) {
+        $healerRankingByName[$h.Name] = [PSCustomObject]@{
+            Name = $h.Name; IsCharacter = $h.IsCharacter
+            RawHealingTotal = $h.Total; RankPercent = $null; ItemLevel = $h.ItemLevel
+        }
+    }
+    foreach ($h in $ilvlHealingRankRows) {
+        if ($healerRankingByName.Contains($h.Name)) {
+            $healerRankingByName[$h.Name].RankPercent = $h.RankPercent
+            # Prefer the healing-table endpoint's own ItemLevel (set above) when both
+            # exist - only fall back to the rankings endpoint's ItemLevelBracket if this
+            # healer had no raw-healing row at all (see the Raw Healing Rank comment
+            # further up - the two real WCL endpoints don't always agree on membership).
+            if ($null -eq $healerRankingByName[$h.Name].ItemLevel) { $healerRankingByName[$h.Name].ItemLevel = $h.ItemLevelBracket }
+        } else {
+            $healerRankingByName[$h.Name] = [PSCustomObject]@{
+                Name = $h.Name; IsCharacter = $h.IsCharacter
+                RawHealingTotal = $null; RankPercent = $h.RankPercent; ItemLevel = $h.ItemLevelBracket
+            }
+        }
+    }
+    $healerRankingRows = @($healerRankingByName.Values | Sort-Object -Property @{Expression = { if ($null -ne $_.RawHealingTotal) { $_.RawHealingTotal } else { -1 } }; Descending = $true })
+    $topRawHealingTotal = if ($healerRankingRows.Count -gt 0) { ($healerRankingRows | Where-Object { $null -ne $_.RawHealingTotal } | Measure-Object -Property RawHealingTotal -Maximum).Maximum } else { 0 }
+    $combinedRawHealingTotal = if ($healerRankingRows.Count -gt 0) { ($healerRankingRows | Where-Object { $null -ne $_.RawHealingTotal } | Measure-Object -Property RawHealingTotal -Sum).Sum } else { 0 }
+    foreach ($row in $healerRankingRows) {
+        $barWidth = if ($null -ne $row.RawHealingTotal -and $topRawHealingTotal -gt 0) { [math]::Round(($row.RawHealingTotal / $topRawHealingTotal) * 100, 1) } else { $null }
+        $totalPct = if ($null -ne $row.RawHealingTotal -and $combinedRawHealingTotal -gt 0) { [math]::Round(($row.RawHealingTotal / $combinedRawHealingTotal) * 100, 1) } else { $null }
+        $row | Add-Member -NotePropertyName BarWidth -NotePropertyValue $barWidth
+        $row | Add-Member -NotePropertyName TotalPct -NotePropertyValue $totalPct
+    }
+
     # ----- Benchmark comparisons -----
     $bmRow = $bmSummary | Where-Object { $_.Boss -eq $meta.Display } | Select-Object -First 1
     $bmSpellRows = @($bmSpells | Where-Object { $_.Boss -eq $meta.Display })
@@ -415,8 +546,20 @@ foreach ($fight in $bossFights) {
         Percentile          = $percentile
         Rank                = $rank
         OutOf               = $outOf
+        ItemLevelBracket       = $itemLevelBracket
+        ItemLevelHealingRank      = $ilvlHealingRank
+        ItemLevelHealingRankCount = $ilvlHealingRankCount
+        ItemLevelHealingRankHealers = $ilvlHealingRankRows
+        RawHealingRank         = $rawHealingRank
+        RawHealingRankCount    = $rawHealingRankCount
+        RawHealingRankHealers  = $rawHealingRankRows
+        HealerRanking          = $healerRankingRows
         FlaskActive         = if ($consumablesData) { [bool]$consumablesData.flaskActive } else { $null }
         FlaskName           = if ($consumablesData) { $consumablesData.flaskName } else { $null }
+        BattleElixirActive  = if ($consumablesData -and ($consumablesData.PSObject.Properties.Name -contains "battleElixirActive")) { [bool]$consumablesData.battleElixirActive } else { $null }
+        BattleElixirName    = if ($consumablesData -and ($consumablesData.PSObject.Properties.Name -contains "battleElixirName")) { $consumablesData.battleElixirName } else { $null }
+        GuardianElixirActive = if ($consumablesData -and ($consumablesData.PSObject.Properties.Name -contains "guardianElixirActive")) { [bool]$consumablesData.guardianElixirActive } else { $null }
+        GuardianElixirName  = if ($consumablesData -and ($consumablesData.PSObject.Properties.Name -contains "guardianElixirName")) { $consumablesData.guardianElixirName } else { $null }
         FoodActive          = if ($consumablesData) { [bool]$consumablesData.foodActive } else { $null }
         FoodName            = if ($consumablesData) { $consumablesData.foodName } else { $null }
         TreeOfLifePct       = if ($consumablesData) { $consumablesData.treeOfLifeUptimePct } else { $null }
@@ -477,6 +620,32 @@ if ($gearByBoss.Count -gt 0) {
     Write-Host "  WARNING: no *_gear.json files found for any boss - gear audit section will have no real data. Run the updated pull_character_TEMPLATE.ps1 (adds gear.json alongside consumables.json) if this character's data predates that."
 }
 
+# ----- Raid-wide iLvl Healing Rank + Raw Healing Rank summaries - aggregate
+# each per-boss comparison across every real kill in this report. Only counts
+# bosses where a real comparison was possible (at least one OTHER tracked-spec
+# healer was also in that specific fight) - a boss where this character was
+# the only tracked healer present has nothing real to compare against and is
+# excluded from both the average and the "ranked #1" count, not silently
+# treated as a win. The two metrics are aggregated independently since their
+# populations can differ per boss (different WCL endpoints - see the
+# Raw Healing Rank comment above).
+$bossesWithIlvlComparison = @($results.Values | Where-Object { $_.ItemLevelHealingRankCount -gt 1 -and $null -ne $_.ItemLevelHealingRank })
+$raidWideIlvlHealingRankSummary = if ($bossesWithIlvlComparison.Count -gt 0) {
+    [PSCustomObject]@{
+        AvgRankPercent    = [math]::Round((($bossesWithIlvlComparison | ForEach-Object { $_.Percentile }) | Measure-Object -Average).Average, 0)
+        BossesRankedFirst = @($bossesWithIlvlComparison | Where-Object { $_.ItemLevelHealingRank -eq 1 }).Count
+        BossesCompared    = $bossesWithIlvlComparison.Count
+    }
+} else { $null }
+
+$bossesWithRawHealingComparison = @($results.Values | Where-Object { $_.RawHealingRankCount -gt 1 -and $null -ne $_.RawHealingRank })
+$raidWideRawHealingRankSummary = if ($bossesWithRawHealingComparison.Count -gt 0) {
+    [PSCustomObject]@{
+        BossesRankedFirst = @($bossesWithRawHealingComparison | Where-Object { $_.RawHealingRank -eq 1 }).Count
+        BossesCompared    = $bossesWithRawHealingComparison.Count
+    }
+} else { $null }
+
 $output = [PSCustomObject]@{
     CharacterName    = $CharacterName
     ClassName        = $ClassName
@@ -485,6 +654,9 @@ $output = [PSCustomObject]@{
     Bosses           = $results
     GearDiff         = $gearDiff
     BossesAttempted  = $allBossPulls.Count
+    RaidWideIlvlHealingRankSummary = $raidWideIlvlHealingRankSummary
+    RaidWideRawHealingRankSummary  = $raidWideRawHealingRankSummary
+    BenchmarkManaCostByGuid        = $bmManaCostByGuid
 }
 
 $outPath = Join-Path $charDir "$($ReportCode)_report_data.json"

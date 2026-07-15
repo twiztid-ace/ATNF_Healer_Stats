@@ -42,6 +42,58 @@ checking them off and leaving them here.
       *benchmark* data for it already — see CLAUDE.md's "Recently closed" —
       but no real character report has included a Magtheridon kill yet, only
       Gruul's Lair's Maulgar/Gruul so far via Danceswtrees).
+- [ ] **Real re-pull needed to backfill correct Battle/Guardian Elixir data.**
+      2026-07-15: fixed a real, systemic bug where every one of the 5 pull
+      scripts labeled ANY elixir as a "Flask" (`-match 'Flask|Elixir'`, first
+      match wins) — confirmed on real data that "Elixir of Draenic Wisdom"
+      (a Guardian Elixir) was mislabeled as a flask on every already-pulled
+      report across all 4 healers, and the same bug corrupted the
+      `Top100FlaskActivePct` Top 100 benchmark stat for all 4 classes. Fixed
+      at the root (`Get-ConsumableClassification` in `scripts\lib\WclV2Api.psm1`,
+      used by all 5 pull scripts now) — but this only affects pulls going
+      forward. Every already-pulled report's raw `*_consumables.json` (7 real
+      character folders) and every class's Top 100 benchmark sample (~4,000
+      parses across 4 classes) still reflects the old conflated data and has
+      no way to distinguish a real Battle Elixir from a Guardian Elixir
+      without a real re-pull (the old pull only ever captured ONE
+      elixir/flask match total, discarding the rest). This is a genuinely
+      costly action (real, rate-limited WCL API calls across a lot of
+      parses) — needs an explicit decision on scope (just Danceswtrees's
+      current report? all 7 real character reports? the full Top 100
+      benchmark re-pull for all 4 classes too?) before running it.
+- [ ] **New same-raid healer-rank features (2026-07-15) have only been
+      verified on Danceswtrees's report.** Two independent, real, mechanical
+      comparisons against the OTHER tracked-spec healers (Resto Druid/Shaman,
+      Holy Priest/Paladin) in the SAME raid on the SAME fight:
+      - **iLvl Healing Rank** — WCL's own real "HPS Performance Comparison
+        (By Item Level)" metric (`rankPercent`/`bracketData`/`totalParses` in
+        `{code}_v2_rankings.json` — already fully captured for every
+        already-pulled report, no re-pull was needed for this one).
+      - **Raw Healing Rank** — ranked by real raw total healing done instead
+        (`table(dataType: Healing)`'s own `total` field, per player, per
+        fight). This one DID need new capture: `pull_character_TEMPLATE.ps1`
+        now persists every tracked-spec healer's row into
+        `{label}_activetime.json`'s `sameRaidHealersRawHealing` (previously
+        discarded entirely except the audited character's own row) —
+        Danceswtrees's existing 12 fights were backfilled with a real,
+        one-time re-pull the same session (confirmed cheap: 12 real API
+        calls, reusing a query already being made). The two metrics can have
+        different real populations per boss (different WCL endpoints,
+        confirmed on Maulgar: 5 tracked healers for the ilvl metric vs 4 for
+        raw healing) — this is real, not a bug to reconcile away.
+      - Both show on the raid overview (two new columns + two raid-wide
+        summary sentences) and on every boss page (two more "seals" next to
+        the existing percentile one, each independently omitted when no
+        other tracked healer was present for that specific metric). Only
+        exercised against Danceswtrees's 12-boss report so far — worth a
+        second real data point (a raid with a genuinely different same-raid
+        roster, and ideally one where the audited character doesn't rank #1
+        on either metric) before trusting the rendering in every case.
+      - **Vajomee/Lippies/Crowns's existing reports don't have
+        `sameRaidHealersRawHealing` in their `*_activetime.json` files yet**
+        — same backfill treatment as Danceswtrees would be needed before
+        Raw Healing Rank can show on their existing pages (iLvl Healing Rank
+        already works for them with no changes needed, per the point above).
 
 ## Known, accepted limitations (not being chased further)
 

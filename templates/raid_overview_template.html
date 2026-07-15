@@ -149,6 +149,11 @@
     padding: 8px 10px;
     border-bottom: 1px solid var(--line);
   }
+  /* Native title="" tooltip on a header whose meaning isn't obvious from the
+     label alone - dotted underline + help cursor is the only hint needed,
+     consistent with this being a plain static site (no JS, no custom
+     tooltip widget). */
+  .th-help{ cursor: help; border-bottom-style: dotted; text-decoration: underline dotted; text-underline-offset: 3px; }
   .boss-table td{
     padding: 12px 10px;
     border-bottom: 1px dashed var(--line);
@@ -258,7 +263,21 @@
       <h2 class="section-title">Per-boss summary</h2>
     </div>
     <p class="section-desc">HPS and overheal are real, computed from {{HEALER_NAME}}'s own fight logs. Percentile is only shown where we've pulled the real WCL ranking for that exact pull — click a boss name for the full audit.</p>
- 
+
+    <!-- Raid-wide iLvl Healing Rank + Raw Healing Rank summaries - purely
+         mechanical (no LLM), computed by render_healer_report.ps1 from
+         RaidWideIlvlHealingRankSummary/RaidWideRawHealingRankSummary in
+         report_data.json. Each omitted independently when no kill had another
+         real tracked-spec healer to compare against for that specific metric
+         (the two use different WCL endpoints and can have different real
+         coverage - see the Raw Healing Rank comment on the boss template). -->
+    <!--@OPTIONAL:ILVL_HEALING_RANK_SUMMARY-->
+    <p class="section-desc"><!--@SLOT:ILVL_HEALING_RANK_SUMMARY-->{{ILVL_HEALING_RANK_SUMMARY}}<!--@ENDSLOT--></p>
+    <!--@ENDOPTIONAL:ILVL_HEALING_RANK_SUMMARY-->
+    <!--@OPTIONAL:RAW_HEALING_RANK_SUMMARY-->
+    <p class="section-desc"><!--@SLOT:RAW_HEALING_RANK_SUMMARY-->{{RAW_HEALING_RANK_SUMMARY}}<!--@ENDSLOT--></p>
+    <!--@ENDOPTIONAL:RAW_HEALING_RANK_SUMMARY-->
+
     <!--@OPTIONAL:RAID_WARNING_BANNER-->
     <div class="consistency-banner" style="background: rgba(181,80,58,0.10); border-color: rgba(181,80,58,0.35);">
       <div class="consistency-icon" style="background: var(--rust);">!</div>
@@ -272,6 +291,8 @@
           <th>Boss</th>
           <th style="text-align:right;">HPS</th>
           <th style="text-align:right;">Overheal</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">iLvl Healing Rank</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">Raw Healing Rank</th>
           <th style="text-align:right;">WCL Percentile</th>
           <th></th>
         </tr>
@@ -279,12 +300,22 @@
       <tbody>
         <!-- One row per boss killed this raid. Copy this block for each of the 10 bosses.
              Only include a link + arrow once that boss's full page has actually been built;
-             otherwise leave the boss name unlinked and the percentile pill class="pending". -->
+             otherwise leave the boss name unlinked and the percentile pill class="pending".
+             iLvl Healing Rank = this character's rank among the OTHER real tracked-spec
+             healers (Resto Druid/Shaman, Holy Priest/Paladin) in the SAME raid on this SAME
+             fight, using WCL's own real "HPS Performance Comparison (By Item Level)"
+             percentile per healer - not the Top 100 sample. Raw Healing Rank is the same
+             population where both endpoints agree, ranked by real raw total healing done
+             instead - a genuinely independent ranking, not just the same number relabeled.
+             Both {{...RANK_LABEL}} tokens render a plain em-dash (not "1/1" or "n/a") on a
+             kill where no other tracked healer was present for that specific metric. -->
         <!--@LOOP:BOSS_SUMMARY_ROW-->
         <tr>
           <td class="boss-name"><a href="healer_audit_{{BOSS_SLUG}}.html">{{BOSS_NAME}}</a></td>
           <td class="num-cell">{{HPS}}</td>
           <td class="num-cell{{OVERHEAL_HIGH_CLASS}}">{{OVERHEAL_PCT}}%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">{{ILVL_HEALING_RANK_LABEL}}</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">{{RAW_HEALING_RANK_LABEL}}</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">{{PERCENTILE}}th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -297,7 +328,6 @@
  
   <div class="footer">
     <span>All data real: {{HEALER_NAME}}'s fight logs (report {{REPORT_CODE}}) + WCL rankings where pulled</span>
-    <span>tbc-audit style reference · healer variant · raid overview</span>
   </div>
  
 </div>

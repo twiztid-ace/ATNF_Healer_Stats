@@ -56,6 +56,29 @@ $script:GearSlotNames = @(
 # "missing enchant" claim on every report this pipeline has ever rendered. =====
 $script:EnchantableSlotIndexes = @(0, 2, 4, 6, 7, 8, 9, 14, 15)
 
+# ===== Known, confirmed real per-guid labels for specific multi-rank spells
+# whose guid split has actually been investigated (WORKFLOW.md gotcha #20) -
+# NOT a general "guess what any 2-guid spell means" mechanism, just the one
+# spell someone has actually checked. Lifebloom's bloom-burst (guid 33778) is
+# a real, automatic proc on HoT expiry, not something separately cast - which
+# is why it's labeled "Bloom" against the HoT tick's own guid (33763), rather
+# than either guid getting a bare numeric suffix. Shared here (not duplicated
+# in build_boss_analysis.ps1 and render_healer_report.ps1 separately) so both
+# the Spell Ranks section and the Spell Composition section above it use the
+# exact same real labels - added 2026-07-15 when Spell Composition was found
+# still showing "(guid 33763)"/"(guid 33778)" after Spell Ranks had already
+# switched to HoT/Bloom. Checked whether the same pattern held for Regrowth/
+# Rejuvenation's own dual guids - it didn't (WORKFLOW.md gotcha #20: both
+# showed mixed tick/non-tick behavior with similar amounts, more consistent
+# with rank variance than a distinct mechanic) - those keep the generic
+# guid-suffix disambiguation via Get-KnownSpellRankLabel's $null fallback. =====
+$script:KnownSpellRankLabels = @{ 33763 = "HoT"; 33778 = "Bloom" }
+function Get-KnownSpellRankLabel {
+    param([Parameter(Mandatory=$true)][int]$Guid)
+    if ($script:KnownSpellRankLabels.ContainsKey($Guid)) { return $script:KnownSpellRankLabels[$Guid] }
+    return $null
+}
+
 # ===== Per-class cooldown target-labeling mode, confirmed against real
 # hand-built pages this session (Crowns/Paladin, Vajomee/Shaman) and each
 # class's boss_page_template comments. "party" renders literally as the word

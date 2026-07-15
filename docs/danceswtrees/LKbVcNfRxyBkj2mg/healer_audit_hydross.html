@@ -45,9 +45,8 @@
     padding: 40px 48px 32px;
     border-bottom: 1px solid var(--line);
     display:flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 24px;
+    flex-direction: column;
+    gap: 18px;
   }
   .eyebrow{
     font-family:'IBM Plex Mono', monospace;
@@ -72,7 +71,12 @@
   .subline span{ font-family:'IBM Plex Mono', monospace; }
 
   /* ===== Seal ===== */
-  .seal-wrap{ flex-shrink:0; text-align:center; }
+  /* Fixed width (matching .seal's own 108px) so a longer caption - the
+     iLvl/Raw Healing Rank seals need more words than the original "WCL rank,
+     all parses" - wraps neatly within the same column instead of expanding
+     the box past the circle above it, which is what was throwing off the
+     spacing between badges when more than one seal-wrap sits in a row. */
+  .seal-wrap{ flex-shrink:0; width: 108px; text-align:center; }
   .seal{ width: 108px; height: 108px; }
   .seal-label{
     font-family:'IBM Plex Mono', monospace;
@@ -263,6 +267,13 @@
   .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
   .target-bar-fill{ height:100%; background: var(--ink-2); }
   .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+
+  /* ===== Healer ranking ===== */
+  .healer-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; min-width:80px; }
+  .healer-bar-fill{ height:100%; background: var(--ink-2); }
+  .healer-bar-fill.is-character{ background: var(--copper); }
+  tr.is-character td{ font-weight:700; }
+
   .coverage-note{
     margin-top: 14px;
     font-size: 12px;
@@ -305,14 +316,37 @@
       <h1>Danceswtrees</h1>
       <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>LKbVcNfRxyBkj2mg</span> &nbsp;·&nbsp; fight <span>14</span> &nbsp;·&nbsp; kill, 147s</p>
     </div>
-    <div class="seal-wrap">
-      <svg class="seal" viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
-        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
-        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">25</text>
-        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
-      </svg>
-      <div class="seal-label">WCL rank, all parses</div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-start; gap:12px 16px; align-items:flex-start;">
+      
+      <div class="seal-wrap">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#C47948" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#C47948" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#C47948">25</text>
+          <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+        </svg>
+        <div class="seal-label">WCL rank, all parses</div>
+      </div>
+      
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#B5503A" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#B5503A" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#B5503A">5th of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">ILVL HEALING RANK</text>
+        </svg>
+        <div class="seal-label">25% by ilvl 120</div>
+      </div>
+      
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#C47948" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#C47948" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#C47948">4th of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">RAW HEALING RANK</text>
+        </svg>
+        <div class="seal-label">74,783 healing</div>
+      </div>
     </div>
   </div>
 
@@ -376,7 +410,7 @@
     
     
     <div class="spell-row compare-row">
-      <div class="spell-name">Lifebloom (guid 33763)</div>
+      <div class="spell-name">Lifebloom (HoT)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:51.7%"></div></div>
       <div class="spell-pct">51.7%</div>
     </div>
@@ -409,7 +443,7 @@
     </div>
     
     <div class="spell-row compare-row">
-      <div class="spell-name">Lifebloom (guid 33778)</div>
+      <div class="spell-name">Lifebloom (Bloom)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:6.7%"></div></div>
       <div class="spell-pct">6.7%</div>
     </div>
@@ -469,7 +503,7 @@
     
     
     <div style="margin-top:20px;">
-      <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data, "?" where the character never cast that specific rank here.</p>
+      <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data where available; <span style="font-family:'IBM Plex Mono', monospace;">&#8224;</span> marks a rank the character didn't cast this kill, backfilled with a real cost observed elsewhere in the Top 100 sample; "?" only when neither source has it.</p>
       <table class="cd-table">
         <thead>
           <tr>
@@ -482,38 +516,38 @@
         <tbody>
           
           <tr>
-            <td class="ability-name">Lifebloom</td>
+            <td class="ability-name">Lifebloom (Bloom)</td>
+            <td class="num-cell">0 mana</td>
+            <td class="num-cell">6.7%</td>
+            <td class="num-cell">4.7%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name">Lifebloom (HoT)</td>
             <td class="num-cell">220 mana</td>
             <td class="num-cell">51.7%</td>
             <td class="num-cell">41%</td>
           </tr>
           
           <tr>
-            <td class="ability-name"></td>
-            <td class="num-cell">?</td>
-            <td class="num-cell">6.7%</td>
-            <td class="num-cell">4.7%</td>
+            <td class="ability-name">Regrowth</td>
+            <td class="num-cell">485 mana †</td>
+            <td class="num-cell">0%</td>
+            <td class="num-cell">1%</td>
           </tr>
           
           <tr>
-            <td class="ability-name">Regrowth</td>
+            <td class="ability-name"></td>
+            <td class="num-cell">575 mana †</td>
+            <td class="num-cell">0%</td>
+            <td class="num-cell">1%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name"></td>
             <td class="num-cell">675 mana</td>
             <td class="num-cell">27.6%</td>
             <td class="num-cell">28.1%</td>
-          </tr>
-          
-          <tr>
-            <td class="ability-name"></td>
-            <td class="num-cell">?</td>
-            <td class="num-cell">0%</td>
-            <td class="num-cell">1%</td>
-          </tr>
-          
-          <tr>
-            <td class="ability-name"></td>
-            <td class="num-cell">?</td>
-            <td class="num-cell">0%</td>
-            <td class="num-cell">1%</td>
           </tr>
           
         </tbody>
@@ -552,8 +586,8 @@
         <tr>
           <td class="ability-name">Nature's Swiftness</td>
           <td class="num-cell">1</td>
-          <td>self</td>
-          <td class="num-cell">0.8 avg (100% self)</td>
+          <td>—</td>
+          <td class="num-cell">0.8 avg</td>
         </tr>
         
         <tr>
@@ -567,21 +601,21 @@
           <td class="ability-name">Rebirth</td>
           <td class="num-cell">1</td>
           <td>→ Staubz</td>
-          <td class="num-cell">0.1 avg (0% self)</td>
+          <td class="num-cell">0.1 avg</td>
         </tr>
         
         <tr>
           <td class="ability-name">Dark Rune</td>
           <td class="num-cell">0</td>
           <td>—</td>
-          <td class="num-cell">0.1 avg (100% self)</td>
+          <td class="num-cell">0.1 avg</td>
         </tr>
         
         <tr>
           <td class="ability-name">Mana Potion</td>
           <td class="num-cell">0</td>
           <td>—</td>
-          <td class="num-cell">0.5 avg (100% self)</td>
+          <td class="num-cell">0.5 avg</td>
         </tr>
         
       </tbody>
@@ -592,7 +626,7 @@
         
         <div class="stat-label">Flask / Elixir</div>
         <div class="stat-value">Yes</div>
-        <div class="stat-sub">Elixir of Draenic Wisdom — Top 100: 76% had one active at pull start</div>
+        <div class="stat-sub">Elixir of Draenic Wisdom — Top 100 active at pull start: 76% flask</div>
       </div>
       <div class="stat">
         <div class="stat-label">Food buff</div>
@@ -667,9 +701,67 @@
     <div class="coverage-note">Coverage (92.5% vs. 83.5% average) ran ahead of the norm, while top-target concentration (37.5% vs. 48.1% average) ran below it - healing reached more of the raid than typical without leaning heavily on any one target.</div>
   </div>
 
+  
+  
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Healer ranking</h2>
+    </div>
+    <p class="section-desc">Danceswtrees vs. the other healers in this same raid on this same fight.</p>
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Healer</th>
+          <th>Raw healing</th>
+          <th style="text-align:right;">% of total</th>
+          <th style="text-align:right; cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">Item Level %</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr class="">
+          <td class="ability-name">Vajomee</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="94,104 total healing"><div class="healer-bar-fill " style="width:100%"></div></div></td>
+          <td class="num-cell">22.9%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">50% (ilvl 122)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Shlicktree</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="87,785 total healing"><div class="healer-bar-fill " style="width:93.3%"></div></div></td>
+          <td class="num-cell">21.3%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">40% (ilvl 121)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Morguesmpson</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="81,102 total healing"><div class="healer-bar-fill " style="width:86.2%"></div></div></td>
+          <td class="num-cell">19.7%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">28% (ilvl 128)</td>
+        </tr>
+        
+        <tr class="is-character">
+          <td class="ability-name">Danceswtrees</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="74,783 total healing"><div class="healer-bar-fill is-character" style="width:79.5%"></div></div></td>
+          <td class="num-cell">18.2%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">25% (ilvl 120)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Kilsby</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="73,880 total healing"><div class="healer-bar-fill " style="width:78.5%"></div></div></td>
+          <td class="num-cell">17.9%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">47% (ilvl 129)</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  
+
   <div class="footer">
     <span>All data real: Danceswtrees's fight log (LKbVcNfRxyBkj2mg, fight 14) + Top 100 Hydross the Unstable benchmark (n=100)</span>
-    <span>tbc-audit style reference · healer variant · Resto Druid</span>
   </div>
 
 </div>

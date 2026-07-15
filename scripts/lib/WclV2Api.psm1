@@ -192,4 +192,54 @@ function Invoke-WclGraphQLPaged {
     return [PSCustomObject]@{ Items = $allItems.ToArray(); Errors = $errors; PageCount = $pageCount }
 }
 
-Export-ModuleMember -Function Get-WclJwtExpiry, Get-WclAccessToken, Invoke-WclGraphQL, Invoke-WclGraphQLPaged
+# ===== TBC consumable classification (added 2026-07-15) =====
+# Real TBC rule (patch 2.1+): a character can have EITHER (1 Battle Elixir +
+# 1 Guardian Elixir) OR (1 Flask, which occupies both slots at once) - never
+# a flask alongside either elixir type, never two of the same elixir type.
+# Fixed a real, live bug found by inspecting already-pulled data: every one of
+# this project's 5 pull scripts (pull_character_TEMPLATE.ps1 and all four
+# pull_top100_*.ps1) used a single `$_.name -match 'Flask|Elixir'` match to
+# populate one conflated "flaskActive"/"flaskName" pair - confirmed on real
+# data to have mislabeled "Elixir of Draenic Wisdom" (a Guardian Elixir, not
+# a flask) as the "flask" on every already-pulled report across all 4
+# healers. These lists are static, well-established TBC game content (not
+# something to "discover" per-report the way a class's cooldown kit is) -
+# kept here, in the one module every pull script already imports, rather
+# than duplicated 5 times (same reasoning as the 19-slot gear table in
+# ReportRenderLib.psm1). An aura containing "Elixir" that matches neither
+# list is real data the pipeline genuinely can't classify (an off-meta or
+# unlisted elixir) - Get-ConsumableClassification returns $null for that slot
+# rather than guessing which type it is.
+$script:TbcFlaskNames = @(
+    "Flask of Blinding Light", "Flask of Pure Death", "Flask of Mighty Restoration",
+    "Flask of Relentless Assault", "Flask of Fortification", "Flask of Chromatic Wonder",
+    "Flask of Petrification"
+)
+$script:TbcBattleElixirNames = @(
+    "Elixir of Major Agility", "Elixir of Major Strength", "Elixir of Major Frost Power",
+    "Elixir of Major Shadow Power", "Elixir of Major Firepower", "Adept's Elixir",
+    "Elixir of Healing Power", "Elixir of Demonslaying", "Onslaught Elixir",
+    "Elixir of the Mongoose", "Elixir of Camouflage", "Elixir of Major Fire Power"
+)
+$script:TbcGuardianElixirNames = @(
+    "Elixir of Major Mageblood", "Elixir of Major Fortitude", "Elixir of Major Defense",
+    "Elixir of Draenic Wisdom", "Earthen Elixir", "Elixir of Empowerment",
+    "Elixir of Draconic Defense", "Elixir of Ironskin"
+)
+
+# Classifies a snapshot's real auras[] into (at most) one real Flask, one real
+# Battle Elixir, one real Guardian Elixir - never more than one of each, per
+# the real game rule these three are mutually exclusive within their own
+# category. Returns the real matched aura object (or $null) for each slot;
+# callers read .name/.PSObject as needed, same as the raw auras entries.
+function Get-ConsumableClassification {
+    param([Parameter(Mandatory=$true)]$Auras)
+    $auraList = @($Auras)
+    [PSCustomObject]@{
+        Flask          = $auraList | Where-Object { $script:TbcFlaskNames -contains $_.name } | Select-Object -First 1
+        BattleElixir   = $auraList | Where-Object { $script:TbcBattleElixirNames -contains $_.name } | Select-Object -First 1
+        GuardianElixir = $auraList | Where-Object { $script:TbcGuardianElixirNames -contains $_.name } | Select-Object -First 1
+    }
+}
+
+Export-ModuleMember -Function Get-WclJwtExpiry, Get-WclAccessToken, Invoke-WclGraphQL, Invoke-WclGraphQLPaged, Get-ConsumableClassification

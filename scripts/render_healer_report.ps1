@@ -168,9 +168,18 @@ if ($reportData.GearDiff -and $reportData.GearDiff.BaselineGear) {
 $outDir = Join-Path $OutputRoot (Join-Path $HealerSlug $raidDateFolder)
 if (-not (Test-Path $outDir)) { New-Item -ItemType Directory -Path $outDir -Force | Out-Null }
 
+# $ShowSelfPct is false for any cooldown whose real target mode is "self" or
+# "party" (Get-CooldownTargetMode) - an ability that can never actually reach
+# a different target has no real "self%" to report; every real cast of it IS
+# self/party by definition, so a "(100% self)" parenthetical is trivially true
+# rather than a real behavioral signal, and gets dropped entirely rather than
+# shown as if it were meaningful. Only "other"-mode cooldowns (Innervate,
+# Swiftmend, Power Word: Shield, Holy Shock, etc. - genuinely can land on a
+# different real target) keep the self% comparison.
 function Format-CooldownBenchmark {
-    param($AvgCasts, $UsedPct, $SelfPct)
+    param($AvgCasts, $UsedPct, $SelfPct, [bool]$ShowSelfPct = $true)
     if ($null -eq $UsedPct -or [double]$UsedPct -eq 0) { return "0 avg (never used)" }
+    if (-not $ShowSelfPct) { return "$AvgCasts avg" }
     $selfDisplay = if ($null -ne $SelfPct) { [math]::Round([double]$SelfPct) } else { 0 }
     return "$AvgCasts avg ($selfDisplay% self)"
 }
@@ -178,6 +187,35 @@ function Format-CooldownBenchmark {
 function Format-Thousands {
     param([double]$Value)
     return "{0:N0}" -f $Value
+}
+
+# Interpolates the site's own percentile-bar gradient (rust #B5503A at 0% ->
+# gold #D9B25C at 60% -> moss #5F7A52 at 100%, see .pctl-track's CSS) into a
+# single real hex color for a given 0-100 value - used to color-code the
+# header seals server-side, since this is a plain static site with no JS and
+# no way to make an SVG circle's stroke follow a live CSS gradient at a
+# dynamic percentage otherwise.
+function Get-PercentileColor {
+    param([double]$Pct)
+    $Pct = [Math]::Max(0, [Math]::Min(100, $Pct))
+    $rust = @(0xB5, 0x50, 0x3A); $gold = @(0xD9, 0xB2, 0x5C); $moss = @(0x5F, 0x7A, 0x52)
+    if ($Pct -le 60) { $t = $Pct / 60.0; $from = $rust; $to = $gold }
+    else { $t = ($Pct - 60) / 40.0; $from = $gold; $to = $moss }
+    $r = [Math]::Round($from[0] + ($to[0] - $from[0]) * $t)
+    $g = [Math]::Round($from[1] + ($to[1] - $from[1]) * $t)
+    $b = [Math]::Round($from[2] + ($to[2] - $from[2]) * $t)
+    return "#{0:X2}{1:X2}{2:X2}" -f [int]$r, [int]$g, [int]$b
+}
+
+# Converts an ordinal rank ("1st of 5") to the same 0-100 scale Get-PercentileColor
+# expects - 1st place = 100 (best/green), last place = 0 (worst/red), evenly
+# spaced in between. A single-healer comparison (Count 1, though this can't
+# actually reach the seal since both rank seals require Count > 1) is treated
+# as 100 rather than dividing by zero.
+function Get-RankAsPct {
+    param([int]$Rank, [int]$Count)
+    if ($Count -le 1) { return 100 }
+    return (($Count - $Rank) / ($Count - 1.0)) * 100
 }
 
 # ===== Boss pages =====
@@ -191,6 +229,11 @@ $bossTemplateRaw = Get-Content $bossTemplatePath -Raw -Encoding UTF8
 $fullRaidTitleForBossPages = "$RaidTitle " + [char]0x2014 + " $raidDateDisplay"
 
 $bossSummaryRows = @()
+
+function Get-OrdinalLabel {
+    param([int]$N)
+    switch ($N) { 1 { "1st" } 2 { "2nd" } 3 { "3rd" } default { "${N}th" } }
+}
 
 foreach ($slug in $bossSlugs) {
     $boss = $reportData.Bosses.$slug
@@ -211,10 +254,58 @@ foreach ($slug in $bossSlugs) {
     $page = Set-TemplateToken $page "DURATION_S" $durationS
     $percentile = if ($null -ne $boss.Percentile) { $boss.Percentile } else { 0 }
     $page = Set-TemplateToken $page "PERCENTILE" $percentile
+    $page = Set-TemplateToken $page "PERCENTILE_COLOR" (Get-PercentileColor $percentile)
     $rank = if ($boss.Rank) { $boss.Rank } else { "?" }
     $page = Set-TemplateToken $page "RANK" $rank
     $outOf = if ($boss.OutOf) { $boss.OutOf } else { "?" }
     $page = Set-TemplateToken $page "OUT_OF" $outOf
+
+    # ----- iLvl Healing Rank seal (see ILVL_HEALING_RANK_SEAL comment in the
+    # template) - only shown when a real comparison against at least one
+    # other tracked-spec healer was possible this specific kill. Native
+    # title="" tooltip (no JS on this site) explains the metric on hover,
+    # same convention as the raid overview's .th-help columns. -----
+    $ilvlHealingRankTooltip = "Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample."
+    $rawHealingRankTooltip = "Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled."
+    $ilvlHealingRankSealHtml = ""
+    if ($boss.ItemLevelHealingRank -and $boss.ItemLevelHealingRankCount -gt 1) {
+        $ordinal = Get-OrdinalLabel $boss.ItemLevelHealingRank
+        $ilvlBracket = if ($boss.ItemLevelBracket) { $boss.ItemLevelBracket } else { "?" }
+        $ilvlRankColor = Get-PercentileColor (Get-RankAsPct $boss.ItemLevelHealingRank $boss.ItemLevelHealingRankCount)
+        $ilvlHealingRankSealHtml = @"
+<div class="seal-wrap" style="cursor:help;" title="$ilvlHealingRankTooltip">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="$ilvlRankColor" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="$ilvlRankColor" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="$ilvlRankColor">$ordinal of $($boss.ItemLevelHealingRankCount)</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">ILVL HEALING RANK</text>
+        </svg>
+        <div class="seal-label">$percentile% by ilvl $ilvlBracket</div>
+      </div>
+"@
+    }
+    $page = Set-TemplateOptional -TemplateText $page -OptionalName "ILVL_HEALING_RANK_SEAL" -SlotName "ILVL_HEALING_RANK_SEAL" -Value $ilvlHealingRankSealHtml
+
+    # ----- Raw Healing Rank seal (see RAW_HEALING_RANK_SEAL comment in the
+    # template) - independent ranking by real raw total healing done, same
+    # healer population where the two endpoints agree. -----
+    $rawHealingRankSealHtml = ""
+    if ($boss.RawHealingRank -and $boss.RawHealingRankCount -gt 1) {
+        $ordinal = Get-OrdinalLabel $boss.RawHealingRank
+        $rawRankColor = Get-PercentileColor (Get-RankAsPct $boss.RawHealingRank $boss.RawHealingRankCount)
+        $rawHealingRankSealHtml = @"
+<div class="seal-wrap" style="cursor:help;" title="$rawHealingRankTooltip">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="$rawRankColor" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="$rawRankColor" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="$rawRankColor">$ordinal of $($boss.RawHealingRankCount)</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">RAW HEALING RANK</text>
+        </svg>
+        <div class="seal-label">$(Format-Thousands $boss.Total) healing</div>
+      </div>
+"@
+    }
+    $page = Set-TemplateOptional -TemplateText $page -OptionalName "RAW_HEALING_RANK_SEAL" -SlotName "RAW_HEALING_RANK_SEAL" -Value $rawHealingRankSealHtml
 
     # ----- Scorecard -----
     $page = Set-TemplateToken $page "HPS" $boss.HPS
@@ -248,7 +339,15 @@ foreach ($slug in $bossSlugs) {
     }
     $page = Expand-TemplateLoop -TemplateText $page -LoopName "SPELL_ROW" -Rows $spellGaps -RowTokenBuilder {
         param($row)
-        $displayName = if ($nameCounts[$row.Name] -gt 1) { "$($row.Name) (guid $($row.Guid))" } else { $row.Name }
+        # Get-KnownSpellRankLabel (ReportRenderLib.psm1) gives Lifebloom's two
+        # confirmed guids a real "HoT"/"Bloom" label instead of a bare guid
+        # suffix - same shared lookup the Spell Ranks section below uses, so
+        # the two sections never disagree on what to call the same guid.
+        # Every other multi-guid spell keeps the generic "(guid N)" fallback.
+        $knownLabel = Get-KnownSpellRankLabel -Guid ([int]$row.Guid)
+        $displayName = if ($knownLabel) { "$($row.Name) ($knownLabel)" }
+            elseif ($nameCounts[$row.Name] -gt 1) { "$($row.Name) (guid $($row.Guid))" }
+            else { $row.Name }
         @{
             SPELL_NAME = $displayName
             SPELL_PCT_CHARACTER = $row.CharacterPct
@@ -267,9 +366,26 @@ foreach ($slug in $bossSlugs) {
     foreach ($group in @($bossAnalysis.SpellRanks)) {
         $isFirst = $true
         foreach ($r in @($group.Ranks)) {
+            # RankLabel (e.g. "HoT"/"Bloom" for Lifebloom's two confirmed guids -
+            # see build_boss_analysis.ps1's $knownRankLabels) gives every row its
+            # own real, distinct name instead of the generic "show once, blank on
+            # repeat" convention below - only applied where which-is-which has
+            # actually been confirmed, not guessed for every multi-guid spell.
+            $displayName = if ($r.PSObject.Properties.Name -contains "RankLabel" -and $r.RankLabel) {
+                "$($group.Name) ($($r.RankLabel))"
+            } elseif ($isFirst) { $group.Name } else { "" }
+            # A "benchmark" ManaCostSource means the character never cast this
+            # specific rank this kill, so there's no real cast-time
+            # classResources data for it - the number shown instead is a real
+            # observed cost from elsewhere in the Top 100 sample (see
+            # build_boss_analysis.ps1's $bmManaCostByGuid), marked with a
+            # dagger so it's never confused with this kill's own cast data.
+            $manaCostText = if ($null -eq $r.ManaCost) { "?" }
+                elseif ($r.PSObject.Properties.Name -contains "ManaCostSource" -and $r.ManaCostSource -eq "benchmark") { "$($r.ManaCost) mana " + [char]0x2020 }
+                else { "$($r.ManaCost) mana" }
             $rankRows += [PSCustomObject]@{
-                Name = $(if ($isFirst) { $group.Name } else { "" })
-                ManaCost = $(if ($null -ne $r.ManaCost) { "$($r.ManaCost) mana" } else { "?" })
+                Name = $displayName
+                ManaCost = $manaCostText
                 CharacterPct = $r.CharacterPct
                 BenchmarkPct = $r.BenchmarkPct
             }
@@ -301,20 +417,56 @@ foreach ($slug in $bossSlugs) {
         }
         $cdRows += [PSCustomObject]@{ Name = $abilityName; Row = $cdProp.Value }
     }
+    # Rebirth (Druid-only) is real "other" mode - it genuinely can land on
+    # different real targets (who gets battle-rezzed) so the Target column
+    # still shows real per-cast names - but self% is a separate question:
+    # you cannot Rebirth yourself (you'd have to already be dead to be a
+    # valid target), so it's not just "rare", it's mechanically impossible.
+    # Any self% the Top 100 sample shows for it is measurement noise, not a
+    # real signal, and gets dropped the same way self/party-mode abilities
+    # already drop theirs above - for a different underlying reason (target
+    # variety exists, self specifically doesn't), so this can't just reuse
+    # the "other" mode check alone.
+    $neverSelfAbilities = @("Rebirth")
     $page = Expand-TemplateLoop -TemplateText $page -LoopName "CD_ROW" -Rows $cdRows -RowTokenBuilder {
         param($entry)
+        $canHaveDifferentTarget = (Get-CooldownTargetMode -ClassName $ClassName -AbilityName $entry.Name) -eq "other"
+        $showSelfPct = $canHaveDifferentTarget -and ($neverSelfAbilities -notcontains $entry.Name)
         @{
             COOLDOWN_NAME = $entry.Name
             COOLDOWN_CASTS = $entry.Row.Count
-            COOLDOWN_TARGET = $entry.Row.TargetLabel
-            COOLDOWN_BENCHMARK = (Format-CooldownBenchmark $entry.Row.Top100AvgCasts $entry.Row.Top100UsedPct $entry.Row.Top100SelfPct)
+            COOLDOWN_TARGET = if ($canHaveDifferentTarget) { $entry.Row.TargetLabel } else { [string][char]0x2014 }
+            COOLDOWN_BENCHMARK = (Format-CooldownBenchmark $entry.Row.Top100AvgCasts $entry.Row.Top100UsedPct $entry.Row.Top100SelfPct -ShowSelfPct:$showSelfPct)
         }
     }
 
     $bmBuffs = $boss.BMBuffs
-    $page = Set-TemplateToken $page "FLASK_ACTIVE" $(if ($boss.FlaskActive) { "Yes" } else { "No" })
-    $page = Set-TemplateToken $page "FLASK_NAME" $(if ($boss.FlaskName) { $boss.FlaskName } else { "none" })
-    $page = Set-TemplateToken $page "FLASK_BENCHMARK_PCT" $(if ($bmBuffs) { $bmBuffs.Top100FlaskActivePct } else { "?" })
+    # Real Flask / Battle Elixir / Guardian Elixir are mutually exclusive per
+    # the actual TBC rule (a flask occupies both elixir slots at once) - never
+    # more than one of these three is ever real/true at the same time, so
+    # showing whichever one is actually true (if any) is a complete, honest
+    # summary, not a lossy simplification. Older report_data.json files
+    # generated before 2026-07-15 have no BattleElixir/GuardianElixir fields
+    # at all (both read as $null, not $false) - treated the same as "none
+    # detected" rather than erroring.
+    $flaskLabel = if ($boss.FlaskActive) { "Yes" }
+        elseif ($boss.BattleElixirActive -or $boss.GuardianElixirActive) { "Elixirs" }
+        else { "No" }
+    $flaskNameParts = @()
+    if ($boss.FlaskActive -and $boss.FlaskName) { $flaskNameParts += $boss.FlaskName }
+    if ($boss.BattleElixirActive -and $boss.BattleElixirName) { $flaskNameParts += "$($boss.BattleElixirName) (Battle)" }
+    if ($boss.GuardianElixirActive -and $boss.GuardianElixirName) { $flaskNameParts += "$($boss.GuardianElixirName) (Guardian)" }
+    $flaskNameText = if ($flaskNameParts.Count -gt 0) { $flaskNameParts -join " + " } else { "none" }
+    $page = Set-TemplateToken $page "FLASK_ACTIVE" $flaskLabel
+    $page = Set-TemplateToken $page "FLASK_NAME" $flaskNameText
+    $flaskBenchmarkText = "?"
+    if ($bmBuffs) {
+        $benchmarkParts = @("$($bmBuffs.Top100FlaskActivePct)% flask")
+        if ($bmBuffs.Top100BattleElixirActivePct -ne "") { $benchmarkParts += "$($bmBuffs.Top100BattleElixirActivePct)% Battle Elixir" }
+        if ($bmBuffs.Top100GuardianElixirActivePct -ne "") { $benchmarkParts += "$($bmBuffs.Top100GuardianElixirActivePct)% Guardian Elixir" }
+        $flaskBenchmarkText = $benchmarkParts -join ", "
+    }
+    $page = Set-TemplateToken $page "FLASK_BENCHMARK_PCT" $flaskBenchmarkText
     $page = Set-TemplateToken $page "FOOD_ACTIVE" $(if ($boss.FoodActive) { "Yes" } else { "No" })
     $page = Set-TemplateToken $page "FOOD_NAME" $(if ($boss.FoodName) { $boss.FoodName } else { "none" })
     $page = Set-TemplateToken $page "FOOD_BENCHMARK_PCT" $(if ($bmBuffs) { $bmBuffs.Top100FoodActivePct } else { "?" })
@@ -359,6 +511,33 @@ foreach ($slug in $bossSlugs) {
     }
     $page = Set-TemplateSlot $page "TARGET_FINDING" $bf.TARGET_FINDING
 
+    # ----- Healer ranking (mechanical, no LLM) - see HEALER_RANKING_SECTION
+    # comment in the template. Omitted entirely (whole section, not just the
+    # loop) when HealerRanking has 0 rows - can't happen in practice (the
+    # audited character always has at least their own row) but matches the
+    # SPELL_RANKS_SECTION precedent of never rendering an empty section shell. -----
+    $healerRankingBounds = Get-OptionalSectionBounds -TemplateText $page -OptionalName "HEALER_RANKING_SECTION"
+    $healerRankingRows = @($boss.HealerRanking)
+    if ($healerRankingRows.Count -eq 0) {
+        $page = $healerRankingBounds.Before + $healerRankingBounds.After
+    } else {
+        $healerRankingInner = Expand-TemplateLoop -TemplateText $healerRankingBounds.Inner -LoopName "HEALER_RANK_ROW" -Rows $healerRankingRows -RowTokenBuilder {
+            param($row)
+            @{
+                HEALER_ROW_NAME = $row.Name
+                HEALER_ROW_CHAR_CLASS = $(if ($row.IsCharacter) { "is-character" } else { "" })
+                HEALER_ROW_BAR_WIDTH = $(if ($null -ne $row.BarWidth) { $row.BarWidth } else { 0 })
+                HEALER_ROW_TOTAL_PCT = $(if ($null -ne $row.TotalPct) { "$($row.TotalPct)%" } else { [string][char]0x2014 })
+                HEALER_ROW_TOTAL_TOOLTIP = $(if ($null -ne $row.RawHealingTotal) { "$(Format-Thousands $row.RawHealingTotal) total healing" } else { "No raw healing data available for $($row.Name) on this kill" })
+                HEALER_ROW_ILVL_PCT = $(
+                    $pctText = if ($null -ne $row.RankPercent) { "$($row.RankPercent)%" } else { [string][char]0x2014 }
+                    if ($null -ne $row.ItemLevel) { "$pctText (ilvl $($row.ItemLevel))" } else { $pctText }
+                )
+            }
+        }
+        $page = $healerRankingBounds.Before + $healerRankingInner + $healerRankingBounds.After
+    }
+
     # ----- Footer -----
     $sampleN = if ($bm -and $bm.SampleSize) { $bm.SampleSize } else { "100" }
     $page = Set-TemplateToken $page "BENCHMARK_N" $sampleN
@@ -375,9 +554,16 @@ foreach ($slug in $bossSlugs) {
     Write-Host "Wrote $outPath"
 
     $overhealHighClass = if ($bossAnalysis.Deviations.Overheal -and $bossAnalysis.Deviations.Overheal.Flag -eq "exceeds_worst") { " overheal-cell high" } else { "" }
+    $ilvlHealingRankLabel = if ($boss.ItemLevelHealingRank -and $boss.ItemLevelHealingRankCount -gt 1) {
+        "$(Get-OrdinalLabel $boss.ItemLevelHealingRank)/$($boss.ItemLevelHealingRankCount)"
+    } else { [char]0x2014 }
+    $rawHealingRankLabel = if ($boss.RawHealingRank -and $boss.RawHealingRankCount -gt 1) {
+        "$(Get-OrdinalLabel $boss.RawHealingRank)/$($boss.RawHealingRankCount)"
+    } else { [char]0x2014 }
     $bossSummaryRows += [PSCustomObject]@{
         Slug = $slug; Display = $boss.Display; HPS = $boss.HPS; OverhealPct = $boss.OverhealPct
         OverhealHighClass = $overhealHighClass; Percentile = $percentile
+        IlvlHealingRankLabel = $ilvlHealingRankLabel; RawHealingRankLabel = $rawHealingRankLabel
     }
 }
 
@@ -412,6 +598,15 @@ $gearItems += [PSCustomObject]@{
     Description = "$filledCount of $totalSlots real equipment slots filled in the baseline loadout (shirt and tabard are typically the two genuinely empty cosmetic slots, no stat impact)"
     Detail = "avg ilvl $itemLevel"; LongDetail = ""
 }
+if ($analysis.GearAnalysis.PSObject.Properties.Name -contains "EnchantableSlotCount" -and $analysis.GearAnalysis.EnchantableSlotCount -gt 0) {
+    $enchantedCount = $analysis.GearAnalysis.EnchantedSlotCount
+    $enchantableCount = $analysis.GearAnalysis.EnchantableSlotCount
+    $gearItems += [PSCustomObject]@{
+        Icon = $(if ($enchantedCount -eq $enchantableCount) { "ok" } else { "note" }); Glyph = $(if ($enchantedCount -eq $enchantableCount) { [char]0x2713 } else { "i" })
+        Description = "$enchantedCount of $enchantableCount enchantable slots carry a permanent enchant"
+        Detail = ""; LongDetail = ""
+    }
+}
 foreach ($flag in @($analysis.GearAnalysis.MissingEnchantFlags)) {
     $gearItems += [PSCustomObject]@{
         Icon = "bad"; Glyph = [char]0x2717
@@ -445,9 +640,29 @@ $overview = Expand-TemplateLoop -TemplateText $overview -LoopName "BOSS_SUMMARY_
     @{
         BOSS_SLUG = $row.Slug; BOSS_NAME = $row.Display; HPS = $row.HPS
         OVERHEAL_HIGH_CLASS = $row.OverhealHighClass; OVERHEAL_PCT = $row.OverhealPct; PERCENTILE = $row.Percentile
+        ILVL_HEALING_RANK_LABEL = $row.IlvlHealingRankLabel; RAW_HEALING_RANK_LABEL = $row.RawHealingRankLabel
     }
 }
 $overview = Set-TemplateSlot $overview "RAID_SUMMARY_FINDING" $findings.RaidOverview.RAID_SUMMARY_FINDING
+
+# ----- Raid-wide iLvl Healing Rank + Raw Healing Rank summaries (mechanical,
+# no LLM) - see RaidWideIlvlHealingRankSummary/RaidWideRawHealingRankSummary in
+# report_data.json (build_boss_report_data.ps1). Each omitted independently
+# when no kill this raid had another real tracked-spec healer present for
+# that specific metric. -----
+$ilvlHealingRankSummaryText = ""
+if ($reportData.RaidWideIlvlHealingRankSummary) {
+    $rws = $reportData.RaidWideIlvlHealingRankSummary
+    $ilvlHealingRankSummaryText = "iLvl Healing Rank: across the $($rws.BossesCompared) kill(s) with another tracked-spec healer present, $CharacterName ranked #1 (by WCL's own HPS Performance Comparison by Item Level) on $($rws.BossesRankedFirst) of them, averaging the $($rws.AvgRankPercent)th percentile by item level across those kills."
+}
+$overview = Set-TemplateOptional -TemplateText $overview -OptionalName "ILVL_HEALING_RANK_SUMMARY" -SlotName "ILVL_HEALING_RANK_SUMMARY" -Value $ilvlHealingRankSummaryText
+
+$rawHealingRankSummaryText = ""
+if ($reportData.RaidWideRawHealingRankSummary) {
+    $rws = $reportData.RaidWideRawHealingRankSummary
+    $rawHealingRankSummaryText = "Raw Healing Rank: across the $($rws.BossesCompared) kill(s) with another tracked-spec healer present, $CharacterName ranked #1 by real raw total healing done on $($rws.BossesRankedFirst) of them."
+}
+$overview = Set-TemplateOptional -TemplateText $overview -OptionalName "RAW_HEALING_RANK_SUMMARY" -SlotName "RAW_HEALING_RANK_SUMMARY" -Value $rawHealingRankSummaryText
 
 $overview = Remove-HtmlComments -TemplateText $overview
 if ($overview.Contains("{{")) {

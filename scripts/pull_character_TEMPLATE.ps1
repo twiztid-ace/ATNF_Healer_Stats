@@ -581,19 +581,26 @@ $workerScript = {
                     $result.Messages.Add("  $($label)_consumables.json - FAILED (snapshot has no auras field)")
                     $fightOk = $false
                 } else {
-                    $flask = $snapshot.auras | Where-Object { $_.name -match 'Flask|Elixir' } | Select-Object -First 1
+                    $consumableClass = Get-ConsumableClassification -Auras $snapshot.auras
+                    $flask = $consumableClass.Flask
+                    $battleElixir = $consumableClass.BattleElixir
+                    $guardianElixir = $consumableClass.GuardianElixir
                     $food = $snapshot.auras | Where-Object { $_.name -eq 'Well Fed' } | Select-Object -First 1
                     $treeOfLifePct = Get-TreeOfLifeUptimePctLocal -Intervals $treeOfLifeIntervals -FightStart $startTime -FightEnd $endTime
                     $out = [PSCustomObject]@{
-                        flaskActive        = [bool]$flask
-                        flaskName          = if ($flask) { $flask.name } else { $null }
-                        foodActive         = [bool]$food
-                        foodName           = if ($food) { $food.name } else { $null }
-                        treeOfLifeUptimePct = $treeOfLifePct
+                        flaskActive          = [bool]$flask
+                        flaskName            = if ($flask) { $flask.name } else { $null }
+                        battleElixirActive   = [bool]$battleElixir
+                        battleElixirName     = if ($battleElixir) { $battleElixir.name } else { $null }
+                        guardianElixirActive = [bool]$guardianElixir
+                        guardianElixirName   = if ($guardianElixir) { $guardianElixir.name } else { $null }
+                        foodActive           = [bool]$food
+                        foodName             = if ($food) { $food.name } else { $null }
+                        treeOfLifeUptimePct  = $treeOfLifePct
                     }
                     $jsonText = $out | ConvertTo-Json -Depth 5
                     [System.IO.File]::WriteAllText($consumablesOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
-                    $result.Messages.Add("  $($label)_consumables.json - OK (flask=$([bool]$flask) food=$([bool]$food) treeOfLife=$treeOfLifePct%)")
+                    $result.Messages.Add("  $($label)_consumables.json - OK (flask=$([bool]$flask) battleElixir=$([bool]$battleElixir) guardianElixir=$([bool]$guardianElixir) food=$([bool]$food) treeOfLife=$treeOfLifePct%)")
                 }
             }
             if ($needsGear) {
@@ -625,7 +632,8 @@ $workerScript = {
             $result.Messages.Add("  $($label)_activetime.json - FAILED: $($atResult.Errors | ConvertTo-Json -Compress)")
             $fightOk = $false
         } else {
-            $atEntry = $atResult.Data.reportData.report.table.data.entries | Where-Object { $_.name -eq $characterName } | Select-Object -First 1
+            $allEntries = @($atResult.Data.reportData.report.table.data.entries)
+            $atEntry = $allEntries | Where-Object { $_.name -eq $characterName } | Select-Object -First 1
             if (-not $atEntry) {
                 $result.Messages.Add("  $($label)_activetime.json - FAILED (no matching entry in healing table response)")
                 $fightOk = $false
@@ -633,15 +641,27 @@ $workerScript = {
                 $duration = $endTime - $startTime
                 $activeTimePct = if ($duration -gt 0) { [math]::Round(($atEntry.activeTime / $duration) * 100, 1) } else { 0 }
                 $activeTimeReducedPct = if ($duration -gt 0) { [math]::Round(($atEntry.activeTimeReduced / $duration) * 100, 1) } else { 0 }
+                # Raw Healing Rank (added 2026-07-15) - the same table() response
+                # already has every OTHER real player's own total healing + real
+                # spec icon (e.g. "Druid-Restoration") for this exact fight - was
+                # being discarded entirely before this, keeping only the audited
+                # character's own row. Filtered to the 4 tracked healer specs
+                # (same population as the ilvl-rank feature) by icon, since this
+                # table has no separate class/spec fields the way rankings() does.
+                $trackedHealerIcons = @("Druid-Restoration", "Shaman-Restoration", "Priest-Holy", "Paladin-Holy")
+                $sameRaidHealersRaw = @($allEntries | Where-Object { $trackedHealerIcons -contains $_.icon } | ForEach-Object {
+                    [PSCustomObject]@{ Name = $_.name; Total = $_.total; ItemLevel = $_.itemLevel; Icon = $_.icon }
+                })
                 $atOut = [PSCustomObject]@{
                     activeTime = $atEntry.activeTime
                     activeTimeReduced = $atEntry.activeTimeReduced
                     activeTimePct = $activeTimePct
                     activeTimeReducedPct = $activeTimeReducedPct
+                    sameRaidHealersRawHealing = $sameRaidHealersRaw
                 }
                 $jsonText = $atOut | ConvertTo-Json -Depth 5
                 [System.IO.File]::WriteAllText($activeTimeOutFile, $jsonText, (New-Object System.Text.UTF8Encoding $false))
-                $result.Messages.Add("  $($label)_activetime.json - OK (activeTime=$activeTimePct%)")
+                $result.Messages.Add("  $($label)_activetime.json - OK (activeTime=$activeTimePct%, $($sameRaidHealersRaw.Count) tracked-spec healer(s) captured)")
             }
         }
     }

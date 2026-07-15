@@ -215,7 +215,28 @@ foreach ($bossProp in $reportData.Bosses.PSObject.Properties) {
     # generate-healer-report skill's "only show when it's actually relevant"
     # rule) - never invents a numbered "Rank N" label, since WCL doesn't
     # provide one and this project never guesses at real game data. -----
+    # Known, confirmed real per-guid facts for specific multi-rank spells whose
+    # guid split has actually been investigated (WORKFLOW.md gotcha #20) - NOT
+    # a general "guess what any 2-guid spell means" mechanism, just the one
+    # spell someone has actually checked. Lifebloom's bloom-burst (guid 33778)
+    # is a real, automatic proc on HoT expiry, not something separately cast -
+    # it has a real, confirmed mana cost of 0 (the mana was already spent
+    # casting the HoT, guid 33763), not an unknown "?", and gets a real
+    # "HoT"/"Bloom" label instead of a bare guid suffix, since which-is-which
+    # is a confirmed fact here, not a guess (see gotcha #20's own reasoning for
+    # why this can't be generalized to every multi-guid spell blindly).
+    # Get-KnownSpellRankLabel (shared with render_healer_report.ps1's Spell
+    # Composition section - see ReportRenderLib.psm1) supplies the "HoT"/"Bloom"
+    # label; only the mana-cost override is specific to this analysis step.
+    $knownRankManaCost = @{ 33778 = 0 }
     $manaCostByGuid = if ($boss.PSObject.Properties.Name -contains "ManaCostByGuid") { $boss.ManaCostByGuid } else { $null }
+    # Real per-guid mana cost observed anywhere in the Top 100 sample (see
+    # build_boss_report_data.ps1's BenchmarkManaCostByGuid) - the fallback used
+    # below when the character never cast a given rank THIS kill, so there's no
+    # real character-side classResources data for it. A real, observed fact
+    # from the wider sample, not a guess - kept distinct via ManaCostSource so
+    # a reader can always tell this kill's own data from the benchmark's.
+    $bmManaCostByGuid = if ($reportData.PSObject.Properties.Name -contains "BenchmarkManaCostByGuid") { $reportData.BenchmarkManaCostByGuid } else { $null }
     $gapsByName = [ordered]@{}
     foreach ($g in $spellGaps) {
         if (-not $gapsByName.Contains($g.Name)) { $gapsByName[$g.Name] = New-Object System.Collections.Generic.List[object] }
@@ -232,12 +253,22 @@ foreach ($bossProp in $reportData.Bosses.PSObject.Properties) {
         $rankRows = @()
         foreach ($g in $group) {
             $manaCost = $null
+            $manaCostSource = $null
             if ($manaCostByGuid -and $g.Guid) {
                 $key = [string]$g.Guid
-                if ($manaCostByGuid.PSObject.Properties.Name -contains $key) { $manaCost = $manaCostByGuid.$key }
+                if ($manaCostByGuid.PSObject.Properties.Name -contains $key) { $manaCost = $manaCostByGuid.$key; $manaCostSource = "character" }
             }
+            if ($null -eq $manaCost -and $knownRankManaCost.ContainsKey([int]$g.Guid)) {
+                $manaCost = $knownRankManaCost[[int]$g.Guid]; $manaCostSource = "known"
+            }
+            if ($null -eq $manaCost -and $bmManaCostByGuid -and $g.Guid) {
+                $key = [string]$g.Guid
+                if ($bmManaCostByGuid.PSObject.Properties.Name -contains $key) { $manaCost = $bmManaCostByGuid.$key; $manaCostSource = "benchmark" }
+            }
+            $rankLabel = Get-KnownSpellRankLabel -Guid ([int]$g.Guid)
             $rankRows += [PSCustomObject]@{
-                Guid = $g.Guid; ManaCost = $manaCost; CharacterPct = $g.CharacterPct; BenchmarkPct = $g.BenchmarkPct
+                Guid = $g.Guid; ManaCost = $manaCost; ManaCostSource = $manaCostSource
+                CharacterPct = $g.CharacterPct; BenchmarkPct = $g.BenchmarkPct; RankLabel = $rankLabel
             }
         }
         $rankRows = @($rankRows | Sort-Object -Property @{Expression = { if ($null -ne $_.ManaCost) { $_.ManaCost } else { [double]::MaxValue } }})
@@ -337,14 +368,17 @@ foreach ($bossProp in $reportData.Bosses.PSObject.Properties) {
 }
 
 # ----- Gear analysis (raid-wide, not per-boss - GearDiff is a top-level field) -----
-$gearAnalysis = [ordered]@{ MissingEnchantFlags = @(); DifferingSlotsAnnotated = @() }
+$gearAnalysis = [ordered]@{ MissingEnchantFlags = @(); DifferingSlotsAnnotated = @(); EnchantableSlotCount = 0; EnchantedSlotCount = 0 }
 if ($reportData.GearDiff -and $reportData.GearDiff.BaselineGear) {
     $baseline = @($reportData.GearDiff.BaselineGear)
     for ($i = 0; $i -lt $baseline.Count; $i++) {
         $item = $baseline[$i]
         if (Test-SlotEnchantable -SlotIndex $i -GearItemAtSlot $item) {
+            $gearAnalysis["EnchantableSlotCount"] += 1
             $hasEnchant = $item.PSObject.Properties.Name -contains "permanentEnchant" -and $null -ne $item.permanentEnchant
-            if (-not $hasEnchant) {
+            if ($hasEnchant) {
+                $gearAnalysis["EnchantedSlotCount"] += 1
+            } else {
                 $gearAnalysis["MissingEnchantFlags"] += [PSCustomObject]@{
                     SlotIndex = $i; SlotName = Get-GearSlotName -SlotIndex $i; ItemId = $item.id
                 }

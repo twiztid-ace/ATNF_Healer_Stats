@@ -45,9 +45,8 @@
     padding: 40px 48px 32px;
     border-bottom: 1px solid var(--line);
     display:flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 24px;
+    flex-direction: column;
+    gap: 18px;
   }
   .eyebrow{
     font-family:'IBM Plex Mono', monospace;
@@ -72,7 +71,12 @@
   .subline span{ font-family:'IBM Plex Mono', monospace; }
 
   /* ===== Seal ===== */
-  .seal-wrap{ flex-shrink:0; text-align:center; }
+  /* Fixed width (matching .seal's own 108px) so a longer caption - the
+     iLvl/Raw Healing Rank seals need more words than the original "WCL rank,
+     all parses" - wraps neatly within the same column instead of expanding
+     the box past the circle above it, which is what was throwing off the
+     spacing between badges when more than one seal-wrap sits in a row. */
+  .seal-wrap{ flex-shrink:0; width: 108px; text-align:center; }
   .seal{ width: 108px; height: 108px; }
   .seal-label{
     font-family:'IBM Plex Mono', monospace;
@@ -263,6 +267,13 @@
   .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
   .target-bar-fill{ height:100%; background: var(--ink-2); }
   .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+
+  /* ===== Healer ranking ===== */
+  .healer-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; min-width:80px; }
+  .healer-bar-fill{ height:100%; background: var(--ink-2); }
+  .healer-bar-fill.is-character{ background: var(--copper); }
+  tr.is-character td{ font-weight:700; }
+
   .coverage-note{
     margin-top: 14px;
     font-size: 12px;
@@ -305,14 +316,40 @@
       <h1>{{HEALER_NAME}}</h1>
       <p class="subline">{{HEALER_CLASS_SPEC}} &nbsp;·&nbsp; ilvl {{ITEM_LEVEL}} &nbsp;·&nbsp; report <span>{{REPORT_CODE}}</span> &nbsp;·&nbsp; fight <span>{{FIGHT_ID}}</span> &nbsp;·&nbsp; kill, {{DURATION_S}}s</p>
     </div>
-    <div class="seal-wrap">
-      <svg class="seal" viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
-        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
-        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">{{PERCENTILE}}</text>
-        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
-      </svg>
-      <div class="seal-label">WCL rank, all parses</div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-start; gap:12px 16px; align-items:flex-start;">
+      <!-- Ring/number color is server-computed (Get-PercentileColor in
+           render_healer_report.ps1) along the same rust->gold->moss scale as
+           the .pctl-track bar below (0=worst/red, 100=best/green) - no JS on
+           this site, so this can't be a live CSS gradient at a dynamic %. -->
+      <div class="seal-wrap">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="{{PERCENTILE_COLOR}}" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="{{PERCENTILE_COLOR}}" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="{{PERCENTILE_COLOR}}">{{PERCENTILE}}</text>
+          <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+        </svg>
+        <div class="seal-label">WCL rank, all parses</div>
+      </div>
+      <!-- iLvl Healing Rank - this IS WCL's own real "HPS Performance
+           Comparison (By Item Level)" metric (the "ilvl%" column/tooltip on
+           the site's own Healing table) applied against the OTHER real
+           tracked-spec healers (Resto Druid/Shaman, Holy Priest/Paladin) who
+           were in this SAME raid on this SAME fight, not the Top 100 sample
+           to the left. The whole seal-wrap below is one @SLOT (not
+           individual {{TOKEN}}s) since render_healer_report.ps1 builds its
+           complete inner HTML as one string - omitted entirely (not shown as
+           "1/1" or "n/a") on a kill where no other tracked healer was
+           present to compare against. -->
+      <!--@OPTIONAL:ILVL_HEALING_RANK_SEAL--><!--@SLOT:ILVL_HEALING_RANK_SEAL--><!--@ENDSLOT--><!--@ENDOPTIONAL:ILVL_HEALING_RANK_SEAL-->
+      <!-- Raw Healing Rank - same tracked-spec same-raid-same-fight population
+           as iLvl Healing Rank above where both endpoints agree, but ranked by
+           real raw total healing done (table(dataType: Healing)'s own "total"
+           field) instead of WCL's ilvl-normalized percentile - a genuinely
+           different, independent ranking. Population CAN differ slightly from
+           the ilvl seal (different WCL endpoint - confirmed real on Maulgar:
+           4 tracked healers here vs 5 for the ilvl metric, a player entirely
+           absent from this table response, not a bug). -->
+      <!--@OPTIONAL:RAW_HEALING_RANK_SEAL--><!--@SLOT:RAW_HEALING_RANK_SEAL--><!--@ENDSLOT--><!--@ENDOPTIONAL:RAW_HEALING_RANK_SEAL-->
     </div>
   </div>
 
@@ -417,7 +454,7 @@
          cast this kill; shows "?" rather than guessing for the rest. -->
     <!--@OPTIONAL:SPELL_RANKS_SECTION-->
     <div style="margin-top:20px;">
-      <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data, "?" where the character never cast that specific rank here.</p>
+      <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data where available; <span style="font-family:'IBM Plex Mono', monospace;">&#8224;</span> marks a rank the character didn't cast this kill, backfilled with a real cost observed elsewhere in the Top 100 sample; "?" only when neither source has it.</p>
       <table class="cd-table">
         <thead>
           <tr>
@@ -513,7 +550,7 @@
              this data doesn't have. -->
         <div class="stat-label">Flask / Elixir</div>
         <div class="stat-value">{{FLASK_ACTIVE}}</div>
-        <div class="stat-sub">{{FLASK_NAME}} — Top 100: {{FLASK_BENCHMARK_PCT}}% had one active at pull start</div>
+        <div class="stat-sub">{{FLASK_NAME}} — Top 100 active at pull start: {{FLASK_BENCHMARK_PCT}}</div>
       </div>
       <div class="stat">
         <div class="stat-label">Food buff</div>
@@ -579,9 +616,52 @@
     <div class="coverage-note"><!--@SLOT:TARGET_FINDING-->{{TARGET_FINDING}} — state the top target's % vs. the Top 100 benchmark average explicitly, and whether the gap (if any) represents a real targeting difference or falls within normal variance (roughly ±5 points has shown to be noise in practice).<!--@ENDSLOT--></div>
   </div>
 
+  <!-- ===== HEALER RANKING (mechanical, no LLM) - real per-healer comparison
+       against the OTHER real tracked-spec healers (Resto Druid/Shaman, Holy
+       Priest/Paladin) in the SAME raid on this SAME fight, not the Top 100
+       sample - see build_boss_report_data.ps1's HealerRanking. Bar width is
+       scaled to the top real raw-healing total among these healers (same
+       convention as Target Distribution above); "% of total" is each
+       healer's real share of the combined total among everyone shown here.
+       Item Level % is WCL's own real per-healer percentile (same number as
+       the iLvl Healing Rank seal up top, shown per-healer here instead of
+       just for {{HEALER_NAME}}). A healer missing from one of the two real
+       WCL endpoints shows an em-dash for that column, never a fabricated
+       number - see the Raw Healing Rank comment further up this file. Omitted
+       entirely (not shown empty) when no other tracked healer was present
+       this kill at all. -->
+  <!--@OPTIONAL:HEALER_RANKING_SECTION-->
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Healer ranking</h2>
+    </div>
+    <p class="section-desc">{{HEALER_NAME}} vs. the other healers in this same raid on this same fight.</p>
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Healer</th>
+          <th>Raw healing</th>
+          <th style="text-align:right;">% of total</th>
+          <th style="text-align:right; cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">Item Level %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!--@LOOP:HEALER_RANK_ROW-->
+        <tr class="{{HEALER_ROW_CHAR_CLASS}}">
+          <td class="ability-name">{{HEALER_ROW_NAME}}</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="{{HEALER_ROW_TOTAL_TOOLTIP}}"><div class="healer-bar-fill {{HEALER_ROW_CHAR_CLASS}}" style="width:{{HEALER_ROW_BAR_WIDTH}}%"></div></div></td>
+          <td class="num-cell">{{HEALER_ROW_TOTAL_PCT}}</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">{{HEALER_ROW_ILVL_PCT}}</td>
+        </tr>
+        <!--@ENDLOOP:HEALER_RANK_ROW-->
+      </tbody>
+    </table>
+  </div>
+  <!--@ENDOPTIONAL:HEALER_RANKING_SECTION-->
+
   <div class="footer">
     <span>All data real: {{HEALER_NAME}}'s fight log ({{REPORT_CODE}}, fight {{FIGHT_ID}}) + Top 100 {{BOSS_NAME}} benchmark (n={{BENCHMARK_N}})</span>
-    <span>tbc-audit style reference · healer variant · Resto Druid</span>
   </div>
 
 </div>

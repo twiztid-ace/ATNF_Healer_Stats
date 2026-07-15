@@ -149,6 +149,11 @@
     padding: 8px 10px;
     border-bottom: 1px solid var(--line);
   }
+  /* Native title="" tooltip on a header whose meaning isn't obvious from the
+     label alone - dotted underline + help cursor is the only hint needed,
+     consistent with this being a plain static site (no JS, no custom
+     tooltip widget). */
+  .th-help{ cursor: help; border-bottom-style: dotted; text-decoration: underline dotted; text-underline-offset: 3px; }
   .boss-table td{
     padding: 12px 10px;
     border-bottom: 1px dashed var(--line);
@@ -218,6 +223,13 @@
       </div>
       
       <div class="check-item">
+        <div class="check-icon note">i</div>
+        <div>8 of 9 enchantable slots carry a permanent enchant</div>
+        <div class="check-note"></div>
+        <div class="check-detail"></div>
+      </div>
+      
+      <div class="check-item">
         <div class="check-icon bad">✗</div>
         <div>Back carries no permanent enchant</div>
         <div class="check-note">item 28765</div>
@@ -233,9 +245,9 @@
       
       <div class="check-item">
         <div class="check-icon ok">✓</div>
-        <div>Flask (Elixir of Draenic Wisdom) and Well Fed food buff both active on all 12 kills</div>
+        <div>Guardian Elixir (Elixir of Draenic Wisdom) and Well Fed food buff both active on all 12 kills</div>
         <div class="check-note">12/12 kills</div>
-        <div class="check-detail"></div>
+        <div class="check-detail">This was mislabeled as a Flask in the original render - Elixir of Draenic Wisdom is a Guardian Elixir, not a flask (a real pull-script bug fixed 2026-07-15, see TODO.md). Whether a Battle Elixir was also active is unknown for this report - the older pull only ever captured one elixir/flask match total, so a second real elixir slot could exist but wasn't recorded.</div>
       </div>
       
       
@@ -251,7 +263,15 @@
       <h2 class="section-title">Per-boss summary</h2>
     </div>
     <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own fight logs. Percentile is only shown where we've pulled the real WCL ranking for that exact pull — click a boss name for the full audit.</p>
- 
+
+    
+    
+    <p class="section-desc">iLvl Healing Rank: across the 12 kill(s) with another tracked-spec healer present, Danceswtrees ranked #1 (by WCL's own HPS Performance Comparison by Item Level) on 3 of them, averaging the 58th percentile by item level across those kills.</p>
+    
+    
+    <p class="section-desc">Raw Healing Rank: across the 12 kill(s) with another tracked-spec healer present, Danceswtrees ranked #1 by real raw total healing done on 4 of them.</p>
+    
+
     
     <div class="consistency-banner" style="background: rgba(181,80,58,0.10); border-color: rgba(181,80,58,0.35);">
       <div class="consistency-icon" style="background: var(--rust);">!</div>
@@ -265,6 +285,8 @@
           <th>Boss</th>
           <th style="text-align:right;">HPS</th>
           <th style="text-align:right;">Overheal</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">iLvl Healing Rank</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">Raw Healing Rank</th>
           <th style="text-align:right;">WCL Percentile</th>
           <th></th>
         </tr>
@@ -276,6 +298,8 @@
           <td class="boss-name"><a href="healer_audit_maulgar.html">High King Maulgar</a></td>
           <td class="num-cell">1274</td>
           <td class="num-cell overheal-cell high">59.4%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/4</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">86th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -284,6 +308,8 @@
           <td class="boss-name"><a href="healer_audit_gruul.html">Gruul the Dragonkiller</a></td>
           <td class="num-cell">650</td>
           <td class="num-cell">56.7%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">4th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">59th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -292,6 +318,8 @@
           <td class="boss-name"><a href="healer_audit_hydross.html">Hydross the Unstable</a></td>
           <td class="num-cell">510</td>
           <td class="num-cell overheal-cell high">70.5%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">5th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">4th/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">25th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -300,6 +328,8 @@
           <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
           <td class="num-cell">834</td>
           <td class="num-cell overheal-cell high">61.9%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">5th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">4th/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">67th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -308,6 +338,8 @@
           <td class="boss-name"><a href="healer_audit_karathress.html">Fathom-Lord Karathress</a></td>
           <td class="num-cell">1039</td>
           <td class="num-cell overheal-cell high">53.9%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">53th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -316,6 +348,8 @@
           <td class="boss-name"><a href="healer_audit_morogrim.html">Morogrim Tidewalker</a></td>
           <td class="num-cell">935</td>
           <td class="num-cell overheal-cell high">53.9%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">71th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -324,6 +358,8 @@
           <td class="boss-name"><a href="healer_audit_lurker.html">The Lurker Below</a></td>
           <td class="num-cell">710</td>
           <td class="num-cell overheal-cell high">51.5%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">39th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -332,6 +368,8 @@
           <td class="boss-name"><a href="healer_audit_vashj.html">Lady Vashj</a></td>
           <td class="num-cell">610</td>
           <td class="num-cell overheal-cell high">54.9%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">41th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -340,6 +378,8 @@
           <td class="boss-name"><a href="healer_audit_alar.html">Al'ar</a></td>
           <td class="num-cell">736</td>
           <td class="num-cell">59.8%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">85th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -348,6 +388,8 @@
           <td class="boss-name"><a href="healer_audit_voidreaver.html">Void Reaver</a></td>
           <td class="num-cell">1423</td>
           <td class="num-cell overheal-cell high">36.8%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">4th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">61th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -356,6 +398,8 @@
           <td class="boss-name"><a href="healer_audit_solarian.html">High Astromancer Solarian</a></td>
           <td class="num-cell">664</td>
           <td class="num-cell">56.3%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">2nd/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">85th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -364,6 +408,8 @@
           <td class="boss-name"><a href="healer_audit_kaelthas.html">Kael'thas Sunstrider</a></td>
           <td class="num-cell">512</td>
           <td class="num-cell overheal-cell high">72.8%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">2nd/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">30th</span></td>
           <td class="link-arrow">→</td>
         </tr>
@@ -376,7 +422,6 @@
  
   <div class="footer">
     <span>All data real: Danceswtrees's fight logs (report LKbVcNfRxyBkj2mg) + WCL rankings where pulled</span>
-    <span>tbc-audit style reference · healer variant · raid overview</span>
   </div>
  
 </div>
