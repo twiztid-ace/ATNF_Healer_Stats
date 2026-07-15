@@ -1,0 +1,200 @@
+{
+    "entries":  [
+                    {
+                        "name":  "고철사제",
+                        "id":  7,
+                        "guid":  19339092,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  8418478,
+                        "fight":  3,
+                        "damage":  {
+                                       "total":  20030,
+                                       "totalReduced":  18237,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  807,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  15459,
+                                                             "totalReduced":  13666,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  36449,
+                                                             "name":  "Debris",
+                                                             "total":  4571,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  20030,
+                                                           "totalReduced":  18237,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  10275,
+                                        "totalReduced":  8482,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  15290,
+                                                              "name":  "Vampiric Embrace",
+                                                              "total":  5174,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  27237,
+                                                              "name":  "Master Healthstone",
+                                                              "total":  2496,
+                                                              "type":  1,
+                                                              "icon":  "inv_stone_04.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25218,
+                                                              "name":  "Power Word: Shield",
+                                                              "total":  1793,
+                                                              "totalReduced":  0,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_powerwordshield.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  39373,
+                                                              "name":  "Shadowmend",
+                                                              "total":  812,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  7203,
+                                                                    "totalReduced":  5410,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  36449,
+                                                                    "name":  "Debris",
+                                                                    "total":  3072,
+                                                                    "type":  1,
+                                                                    "icon":  "spell_nature_earthquake.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "고철사제",
+                                                            "total":  10275,
+                                                            "totalReduced":  8482,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  14786,
+                        "overkill":  1184,
+                        "events":  [
+                                       {
+                                           "timestamp":  8418458,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  7,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  6279,
+                                           "unmitigatedAmount":  7463,
+                                           "overkill":  1184,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  8410727,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  7,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Debris",
+                                                           "guid":  36449,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  4571,
+                                           "mitigated":  807,
+                                           "unmitigatedAmount":  5378,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  8403684,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  7,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  3,
+                                           "hitType":  1,
+                                           "amount":  6203,
+                                           "unmitigatedAmount":  7996,
+                                           "absorbed":  1793,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Shadow Word: Death",
+                                            "guid":  32409,
+                                            "type":  32,
+                                            "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                        }
+                    }
+                ]
+}

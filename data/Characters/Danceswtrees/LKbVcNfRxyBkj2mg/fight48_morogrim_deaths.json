@@ -1,0 +1,528 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Shlicktree",
+                        "id":  20,
+                        "guid":  84041963,
+                        "type":  "Druid",
+                        "icon":  "Druid-Restoration",
+                        "timestamp":  5804525,
+                        "fight":  48,
+                        "damage":  {
+                                       "total":  10221,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37852,
+                                                             "name":  "Watery Grave Explosion",
+                                                             "total":  4802,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_arcticwinds.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  3923,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  1496,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Shlicktree",
+                                                           "total":  4802,
+                                                           "type":  "Druid"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  3923,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  1496,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  9216,
+                        "overkill":  834,
+                        "events":  [
+                                       {
+                                           "timestamp":  5804496,
+                                           "type":  "damage",
+                                           "sourceID":  20,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Watery Grave Explosion",
+                                                           "guid":  37852,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_arcticwinds.jpg"
+                                                       },
+                                           "fight":  48,
+                                           "hitType":  1,
+                                           "amount":  3968,
+                                           "unmitigatedAmount":  4802,
+                                           "overkill":  834,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  5804495,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  48,
+                                           "hitType":  1,
+                                           "amount":  498,
+                                           "unmitigatedAmount":  498,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  5801493,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  20,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  48,
+                                           "hitType":  1,
+                                           "amount":  498,
+                                           "unmitigatedAmount":  498,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Watery Grave Explosion",
+                                            "guid":  37852,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_arcticwinds.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Deepbowlz",
+                        "id":  31,
+                        "guid":  44720876,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Fury",
+                        "timestamp":  5845535,
+                        "fight":  48,
+                        "damage":  {
+                                       "total":  13780,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37852,
+                                                             "name":  "Watery Grave Explosion",
+                                                             "total":  5633,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_arcticwinds.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  4536,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  2000,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  3,
+                                                             "name":  "Falling",
+                                                             "total":  1611,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Deepbowlz",
+                                                           "total":  5633,
+                                                           "type":  "Warrior"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  4536,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  3611,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1434,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  33763,
+                                                              "name":  "Lifebloom",
+                                                              "total":  1434,
+                                                              "type":  8,
+                                                              "icon":  "inv_misc_herb_felblossom.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37852,
+                                                                    "name":  "Watery Grave Explosion",
+                                                                    "total":  573,
+                                                                    "type":  16,
+                                                                    "icon":  "spell_frost_arcticwinds.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  500,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  3,
+                                                                    "name":  "Falling",
+                                                                    "total":  361,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Danceswtrees",
+                                                            "total":  1434,
+                                                            "type":  "Druid"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  11371,
+                        "overkill":  1142,
+                        "events":  [
+                                       {
+                                           "timestamp":  5845533,
+                                           "type":  "damage",
+                                           "sourceID":  142,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  31,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Earthquake",
+                                                           "guid":  37764,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  48,
+                                           "hitType":  1,
+                                           "amount":  3394,
+                                           "unmitigatedAmount":  4124,
+                                           "overkill":  1142,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  5843162,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  31,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  48,
+                                           "hitType":  1,
+                                           "amount":  500,
+                                           "unmitigatedAmount":  500,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  5843161,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  31,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Falling",
+                                                           "guid":  3,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  48,
+                                           "hitType":  1,
+                                           "amount":  1611,
+                                           "unmitigatedAmount":  1611,
+                                           "overkill":  0,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Earthquake",
+                                            "guid":  37764,
+                                            "type":  1,
+                                            "abilityIcon":  "spell_nature_earthquake.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Vinnyvoss",
+                        "id":  13,
+                        "guid":  47455789,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Arms",
+                        "timestamp":  5845536,
+                        "fight":  48,
+                        "damage":  {
+                                       "total":  13119,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37852,
+                                                             "name":  "Watery Grave Explosion",
+                                                             "total":  5093,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_arcticwinds.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  4428,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  1991,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  3,
+                                                             "name":  "Falling",
+                                                             "total":  1607,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Vinnyvoss",
+                                                           "total":  5093,
+                                                           "type":  "Warrior"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  4428,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  3598,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  574,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  33763,
+                                                              "name":  "Lifebloom",
+                                                              "total":  574,
+                                                              "type":  8,
+                                                              "icon":  "inv_misc_herb_felblossom.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  500,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  3,
+                                                                    "name":  "Falling",
+                                                                    "total":  74,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Danceswtrees",
+                                                            "total":  574,
+                                                            "type":  "Druid"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  11365,
+                        "overkill":  41,
+                        "events":  [
+                                       {
+                                           "timestamp":  5845527,
+                                           "type":  "damage",
+                                           "sourceID":  142,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  13,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Earthquake",
+                                                           "guid":  37764,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  48,
+                                           "hitType":  1,
+                                           "amount":  4387,
+                                           "unmitigatedAmount":  4025,
+                                           "overkill":  41,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  5843112,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  13,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  48,
+                                           "hitType":  1,
+                                           "amount":  500,
+                                           "unmitigatedAmount":  500,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  5843112,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  13,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Falling",
+                                                           "guid":  3,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  48,
+                                           "hitType":  1,
+                                           "amount":  1607,
+                                           "unmitigatedAmount":  1607,
+                                           "overkill":  0,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Earthquake",
+                                            "guid":  37764,
+                                            "type":  1,
+                                            "abilityIcon":  "spell_nature_earthquake.jpg"
+                                        }
+                    }
+                ]
+}

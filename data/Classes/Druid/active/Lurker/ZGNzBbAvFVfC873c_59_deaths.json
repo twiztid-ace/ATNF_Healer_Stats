@@ -1,0 +1,325 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Polentä",
+                        "id":  22,
+                        "guid":  72840370,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  7045683,
+                        "fight":  59,
+                        "damage":  {
+                                       "total":  11300,
+                                       "totalReduced":  9457,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37433,
+                                                             "name":  "Spout",
+                                                             "total":  7272,
+                                                             "totalReduced":  6429,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_chillingblast.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  2528,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  1500,
+                                                             "totalReduced":  500,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  7272,
+                                                           "totalReduced":  6429,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  4028,
+                                                           "totalReduced":  3028,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  2103,
+                                        "totalReduced":  260,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25218,
+                                                              "name":  "Power Word: Shield",
+                                                              "total":  1843,
+                                                              "totalReduced":  0,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_powerwordshield.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25566,
+                                                              "name":  "Healing Stream",
+                                                              "total":  260,
+                                                              "type":  8,
+                                                              "icon":  "inv_spear_04.jpg",
+                                                              "petName":  "zzOLDHealing Stream Totem VI"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  37284,
+                                                                    "name":  "Scalding Water",
+                                                                    "total":  1000,
+                                                                    "totalReduced":  0,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_masterofelements.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  37433,
+                                                                    "name":  "Spout",
+                                                                    "total":  908,
+                                                                    "totalReduced":  65,
+                                                                    "type":  16,
+                                                                    "icon":  "spell_frost_chillingblast.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  195,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Polentä",
+                                                            "total":  1843,
+                                                            "totalReduced":  0,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "zzOLDHealing Stream Totem VI",
+                                                            "total":  260,
+                                                            "type":  "Pet"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  8000,
+                        "overkill":  226,
+                        "events":  [
+                                       {
+                                           "timestamp":  7045659,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Scalding Water",
+                                                           "guid":  37284,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                                       },
+                                           "fight":  59,
+                                           "hitType":  1,
+                                           "amount":  274,
+                                           "unmitigatedAmount":  500,
+                                           "overkill":  226,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  7044322,
+                                           "type":  "damage",
+                                           "sourceID":  484,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Spout",
+                                                           "guid":  37433,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_chillingblast.jpg"
+                                                       },
+                                           "fight":  59,
+                                           "hitType":  1,
+                                           "amount":  3536,
+                                           "unmitigatedAmount":  3536,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  7044122,
+                                           "type":  "damage",
+                                           "sourceID":  484,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Spout",
+                                                           "guid":  37433,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_chillingblast.jpg"
+                                                       },
+                                           "fight":  59,
+                                           "hitType":  1,
+                                           "amount":  2893,
+                                           "unmitigatedAmount":  3736,
+                                           "absorbed":  843,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Scalding Water",
+                                            "guid":  37284,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_masterofelements.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Diegopala",
+                        "id":  5,
+                        "guid":  72904998,
+                        "type":  "Paladin",
+                        "icon":  "Paladin-Holy",
+                        "timestamp":  7049743,
+                        "fight":  59,
+                        "damage":  {
+                                       "total":  10940,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37433,
+                                                             "name":  "Spout",
+                                                             "total":  10440,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_chillingblast.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37284,
+                                                             "name":  "Scalding Water",
+                                                             "total":  500,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_masterofelements.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "The Lurker Below",
+                                                           "total":  10440,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  500,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  15301,
+                        "overkill":  1393,
+                        "events":  [
+                                       {
+                                           "timestamp":  7049735,
+                                           "type":  "damage",
+                                           "sourceID":  484,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  5,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Spout",
+                                                           "guid":  37433,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_chillingblast.jpg"
+                                                       },
+                                           "fight":  59,
+                                           "hitType":  1,
+                                           "amount":  2332,
+                                           "unmitigatedAmount":  3725,
+                                           "overkill":  1393,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  7049532,
+                                           "type":  "damage",
+                                           "sourceID":  484,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  5,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Spout",
+                                                           "guid":  37433,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_chillingblast.jpg"
+                                                       },
+                                           "fight":  59,
+                                           "hitType":  1,
+                                           "amount":  3240,
+                                           "unmitigatedAmount":  3240,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  7049331,
+                                           "type":  "damage",
+                                           "sourceID":  484,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  5,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Spout",
+                                                           "guid":  37433,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_chillingblast.jpg"
+                                                       },
+                                           "fight":  59,
+                                           "hitType":  1,
+                                           "amount":  3475,
+                                           "unmitigatedAmount":  3475,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Spout",
+                                            "guid":  37433,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_chillingblast.jpg"
+                                        }
+                    }
+                ]
+}

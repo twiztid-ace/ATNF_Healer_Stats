@@ -1,0 +1,143 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Vilus",
+                        "id":  4,
+                        "guid":  52197765,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  2081033,
+                        "fight":  9,
+                        "damage":  {
+                                       "total":  10849,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  33051,
+                                                             "name":  "Greater Fireball",
+                                                             "total":  8826,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_flamebolt.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  2023,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Krosh Firehand",
+                                                           "total":  8826,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  2023,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1479,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25467,
+                                                              "name":  "Devouring Plague",
+                                                              "total":  1266,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_devouringplague.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  39373,
+                                                              "name":  "Shadowmend",
+                                                              "total":  213,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  1479,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Vilus",
+                                                            "total":  1479,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  4455,
+                        "overkill":  259,
+                        "events":  [
+                                       {
+                                           "timestamp":  2081014,
+                                           "type":  "damage",
+                                           "sourceID":  464,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  4,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Greater Fireball",
+                                                           "guid":  33051,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_flamebolt.jpg"
+                                                       },
+                                           "fight":  9,
+                                           "hitType":  1,
+                                           "amount":  8567,
+                                           "unmitigatedAmount":  8826,
+                                           "overkill":  259,
+                                           "isAoE":  false,
+                                           "sourceMarker":  6
+                                       },
+                                       {
+                                           "timestamp":  2076559,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  4,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  9,
+                                           "hitType":  1,
+                                           "amount":  2023,
+                                           "unmitigatedAmount":  2023,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Greater Fireball",
+                                            "guid":  33051,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_flamebolt.jpg"
+                                        }
+                    }
+                ]
+}

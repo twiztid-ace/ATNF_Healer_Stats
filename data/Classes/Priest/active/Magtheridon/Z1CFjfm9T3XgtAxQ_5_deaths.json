@@ -1,0 +1,332 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Lazzaroo",
+                        "id":  25,
+                        "guid":  55529466,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  3806505,
+                        "fight":  5,
+                        "damage":  {
+                                       "total":  7991,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  568,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30510,
+                                                             "name":  "Shadow Bolt Volley",
+                                                             "total":  4407,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowbolt.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  3584,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Hellfire Channeler",
+                                                           "total":  4407,
+                                                           "type":  "NPC"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  3584,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  670,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  39373,
+                                                              "name":  "Shadowmend",
+                                                              "total":  670,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  30510,
+                                                                    "name":  "Shadow Bolt Volley",
+                                                                    "total":  599,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_shadowbolt.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  32409,
+                                                                    "name":  "Shadow Word: Death",
+                                                                    "total":  71,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Lazzaroo",
+                                                            "total":  670,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  18014,
+                        "overkill":  650,
+                        "events":  [
+                                       {
+                                           "timestamp":  3806490,
+                                           "type":  "damage",
+                                           "sourceID":  70,
+                                           "sourceInstance":  4,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  25,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Bolt Volley",
+                                                           "guid":  30510,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowbolt.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  2050,
+                                           "unmitigatedAmount":  2700,
+                                           "overkill":  650,
+                                           "isAoE":  true,
+                                           "sourceMarker":  2
+                                       },
+                                       {
+                                           "timestamp":  3804757,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  25,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  2138,
+                                           "unmitigatedAmount":  2138,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  3789002,
+                                           "type":  "damage",
+                                           "sourceID":  70,
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  25,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Bolt Volley",
+                                                           "guid":  30510,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowbolt.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  16,
+                                           "amount":  1707,
+                                           "mitigated":  568,
+                                           "unmitigatedAmount":  2275,
+                                           "resisted":  569,
+                                           "isAoE":  true,
+                                           "sourceMarker":  7
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Shadow Bolt Volley",
+                                            "guid":  30510,
+                                            "type":  32,
+                                            "abilityIcon":  "spell_shadow_shadowbolt.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Qeek",
+                        "id":  15,
+                        "guid":  53705653,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Enhancement",
+                        "timestamp":  3906134,
+                        "fight":  5,
+                        "damage":  {
+                                       "total":  16130,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  6910,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30619,
+                                                             "name":  "Cleave",
+                                                             "total":  16130,
+                                                             "type":  1,
+                                                             "icon":  "ability_warrior_cleave.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Magtheridon",
+                                                           "total":  16130,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  0,
+                        "overkill":  8910,
+                        "events":  [
+                                       {
+                                           "timestamp":  3906133,
+                                           "type":  "damage",
+                                           "sourceID":  71,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  15,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Cleave",
+                                                           "guid":  30619,
+                                                           "type":  1,
+                                                           "abilityIcon":  "ability_warrior_cleave.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  7220,
+                                           "mitigated":  6910,
+                                           "unmitigatedAmount":  23040,
+                                           "overkill":  8910,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Cleave",
+                                            "guid":  30619,
+                                            "type":  1,
+                                            "abilityIcon":  "ability_warrior_cleave.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Venyroid",
+                        "id":  17,
+                        "guid":  54124842,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Elemental",
+                        "timestamp":  3951882,
+                        "fight":  5,
+                        "damage":  {
+                                       "total":  63769,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  25767,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30631,
+                                                             "name":  "Debris",
+                                                             "total":  63769,
+                                                             "type":  1,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  63769,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  0,
+                        "overkill":  58483,
+                        "events":  [
+                                       {
+                                           "timestamp":  3951868,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  17,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Debris",
+                                                           "guid":  30631,
+                                                           "type":  1,
+                                                           "abilityIcon":  "trade_engineering.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  5286,
+                                           "mitigated":  25767,
+                                           "unmitigatedAmount":  89536,
+                                           "overkill":  58483,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Debris",
+                                            "guid":  30631,
+                                            "type":  1,
+                                            "abilityIcon":  "trade_engineering.jpg"
+                                        }
+                    }
+                ]
+}

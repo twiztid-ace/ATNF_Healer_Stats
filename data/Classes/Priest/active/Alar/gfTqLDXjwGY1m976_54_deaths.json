@@ -1,0 +1,175 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Thndathighs",
+                        "id":  18,
+                        "guid":  75832570,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Enhancement",
+                        "timestamp":  8387307,
+                        "fight":  54,
+                        "damage":  {
+                                       "total":  14386,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  34133,
+                                                             "name":  "Ember Blast",
+                                                             "total":  8423,
+                                                             "type":  4,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  34121,
+                                                             "name":  "Flame Buffet",
+                                                             "total":  4328,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  3,
+                                                             "name":  "Falling",
+                                                             "total":  1635,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Ember of Al\u0027ar",
+                                                           "total":  8423,
+                                                           "type":  "NPC"
+                                                       },
+                                                       {
+                                                           "name":  "Al\u0027ar",
+                                                           "total":  4328,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  1635,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  813,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  813,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  3,
+                                                                    "name":  "Falling",
+                                                                    "total":  407,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  34121,
+                                                                    "name":  "Flame Buffet",
+                                                                    "total":  406,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_fireball.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Thndathighs",
+                                                            "total":  813,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  16371,
+                        "overkill":  3404,
+                        "events":  [
+                                       {
+                                           "timestamp":  8387304,
+                                           "type":  "damage",
+                                           "sourceID":  210,
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  18,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Ember Blast",
+                                                           "guid":  34133,
+                                                           "type":  4,
+                                                           "abilityIcon":  "trade_engineering.jpg"
+                                                       },
+                                           "fight":  54,
+                                           "hitType":  1,
+                                           "amount":  5019,
+                                           "unmitigatedAmount":  8423,
+                                           "overkill":  3404,
+                                           "isAoE":  true,
+                                           "sourceMarker":  8
+                                       },
+                                       {
+                                           "timestamp":  8380698,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  18,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Falling",
+                                                           "guid":  3,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  54,
+                                           "hitType":  1,
+                                           "amount":  1635,
+                                           "unmitigatedAmount":  1635,
+                                           "overkill":  0,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  8374080,
+                                           "type":  "damage",
+                                           "sourceID":  208,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  18,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Flame Buffet",
+                                                           "guid":  34121,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_fireball.jpg"
+                                                       },
+                                           "fight":  54,
+                                           "hitType":  1,
+                                           "amount":  2104,
+                                           "unmitigatedAmount":  1913,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Ember Blast",
+                                            "guid":  34133,
+                                            "type":  4,
+                                            "abilityIcon":  "trade_engineering.jpg"
+                                        }
+                    }
+                ]
+}

@@ -146,6 +146,9 @@ $manaPotionName = $manaPotionNameByClass[$ClassName]
 # pull_character_TEMPLATE.ps1's own $bossSlugs table, which already uses a plain
 # hashtable for exactly this key shape - never change this one to [ordered]@{}. =====
 $bossMeta = @{
+    50649 = @{ Slug = "maulgar";     FolderName = "Maulgar";     Display = "High King Maulgar" }
+    50650 = @{ Slug = "gruul";       FolderName = "Gruul";       Display = "Gruul the Dragonkiller" }
+    50651 = @{ Slug = "magtheridon"; FolderName = "Magtheridon"; Display = "Magtheridon" }
     100623 = @{ Slug = "hydross";    FolderName = "Hydross";    Display = "Hydross the Unstable" }
     100624 = @{ Slug = "lurker";     FolderName = "Lurker";     Display = "The Lurker Below" }
     100625 = @{ Slug = "leotheras";  FolderName = "Leotheras";  Display = "Leotheras the Blind" }

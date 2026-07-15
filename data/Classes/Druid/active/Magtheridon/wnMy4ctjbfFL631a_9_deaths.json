@@ -1,0 +1,391 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Nagä",
+                        "id":  14,
+                        "guid":  74702616,
+                        "type":  "Mage",
+                        "icon":  "Mage-Arcane",
+                        "timestamp":  2692068,
+                        "fight":  9,
+                        "damage":  {
+                                       "total":  12313,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  1617,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30410,
+                                                             "name":  "Shadow Grasp",
+                                                             "total":  6505,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  36449,
+                                                             "name":  "Debris",
+                                                             "total":  5808,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  12313,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  3003,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25235,
+                                                              "name":  "Flash Heal",
+                                                              "total":  2511,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_flashheal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  15290,
+                                                              "name":  "Vampiric Embrace",
+                                                              "total":  492,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  30410,
+                                                                    "name":  "Shadow Grasp",
+                                                                    "total":  3003,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Crushingbeer",
+                                                            "total":  2511,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Starfyri",
+                                                            "total":  492,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  13190,
+                        "overkill":  617,
+                        "events":  [
+                                       {
+                                           "timestamp":  2692050,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  14,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Debris",
+                                                           "guid":  36449,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  9,
+                                           "hitType":  1,
+                                           "amount":  5191,
+                                           "unmitigatedAmount":  5808,
+                                           "overkill":  617,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  2687854,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  14,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Grasp",
+                                                           "guid":  30410,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                                       },
+                                           "fight":  9,
+                                           "hitType":  16,
+                                           "amount":  407,
+                                           "mitigated":  405,
+                                           "unmitigatedAmount":  812,
+                                           "resisted":  406,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  2686843,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  14,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Grasp",
+                                                           "guid":  30410,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                                       },
+                                           "fight":  9,
+                                           "hitType":  16,
+                                           "amount":  610,
+                                           "mitigated":  202,
+                                           "unmitigatedAmount":  812,
+                                           "resisted":  203,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Debris",
+                                            "guid":  36449,
+                                            "type":  1,
+                                            "abilityIcon":  "spell_nature_earthquake.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Starfyri",
+                        "id":  4,
+                        "guid":  74290848,
+                        "type":  "Priest",
+                        "icon":  "Priest-Shadow",
+                        "timestamp":  2704505,
+                        "fight":  9,
+                        "damage":  {
+                                       "total":  18597,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  1261,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30410,
+                                                             "name":  "Shadow Grasp",
+                                                             "total":  7820,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  32409,
+                                                             "name":  "Shadow Word: Death",
+                                                             "total":  6241,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_demonicfortitude.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  36449,
+                                                             "name":  "Debris",
+                                                             "total":  4536,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  18597,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  8537,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25235,
+                                                              "name":  "Flash Heal",
+                                                              "total":  2498,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_flashheal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  27237,
+                                                              "name":  "Master Healthstone",
+                                                              "total":  2496,
+                                                              "type":  1,
+                                                              "icon":  "inv_stone_04.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  1621,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34866,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  1430,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  15290,
+                                                              "name":  "Vampiric Embrace",
+                                                              "total":  492,
+                                                              "type":  32,
+                                                              "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  30410,
+                                                                    "name":  "Shadow Grasp",
+                                                                    "total":  5486,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  36449,
+                                                                    "name":  "Debris",
+                                                                    "total":  3051,
+                                                                    "type":  1,
+                                                                    "icon":  "spell_nature_earthquake.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Crushingbeer",
+                                                            "total":  3928,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Starfyri",
+                                                            "total":  2988,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Gheyasf",
+                                                            "total":  1621,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  25375,
+                        "overkill":  739,
+                        "events":  [
+                                       {
+                                           "timestamp":  2704484,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  4,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Word: Death",
+                                                           "guid":  32409,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                                       },
+                                           "fight":  9,
+                                           "hitType":  1,
+                                           "amount":  5502,
+                                           "unmitigatedAmount":  6241,
+                                           "overkill":  739,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  2692053,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  4,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Debris",
+                                                           "guid":  36449,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  9,
+                                           "hitType":  1,
+                                           "amount":  4536,
+                                           "mitigated":  801,
+                                           "unmitigatedAmount":  5337,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  2687113,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  4,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Grasp",
+                                                           "guid":  30410,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                                       },
+                                           "fight":  9,
+                                           "hitType":  1,
+                                           "amount":  920,
+                                           "unmitigatedAmount":  920,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Shadow Word: Death",
+                                            "guid":  32409,
+                                            "type":  32,
+                                            "abilityIcon":  "spell_shadow_demonicfortitude.jpg"
+                                        }
+                    }
+                ]
+}

@@ -1,0 +1,334 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Mkaae",
+                        "id":  22,
+                        "guid":  53357469,
+                        "type":  "Druid",
+                        "icon":  "Druid-Balance",
+                        "timestamp":  2947110,
+                        "fight":  12,
+                        "damage":  {
+                                       "total":  9062,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  3537,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  3860,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30510,
+                                                             "name":  "Shadow Bolt Volley",
+                                                             "total":  3400,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowbolt.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30511,
+                                                             "name":  "Burning Abyssal",
+                                                             "total":  1802,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Hellfire Channeler",
+                                                           "total":  9062,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  760,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  9857,
+                                                              "name":  "Regrowth",
+                                                              "total":  760,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_resistnature.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  30510,
+                                                                    "name":  "Shadow Bolt Volley",
+                                                                    "total":  380,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_shadowbolt.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  30511,
+                                                                    "name":  "Burning Abyssal",
+                                                                    "total":  380,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_fireball02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Luftulven",
+                                                            "total":  760,
+                                                            "type":  "Druid"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  5000,
+                        "overkill":  174,
+                        "events":  [
+                                       {
+                                           "timestamp":  2947072,
+                                           "type":  "damage",
+                                           "sourceID":  90,
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  12,
+                                           "hitType":  1,
+                                           "amount":  3686,
+                                           "mitigated":  2369,
+                                           "unmitigatedAmount":  6229,
+                                           "overkill":  174,
+                                           "isAoE":  false,
+                                           "sourceMarker":  7
+                                       },
+                                       {
+                                           "timestamp":  2946039,
+                                           "type":  "damage",
+                                           "sourceID":  90,
+                                           "sourceInstance":  4,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Burning Abyssal",
+                                                           "guid":  30511,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_fireball02.jpg"
+                                                       },
+                                           "fight":  12,
+                                           "hitType":  1,
+                                           "amount":  1802,
+                                           "unmitigatedAmount":  1802,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       },
+                                       {
+                                           "timestamp":  2944866,
+                                           "type":  "damage",
+                                           "sourceID":  90,
+                                           "sourceInstance":  4,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Bolt Volley",
+                                                           "guid":  30510,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowbolt.jpg"
+                                                       },
+                                           "fight":  12,
+                                           "hitType":  1,
+                                           "amount":  2230,
+                                           "unmitigatedAmount":  2230,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Ritalina",
+                        "id":  13,
+                        "guid":  51325670,
+                        "type":  "Hunter",
+                        "icon":  "Hunter-Survival",
+                        "timestamp":  3126869,
+                        "fight":  12,
+                        "damage":  {
+                                       "total":  49992,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  56180,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30631,
+                                                             "name":  "Debris",
+                                                             "total":  49992,
+                                                             "type":  1,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  49992,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  0,
+                        "overkill":  42685,
+                        "events":  [
+                                       {
+                                           "timestamp":  3126856,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  13,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Debris",
+                                                           "guid":  30631,
+                                                           "type":  1,
+                                                           "abilityIcon":  "trade_engineering.jpg"
+                                                       },
+                                           "fight":  12,
+                                           "hitType":  1,
+                                           "amount":  7307,
+                                           "mitigated":  56180,
+                                           "unmitigatedAmount":  106172,
+                                           "overkill":  42685,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Debris",
+                                            "guid":  30631,
+                                            "type":  1,
+                                            "abilityIcon":  "trade_engineering.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Ordomissae",
+                        "id":  17,
+                        "guid":  57244085,
+                        "type":  "Warlock",
+                        "icon":  "Warlock-Affliction",
+                        "timestamp":  3126870,
+                        "fight":  12,
+                        "damage":  {
+                                       "total":  85748,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  26210,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30631,
+                                                             "name":  "Debris",
+                                                             "total":  85748,
+                                                             "type":  1,
+                                                             "icon":  "trade_engineering.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  85748,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  0,
+                        "overkill":  77318,
+                        "events":  [
+                                       {
+                                           "timestamp":  3126868,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  17,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Debris",
+                                                           "guid":  30631,
+                                                           "type":  1,
+                                                           "abilityIcon":  "trade_engineering.jpg"
+                                                       },
+                                           "fight":  12,
+                                           "hitType":  1,
+                                           "amount":  8430,
+                                           "mitigated":  26210,
+                                           "unmitigatedAmount":  111958,
+                                           "overkill":  77318,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Debris",
+                                            "guid":  30631,
+                                            "type":  1,
+                                            "abilityIcon":  "trade_engineering.jpg"
+                                        }
+                    }
+                ]
+}

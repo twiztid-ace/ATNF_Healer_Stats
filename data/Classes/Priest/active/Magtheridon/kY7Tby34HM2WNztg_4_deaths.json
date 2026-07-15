@@ -1,0 +1,169 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Iolcutie",
+                        "id":  22,
+                        "guid":  85744395,
+                        "type":  "Hunter",
+                        "icon":  "Hunter-BeastMastery",
+                        "timestamp":  1182560,
+                        "fight":  4,
+                        "damage":  {
+                                       "total":  9980,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  36449,
+                                                             "name":  "Debris",
+                                                             "total":  6230,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30757,
+                                                             "name":  "Conflagration",
+                                                             "total":  3750,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_incinerate.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  6230,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Past Self",
+                                                           "total":  3750,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  838,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25222,
+                                                              "name":  "Renew",
+                                                              "total":  838,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_renew.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  30757,
+                                                                    "name":  "Conflagration",
+                                                                    "total":  838,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_incinerate.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Asat",
+                                                            "total":  838,
+                                                            "type":  "Priest"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  4081,
+                        "overkill":  791,
+                        "events":  [
+                                       {
+                                           "timestamp":  1182533,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Debris",
+                                                           "guid":  36449,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  4,
+                                           "hitType":  1,
+                                           "amount":  5439,
+                                           "unmitigatedAmount":  6230,
+                                           "overkill":  791,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  1182450,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Past Self",
+                                                          "id":  60,
+                                                          "guid":  181832,
+                                                          "type":  "NPC",
+                                                          "icon":  "NPC"
+                                                      },
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Conflagration",
+                                                           "guid":  30757,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_incinerate.jpg"
+                                                       },
+                                           "fight":  4,
+                                           "hitType":  1,
+                                           "amount":  750,
+                                           "unmitigatedAmount":  750,
+                                           "isAoE":  true,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  1181447,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Past Self",
+                                                          "id":  60,
+                                                          "guid":  181832,
+                                                          "type":  "NPC",
+                                                          "icon":  "NPC"
+                                                      },
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  22,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Conflagration",
+                                                           "guid":  30757,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_incinerate.jpg"
+                                                       },
+                                           "fight":  4,
+                                           "hitType":  1,
+                                           "amount":  750,
+                                           "unmitigatedAmount":  750,
+                                           "isAoE":  true,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Debris",
+                                            "guid":  36449,
+                                            "type":  1,
+                                            "abilityIcon":  "spell_nature_earthquake.jpg"
+                                        }
+                    }
+                ]
+}

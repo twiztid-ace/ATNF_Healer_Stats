@@ -74,8 +74,12 @@ Write-Host "Running with -MaxThreads $MaxThreads (default 10 - lower this if you
 $token = Get-WclAccessToken
 Write-Host ""
 
-# ===== SSC/TK encounter ID -> boss-file slug (unchanged from v1) =====
+# ===== encounter ID -> boss-file slug. Gruul's Lair/Magtheridon's Lair added
+# 2026-07-15 (a separate, earlier raid tier from SSC/TK, zone 1048 vs. 1056). =====
 $bossSlugs = @{
+    50649 = "maulgar"
+    50650 = "gruul"
+    50651 = "magtheridon"
     100623 = "hydross"
     100624 = "lurker"
     100625 = "leotheras"

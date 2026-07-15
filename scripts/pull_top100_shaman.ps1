@@ -78,9 +78,14 @@ Write-Host "Running with -MaxThreads $MaxThreads (default 10 - lower this if you
 Write-Host "Today: $today"
 Write-Host ""
 
-# boss name -> (rankings filename, SSC/TK encounter ID) - shared across every
-# class, SSC/TK bosses are class-independent (same table as pull_top100_druid.ps1).
+# boss name -> (rankings filename, encounter ID) - shared across every
+# class, bosses are class-independent (same table as pull_top100_druid.ps1).
+# Gruul's Lair/Magtheridon's Lair bosses added 2026-07-15 (a separate, earlier
+# raid tier from SSC/TK, zone 1048 vs. 1056).
 $bosses = [ordered]@{
+    "Maulgar"     = @{ file = "rankings_maulgar.json";     encounterID = 50649 }
+    "Gruul"       = @{ file = "rankings_gruul.json";       encounterID = 50650 }
+    "Magtheridon" = @{ file = "rankings_magtheridon.json"; encounterID = 50651 }
     "Hydross"    = @{ file = "rankings_hydross.json";    encounterID = 100623 }
     "Lurker"     = @{ file = "rankings_lurker.json";     encounterID = 100624 }
     "Leotheras"  = @{ file = "rankings_leotheras.json";  encounterID = 100625 }

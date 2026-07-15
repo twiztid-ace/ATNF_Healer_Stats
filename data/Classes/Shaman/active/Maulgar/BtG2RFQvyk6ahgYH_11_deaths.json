@@ -1,0 +1,962 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Zerath",
+                        "id":  18,
+                        "guid":  43082712,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Fury",
+                        "timestamp":  3271032,
+                        "fight":  11,
+                        "damage":  {
+                                       "total":  13313,
+                                       "totalReduced":  11686,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  952,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  33061,
+                                                             "name":  "Blast Wave",
+                                                             "total":  7311,
+                                                             "totalReduced":  5684,
+                                                             "type":  4,
+                                                             "icon":  "spell_holy_excorcism_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  4754,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  33129,
+                                                             "name":  "Dark Decay",
+                                                             "total":  1248,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowfury.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Krosh Firehand",
+                                                           "total":  7311,
+                                                           "totalReduced":  5684,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Olm the Summoner",
+                                                           "total":  6002,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1843,
+                                        "totalReduced":  216,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  10901,
+                                                              "name":  "Power Word: Shield",
+                                                              "total":  1627,
+                                                              "totalReduced":  0,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_powerwordshield.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  216,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  33061,
+                                                                    "name":  "Blast Wave",
+                                                                    "total":  1627,
+                                                                    "totalReduced":  0,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_holy_excorcism_02.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  33129,
+                                                                    "name":  "Dark Decay",
+                                                                    "total":  216,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_shadowfury.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Drbwrst",
+                                                            "total":  1627,
+                                                            "totalReduced":  0,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Zerath",
+                                                            "total":  216,
+                                                            "type":  "Warrior"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  2388,
+                        "overkill":  646,
+                        "events":  [
+                                       {
+                                           "timestamp":  3271024,
+                                           "type":  "damage",
+                                           "sourceID":  89,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  18,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Dark Decay",
+                                                           "guid":  33129,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowfury.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  35,
+                                           "unmitigatedAmount":  491,
+                                           "overkill":  646,
+                                           "isAoE":  false,
+                                           "tick":  true,
+                                           "sourceMarker":  4
+                                       },
+                                       {
+                                           "timestamp":  3270635,
+                                           "type":  "damage",
+                                           "sourceID":  89,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  18,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  4754,
+                                           "mitigated":  952,
+                                           "unmitigatedAmount":  5706,
+                                           "isAoE":  false,
+                                           "sourceMarker":  4
+                                       },
+                                       {
+                                           "timestamp":  3269022,
+                                           "type":  "damage",
+                                           "sourceID":  89,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  18,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Dark Decay",
+                                                           "guid":  33129,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowfury.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  567,
+                                           "unmitigatedAmount":  491,
+                                           "isAoE":  false,
+                                           "tick":  true,
+                                           "sourceMarker":  4
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Dark Decay",
+                                            "guid":  33129,
+                                            "type":  32,
+                                            "abilityIcon":  "spell_shadow_shadowfury.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Nébubulle",
+                        "id":  1,
+                        "guid":  53860619,
+                        "type":  "Paladin",
+                        "icon":  "Paladin-Justicar",
+                        "timestamp":  3271491,
+                        "fight":  11,
+                        "damage":  {
+                                       "total":  16501,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  15590,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  39144,
+                                                             "name":  "Arcing Smash",
+                                                             "total":  8607,
+                                                             "type":  1,
+                                                             "icon":  "ability_warrior_cleave.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  33061,
+                                                             "name":  "Blast Wave",
+                                                             "total":  6461,
+                                                             "type":  4,
+                                                             "icon":  "spell_holy_excorcism_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  1433,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "High King Maulgar",
+                                                           "total":  8607,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Krosh Firehand",
+                                                           "total":  6461,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Wild Fel Stalker",
+                                                           "total":  1433,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  2863,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25235,
+                                                              "name":  "Flash Heal",
+                                                              "total":  2020,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_flashheal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  379,
+                                                              "name":  "Earth Shield",
+                                                              "total":  843,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_skinofearth.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  33061,
+                                                                    "name":  "Blast Wave",
+                                                                    "total":  2863,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_holy_excorcism_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Drbwrst",
+                                                            "total":  2020,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Chickenløver",
+                                                            "total":  843,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  2832,
+                        "overkill":  331,
+                        "events":  [
+                                       {
+                                           "timestamp":  3271466,
+                                           "type":  "damage",
+                                           "sourceID":  88,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  1,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Arcing Smash",
+                                                           "guid":  39144,
+                                                           "type":  1,
+                                                           "abilityIcon":  "ability_warrior_cleave.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  8276,
+                                           "mitigated":  12808,
+                                           "unmitigatedAmount":  21415,
+                                           "overkill":  331,
+                                           "isAoE":  true,
+                                           "sourceMarker":  8
+                                       },
+                                       {
+                                           "timestamp":  3270635,
+                                           "type":  "damage",
+                                           "sourceID":  93,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  1,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  774,
+                                           "mitigated":  1231,
+                                           "unmitigatedAmount":  2005,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  3268638,
+                                           "type":  "damage",
+                                           "sourceID":  91,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  1,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Blast Wave",
+                                                           "guid":  33061,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  6461,
+                                           "mitigated":  493,
+                                           "unmitigatedAmount":  6954,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Arcing Smash",
+                                            "guid":  39144,
+                                            "type":  1,
+                                            "abilityIcon":  "ability_warrior_cleave.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Cyfer",
+                        "id":  24,
+                        "guid":  42803247,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Arms",
+                        "timestamp":  3276741,
+                        "fight":  11,
+                        "damage":  {
+                                       "total":  25226,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  5783,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  33061,
+                                                             "name":  "Blast Wave",
+                                                             "total":  14830,
+                                                             "type":  4,
+                                                             "icon":  "spell_holy_excorcism_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  9821,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  33129,
+                                                             "name":  "Dark Decay",
+                                                             "total":  575,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowfury.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Krosh Firehand",
+                                                           "total":  14830,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Olm the Summoner",
+                                                           "total":  10396,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  11143,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  11143,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  33061,
+                                                                    "name":  "Blast Wave",
+                                                                    "total":  6699,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_holy_excorcism_02.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  1,
+                                                                    "name":  "Melee",
+                                                                    "total":  4444,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Meulon",
+                                                            "total":  10359,
+                                                            "type":  "Shaman"
+                                                        },
+                                                        {
+                                                            "name":  "Chickenløver",
+                                                            "total":  784,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  8080,
+                        "overkill":  2938,
+                        "events":  [
+                                       {
+                                           "timestamp":  3276718,
+                                           "type":  "damage",
+                                           "sourceID":  91,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  24,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Blast Wave",
+                                                           "guid":  33061,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  4816,
+                                           "unmitigatedAmount":  6713,
+                                           "overkill":  2938,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       },
+                                       {
+                                           "timestamp":  3276639,
+                                           "type":  "damage",
+                                           "sourceID":  89,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  24,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  3136,
+                                           "mitigated":  1848,
+                                           "unmitigatedAmount":  4984,
+                                           "isAoE":  false,
+                                           "sourceMarker":  4
+                                       },
+                                       {
+                                           "timestamp":  3275485,
+                                           "type":  "damage",
+                                           "sourceID":  89,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  24,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Dark Decay",
+                                                           "guid":  33129,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowfury.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  575,
+                                           "unmitigatedAmount":  497,
+                                           "isAoE":  false,
+                                           "tick":  true,
+                                           "sourceMarker":  4
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Blast Wave",
+                                            "guid":  33061,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Erbog",
+                        "id":  78,
+                        "guid":  54051090,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Elemental",
+                        "timestamp":  3284841,
+                        "fight":  11,
+                        "damage":  {
+                                       "total":  13109,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  33061,
+                                                             "name":  "Blast Wave",
+                                                             "total":  13109,
+                                                             "type":  4,
+                                                             "icon":  "spell_holy_excorcism_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Krosh Firehand",
+                                                           "total":  13109,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1621,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  1621,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  33061,
+                                                                    "name":  "Blast Wave",
+                                                                    "total":  1621,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_holy_excorcism_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Chickenløver",
+                                                            "total":  1621,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  8084,
+                        "overkill":  2559,
+                        "events":  [
+                                       {
+                                           "timestamp":  3284818,
+                                           "type":  "damage",
+                                           "sourceID":  91,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  78,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Blast Wave",
+                                                           "guid":  33061,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  3924,
+                                           "unmitigatedAmount":  6483,
+                                           "overkill":  2559,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       },
+                                       {
+                                           "timestamp":  3276734,
+                                           "type":  "damage",
+                                           "sourceID":  91,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  78,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Blast Wave",
+                                                           "guid":  33061,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  6626,
+                                           "unmitigatedAmount":  6626,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Blast Wave",
+                                            "guid":  33061,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Ôxmô",
+                        "id":  7,
+                        "guid":  54367170,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Enhancement",
+                        "timestamp":  3290914,
+                        "fight":  11,
+                        "damage":  {
+                                       "total":  11552,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  2010,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  33061,
+                                                             "name":  "Blast Wave",
+                                                             "total":  11552,
+                                                             "type":  4,
+                                                             "icon":  "spell_holy_excorcism_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Krosh Firehand",
+                                                           "total":  11552,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  927,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  927,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  33061,
+                                                                    "name":  "Blast Wave",
+                                                                    "total":  927,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_holy_excorcism_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Meulon",
+                                                            "total":  927,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  6071,
+                        "overkill":  1566,
+                        "events":  [
+                                       {
+                                           "timestamp":  3290887,
+                                           "type":  "damage",
+                                           "sourceID":  91,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  7,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Blast Wave",
+                                                           "guid":  33061,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  5296,
+                                           "unmitigatedAmount":  6862,
+                                           "overkill":  1566,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       },
+                                       {
+                                           "timestamp":  3284816,
+                                           "type":  "damage",
+                                           "sourceID":  91,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  7,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Blast Wave",
+                                                           "guid":  33061,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  4690,
+                                           "mitigated":  2010,
+                                           "unmitigatedAmount":  6700,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Blast Wave",
+                                            "guid":  33061,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Azradrood",
+                        "id":  6,
+                        "guid":  48930508,
+                        "type":  "Druid",
+                        "icon":  "Druid-Guardian",
+                        "timestamp":  3290915,
+                        "fight":  11,
+                        "damage":  {
+                                       "total":  26596,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  37208,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  15500,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  33061,
+                                                             "name":  "Blast Wave",
+                                                             "total":  6613,
+                                                             "type":  4,
+                                                             "icon":  "spell_holy_excorcism_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  28168,
+                                                             "name":  "Arcing Smash",
+                                                             "total":  2515,
+                                                             "type":  1,
+                                                             "icon":  "ability_warrior_cleave.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  33129,
+                                                             "name":  "Dark Decay",
+                                                             "total":  1968,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowfury.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "High King Maulgar",
+                                                           "total":  15461,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Krosh Firehand",
+                                                           "total":  6613,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Olm the Summoner",
+                                                           "total":  4522,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  10124,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  5213,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25235,
+                                                              "name":  "Flash Heal",
+                                                              "total":  3835,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_flashheal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  644,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  26980,
+                                                              "name":  "Regrowth",
+                                                              "total":  432,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_resistnature.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  1,
+                                                                    "name":  "Melee",
+                                                                    "total":  10124,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Meulon",
+                                                            "total":  5213,
+                                                            "type":  "Shaman"
+                                                        },
+                                                        {
+                                                            "name":  "Drbwrst",
+                                                            "total":  3835,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Azradrood",
+                                                            "total":  644,
+                                                            "type":  "Druid"
+                                                        },
+                                                        {
+                                                            "name":  "Frekii",
+                                                            "total":  432,
+                                                            "type":  "Druid"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  3929,
+                        "overkill":  382,
+                        "events":  [
+                                       {
+                                           "timestamp":  3290894,
+                                           "type":  "damage",
+                                           "sourceID":  88,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  6,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Arcing Smash",
+                                                           "guid":  28168,
+                                                           "type":  1,
+                                                           "abilityIcon":  "ability_warrior_cleave.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  2133,
+                                           "mitigated":  5764,
+                                           "unmitigatedAmount":  8279,
+                                           "overkill":  382,
+                                           "isAoE":  true,
+                                           "sourceMarker":  8
+                                       },
+                                       {
+                                           "timestamp":  3290889,
+                                           "type":  "damage",
+                                           "sourceID":  91,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  6,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Blast Wave",
+                                                           "guid":  33061,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_holy_excorcism_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  6613,
+                                           "unmitigatedAmount":  6613,
+                                           "isAoE":  true,
+                                           "sourceMarker":  6
+                                       },
+                                       {
+                                           "timestamp":  3290274,
+                                           "type":  "damage",
+                                           "sourceID":  88,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  6,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  11,
+                                           "hitType":  1,
+                                           "amount":  2239,
+                                           "mitigated":  5131,
+                                           "unmitigatedAmount":  7370,
+                                           "isAoE":  false,
+                                           "sourceMarker":  8
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Arcing Smash",
+                                            "guid":  28168,
+                                            "type":  1,
+                                            "abilityIcon":  "ability_warrior_cleave.jpg"
+                                        }
+                    }
+                ]
+}

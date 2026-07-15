@@ -266,8 +266,13 @@ if ($usingActiveModel) {
 }
 Write-Host ""
 
-# boss folder name -> (rankings filename, display name) - matches pull_top100_druid.ps1
+# boss folder name -> (rankings filename, display name) - matches pull_top100_druid.ps1.
+# Gruul's Lair/Magtheridon's Lair bosses added 2026-07-15 (a separate, earlier
+# raid tier from SSC/TK, zone 1048 vs. 1056).
 $bosses = [ordered]@{
+    "Maulgar"     = @{ file = "rankings_maulgar.json";     display = "High King Maulgar" }
+    "Gruul"       = @{ file = "rankings_gruul.json";       display = "Gruul the Dragonkiller" }
+    "Magtheridon" = @{ file = "rankings_magtheridon.json"; display = "Magtheridon" }
     "Hydross"    = @{ file = "rankings_hydross.json";    display = "Hydross the Unstable" }
     "Lurker"     = @{ file = "rankings_lurker.json";     display = "The Lurker Below" }
     "Leotheras"  = @{ file = "rankings_leotheras.json";  display = "Leotheras the Blind" }

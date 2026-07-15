@@ -1,0 +1,487 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Cryptenhance",
+                        "id":  16,
+                        "guid":  74218499,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Enhancement",
+                        "timestamp":  2000541,
+                        "fight":  6,
+                        "damage":  {
+                                       "total":  13716,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  808,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30410,
+                                                             "name":  "Shadow Grasp",
+                                                             "total":  7304,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  36449,
+                                                             "name":  "Debris",
+                                                             "total":  6412,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  13716,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  4289,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  25235,
+                                                              "name":  "Flash Heal",
+                                                              "total":  4174,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_flashheal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  27163,
+                                                              "name":  "Judgement of Light",
+                                                              "total":  115,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_healingaura.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  30410,
+                                                                    "name":  "Shadow Grasp",
+                                                                    "total":  4289,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Basedtakes",
+                                                            "total":  4174,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Cryptenhance",
+                                                            "total":  115,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  12608,
+                        "overkill":  208,
+                        "events":  [
+                                       {
+                                           "timestamp":  2000501,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  16,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Debris",
+                                                           "guid":  36449,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  6,
+                                           "hitType":  1,
+                                           "amount":  6204,
+                                           "unmitigatedAmount":  6412,
+                                           "overkill":  208,
+                                           "isAoE":  true
+                                       },
+                                       {
+                                           "timestamp":  1996902,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  16,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Grasp",
+                                                           "guid":  30410,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                                       },
+                                           "fight":  6,
+                                           "hitType":  16,
+                                           "amount":  609,
+                                           "mitigated":  202,
+                                           "unmitigatedAmount":  811,
+                                           "resisted":  203,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  1995900,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  16,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Grasp",
+                                                           "guid":  30410,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                                       },
+                                           "fight":  6,
+                                           "hitType":  1,
+                                           "amount":  812,
+                                           "unmitigatedAmount":  812,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Debris",
+                                            "guid":  36449,
+                                            "type":  1,
+                                            "abilityIcon":  "spell_nature_earthquake.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Lavoz",
+                        "id":  1,
+                        "guid":  72308380,
+                        "type":  "Druid",
+                        "icon":  "Druid-Guardian",
+                        "timestamp":  2003718,
+                        "fight":  6,
+                        "damage":  {
+                                       "total":  19554,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  23823,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  12902,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  36449,
+                                                             "name":  "Debris",
+                                                             "total":  6652,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Magtheridon",
+                                                           "total":  12902,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  6652,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  115,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  27163,
+                                                              "name":  "Judgement of Light",
+                                                              "total":  115,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_healingaura.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  1,
+                                                                    "name":  "Melee",
+                                                                    "total":  115,
+                                                                    "type":  1,
+                                                                    "icon":  "inv_axe_02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Lavoz",
+                                                            "total":  115,
+                                                            "type":  "Druid"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  3205,
+                        "overkill":  4850,
+                        "events":  [
+                                       {
+                                           "timestamp":  2003707,
+                                           "type":  "damage",
+                                           "sourceID":  52,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  1,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  6,
+                                           "hitType":  15,
+                                           "amount":  1326,
+                                           "mitigated":  12371,
+                                           "unmitigatedAmount":  18547,
+                                           "overkill":  4850,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  2001698,
+                                           "type":  "damage",
+                                           "sourceID":  52,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  1,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  6,
+                                           "hitType":  1,
+                                           "amount":  6726,
+                                           "mitigated":  11452,
+                                           "unmitigatedAmount":  18178,
+                                           "isAoE":  false
+                                       },
+                                       {
+                                           "timestamp":  2000502,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  1,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Debris",
+                                                           "guid":  36449,
+                                                           "type":  1,
+                                                           "abilityIcon":  "spell_nature_earthquake.jpg"
+                                                       },
+                                           "fight":  6,
+                                           "hitType":  1,
+                                           "amount":  6652,
+                                           "unmitigatedAmount":  6652,
+                                           "isAoE":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Mclovn",
+                        "id":  31,
+                        "guid":  54260440,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Fury",
+                        "timestamp":  2005410,
+                        "fight":  6,
+                        "damage":  {
+                                       "total":  19852,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  775,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  19852,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Magtheridon",
+                                                           "total":  19852,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  0,
+                        "overkill":  16515,
+                        "events":  [
+                                       {
+                                           "timestamp":  2005400,
+                                           "type":  "damage",
+                                           "sourceID":  52,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  31,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  6,
+                                           "hitType":  15,
+                                           "amount":  3337,
+                                           "mitigated":  775,
+                                           "unmitigatedAmount":  20627,
+                                           "overkill":  16515,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Dashwar",
+                        "id":  27,
+                        "guid":  74031956,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Fury",
+                        "timestamp":  2006711,
+                        "fight":  6,
+                        "damage":  {
+                                       "total":  12152,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  6110,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  12152,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Magtheridon",
+                                                           "total":  12152,
+                                                           "type":  "Boss"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  0,
+                        "overkill":  9144,
+                        "events":  [
+                                       {
+                                           "timestamp":  2006689,
+                                           "type":  "damage",
+                                           "sourceID":  52,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  27,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  6,
+                                           "hitType":  1,
+                                           "amount":  3008,
+                                           "mitigated":  6110,
+                                           "unmitigatedAmount":  18262,
+                                           "overkill":  9144,
+                                           "isAoE":  false
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    }
+                ]
+}

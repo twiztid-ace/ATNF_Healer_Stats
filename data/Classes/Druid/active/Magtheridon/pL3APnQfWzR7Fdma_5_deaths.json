@@ -1,0 +1,851 @@
+{
+    "entries":  [
+                    {
+                        "name":  "Showpup",
+                        "id":  8,
+                        "guid":  57724083,
+                        "type":  "Mage",
+                        "icon":  "Mage-Arcane",
+                        "timestamp":  1818855,
+                        "fight":  5,
+                        "damage":  {
+                                       "total":  8346,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  968,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  6506,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30510,
+                                                             "name":  "Shadow Bolt Volley",
+                                                             "total":  1840,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowbolt.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Hellfire Channeler",
+                                                           "total":  8346,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  389,
+                        "overkill":  143,
+                        "events":  [
+                                       {
+                                           "timestamp":  1818839,
+                                           "type":  "damage",
+                                           "sourceID":  45,
+                                           "sourceInstance":  5,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  6363,
+                                           "mitigated":  968,
+                                           "unmitigatedAmount":  7474,
+                                           "overkill":  143,
+                                           "isAoE":  false,
+                                           "sourceMarker":  4
+                                       },
+                                       {
+                                           "timestamp":  1818450,
+                                           "type":  "damage",
+                                           "sourceID":  45,
+                                           "sourceInstance":  4,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Bolt Volley",
+                                                           "guid":  30510,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowbolt.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  1840,
+                                           "unmitigatedAmount":  1840,
+                                           "isAoE":  true,
+                                           "sourceMarker":  2
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Plexitip",
+                        "id":  7,
+                        "guid":  55573412,
+                        "type":  "Warrior",
+                        "icon":  "Warrior-Fury",
+                        "timestamp":  1828248,
+                        "fight":  5,
+                        "damage":  {
+                                       "total":  16254,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  415,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  6924,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30510,
+                                                             "name":  "Shadow Bolt Volley",
+                                                             "total":  5071,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowbolt.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30511,
+                                                             "name":  "Burning Abyssal",
+                                                             "total":  4259,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_fireball02.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Hellfire Channeler",
+                                                           "total":  16254,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  4420,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  33110,
+                                                              "name":  "Prayer of Mending",
+                                                              "total":  1872,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_prayerofmendingtga.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34866,
+                                                              "name":  "Circle of Healing",
+                                                              "total":  982,
+                                                              "type":  2,
+                                                              "icon":  "spell_holy_circleofrenewal.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  25423,
+                                                              "name":  "Chain Heal",
+                                                              "total":  911,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_healingwavegreater.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  34299,
+                                                              "name":  "Leader of the Pack",
+                                                              "total":  445,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_unyeildingstamina.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  30340,
+                                                              "name":  "Bloodthirst",
+                                                              "total":  210,
+                                                              "type":  1,
+                                                              "icon":  "spell_nature_bloodlust.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  30510,
+                                                                    "name":  "Shadow Bolt Volley",
+                                                                    "total":  2527,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_shadowbolt.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  30511,
+                                                                    "name":  "Burning Abyssal",
+                                                                    "total":  1893,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_fireball02.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Cordochop",
+                                                            "total":  2854,
+                                                            "type":  "Priest"
+                                                        },
+                                                        {
+                                                            "name":  "Zulshamjin",
+                                                            "total":  911,
+                                                            "type":  "Shaman"
+                                                        },
+                                                        {
+                                                            "name":  "Plexitip",
+                                                            "total":  655,
+                                                            "type":  "Warrior"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  11391,
+                        "overkill":  665,
+                        "events":  [
+                                       {
+                                           "timestamp":  1828225,
+                                           "type":  "damage",
+                                           "sourceID":  45,
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  7,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  15,
+                                           "amount":  6259,
+                                           "mitigated":  415,
+                                           "unmitigatedAmount":  7339,
+                                           "overkill":  665,
+                                           "isAoE":  false,
+                                           "sourceMarker":  7
+                                       },
+                                       {
+                                           "timestamp":  1826315,
+                                           "type":  "damage",
+                                           "sourceID":  45,
+                                           "sourceInstance":  2,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  7,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Bolt Volley",
+                                                           "guid":  30510,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_shadowbolt.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  2465,
+                                           "unmitigatedAmount":  2240,
+                                           "isAoE":  true,
+                                           "sourceMarker":  7
+                                       },
+                                       {
+                                           "timestamp":  1824923,
+                                           "type":  "damage",
+                                           "sourceID":  45,
+                                           "sourceInstance":  5,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  7,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Burning Abyssal",
+                                                           "guid":  30511,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_fireball02.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  2204,
+                                           "unmitigatedAmount":  2004,
+                                           "isAoE":  true,
+                                           "sourceMarker":  4
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Melee",
+                                            "guid":  1,
+                                            "type":  1,
+                                            "abilityIcon":  "inv_axe_02.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Chuckyreapie",
+                        "id":  18,
+                        "guid":  78264210,
+                        "type":  "Druid",
+                        "icon":  "Druid-Balance",
+                        "timestamp":  1898331,
+                        "fight":  5,
+                        "damage":  {
+                                       "total":  17770,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  975,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30410,
+                                                             "name":  "Shadow Grasp",
+                                                             "total":  7400,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30757,
+                                                             "name":  "Conflagration",
+                                                             "total":  5625,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_incinerate.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30510,
+                                                             "name":  "Shadow Bolt Volley",
+                                                             "total":  4745,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_shadowbolt.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  7400,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Past Self",
+                                                           "total":  5625,
+                                                           "type":  "NPC"
+                                                       },
+                                                       {
+                                                           "name":  "Hellfire Channeler",
+                                                           "total":  4745,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  9781,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  33763,
+                                                              "name":  "Lifebloom",
+                                                              "total":  4102,
+                                                              "type":  8,
+                                                              "icon":  "inv_misc_herb_felblossom.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  33778,
+                                                              "name":  "Lifebloom",
+                                                              "total":  3234,
+                                                              "type":  8,
+                                                              "icon":  "inv_misc_herb_felblossom.jpg"
+                                                          },
+                                                          {
+                                                              "guid":  8005,
+                                                              "name":  "Healing Wave",
+                                                              "total":  2445,
+                                                              "type":  8,
+                                                              "icon":  "spell_nature_magicimmunity.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+                                                                {
+                                                                    "guid":  30510,
+                                                                    "name":  "Shadow Bolt Volley",
+                                                                    "total":  3926,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_shadowbolt.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  30410,
+                                                                    "name":  "Shadow Grasp",
+                                                                    "total":  3605,
+                                                                    "type":  32,
+                                                                    "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                                },
+                                                                {
+                                                                    "guid":  30757,
+                                                                    "name":  "Conflagration",
+                                                                    "total":  2250,
+                                                                    "type":  4,
+                                                                    "icon":  "spell_fire_incinerate.jpg"
+                                                                }
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Phyxious",
+                                                            "total":  7336,
+                                                            "type":  "Druid"
+                                                        },
+                                                        {
+                                                            "name":  "Xezz",
+                                                            "total":  2445,
+                                                            "type":  "Shaman"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  46900,
+                        "overkill":  46,
+                        "events":  [
+                                       {
+                                           "timestamp":  1898330,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Past Self",
+                                                          "id":  58,
+                                                          "guid":  181832,
+                                                          "type":  "NPC",
+                                                          "icon":  "custom-icon-spell_fire_incinerate.jpg"
+                                                      },
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  18,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Conflagration",
+                                                           "guid":  30757,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_incinerate.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  704,
+                                           "unmitigatedAmount":  750,
+                                           "overkill":  46,
+                                           "isAoE":  true,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  1897582,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  18,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Grasp",
+                                                           "guid":  30410,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  16,
+                                           "amount":  600,
+                                           "mitigated":  200,
+                                           "unmitigatedAmount":  800,
+                                           "resisted":  200,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  1897097,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Past Self",
+                                                          "id":  58,
+                                                          "guid":  181832,
+                                                          "type":  "NPC",
+                                                          "icon":  "custom-icon-spell_fire_incinerate.jpg"
+                                                      },
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  18,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Conflagration",
+                                                           "guid":  30757,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_incinerate.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  750,
+                                           "unmitigatedAmount":  750,
+                                           "isAoE":  true,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Conflagration",
+                                            "guid":  30757,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_incinerate.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Zulshamjin",
+                        "id":  23,
+                        "guid":  70321060,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Restoration",
+                        "timestamp":  1983778,
+                        "fight":  5,
+                        "damage":  {
+                                       "total":  9725,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  1125,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  30410,
+                                                             "name":  "Shadow Grasp",
+                                                             "total":  5000,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30757,
+                                                             "name":  "Conflagration",
+                                                             "total":  4725,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_incinerate.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  5000,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Past Self",
+                                                           "total":  4725,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  7810,
+                        "overkill":  776,
+                        "events":  [
+                                       {
+                                           "timestamp":  1983760,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  23,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Grasp",
+                                                           "guid":  30410,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  24,
+                                           "unmitigatedAmount":  800,
+                                           "overkill":  776,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  1983247,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Past Self",
+                                                          "id":  58,
+                                                          "guid":  181832,
+                                                          "type":  "NPC",
+                                                          "icon":  "custom-icon-spell_fire_incinerate.jpg"
+                                                      },
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  23,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Conflagration",
+                                                           "guid":  30757,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_incinerate.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  675,
+                                           "mitigated":  75,
+                                           "unmitigatedAmount":  750,
+                                           "isAoE":  true,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  1982757,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  23,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Grasp",
+                                                           "guid":  30410,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  800,
+                                           "unmitigatedAmount":  800,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Shadow Grasp",
+                                            "guid":  30410,
+                                            "type":  32,
+                                            "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                        }
+                    },
+                    {
+                        "name":  "Showpup",
+                        "id":  8,
+                        "guid":  57724083,
+                        "type":  "Mage",
+                        "icon":  "Mage-Arcane",
+                        "timestamp":  1994013,
+                        "fight":  5,
+                        "damage":  {
+                                       "total":  8017,
+                                       "totalReduced":  6586,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  36449,
+                                                             "name":  "Debris",
+                                                             "total":  5701,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30757,
+                                                             "name":  "Conflagration",
+                                                             "total":  1495,
+                                                             "totalReduced":  64,
+                                                             "type":  4,
+                                                             "icon":  "spell_fire_incinerate.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  30410,
+                                                             "name":  "Shadow Grasp",
+                                                             "total":  821,
+                                                             "type":  32,
+                                                             "icon":  "spell_shadow_unsummonbuilding.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "Environment",
+                                                           "total":  6522,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Past Self",
+                                                           "total":  1495,
+                                                           "totalReduced":  64,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  1431,
+                                        "totalReduced":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+                                                          {
+                                                              "guid":  27128,
+                                                              "name":  "Fire Ward",
+                                                              "total":  1431,
+                                                              "totalReduced":  0,
+                                                              "type":  4,
+                                                              "icon":  "spell_fire_firearmor.jpg"
+                                                          }
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+                                                        {
+                                                            "name":  "Showpup",
+                                                            "total":  1431,
+                                                            "totalReduced":  0,
+                                                            "type":  "Mage"
+                                                        }
+                                                    ]
+                                    },
+                        "deathWindow":  4823,
+                        "overkill":  33,
+                        "events":  [
+                                       {
+                                           "timestamp":  1993993,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Past Self",
+                                                          "id":  58,
+                                                          "guid":  181832,
+                                                          "type":  "NPC",
+                                                          "icon":  "custom-icon-spell_fire_incinerate.jpg"
+                                                      },
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Conflagration",
+                                                           "guid":  30757,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_incinerate.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  31,
+                                           "unmitigatedAmount":  747,
+                                           "overkill":  33,
+                                           "absorbed":  683,
+                                           "isAoE":  true,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  1993495,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Environment",
+                                                          "id":  -1,
+                                                          "guid":  0,
+                                                          "type":  "Boss",
+                                                          "icon":  "Boss"
+                                                      },
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Shadow Grasp",
+                                                           "guid":  30410,
+                                                           "type":  32,
+                                                           "abilityIcon":  "spell_shadow_unsummonbuilding.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  821,
+                                           "unmitigatedAmount":  821,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       },
+                                       {
+                                           "timestamp":  1992994,
+                                           "type":  "damage",
+                                           "source":  {
+                                                          "name":  "Past Self",
+                                                          "id":  58,
+                                                          "guid":  181832,
+                                                          "type":  "NPC",
+                                                          "icon":  "custom-icon-spell_fire_incinerate.jpg"
+                                                      },
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  8,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Conflagration",
+                                                           "guid":  30757,
+                                                           "type":  4,
+                                                           "abilityIcon":  "spell_fire_incinerate.jpg"
+                                                       },
+                                           "fight":  5,
+                                           "hitType":  1,
+                                           "amount":  0,
+                                           "unmitigatedAmount":  748,
+                                           "absorbed":  748,
+                                           "isAoE":  false,
+                                           "tick":  true
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Conflagration",
+                                            "guid":  30757,
+                                            "type":  4,
+                                            "abilityIcon":  "spell_fire_incinerate.jpg"
+                                        }
+                    }
+                ]
+}
