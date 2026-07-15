@@ -645,10 +645,15 @@ $workerScript = {
                 # already has every OTHER real player's own total healing + real
                 # spec icon (e.g. "Druid-Restoration") for this exact fight - was
                 # being discarded entirely before this, keeping only the audited
-                # character's own row. Filtered to the 4 tracked healer specs
+                # character's own row. Filtered to the 6 tracked healer specs
                 # (same population as the ilvl-rank feature) by icon, since this
                 # table has no separate class/spec fields the way rankings() does.
-                $trackedHealerIcons = @("Druid-Restoration", "Shaman-Restoration", "Priest-Holy", "Paladin-Holy")
+                # Druid-Dreamstate/Priest-Discipline icon strings follow the same
+                # "{Class}-{Spec}" pattern confirmed live for Restoration/Holy on
+                # this exact endpoint, but haven't themselves been seen live on a
+                # real Dreamstate Druid or Discipline Priest row yet - verify
+                # against a real pull before trusting this filter's completeness.
+                $trackedHealerIcons = @("Druid-Restoration", "Druid-Dreamstate", "Shaman-Restoration", "Priest-Holy", "Priest-Discipline", "Paladin-Holy")
                 $sameRaidHealersRaw = @($allEntries | Where-Object { $trackedHealerIcons -contains $_.icon } | ForEach-Object {
                     [PSCustomObject]@{ Name = $_.name; Total = $_.total; ItemLevel = $_.itemLevel; Icon = $_.icon }
                 })

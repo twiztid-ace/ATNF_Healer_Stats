@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Raid Audit — Danceswtrees — Gruul / SSC / TK — July 15, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+ 
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+ 
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+ 
+  .page{
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+ 
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+ 
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
+  .section-num{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--copper); }
+  .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
+  .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
+ 
+  /* ===== Consistency banner ===== */
+  .consistency-banner{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: rgba(95,122,82,0.12);
+    border: 1px solid rgba(95,122,82,0.35);
+    border-radius: 3px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+  }
+  .consistency-icon{
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--moss); color: var(--parchment);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 700; font-size: 14px; flex-shrink:0;
+  }
+  .consistency-text{ font-size: 13px; }
+  .consistency-text strong{ font-family:'IBM Plex Mono', monospace; }
+ 
+  /* ===== Checklist ===== */
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    grid-auto-rows: auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px; border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px; font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-icon.note{ background: var(--gold); color: var(--ink); }
+  /* check-note is a short DATA TAG (item id, enchant id, a number) - not a sentence.
+     It's narrow, right-aligned, small monospace, sitting in a fixed `auto`-width grid
+     column next to a flexible label - real prose put here wraps ragged-left in tiny
+     monospace type and squeezes the label column. If a finding needs more than ~4-5
+     words of explanation, that explanation belongs in check-detail (below) or the
+     section's closing coverage-note, never crammed into this column. */
+  .check-note{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: rgba(19,42,44,0.55); text-align:right; white-space:nowrap; }
+  /* Optional 4th line for a check-item that genuinely needs a real explanation (e.g.
+     "why this deviation isn't a bug") - spans under the label+tag columns, left-
+     aligned, wraps normally. Add ONLY when the one-line label truly isn't enough;
+     most check-items don't need this. Don't duplicate the same explanation again in
+     the section's coverage-note below - say it once, in whichever of the two spots
+     fits its length. */
+  .check-detail{ grid-column: 2 / 4; font-size: 12px; color: rgba(19,42,44,0.6); line-height: 1.45; margin-top: 2px; }
+ 
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+ 
+  /* ===== Boss table ===== */
+  .boss-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .boss-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  /* Native title="" tooltip on a header whose meaning isn't obvious from the
+     label alone - dotted underline + help cursor is the only hint needed,
+     consistent with this being a plain static site (no JS, no custom
+     tooltip widget). */
+  .th-help{ cursor: help; border-bottom-style: dotted; text-decoration: underline dotted; text-underline-offset: 3px; }
+  .boss-table td{
+    padding: 12px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .boss-table tr:last-child td{ border-bottom:none; }
+  .boss-name{ font-weight: 600; }
+  .boss-name a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper); }
+  .boss-name a:hover{ color: var(--copper); }
+  .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-pill{
+    display:inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    background: var(--parchment-dim);
+  }
+  .pctl-pill.has-data{ background: rgba(201,122,61,0.15); color: var(--ink); font-weight:600; }
+  .pctl-pill.pending{ color: rgba(19,42,44,0.4); font-style: italic; font-weight:400; }
+  .overheal-cell.high{ color: var(--rust); font-weight:600; }
+  .link-arrow{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--copper); }
+ 
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+ 
+<div class="page">
+ 
+  
+  <div class="header">
+    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — Gruul / SSC / TK — July 15, 2026</p>
+    <h1>Danceswtrees</h1>
+    <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>LKbVcNfRxyBkj2mg</span> &nbsp;·&nbsp; 12 bosses killed</p>
+  </div>
+ 
+  
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Gear audit</h2>
+    </div>
+    <p class="section-desc">One audit for the whole raid night — gear was checked against every one of the 12 kills below.</p>
+ 
+    <div class="consistency-banner">
+      <div class="consistency-icon">✓</div>
+      <div class="consistency-text">Loadout is <strong>[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</strong> across all 12 boss kills.</div>
+      
+    </div>
+ 
+    <div class="check-list">
+      
+      
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>18 of 19 real equipment slots filled in the baseline loadout (shirt and tabard are typically the two genuinely empty cosmetic slots, no stat impact)</div>
+        <div class="check-note">avg ilvl 114</div>
+        <div class="check-detail"></div>
+      </div>
+      
+      <div class="check-item">
+        <div class="check-icon note">i</div>
+        <div>8 of 9 enchantable slots carry a permanent enchant</div>
+        <div class="check-note"></div>
+        <div class="check-detail"></div>
+      </div>
+      
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>12 of 12 kills had a complete consumable setup (Flask, or Battle + Guardian Elixir together)</div>
+        <div class="check-note"></div>
+        <div class="check-detail"></div>
+      </div>
+      
+      <div class="check-item">
+        <div class="check-icon bad">✗</div>
+        <div>Back carries no permanent enchant</div>
+        <div class="check-note">item 28765</div>
+        <div class="check-detail"></div>
+      </div>
+      
+      
+    </div>
+
+    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+  </div>
+ 
+  
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Per-boss summary</h2>
+    </div>
+    <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own fight logs. Percentile is only shown where we've pulled the real WCL ranking for that exact pull — click a boss name for the full audit.</p>
+
+    
+    
+    <p class="section-desc">iLvl Healing Rank: across the 12 kill(s) with another tracked-spec healer present, Danceswtrees ranked #1 (by WCL's own HPS Performance Comparison by Item Level) on 3 of them, averaging the 58th percentile by item level across those kills.</p>
+    
+    
+    <p class="section-desc">Raw Healing Rank: across the 12 kill(s) with another tracked-spec healer present, Danceswtrees ranked #1 by real raw total healing done on 4 of them.</p>
+    
+
+    
+ 
+    <table class="boss-table">
+      <thead>
+        <tr>
+          <th>Boss</th>
+          <th style="text-align:right;">HPS</th>
+          <th style="text-align:right;">Overheal</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">iLvl Healing Rank</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">Raw Healing Rank</th>
+          <th style="text-align:right;">WCL Percentile</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_maulgar.html">High King Maulgar</a></td>
+          <td class="num-cell">1274</td>
+          <td class="num-cell overheal-cell high">59.4%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/4</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">86th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_gruul.html">Gruul the Dragonkiller</a></td>
+          <td class="num-cell">650</td>
+          <td class="num-cell">56.7%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">4th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">58th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_hydross.html">Hydross the Unstable</a></td>
+          <td class="num-cell">510</td>
+          <td class="num-cell overheal-cell high">70.5%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">5th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">4th/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">25th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
+          <td class="num-cell">834</td>
+          <td class="num-cell overheal-cell high">61.9%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">5th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">4th/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">67th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_karathress.html">Fathom-Lord Karathress</a></td>
+          <td class="num-cell">1039</td>
+          <td class="num-cell overheal-cell high">53.9%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">53th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_morogrim.html">Morogrim Tidewalker</a></td>
+          <td class="num-cell">935</td>
+          <td class="num-cell overheal-cell high">53.9%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">71th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_lurker.html">The Lurker Below</a></td>
+          <td class="num-cell">710</td>
+          <td class="num-cell overheal-cell high">51.5%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">39th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_vashj.html">Lady Vashj</a></td>
+          <td class="num-cell">610</td>
+          <td class="num-cell overheal-cell high">54.9%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">41th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_alar.html">Al'ar</a></td>
+          <td class="num-cell">736</td>
+          <td class="num-cell">59.8%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">85th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_voidreaver.html">Void Reaver</a></td>
+          <td class="num-cell">1423</td>
+          <td class="num-cell overheal-cell high">36.8%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">4th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">61th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_solarian.html">High Astromancer Solarian</a></td>
+          <td class="num-cell">664</td>
+          <td class="num-cell">56.3%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">2nd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">85th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+        <tr>
+          <td class="boss-name"><a href="healer_audit_kaelthas.html">Kael'thas Sunstrider</a></td>
+          <td class="num-cell">512</td>
+          <td class="num-cell overheal-cell high">72.8%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">2nd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">30th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        
+    </tbody>
+    </table>
+
+    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+  </div>
+ 
+  <div class="footer">
+    <span>All data real: Danceswtrees's fight logs (report LKbVcNfRxyBkj2mg) + WCL rankings where pulled</span>
+  </div>
+ 
+</div>
+ 
+</body>
+</html>
+ 

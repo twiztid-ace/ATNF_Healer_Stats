@@ -428,7 +428,7 @@ foreach ($fight in $bossFights) {
     # retroactively to every already-pulled report - this data was always
     # written to {code}_v2_rankings.json in full, just never read past the
     # audited character's own row.
-    $trackedHealerSpecKeys = @("Druid|Restoration", "Shaman|Restoration", "Priest|Holy", "Paladin|Holy")
+    $trackedHealerSpecKeys = @("Druid|Restoration", "Druid|Dreamstate", "Shaman|Restoration", "Priest|Holy", "Priest|Discipline", "Paladin|Holy")
     $ilvlHealingRankRows = @()
     if ($rankingFight -and $rankingFight.roles.healers.characters) {
         $ilvlHealingRankHealers = @($rankingFight.roles.healers.characters | Where-Object {
@@ -450,7 +450,7 @@ foreach ($fight in $bossFights) {
     $ilvlHealingRankCount = $ilvlHealingRankRows.Count
 
     # ----- Raw Healing Rank (added 2026-07-15) - a second, independent
-    # comparison against the same 4 tracked healer specs in the same raid on
+    # comparison against the same 6 tracked healer specs in the same raid on
     # the same fight, this time ranked by real raw total healing done (the
     # table(dataType: Healing) entry's own "total" field) rather than WCL's
     # ilvl-normalized percentile above. Captured by pull_character_TEMPLATE.ps1
