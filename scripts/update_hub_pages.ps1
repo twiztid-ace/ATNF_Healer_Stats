@@ -270,13 +270,16 @@ if (-not (Test-Path $hubPath)) {
         $hub = $hub.Substring(0, $bounds.ContentStart) + "`r`n      " + $sortedRowsHtml + "`r`n    " + $hub.Substring($bounds.ContentEnd)
 
         if (-not $ResortOnly) {
-            # Bump "N raid night(s) analyzed" - the only piece of existing text
-            # (beyond row order) this script ever rewrites, since every real hub
-            # page's own row count must stay accurate.
+            # Set "N raid night(s) analyzed" to the real, counted number of
+            # <div class="raid-row"> entries in the rewritten list - never a
+            # blind oldCount+1 (found and fixed 2026-07-15: a prior run had left
+            # this text reading "5" while only 3 real rows existed on disk, and
+            # every subsequent insert would have kept incrementing that already-
+            # wrong number forever, same class of staleness bug the project's
+            # own manifest.json design already avoids elsewhere).
+            $newCount = ([regex]::Matches($sortedRowsHtml, 'class="raid-row"')).Count
             $countMatch = [regex]::Match($hub, "(\d+) raid nights? analyzed")
             if ($countMatch.Success) {
-                $oldCount = [int]$countMatch.Groups[1].Value
-                $newCount = $oldCount + 1
                 $newCountText = Get-PluralizedCount -Count $newCount -Singular "raid night analyzed" -Plural "raid nights analyzed"
                 $hub = $hub.Substring(0, $countMatch.Index) + $newCountText + $hub.Substring($countMatch.Index + $countMatch.Length)
             } else {
