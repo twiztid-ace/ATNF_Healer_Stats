@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Raid Audit — Vajomee — ATNF KT Cleanup 07.12.2026</title>
+<title>Raid Audit — Vajomee — ATNF KT Cleanup — July 12, 2026</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
+ 
   :root{
     --ink: #132A2C;
     --ink-2: #1C3A3D;
@@ -17,7 +17,7 @@
     --gold: #D9B25C;
     --line: rgba(19,42,44,0.16);
   }
-
+ 
   *{box-sizing:border-box;}
   body{
     margin:0;
@@ -29,7 +29,7 @@
     font-family:'Inter', sans-serif;
     padding: 48px 24px 80px;
   }
-
+ 
   .page{
     max-width: 920px;
     margin: 0 auto;
@@ -39,7 +39,7 @@
     box-shadow: 0 30px 80px rgba(0,0,0,0.45);
     overflow: hidden;
   }
-
+ 
   .header{
     padding: 40px 48px 32px;
     border-bottom: 1px solid var(--line);
@@ -65,14 +65,15 @@
     margin: 0;
   }
   .subline span{ font-family:'IBM Plex Mono', monospace; }
-
+ 
   .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
   .section:last-child{ border-bottom: none; }
   .section-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
   .section-num{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--copper); }
   .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
   .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
-
+ 
+  /* ===== Consistency banner ===== */
   .consistency-banner{
     display:flex;
     align-items:center;
@@ -91,7 +92,8 @@
   }
   .consistency-text{ font-size: 13px; }
   .consistency-text strong{ font-family:'IBM Plex Mono', monospace; }
-
+ 
+  /* ===== Checklist ===== */
   .check-list{ display:flex; flex-direction:column; }
   .check-item{
     display:grid;
@@ -112,9 +114,21 @@
   .check-icon.ok{ background: var(--moss); color: var(--parchment); }
   .check-icon.bad{ background: var(--rust); color: var(--parchment); }
   .check-icon.note{ background: var(--gold); color: var(--ink); }
+  /* check-note is a short DATA TAG (item id, enchant id, a number) - not a sentence.
+     It's narrow, right-aligned, small monospace, sitting in a fixed `auto`-width grid
+     column next to a flexible label - real prose put here wraps ragged-left in tiny
+     monospace type and squeezes the label column. If a finding needs more than ~4-5
+     words of explanation, that explanation belongs in check-detail (below) or the
+     section's closing coverage-note, never crammed into this column. */
   .check-note{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: rgba(19,42,44,0.55); text-align:right; white-space:nowrap; }
+  /* Optional 4th line for a check-item that genuinely needs a real explanation (e.g.
+     "why this deviation isn't a bug") - spans under the label+tag columns, left-
+     aligned, wraps normally. Add ONLY when the one-line label truly isn't enough;
+     most check-items don't need this. Don't duplicate the same explanation again in
+     the section's coverage-note below - say it once, in whichever of the two spots
+     fits its length. */
   .check-detail{ grid-column: 2 / 4; font-size: 12px; color: rgba(19,42,44,0.6); line-height: 1.45; margin-top: 2px; }
-
+ 
   .coverage-note{
     margin-top: 14px;
     font-size: 12px;
@@ -122,7 +136,8 @@
     border-left: 3px solid var(--gold);
     padding-left: 12px;
   }
-
+ 
+  /* ===== Boss table ===== */
   .boss-table{ width:100%; border-collapse: collapse; font-size: 13px; }
   .boss-table th{
     text-align:left;
@@ -153,9 +168,10 @@
     background: var(--parchment-dim);
   }
   .pctl-pill.has-data{ background: rgba(201,122,61,0.15); color: var(--ink); font-weight:600; }
+  .pctl-pill.pending{ color: rgba(19,42,44,0.4); font-style: italic; font-weight:400; }
   .overheal-cell.high{ color: var(--rust); font-weight:600; }
   .link-arrow{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--copper); }
-
+ 
   .footer{
     padding: 24px 48px 32px;
     font-family:'IBM Plex Mono', monospace;
@@ -167,65 +183,90 @@
 </style>
 </head>
 <body>
-
+ 
 <div class="page">
-
+ 
+  
   <div class="header">
-    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — ATNF KT Cleanup — 07.12.2026</p>
+    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — ATNF KT Cleanup — July 12, 2026</p>
     <h1>Vajomee</h1>
-    <p class="subline">Restoration Shaman &nbsp;·&nbsp; ilvl 121 &nbsp;·&nbsp; report <span>QTaWq74txvPF82AR</span> &nbsp;·&nbsp; 1/1 bosses killed</p>
+    <p class="subline">Restoration Shaman &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>QTaWq74txvPF82AR</span> &nbsp;·&nbsp; 1/1 bosses killed</p>
   </div>
-
+ 
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">01</span>
       <h2 class="section-title">Gear audit</h2>
     </div>
-    <p class="section-desc">A single-boss cleanup night (Kael'thas Sunstrider only) — one kill to audit against.</p>
-
+    <p class="section-desc">One audit for the whole raid night — gear was checked against every one of the 1 kills below.</p>
+ 
     <div class="consistency-banner">
       <div class="consistency-icon">✓</div>
-      <div class="consistency-text">Loadout is <strong>byte-for-byte identical, item ID for item ID</strong>, to the full 9-kill gear audit from the 07-10-2026 raid night just two days earlier — every item, quality, itemLevel, enchant, and gem matched exactly against that night's combatant-info snapshots, not assumed from a single kill here.</div>
+      <div class="consistency-text">Loadout is <strong>identical, item ID for item ID, to the full 9-kill gear audit from the 07-10-2026 raid night just two days earlier</strong> across all 1 boss kills — confirm by diffing gear/enchant/gem IDs across every fight before writing this, don't assume from one fight. If gear DID change mid-raid, say so explicitly here instead.</div>
     </div>
-
+ 
     <div class="check-list">
+      
+      
       <div class="check-item">
         <div class="check-icon ok">✓</div>
-        <div>18 of 19 gear slots filled; the one empty slot is the shirt, a cosmetic slot with no performance effect</div>
-        <div class="check-note">18/19 slots</div>
+        <div>18 of 19 real equipment slots filled in the baseline loadout (shirt and tabard are typically the two genuinely empty cosmetic slots, no stat impact)</div>
+        <div class="check-note">avg ilvl 114</div>
+        <div class="check-detail"></div>
       </div>
+      
       <div class="check-item">
         <div class="check-icon bad">✗</div>
-        <div>Boots carry no permanent enchant</div>
+        <div>Feet carries no permanent enchant</div>
         <div class="check-note">item 28752</div>
+        <div class="check-detail"></div>
       </div>
+      
       <div class="check-item">
         <div class="check-icon bad">✗</div>
-        <div>Cloak carries no permanent enchant</div>
+        <div>Back carries no permanent enchant</div>
         <div class="check-note">item 28765</div>
+        <div class="check-detail"></div>
       </div>
+      
+      <div class="check-item">
+        <div class="check-icon bad">✗</div>
+        <div>OffHand carries no permanent enchant</div>
+        <div class="check-note">item 29274</div>
+        <div class="check-detail"></div>
+      </div>
+      
       <div class="check-item">
         <div class="check-icon bad">✗</div>
         <div>No flask or elixir active at pull start, unlike every kill on the 07-10 raid night</div>
         <div class="check-note">Top 100: 70%</div>
+        <div class="check-detail"></div>
       </div>
+      
       <div class="check-item">
         <div class="check-icon ok">✓</div>
         <div>Well Fed food buff active at pull start</div>
         <div class="check-note">Top 100: 95%</div>
+        <div class="check-detail"></div>
       </div>
+      
+      
     </div>
 
     <div class="coverage-note">Boots and cloak are the same two real, fixable enchant gaps carried over from 07-10 — both epic-quality items, both mechanically eligible for a permanent enchant (e.g. Boots: Cat's Swiftness/Surefooted; Cloak: Subtlety/major resistance) in this era. The missing flask is new this pull, not a carryover gap — the same character had one active on all 9 kills two days prior, so this reads as a one-off missed consumable for this specific pull rather than a standing gear issue.</div>
   </div>
-
+ 
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">02</span>
       <h2 class="section-title">Per-boss summary</h2>
     </div>
-    <p class="section-desc">HPS and overheal are real, computed from Vajomee's own fight logs. Percentile is the exact report/fight rank pulled from WCL's v2 API — click the boss name for the full audit.</p>
-
+    <p class="section-desc">HPS and overheal are real, computed from Vajomee's own fight logs. Percentile is only shown where we've pulled the real WCL ranking for that exact pull — click a boss name for the full audit.</p>
+ 
+    
+ 
     <table class="boss-table">
       <thead>
         <tr>
@@ -237,6 +278,8 @@
         </tr>
       </thead>
       <tbody>
+        
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_kaelthas.html">Kael'thas Sunstrider</a></td>
           <td class="num-cell">800</td>
@@ -244,18 +287,20 @@
           <td class="pctl-cell"><span class="pctl-pill has-data">94th</span></td>
           <td class="link-arrow">→</td>
         </tr>
-      </tbody>
+        
+    </tbody>
     </table>
 
     <div class="coverage-note">Only one boss this raid night, so there's no cross-kill pattern to report — see the full breakdown on the boss page itself. Percentile (94th) is strong against the full historical population, but HPS and active time both trail this pipeline's own curated Top 100 Kael'thas sample by a real margin (see the boss page's scorecard section); the missing flask this pull is the most likely single contributor.</div>
   </div>
-
+ 
   <div class="footer">
     <span>All data real: Vajomee's fight logs (report QTaWq74txvPF82AR) + WCL rankings where pulled</span>
     <span>tbc-audit style reference · healer variant · raid overview</span>
   </div>
-
+ 
 </div>
-
+ 
 </body>
 </html>
+ 

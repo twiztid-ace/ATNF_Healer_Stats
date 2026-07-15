@@ -202,6 +202,48 @@ foreach ($bossProp in $reportData.Bosses.PSObject.Properties) {
         $topSpellGap = [PSCustomObject]@{ Guid = $topSpellGap.Guid; Name = $topSpellGap.Name; GapPoints = $topSpellGap.GapPoints }
     }
 
+    # ----- Spell RANKS: which real guid(s) of a same-named spell were in play
+    # this kill, for the character and/or the Top 100 sample. WCL's API has no
+    # "rank" field anywhere (confirmed live via schema introspection 2026-07-15
+    # - GameAbility only has id/icon/name) - real per-guid mana cost (this
+    # kill's own classResources data, see build_boss_report_data.ps1) is the
+    # only available signal for which rank is "higher", and it's only ever
+    # known for guids the character actually cast this kill. Reuses $spellGaps
+    # (already union-matched by guid/name above) rather than re-deriving the
+    # match - only surfaced when a name genuinely has 2+ distinct real guids in
+    # play (a single-rank spell gets no row here at all, per the
+    # generate-healer-report skill's "only show when it's actually relevant"
+    # rule) - never invents a numbered "Rank N" label, since WCL doesn't
+    # provide one and this project never guesses at real game data. -----
+    $manaCostByGuid = if ($boss.PSObject.Properties.Name -contains "ManaCostByGuid") { $boss.ManaCostByGuid } else { $null }
+    $gapsByName = [ordered]@{}
+    foreach ($g in $spellGaps) {
+        if (-not $gapsByName.Contains($g.Name)) { $gapsByName[$g.Name] = New-Object System.Collections.Generic.List[object] }
+        $gapsByName[$g.Name].Add($g)
+    }
+    $spellRanks = @()
+    foreach ($name in $gapsByName.Keys) {
+        # .ToArray(), NOT @($gapsByName[$name]) - the value is a
+        # System.Collections.Generic.List[object], and wrapping a List[object]
+        # in @() throws "Argument types do not match" on Windows PowerShell
+        # 5.1 (same gotcha documented in WclV2Api.psm1's Invoke-WclGraphQLPaged).
+        $group = $gapsByName[$name].ToArray()
+        if ($group.Count -lt 2) { continue }
+        $rankRows = @()
+        foreach ($g in $group) {
+            $manaCost = $null
+            if ($manaCostByGuid -and $g.Guid) {
+                $key = [string]$g.Guid
+                if ($manaCostByGuid.PSObject.Properties.Name -contains $key) { $manaCost = $manaCostByGuid.$key }
+            }
+            $rankRows += [PSCustomObject]@{
+                Guid = $g.Guid; ManaCost = $manaCost; CharacterPct = $g.CharacterPct; BenchmarkPct = $g.BenchmarkPct
+            }
+        }
+        $rankRows = @($rankRows | Sort-Object -Property @{Expression = { if ($null -ne $_.ManaCost) { $_.ManaCost } else { [double]::MaxValue } }})
+        $spellRanks += [PSCustomObject]@{ Name = $name; Ranks = $rankRows }
+    }
+
     # ----- Cooldown deviations -----
     $cooldowns = [ordered]@{}
     $bmCdByAbility = @{}
@@ -277,6 +319,7 @@ foreach ($bossProp in $reportData.Bosses.PSObject.Properties) {
         Deviations = $deviations
         SpellGaps = $spellGaps
         TopSpellGap = $topSpellGap
+        SpellRanks = $spellRanks
         Cooldowns = $cooldowns
         TranquilityInclude = $tranquilityInclude
         RebirthCandidates = $rebirthCandidates

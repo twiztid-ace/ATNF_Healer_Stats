@@ -404,6 +404,42 @@
     <!--@ENDLOOP:SPELL_ROW-->
 
     <div class="coverage-note"><!--@SLOT:SPELL_COMPOSITION_FINDING-->{{SPELL_COMPOSITION_FINDING}} — note the biggest gaps between character and benchmark. Flag any benchmark spell the character cast 0% of, if the gap is meaningful (e.g. missing a passive totem/cooldown that's essentially free healing).<!--@ENDSLOT--></div>
+
+    <!-- ===== SPELL RANKS (mechanical, no LLM - script-generated, never author
+         findings for this) - only present at all when a spell name genuinely has
+         2+ distinct real guids in play this kill (character and/or Top 100), per
+         build_boss_analysis.ps1's SpellRanks - a single-rank spell gets no row
+         and, if NO spell on this boss has multiple ranks, this whole block is
+         omitted entirely rather than shown empty. WCL's API has no "rank" field
+         anywhere (confirmed via schema introspection) - mana cost is this kill's
+         own real classResources data, the only available signal for which rank
+         is "higher", and is only ever known for guids the character actually
+         cast this kill; shows "?" rather than guessing for the rest. -->
+    <!--@OPTIONAL:SPELL_RANKS_SECTION-->
+    <div style="margin-top:20px;">
+      <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data, "?" where the character never cast that specific rank here.</p>
+      <table class="cd-table">
+        <thead>
+          <tr>
+            <th>Spell</th>
+            <th style="text-align:right;">Mana cost</th>
+            <th style="text-align:right;">{{HEALER_NAME}}</th>
+            <th style="text-align:right;">Top 100 avg</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--@LOOP:RANK_ROW-->
+          <tr>
+            <td class="ability-name">{{RANK_SPELL_NAME}}</td>
+            <td class="num-cell">{{RANK_MANA_COST}}</td>
+            <td class="num-cell">{{RANK_CHARACTER_PCT}}%</td>
+            <td class="num-cell">{{RANK_BENCHMARK_PCT}}%</td>
+          </tr>
+          <!--@ENDLOOP:RANK_ROW-->
+        </tbody>
+      </table>
+    </div>
+    <!--@ENDOPTIONAL:SPELL_RANKS_SECTION-->
   </div>
 
   <!-- ===== COOLDOWNS & CONSUMABLES (Druid-specific) ===== -->

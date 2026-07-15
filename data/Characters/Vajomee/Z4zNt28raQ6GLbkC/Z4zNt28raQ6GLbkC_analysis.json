@@ -8,8 +8,8 @@
                                                       "HPS":  {
                                                                   "Value":  492,
                                                                   "Top1":  2077,
-                                                                  "Top100Avg":  1463,
-                                                                  "Median":  1410,
+                                                                  "Top100Avg":  1465,
+                                                                  "Median":  1414,
                                                                   "RatioToAvg":  0.34,
                                                                   "Flag":  "below_avg"
                                                               },
@@ -32,8 +32,8 @@
                                                       "HPM":  {
                                                                   "Value":  3.21,
                                                                   "Top1":  8.68,
-                                                                  "Top100Avg":  6.35,
-                                                                  "Median":  6.28,
+                                                                  "Top100Avg":  6.33,
+                                                                  "Median":  6.27,
                                                                   "RatioToAvg":  0.51,
                                                                   "Flag":  "below_avg",
                                                                   "Omit":  false
@@ -46,8 +46,8 @@
                                                                          },
                                                       "Top1Concentration":  {
                                                                                 "Value":  33.4,
-                                                                                "Top100Avg":  47.5,
-                                                                                "GapPoints":  -14.1,
+                                                                                "Top100Avg":  47.6,
+                                                                                "GapPoints":  -14.2,
                                                                                 "Flag":  "below_avg"
                                                                             }
                                                   },
@@ -56,8 +56,8 @@
                                                          "Guid":  25423,
                                                          "Name":  "Chain Heal",
                                                          "CharacterPct":  37.2,
-                                                         "BenchmarkPct":  68.2,
-                                                         "GapPoints":  -31.0,
+                                                         "BenchmarkPct":  68.1,
+                                                         "GapPoints":  -30.9,
                                                          "BenchmarkOnly":  false
                                                      },
                                                      {
@@ -80,8 +80,8 @@
                                                          "Guid":  25420,
                                                          "Name":  "Lesser Healing Wave",
                                                          "CharacterPct":  1,
-                                                         "BenchmarkPct":  5.1,
-                                                         "GapPoints":  -4.1,
+                                                         "BenchmarkPct":  5.2,
+                                                         "GapPoints":  -4.2,
                                                          "BenchmarkOnly":  false
                                                      },
                                                      {
@@ -122,12 +122,43 @@
                                                        "Name":  "Chain Heal",
                                                        "GapPoints":  45.9
                                                    },
+                                   "SpellRanks":  [
+                                                      {
+                                                          "Name":  "Chain Heal",
+                                                          "Ranks":  [
+                                                                        {
+                                                                            "Guid":  10623,
+                                                                            "ManaCost":  405,
+                                                                            "CharacterPct":  47.7,
+                                                                            "BenchmarkPct":  1.8
+                                                                        },
+                                                                        {
+                                                                            "Guid":  25423,
+                                                                            "ManaCost":  540,
+                                                                            "CharacterPct":  37.2,
+                                                                            "BenchmarkPct":  68.1
+                                                                        },
+                                                                        {
+                                                                            "Guid":  1064,
+                                                                            "ManaCost":  null,
+                                                                            "CharacterPct":  0,
+                                                                            "BenchmarkPct":  0.8
+                                                                        },
+                                                                        {
+                                                                            "Guid":  25422,
+                                                                            "ManaCost":  null,
+                                                                            "CharacterPct":  0,
+                                                                            "BenchmarkPct":  3.4
+                                                                        }
+                                                                    ]
+                                                      }
+                                                  ],
                                    "Cooldowns":  {
                                                      "Earth Shield":  {
                                                                           "Count":  2,
                                                                           "SelfCount":  0,
                                                                           "TargetLabel":  "→ Captinhelp ×2",
-                                                                          "Top100AvgCasts":  1.9,
+                                                                          "Top100AvgCasts":  1.8,
                                                                           "Top100UsedPct":  89,
                                                                           "Top100SelfPct":  2,
                                                                           "Deviates":  false,
@@ -135,21 +166,21 @@
                                                                       },
                                                      "Mana Tide Totem":  {
                                                                              "Count":  1,
-                                                                             "SelfCount":  0,
+                                                                             "SelfCount":  1,
                                                                              "TargetLabel":  "party",
                                                                              "Top100AvgCasts":  0.6,
                                                                              "Top100UsedPct":  65,
-                                                                             "Top100SelfPct":  0,
+                                                                             "Top100SelfPct":  100,
                                                                              "Deviates":  false,
                                                                              "DeviationDirection":  null
                                                                          },
                                                      "Ancestral Swiftness":  {
                                                                                  "Count":  1,
-                                                                                 "SelfCount":  0,
+                                                                                 "SelfCount":  1,
                                                                                  "TargetLabel":  "party",
                                                                                  "Top100AvgCasts":  0.8,
                                                                                  "Top100UsedPct":  80,
-                                                                                 "Top100SelfPct":  0,
+                                                                                 "Top100SelfPct":  100,
                                                                                  "Deviates":  false,
                                                                                  "DeviationDirection":  null
                                                                              },
@@ -159,7 +190,7 @@
                                                                        "TargetLabel":  "—",
                                                                        "Top100AvgCasts":  0.1,
                                                                        "Top100UsedPct":  12,
-                                                                       "Top100SelfPct":  0,
+                                                                       "Top100SelfPct":  100,
                                                                        "Deviates":  false,
                                                                        "DeviationDirection":  null
                                                                    },
@@ -167,8 +198,8 @@
                                                                          "Count":  0,
                                                                          "SelfCount":  0,
                                                                          "TargetLabel":  "—",
-                                                                         "Top100AvgCasts":  0.5,
-                                                                         "Top100UsedPct":  46,
+                                                                         "Top100AvgCasts":  0.4,
+                                                                         "Top100UsedPct":  45,
                                                                          "Top100SelfPct":  100,
                                                                          "Deviates":  false,
                                                                          "DeviationDirection":  null
@@ -295,15 +326,15 @@
                                                      "HPS":  {
                                                                  "Value":  1123,
                                                                  "Top1":  2264,
-                                                                 "Top100Avg":  1750,
-                                                                 "Median":  1693,
+                                                                 "Top100Avg":  1755,
+                                                                 "Median":  1703,
                                                                  "RatioToAvg":  0.64,
                                                                  "Flag":  "below_avg"
                                                              },
                                                      "Overheal":  {
                                                                       "Value":  27.3,
                                                                       "Best":  6.2,
-                                                                      "Median":  21.6,
+                                                                      "Median":  21.4,
                                                                       "Worst":  41.6,
                                                                       "GapToWorst":  -14.3,
                                                                       "Flag":  "in_line"
@@ -311,30 +342,30 @@
                                                      "ActiveTime":  {
                                                                         "Value":  83.2,
                                                                         "Top1":  99.8,
-                                                                        "Top100Avg":  93.3,
-                                                                        "Median":  94.7,
-                                                                        "GapToAvg":  -10.1,
-                                                                        "Flag":  "below_avg"
+                                                                        "Top100Avg":  93,
+                                                                        "Median":  94.4,
+                                                                        "GapToAvg":  -9.8,
+                                                                        "Flag":  "in_line"
                                                                     },
                                                      "HPM":  {
                                                                  "Value":  8.15,
                                                                  "Top1":  13.05,
-                                                                 "Top100Avg":  8.98,
-                                                                 "Median":  8.73,
+                                                                 "Top100Avg":  9,
+                                                                 "Median":  8.76,
                                                                  "RatioToAvg":  0.91,
                                                                  "Flag":  "in_line",
                                                                  "Omit":  false
                                                              },
                                                      "TargetCoverage":  {
                                                                             "Value":  43.7,
-                                                                            "Top100Avg":  51.7,
-                                                                            "GapPoints":  -8.0,
+                                                                            "Top100Avg":  52.1,
+                                                                            "GapPoints":  -8.4,
                                                                             "Flag":  "in_line"
                                                                         },
                                                      "Top1Concentration":  {
                                                                                "Value":  15.7,
-                                                                               "Top100Avg":  15.9,
-                                                                               "GapPoints":  -0.2,
+                                                                               "Top100Avg":  16.8,
+                                                                               "GapPoints":  -1.1,
                                                                                "Flag":  "in_line"
                                                                            }
                                                  },
@@ -343,16 +374,16 @@
                                                         "Guid":  25423,
                                                         "Name":  "Chain Heal",
                                                         "CharacterPct":  44.7,
-                                                        "BenchmarkPct":  76.2,
-                                                        "GapPoints":  -31.5,
+                                                        "BenchmarkPct":  74.8,
+                                                        "GapPoints":  -30.1,
                                                         "BenchmarkOnly":  false
                                                     },
                                                     {
                                                         "Guid":  379,
                                                         "Name":  "Earth Shield",
                                                         "CharacterPct":  5.8,
-                                                        "BenchmarkPct":  4.8,
-                                                        "GapPoints":  1.0,
+                                                        "BenchmarkPct":  4.7,
+                                                        "GapPoints":  1.1,
                                                         "BenchmarkOnly":  false
                                                     },
                                                     {
@@ -364,43 +395,43 @@
                                                         "BenchmarkOnly":  false
                                                     },
                                                     {
-                                                        "Guid":  25420,
-                                                        "Name":  "Lesser Healing Wave",
-                                                        "CharacterPct":  1.6,
-                                                        "BenchmarkPct":  3.1,
-                                                        "GapPoints":  -1.5,
-                                                        "BenchmarkOnly":  false
-                                                    },
-                                                    {
                                                         "Guid":  25396,
                                                         "Name":  "Healing Wave",
                                                         "CharacterPct":  0,
-                                                        "BenchmarkPct":  3,
-                                                        "GapPoints":  -3,
-                                                        "BenchmarkOnly":  true
-                                                    },
-                                                    {
-                                                        "Guid":  25566,
-                                                        "Name":  "Healing Stream",
-                                                        "CharacterPct":  0,
-                                                        "BenchmarkPct":  3,
-                                                        "GapPoints":  -3,
+                                                        "BenchmarkPct":  3.5,
+                                                        "GapPoints":  -3.5,
                                                         "BenchmarkOnly":  true
                                                     },
                                                     {
                                                         "Guid":  25422,
                                                         "Name":  "Chain Heal",
                                                         "CharacterPct":  0,
-                                                        "BenchmarkPct":  2.7,
-                                                        "GapPoints":  -2.7,
+                                                        "BenchmarkPct":  3.3,
+                                                        "GapPoints":  -3.3,
+                                                        "BenchmarkOnly":  true
+                                                    },
+                                                    {
+                                                        "Guid":  25420,
+                                                        "Name":  "Lesser Healing Wave",
+                                                        "CharacterPct":  1.6,
+                                                        "BenchmarkPct":  3.2,
+                                                        "GapPoints":  -1.6,
+                                                        "BenchmarkOnly":  false
+                                                    },
+                                                    {
+                                                        "Guid":  25566,
+                                                        "Name":  "Healing Stream",
+                                                        "CharacterPct":  0,
+                                                        "BenchmarkPct":  2.8,
+                                                        "GapPoints":  -2.8,
                                                         "BenchmarkOnly":  true
                                                     },
                                                     {
                                                         "Guid":  10622,
                                                         "Name":  "Chain Heal",
                                                         "CharacterPct":  0,
-                                                        "BenchmarkPct":  1.1,
-                                                        "GapPoints":  -1.1,
+                                                        "BenchmarkPct":  1.4,
+                                                        "GapPoints":  -1.4,
                                                         "BenchmarkOnly":  true
                                                     },
                                                     {
@@ -417,34 +448,71 @@
                                                       "Name":  "Chain Heal",
                                                       "GapPoints":  43.8
                                                   },
+                                  "SpellRanks":  [
+                                                     {
+                                                         "Name":  "Chain Heal",
+                                                         "Ranks":  [
+                                                                       {
+                                                                           "Guid":  10623,
+                                                                           "ManaCost":  405,
+                                                                           "CharacterPct":  47.9,
+                                                                           "BenchmarkPct":  4.1
+                                                                       },
+                                                                       {
+                                                                           "Guid":  25423,
+                                                                           "ManaCost":  540,
+                                                                           "CharacterPct":  44.7,
+                                                                           "BenchmarkPct":  74.8
+                                                                       },
+                                                                       {
+                                                                           "Guid":  1064,
+                                                                           "ManaCost":  null,
+                                                                           "CharacterPct":  0,
+                                                                           "BenchmarkPct":  0.8
+                                                                       },
+                                                                       {
+                                                                           "Guid":  10622,
+                                                                           "ManaCost":  null,
+                                                                           "CharacterPct":  0,
+                                                                           "BenchmarkPct":  1.4
+                                                                       },
+                                                                       {
+                                                                           "Guid":  25422,
+                                                                           "ManaCost":  null,
+                                                                           "CharacterPct":  0,
+                                                                           "BenchmarkPct":  3.3
+                                                                       }
+                                                                   ]
+                                                     }
+                                                 ],
                                   "Cooldowns":  {
                                                     "Earth Shield":  {
                                                                          "Count":  3,
                                                                          "SelfCount":  0,
                                                                          "TargetLabel":  "→ Captinhelp ×3",
                                                                          "Top100AvgCasts":  1.2,
-                                                                         "Top100UsedPct":  73,
+                                                                         "Top100UsedPct":  71,
                                                                          "Top100SelfPct":  2,
                                                                          "Deviates":  false,
                                                                          "DeviationDirection":  null
                                                                      },
                                                     "Mana Tide Totem":  {
                                                                             "Count":  1,
-                                                                            "SelfCount":  0,
+                                                                            "SelfCount":  1,
                                                                             "TargetLabel":  "party",
                                                                             "Top100AvgCasts":  0.7,
-                                                                            "Top100UsedPct":  74,
-                                                                            "Top100SelfPct":  0,
+                                                                            "Top100UsedPct":  73,
+                                                                            "Top100SelfPct":  100,
                                                                             "Deviates":  false,
                                                                             "DeviationDirection":  null
                                                                         },
                                                     "Ancestral Swiftness":  {
                                                                                 "Count":  1,
-                                                                                "SelfCount":  0,
+                                                                                "SelfCount":  1,
                                                                                 "TargetLabel":  "party",
                                                                                 "Top100AvgCasts":  0.9,
                                                                                 "Top100UsedPct":  91,
-                                                                                "Top100SelfPct":  0,
+                                                                                "Top100SelfPct":  100,
                                                                                 "Deviates":  false,
                                                                                 "DeviationDirection":  null
                                                                             },
@@ -453,17 +521,17 @@
                                                                       "SelfCount":  0,
                                                                       "TargetLabel":  "—",
                                                                       "Top100AvgCasts":  0.2,
-                                                                      "Top100UsedPct":  19,
-                                                                      "Top100SelfPct":  0,
+                                                                      "Top100UsedPct":  17,
+                                                                      "Top100SelfPct":  100,
                                                                       "Deviates":  false,
                                                                       "DeviationDirection":  null
                                                                   },
                                                     "Mana Potion":  {
                                                                         "Count":  2,
                                                                         "SelfCount":  2,
-                                                                        "TargetLabel":  "—",
+                                                                        "TargetLabel":  "self",
                                                                         "Top100AvgCasts":  0.7,
-                                                                        "Top100UsedPct":  67,
+                                                                        "Top100UsedPct":  66,
                                                                         "Top100SelfPct":  100,
                                                                         "Deviates":  false,
                                                                         "DeviationDirection":  null
@@ -541,23 +609,23 @@
                                                                 {
                                                                     "DeathName":  "Braila",
                                                                     "DeathTimestamp":  2855536,
-                                                                    "NearestCooldown":  "Earth Shield",
-                                                                    "NearestCooldownTimestamp":  2819612,
-                                                                    "DeltaMs":  35924
+                                                                    "NearestCooldown":  "Mana Potion",
+                                                                    "NearestCooldownTimestamp":  2847400,
+                                                                    "DeltaMs":  8136
                                                                 },
                                                                 {
                                                                     "DeathName":  "Victim",
                                                                     "DeathTimestamp":  2859937,
-                                                                    "NearestCooldown":  "Earth Shield",
-                                                                    "NearestCooldownTimestamp":  2819612,
-                                                                    "DeltaMs":  40325
+                                                                    "NearestCooldown":  "Mana Potion",
+                                                                    "NearestCooldownTimestamp":  2847400,
+                                                                    "DeltaMs":  12537
                                                                 },
                                                                 {
                                                                     "DeathName":  "Ghostpepperx",
                                                                     "DeathTimestamp":  2871306,
-                                                                    "NearestCooldown":  "Earth Shield",
-                                                                    "NearestCooldownTimestamp":  2819612,
-                                                                    "DeltaMs":  51694
+                                                                    "NearestCooldown":  "Mana Potion",
+                                                                    "NearestCooldownTimestamp":  2847400,
+                                                                    "DeltaMs":  23906
                                                                 }
                                                             ],
                                   "CannedCaveats":  {
@@ -569,15 +637,15 @@
                                                         "HPS":  {
                                                                     "Value":  802,
                                                                     "Top1":  2688,
-                                                                    "Top100Avg":  1950,
-                                                                    "Median":  1911,
+                                                                    "Top100Avg":  1955,
+                                                                    "Median":  1914,
                                                                     "RatioToAvg":  0.41,
                                                                     "Flag":  "below_avg"
                                                                 },
                                                         "Overheal":  {
                                                                          "Value":  34.7,
                                                                          "Best":  7.7,
-                                                                         "Median":  24.8,
+                                                                         "Median":  24.4,
                                                                          "Worst":  46.3,
                                                                          "GapToWorst":  -11.6,
                                                                          "Flag":  "in_line"
@@ -585,30 +653,30 @@
                                                         "ActiveTime":  {
                                                                            "Value":  90.2,
                                                                            "Top1":  99.8,
-                                                                           "Top100Avg":  94.8,
+                                                                           "Top100Avg":  95,
                                                                            "Median":  95.8,
-                                                                           "GapToAvg":  -4.6,
+                                                                           "GapToAvg":  -4.8,
                                                                            "Flag":  "in_line"
                                                                        },
                                                         "HPM":  {
                                                                     "Value":  6.26,
                                                                     "Top1":  12.54,
-                                                                    "Top100Avg":  9.27,
-                                                                    "Median":  9.12,
-                                                                    "RatioToAvg":  0.68,
+                                                                    "Top100Avg":  9.3,
+                                                                    "Median":  9.17,
+                                                                    "RatioToAvg":  0.67,
                                                                     "Flag":  "below_avg",
                                                                     "Omit":  false
                                                                 },
                                                         "TargetCoverage":  {
                                                                                "Value":  41.8,
-                                                                               "Top100Avg":  50.7,
-                                                                               "GapPoints":  -8.9,
+                                                                               "Top100Avg":  51.1,
+                                                                               "GapPoints":  -9.3,
                                                                                "Flag":  "in_line"
                                                                            },
                                                         "Top1Concentration":  {
                                                                                   "Value":  8.6,
-                                                                                  "Top100Avg":  13.7,
-                                                                                  "GapPoints":  -5.1,
+                                                                                  "Top100Avg":  13.9,
+                                                                                  "GapPoints":  -5.3,
                                                                                   "Flag":  "in_line"
                                                                               }
                                                     },
@@ -617,8 +685,8 @@
                                                            "Guid":  25423,
                                                            "Name":  "Chain Heal",
                                                            "CharacterPct":  7.9,
-                                                           "BenchmarkPct":  87.4,
-                                                           "GapPoints":  -79.5,
+                                                           "BenchmarkPct":  86.7,
+                                                           "GapPoints":  -78.8,
                                                            "BenchmarkOnly":  false
                                                        },
                                                        {
@@ -630,20 +698,20 @@
                                                            "BenchmarkOnly":  false
                                                        },
                                                        {
+                                                           "Guid":  10623,
+                                                           "Name":  "Chain Heal",
+                                                           "CharacterPct":  84.7,
+                                                           "BenchmarkPct":  1.9,
+                                                           "GapPoints":  82.8,
+                                                           "BenchmarkOnly":  false
+                                                       },
+                                                       {
                                                            "Guid":  null,
                                                            "Name":  "Healing Stream",
                                                            "CharacterPct":  0,
                                                            "BenchmarkPct":  1.6,
                                                            "GapPoints":  -1.6,
                                                            "BenchmarkOnly":  true
-                                                       },
-                                                       {
-                                                           "Guid":  10623,
-                                                           "Name":  "Chain Heal",
-                                                           "CharacterPct":  84.7,
-                                                           "BenchmarkPct":  1.5,
-                                                           "GapPoints":  83.2,
-                                                           "BenchmarkOnly":  false
                                                        },
                                                        {
                                                            "Guid":  25420,
@@ -657,16 +725,24 @@
                                                            "Guid":  10622,
                                                            "Name":  "Chain Heal",
                                                            "CharacterPct":  0,
-                                                           "BenchmarkPct":  1.4,
-                                                           "GapPoints":  -1.4,
+                                                           "BenchmarkPct":  1.5,
+                                                           "GapPoints":  -1.5,
                                                            "BenchmarkOnly":  true
                                                        },
                                                        {
                                                            "Guid":  25422,
                                                            "Name":  "Chain Heal",
                                                            "CharacterPct":  0,
-                                                           "BenchmarkPct":  1,
-                                                           "GapPoints":  -1,
+                                                           "BenchmarkPct":  1.3,
+                                                           "GapPoints":  -1.3,
+                                                           "BenchmarkOnly":  true
+                                                       },
+                                                       {
+                                                           "Guid":  null,
+                                                           "Name":  "Persistent Shield",
+                                                           "CharacterPct":  0,
+                                                           "BenchmarkPct":  0.7,
+                                                           "GapPoints":  -0.7,
                                                            "BenchmarkOnly":  true
                                                        },
                                                        {
@@ -675,14 +751,6 @@
                                                            "CharacterPct":  0,
                                                            "BenchmarkPct":  0.7,
                                                            "GapPoints":  -0.7,
-                                                           "BenchmarkOnly":  true
-                                                       },
-                                                       {
-                                                           "Guid":  null,
-                                                           "Name":  "Persistent Shield",
-                                                           "CharacterPct":  0,
-                                                           "BenchmarkPct":  0.6,
-                                                           "GapPoints":  -0.6,
                                                            "BenchmarkOnly":  true
                                                        },
                                                        {
@@ -698,36 +766,73 @@
                                      "TopSpellGap":  {
                                                          "Guid":  10623,
                                                          "Name":  "Chain Heal",
-                                                         "GapPoints":  83.2
+                                                         "GapPoints":  82.8
                                                      },
+                                     "SpellRanks":  [
+                                                        {
+                                                            "Name":  "Chain Heal",
+                                                            "Ranks":  [
+                                                                          {
+                                                                              "Guid":  10623,
+                                                                              "ManaCost":  405,
+                                                                              "CharacterPct":  84.7,
+                                                                              "BenchmarkPct":  1.9
+                                                                          },
+                                                                          {
+                                                                              "Guid":  25423,
+                                                                              "ManaCost":  540,
+                                                                              "CharacterPct":  7.9,
+                                                                              "BenchmarkPct":  86.7
+                                                                          },
+                                                                          {
+                                                                              "Guid":  1064,
+                                                                              "ManaCost":  null,
+                                                                              "CharacterPct":  0,
+                                                                              "BenchmarkPct":  0.7
+                                                                          },
+                                                                          {
+                                                                              "Guid":  25422,
+                                                                              "ManaCost":  null,
+                                                                              "CharacterPct":  0,
+                                                                              "BenchmarkPct":  1.3
+                                                                          },
+                                                                          {
+                                                                              "Guid":  10622,
+                                                                              "ManaCost":  null,
+                                                                              "CharacterPct":  0,
+                                                                              "BenchmarkPct":  1.5
+                                                                          }
+                                                                      ]
+                                                        }
+                                                    ],
                                      "Cooldowns":  {
                                                        "Earth Shield":  {
                                                                             "Count":  5,
                                                                             "SelfCount":  0,
                                                                             "TargetLabel":  "→ Captinhelp ×3, → Leechers, → Braila",
                                                                             "Top100AvgCasts":  1,
-                                                                            "Top100UsedPct":  65,
+                                                                            "Top100UsedPct":  66,
                                                                             "Top100SelfPct":  1,
                                                                             "Deviates":  false,
                                                                             "DeviationDirection":  null
                                                                         },
                                                        "Mana Tide Totem":  {
                                                                                "Count":  1,
-                                                                               "SelfCount":  0,
+                                                                               "SelfCount":  1,
                                                                                "TargetLabel":  "party",
-                                                                               "Top100AvgCasts":  0.8,
-                                                                               "Top100UsedPct":  84,
-                                                                               "Top100SelfPct":  0,
+                                                                               "Top100AvgCasts":  0.9,
+                                                                               "Top100UsedPct":  86,
+                                                                               "Top100SelfPct":  100,
                                                                                "Deviates":  false,
                                                                                "DeviationDirection":  null
                                                                            },
                                                        "Ancestral Swiftness":  {
                                                                                    "Count":  2,
-                                                                                   "SelfCount":  0,
+                                                                                   "SelfCount":  2,
                                                                                    "TargetLabel":  "party",
                                                                                    "Top100AvgCasts":  0.8,
-                                                                                   "Top100UsedPct":  82,
-                                                                                   "Top100SelfPct":  0,
+                                                                                   "Top100UsedPct":  83,
+                                                                                   "Top100SelfPct":  100,
                                                                                    "Deviates":  false,
                                                                                    "DeviationDirection":  null
                                                                                },
@@ -736,17 +841,17 @@
                                                                          "SelfCount":  0,
                                                                          "TargetLabel":  "—",
                                                                          "Top100AvgCasts":  0.2,
-                                                                         "Top100UsedPct":  24,
-                                                                         "Top100SelfPct":  0,
+                                                                         "Top100UsedPct":  25,
+                                                                         "Top100SelfPct":  100,
                                                                          "Deviates":  false,
                                                                          "DeviationDirection":  null
                                                                      },
                                                        "Mana Potion":  {
                                                                            "Count":  2,
                                                                            "SelfCount":  2,
-                                                                           "TargetLabel":  "—",
+                                                                           "TargetLabel":  "self",
                                                                            "Top100AvgCasts":  0.6,
-                                                                           "Top100UsedPct":  61,
+                                                                           "Top100UsedPct":  62,
                                                                            "Top100SelfPct":  100,
                                                                            "Deviates":  false,
                                                                            "DeviationDirection":  null
@@ -841,15 +946,15 @@
                                                          "HPS":  {
                                                                      "Value":  1009,
                                                                      "Top1":  2889,
-                                                                     "Top100Avg":  2147,
-                                                                     "Median":  2088,
+                                                                     "Top100Avg":  2149,
+                                                                     "Median":  2090,
                                                                      "RatioToAvg":  0.47,
                                                                      "Flag":  "below_avg"
                                                                  },
                                                          "Overheal":  {
                                                                           "Value":  34.8,
                                                                           "Best":  8.5,
-                                                                          "Median":  27.9,
+                                                                          "Median":  27.2,
                                                                           "Worst":  44.5,
                                                                           "GapToWorst":  -9.7,
                                                                           "Flag":  "in_line"
@@ -858,29 +963,29 @@
                                                                             "Value":  96.9,
                                                                             "Top1":  99.7,
                                                                             "Top100Avg":  94.7,
-                                                                            "Median":  96.2,
+                                                                            "Median":  96.3,
                                                                             "GapToAvg":  2.2,
                                                                             "Flag":  "in_line"
                                                                         },
                                                          "HPM":  {
                                                                      "Value":  6.48,
                                                                      "Top1":  11.27,
-                                                                     "Top100Avg":  9.16,
-                                                                     "Median":  9.11,
+                                                                     "Top100Avg":  9.17,
+                                                                     "Median":  9.16,
                                                                      "RatioToAvg":  0.71,
                                                                      "Flag":  "below_avg",
                                                                      "Omit":  false
                                                                  },
                                                          "TargetCoverage":  {
                                                                                 "Value":  57.9,
-                                                                                "Top100Avg":  71,
-                                                                                "GapPoints":  -13.1,
+                                                                                "Top100Avg":  70.8,
+                                                                                "GapPoints":  -12.9,
                                                                                 "Flag":  "below_avg"
                                                                             },
                                                          "Top1Concentration":  {
                                                                                    "Value":  26,
-                                                                                   "Top100Avg":  34.7,
-                                                                                   "GapPoints":  -8.7,
+                                                                                   "Top100Avg":  34.4,
+                                                                                   "GapPoints":  -8.4,
                                                                                    "Flag":  "in_line"
                                                                                }
                                                      },
@@ -889,24 +994,24 @@
                                                             "Guid":  25423,
                                                             "Name":  "Chain Heal",
                                                             "CharacterPct":  37.7,
-                                                            "BenchmarkPct":  84.2,
-                                                            "GapPoints":  -46.5,
+                                                            "BenchmarkPct":  84.5,
+                                                            "GapPoints":  -46.8,
                                                             "BenchmarkOnly":  false
                                                         },
                                                         {
                                                             "Guid":  379,
                                                             "Name":  "Earth Shield",
                                                             "CharacterPct":  10.3,
-                                                            "BenchmarkPct":  6.3,
-                                                            "GapPoints":  4.0,
+                                                            "BenchmarkPct":  6.1,
+                                                            "GapPoints":  4.2,
                                                             "BenchmarkOnly":  false
                                                         },
                                                         {
                                                             "Guid":  25396,
                                                             "Name":  "Healing Wave",
                                                             "CharacterPct":  0,
-                                                            "BenchmarkPct":  2.6,
-                                                            "GapPoints":  -2.6,
+                                                            "BenchmarkPct":  2.5,
+                                                            "GapPoints":  -2.5,
                                                             "BenchmarkOnly":  true
                                                         },
                                                         {
@@ -921,17 +1026,17 @@
                                                             "Guid":  25420,
                                                             "Name":  "Lesser Healing Wave",
                                                             "CharacterPct":  1.5,
-                                                            "BenchmarkPct":  1.4,
-                                                            "GapPoints":  0.1,
+                                                            "BenchmarkPct":  1.5,
+                                                            "GapPoints":  0.0,
                                                             "BenchmarkOnly":  false
                                                         },
                                                         {
-                                                            "Guid":  10623,
+                                                            "Guid":  1064,
                                                             "Name":  "Chain Heal",
-                                                            "CharacterPct":  50.4,
-                                                            "BenchmarkPct":  0.9,
-                                                            "GapPoints":  49.5,
-                                                            "BenchmarkOnly":  false
+                                                            "CharacterPct":  0,
+                                                            "BenchmarkPct":  0.8,
+                                                            "GapPoints":  -0.8,
+                                                            "BenchmarkOnly":  true
                                                         },
                                                         {
                                                             "Guid":  25422,
@@ -942,37 +1047,68 @@
                                                             "BenchmarkOnly":  true
                                                         },
                                                         {
-                                                            "Guid":  1064,
+                                                            "Guid":  10623,
                                                             "Name":  "Chain Heal",
-                                                            "CharacterPct":  0,
+                                                            "CharacterPct":  50.4,
                                                             "BenchmarkPct":  0.7,
-                                                            "GapPoints":  -0.7,
-                                                            "BenchmarkOnly":  true
+                                                            "GapPoints":  49.7,
+                                                            "BenchmarkOnly":  false
                                                         }
                                                     ],
                                       "TopSpellGap":  {
                                                           "Guid":  10623,
                                                           "Name":  "Chain Heal",
-                                                          "GapPoints":  49.5
+                                                          "GapPoints":  49.7
                                                       },
+                                      "SpellRanks":  [
+                                                         {
+                                                             "Name":  "Chain Heal",
+                                                             "Ranks":  [
+                                                                           {
+                                                                               "Guid":  10623,
+                                                                               "ManaCost":  405,
+                                                                               "CharacterPct":  50.4,
+                                                                               "BenchmarkPct":  0.7
+                                                                           },
+                                                                           {
+                                                                               "Guid":  25423,
+                                                                               "ManaCost":  540,
+                                                                               "CharacterPct":  37.7,
+                                                                               "BenchmarkPct":  84.5
+                                                                           },
+                                                                           {
+                                                                               "Guid":  1064,
+                                                                               "ManaCost":  null,
+                                                                               "CharacterPct":  0,
+                                                                               "BenchmarkPct":  0.8
+                                                                           },
+                                                                           {
+                                                                               "Guid":  25422,
+                                                                               "ManaCost":  null,
+                                                                               "CharacterPct":  0,
+                                                                               "BenchmarkPct":  0.8
+                                                                           }
+                                                                       ]
+                                                         }
+                                                     ],
                                       "Cooldowns":  {
                                                         "Earth Shield":  {
                                                                              "Count":  4,
                                                                              "SelfCount":  0,
                                                                              "TargetLabel":  "→ Luffydonoo ×3, → Captinhelp",
-                                                                             "Top100AvgCasts":  1.5,
-                                                                             "Top100UsedPct":  69,
+                                                                             "Top100AvgCasts":  1.4,
+                                                                             "Top100UsedPct":  68,
                                                                              "Top100SelfPct":  1,
                                                                              "Deviates":  false,
                                                                              "DeviationDirection":  null
                                                                          },
                                                         "Mana Tide Totem":  {
                                                                                 "Count":  1,
-                                                                                "SelfCount":  0,
+                                                                                "SelfCount":  1,
                                                                                 "TargetLabel":  "party",
                                                                                 "Top100AvgCasts":  0.6,
                                                                                 "Top100UsedPct":  59,
-                                                                                "Top100SelfPct":  0,
+                                                                                "Top100SelfPct":  100,
                                                                                 "Deviates":  false,
                                                                                 "DeviationDirection":  null
                                                                             },
@@ -981,8 +1117,8 @@
                                                                                     "SelfCount":  0,
                                                                                     "TargetLabel":  "—",
                                                                                     "Top100AvgCasts":  0.9,
-                                                                                    "Top100UsedPct":  86,
-                                                                                    "Top100SelfPct":  0,
+                                                                                    "Top100UsedPct":  87,
+                                                                                    "Top100SelfPct":  100,
                                                                                     "Deviates":  true,
                                                                                     "DeviationDirection":  "undercast"
                                                                                 },
@@ -991,8 +1127,8 @@
                                                                           "SelfCount":  0,
                                                                           "TargetLabel":  "—",
                                                                           "Top100AvgCasts":  0.1,
-                                                                          "Top100UsedPct":  12,
-                                                                          "Top100SelfPct":  0,
+                                                                          "Top100UsedPct":  11,
+                                                                          "Top100SelfPct":  100,
                                                                           "Deviates":  false,
                                                                           "DeviationDirection":  null
                                                                       },
@@ -1001,7 +1137,7 @@
                                                                             "SelfCount":  0,
                                                                             "TargetLabel":  "—",
                                                                             "Top100AvgCasts":  0.6,
-                                                                            "Top100UsedPct":  56,
+                                                                            "Top100UsedPct":  57,
                                                                             "Top100SelfPct":  100,
                                                                             "Deviates":  true,
                                                                             "DeviationDirection":  "undercast"
@@ -1030,46 +1166,46 @@
                                                        "HPS":  {
                                                                    "Value":  822,
                                                                    "Top1":  2156,
-                                                                   "Top100Avg":  1523,
-                                                                   "Median":  1476,
+                                                                   "Top100Avg":  1525,
+                                                                   "Median":  1481,
                                                                    "RatioToAvg":  0.54,
                                                                    "Flag":  "below_avg"
                                                                },
                                                        "Overheal":  {
                                                                         "Value":  49.8,
                                                                         "Best":  17.6,
-                                                                        "Median":  30.8,
-                                                                        "Worst":  47.1,
-                                                                        "GapToWorst":  2.7,
+                                                                        "Median":  31.1,
+                                                                        "Worst":  49.1,
+                                                                        "GapToWorst":  0.7,
                                                                         "Flag":  "exceeds_worst"
                                                                     },
                                                        "ActiveTime":  {
                                                                           "Value":  97,
                                                                           "Top1":  99.6,
-                                                                          "Top100Avg":  97.1,
-                                                                          "Median":  97.8,
-                                                                          "GapToAvg":  -0.1,
+                                                                          "Top100Avg":  97,
+                                                                          "Median":  97.7,
+                                                                          "GapToAvg":  0,
                                                                           "Flag":  "in_line"
                                                                       },
                                                        "HPM":  {
                                                                    "Value":  5.24,
                                                                    "Top1":  11.21,
-                                                                   "Top100Avg":  8.24,
-                                                                   "Median":  8.13,
+                                                                   "Top100Avg":  8.22,
+                                                                   "Median":  8.05,
                                                                    "RatioToAvg":  0.64,
                                                                    "Flag":  "below_avg",
                                                                    "Omit":  false
                                                                },
                                                        "TargetCoverage":  {
                                                                               "Value":  55.8,
-                                                                              "Top100Avg":  52.3,
-                                                                              "GapPoints":  3.5,
+                                                                              "Top100Avg":  51.9,
+                                                                              "GapPoints":  3.9,
                                                                               "Flag":  "in_line"
                                                                           },
                                                        "Top1Concentration":  {
                                                                                  "Value":  22.2,
-                                                                                 "Top100Avg":  22.6,
-                                                                                 "GapPoints":  -0.4,
+                                                                                 "Top100Avg":  22.2,
+                                                                                 "GapPoints":  0.0,
                                                                                  "Flag":  "in_line"
                                                                              }
                                                    },
@@ -1078,16 +1214,16 @@
                                                           "Guid":  25423,
                                                           "Name":  "Chain Heal",
                                                           "CharacterPct":  4.1,
-                                                          "BenchmarkPct":  68.5,
-                                                          "GapPoints":  -64.4,
+                                                          "BenchmarkPct":  69.2,
+                                                          "GapPoints":  -65.1,
                                                           "BenchmarkOnly":  false
                                                       },
                                                       {
                                                           "Guid":  379,
                                                           "Name":  "Earth Shield",
                                                           "CharacterPct":  7.8,
-                                                          "BenchmarkPct":  7.7,
-                                                          "GapPoints":  0.1,
+                                                          "BenchmarkPct":  7.6,
+                                                          "GapPoints":  0.2,
                                                           "BenchmarkOnly":  false
                                                       },
                                                       {
@@ -1110,16 +1246,16 @@
                                                           "Guid":  null,
                                                           "Name":  "Healing Stream",
                                                           "CharacterPct":  0,
-                                                          "BenchmarkPct":  3.9,
-                                                          "GapPoints":  -3.9,
+                                                          "BenchmarkPct":  4,
+                                                          "GapPoints":  -4,
                                                           "BenchmarkOnly":  true
                                                       },
                                                       {
                                                           "Guid":  1064,
                                                           "Name":  "Chain Heal",
                                                           "CharacterPct":  0,
-                                                          "BenchmarkPct":  2.8,
-                                                          "GapPoints":  -2.8,
+                                                          "BenchmarkPct":  2.6,
+                                                          "GapPoints":  -2.6,
                                                           "BenchmarkOnly":  true
                                                       },
                                                       {
@@ -1142,8 +1278,8 @@
                                                           "Guid":  10622,
                                                           "Name":  "Chain Heal",
                                                           "CharacterPct":  0,
-                                                          "BenchmarkPct":  0.9,
-                                                          "GapPoints":  -0.9,
+                                                          "BenchmarkPct":  1,
+                                                          "GapPoints":  -1,
                                                           "BenchmarkOnly":  true
                                                       },
                                                       {
@@ -1170,6 +1306,60 @@
                                                         "Name":  "Chain Heal",
                                                         "GapPoints":  76.5
                                                     },
+                                    "SpellRanks":  [
+                                                       {
+                                                           "Name":  "Chain Heal",
+                                                           "Ranks":  [
+                                                                         {
+                                                                             "Guid":  10623,
+                                                                             "ManaCost":  405,
+                                                                             "CharacterPct":  79.1,
+                                                                             "BenchmarkPct":  2.6
+                                                                         },
+                                                                         {
+                                                                             "Guid":  25423,
+                                                                             "ManaCost":  540,
+                                                                             "CharacterPct":  4.1,
+                                                                             "BenchmarkPct":  69.2
+                                                                         },
+                                                                         {
+                                                                             "Guid":  10622,
+                                                                             "ManaCost":  null,
+                                                                             "CharacterPct":  0,
+                                                                             "BenchmarkPct":  1
+                                                                         },
+                                                                         {
+                                                                             "Guid":  25422,
+                                                                             "ManaCost":  null,
+                                                                             "CharacterPct":  0,
+                                                                             "BenchmarkPct":  4.5
+                                                                         },
+                                                                         {
+                                                                             "Guid":  1064,
+                                                                             "ManaCost":  null,
+                                                                             "CharacterPct":  0,
+                                                                             "BenchmarkPct":  2.6
+                                                                         }
+                                                                     ]
+                                                       },
+                                                       {
+                                                           "Name":  "Master Healthstone",
+                                                           "Ranks":  [
+                                                                         {
+                                                                             "Guid":  27235,
+                                                                             "ManaCost":  0,
+                                                                             "CharacterPct":  1.1,
+                                                                             "BenchmarkPct":  0
+                                                                         },
+                                                                         {
+                                                                             "Guid":  27237,
+                                                                             "ManaCost":  0,
+                                                                             "CharacterPct":  1.1,
+                                                                             "BenchmarkPct":  0
+                                                                         }
+                                                                     ]
+                                                       }
+                                                   ],
                                     "Cooldowns":  {
                                                       "Earth Shield":  {
                                                                            "Count":  3,
@@ -1183,21 +1373,21 @@
                                                                        },
                                                       "Mana Tide Totem":  {
                                                                               "Count":  1,
-                                                                              "SelfCount":  0,
+                                                                              "SelfCount":  1,
                                                                               "TargetLabel":  "party",
                                                                               "Top100AvgCasts":  0.9,
-                                                                              "Top100UsedPct":  93,
-                                                                              "Top100SelfPct":  0,
+                                                                              "Top100UsedPct":  94,
+                                                                              "Top100SelfPct":  100,
                                                                               "Deviates":  false,
                                                                               "DeviationDirection":  null
                                                                           },
                                                       "Ancestral Swiftness":  {
                                                                                   "Count":  1,
-                                                                                  "SelfCount":  0,
+                                                                                  "SelfCount":  1,
                                                                                   "TargetLabel":  "party",
                                                                                   "Top100AvgCasts":  1,
                                                                                   "Top100UsedPct":  96,
-                                                                                  "Top100SelfPct":  0,
+                                                                                  "Top100SelfPct":  100,
                                                                                   "Deviates":  false,
                                                                                   "DeviationDirection":  null
                                                                               },
@@ -1207,15 +1397,15 @@
                                                                         "TargetLabel":  "—",
                                                                         "Top100AvgCasts":  0.1,
                                                                         "Top100UsedPct":  12,
-                                                                        "Top100SelfPct":  0,
+                                                                        "Top100SelfPct":  100,
                                                                         "Deviates":  false,
                                                                         "DeviationDirection":  null
                                                                     },
                                                       "Mana Potion":  {
                                                                           "Count":  1,
                                                                           "SelfCount":  1,
-                                                                          "TargetLabel":  "—",
-                                                                          "Top100AvgCasts":  1.1,
+                                                                          "TargetLabel":  "self",
+                                                                          "Top100AvgCasts":  1,
                                                                           "Top100UsedPct":  83,
                                                                           "Top100SelfPct":  100,
                                                                           "Deviates":  false,
@@ -1259,9 +1449,9 @@
                                                     "HPS":  {
                                                                 "Value":  579,
                                                                 "Top1":  1256,
-                                                                "Top100Avg":  1081,
-                                                                "Median":  1066,
-                                                                "RatioToAvg":  0.54,
+                                                                "Top100Avg":  1083,
+                                                                "Median":  1067,
+                                                                "RatioToAvg":  0.53,
                                                                 "Flag":  "below_avg"
                                                             },
                                                     "Overheal":  {
@@ -1275,30 +1465,30 @@
                                                     "ActiveTime":  {
                                                                        "Value":  79.2,
                                                                        "Top1":  99.8,
-                                                                       "Top100Avg":  94,
-                                                                       "Median":  95.3,
-                                                                       "GapToAvg":  -14.8,
+                                                                       "Top100Avg":  94.1,
+                                                                       "Median":  95.7,
+                                                                       "GapToAvg":  -14.9,
                                                                        "Flag":  "below_avg"
                                                                    },
                                                     "HPM":  {
                                                                 "Value":  4.89,
                                                                 "Top1":  9.47,
-                                                                "Top100Avg":  7.33,
-                                                                "Median":  7.24,
+                                                                "Top100Avg":  7.34,
+                                                                "Median":  7.26,
                                                                 "RatioToAvg":  0.67,
                                                                 "Flag":  "below_avg",
                                                                 "Omit":  false
                                                             },
                                                     "TargetCoverage":  {
                                                                            "Value":  40.2,
-                                                                           "Top100Avg":  46.9,
-                                                                           "GapPoints":  -6.7,
+                                                                           "Top100Avg":  46.8,
+                                                                           "GapPoints":  -6.6,
                                                                            "Flag":  "in_line"
                                                                        },
                                                     "Top1Concentration":  {
                                                                               "Value":  10.6,
-                                                                              "Top100Avg":  17.6,
-                                                                              "GapPoints":  -7.0,
+                                                                              "Top100Avg":  17.5,
+                                                                              "GapPoints":  -6.9,
                                                                               "Flag":  "in_line"
                                                                           }
                                                 },
@@ -1307,16 +1497,16 @@
                                                        "Guid":  25423,
                                                        "Name":  "Chain Heal",
                                                        "CharacterPct":  30,
-                                                       "BenchmarkPct":  48.8,
-                                                       "GapPoints":  -18.8,
+                                                       "BenchmarkPct":  48.4,
+                                                       "GapPoints":  -18.4,
                                                        "BenchmarkOnly":  false
                                                    },
                                                    {
                                                        "Guid":  25420,
                                                        "Name":  "Lesser Healing Wave",
                                                        "CharacterPct":  4.7,
-                                                       "BenchmarkPct":  11.7,
-                                                       "GapPoints":  -7.0,
+                                                       "BenchmarkPct":  11.8,
+                                                       "GapPoints":  -7.1,
                                                        "BenchmarkOnly":  false
                                                    },
                                                    {
@@ -1339,8 +1529,8 @@
                                                        "Guid":  1064,
                                                        "Name":  "Chain Heal",
                                                        "CharacterPct":  0,
-                                                       "BenchmarkPct":  6.3,
-                                                       "GapPoints":  -6.3,
+                                                       "BenchmarkPct":  6.2,
+                                                       "GapPoints":  -6.2,
                                                        "BenchmarkOnly":  true
                                                    },
                                                    {
@@ -1355,76 +1545,136 @@
                                                        "Guid":  10623,
                                                        "Name":  "Chain Heal",
                                                        "CharacterPct":  61.8,
-                                                       "BenchmarkPct":  4.8,
-                                                       "GapPoints":  57.0,
+                                                       "BenchmarkPct":  4.7,
+                                                       "GapPoints":  57.1,
                                                        "BenchmarkOnly":  false
                                                    },
                                                    {
                                                        "Guid":  25396,
                                                        "Name":  "Healing Wave",
                                                        "CharacterPct":  0,
-                                                       "BenchmarkPct":  3.2,
-                                                       "GapPoints":  -3.2,
+                                                       "BenchmarkPct":  3.1,
+                                                       "GapPoints":  -3.1,
                                                        "BenchmarkOnly":  true
                                                    },
                                                    {
                                                        "Guid":  null,
                                                        "Name":  "Healing Stream",
                                                        "CharacterPct":  0,
-                                                       "BenchmarkPct":  1.5,
-                                                       "GapPoints":  -1.5,
+                                                       "BenchmarkPct":  1.7,
+                                                       "GapPoints":  -1.7,
                                                        "BenchmarkOnly":  true
                                                    },
                                                    {
                                                        "Guid":  10468,
                                                        "Name":  "Lesser Healing Wave",
                                                        "CharacterPct":  0,
-                                                       "BenchmarkPct":  0.9,
-                                                       "GapPoints":  -0.9,
+                                                       "BenchmarkPct":  1.2,
+                                                       "GapPoints":  -1.2,
                                                        "BenchmarkOnly":  true
                                                    },
                                                    {
                                                        "Guid":  10467,
                                                        "Name":  "Lesser Healing Wave",
                                                        "CharacterPct":  0,
-                                                       "BenchmarkPct":  0.7,
-                                                       "GapPoints":  -0.7,
+                                                       "BenchmarkPct":  0.8,
+                                                       "GapPoints":  -0.8,
                                                        "BenchmarkOnly":  true
                                                    }
                                                ],
                                  "TopSpellGap":  {
                                                      "Guid":  10623,
                                                      "Name":  "Chain Heal",
-                                                     "GapPoints":  57.0
+                                                     "GapPoints":  57.1
                                                  },
+                                 "SpellRanks":  [
+                                                    {
+                                                        "Name":  "Chain Heal",
+                                                        "Ranks":  [
+                                                                      {
+                                                                          "Guid":  10623,
+                                                                          "ManaCost":  405,
+                                                                          "CharacterPct":  61.8,
+                                                                          "BenchmarkPct":  4.7
+                                                                      },
+                                                                      {
+                                                                          "Guid":  25423,
+                                                                          "ManaCost":  540,
+                                                                          "CharacterPct":  30,
+                                                                          "BenchmarkPct":  48.4
+                                                                      },
+                                                                      {
+                                                                          "Guid":  10622,
+                                                                          "ManaCost":  null,
+                                                                          "CharacterPct":  0,
+                                                                          "BenchmarkPct":  6.3
+                                                                      },
+                                                                      {
+                                                                          "Guid":  1064,
+                                                                          "ManaCost":  null,
+                                                                          "CharacterPct":  0,
+                                                                          "BenchmarkPct":  6.2
+                                                                      },
+                                                                      {
+                                                                          "Guid":  25422,
+                                                                          "ManaCost":  null,
+                                                                          "CharacterPct":  0,
+                                                                          "BenchmarkPct":  8.6
+                                                                      }
+                                                                  ]
+                                                    },
+                                                    {
+                                                        "Name":  "Lesser Healing Wave",
+                                                        "Ranks":  [
+                                                                      {
+                                                                          "Guid":  25420,
+                                                                          "ManaCost":  440,
+                                                                          "CharacterPct":  4.7,
+                                                                          "BenchmarkPct":  11.8
+                                                                      },
+                                                                      {
+                                                                          "Guid":  10467,
+                                                                          "ManaCost":  null,
+                                                                          "CharacterPct":  0,
+                                                                          "BenchmarkPct":  0.8
+                                                                      },
+                                                                      {
+                                                                          "Guid":  10468,
+                                                                          "ManaCost":  null,
+                                                                          "CharacterPct":  0,
+                                                                          "BenchmarkPct":  1.2
+                                                                      }
+                                                                  ]
+                                                    }
+                                                ],
                                  "Cooldowns":  {
                                                    "Earth Shield":  {
                                                                         "Count":  6,
                                                                         "SelfCount":  0,
                                                                         "TargetLabel":  "→ Captinhelp ×2, → Nameitis ×3, → Braila",
-                                                                        "Top100AvgCasts":  4.9,
-                                                                        "Top100UsedPct":  96,
+                                                                        "Top100AvgCasts":  5,
+                                                                        "Top100UsedPct":  97,
                                                                         "Top100SelfPct":  0,
                                                                         "Deviates":  false,
                                                                         "DeviationDirection":  null
                                                                     },
                                                    "Mana Tide Totem":  {
                                                                            "Count":  2,
-                                                                           "SelfCount":  0,
+                                                                           "SelfCount":  2,
                                                                            "TargetLabel":  "party",
                                                                            "Top100AvgCasts":  1.4,
                                                                            "Top100UsedPct":  98,
-                                                                           "Top100SelfPct":  0,
+                                                                           "Top100SelfPct":  100,
                                                                            "Deviates":  false,
                                                                            "DeviationDirection":  null
                                                                        },
                                                    "Ancestral Swiftness":  {
                                                                                "Count":  2,
-                                                                               "SelfCount":  0,
+                                                                               "SelfCount":  2,
                                                                                "TargetLabel":  "party",
                                                                                "Top100AvgCasts":  1.8,
                                                                                "Top100UsedPct":  96,
-                                                                               "Top100SelfPct":  0,
+                                                                               "Top100SelfPct":  100,
                                                                                "Deviates":  false,
                                                                                "DeviationDirection":  null
                                                                            },
@@ -1433,15 +1683,15 @@
                                                                      "SelfCount":  0,
                                                                      "TargetLabel":  "—",
                                                                      "Top100AvgCasts":  1.2,
-                                                                     "Top100UsedPct":  52,
-                                                                     "Top100SelfPct":  0,
+                                                                     "Top100UsedPct":  50,
+                                                                     "Top100SelfPct":  100,
                                                                      "Deviates":  true,
                                                                      "DeviationDirection":  "undercast"
                                                                  },
                                                    "Mana Potion":  {
                                                                        "Count":  2,
                                                                        "SelfCount":  2,
-                                                                       "TargetLabel":  "—",
+                                                                       "TargetLabel":  "self",
                                                                        "Top100AvgCasts":  2.9,
                                                                        "Top100UsedPct":  99,
                                                                        "Top100SelfPct":  100,
@@ -1507,7 +1757,7 @@
                                                    "HPS":  {
                                                                "Value":  521,
                                                                "Top1":  1411,
-                                                               "Top100Avg":  1108,
+                                                               "Top100Avg":  1109,
                                                                "Median":  1083,
                                                                "RatioToAvg":  0.47,
                                                                "Flag":  "below_avg"
@@ -1515,7 +1765,7 @@
                                                    "Overheal":  {
                                                                     "Value":  52.8,
                                                                     "Best":  11.2,
-                                                                    "Median":  34.9,
+                                                                    "Median":  34.1,
                                                                     "Worst":  50.6,
                                                                     "GapToWorst":  2.2,
                                                                     "Flag":  "exceeds_worst"
@@ -1531,22 +1781,22 @@
                                                    "HPM":  {
                                                                "Value":  4.09,
                                                                "Top1":  9.47,
-                                                               "Top100Avg":  6.61,
-                                                               "Median":  6.49,
+                                                               "Top100Avg":  6.62,
+                                                               "Median":  6.51,
                                                                "RatioToAvg":  0.62,
                                                                "Flag":  "below_avg",
                                                                "Omit":  false
                                                            },
                                                    "TargetCoverage":  {
                                                                           "Value":  55.2,
-                                                                          "Top100Avg":  55.2,
-                                                                          "GapPoints":  0.0,
+                                                                          "Top100Avg":  55.3,
+                                                                          "GapPoints":  -0.1,
                                                                           "Flag":  "in_line"
                                                                       },
                                                    "Top1Concentration":  {
                                                                              "Value":  23.4,
-                                                                             "Top100Avg":  24,
-                                                                             "GapPoints":  -0.6,
+                                                                             "Top100Avg":  24.1,
+                                                                             "GapPoints":  -0.7,
                                                                              "Flag":  "in_line"
                                                                          }
                                                },
@@ -1555,24 +1805,24 @@
                                                       "Guid":  25423,
                                                       "Name":  "Chain Heal",
                                                       "CharacterPct":  35,
-                                                      "BenchmarkPct":  54.4,
-                                                      "GapPoints":  -19.4,
+                                                      "BenchmarkPct":  54.5,
+                                                      "GapPoints":  -19.5,
                                                       "BenchmarkOnly":  false
                                                   },
                                                   {
                                                       "Guid":  25420,
                                                       "Name":  "Lesser Healing Wave",
                                                       "CharacterPct":  12.6,
-                                                      "BenchmarkPct":  10.7,
-                                                      "GapPoints":  1.9,
+                                                      "BenchmarkPct":  10.6,
+                                                      "GapPoints":  2.0,
                                                       "BenchmarkOnly":  false
                                                   },
                                                   {
                                                       "Guid":  379,
                                                       "Name":  "Earth Shield",
                                                       "CharacterPct":  8.6,
-                                                      "BenchmarkPct":  9.5,
-                                                      "GapPoints":  -0.9,
+                                                      "BenchmarkPct":  9.7,
+                                                      "GapPoints":  -1.1,
                                                       "BenchmarkOnly":  false
                                                   },
                                                   {
@@ -1603,8 +1853,8 @@
                                                       "Guid":  10622,
                                                       "Name":  "Chain Heal",
                                                       "CharacterPct":  0,
-                                                      "BenchmarkPct":  2.6,
-                                                      "GapPoints":  -2.6,
+                                                      "BenchmarkPct":  2.7,
+                                                      "GapPoints":  -2.7,
                                                       "BenchmarkOnly":  true
                                                   },
                                                   {
@@ -1646,34 +1896,88 @@
                                                     "Name":  "Chain Heal",
                                                     "GapPoints":  39.3
                                                 },
+                                "SpellRanks":  [
+                                                   {
+                                                       "Name":  "Chain Heal",
+                                                       "Ranks":  [
+                                                                     {
+                                                                         "Guid":  10623,
+                                                                         "ManaCost":  405,
+                                                                         "CharacterPct":  42.7,
+                                                                         "BenchmarkPct":  3.4
+                                                                     },
+                                                                     {
+                                                                         "Guid":  25423,
+                                                                         "ManaCost":  540,
+                                                                         "CharacterPct":  35,
+                                                                         "BenchmarkPct":  54.5
+                                                                     },
+                                                                     {
+                                                                         "Guid":  1064,
+                                                                         "ManaCost":  null,
+                                                                         "CharacterPct":  0,
+                                                                         "BenchmarkPct":  2.4
+                                                                     },
+                                                                     {
+                                                                         "Guid":  10622,
+                                                                         "ManaCost":  null,
+                                                                         "CharacterPct":  0,
+                                                                         "BenchmarkPct":  2.7
+                                                                     },
+                                                                     {
+                                                                         "Guid":  25422,
+                                                                         "ManaCost":  null,
+                                                                         "CharacterPct":  0,
+                                                                         "BenchmarkPct":  5.4
+                                                                     }
+                                                                 ]
+                                                   },
+                                                   {
+                                                       "Name":  "Healing Wave",
+                                                       "Ranks":  [
+                                                                     {
+                                                                         "Guid":  8005,
+                                                                         "ManaCost":  null,
+                                                                         "CharacterPct":  0,
+                                                                         "BenchmarkPct":  1.2
+                                                                     },
+                                                                     {
+                                                                         "Guid":  25396,
+                                                                         "ManaCost":  null,
+                                                                         "CharacterPct":  0,
+                                                                         "BenchmarkPct":  5.7
+                                                                     }
+                                                                 ]
+                                                   }
+                                               ],
                                 "Cooldowns":  {
                                                   "Earth Shield":  {
                                                                        "Count":  3,
                                                                        "SelfCount":  0,
                                                                        "TargetLabel":  "→ Captinhelp ×3",
-                                                                       "Top100AvgCasts":  4.7,
-                                                                       "Top100UsedPct":  98,
+                                                                       "Top100AvgCasts":  4.8,
+                                                                       "Top100UsedPct":  99,
                                                                        "Top100SelfPct":  0,
                                                                        "Deviates":  false,
                                                                        "DeviationDirection":  null
                                                                    },
                                                   "Mana Tide Totem":  {
                                                                           "Count":  1,
-                                                                          "SelfCount":  0,
+                                                                          "SelfCount":  1,
                                                                           "TargetLabel":  "party",
                                                                           "Top100AvgCasts":  1,
                                                                           "Top100UsedPct":  98,
-                                                                          "Top100SelfPct":  0,
+                                                                          "Top100SelfPct":  100,
                                                                           "Deviates":  false,
                                                                           "DeviationDirection":  null
                                                                       },
                                                   "Ancestral Swiftness":  {
                                                                               "Count":  1,
-                                                                              "SelfCount":  0,
+                                                                              "SelfCount":  1,
                                                                               "TargetLabel":  "party",
                                                                               "Top100AvgCasts":  1.1,
                                                                               "Top100UsedPct":  97,
-                                                                              "Top100SelfPct":  0,
+                                                                              "Top100SelfPct":  100,
                                                                               "Deviates":  false,
                                                                               "DeviationDirection":  null
                                                                           },
@@ -1683,14 +1987,14 @@
                                                                     "TargetLabel":  "—",
                                                                     "Top100AvgCasts":  0.3,
                                                                     "Top100UsedPct":  26,
-                                                                    "Top100SelfPct":  0,
+                                                                    "Top100SelfPct":  100,
                                                                     "Deviates":  false,
                                                                     "DeviationDirection":  null
                                                                 },
                                                   "Mana Potion":  {
                                                                       "Count":  1,
                                                                       "SelfCount":  1,
-                                                                      "TargetLabel":  "—",
+                                                                      "TargetLabel":  "self",
                                                                       "Top100AvgCasts":  1.3,
                                                                       "Top100UsedPct":  85,
                                                                       "Top100SelfPct":  100,
@@ -1841,6 +2145,31 @@
                                                           "Name":  "Chain Heal",
                                                           "GapPoints":  -46.4
                                                       },
+                                      "SpellRanks":  [
+                                                         {
+                                                             "Name":  "Chain Heal",
+                                                             "Ranks":  [
+                                                                           {
+                                                                               "Guid":  10623,
+                                                                               "ManaCost":  405,
+                                                                               "CharacterPct":  44,
+                                                                               "BenchmarkPct":  0.9
+                                                                           },
+                                                                           {
+                                                                               "Guid":  25423,
+                                                                               "ManaCost":  540,
+                                                                               "CharacterPct":  37.7,
+                                                                               "BenchmarkPct":  84.1
+                                                                           },
+                                                                           {
+                                                                               "Guid":  25422,
+                                                                               "ManaCost":  null,
+                                                                               "CharacterPct":  0,
+                                                                               "BenchmarkPct":  2.3
+                                                                           }
+                                                                       ]
+                                                         }
+                                                     ],
                                       "Cooldowns":  {
                                                         "Earth Shield":  {
                                                                              "Count":  1,
@@ -1854,11 +2183,11 @@
                                                                          },
                                                         "Mana Tide Totem":  {
                                                                                 "Count":  1,
-                                                                                "SelfCount":  0,
+                                                                                "SelfCount":  1,
                                                                                 "TargetLabel":  "party",
                                                                                 "Top100AvgCasts":  0.8,
                                                                                 "Top100UsedPct":  83,
-                                                                                "Top100SelfPct":  0,
+                                                                                "Top100SelfPct":  100,
                                                                                 "Deviates":  false,
                                                                                 "DeviationDirection":  null
                                                                             },
@@ -1868,7 +2197,7 @@
                                                                                     "TargetLabel":  "—",
                                                                                     "Top100AvgCasts":  0.9,
                                                                                     "Top100UsedPct":  89,
-                                                                                    "Top100SelfPct":  0,
+                                                                                    "Top100SelfPct":  100,
                                                                                     "Deviates":  true,
                                                                                     "DeviationDirection":  "undercast"
                                                                                 },
@@ -1878,14 +2207,14 @@
                                                                           "TargetLabel":  "—",
                                                                           "Top100AvgCasts":  0.3,
                                                                           "Top100UsedPct":  29,
-                                                                          "Top100SelfPct":  0,
+                                                                          "Top100SelfPct":  100,
                                                                           "Deviates":  false,
                                                                           "DeviationDirection":  null
                                                                       },
                                                         "Mana Potion":  {
                                                                             "Count":  1,
                                                                             "SelfCount":  1,
-                                                                            "TargetLabel":  "—",
+                                                                            "TargetLabel":  "self",
                                                                             "Top100AvgCasts":  1,
                                                                             "Top100UsedPct":  90,
                                                                             "Top100SelfPct":  100,
@@ -1909,9 +2238,9 @@
                                                                     {
                                                                         "DeathName":  "Leechers",
                                                                         "DeathTimestamp":  11871720,
-                                                                        "NearestCooldown":  "Earth Shield",
-                                                                        "NearestCooldownTimestamp":  11853962,
-                                                                        "DeltaMs":  17758
+                                                                        "NearestCooldown":  "Mana Potion",
+                                                                        "NearestCooldownTimestamp":  11882017,
+                                                                        "DeltaMs":  10297
                                                                     }
                                                                 ],
                                       "CannedCaveats":  {
@@ -1923,7 +2252,7 @@
                                                        "HPS":  {
                                                                    "Value":  705,
                                                                    "Top1":  2566,
-                                                                   "Top100Avg":  1638,
+                                                                   "Top100Avg":  1642,
                                                                    "Median":  1591,
                                                                    "RatioToAvg":  0.43,
                                                                    "Flag":  "below_avg"
@@ -1939,15 +2268,15 @@
                                                        "ActiveTime":  {
                                                                           "Value":  96.1,
                                                                           "Top1":  99.8,
-                                                                          "Top100Avg":  94.2,
+                                                                          "Top100Avg":  94.3,
                                                                           "Median":  95.4,
-                                                                          "GapToAvg":  1.9,
+                                                                          "GapToAvg":  1.8,
                                                                           "Flag":  "in_line"
                                                                       },
                                                        "HPM":  {
                                                                    "Value":  3.71,
                                                                    "Top1":  10.48,
-                                                                   "Top100Avg":  6.82,
+                                                                   "Top100Avg":  6.81,
                                                                    "Median":  6.65,
                                                                    "RatioToAvg":  0.54,
                                                                    "Flag":  "below_avg",
@@ -1955,8 +2284,8 @@
                                                                },
                                                        "TargetCoverage":  {
                                                                               "Value":  48.2,
-                                                                              "Top100Avg":  51.4,
-                                                                              "GapPoints":  -3.2,
+                                                                              "Top100Avg":  51.2,
+                                                                              "GapPoints":  -3.0,
                                                                               "Flag":  "in_line"
                                                                           },
                                                        "Top1Concentration":  {
@@ -1971,32 +2300,32 @@
                                                           "Guid":  25423,
                                                           "Name":  "Chain Heal",
                                                           "CharacterPct":  57.5,
-                                                          "BenchmarkPct":  65.8,
-                                                          "GapPoints":  -8.3,
+                                                          "BenchmarkPct":  65.4,
+                                                          "GapPoints":  -7.9,
                                                           "BenchmarkOnly":  false
                                                       },
                                                       {
                                                           "Guid":  25420,
                                                           "Name":  "Lesser Healing Wave",
                                                           "CharacterPct":  4.4,
-                                                          "BenchmarkPct":  19.6,
-                                                          "GapPoints":  -15.2,
+                                                          "BenchmarkPct":  20.1,
+                                                          "GapPoints":  -15.7,
                                                           "BenchmarkOnly":  false
                                                       },
                                                       {
                                                           "Guid":  25422,
                                                           "Name":  "Chain Heal",
                                                           "CharacterPct":  0,
-                                                          "BenchmarkPct":  3.6,
-                                                          "GapPoints":  -3.6,
+                                                          "BenchmarkPct":  3.7,
+                                                          "GapPoints":  -3.7,
                                                           "BenchmarkOnly":  true
                                                       },
                                                       {
                                                           "Guid":  379,
                                                           "Name":  "Earth Shield",
                                                           "CharacterPct":  4.3,
-                                                          "BenchmarkPct":  3.1,
-                                                          "GapPoints":  1.2,
+                                                          "BenchmarkPct":  3,
+                                                          "GapPoints":  1.3,
                                                           "BenchmarkOnly":  false
                                                       },
                                                       {
@@ -2019,8 +2348,8 @@
                                                           "Guid":  25396,
                                                           "Name":  "Healing Wave",
                                                           "CharacterPct":  0,
-                                                          "BenchmarkPct":  1.2,
-                                                          "GapPoints":  -1.2,
+                                                          "BenchmarkPct":  1.3,
+                                                          "GapPoints":  -1.3,
                                                           "BenchmarkOnly":  true
                                                       },
                                                       {
@@ -2037,24 +2366,55 @@
                                                         "Name":  "Chain Heal",
                                                         "GapPoints":  31.2
                                                     },
+                                    "SpellRanks":  [
+                                                       {
+                                                           "Name":  "Chain Heal",
+                                                           "Ranks":  [
+                                                                         {
+                                                                             "Guid":  10623,
+                                                                             "ManaCost":  405,
+                                                                             "CharacterPct":  33.8,
+                                                                             "BenchmarkPct":  2.6
+                                                                         },
+                                                                         {
+                                                                             "Guid":  25423,
+                                                                             "ManaCost":  540,
+                                                                             "CharacterPct":  57.5,
+                                                                             "BenchmarkPct":  65.4
+                                                                         },
+                                                                         {
+                                                                             "Guid":  10622,
+                                                                             "ManaCost":  null,
+                                                                             "CharacterPct":  0,
+                                                                             "BenchmarkPct":  0.7
+                                                                         },
+                                                                         {
+                                                                             "Guid":  25422,
+                                                                             "ManaCost":  null,
+                                                                             "CharacterPct":  0,
+                                                                             "BenchmarkPct":  3.7
+                                                                         }
+                                                                     ]
+                                                       }
+                                                   ],
                                     "Cooldowns":  {
                                                       "Earth Shield":  {
                                                                            "Count":  1,
                                                                            "SelfCount":  0,
                                                                            "TargetLabel":  "→ Captinhelp",
                                                                            "Top100AvgCasts":  0.4,
-                                                                           "Top100UsedPct":  28,
+                                                                           "Top100UsedPct":  27,
                                                                            "Top100SelfPct":  0,
                                                                            "Deviates":  false,
                                                                            "DeviationDirection":  null
                                                                        },
                                                       "Mana Tide Totem":  {
                                                                               "Count":  1,
-                                                                              "SelfCount":  0,
+                                                                              "SelfCount":  1,
                                                                               "TargetLabel":  "party",
                                                                               "Top100AvgCasts":  0.5,
                                                                               "Top100UsedPct":  51,
-                                                                              "Top100SelfPct":  0,
+                                                                              "Top100SelfPct":  100,
                                                                               "Deviates":  false,
                                                                               "DeviationDirection":  null
                                                                           },
@@ -2064,7 +2424,7 @@
                                                                                   "TargetLabel":  "—",
                                                                                   "Top100AvgCasts":  0.7,
                                                                                   "Top100UsedPct":  72,
-                                                                                  "Top100SelfPct":  0,
+                                                                                  "Top100SelfPct":  100,
                                                                                   "Deviates":  true,
                                                                                   "DeviationDirection":  "undercast"
                                                                               },
@@ -2073,8 +2433,8 @@
                                                                         "SelfCount":  0,
                                                                         "TargetLabel":  "—",
                                                                         "Top100AvgCasts":  0.1,
-                                                                        "Top100UsedPct":  14,
-                                                                        "Top100SelfPct":  0,
+                                                                        "Top100UsedPct":  13,
+                                                                        "Top100SelfPct":  100,
                                                                         "Deviates":  false,
                                                                         "DeviationDirection":  null
                                                                     },
@@ -2083,7 +2443,7 @@
                                                                           "SelfCount":  0,
                                                                           "TargetLabel":  "—",
                                                                           "Top100AvgCasts":  0.4,
-                                                                          "Top100UsedPct":  40,
+                                                                          "Top100UsedPct":  39,
                                                                           "Top100SelfPct":  100,
                                                                           "Deviates":  false,
                                                                           "DeviationDirection":  null

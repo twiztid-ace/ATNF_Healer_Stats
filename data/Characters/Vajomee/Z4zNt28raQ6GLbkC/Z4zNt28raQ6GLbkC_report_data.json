@@ -1,7 +1,8 @@
-﻿{
+{
     "CharacterName":  "Vajomee",
     "ClassName":  "Shaman",
     "ReportCode":  "Z4zNt28raQ6GLbkC",
+    "RaidDate":  "2026-07-10",
     "Bosses":  {
                    "hydross":  {
                                    "Display":  "Hydross the Unstable",
@@ -43,6 +44,20 @@
                                                          "Pct":  1
                                                      }
                                                  ],
+                                   "ManaCostByGuid":  {
+                                                          "25423":  540,
+                                                          "3738":  320,
+                                                          "16188":  0,
+                                                          "25420":  440,
+                                                          "10623":  405,
+                                                          "32594":  450,
+                                                          "35165":  0,
+                                                          "2894":  680,
+                                                          "25396":  720,
+                                                          "16190":  88,
+                                                          "25570":  120,
+                                                          "2825":  750
+                                                      },
                                    "TargetRows":  [
                                                       {
                                                           "Name":  "Captinhelp",
@@ -95,20 +110,20 @@
                                                                          },
                                                         "Mana Tide Totem":  {
                                                                                 "Count":  1,
-                                                                                "SelfCount":  0,
+                                                                                "SelfCount":  1,
                                                                                 "Targets":  [
                                                                                                 {
-                                                                                                    "Target":  "Environment",
+                                                                                                    "Target":  "self",
                                                                                                     "Timestamp":  1600053
                                                                                                 }
                                                                                             ]
                                                                             },
                                                         "Ancestral Swiftness":  {
                                                                                     "Count":  1,
-                                                                                    "SelfCount":  0,
+                                                                                    "SelfCount":  1,
                                                                                     "Targets":  [
                                                                                                     {
-                                                                                                        "Target":  "Environment",
+                                                                                                        "Target":  "self",
                                                                                                         "Timestamp":  1624220
                                                                                                     }
                                                                                                 ]
@@ -205,11 +220,11 @@
                                    "BM":  {
                                               "Boss":  "Hydross the Unstable",
                                               "HPS_Top1":  "2077",
-                                              "HPS_Top100Avg":  "1463",
-                                              "HPS_Median":  "1410",
+                                              "HPS_Top100Avg":  "1465",
+                                              "HPS_Median":  "1414",
                                               "HPM_Top1":  "8.68",
-                                              "HPM_Top100Avg":  "6.35",
-                                              "HPM_Median":  "6.28",
+                                              "HPM_Top100Avg":  "6.33",
+                                              "HPM_Median":  "6.27",
                                               "ActiveTime_Top1":  "100",
                                               "ActiveTime_Top100Avg":  "96.4",
                                               "ActiveTime_Median":  "96.9",
@@ -217,7 +232,7 @@
                                               "Overheal_Median":  "41.4",
                                               "Overheal_Worst":  "60.4",
                                               "Top100_TargetCoveragePct":  "77.3",
-                                              "Top100_TargetTop1Pct":  "47.5",
+                                              "Top100_TargetTop1Pct":  "47.6",
                                               "SampleSize":  "100",
                                               "HPM_SampleUsed":  "100",
                                               "ActiveTime_SampleUsed":  "100"
@@ -226,7 +241,7 @@
                                                     {
                                                         "Boss":  "Hydross the Unstable",
                                                         "Spell":  "Chain Heal (guid 25423)",
-                                                        "Top100Pct":  "68.2"
+                                                        "Top100Pct":  "68.1"
                                                     },
                                                     {
                                                         "Boss":  "Hydross the Unstable",
@@ -241,7 +256,7 @@
                                                     {
                                                         "Boss":  "Hydross the Unstable",
                                                         "Spell":  "Lesser Healing Wave (guid 25420)",
-                                                        "Top100Pct":  "5.1"
+                                                        "Top100Pct":  "5.2"
                                                     },
                                                     {
                                                         "Boss":  "Hydross the Unstable",
@@ -270,7 +285,7 @@
                                                            "Ability":  "Ancestral Swiftness",
                                                            "Top100AvgCasts":  "0.8",
                                                            "Top100UsedPct":  "80",
-                                                           "Top100SelfPct":  "0",
+                                                           "Top100SelfPct":  "100",
                                                            "SampleUsed":  "100"
                                                        },
                                                        {
@@ -278,13 +293,13 @@
                                                            "Ability":  "Dark Rune",
                                                            "Top100AvgCasts":  "0.1",
                                                            "Top100UsedPct":  "12",
-                                                           "Top100SelfPct":  "0",
+                                                           "Top100SelfPct":  "100",
                                                            "SampleUsed":  "100"
                                                        },
                                                        {
                                                            "Boss":  "Hydross the Unstable",
                                                            "Ability":  "Earth Shield",
-                                                           "Top100AvgCasts":  "1.9",
+                                                           "Top100AvgCasts":  "1.8",
                                                            "Top100UsedPct":  "89",
                                                            "Top100SelfPct":  "2",
                                                            "SampleUsed":  "100"
@@ -292,8 +307,8 @@
                                                        {
                                                            "Boss":  "Hydross the Unstable",
                                                            "Ability":  "Mana Potion",
-                                                           "Top100AvgCasts":  "0.5",
-                                                           "Top100UsedPct":  "46",
+                                                           "Top100AvgCasts":  "0.4",
+                                                           "Top100UsedPct":  "45",
                                                            "Top100SelfPct":  "100",
                                                            "SampleUsed":  "100"
                                                        },
@@ -302,14 +317,14 @@
                                                            "Ability":  "Mana Tide Totem",
                                                            "Top100AvgCasts":  "0.6",
                                                            "Top100UsedPct":  "65",
-                                                           "Top100SelfPct":  "0",
+                                                           "Top100SelfPct":  "100",
                                                            "SampleUsed":  "100"
                                                        }
                                                    ],
                                    "BMBuffs":  {
                                                    "Boss":  "Hydross the Unstable",
                                                    "Top100FlaskActivePct":  "78",
-                                                   "Top100FoodActivePct":  "96",
+                                                   "Top100FoodActivePct":  "97",
                                                    "SampleUsed":  "100"
                                                }
                                },
@@ -347,6 +362,20 @@
                                                         "Pct":  1.6
                                                     }
                                                 ],
+                                  "ManaCostByGuid":  {
+                                                         "25423":  540,
+                                                         "33736":  0,
+                                                         "3738":  320,
+                                                         "35165":  0,
+                                                         "16188":  0,
+                                                         "32594":  450,
+                                                         "10623":  405,
+                                                         "25570":  120,
+                                                         "25420":  440,
+                                                         "28499":  0,
+                                                         "16190":  88,
+                                                         "2825":  750
+                                                     },
                                   "TargetRows":  [
                                                      {
                                                          "Name":  "Captinhelp",
@@ -403,20 +432,20 @@
                                                                         },
                                                        "Mana Tide Totem":  {
                                                                                "Count":  1,
-                                                                               "SelfCount":  0,
+                                                                               "SelfCount":  1,
                                                                                "Targets":  [
                                                                                                {
-                                                                                                   "Target":  "Environment",
+                                                                                                   "Target":  "self",
                                                                                                    "Timestamp":  2661383
                                                                                                }
                                                                                            ]
                                                                            },
                                                        "Ancestral Swiftness":  {
                                                                                    "Count":  1,
-                                                                                   "SelfCount":  0,
+                                                                                   "SelfCount":  1,
                                                                                    "Targets":  [
                                                                                                    {
-                                                                                                       "Target":  "Environment",
+                                                                                                       "Target":  "self",
                                                                                                        "Timestamp":  2760992
                                                                                                    }
                                                                                                ]
@@ -432,7 +461,14 @@
                                                                            "Count":  2,
                                                                            "SelfCount":  2,
                                                                            "Targets":  [
-
+                                                                                           {
+                                                                                               "Target":  "self",
+                                                                                               "Timestamp":  2726907
+                                                                                           },
+                                                                                           {
+                                                                                               "Target":  "self",
+                                                                                               "Timestamp":  2847400
+                                                                                           }
                                                                                        ]
                                                                        }
                                                    },
@@ -501,19 +537,19 @@
                                   "BM":  {
                                              "Boss":  "The Lurker Below",
                                              "HPS_Top1":  "2264",
-                                             "HPS_Top100Avg":  "1750",
-                                             "HPS_Median":  "1693",
+                                             "HPS_Top100Avg":  "1755",
+                                             "HPS_Median":  "1703",
                                              "HPM_Top1":  "13.05",
-                                             "HPM_Top100Avg":  "8.98",
-                                             "HPM_Median":  "8.73",
+                                             "HPM_Top100Avg":  "9",
+                                             "HPM_Median":  "8.76",
                                              "ActiveTime_Top1":  "99.8",
-                                             "ActiveTime_Top100Avg":  "93.3",
-                                             "ActiveTime_Median":  "94.7",
+                                             "ActiveTime_Top100Avg":  "93",
+                                             "ActiveTime_Median":  "94.4",
                                              "Overheal_Best":  "6.2",
-                                             "Overheal_Median":  "21.6",
+                                             "Overheal_Median":  "21.4",
                                              "Overheal_Worst":  "41.6",
-                                             "Top100_TargetCoveragePct":  "51.7",
-                                             "Top100_TargetTop1Pct":  "15.9",
+                                             "Top100_TargetCoveragePct":  "52.1",
+                                             "Top100_TargetTop1Pct":  "16.8",
                                              "SampleSize":  "100",
                                              "HPM_SampleUsed":  "100",
                                              "ActiveTime_SampleUsed":  "100"
@@ -522,12 +558,12 @@
                                                    {
                                                        "Boss":  "The Lurker Below",
                                                        "Spell":  "Chain Heal (guid 25423)",
-                                                       "Top100Pct":  "76.2"
+                                                       "Top100Pct":  "74.8"
                                                    },
                                                    {
                                                        "Boss":  "The Lurker Below",
                                                        "Spell":  "Earth Shield",
-                                                       "Top100Pct":  "4.8"
+                                                       "Top100Pct":  "4.7"
                                                    },
                                                    {
                                                        "Boss":  "The Lurker Below",
@@ -536,28 +572,28 @@
                                                    },
                                                    {
                                                        "Boss":  "The Lurker Below",
-                                                       "Spell":  "Lesser Healing Wave (guid 25420)",
-                                                       "Top100Pct":  "3.1"
-                                                   },
-                                                   {
-                                                       "Boss":  "The Lurker Below",
                                                        "Spell":  "Healing Wave (guid 25396)",
-                                                       "Top100Pct":  "3"
-                                                   },
-                                                   {
-                                                       "Boss":  "The Lurker Below",
-                                                       "Spell":  "Healing Stream (guid 25566)",
-                                                       "Top100Pct":  "3"
+                                                       "Top100Pct":  "3.5"
                                                    },
                                                    {
                                                        "Boss":  "The Lurker Below",
                                                        "Spell":  "Chain Heal (guid 25422)",
-                                                       "Top100Pct":  "2.7"
+                                                       "Top100Pct":  "3.3"
+                                                   },
+                                                   {
+                                                       "Boss":  "The Lurker Below",
+                                                       "Spell":  "Lesser Healing Wave (guid 25420)",
+                                                       "Top100Pct":  "3.2"
+                                                   },
+                                                   {
+                                                       "Boss":  "The Lurker Below",
+                                                       "Spell":  "Healing Stream (guid 25566)",
+                                                       "Top100Pct":  "2.8"
                                                    },
                                                    {
                                                        "Boss":  "The Lurker Below",
                                                        "Spell":  "Chain Heal (guid 10622)",
-                                                       "Top100Pct":  "1.1"
+                                                       "Top100Pct":  "1.4"
                                                    },
                                                    {
                                                        "Boss":  "The Lurker Below",
@@ -571,22 +607,22 @@
                                                           "Ability":  "Ancestral Swiftness",
                                                           "Top100AvgCasts":  "0.9",
                                                           "Top100UsedPct":  "91",
-                                                          "Top100SelfPct":  "0",
+                                                          "Top100SelfPct":  "100",
                                                           "SampleUsed":  "100"
                                                       },
                                                       {
                                                           "Boss":  "The Lurker Below",
                                                           "Ability":  "Dark Rune",
                                                           "Top100AvgCasts":  "0.2",
-                                                          "Top100UsedPct":  "19",
-                                                          "Top100SelfPct":  "0",
+                                                          "Top100UsedPct":  "17",
+                                                          "Top100SelfPct":  "100",
                                                           "SampleUsed":  "100"
                                                       },
                                                       {
                                                           "Boss":  "The Lurker Below",
                                                           "Ability":  "Earth Shield",
                                                           "Top100AvgCasts":  "1.2",
-                                                          "Top100UsedPct":  "73",
+                                                          "Top100UsedPct":  "71",
                                                           "Top100SelfPct":  "2",
                                                           "SampleUsed":  "100"
                                                       },
@@ -594,7 +630,7 @@
                                                           "Boss":  "The Lurker Below",
                                                           "Ability":  "Mana Potion",
                                                           "Top100AvgCasts":  "0.7",
-                                                          "Top100UsedPct":  "67",
+                                                          "Top100UsedPct":  "66",
                                                           "Top100SelfPct":  "100",
                                                           "SampleUsed":  "100"
                                                       },
@@ -602,15 +638,15 @@
                                                           "Boss":  "The Lurker Below",
                                                           "Ability":  "Mana Tide Totem",
                                                           "Top100AvgCasts":  "0.7",
-                                                          "Top100UsedPct":  "74",
-                                                          "Top100SelfPct":  "0",
+                                                          "Top100UsedPct":  "73",
+                                                          "Top100SelfPct":  "100",
                                                           "SampleUsed":  "100"
                                                       }
                                                   ],
                                   "BMBuffs":  {
                                                   "Boss":  "The Lurker Below",
                                                   "Top100FlaskActivePct":  "68",
-                                                  "Top100FoodActivePct":  "96",
+                                                  "Top100FoodActivePct":  "97",
                                                   "SampleUsed":  "98"
                                               }
                               },
@@ -648,6 +684,20 @@
                                                            "Pct":  2.6
                                                        }
                                                    ],
+                                     "ManaCostByGuid":  {
+                                                            "25423":  540,
+                                                            "33736":  0,
+                                                            "25396":  720,
+                                                            "16188":  0,
+                                                            "10623":  405,
+                                                            "32594":  450,
+                                                            "35165":  0,
+                                                            "2825":  750,
+                                                            "28499":  0,
+                                                            "16190":  88,
+                                                            "25570":  120,
+                                                            "3738":  320
+                                                        },
                                      "TargetRows":  [
                                                         {
                                                             "Name":  "Fuggler",
@@ -712,24 +762,24 @@
                                                                            },
                                                           "Mana Tide Totem":  {
                                                                                   "Count":  1,
-                                                                                  "SelfCount":  0,
+                                                                                  "SelfCount":  1,
                                                                                   "Targets":  [
                                                                                                   {
-                                                                                                      "Target":  "Environment",
+                                                                                                      "Target":  "self",
                                                                                                       "Timestamp":  4213886
                                                                                                   }
                                                                                               ]
                                                                               },
                                                           "Ancestral Swiftness":  {
                                                                                       "Count":  2,
-                                                                                      "SelfCount":  0,
+                                                                                      "SelfCount":  2,
                                                                                       "Targets":  [
                                                                                                       {
-                                                                                                          "Target":  "Environment",
+                                                                                                          "Target":  "self",
                                                                                                           "Timestamp":  4194152
                                                                                                       },
                                                                                                       {
-                                                                                                          "Target":  "Environment",
+                                                                                                          "Target":  "self",
                                                                                                           "Timestamp":  4399917
                                                                                                       }
                                                                                                   ]
@@ -745,7 +795,14 @@
                                                                               "Count":  2,
                                                                               "SelfCount":  2,
                                                                               "Targets":  [
-
+                                                                                              {
+                                                                                                  "Target":  "self",
+                                                                                                  "Timestamp":  4215185
+                                                                                              },
+                                                                                              {
+                                                                                                  "Target":  "self",
+                                                                                                  "Timestamp":  4338256
+                                                                                              }
                                                                                           ]
                                                                           }
                                                       },
@@ -806,19 +863,19 @@
                                      "BM":  {
                                                 "Boss":  "Leotheras the Blind",
                                                 "HPS_Top1":  "2688",
-                                                "HPS_Top100Avg":  "1950",
-                                                "HPS_Median":  "1911",
+                                                "HPS_Top100Avg":  "1955",
+                                                "HPS_Median":  "1914",
                                                 "HPM_Top1":  "12.54",
-                                                "HPM_Top100Avg":  "9.27",
-                                                "HPM_Median":  "9.12",
+                                                "HPM_Top100Avg":  "9.3",
+                                                "HPM_Median":  "9.17",
                                                 "ActiveTime_Top1":  "99.8",
-                                                "ActiveTime_Top100Avg":  "94.8",
+                                                "ActiveTime_Top100Avg":  "95",
                                                 "ActiveTime_Median":  "95.8",
                                                 "Overheal_Best":  "7.7",
-                                                "Overheal_Median":  "24.8",
+                                                "Overheal_Median":  "24.4",
                                                 "Overheal_Worst":  "46.3",
-                                                "Top100_TargetCoveragePct":  "50.7",
-                                                "Top100_TargetTop1Pct":  "13.7",
+                                                "Top100_TargetCoveragePct":  "51.1",
+                                                "Top100_TargetTop1Pct":  "13.9",
                                                 "SampleSize":  "100",
                                                 "HPM_SampleUsed":  "100",
                                                 "ActiveTime_SampleUsed":  "100"
@@ -827,7 +884,7 @@
                                                       {
                                                           "Boss":  "Leotheras the Blind",
                                                           "Spell":  "Chain Heal (guid 25423)",
-                                                          "Top100Pct":  "87.4"
+                                                          "Top100Pct":  "86.7"
                                                       },
                                                       {
                                                           "Boss":  "Leotheras the Blind",
@@ -836,13 +893,13 @@
                                                       },
                                                       {
                                                           "Boss":  "Leotheras the Blind",
-                                                          "Spell":  "Healing Stream",
-                                                          "Top100Pct":  "1.6"
+                                                          "Spell":  "Chain Heal (guid 10623)",
+                                                          "Top100Pct":  "1.9"
                                                       },
                                                       {
                                                           "Boss":  "Leotheras the Blind",
-                                                          "Spell":  "Chain Heal (guid 10623)",
-                                                          "Top100Pct":  "1.5"
+                                                          "Spell":  "Healing Stream",
+                                                          "Top100Pct":  "1.6"
                                                       },
                                                       {
                                                           "Boss":  "Leotheras the Blind",
@@ -852,22 +909,22 @@
                                                       {
                                                           "Boss":  "Leotheras the Blind",
                                                           "Spell":  "Chain Heal (guid 10622)",
-                                                          "Top100Pct":  "1.4"
+                                                          "Top100Pct":  "1.5"
                                                       },
                                                       {
                                                           "Boss":  "Leotheras the Blind",
                                                           "Spell":  "Chain Heal (guid 25422)",
-                                                          "Top100Pct":  "1"
+                                                          "Top100Pct":  "1.3"
+                                                      },
+                                                      {
+                                                          "Boss":  "Leotheras the Blind",
+                                                          "Spell":  "Persistent Shield",
+                                                          "Top100Pct":  "0.7"
                                                       },
                                                       {
                                                           "Boss":  "Leotheras the Blind",
                                                           "Spell":  "Chain Heal (guid 1064)",
                                                           "Top100Pct":  "0.7"
-                                                      },
-                                                      {
-                                                          "Boss":  "Leotheras the Blind",
-                                                          "Spell":  "Persistent Shield",
-                                                          "Top100Pct":  "0.6"
                                                       }
                                                   ],
                                      "BMCooldowns":  [
@@ -875,23 +932,23 @@
                                                              "Boss":  "Leotheras the Blind",
                                                              "Ability":  "Ancestral Swiftness",
                                                              "Top100AvgCasts":  "0.8",
-                                                             "Top100UsedPct":  "82",
-                                                             "Top100SelfPct":  "0",
+                                                             "Top100UsedPct":  "83",
+                                                             "Top100SelfPct":  "100",
                                                              "SampleUsed":  "100"
                                                          },
                                                          {
                                                              "Boss":  "Leotheras the Blind",
                                                              "Ability":  "Dark Rune",
                                                              "Top100AvgCasts":  "0.2",
-                                                             "Top100UsedPct":  "24",
-                                                             "Top100SelfPct":  "0",
+                                                             "Top100UsedPct":  "25",
+                                                             "Top100SelfPct":  "100",
                                                              "SampleUsed":  "100"
                                                          },
                                                          {
                                                              "Boss":  "Leotheras the Blind",
                                                              "Ability":  "Earth Shield",
                                                              "Top100AvgCasts":  "1",
-                                                             "Top100UsedPct":  "65",
+                                                             "Top100UsedPct":  "66",
                                                              "Top100SelfPct":  "1",
                                                              "SampleUsed":  "100"
                                                          },
@@ -899,16 +956,16 @@
                                                              "Boss":  "Leotheras the Blind",
                                                              "Ability":  "Mana Potion",
                                                              "Top100AvgCasts":  "0.6",
-                                                             "Top100UsedPct":  "61",
+                                                             "Top100UsedPct":  "62",
                                                              "Top100SelfPct":  "100",
                                                              "SampleUsed":  "100"
                                                          },
                                                          {
                                                              "Boss":  "Leotheras the Blind",
                                                              "Ability":  "Mana Tide Totem",
-                                                             "Top100AvgCasts":  "0.8",
-                                                             "Top100UsedPct":  "84",
-                                                             "Top100SelfPct":  "0",
+                                                             "Top100AvgCasts":  "0.9",
+                                                             "Top100UsedPct":  "86",
+                                                             "Top100SelfPct":  "100",
                                                              "SampleUsed":  "100"
                                                          }
                                                      ],
@@ -953,6 +1010,19 @@
                                                             "Pct":  1.5
                                                         }
                                                     ],
+                                      "ManaCostByGuid":  {
+                                                             "25423":  540,
+                                                             "3738":  320,
+                                                             "8042":  30,
+                                                             "32594":  450,
+                                                             "10623":  405,
+                                                             "35165":  0,
+                                                             "20554":  177,
+                                                             "25420":  440,
+                                                             "16190":  88,
+                                                             "25570":  120,
+                                                             "2825":  750
+                                                         },
                                       "TargetRows":  [
                                                          {
                                                              "Name":  "Luffydonoo",
@@ -1013,10 +1083,10 @@
                                                                             },
                                                            "Mana Tide Totem":  {
                                                                                    "Count":  1,
-                                                                                   "SelfCount":  0,
+                                                                                   "SelfCount":  1,
                                                                                    "Targets":  [
                                                                                                    {
-                                                                                                       "Target":  "Environment",
+                                                                                                       "Target":  "self",
                                                                                                        "Timestamp":  5509958
                                                                                                    }
                                                                                                ]
@@ -1064,19 +1134,19 @@
                                       "BM":  {
                                                  "Boss":  "Fathom-Lord Karathress",
                                                  "HPS_Top1":  "2889",
-                                                 "HPS_Top100Avg":  "2147",
-                                                 "HPS_Median":  "2088",
+                                                 "HPS_Top100Avg":  "2149",
+                                                 "HPS_Median":  "2090",
                                                  "HPM_Top1":  "11.27",
-                                                 "HPM_Top100Avg":  "9.16",
-                                                 "HPM_Median":  "9.11",
+                                                 "HPM_Top100Avg":  "9.17",
+                                                 "HPM_Median":  "9.16",
                                                  "ActiveTime_Top1":  "99.7",
                                                  "ActiveTime_Top100Avg":  "94.7",
-                                                 "ActiveTime_Median":  "96.2",
+                                                 "ActiveTime_Median":  "96.3",
                                                  "Overheal_Best":  "8.5",
-                                                 "Overheal_Median":  "27.9",
+                                                 "Overheal_Median":  "27.2",
                                                  "Overheal_Worst":  "44.5",
-                                                 "Top100_TargetCoveragePct":  "71",
-                                                 "Top100_TargetTop1Pct":  "34.7",
+                                                 "Top100_TargetCoveragePct":  "70.8",
+                                                 "Top100_TargetTop1Pct":  "34.4",
                                                  "SampleSize":  "100",
                                                  "HPM_SampleUsed":  "100",
                                                  "ActiveTime_SampleUsed":  "100"
@@ -1085,17 +1155,17 @@
                                                        {
                                                            "Boss":  "Fathom-Lord Karathress",
                                                            "Spell":  "Chain Heal (guid 25423)",
-                                                           "Top100Pct":  "84.2"
+                                                           "Top100Pct":  "84.5"
                                                        },
                                                        {
                                                            "Boss":  "Fathom-Lord Karathress",
                                                            "Spell":  "Earth Shield",
-                                                           "Top100Pct":  "6.3"
+                                                           "Top100Pct":  "6.1"
                                                        },
                                                        {
                                                            "Boss":  "Fathom-Lord Karathress",
                                                            "Spell":  "Healing Wave (guid 25396)",
-                                                           "Top100Pct":  "2.6"
+                                                           "Top100Pct":  "2.5"
                                                        },
                                                        {
                                                            "Boss":  "Fathom-Lord Karathress",
@@ -1105,12 +1175,12 @@
                                                        {
                                                            "Boss":  "Fathom-Lord Karathress",
                                                            "Spell":  "Lesser Healing Wave",
-                                                           "Top100Pct":  "1.4"
+                                                           "Top100Pct":  "1.5"
                                                        },
                                                        {
                                                            "Boss":  "Fathom-Lord Karathress",
-                                                           "Spell":  "Chain Heal (guid 10623)",
-                                                           "Top100Pct":  "0.9"
+                                                           "Spell":  "Chain Heal (guid 1064)",
+                                                           "Top100Pct":  "0.8"
                                                        },
                                                        {
                                                            "Boss":  "Fathom-Lord Karathress",
@@ -1119,7 +1189,7 @@
                                                        },
                                                        {
                                                            "Boss":  "Fathom-Lord Karathress",
-                                                           "Spell":  "Chain Heal (guid 1064)",
+                                                           "Spell":  "Chain Heal (guid 10623)",
                                                            "Top100Pct":  "0.7"
                                                        }
                                                    ],
@@ -1128,23 +1198,23 @@
                                                               "Boss":  "Fathom-Lord Karathress",
                                                               "Ability":  "Ancestral Swiftness",
                                                               "Top100AvgCasts":  "0.9",
-                                                              "Top100UsedPct":  "86",
-                                                              "Top100SelfPct":  "0",
+                                                              "Top100UsedPct":  "87",
+                                                              "Top100SelfPct":  "100",
                                                               "SampleUsed":  "100"
                                                           },
                                                           {
                                                               "Boss":  "Fathom-Lord Karathress",
                                                               "Ability":  "Dark Rune",
                                                               "Top100AvgCasts":  "0.1",
-                                                              "Top100UsedPct":  "12",
-                                                              "Top100SelfPct":  "0",
+                                                              "Top100UsedPct":  "11",
+                                                              "Top100SelfPct":  "100",
                                                               "SampleUsed":  "100"
                                                           },
                                                           {
                                                               "Boss":  "Fathom-Lord Karathress",
                                                               "Ability":  "Earth Shield",
-                                                              "Top100AvgCasts":  "1.5",
-                                                              "Top100UsedPct":  "69",
+                                                              "Top100AvgCasts":  "1.4",
+                                                              "Top100UsedPct":  "68",
                                                               "Top100SelfPct":  "1",
                                                               "SampleUsed":  "100"
                                                           },
@@ -1152,7 +1222,7 @@
                                                               "Boss":  "Fathom-Lord Karathress",
                                                               "Ability":  "Mana Potion",
                                                               "Top100AvgCasts":  "0.6",
-                                                              "Top100UsedPct":  "56",
+                                                              "Top100UsedPct":  "57",
                                                               "Top100SelfPct":  "100",
                                                               "SampleUsed":  "100"
                                                           },
@@ -1161,13 +1231,13 @@
                                                               "Ability":  "Mana Tide Totem",
                                                               "Top100AvgCasts":  "0.6",
                                                               "Top100UsedPct":  "59",
-                                                              "Top100SelfPct":  "0",
+                                                              "Top100SelfPct":  "100",
                                                               "SampleUsed":  "100"
                                                           }
                                                       ],
                                       "BMBuffs":  {
                                                       "Boss":  "Fathom-Lord Karathress",
-                                                      "Top100FlaskActivePct":  "70",
+                                                      "Top100FlaskActivePct":  "71",
                                                       "Top100FoodActivePct":  "99",
                                                       "SampleUsed":  "100"
                                                   }
@@ -1224,6 +1294,24 @@
                                                           "Pct":  1.1
                                                       }
                                                   ],
+                                    "ManaCostByGuid":  {
+                                                           "10623":  405,
+                                                           "20554":  177,
+                                                           "25396":  720,
+                                                           "2825":  750,
+                                                           "27235":  0,
+                                                           "25423":  540,
+                                                           "27237":  0,
+                                                           "16188":  0,
+                                                           "25420":  440,
+                                                           "3738":  320,
+                                                           "2894":  680,
+                                                           "32594":  450,
+                                                           "16190":  88,
+                                                           "25570":  120,
+                                                           "28499":  0,
+                                                           "35165":  0
+                                                       },
                                     "TargetRows":  [
                                                        {
                                                            "Name":  "Captinhelp",
@@ -1280,20 +1368,20 @@
                                                                           },
                                                          "Mana Tide Totem":  {
                                                                                  "Count":  1,
-                                                                                 "SelfCount":  0,
+                                                                                 "SelfCount":  1,
                                                                                  "Targets":  [
                                                                                                  {
-                                                                                                     "Target":  "Environment",
+                                                                                                     "Target":  "self",
                                                                                                      "Timestamp":  6280347
                                                                                                  }
                                                                                              ]
                                                                              },
                                                          "Ancestral Swiftness":  {
                                                                                      "Count":  1,
-                                                                                     "SelfCount":  0,
+                                                                                     "SelfCount":  1,
                                                                                      "Targets":  [
                                                                                                      {
-                                                                                                         "Target":  "Environment",
+                                                                                                         "Target":  "self",
                                                                                                          "Timestamp":  6376959
                                                                                                      }
                                                                                                  ]
@@ -1309,7 +1397,10 @@
                                                                              "Count":  1,
                                                                              "SelfCount":  1,
                                                                              "Targets":  [
-
+                                                                                             {
+                                                                                                 "Target":  "self",
+                                                                                                 "Timestamp":  6482220
+                                                                                             }
                                                                                          ]
                                                                          }
                                                      },
@@ -1342,19 +1433,19 @@
                                     "BM":  {
                                                "Boss":  "Morogrim Tidewalker",
                                                "HPS_Top1":  "2156",
-                                               "HPS_Top100Avg":  "1523",
-                                               "HPS_Median":  "1476",
+                                               "HPS_Top100Avg":  "1525",
+                                               "HPS_Median":  "1481",
                                                "HPM_Top1":  "11.21",
-                                               "HPM_Top100Avg":  "8.24",
-                                               "HPM_Median":  "8.13",
+                                               "HPM_Top100Avg":  "8.22",
+                                               "HPM_Median":  "8.05",
                                                "ActiveTime_Top1":  "99.6",
-                                               "ActiveTime_Top100Avg":  "97.1",
-                                               "ActiveTime_Median":  "97.8",
+                                               "ActiveTime_Top100Avg":  "97",
+                                               "ActiveTime_Median":  "97.7",
                                                "Overheal_Best":  "17.6",
-                                               "Overheal_Median":  "30.8",
-                                               "Overheal_Worst":  "47.1",
-                                               "Top100_TargetCoveragePct":  "52.3",
-                                               "Top100_TargetTop1Pct":  "22.6",
+                                               "Overheal_Median":  "31.1",
+                                               "Overheal_Worst":  "49.1",
+                                               "Top100_TargetCoveragePct":  "51.9",
+                                               "Top100_TargetTop1Pct":  "22.2",
                                                "SampleSize":  "100",
                                                "HPM_SampleUsed":  "100",
                                                "ActiveTime_SampleUsed":  "100"
@@ -1363,12 +1454,12 @@
                                                      {
                                                          "Boss":  "Morogrim Tidewalker",
                                                          "Spell":  "Chain Heal (guid 25423)",
-                                                         "Top100Pct":  "68.5"
+                                                         "Top100Pct":  "69.2"
                                                      },
                                                      {
                                                          "Boss":  "Morogrim Tidewalker",
                                                          "Spell":  "Earth Shield",
-                                                         "Top100Pct":  "7.7"
+                                                         "Top100Pct":  "7.6"
                                                      },
                                                      {
                                                          "Boss":  "Morogrim Tidewalker",
@@ -1383,12 +1474,12 @@
                                                      {
                                                          "Boss":  "Morogrim Tidewalker",
                                                          "Spell":  "Healing Stream",
-                                                         "Top100Pct":  "3.9"
+                                                         "Top100Pct":  "4"
                                                      },
                                                      {
                                                          "Boss":  "Morogrim Tidewalker",
                                                          "Spell":  "Chain Heal (guid 1064)",
-                                                         "Top100Pct":  "2.8"
+                                                         "Top100Pct":  "2.6"
                                                      },
                                                      {
                                                          "Boss":  "Morogrim Tidewalker",
@@ -1403,7 +1494,7 @@
                                                      {
                                                          "Boss":  "Morogrim Tidewalker",
                                                          "Spell":  "Chain Heal (guid 10622)",
-                                                         "Top100Pct":  "0.9"
+                                                         "Top100Pct":  "1"
                                                      }
                                                  ],
                                     "BMCooldowns":  [
@@ -1412,7 +1503,7 @@
                                                             "Ability":  "Ancestral Swiftness",
                                                             "Top100AvgCasts":  "1",
                                                             "Top100UsedPct":  "96",
-                                                            "Top100SelfPct":  "0",
+                                                            "Top100SelfPct":  "100",
                                                             "SampleUsed":  "100"
                                                         },
                                                         {
@@ -1420,7 +1511,7 @@
                                                             "Ability":  "Dark Rune",
                                                             "Top100AvgCasts":  "0.1",
                                                             "Top100UsedPct":  "12",
-                                                            "Top100SelfPct":  "0",
+                                                            "Top100SelfPct":  "100",
                                                             "SampleUsed":  "100"
                                                         },
                                                         {
@@ -1434,7 +1525,7 @@
                                                         {
                                                             "Boss":  "Morogrim Tidewalker",
                                                             "Ability":  "Mana Potion",
-                                                            "Top100AvgCasts":  "1.1",
+                                                            "Top100AvgCasts":  "1",
                                                             "Top100UsedPct":  "83",
                                                             "Top100SelfPct":  "100",
                                                             "SampleUsed":  "100"
@@ -1443,14 +1534,14 @@
                                                             "Boss":  "Morogrim Tidewalker",
                                                             "Ability":  "Mana Tide Totem",
                                                             "Top100AvgCasts":  "0.9",
-                                                            "Top100UsedPct":  "93",
-                                                            "Top100SelfPct":  "0",
+                                                            "Top100UsedPct":  "94",
+                                                            "Top100SelfPct":  "100",
                                                             "SampleUsed":  "100"
                                                         }
                                                     ],
                                     "BMBuffs":  {
                                                     "Boss":  "Morogrim Tidewalker",
-                                                    "Top100FlaskActivePct":  "80",
+                                                    "Top100FlaskActivePct":  "78",
                                                     "Top100FoodActivePct":  "96",
                                                     "SampleUsed":  "100"
                                                 }
@@ -1489,6 +1580,25 @@
                                                        "Pct":  3.4
                                                    }
                                                ],
+                                 "ManaCostByGuid":  {
+                                                        "10623":  405,
+                                                        "526":  207,
+                                                        "33736":  0,
+                                                        "20554":  177,
+                                                        "2825":  750,
+                                                        "25420":  440,
+                                                        "25423":  540,
+                                                        "16188":  0,
+                                                        "3738":  320,
+                                                        "31367":  0,
+                                                        "8143":  60,
+                                                        "32594":  450,
+                                                        "16190":  88,
+                                                        "25570":  120,
+                                                        "8177":  147,
+                                                        "28499":  0,
+                                                        "35165":  0
+                                                    },
                                  "TargetRows":  [
                                                     {
                                                         "Name":  "Braila",
@@ -1557,28 +1667,28 @@
                                                                        },
                                                       "Mana Tide Totem":  {
                                                                               "Count":  2,
-                                                                              "SelfCount":  0,
+                                                                              "SelfCount":  2,
                                                                               "Targets":  [
                                                                                               {
-                                                                                                  "Target":  "Environment",
+                                                                                                  "Target":  "self",
                                                                                                   "Timestamp":  7209663
                                                                                               },
                                                                                               {
-                                                                                                  "Target":  "Environment",
+                                                                                                  "Target":  "self",
                                                                                                   "Timestamp":  7548673
                                                                                               }
                                                                                           ]
                                                                           },
                                                       "Ancestral Swiftness":  {
                                                                                   "Count":  2,
-                                                                                  "SelfCount":  0,
+                                                                                  "SelfCount":  2,
                                                                                   "Targets":  [
                                                                                                   {
-                                                                                                      "Target":  "Environment",
+                                                                                                      "Target":  "self",
                                                                                                       "Timestamp":  7194202
                                                                                                   },
                                                                                                   {
-                                                                                                      "Target":  "Environment",
+                                                                                                      "Target":  "self",
                                                                                                       "Timestamp":  7579295
                                                                                                   }
                                                                                               ]
@@ -1594,7 +1704,14 @@
                                                                           "Count":  2,
                                                                           "SelfCount":  2,
                                                                           "Targets":  [
-
+                                                                                          {
+                                                                                              "Target":  "self",
+                                                                                              "Timestamp":  7208949
+                                                                                          },
+                                                                                          {
+                                                                                              "Target":  "self",
+                                                                                              "Timestamp":  7532009
+                                                                                          }
                                                                                       ]
                                                                       }
                                                   },
@@ -1639,19 +1756,19 @@
                                  "BM":  {
                                             "Boss":  "Lady Vashj",
                                             "HPS_Top1":  "1256",
-                                            "HPS_Top100Avg":  "1081",
-                                            "HPS_Median":  "1066",
+                                            "HPS_Top100Avg":  "1083",
+                                            "HPS_Median":  "1067",
                                             "HPM_Top1":  "9.47",
-                                            "HPM_Top100Avg":  "7.33",
-                                            "HPM_Median":  "7.24",
+                                            "HPM_Top100Avg":  "7.34",
+                                            "HPM_Median":  "7.26",
                                             "ActiveTime_Top1":  "99.8",
-                                            "ActiveTime_Top100Avg":  "94",
-                                            "ActiveTime_Median":  "95.3",
+                                            "ActiveTime_Top100Avg":  "94.1",
+                                            "ActiveTime_Median":  "95.7",
                                             "Overheal_Best":  "13.9",
                                             "Overheal_Median":  "26.8",
                                             "Overheal_Worst":  "41.2",
-                                            "Top100_TargetCoveragePct":  "46.9",
-                                            "Top100_TargetTop1Pct":  "17.6",
+                                            "Top100_TargetCoveragePct":  "46.8",
+                                            "Top100_TargetTop1Pct":  "17.5",
                                             "SampleSize":  "100",
                                             "HPM_SampleUsed":  "100",
                                             "ActiveTime_SampleUsed":  "100"
@@ -1660,12 +1777,12 @@
                                                   {
                                                       "Boss":  "Lady Vashj",
                                                       "Spell":  "Chain Heal (guid 25423)",
-                                                      "Top100Pct":  "48.8"
+                                                      "Top100Pct":  "48.4"
                                                   },
                                                   {
                                                       "Boss":  "Lady Vashj",
                                                       "Spell":  "Lesser Healing Wave (guid 25420)",
-                                                      "Top100Pct":  "11.7"
+                                                      "Top100Pct":  "11.8"
                                                   },
                                                   {
                                                       "Boss":  "Lady Vashj",
@@ -1680,7 +1797,7 @@
                                                   {
                                                       "Boss":  "Lady Vashj",
                                                       "Spell":  "Chain Heal (guid 1064)",
-                                                      "Top100Pct":  "6.3"
+                                                      "Top100Pct":  "6.2"
                                                   },
                                                   {
                                                       "Boss":  "Lady Vashj",
@@ -1690,27 +1807,27 @@
                                                   {
                                                       "Boss":  "Lady Vashj",
                                                       "Spell":  "Chain Heal (guid 10623)",
-                                                      "Top100Pct":  "4.8"
+                                                      "Top100Pct":  "4.7"
                                                   },
                                                   {
                                                       "Boss":  "Lady Vashj",
                                                       "Spell":  "Healing Wave (guid 25396)",
-                                                      "Top100Pct":  "3.2"
+                                                      "Top100Pct":  "3.1"
                                                   },
                                                   {
                                                       "Boss":  "Lady Vashj",
                                                       "Spell":  "Healing Stream",
-                                                      "Top100Pct":  "1.5"
+                                                      "Top100Pct":  "1.7"
                                                   },
                                                   {
                                                       "Boss":  "Lady Vashj",
                                                       "Spell":  "Lesser Healing Wave (guid 10468)",
-                                                      "Top100Pct":  "0.9"
+                                                      "Top100Pct":  "1.2"
                                                   },
                                                   {
                                                       "Boss":  "Lady Vashj",
                                                       "Spell":  "Lesser Healing Wave (guid 10467)",
-                                                      "Top100Pct":  "0.7"
+                                                      "Top100Pct":  "0.8"
                                                   }
                                               ],
                                  "BMCooldowns":  [
@@ -1719,22 +1836,22 @@
                                                          "Ability":  "Ancestral Swiftness",
                                                          "Top100AvgCasts":  "1.8",
                                                          "Top100UsedPct":  "96",
-                                                         "Top100SelfPct":  "0",
+                                                         "Top100SelfPct":  "100",
                                                          "SampleUsed":  "100"
                                                      },
                                                      {
                                                          "Boss":  "Lady Vashj",
                                                          "Ability":  "Dark Rune",
                                                          "Top100AvgCasts":  "1.2",
-                                                         "Top100UsedPct":  "52",
-                                                         "Top100SelfPct":  "0",
+                                                         "Top100UsedPct":  "50",
+                                                         "Top100SelfPct":  "100",
                                                          "SampleUsed":  "100"
                                                      },
                                                      {
                                                          "Boss":  "Lady Vashj",
                                                          "Ability":  "Earth Shield",
-                                                         "Top100AvgCasts":  "4.9",
-                                                         "Top100UsedPct":  "96",
+                                                         "Top100AvgCasts":  "5",
+                                                         "Top100UsedPct":  "97",
                                                          "Top100SelfPct":  "0",
                                                          "SampleUsed":  "100"
                                                      },
@@ -1751,13 +1868,13 @@
                                                          "Ability":  "Mana Tide Totem",
                                                          "Top100AvgCasts":  "1.4",
                                                          "Top100UsedPct":  "98",
-                                                         "Top100SelfPct":  "0",
+                                                         "Top100SelfPct":  "100",
                                                          "SampleUsed":  "100"
                                                      }
                                                  ],
                                  "BMBuffs":  {
                                                  "Boss":  "Lady Vashj",
-                                                 "Top100FlaskActivePct":  "72",
+                                                 "Top100FlaskActivePct":  "70",
                                                  "Top100FoodActivePct":  "98",
                                                  "SampleUsed":  "100"
                                              }
@@ -1802,6 +1919,20 @@
                                                       "Pct":  1.2
                                                   }
                                               ],
+                                "ManaCostByGuid":  {
+                                                       "25423":  540,
+                                                       "27237":  0,
+                                                       "16188":  0,
+                                                       "10623":  405,
+                                                       "32594":  450,
+                                                       "25420":  440,
+                                                       "35165":  0,
+                                                       "16190":  88,
+                                                       "28499":  0,
+                                                       "2825":  750,
+                                                       "25570":  120,
+                                                       "3738":  320
+                                                   },
                                 "TargetRows":  [
                                                    {
                                                        "Name":  "Captinhelp",
@@ -1858,20 +1989,20 @@
                                                                       },
                                                      "Mana Tide Totem":  {
                                                                              "Count":  1,
-                                                                             "SelfCount":  0,
+                                                                             "SelfCount":  1,
                                                                              "Targets":  [
                                                                                              {
-                                                                                                 "Target":  "Environment",
+                                                                                                 "Target":  "self",
                                                                                                  "Timestamp":  10165524
                                                                                              }
                                                                                          ]
                                                                          },
                                                      "Ancestral Swiftness":  {
                                                                                  "Count":  1,
-                                                                                 "SelfCount":  0,
+                                                                                 "SelfCount":  1,
                                                                                  "Targets":  [
                                                                                                  {
-                                                                                                     "Target":  "Environment",
+                                                                                                     "Target":  "self",
                                                                                                      "Timestamp":  10098043
                                                                                                  }
                                                                                              ]
@@ -1887,7 +2018,10 @@
                                                                          "Count":  1,
                                                                          "SelfCount":  1,
                                                                          "Targets":  [
-
+                                                                                         {
+                                                                                             "Target":  "self",
+                                                                                             "Timestamp":  10165141
+                                                                                         }
                                                                                      ]
                                                                      }
                                                  },
@@ -1924,19 +2058,19 @@
                                 "BM":  {
                                            "Boss":  "Al\u0027ar",
                                            "HPS_Top1":  "1411",
-                                           "HPS_Top100Avg":  "1108",
+                                           "HPS_Top100Avg":  "1109",
                                            "HPS_Median":  "1083",
                                            "HPM_Top1":  "9.47",
-                                           "HPM_Top100Avg":  "6.61",
-                                           "HPM_Median":  "6.49",
+                                           "HPM_Top100Avg":  "6.62",
+                                           "HPM_Median":  "6.51",
                                            "ActiveTime_Top1":  "99.9",
                                            "ActiveTime_Top100Avg":  "96.4",
                                            "ActiveTime_Median":  "98.1",
                                            "Overheal_Best":  "11.2",
-                                           "Overheal_Median":  "34.9",
+                                           "Overheal_Median":  "34.1",
                                            "Overheal_Worst":  "50.6",
-                                           "Top100_TargetCoveragePct":  "55.2",
-                                           "Top100_TargetTop1Pct":  "24",
+                                           "Top100_TargetCoveragePct":  "55.3",
+                                           "Top100_TargetTop1Pct":  "24.1",
                                            "SampleSize":  "100",
                                            "HPM_SampleUsed":  "100",
                                            "ActiveTime_SampleUsed":  "100"
@@ -1945,17 +2079,17 @@
                                                  {
                                                      "Boss":  "Al\u0027ar",
                                                      "Spell":  "Chain Heal (guid 25423)",
-                                                     "Top100Pct":  "54.4"
+                                                     "Top100Pct":  "54.5"
                                                  },
                                                  {
                                                      "Boss":  "Al\u0027ar",
                                                      "Spell":  "Lesser Healing Wave (guid 25420)",
-                                                     "Top100Pct":  "10.7"
+                                                     "Top100Pct":  "10.6"
                                                  },
                                                  {
                                                      "Boss":  "Al\u0027ar",
                                                      "Spell":  "Earth Shield",
-                                                     "Top100Pct":  "9.5"
+                                                     "Top100Pct":  "9.7"
                                                  },
                                                  {
                                                      "Boss":  "Al\u0027ar",
@@ -1975,7 +2109,7 @@
                                                  {
                                                      "Boss":  "Al\u0027ar",
                                                      "Spell":  "Chain Heal (guid 10622)",
-                                                     "Top100Pct":  "2.6"
+                                                     "Top100Pct":  "2.7"
                                                  },
                                                  {
                                                      "Boss":  "Al\u0027ar",
@@ -1999,7 +2133,7 @@
                                                         "Ability":  "Ancestral Swiftness",
                                                         "Top100AvgCasts":  "1.1",
                                                         "Top100UsedPct":  "97",
-                                                        "Top100SelfPct":  "0",
+                                                        "Top100SelfPct":  "100",
                                                         "SampleUsed":  "100"
                                                     },
                                                     {
@@ -2007,14 +2141,14 @@
                                                         "Ability":  "Dark Rune",
                                                         "Top100AvgCasts":  "0.3",
                                                         "Top100UsedPct":  "26",
-                                                        "Top100SelfPct":  "0",
+                                                        "Top100SelfPct":  "100",
                                                         "SampleUsed":  "100"
                                                     },
                                                     {
                                                         "Boss":  "Al\u0027ar",
                                                         "Ability":  "Earth Shield",
-                                                        "Top100AvgCasts":  "4.7",
-                                                        "Top100UsedPct":  "98",
+                                                        "Top100AvgCasts":  "4.8",
+                                                        "Top100UsedPct":  "99",
                                                         "Top100SelfPct":  "0",
                                                         "SampleUsed":  "100"
                                                     },
@@ -2031,13 +2165,13 @@
                                                         "Ability":  "Mana Tide Totem",
                                                         "Top100AvgCasts":  "1",
                                                         "Top100UsedPct":  "98",
-                                                        "Top100SelfPct":  "0",
+                                                        "Top100SelfPct":  "100",
                                                         "SampleUsed":  "100"
                                                     }
                                                 ],
                                 "BMBuffs":  {
                                                 "Boss":  "Al\u0027ar",
-                                                "Top100FlaskActivePct":  "72",
+                                                "Top100FlaskActivePct":  "71",
                                                 "Top100FoodActivePct":  "94",
                                                 "SampleUsed":  "100"
                                             }
@@ -2082,6 +2216,20 @@
                                                             "Pct":  0.7
                                                         }
                                                     ],
+                                      "ManaCostByGuid":  {
+                                                             "25423":  540,
+                                                             "33736":  0,
+                                                             "3738":  320,
+                                                             "25567":  95,
+                                                             "32594":  450,
+                                                             "10623":  405,
+                                                             "35165":  0,
+                                                             "27237":  0,
+                                                             "28499":  0,
+                                                             "16190":  88,
+                                                             "25570":  120,
+                                                             "2825":  750
+                                                         },
                                       "TargetRows":  [
                                                          {
                                                              "Name":  "Captinhelp",
@@ -2130,10 +2278,10 @@
                                                                             },
                                                            "Mana Tide Totem":  {
                                                                                    "Count":  1,
-                                                                                   "SelfCount":  0,
+                                                                                   "SelfCount":  1,
                                                                                    "Targets":  [
                                                                                                    {
-                                                                                                       "Target":  "Environment",
+                                                                                                       "Target":  "self",
                                                                                                        "Timestamp":  11823586
                                                                                                    }
                                                                                                ]
@@ -2156,7 +2304,10 @@
                                                                                "Count":  1,
                                                                                "SelfCount":  1,
                                                                                "Targets":  [
-
+                                                                                               {
+                                                                                                   "Target":  "self",
+                                                                                                   "Timestamp":  11882017
+                                                                                               }
                                                                                            ]
                                                                            }
                                                        },
@@ -2235,7 +2386,7 @@
                                                               "Ability":  "Ancestral Swiftness",
                                                               "Top100AvgCasts":  "0.9",
                                                               "Top100UsedPct":  "89",
-                                                              "Top100SelfPct":  "0",
+                                                              "Top100SelfPct":  "100",
                                                               "SampleUsed":  "100"
                                                           },
                                                           {
@@ -2243,7 +2394,7 @@
                                                               "Ability":  "Dark Rune",
                                                               "Top100AvgCasts":  "0.3",
                                                               "Top100UsedPct":  "29",
-                                                              "Top100SelfPct":  "0",
+                                                              "Top100SelfPct":  "100",
                                                               "SampleUsed":  "100"
                                                           },
                                                           {
@@ -2267,7 +2418,7 @@
                                                               "Ability":  "Mana Tide Totem",
                                                               "Top100AvgCasts":  "0.8",
                                                               "Top100UsedPct":  "83",
-                                                              "Top100SelfPct":  "0",
+                                                              "Top100SelfPct":  "100",
                                                               "SampleUsed":  "100"
                                                           }
                                                       ],
@@ -2312,6 +2463,19 @@
                                                           "Pct":  4.3
                                                       }
                                                   ],
+                                    "ManaCostByGuid":  {
+                                                           "25423":  540,
+                                                           "8143":  60,
+                                                           "3738":  320,
+                                                           "10623":  405,
+                                                           "32594":  450,
+                                                           "25420":  440,
+                                                           "35165":  0,
+                                                           "16190":  88,
+                                                           "20554":  177,
+                                                           "25570":  120,
+                                                           "2825":  750
+                                                       },
                                     "TargetRows":  [
                                                        {
                                                            "Name":  "Victim",
@@ -2360,10 +2524,10 @@
                                                                           },
                                                          "Mana Tide Totem":  {
                                                                                  "Count":  1,
-                                                                                 "SelfCount":  0,
+                                                                                 "SelfCount":  1,
                                                                                  "Targets":  [
                                                                                                  {
-                                                                                                     "Target":  "Environment",
+                                                                                                     "Target":  "self",
                                                                                                      "Timestamp":  12921120
                                                                                                  }
                                                                                              ]
@@ -2408,18 +2572,18 @@
                                     "BM":  {
                                                "Boss":  "High Astromancer Solarian",
                                                "HPS_Top1":  "2566",
-                                               "HPS_Top100Avg":  "1638",
+                                               "HPS_Top100Avg":  "1642",
                                                "HPS_Median":  "1591",
                                                "HPM_Top1":  "10.48",
-                                               "HPM_Top100Avg":  "6.82",
+                                               "HPM_Top100Avg":  "6.81",
                                                "HPM_Median":  "6.65",
                                                "ActiveTime_Top1":  "99.8",
-                                               "ActiveTime_Top100Avg":  "94.2",
+                                               "ActiveTime_Top100Avg":  "94.3",
                                                "ActiveTime_Median":  "95.4",
                                                "Overheal_Best":  "7.7",
                                                "Overheal_Median":  "34.2",
                                                "Overheal_Worst":  "55.5",
-                                               "Top100_TargetCoveragePct":  "51.4",
+                                               "Top100_TargetCoveragePct":  "51.2",
                                                "Top100_TargetTop1Pct":  "15.2",
                                                "SampleSize":  "100",
                                                "HPM_SampleUsed":  "100",
@@ -2429,22 +2593,22 @@
                                                      {
                                                          "Boss":  "High Astromancer Solarian",
                                                          "Spell":  "Chain Heal (guid 25423)",
-                                                         "Top100Pct":  "65.8"
+                                                         "Top100Pct":  "65.4"
                                                      },
                                                      {
                                                          "Boss":  "High Astromancer Solarian",
                                                          "Spell":  "Lesser Healing Wave (guid 25420)",
-                                                         "Top100Pct":  "19.6"
+                                                         "Top100Pct":  "20.1"
                                                      },
                                                      {
                                                          "Boss":  "High Astromancer Solarian",
                                                          "Spell":  "Chain Heal (guid 25422)",
-                                                         "Top100Pct":  "3.6"
+                                                         "Top100Pct":  "3.7"
                                                      },
                                                      {
                                                          "Boss":  "High Astromancer Solarian",
                                                          "Spell":  "Earth Shield",
-                                                         "Top100Pct":  "3.1"
+                                                         "Top100Pct":  "3"
                                                      },
                                                      {
                                                          "Boss":  "High Astromancer Solarian",
@@ -2459,7 +2623,7 @@
                                                      {
                                                          "Boss":  "High Astromancer Solarian",
                                                          "Spell":  "Healing Wave (guid 25396)",
-                                                         "Top100Pct":  "1.2"
+                                                         "Top100Pct":  "1.3"
                                                      },
                                                      {
                                                          "Boss":  "High Astromancer Solarian",
@@ -2473,22 +2637,22 @@
                                                             "Ability":  "Ancestral Swiftness",
                                                             "Top100AvgCasts":  "0.7",
                                                             "Top100UsedPct":  "72",
-                                                            "Top100SelfPct":  "0",
+                                                            "Top100SelfPct":  "100",
                                                             "SampleUsed":  "100"
                                                         },
                                                         {
                                                             "Boss":  "High Astromancer Solarian",
                                                             "Ability":  "Dark Rune",
                                                             "Top100AvgCasts":  "0.1",
-                                                            "Top100UsedPct":  "14",
-                                                            "Top100SelfPct":  "0",
+                                                            "Top100UsedPct":  "13",
+                                                            "Top100SelfPct":  "100",
                                                             "SampleUsed":  "100"
                                                         },
                                                         {
                                                             "Boss":  "High Astromancer Solarian",
                                                             "Ability":  "Earth Shield",
                                                             "Top100AvgCasts":  "0.4",
-                                                            "Top100UsedPct":  "28",
+                                                            "Top100UsedPct":  "27",
                                                             "Top100SelfPct":  "0",
                                                             "SampleUsed":  "100"
                                                         },
@@ -2496,7 +2660,7 @@
                                                             "Boss":  "High Astromancer Solarian",
                                                             "Ability":  "Mana Potion",
                                                             "Top100AvgCasts":  "0.4",
-                                                            "Top100UsedPct":  "40",
+                                                            "Top100UsedPct":  "39",
                                                             "Top100SelfPct":  "100",
                                                             "SampleUsed":  "100"
                                                         },
@@ -2505,14 +2669,14 @@
                                                             "Ability":  "Mana Tide Totem",
                                                             "Top100AvgCasts":  "0.5",
                                                             "Top100UsedPct":  "51",
-                                                            "Top100SelfPct":  "0",
+                                                            "Top100SelfPct":  "100",
                                                             "SampleUsed":  "100"
                                                         }
                                                     ],
                                     "BMBuffs":  {
                                                     "Boss":  "High Astromancer Solarian",
                                                     "Top100FlaskActivePct":  "73",
-                                                    "Top100FoodActivePct":  "91",
+                                                    "Top100FoodActivePct":  "90",
                                                     "SampleUsed":  "100"
                                                 }
                                 }
@@ -2762,6 +2926,5 @@
                                               "itemLevel":  1
                                           }
                                       ]
-                 },
-    "RaidDate":  "2026-07-10"
+                 }
 }

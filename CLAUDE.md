@@ -14,7 +14,11 @@ ported 2026-07-13, Paladin ported the same day right after Priest — see WORKFL
 source of truth for this project — API endpoints, file formats, known bugs, and 33
 numbered "gotchas" documenting real mistakes already made and fixed. Assume anything
 not in WORKFLOW.md is unverified. This file is just a map to get you oriented quickly;
-WORKFLOW.md has the actual depth.
+WORKFLOW.md has the actual depth. **`README.md`** (repo root) is the practical
+day-to-day companion to this file — setup steps and the exact command sequence for
+running the pipeline, including entirely without Claude (see "Local-scripting
+pipeline" below); read it when you actually need to run something, not just to
+get oriented.
 
 ## You can do something I (this conversation's Claude) couldn't
 
@@ -51,6 +55,16 @@ project still hasn't seen a *partial* port (e.g. API-only migration without the
 events-based rewrite) that would actually split the two axes apart for one
 class. Don't assume "v2" means the same thing in every sentence of this file or
 WORKFLOW.md without checking which axis it's on.
+
+**A third, independent axis exists now too: *authoring method*** — how the final
+HTML for a methodology-v2 report actually gets produced, separate from both axes
+above. Added 2026-07-14 (see "Local-scripting pipeline" below): Claude hand-writing
+every page's HTML directly (how all 4 existing real v2 sites were built), vs.
+`render_healer_report.ps1` mechanically rendering it from JSON + a small
+Claude-authored `findings.json` (the new default going forward, see below). A page
+being "v2" says nothing about which authoring method produced it — check whether
+its raid folder has a `{code}_findings.json`/`{code}_analysis.json` next to its
+`report_data.json` (script-rendered) or not (hand-written) if it matters.
 
 - **v1 (simple)**: gear check + basic spell composition + a couple of other checks,
   built on the old `/report/tables/` healing view (5-entry truncation bug and all —
@@ -99,6 +113,152 @@ script. The short version:
 - **No class remains on the old date-folder convention as of Paladin's port.**
   The old convention is documented in WORKFLOW.md purely as reference for a
   hypothetical future new class.
+
+## `data\Characters\` and `docs\` folders — report code, not raid date (2026-07-14)
+
+Separate from the `data\Classes\` model above: every per-character raid-night
+folder (`data\Characters\{Name}\{X}\` and `docs\{healer}\{X}\`) is now keyed by
+**WCL report code**, not raid date — e.g. `data\Characters\Crowns\XJp8vAxzM4KtHYyb\`,
+`docs\crowns\XJp8vAxzM4KtHYyb\`. This replaced a real, confirmed bug: the old
+`{yyyy-MM-dd}` folder keying meant two different raids pulled for the same
+character on the same calendar date (a real, expected scenario — an afternoon
+SSC clear and a separate night TK clear, say) would land in the *same* folder,
+and the per-boss-kill files inside (`fight14_lurker_healing_events.json`, etc.)
+carry no report code of their own — so the second pull would silently overwrite
+or corrupt the first's files. The report date is still tracked and shown on every
+page — just not as the folder name anymore. It lives as `report_data.json`'s own
+`RaidDate` field (and `fights_{code}.json`'s `raidDate` field one level below
+that) instead.
+
+**Existing v1-preserved sibling folders are now `{code}-v1`, not `{date}-v1`.**
+Several healers have an old v1-methodology site sitting alongside their v2 site
+for the same raid night (see "Two generations" above) — e.g.
+`docs\crowns\XJp8vAxzM4KtHYyb-v1\` next to `docs\crowns\XJp8vAxzM4KtHYyb\`, both
+built from the exact same real report. `render_healer_report.ps1` refuses to
+write into any output folder whose name ends in `-v1`, regardless of what
+precedes the suffix.
+
+**All 4 healers' existing real folders were renamed to this convention on
+2026-07-14** (both `data\Characters\` and `docs\`, via `git mv` to preserve
+history) — this was a one-time migration of already-published data, not just a
+go-forward convention change, so **GitHub Pages URLs for every existing raid
+night changed** (e.g. `docs/crowns/2026-07-07/` → `docs/crowns/XJp8vAxzM4KtHYyb/`)
+— any external bookmark/link to an old date-based URL now 404s. Every healer's
+hub page (`docs\{healer}\index.html`) raid-row link was updated to match; a
+genuinely pre-existing broken link was also found and fixed in the process
+(Lippies' raid overview referenced a `_v1` (underscore) folder that never
+existed — the real folder was always `-v1` (hyphen); now points at the correct,
+renamed `XJp8vAxzM4KtHYyb-v1`).
+
+**A healer's raid-list must always read newest-first, and can no longer rely on
+insertion order to guarantee that** (fixed the same day) — since folders are
+report-code-keyed, the order raids get *generated* in no longer has any natural
+relationship to the order they actually happened in (backfilling an older raid
+after a newer one is real, not hypothetical). `update_hub_pages.ps1` now always
+re-parses every existing row's own date text and rewrites the whole list stably
+sorted by date descending on every insert, rather than just prepending — see
+that script's own header comment, and its `-ResortOnly` mode (re-sorts an
+existing healer's list without inserting anything, e.g. after a manual edit).
+
+## Local-scripting pipeline (2026-07-14) — replaces Claude hand-writing HTML
+
+Generating a report used to mean Claude hand-writing ~550 lines of HTML per
+boss page, 11 times per report (10 boss pages + 1 raid overview), re-emitting
+near-identical CSS/structure every time — this is how all 4 existing real v2
+sites (Danceswtrees, Vajomee, Lippies, Crowns) were actually built, and it burns
+a lot of tokens for output that's almost entirely mechanical. Built to fix that:
+a 3-stage pipeline where a script computes every real number and pre-flags
+every script-safe judgment call, Claude authors only the handful of genuinely
+interpretive sentences, and a second script deterministically renders the final
+HTML. **No existing site was regenerated through this new pipeline** — the
+decision when this was built was to leave the 4 existing hand-written sites
+untouched and apply the new pipeline to future report generations only.
+
+- `scripts\build_boss_analysis.ps1` — reads `{code}_report_data.json`, writes
+  `{code}_analysis.json` next to it: per-boss deviation flags vs. the Top 100
+  benchmark, cooldown over/undercast flags, self-death detection,
+  nearest-cooldown-to-death lookups, gear enchant gaps, canned-caveat tags
+  (Priest PWS benchmark bias, Paladin Holy Shock guid split — see "Current
+  state" below), and (added 2026-07-15) `SpellRanks` — mechanical, no-LLM
+  detection of a spell name with 2+ distinct real guids in play this kill
+  (character and/or Top 100), reusing `SpellGaps`' own union-matching. **WCL's
+  v2 API has no "rank" field anywhere** (confirmed live via `__schema`
+  introspection on `GameAbility`/`ReportAbility` — both only have
+  id/icon/name/type) and `gameData.abilities` is a flat, unfiltered, 456,806-row
+  pagination with no name/class filter, so pulling "all abilities" isn't a
+  viable way to get rank data either. Real per-cast mana cost (this kill's own
+  `classResources` data, captured per-guid in `build_boss_report_data.ps1` as
+  `ManaCostByGuid`) is the only available signal for which rank is "higher" —
+  known only for guids the character actually cast this kill, `null`
+  (rendered `?`, never guessed) otherwise. Rendered as a new, always-mechanical
+  "Spell ranks in play" block in section 02 of every boss template, wrapped in
+  `<!--@OPTIONAL:SPELL_RANKS_SECTION-->` — a boss where no spell has 2+ ranks
+  gets the whole block removed, not shown empty. Verified against Vajomee's
+  real Vashj kill (Chain Heal: 5 real guids, 260-540 mana; Lesser Healing Wave:
+  3 real guids) matching the exact numbers already found by hand earlier this
+  session. Zero API calls, zero LLM involvement for any of this.
+- `{code}_findings.json` — the ONE file an LLM authors: ~4 free-text
+  coverage-note strings per boss (`SCORECARD_FINDING`/`SPELL_COMPOSITION_FINDING`/
+  `COOLDOWN_FINDING`/`TARGET_FINDING`) plus a `RaidOverview` object, following the
+  schema documented in `render_healer_report.ps1`'s own header comment and in
+  the `generate-healer-report` skill.
+- `scripts\render_healer_report.ps1` — merges `report_data.json` +
+  `{code}_analysis.json` + `{code}_findings.json` + the class's boss template +
+  `raid_overview_template.html` into the final HTML pages. Zero LLM involvement;
+  refuses to run with an incomplete `findings.json` or write into a `-v1`-suffixed
+  output folder.
+- `scripts\update_hub_pages.ps1` — surgical upsert of the two hub pages (see
+  above for its date-sorting behavior). Zero LLM involvement.
+- `scripts\build_placeholder_findings.ps1` — stands in for the Claude-authoring
+  step with an obvious `[CLAUDE PLACEHOLDER ...]` string in every required
+  field, so the pipeline can be proven/run start-to-finish with no LLM at all
+  (see README.md's "Running the pipeline manually, without Claude"). Output from
+  this is never meant to be published as-is.
+- `scripts\lib\ReportRenderLib.psm1` — shared helpers both scripts above import:
+  CSV-string-to-number parsing, the 19-slot gear-order/enchantable-slot tables
+  (gotcha #31's exact bug class — kept in exactly one place on purpose),
+  per-class cooldown target-labeling mode (self/party/other), and the
+  `@LOOP`/`@SLOT`/`@OPTIONAL` HTML-comment templating primitives the 7 template
+  files use (string/regex based, no DOM library, consistent with every other
+  script here).
+- **Regression-tested against all 4 classes now** (2026-07-14: Crowns/Paladin
+  and Vajomee/Shaman first, Danceswtrees/Druid and Lippies/Priest added the same
+  day) — all mechanical content matched the real hand-written pages exactly
+  (after accounting for a few deliberate, documented canonicalizations: sort
+  order, `0%` vs `0.0%`, guid-suffix-only-on-name-collision, and — Lippies
+  specifically — a gear-consistency banner whose real prose structure the
+  template's fixed wrapper text can't reproduce verbatim). The Druid fixture
+  exercised both Druid-only paths for real: Tree of Life uptime (0% on 7 of 9
+  kills, real non-zero values of 93.7%/100% on the other 2 — all matched
+  exactly) and the conditional Rebirth row (5 of 9 kills had a real,
+  judgment-worthy death-to-Rebirth case; `IncludeRebirthRow` correctly
+  included/omitted the row on every boss). The Priest fixture confirmed the
+  `priest_pws_benchmark_bias` canned caveat renders correctly.
+  The regression pass also caught real mistakes *in the original hand-written
+  pages* that the new pipeline avoids — not just non-regressive, a real
+  accuracy improvement each time: a mislabeled Divine Favor self% on 2 of 10
+  Crowns pages, a missed OffHand missing-enchant flag on Vajomee's gear audit,
+  and on Danceswtrees specifically, 2 of 3 real missing-enchant gaps (Feet,
+  OffHand) that the hand-written raid overview never flagged at all (only
+  caught the cloak).
+- **Real bug found and fixed during the Druid/Priest regression pass**: Mana
+  Potion's cooldown-table "target" column always rendered as `—` instead of
+  `self`, even when it was genuinely cast, for **every class** — root cause was
+  `build_boss_report_data.ps1` hardcoding Mana Potion's `Targets` array to `@()`
+  regardless of real casts, which silently broke `Format-CooldownTarget`'s
+  "self" mode (it checks `Targets.Count`, not the `Count` field directly).
+  Fixed to populate one real `Target = "self"` entry per actual cast. **Every
+  already-generated `report_data.json` in the repo was regenerated** to
+  propagate the fix (all 7 real character+report folders) — this was safe and
+  necessary since `build_boss_report_data.ps1` makes zero API calls and is
+  meant to be safely re-run at any time, but be aware if a diff shows unrelated
+  `report_data.json` churn from 2026-07-14, this is why.
+- Two real PowerShell 5.1 source-encoding bugs were hit and fixed while
+  building this (see "Ground rules" below for the durable rule) — worth naming
+  here since they cost real debugging time twice: a literal non-ASCII character
+  embedded directly in a `.ps1` file (once in `ReportRenderLib.psm1`, once
+  months apart in `update_hub_pages.ps1`'s date-parsing regex) silently
+  mangled into garbage on parse/execution because the file has no BOM.
 
 ## Repo structure
 
@@ -186,6 +346,39 @@ scripts/
                                          by pull_character_TEMPLATE.ps1 and all four pull_top100_*.ps1
                                          scripts — see WORKFLOW.md's "v2 GraphQL API" section for the
                                          full endpoint mapping and auth setup.
+  build_boss_report_data.ps1         <- reads pulled character data + that class's benchmark_*.csv,
+                                         writes {code}_report_data.json (every real number needed for
+                                         a report, zero interpretation). Makes zero API calls. Now
+                                         also writes a RaidDate field (added 2026-07-14 alongside the
+                                         report-code folder change - see above).
+  build_boss_analysis.ps1            <- NEW 2026-07-14, part of the local-scripting pipeline (see
+                                         above) - report_data.json -> {code}_analysis.json, pre-flags
+                                         every script-safe judgment call. Zero API calls, zero LLM.
+  render_healer_report.ps1           <- NEW 2026-07-14, part of the local-scripting pipeline (see
+                                         above) - report_data.json + analysis.json + findings.json +
+                                         templates -> docs\{healer}\{code}\*.html. Zero LLM involvement.
+  update_hub_pages.ps1               <- NEW 2026-07-14, part of the local-scripting pipeline (see
+                                         above) - surgical upsert of the two hub pages, always
+                                         re-sorted by raid date descending. Zero LLM involvement.
+  build_placeholder_findings.ps1     <- NEW 2026-07-14, part of the local-scripting pipeline (see
+                                         above) - stands in for Claude's findings.json authoring step
+                                         so the pipeline can run with no LLM at all (see README.md).
+  lib/ReportRenderLib.psm1           <- NEW 2026-07-14, shared helpers for build_boss_analysis.ps1
+                                         and render_healer_report.ps1 (see "Local-scripting pipeline"
+                                         above for what's in it).
+
+scripts/archive/                    <- superseded/completed one-time scripts, kept as historical
+                                         reference only, never run again in normal operation:
+  pull_character_TEMPLATE_v1.ps1, pull_top100_{druid,shaman,priest_holy,paladin}_v1.ps1
+                                     <- old v1 REST API versions, preserved when each class migrated
+                                         to the v2 GraphQL API (see intro above).
+  smoke_test_v2_api.ps1              <- moved here 2026-07-14 (was in scripts/ root) - throwaway
+                                         verification script for the v1->v2 API migration's Phase 0,
+                                         which is now fully complete for all four classes.
+  backfill_activetime_danceswtrees.ps1, backfill_activetime_top100_druid.ps1,
+  compute_danceswtrees_remaining_bosses.ps1
+                                     <- one-off catch-up/analysis scripts from before this pipeline's
+                                         current shape, already run, no longer relevant.
 
 templates/
   design_tokens.md                   <- the site's design system (colors, type, layout rules)
@@ -249,17 +442,36 @@ data/Classes/Priest/2026-07-10/     <- OLD v1 pull, preserved untouched, same re
 data/Classes/Paladin/2026-07-10/    <- OLD v1 pull, preserved untouched, same reasoning again - not
                                         the active data anymore
 
+data/Characters/{Name}/{ReportCode}/  (see "data\Characters\ and docs\ folders — report code, not
+        raid date" above - keyed by WCL report code, NOT raid date, since 2026-07-14)
+  fights_{code}.json                 <- report-wide fight list + actors, includes a raidDate field
+  fight{ID}_{bossSlug}_*.json         <- per-boss-kill healing/casts/consumables/gear/activetime/deaths
+  {code}_v2_rankings.json            <- real per-fight WCL percentile/rank
+  {code}_report_data.json            <- every real number needed for a report (includes RaidDate)
+  {code}_analysis.json               <- NEW 2026-07-14, only present for reports built through the
+                                         local-scripting pipeline (see above) - pre-flagged judgment calls
+  {code}_findings.json               <- NEW 2026-07-14, same - the Claude-authored free-text strings
+
 docs/  (already generated, not templates, actual pages. v1 output moved here 2026-07-12 for
         GitHub Pages, see "Hosting" below — this is now the real path for ALL generated output,
-        v1 and v2 alike; a healer folder can contain BOTH generations in different date
-        subfolders, e.g. docs\vajomee\2026-07-03\ is v1, docs\vajomee\2026-07-10\ is v2 - check
-        the date folder, not just the healer name, before assuming which methodology a page uses)
+        v1 and v2 alike; a healer folder can contain BOTH generations in different report-code
+        subfolders, e.g. docs\vajomee\Mfz4kW6JpjFPArat\ is v1-methodology, docs\vajomee\Z4zNt28raQ6GLbkC\
+        is v2 - check which specific report-code folder, not just the healer name, before assuming
+        which methodology a page uses. Folders were renamed from {date}\ to {ReportCode}\ on
+        2026-07-14 - see the section above for why and what changed)
   index.html                         <- site homepage, links to all healers below
   crowns/, danceswtrees/, lippies/, vajomee/
-    index.html                       <- per-healer raid-night list
-    {date}/index.html                <- raid overview for that night
-    {date}/healer_audit_{boss}.html  <- one per boss kill (v1 or v2 methodology depending on
-                                         which pipeline generated that specific date folder)
+    index.html                       <- per-healer raid-night list, always sorted by raid date
+                                         descending (see above) regardless of insertion order
+    {ReportCode}/index.html          <- raid overview for that night
+    {ReportCode}/healer_audit_{boss}.html  <- one per boss kill (v1 or v2 methodology depending on
+                                         which pipeline generated that specific folder; hand-written
+                                         or script-rendered depending on authoring method, see
+                                         "Local-scripting pipeline" above - check for a sibling
+                                         {code}_analysis.json/{code}_findings.json in the matching
+                                         data\Characters\ folder to tell which)
+    {ReportCode}-v1/...               <- a preserved v1-methodology site for the SAME report code,
+                                         where one exists (see above) - never overwritten
 ```
 
 Not included here (repo-specific, never shared in the source conversation):
@@ -279,12 +491,16 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   methodology — not being extended further, kept only as historical reference
   now that all four classes have a v2 pipeline. Danceswtrees's, Lippies's, and
   Crowns's own v1 pages have already been superseded by real v2 pages for the
-  same raid night (moved aside to a `-v1`/`_v1`-suffixed sibling folder, not
-  deleted — Crowns's move happened 2026-07-13). Vajomee's earliest raid night
-  (2026-07-03) still has only a v1 page, but that's a genuinely separate raid
-  night from her v2 raid nights (2026-07-10, 2026-07-12), not the same night
-  pending a regen — don't assume "class is v2" means every historical raid
-  night for that healer has been regenerated.
+  same raid night (moved aside to a `-v1`-suffixed sibling folder, not
+  deleted — Crowns's move happened 2026-07-13; folders were still date-named at
+  that point, renamed to report-code-named on 2026-07-14, see above — a stray
+  `_v1` (underscore) reference in one old cross-link was a genuine pre-existing
+  typo, not a second real naming convention, fixed during that rename). Vajomee's
+  earliest raid night (2026-07-03, report `Mfz4kW6JpjFPArat`) still has only a
+  v1 page, but that's a genuinely separate raid night from her v2 raid nights
+  (2026-07-10/`Z4zNt28raQ6GLbkC`, 2026-07-12/`QTaWq74txvPF82AR`), not the same
+  night pending a regen — don't assume "class is v2" means every historical
+  raid night for that healer has been regenerated.
 - `data\Classes\{Shaman,Priest,Paladin}\2026-07-10\` (or 2026-07-07, check the
   actual folder) still exist as the old v1-generation Top 100 pulls, preserved
   untouched on disk, same convention as keeping `*_v1.ps1` scripts around — none
@@ -363,25 +579,37 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   character's report needs checking against the full Top 100 sample before a
   "never does X" claim goes into permanent documentation).
 - **All four full v2 healer sites have been generated end-to-end**: Danceswtrees/
-  Druid (`docs\danceswtrees\2026-06-30\`), Vajomee/Shaman (`docs\vajomee\2026-07-10\`),
-  Lippies/Priest (`docs\lippies\2026-07-07\`), and Crowns/Paladin
-  (`docs\crowns\2026-07-07\`, generated 2026-07-13) — each a real raid overview +
-  one page per boss kill, built from real `build_boss_report_data.ps1` output,
-  not templated filler. Crowns's v1 pages for the same raid night were moved
-  aside to `docs\crowns\2026-07-07-v1\` (not deleted) once the v2 pages were
-  confirmed. **There is no more open per-healer v2 site regen work on the
-  original four-healer scope.**
+  Druid (`docs\danceswtrees\Fm9XdWYtz8VCLnwg\`), Vajomee/Shaman
+  (`docs\vajomee\Z4zNt28raQ6GLbkC\`), Lippies/Priest (`docs\lippies\XJp8vAxzM4KtHYyb\`),
+  and Crowns/Paladin (`docs\crowns\XJp8vAxzM4KtHYyb\`, generated 2026-07-13) —
+  each a real raid overview + one page per boss kill, hand-written by Claude
+  from real `build_boss_report_data.ps1` output (not templated filler, and not
+  produced by the newer `render_healer_report.ps1` pipeline — see "Local-scripting
+  pipeline" above). Crowns's v1 pages for the same raid night were moved aside
+  to `docs\crowns\XJp8vAxzM4KtHYyb-v1\` (not deleted) once the v2 pages were
+  confirmed. **All folder names above reflect the 2026-07-14 report-code rename
+  — these were `docs\{healer}\{date}\` right up until that migration** (see
+  "data\Characters\ and docs\ folders" above). There is no more open per-healer
+  v2 site regen work on the original four-healer scope.
 
-**Recently closed (2026-07-13):**
-- Crowns's v2 site regen — done. `docs\crowns\2026-07-07\` has a full raid
-  overview + all 10 boss pages, committed (`e463b9f6`, `a1633da6`) and pushed to
-  `master`. Every one of the 4 existing healer sites now has a real v2 version —
-  this closes what used to be open item #2 on this list.
-- The GitHub Pages toggle — done. Confirmed live 2026-07-13 by fetching
+**Recently closed:**
+- Crowns's v2 site regen (2026-07-13) — done. Has a full raid overview + all 10
+  boss pages, committed (`e463b9f6`, `a1633da6`) and pushed to `master`. Every
+  one of the 4 existing healer sites now has a real v2 version.
+- The GitHub Pages toggle (2026-07-13) — done. Confirmed live by fetching
   `https://twiztid-ace.github.io/WC_log_analysis/` directly: it serves the real
   site homepage listing all 4 healers (Crowns, Danceswtrees, Lippies, Vajomee).
-  See the "Hosting" section below — this closes what used to be open item #2
-  there too.
+  See the "Hosting" section below.
+- The local-scripting pipeline (2026-07-14) — built, and regression-tested
+  against all 4 classes (see "Local-scripting pipeline" above). Caught a real,
+  now-fixed bug affecting every class along the way (Mana Potion's cooldown
+  target always showing `—` instead of `self`). Not yet used to generate any
+  brand-new real report (only re-verified against existing real data).
+- `data\Characters\`/`docs\` folders renamed from date to report code
+  (2026-07-14), including the 4 healers' existing real data — see
+  "data\Characters\ and docs\ folders" above. **Any doc-audit or link check
+  should use the report-code paths in this file, not the `{date}\` paths an
+  older version of this file (or memory of one) might suggest.**
 
 **Explicitly open, in priority-ish order:**
 1. Tranquility's guid is unknown/unobserved (Druid-only concept) —
@@ -411,10 +639,14 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
    failure for that one player's consumables data, not chased further.
 4. **Power Word: Shield's Top 100 benchmark is a real but misleading ~0%** (9 of
    10 bosses) — see the "v2" bullets above. Any coverage-note on a Priest boss
-   page must name this caveat rather than reading it as a norm.
+   page must name this caveat rather than reading it as a norm. `build_boss_analysis.ps1`
+   auto-tags this as the `priest_pws_benchmark_bias` canned caveat (see
+   "Local-scripting pipeline" above) for any report built through the new pipeline.
 5. **Holy Shock's cast and heal use two different real guids** (33072 cast,
    33074 heal) — see the "v2" bullets above. Any coverage-note on a Paladin boss
-   page must reflect this, not assume Holy Shock never heals.
+   page must reflect this, not assume Holy Shock never heals. `build_boss_analysis.ps1`
+   auto-tags this as the `paladin_holy_shock_guid_split` canned caveat for any
+   report built through the new pipeline.
 
 ## Ground rules (condensed from WORKFLOW.md — read the real thing for why)
 
@@ -448,6 +680,22 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   `limitPerHour: 18000`, not the 3600 documented the day before — check the live
   value rather than trusting either number from memory, see WORKFLOW.md's "v2
   GraphQL API" section.
+- **Never embed a literal non-ASCII character directly in a `.ps1`/`.psm1` file's
+  source** (added 2026-07-14, generalizing gotcha #14's BOM/encoding class) —
+  Windows PowerShell 5.1 reads its own source using the system default codepage
+  when the file has no BOM, silently mangling any literal em-dash/arrow/middle-dot/
+  etc. embedded in a string OR regex literal. Hit this twice for real, months
+  apart: once in `ReportRenderLib.psm1` (broke the parser outright), once in
+  `update_hub_pages.ps1`'s date-extraction regex (parsed silently but wrongly —
+  every single existing raid-row failed to match its own date and sorted last).
+  Always use `[char]0xNNNN` and interpolate instead — see either script for the
+  pattern.
+- **`data\Characters\`/`docs\` raid-night folders are keyed by WCL report code,
+  not raid date** (added 2026-07-14, see "data\Characters\ and docs\ folders"
+  above) — never assume or hardcode a `{yyyy-MM-dd}\` path for a NEW report; two
+  raids on the same calendar date is a real scenario the old convention silently
+  corrupted data for. `data\Classes\` (Top 100 benchmark data) is a completely
+  separate model and is NOT affected by this — don't conflate the two.
 
 ## Hosting — GitHub Pages
 
@@ -508,3 +756,12 @@ static HTML/CSS with no bundler.
 Any future doc-audit should still re-check the live URL rather than trust this
 line indefinitely — hosting config is a real, external piece of state this file
 can't observe automatically.
+
+**A second, later folder rename (2026-07-14) changed every existing raid
+night's URL** — see "data\Characters\ and docs\ folders — report code, not raid
+date" above. E.g. `https://twiztid-ace.github.io/WC_log_analysis/crowns/2026-07-07/`
+became `.../crowns/XJp8vAxzM4KtHYyb/`. This was a deliberate, one-time fix for a
+real data-corruption bug (see that section), not something to undo, but it does
+mean any bookmark/external link to an old date-based URL now 404s — not
+verified against the live site after this specific rename at the time this note
+was written; re-check the live URLs if that matters for a given task.

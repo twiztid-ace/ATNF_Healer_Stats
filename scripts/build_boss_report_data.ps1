@@ -271,6 +271,23 @@ foreach ($fight in $bossFights) {
     }
     $spellRows = @($spellRows | Sort-Object -Property Total -Descending)
 
+    # ----- Real mana cost per guid, from classResources on this fight's own cast
+    # events - used to distinguish spell RANKS (WCL's API has no rank field at all;
+    # different real guids sharing a display name are the only signal it gives us,
+    # see WORKFLOW.md gotcha #20/#32 - mana cost is the best available proxy for
+    # which rank is "higher", confirmed real per-cast, not looked up from a static
+    # table). Only ever known for guids THIS character actually cast THIS kill -
+    # left unresolved (not guessed) for benchmark-only ranks never cast here. -----
+    $manaCostByGuid = @{}
+    foreach ($ev in $castsData.events) {
+        if ($ev.ability -and $ev.classResources -and $ev.classResources.Count -gt 0) {
+            $g = [string]$ev.ability.guid
+            if (-not $manaCostByGuid.ContainsKey($g)) {
+                $manaCostByGuid[$g] = [math]::Round($ev.classResources[0].max, 0)
+            }
+        }
+    }
+
     # ----- Target distribution -----
     $targets = @{}
     foreach ($ev in $healingData.events) {
@@ -325,7 +342,12 @@ foreach ($fight in $bossFights) {
     }
     if ($manaPotionName) {
         $manaMatched = @($castsData.events | Where-Object { $_.ability.name -eq $manaPotionName })
-        $cooldownRows["Mana Potion"] = [PSCustomObject]@{ Count = $manaMatched.Count; SelfCount = $manaMatched.Count; Targets = @() }
+        # Mana Potion is always self-only (a consumable can't be used on someone else), but
+        # Targets still needs one real "self" entry per cast - a hardcoded empty array here
+        # silently broke Format-CooldownTarget's "self" mode (which checks Targets.Count, not
+        # Count directly), always rendering "-" instead of "self" even when Count > 0.
+        $manaTargets = @($manaMatched | ForEach-Object { [PSCustomObject]@{ Target = "self"; Timestamp = $_.timestamp } })
+        $cooldownRows["Mana Potion"] = [PSCustomObject]@{ Count = $manaMatched.Count; SelfCount = $manaMatched.Count; Targets = $manaTargets }
     }
 
     # ----- HPM, from classResources[0].max on every cast event that carries one -----
@@ -375,6 +397,7 @@ foreach ($fight in $bossFights) {
         OverhealPct         = $overhealPct
         HPS                 = $hps
         SpellRows           = $spellRows
+        ManaCostByGuid      = $manaCostByGuid
         TargetRows          = $targetRows
         CoveragePct         = $coveragePct
         Top1Pct             = $top1Pct

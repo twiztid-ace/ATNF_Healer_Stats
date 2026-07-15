@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Healer Audit — Kael'thas Sunstrider</title>
+<title>Healer Audit — Vajomee — Kael'thas Sunstrider</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -40,6 +40,7 @@
     overflow: hidden;
   }
 
+  /* ===== Header ===== */
   .header{
     padding: 40px 48px 32px;
     border-bottom: 1px solid var(--line);
@@ -70,6 +71,7 @@
   }
   .subline span{ font-family:'IBM Plex Mono', monospace; }
 
+  /* ===== Seal ===== */
   .seal-wrap{ flex-shrink:0; text-align:center; }
   .seal{ width: 108px; height: 108px; }
   .seal-label{
@@ -81,6 +83,7 @@
     color: rgba(19,42,44,0.55);
   }
 
+  /* ===== Section shell ===== */
   .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
   .section:last-child{ border-bottom: none; }
   .section-head{
@@ -103,6 +106,7 @@
     margin: -12px 0 20px;
   }
 
+  /* ===== Stat row ===== */
   .stat-grid{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -133,6 +137,7 @@
   .stat-value.warn{ color: var(--rust); }
   .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
 
+  /* ===== Percentile bar ===== */
   .pctl-track{
     position: relative;
     height: 10px;
@@ -165,6 +170,7 @@
     color: rgba(19,42,44,0.45);
   }
 
+  /* ===== Spell composition bars ===== */
   .spell-row{
     display:grid;
     grid-template-columns: 140px 1fr 60px;
@@ -190,6 +196,39 @@
   }
   .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
 
+  /* ===== Checklist ===== */
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.55);
+    text-align:right;
+  }
+
+  /* ===== Cooldown / consumable table (Shaman-specific) =====
+       Deliberately NOT the ok/bad check-list pattern - cooldown counts and consumable
+       uptime are informational stats, not pass/fail checks, and design_tokens.md is
+       explicit that the numbers should carry the finding rather than the container
+       editorializing with color. Plain table + a coverage-note for the actual read. */
   .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
   .cd-table th{
     text-align:left;
@@ -210,6 +249,7 @@
   .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
   .cd-table .ability-name{ font-weight: 500; }
 
+  /* ===== Target distribution ===== */
   .target-list{ display:flex; flex-direction:column; gap:8px; }
   .target-row{
     display:grid;
@@ -229,6 +269,7 @@
     padding-left: 12px;
   }
 
+  /* ===== Footer ===== */
   .footer{
     padding: 24px 48px 32px;
     font-family:'IBM Plex Mono', monospace;
@@ -237,17 +278,30 @@
     display:flex;
     justify-content: space-between;
   }
+
+  .placeholder-tag{
+    display:inline-block;
+    margin-left: 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--copper);
+    border: 1px solid var(--copper);
+    border-radius: 20px;
+    padding: 2px 8px;
+    vertical-align: middle;
+  }
 </style>
 </head>
 <body>
 
 <div class="page">
 
+  
   <div class="header">
     <div>
-      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — ATNF KT Cleanup 07.12.2026 · Kael'thas Sunstrider</p>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — ATNF KT Cleanup — July 12, 2026 · Kael'thas Sunstrider</p>
       <h1>Vajomee</h1>
-      <p class="subline">Restoration Shaman &nbsp;·&nbsp; ilvl 121 &nbsp;·&nbsp; report <span>QTaWq74txvPF82AR</span> &nbsp;·&nbsp; fight <span>8</span> &nbsp;·&nbsp; kill, 485s</p>
+      <p class="subline">Restoration Shaman &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>QTaWq74txvPF82AR</span> &nbsp;·&nbsp; fight <span>8</span> &nbsp;·&nbsp; kill, 485s</p>
     </div>
     <div class="seal-wrap">
       <svg class="seal" viewBox="0 0 120 120">
@@ -260,6 +314,7 @@
     </div>
   </div>
 
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">01</span>
@@ -268,8 +323,8 @@
     <div class="stat-grid stat-grid-5">
       <div class="stat">
         <div class="stat-label">HPS</div>
-        <div class="stat-value warn">800</div>
-        <div class="stat-sub">Top 100: #1 1141 &nbsp;·&nbsp; avg 1021 &nbsp;·&nbsp; median 1012</div>
+        <div class="stat-value">800</div>
+        <div class="stat-sub">Top 100: #1 1141 &nbsp;·&nbsp; avg 1023 &nbsp;·&nbsp; median 1012</div>
       </div>
       <div class="stat">
         <div class="stat-label">Overheal</div>
@@ -283,12 +338,12 @@
       </div>
       <div class="stat">
         <div class="stat-label">Active time</div>
-        <div class="stat-value warn">69.3%</div>
-        <div class="stat-sub">Top 100: #1 100% &nbsp;·&nbsp; avg 85.9% &nbsp;·&nbsp; median 86.3%</div>
+        <div class="stat-value">69.3%</div>
+        <div class="stat-sub">Top 100: #1 100% &nbsp;·&nbsp; avg 86.1% &nbsp;·&nbsp; median 86.3%</div>
       </div>
       <div class="stat">
         <div class="stat-label">Raid deaths</div>
-        <div class="stat-value warn">8</div>
+        <div class="stat-value">8</div>
         <div class="stat-sub">this kill, all classes</div>
       </div>
     </div>
@@ -297,11 +352,12 @@
       <div class="pctl-marker" style="left:94%;" data-label="Vajomee · 94th"></div>
     </div>
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
-    <div class="stat-sub" style="margin-top:6px;">WCL rank ~1576 of 26279 Restoration Shaman parses on this encounter (all difficulties/partitions, historical). Matched by exact report/fight ID (QTaWq74txvPF82AR, fight 8).</div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank ~1576 of 26279 Restoration Shaman parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
 
     <div class="coverage-note">A strong overall percentile (94th of 26,279 historical Shaman parses on this encounter) sits alongside underperformance against our own curated Top 100 bracket — HPS (800) trails that elite sample's median (1012) by roughly 21%, and active time (69.3%) runs well below the sample's ~86% norm. The two aren't contradictory: 94th percentile reflects the entire historical population, a far less selective bar than the Top 100 comparison used throughout the rest of this page. Overheal (33.2%) sits comfortably between the Top 100's best (15.7%) and median (35.3%), not a concern on its own.</div>
   </div>
 
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">02</span>
@@ -314,8 +370,10 @@
       <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
     </div>
 
+    
+    
     <div class="spell-row compare-row">
-      <div class="spell-name">Chain Heal <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 25423 · 540 mana)</span></div>
+      <div class="spell-name">Chain Heal (guid 25423)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:46.2%"></div></div>
       <div class="spell-pct">46.2%</div>
     </div>
@@ -324,18 +382,18 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:61.3%"></div></div>
       <div class="spell-pct">61.3%</div>
     </div>
-
+    
     <div class="spell-row compare-row">
-      <div class="spell-name">Chain Heal <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 10623 · 405 mana)</span></div>
+      <div class="spell-name">Chain Heal (guid 10623)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:37.4%"></div></div>
       <div class="spell-pct">37.4%</div>
     </div>
     <div class="spell-row compare-row">
       <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.2%"></div></div>
-      <div class="spell-pct">3.2%</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.1%"></div></div>
+      <div class="spell-pct">3.1%</div>
     </div>
-
+    
     <div class="spell-row compare-row">
       <div class="spell-name">Lesser Healing Wave</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:7.4%"></div></div>
@@ -343,10 +401,10 @@
     </div>
     <div class="spell-row compare-row">
       <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:8.7%"></div></div>
-      <div class="spell-pct">8.7%</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:8.6%"></div></div>
+      <div class="spell-pct">8.6%</div>
     </div>
-
+    
     <div class="spell-row compare-row">
       <div class="spell-name">Earth Shield</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:6.5%"></div></div>
@@ -354,10 +412,10 @@
     </div>
     <div class="spell-row compare-row">
       <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.3%"></div></div>
-      <div class="spell-pct">5.3%</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.2%"></div></div>
+      <div class="spell-pct">5.2%</div>
     </div>
-
+    
     <div class="spell-row compare-row">
       <div class="spell-name">Healing Wave</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:2.5%"></div></div>
@@ -368,60 +426,117 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:2.4%"></div></div>
       <div class="spell-pct">2.4%</div>
     </div>
-
+    
     <div class="spell-row compare-row">
-      <div class="spell-name">Chain Heal <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 25422 · 435 mana)</span></div>
+      <div class="spell-name">Chain Heal (guid 25422)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
-      <div class="spell-pct">0.0%</div>
+      <div class="spell-pct">0%</div>
     </div>
     <div class="spell-row compare-row">
       <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.8%"></div></div>
-      <div class="spell-pct">5.8%</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:6%"></div></div>
+      <div class="spell-pct">6%</div>
     </div>
-
+    
     <div class="spell-row compare-row">
-      <div class="spell-name">Chain Heal <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 10622 · 315 mana)</span></div>
+      <div class="spell-name">Chain Heal (guid 10622)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
-      <div class="spell-pct">0.0%</div>
+      <div class="spell-pct">0%</div>
     </div>
     <div class="spell-row compare-row">
       <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4%"></div></div>
-      <div class="spell-pct">4.0%</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.1%"></div></div>
+      <div class="spell-pct">4.1%</div>
     </div>
-
+    
     <div class="spell-row compare-row">
-      <div class="spell-name">Chain Heal <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 1064 · 260 mana)</span></div>
+      <div class="spell-name">Chain Heal (guid 1064)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
-      <div class="spell-pct">0.0%</div>
+      <div class="spell-pct">0%</div>
     </div>
     <div class="spell-row compare-row">
       <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.8%"></div></div>
-      <div class="spell-pct">3.8%</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.7%"></div></div>
+      <div class="spell-pct">3.7%</div>
     </div>
-
+    
     <div class="spell-row compare-row">
       <div class="spell-name">Healing Stream</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
-      <div class="spell-pct">0.0%</div>
+      <div class="spell-pct">0%</div>
     </div>
     <div class="spell-row compare-row">
       <div class="spell-name"></div>
-      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.5%"></div></div>
-      <div class="spell-pct">3.5%</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.6%"></div></div>
+      <div class="spell-pct">3.6%</div>
     </div>
+    
 
     <div class="coverage-note">The two Chain Heal ranks Vajomee actually cast run in the same direction as the Top 100 sample but with a real efficiency gap: the costlier guid 25423 (540 mana) is Vajomee's primary at 46.2%, broadly in line with the sample's own primary (61.3%), but the cheaper guid 10623 (405 mana) makes up 37.4% of Vajomee's healing versus just 3.2% of the Top 100 mix — over 10x the benchmark's usage of that rank. The sample also spreads healing across three lower Chain Heal ranks (guids 25422/10622/1064, 435/315/260 mana, 5.8%/4.0%/3.8% combined) and Healing Stream Totem (3.5%) that Vajomee never cast at all this kill — a real, checkable gap, not noise.</div>
+
+    
+    
+    <div style="margin-top:20px;">
+      <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data, "?" where the character never cast that specific rank here.</p>
+      <table class="cd-table">
+        <thead>
+          <tr>
+            <th>Spell</th>
+            <th style="text-align:right;">Mana cost</th>
+            <th style="text-align:right;">Vajomee</th>
+            <th style="text-align:right;">Top 100 avg</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td class="ability-name">Chain Heal</td>
+            <td class="num-cell">405 mana</td>
+            <td class="num-cell">37.4%</td>
+            <td class="num-cell">3.1%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name"></td>
+            <td class="num-cell">540 mana</td>
+            <td class="num-cell">46.2%</td>
+            <td class="num-cell">61.3%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name"></td>
+            <td class="num-cell">?</td>
+            <td class="num-cell">0%</td>
+            <td class="num-cell">4.1%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name"></td>
+            <td class="num-cell">?</td>
+            <td class="num-cell">0%</td>
+            <td class="num-cell">3.7%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name"></td>
+            <td class="num-cell">?</td>
+            <td class="num-cell">0%</td>
+            <td class="num-cell">6%</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
   </div>
 
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">03</span>
       <h2 class="section-title">Cooldowns &amp; consumables</h2>
     </div>
-    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Kael'thas Sunstrider.</p>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Kael'thas Sunstrider. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> (see WORKFLOW.md) - match abilities by guid, not localized name (gotcha #2).</p>
 
     <table class="cd-table">
       <thead>
@@ -433,92 +548,115 @@
         </tr>
       </thead>
       <tbody>
+        
+        
         <tr>
           <td class="ability-name">Earth Shield</td>
           <td class="num-cell">5</td>
           <td>→ Blockarina ×3, → Captinhelp ×2</td>
-          <td class="num-cell">4.9 (0%)</td>
+          <td class="num-cell">4.9 avg (0% self)</td>
         </tr>
+        
         <tr>
           <td class="ability-name">Mana Tide Totem</td>
           <td class="num-cell">1</td>
           <td>party</td>
-          <td class="num-cell">1.1 (0%)</td>
+          <td class="num-cell">1.1 avg (100% self)</td>
         </tr>
+        
         <tr>
           <td class="ability-name">Ancestral Swiftness</td>
           <td class="num-cell">2</td>
           <td>party</td>
-          <td class="num-cell">1.9 (0%)</td>
+          <td class="num-cell">1.9 avg (100% self)</td>
         </tr>
+        
         <tr>
           <td class="ability-name">Dark Rune</td>
           <td class="num-cell">0</td>
           <td>—</td>
-          <td class="num-cell">0.7 (0%)</td>
+          <td class="num-cell">0.7 avg (100% self)</td>
         </tr>
+        
+        <tr>
+          <td class="ability-name">Mana Potion</td>
+          <td class="num-cell">2</td>
+          <td>self</td>
+          <td class="num-cell">2.6 avg (100% self)</td>
+        </tr>
+        
       </tbody>
     </table>
 
     <div class="stat-grid stat-grid-5" style="margin-top:22px;">
       <div class="stat">
+        
         <div class="stat-label">Flask / Elixir</div>
-        <div class="stat-value warn">No</div>
-        <div class="stat-sub">none active at pull start — Top 100: 70% had one active</div>
+        <div class="stat-value">No</div>
+        <div class="stat-sub">none — Top 100: 70% had one active at pull start</div>
       </div>
       <div class="stat">
         <div class="stat-label">Food buff</div>
-        <div class="stat-value good">Yes</div>
-        <div class="stat-sub">Well Fed — Top 100: 95% had one active at pull start</div>
+        <div class="stat-value">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 94% had one active at pull start</div>
       </div>
       <div class="stat">
         <div class="stat-label">Mana consumables</div>
         <div class="stat-value">2</div>
-        <div class="stat-sub">2x Mana Potion — Top 100 avg 2.6 casts (98% used one)</div>
+        <div class="stat-sub">2x Mana Potion — e.g. "1x Restore Mana", from *_casts_events.json (consumables register as casts, matched by name not guid - see benchmark_cooldowns.csv note on "Mana Potion")</div>
       </div>
       <div class="stat">
+        
         <div class="stat-label">HPM</div>
         <div class="stat-value">6.46</div>
-        <div class="stat-sub">Top 100: top1 9.1 &nbsp;·&nbsp; avg 7.45 &nbsp;·&nbsp; median 7.37</div>
+        <div class="stat-sub">Top 100: top1 9.1 &nbsp;·&nbsp; avg 7.46 &nbsp;·&nbsp; median 7.37</div>
       </div>
     </div>
 
     <div class="coverage-note">Earth Shield stayed almost entirely on Blockarina and Captinhelp (3 and 2 casts respectively), both of whom later died this kill. Blockarina's shield had last been reapplied 53s before its death at ~342s into the fight — still active, but not enough against whatever damage landed; Captinhelp's death near the very end (~480s, 5s before the kill) came 77s after its last Earth Shield refresh, too stale a gap to call a direct link. More notable: Ancestral Swiftness was cast at ~340s, just 1.9s before a 4-player death cluster (Blockarina, Ghostpepperx, Vinnyvozz, Quruella all within ~5s of each other) — consistent with a reactive emergency cast into a burst-damage event the healer couldn't fully cover, not a wasted cooldown. No flask or elixir was active at pull start (Top 100: 70% had one) — a real, fixable gap, and a change from the 07-10 raid night where flask was up on all 9 kills with an otherwise identical loadout (see the raid overview). HPM (6.46) trails the Top 100 average (7.45) and median (7.37) by a moderate margin, consistent with the missing flask.</div>
   </div>
 
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">04</span>
       <h2 class="section-title">Target distribution</h2>
     </div>
-    <p class="section-desc">Top 5 recipients of Vajomee's healing on this kill (50.7% coverage) vs. Top 100 average on Kael'thas Sunstrider (49.1% coverage, 18.5% to top target).</p>
+    <p class="section-desc">Top 5 recipients of Vajomee's healing on this kill (50.7% coverage) vs. Top 100 average on Kael'thas Sunstrider (49% coverage, 18.3% to top target).</p>
 
     <div class="target-list">
+      
+      
       <div class="target-row">
         <div>Blockarina</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
         <div class="target-pct">18.9%</div>
       </div>
+      
       <div class="target-row">
         <div>Captinhelp</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:79.1%"></div></div>
         <div class="target-pct">15%</div>
       </div>
+      
       <div class="target-row">
         <div>Leechers</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:32.2%"></div></div>
         <div class="target-pct">6.1%</div>
       </div>
+      
       <div class="target-row">
         <div>Braila</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:31.8%"></div></div>
         <div class="target-pct">6%</div>
       </div>
+      
       <div class="target-row">
         <div>Hezrun</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:24.9%"></div></div>
         <div class="target-pct">4.7%</div>
       </div>
+      
     </div>
 
     <div class="coverage-note">Coverage (50.7% vs. the Top 100's 49.1%, +1.6) and top-target concentration (18.9% vs. 18.5%, +0.4) both land within the roughly ±5-point noise band established across this pipeline's other pulls — a normal, unremarkable target spread that tracks the sample average closely. Blockarina and Captinhelp, the top two recipients here, are the same two players Earth Shield was kept on (see above).</div>

@@ -313,6 +313,30 @@ function Set-TemplateOptional {
     return $before + $inner + $after
 }
 
+# Same marker pair as Set-TemplateOptional, but hands the caller the raw inner
+# template text instead of filling a single nested @SLOT - needed whenever the
+# optional block's content is a @LOOP (a variable number of rows, e.g. the
+# spell-ranks section) rather than one free-text value. Caller decides whether
+# to keep the section at all (pass $Keep) and, if so, runs Expand-TemplateLoop
+# (or anything else) on .Inner before splicing it back between .Before/.After.
+function Get-OptionalSectionBounds {
+    param(
+        [Parameter(Mandatory=$true)][string]$TemplateText,
+        [Parameter(Mandatory=$true)][string]$OptionalName
+    )
+    $startMarker = "<!--@OPTIONAL:$OptionalName-->"
+    $endMarker = "<!--@ENDOPTIONAL:$OptionalName-->"
+    $startIdx = $TemplateText.IndexOf($startMarker)
+    if ($startIdx -lt 0) { throw "Get-OptionalSectionBounds: start marker '@OPTIONAL:$OptionalName' not found." }
+    $endIdx = $TemplateText.IndexOf($endMarker, $startIdx)
+    if ($endIdx -lt 0) { throw "Get-OptionalSectionBounds: end marker '@ENDOPTIONAL:$OptionalName' not found." }
+    return [PSCustomObject]@{
+        Before = $TemplateText.Substring(0, $startIdx)
+        Inner  = $TemplateText.Substring($startIdx + $startMarker.Length, $endIdx - ($startIdx + $startMarker.Length))
+        After  = $TemplateText.Substring($endIdx + $endMarker.Length)
+    }
+}
+
 # Strips every HTML comment (including any leftover @LOOP/@SLOT/@OPTIONAL
 # markers and the templates' own development-time documentation prose) from
 # a fully-rendered page. Comments are development-time only and should never

@@ -176,6 +176,112 @@ either:
   yourself, following the schema documented in `render_healer_report.ps1`'s own
   header comment and in `SKILL.md`, then re-run steps 7-8 above.
 
+## Adding a new boss
+
+There is no single source of truth for the boss list — it's duplicated across
+**6 hardcoded tables in 6 files**, plus **2 numeric defaults** that track total
+tier size separately. All of these must be kept consistent by hand. Everything
+else in the pipeline (`render_healer_report.ps1`'s per-boss rendering,
+`build_boss_analysis.ps1`, `build_boss_report_data.ps1`'s downstream logic, and
+every HTML template) iterates dynamically over whatever bosses are present in
+the data — none of it needs to change for a new boss.
+
+### 1. Find the real encounter ID first
+
+Don't guess — confirm the boss's real WCL encounter ID with one real lookup
+before touching any of the tables below (same "test one real call before
+building around an assumption" discipline as everywhere else in this
+pipeline). Two options:
+
+- Check `data\zones.json` first — it's a local, point-in-time snapshot of real
+  WCL zone/encounter data (`{id, name, encounters:[{id,name}], ...}`) that may
+  already have the new zone. It is **not** kept up to date automatically and
+  is not referenced by any script — treat it as a quick lookup only, and don't
+  assume it has a genuinely new content tier just because it exists.
+- If the new zone isn't there yet, run a live GraphQL query through
+  `scripts\lib\WclV2Api.psm1`'s `Invoke-WclGraphQL`:
+  `query { worldData { zones { id name encounters { id name } } } }` (or
+  `worldData { encounter(id: N) { name } }` if you already suspect an ID).
+
+### 2. Add the boss to all 6 tables
+
+Every table is keyed/cross-referenced by the same real encounter ID from step
+1. Field shapes differ slightly per file — match them exactly:
+
+| # | File | Table | Shape |
+|---|------|-------|-------|
+| 1-4 | `scripts\pull_top100_druid.ps1`, `pull_top100_shaman.ps1`, `pull_top100_priest_holy.ps1`, `pull_top100_paladin.ps1` | `$bosses` | `"BossName" = @{ file = "rankings_bossname.json"; encounterID = 100XXX }` |
+| 5 | `scripts\pull_character_TEMPLATE.ps1` | `$bossSlugs` | `100XXX = "bossslug"` |
+| 6 | `scripts\build_boss_report_data.ps1` | `$bossMeta` | `100XXX = @{ Slug = "bossslug"; FolderName = "BossName"; Display = "Boss Full Name" }` |
+
+- `"BossName"`/`FolderName` must be the exact same string across tables 1-4
+  and 6 — it's used as a literal subfolder name under
+  `data\Classes\{Class}\active\`/`archived\`.
+- `bossslug` must match across tables 5 and 6 — it's used both as the
+  per-boss-kill filename slug (`fight14_bossslug_healing_events.json`) and as
+  the `Bosses` object's property name in `report_data.json`/`analysis.json`.
+- `$bossMeta` in `build_boss_report_data.ps1` is deliberately a **plain**
+  hashtable (`@{...}`), not `[ordered]@{...}` — its keys are bare integers,
+  and `[ordered]@{}` (`OrderedDictionary`) silently resolves an integer key
+  through its positional `this[int index]` indexer instead of a real
+  key lookup, so `$orderedDict[100623]` would silently return `$null` even
+  though the key is really present. **Don't "fix" this to `[ordered]@{}`.**
+- `pull_character_TEMPLATE.ps1`'s `Get-BossSlug` falls back to auto-deriving a
+  slug from the boss's display name if the encounter ID isn't in
+  `$bossSlugs` — meaning a missing table 5 entry won't hard-fail, just risk a
+  slug that silently doesn't match `build_boss_report_data.ps1`'s canonical
+  one. Don't rely on this fallback; add the explicit entry.
+- There's a 7th, separate table in the same shape in
+  `scripts\summarize_class_benchmarks.ps1` (`$bosses`, keyed the same way as
+  tables 1-4 but with a `display` field instead of `encounterID`) that also
+  needs the new boss added, so 6 files in total once you count it.
+
+If a boss ID ever turns up in real data with no `$bossMeta` entry,
+`build_boss_report_data.ps1` already prints an explicit warning naming exactly
+this fix (`WARNING: boss id $bossID ('$($fight.name)') has no known
+slug/display mapping - skipping. Add it to $bossMeta...`) rather than failing
+silently — a good sanity check that you didn't miss table 6.
+
+### 3. Bump the two total-tier-size defaults
+
+Two scripts track "how many bosses are in the full tier" as a separate,
+plain `-TotalBosses` parameter (default `10`) — neither derives it from the
+tables above, so both need updating (or overriding per-call) once the tier
+grows:
+
+- `scripts\render_healer_report.ps1 -TotalBosses <N>` — feeds the raid
+  overview's own "`<kills>`/`<N>` bosses killed" line.
+- `scripts\update_hub_pages.ps1 -TotalBosses <N>` — feeds the same "X/Y
+  bosses" text on the healer's hub-page raid-row.
+
+There is no shared source of truth between these two — keep them in sync by
+hand, or pass `-TotalBosses` explicitly on every call until you update both
+defaults.
+
+### 4. What you don't need to touch
+
+- `manifest.json` — auto-populated by each `pull_top100_{class}.ps1` the next
+  time it runs; no manual edit needed.
+- `render_healer_report.ps1`'s per-boss rendering, `build_boss_analysis.ps1`,
+  `build_boss_report_data.ps1`'s fight-processing loop, and every HTML
+  template — all iterate dynamically over whatever boss keys are present in
+  the data, not a fixed list.
+- `scripts\migrate_class_to_active.ps1` has its own boss table too, but it's a
+  one-time, already-used migration tool for converting a *class* off the old
+  date-folder convention — irrelevant to adding a boss to an already-migrated
+  class.
+
+### 5. New cooldowns
+
+If the new content tier's boss encourages different cooldown usage, or the
+class gains new relevant abilities, treat that as its own real-data discovery
+pass (confirm the guid against an actual pull before adding it) — the same
+rule this project already applies to every class's cooldown-guid table, see
+`WORKFLOW.md`'s "v2 GraphQL API" section for the established playbook (and
+its cautionary tale about the Holy Shock cast/heal guid split, where a
+finding scoped to one character's report turned out to be wrong once checked
+against the full Top 100 sample).
+
 ## Hosting
 
 The generated site lives under `docs\` and is served by GitHub Pages

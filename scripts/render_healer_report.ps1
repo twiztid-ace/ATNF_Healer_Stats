@@ -16,6 +16,15 @@
 # Usage (run from repo root, same convention as every other script here):
 #   powershell -ExecutionPolicy Bypass -File scripts\render_healer_report.ps1 -CharacterName "Crowns" -ReportCode "XJp8vAxzM4KtHYyb" -ClassName "Paladin" -RaidTitle "SSC / TK"
 #
+# -TotalBosses (default 10) is the raid overview's "N_BOSSES" denominator (the
+# raid overview's own "<N_KILLS>/<N_BOSSES> bosses killed" line, NOT the hub
+# page's separate -TotalBosses on update_hub_pages.ps1 - both currently default
+# to 10 and must be kept in sync by hand, there is no shared source of truth).
+# It is intentionally independent of $bossSlugs.Count (the boss count actually
+# present in this report's own data) - a raid night that killed fewer than the
+# full tier (e.g. 9 of 10) should show "9/10", not "9/9". Override this once a
+# new boss is added to the tracked tier (see README.md's "Adding a new boss").
+#
 # findings.json schema notes (see the generate-healer-report skill for the
 # full authoring guide):
 #   BossFindings.{slug}.SCORECARD_FINDING / SPELL_COMPOSITION_FINDING /
@@ -45,6 +54,7 @@ param(
     [Parameter(Mandatory=$true)][string]$ClassName,
     [string]$HealerSlug,
     [string]$RaidTitle = "SSC / TK",
+    [int]$TotalBosses = 10,
     [string]$CharactersRoot = "data\Characters",
     [string]$TemplatesRoot = "templates",
     [string]$OutputRoot = "docs"
@@ -244,6 +254,39 @@ foreach ($slug in $bossSlugs) {
     }
     $page = Set-TemplateSlot $page "SPELL_COMPOSITION_FINDING" $bf.SPELL_COMPOSITION_FINDING
 
+    # ----- Spell ranks (mechanical, no LLM - analysis.json's SpellRanks already
+    # only contains spell names with 2+ distinct real guids in play; a boss with
+    # none gets the whole section removed rather than shown empty, matching the
+    # skill's "only show when it's actually relevant" rule). Flattens each
+    # group's rows with the name shown once (blank on repeats), same convention
+    # already used for the spell-composition compare-rows above. -----
+    $rankRows = @()
+    foreach ($group in @($bossAnalysis.SpellRanks)) {
+        $isFirst = $true
+        foreach ($r in @($group.Ranks)) {
+            $rankRows += [PSCustomObject]@{
+                Name = $(if ($isFirst) { $group.Name } else { "" })
+                ManaCost = $(if ($null -ne $r.ManaCost) { "$($r.ManaCost) mana" } else { "?" })
+                CharacterPct = $r.CharacterPct
+                BenchmarkPct = $r.BenchmarkPct
+            }
+            $isFirst = $false
+        }
+    }
+    $rankBounds = Get-OptionalSectionBounds -TemplateText $page -OptionalName "SPELL_RANKS_SECTION"
+    if ($rankRows.Count -eq 0) {
+        $page = $rankBounds.Before + $rankBounds.After
+    } else {
+        $rankInner = Expand-TemplateLoop -TemplateText $rankBounds.Inner -LoopName "RANK_ROW" -Rows $rankRows -RowTokenBuilder {
+            param($row)
+            @{
+                RANK_SPELL_NAME = $row.Name; RANK_MANA_COST = $row.ManaCost
+                RANK_CHARACTER_PCT = $row.CharacterPct; RANK_BENCHMARK_PCT = $row.BenchmarkPct
+            }
+        }
+        $page = $rankBounds.Before + $rankInner + $rankBounds.After
+    }
+
     # ----- Cooldowns & consumables -----
     $cdRows = @()
     foreach ($cdProp in $bossAnalysis.Cooldowns.PSObject.Properties) {
@@ -346,7 +389,7 @@ $overview = Set-TemplateToken $overview "HEALER_CLASS_SPEC" $classSpec
 $overview = Set-TemplateToken $overview "ITEM_LEVEL" $itemLevel
 $overview = Set-TemplateToken $overview "REPORT_CODE" $ReportCode
 $overview = Set-TemplateToken $overview "N_KILLS" $bossSlugs.Count
-$overview = Set-TemplateToken $overview "N_BOSSES" $bossSlugs.Count
+$overview = Set-TemplateToken $overview "N_BOSSES" $TotalBosses
 
 $overview = Set-TemplateSlot $overview "GEAR_CONSISTENCY_FINDING" $findings.RaidOverview.GEAR_CONSISTENCY_FINDING
 
