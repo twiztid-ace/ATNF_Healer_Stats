@@ -357,7 +357,7 @@
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
     <div class="stat-sub" style="margin-top:6px;">WCL rank ~10124 of 17160 Restoration Druid parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">HPS (610) and overheal (54.9%, past the sample's worst parse of 53.5%) both look weak against the Top 100 sample here, but the deciding factor is a real self-death: Danceswtrees died mid-fight (one of 6 total deaths this kill), directly cutting off healing output for whatever time remained afterward - the raw efficiency numbers alone understate what's actually a survivability story, not a rotation problem.</div>
   </div>
 
   
@@ -475,7 +475,7 @@
     </div>
     
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">Lifebloom's share (68.7%) ran 22.6 points ahead of the Top 100 average (46.1%), one of the larger composition gaps of the raid night (behind only Maulgar's, Solarian's, and Kael'thas's) - consistent with a kill cut short by the self-death above, where a low-maintenance HoT would naturally dominate whatever healing window was actually available.</div>
 
     
     
@@ -582,6 +582,13 @@
         </tr>
         
         <tr>
+          <td class="ability-name">Rebirth</td>
+          <td class="num-cell">1</td>
+          <td>→ Captinspanky</td>
+          <td class="num-cell">0.4 avg (0% self)</td>
+        </tr>
+        
+        <tr>
           <td class="ability-name">Dark Rune</td>
           <td class="num-cell">0</td>
           <td>—</td>
@@ -629,7 +636,7 @@
       </div>
     </div>
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">Rebirth was cast on Captinspanky about 4.5 seconds after their death - but roughly 6 seconds after that Rebirth cast, Danceswtrees's own death happened, with no further cooldown available afterward. Of the 6 real deaths this kill, only Captinspanky's was answered; Vajomee, Purehentai, Staubz, and Deepbowlz all died 38-59 seconds away from the nearest logged cooldown (a Mana Potion, not a save-oriented one).</div>
   </div>
 
   
@@ -675,7 +682,7 @@
       
     </div>
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">Top-target concentration (31.6% vs. 21% average, +10.6) ran above the Top 100 norm, while coverage (60.6% vs. 50.8% average) tracked close to typical - with 21 distinct targets touched and a self-death partway through, the healing window here was real but cut shorter than a full kill.</div>
   </div>
 
   <div class="footer">

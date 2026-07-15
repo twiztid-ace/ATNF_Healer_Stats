@@ -357,7 +357,7 @@
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
     <div class="stat-sub" style="margin-top:6px;">WCL rank ~11798 of 16855 Restoration Druid parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">HPS (512) ran well below the Top 100 average (1,014), and overheal (72.8%) is the highest of any boss tonight, exceeding the sample's single worst parse (61.7%). With 6 real deaths logged, the 30th percentile here reflects a rough kill more broadly, not an isolated healing issue.</div>
   </div>
 
   
@@ -464,7 +464,7 @@
     </div>
     
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">Lifebloom's share (69.5%) ran 28.7 points ahead of the Top 100 average (40.8%), one of the largest composition gaps of the raid night.</div>
 
     
     
@@ -557,6 +557,13 @@
         </tr>
         
         <tr>
+          <td class="ability-name">Rebirth</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0.6 avg (0% self)</td>
+        </tr>
+        
+        <tr>
           <td class="ability-name">Dark Rune</td>
           <td class="num-cell">0</td>
           <td>—</td>
@@ -604,7 +611,7 @@
       </div>
     </div>
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">Rebirth was never cast despite 6 real deaths this kill - a real undercast against the Top 100 sample, where 62% of parses use it (avg. 0.6 casts). None of the 6 deaths show a clean cooldown-timing correlation: the closest, Staubz, happened just 74 milliseconds from an Innervate cast, but Innervate doesn't itself heal or protect a target, so this reads as coincidental timing rather than a missed or successful save.</div>
   </div>
 
   
@@ -650,7 +657,7 @@
       
     </div>
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">Coverage (74.7% vs. 58.4% average, +16.3) ran well above the Top 100 norm - with 23 distinct targets touched, the widest spread of the raid night, consistent with 6 real deaths across a long, difficult kill.</div>
   </div>
 
   <div class="footer">

@@ -16,14 +16,18 @@
 # Usage (run from repo root, same convention as every other script here):
 #   powershell -ExecutionPolicy Bypass -File scripts\render_healer_report.ps1 -CharacterName "Crowns" -ReportCode "XJp8vAxzM4KtHYyb" -ClassName "Paladin" -RaidTitle "SSC / TK"
 #
-# -TotalBosses (default 10) is the raid overview's "N_BOSSES" denominator (the
-# raid overview's own "<N_KILLS>/<N_BOSSES> bosses killed" line, NOT the hub
-# page's separate -TotalBosses on update_hub_pages.ps1 - both currently default
-# to 10 and must be kept in sync by hand, there is no shared source of truth).
-# It is intentionally independent of $bossSlugs.Count (the boss count actually
-# present in this report's own data) - a raid night that killed fewer than the
-# full tier (e.g. 9 of 10) should show "9/10", not "9/9". Override this once a
-# new boss is added to the tracked tier (see README.md's "Adding a new boss").
+# The raid overview's "bosses killed" line is derived from real fight data,
+# not a hardcoded tier-size constant - report_data.json's BossesAttempted
+# field (written by build_boss_report_data.ps1 from the report's own real
+# boss pulls, kill:true or not) is compared against the real kill count
+# ($bossSlugs.Count). If they match (no wipes recorded), the line reads
+# "<N> bosses killed" with no denominator. Only when a real wipe shows up in
+# this report's own data does it read "<kills>/<attempted> bosses killed".
+# This replaced an earlier hardcoded "-TotalBosses" (default 10) parameter
+# that assumed every raid targeted the same fixed-size tier - that broke the
+# day Gruul's Lair bosses were added alongside SSC/TK in the same report
+# (a report_data.json with 12 real kills against a hardcoded "10" denominator
+# rendered as a nonsensical "12/10 bosses killed").
 #
 # findings.json schema notes (see the generate-healer-report skill for the
 # full authoring guide):
@@ -54,7 +58,6 @@ param(
     [Parameter(Mandatory=$true)][string]$ClassName,
     [string]$HealerSlug,
     [string]$RaidTitle = "SSC / TK",
-    [int]$TotalBosses = 10,
     [string]$CharactersRoot = "data\Characters",
     [string]$TemplatesRoot = "templates",
     [string]$OutputRoot = "docs"
@@ -389,7 +392,9 @@ $overview = Set-TemplateToken $overview "HEALER_CLASS_SPEC" $classSpec
 $overview = Set-TemplateToken $overview "ITEM_LEVEL" $itemLevel
 $overview = Set-TemplateToken $overview "REPORT_CODE" $ReportCode
 $overview = Set-TemplateToken $overview "N_KILLS" $bossSlugs.Count
-$overview = Set-TemplateToken $overview "N_BOSSES" $TotalBosses
+$bossesAttempted = if ($reportData.PSObject.Properties.Name -contains "BossesAttempted" -and $reportData.BossesAttempted) { $reportData.BossesAttempted } else { $bossSlugs.Count }
+$bossesKilledLabel = if ($bossesAttempted -gt $bossSlugs.Count) { "$($bossSlugs.Count)/$bossesAttempted bosses killed" } else { "$($bossSlugs.Count) bosses killed" }
+$overview = Set-TemplateToken $overview "BOSSES_KILLED_LABEL" $bossesKilledLabel
 
 $overview = Set-TemplateSlot $overview "GEAR_CONSISTENCY_FINDING" $findings.RaidOverview.GEAR_CONSISTENCY_FINDING
 

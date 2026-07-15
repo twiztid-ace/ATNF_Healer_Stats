@@ -48,7 +48,7 @@ param(
     [string]$ClassName,
     [int]$BossesKilled,
     [string]$RaidTitle,
-    [int]$TotalBosses = 10,
+    [int]$BossesAttempted = 0,
     [string]$Server = "Dreamscythe",
     [string]$Region = "US",
     [switch]$IsNewHealer,
@@ -172,13 +172,20 @@ $hubPath = Join-Path $hubDir "index.html"
 
 $newRowHtml = $null
 if (-not $ResortOnly) {
+    # Denominator is real, not a hardcoded tier-size guess: only shown when
+    # -BossesAttempted is explicitly passed higher than -BossesKilled (i.e. a
+    # real wipe happened this raid night). No wipe known -> just "N bosses
+    # killed", no "/M". Replaces an earlier hardcoded "-TotalBosses" (default
+    # 10) that produced a nonsensical "12/10 bosses" once Gruul's Lair bosses
+    # started appearing alongside SSC/TK in the same report.
+    $bossesLabel = if ($BossesAttempted -gt $BossesKilled) { "$BossesKilled/$BossesAttempted bosses" } else { "$BossesKilled bosses killed" }
     $newRowHtml = @"
       <a class="raid-row" href="$ReportCode/index.html">
         <div>
           <div class="raid-title">$RaidTitle</div>
           <div class="raid-meta">$raidDateDisplay &nbsp;&middot;&nbsp; report $ReportCode</div>
         </div>
-        <div class="raid-meta">$BossesKilled/$TotalBosses bosses</div>
+        <div class="raid-meta">$bossesLabel</div>
         <div class="raid-arrow">$([char]0x2192)</div>
       </a>
 "@

@@ -213,8 +213,9 @@ $bmSpells = Import-Csv (Join-Path $benchDir "benchmark_spell_composition.csv")
 $bmCooldowns = Import-Csv (Join-Path $benchDir "benchmark_cooldowns.csv")
 $bmBuffs = Import-Csv (Join-Path $benchDir "benchmark_buffs.csv")
 
-$bossFights = @($fightsData.fights | Where-Object { $_.boss -ne 0 -and $_.kill -eq $true })
-Write-Host "$($bossFights.Count) boss kill(s) found for $CharacterName in report $ReportCode."
+$allBossPulls = @($fightsData.fights | Where-Object { $_.boss -ne 0 })
+$bossFights = @($allBossPulls | Where-Object { $_.kill -eq $true })
+Write-Host "$($bossFights.Count) boss kill(s) found for $CharacterName in report $ReportCode ($($allBossPulls.Count) real boss pull(s) attempted, including any wipes)."
 
 $results = [ordered]@{}
 $gearByBoss = [ordered]@{}
@@ -477,12 +478,13 @@ if ($gearByBoss.Count -gt 0) {
 }
 
 $output = [PSCustomObject]@{
-    CharacterName = $CharacterName
-    ClassName     = $ClassName
-    ReportCode    = $ReportCode
-    RaidDate      = $raidDate
-    Bosses        = $results
-    GearDiff      = $gearDiff
+    CharacterName    = $CharacterName
+    ClassName        = $ClassName
+    ReportCode       = $ReportCode
+    RaidDate         = $raidDate
+    Bosses           = $results
+    GearDiff         = $gearDiff
+    BossesAttempted  = $allBossPulls.Count
 }
 
 $outPath = Join-Path $charDir "$($ReportCode)_report_data.json"

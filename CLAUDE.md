@@ -610,6 +610,59 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   "data\Characters\ and docs\ folders" above. **Any doc-audit or link check
   should use the report-code paths in this file, not the `{date}\` paths an
   older version of this file (or memory of one) might suggest.**
+- **An earlier raid tier — Gruul's Lair (High King Maulgar, Gruul the
+  Dragonkiller) and Magtheridon's Lair — was added to the pipeline
+  (2026-07-15)**, alongside the existing SSC/TK tier, for all four classes:
+  `pull_top100_{druid,shaman,priest_holy,paladin}.ps1`,
+  `pull_character_TEMPLATE.ps1`, `build_boss_report_data.ps1`, and
+  `summarize_class_benchmarks.ps1` all know about the new boss IDs now, and a
+  real Top 100 benchmark pull completed for all four classes' `active\Gruul\`
+  and `active\Magtheridon\` folders (~500 real parses each, confirmed on disk
+  for Druid, Shaman, Priest, and Paladin alike). This is genuinely older
+  content than SSC/TK, not a new raid tier being
+  added on top — the point was filling in earlier attunement-chain bosses
+  healers may still have logs for, not tracking new current content.
+- **The local-scripting pipeline's first real production use (2026-07-15)**:
+  Danceswtrees's report `LKbVcNfRxyBkj2mg` (12 real boss kills — the 10 usual
+  SSC/TK bosses plus Maulgar and Gruul from the newly-added tier, all real
+  kills, no wipes) was pulled, analyzed, and rendered end-to-end through
+  `render_healer_report.ps1` for the first time ever on brand-new data (every
+  prior real v2 site was hand-written by Claude — see "Local-scripting
+  pipeline" above). It was initially rendered and **published with
+  `build_placeholder_findings.ps1`'s placeholder text still in it** — a real
+  mistake, caught and fixed the same session by authoring a real
+  `LKbVcNfRxyBkj2mg_findings.json` via the generate-healer-report skill and
+  re-rendering. Two real, previously-undiscovered bugs surfaced during this
+  first real run, both fixed and unlikely to be class- or report-specific:
+  - **The raid overview's "bosses killed" line used to be a hardcoded
+    `-TotalBosses`/`-BossesKilled` tier-size default (10 on both
+    `render_healer_report.ps1` and `update_hub_pages.ps1`)** — broke the
+    moment a report had more than 10 real bosses in it (rendered a
+    nonsensical "12/10 bosses killed"). Fixed by deriving the denominator
+    from each report's own real fight data instead: `build_boss_report_data.ps1`
+    now writes a real `BossesAttempted` count to `report_data.json` (every
+    real boss pull this report has, kill or wipe), and both rendering
+    scripts only show a `<kills>/<attempted>` denominator when a real wipe is
+    present in that specific report — otherwise it's just "`<N>` bosses
+    killed". `-TotalBosses` is gone from both scripts; `update_hub_pages.ps1`
+    takes an optional `-BossesAttempted` instead, only needed when a real
+    wipe happened.
+  - **OffHand(16) was wrongly in `ReportRenderLib.psm1`'s
+    `$script:EnchantableSlotIndexes` allowlist**, flagging a real, permanent
+    false-positive "missing enchant" gap on every report this pipeline has
+    ever rendered — every tracked healer spec (Resto Druid, Resto Shaman,
+    Holy Priest, Holy Paladin) holds a non-weapon "Held In Off-Hand" item
+    there (an orb/tome/idol, confirmed live via the real gear.json icon
+    `inv_misc_orb_01.jpg` on Danceswtrees's own report), and only an actual
+    off-hand weapon or shield can carry a permanent enchant in this era — a
+    caster off-hand item never can, full stop, regardless of what's actually
+    equipped there. Removed from the allowlist entirely, same treatment as
+    the existing ring exclusion (gotcha #6). **Not yet checked whether this
+    false-positive already appears in any of the 4 hand-written real v2
+    sites** (Danceswtrees/Vajomee/Lippies/Crowns's original pages predate the
+    render pipeline and were never regenerated through it — see "Local-
+    scripting pipeline" above) — worth a spot-check if a gear-audit accuracy
+    pass is ever done on those.
 
 **Explicitly open, in priority-ish order:**
 1. Tranquility's guid is unknown/unobserved (Druid-only concept) —
@@ -647,6 +700,14 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
    page must reflect this, not assume Holy Shock never heals. `build_boss_analysis.ps1`
    auto-tags this as the `paladin_holy_shock_guid_split` canned caveat for any
    report built through the new pipeline.
+6. **Gruul's Lair/Magtheridon's Lair rollout is Druid-only so far in terms of a
+   real rendered report** — only Danceswtrees (Druid) has an actual raid night
+   pulled and rendered against the expanded boss list (see "Recently closed"
+   above). Vajomee (Shaman), Lippies (Priest), and Crowns (Paladin) haven't had
+   a new raid night generated since the tier was added — nothing to migrate by
+   hand (the next `generate-healer-report` run for any of them will pick up
+   the new boss IDs automatically), but don't assume their sites already
+   reflect this.
 
 ## Ground rules (condensed from WORKFLOW.md — read the real thing for why)
 

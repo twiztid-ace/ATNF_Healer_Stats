@@ -37,11 +37,24 @@ $script:GearSlotNames = @(
 
 # ===== Enchantable-slot allowlist, cross-checked against the real Crowns
 # gear-audit prose (explicitly enumerates Head/Shoulder/Chest/Legs/Feet/Wrist/
-# Hands/Back/MainHand/OffHand) and WORKFLOW.md gotcha #6 (rings are self-only
-# enchant in this era, never flag). Explicitly NOT enchantable in this TBC
-# ruleset: Neck(1), Shirt(3), Waist(5), Finger1/2(10,11), Trinket1/2(12,13),
-# Ranged/Relic(17), Tabard(18). =====
-$script:EnchantableSlotIndexes = @(0, 2, 4, 6, 7, 8, 9, 14, 15, 16)
+# Hands/Back/MainHand) and WORKFLOW.md gotcha #6 (rings are self-only enchant
+# in this era, never flag). Explicitly NOT enchantable in this TBC ruleset:
+# Neck(1), Shirt(3), Waist(5), Finger1/2(10,11), Trinket1/2(12,13),
+# OffHand(16), Ranged/Relic(17), Tabard(18).
+#
+# OffHand(16) was removed from this list 2026-07-15 - a real false-positive
+# found on Danceswtrees's Gruul's Lair report: every tracked healer spec
+# (Resto Druid, Resto Shaman, Holy Priest, Holy Paladin) holds a non-weapon
+# "Held In Off-Hand" item there (an orb, tome, idol, etc. - confirmed here by
+# the real gear.json icon "inv_misc_orb_01.jpg", not a weapon/shield icon),
+# and only an actual off-hand weapon or shield can carry a permanent enchant
+# in this era - a caster off-hand item never can, regardless of whether a
+# real item (non-zero id) is equipped there. combatantinfo's gear[] entries
+# carry no item type/subclass field to distinguish "real off-hand weapon" from
+# "held item" mechanically, so - same reasoning as the ring exclusion below -
+# the safe default is to never flag this slot at all rather than risk a false
+# "missing enchant" claim on every report this pipeline has ever rendered. =====
+$script:EnchantableSlotIndexes = @(0, 2, 4, 6, 7, 8, 9, 14, 15)
 
 # ===== Per-class cooldown target-labeling mode, confirmed against real
 # hand-built pages this session (Crowns/Paladin, Vajomee/Shaman) and each
@@ -95,18 +108,16 @@ function Get-GearSlotName {
     return "Unknown($SlotIndex)"
 }
 
-# OffHand(16) is only meaningfully "enchantable" when a real item is actually
-# equipped there for THIS kill - a fishing-pole swap legitimately leaves it
-# empty (id 0) for one kill without that being a real gearing gap. Pass the
-# actual gear item at that slot (for whichever kill is being checked) so this
-# distinction can be made; omit it for slot-level-only checks.
+# $GearItemAtSlot is accepted for signature stability (callers built around
+# the old OffHand(16) special-case still pass it) but no slot currently in
+# $script:EnchantableSlotIndexes needs the actual equipped item to decide -
+# the allowlist alone is authoritative now that OffHand has been removed from it.
 function Test-SlotEnchantable {
     param(
         [Parameter(Mandatory=$true)][int]$SlotIndex,
         $GearItemAtSlot = $null
     )
     if ($script:EnchantableSlotIndexes -notcontains $SlotIndex) { return $false }
-    if ($SlotIndex -eq 16 -and $GearItemAtSlot -and [int]$GearItemAtSlot.id -eq 0) { return $false }
     return $true
 }
 

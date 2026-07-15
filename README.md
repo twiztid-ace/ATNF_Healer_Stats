@@ -242,21 +242,30 @@ this fix (`WARNING: boss id $bossID ('$($fight.name)') has no known
 slug/display mapping - skipping. Add it to $bossMeta...`) rather than failing
 silently — a good sanity check that you didn't miss table 6.
 
-### 3. Bump the two total-tier-size defaults
+### 3. Nothing to bump — the "bosses killed" denominator is derived, not configured
 
-Two scripts track "how many bosses are in the full tier" as a separate,
-plain `-TotalBosses` parameter (default `10`) — neither derives it from the
-tables above, so both need updating (or overriding per-call) once the tier
-grows:
+This used to be a manual step: two scripts each tracked "how many bosses are
+in the full tier" as a hardcoded `-TotalBosses` parameter (default `10`), and
+neither derived it from the tables above — so adding a boss meant remembering
+to bump both defaults by hand, and forgetting produced a nonsensical label
+like "12/10 bosses killed" once Gruul's Lair bosses started appearing
+alongside SSC/TK in the same report (this really happened, 2026-07-15).
 
-- `scripts\render_healer_report.ps1 -TotalBosses <N>` — feeds the raid
-  overview's own "`<kills>`/`<N>` bosses killed" line.
-- `scripts\update_hub_pages.ps1 -TotalBosses <N>` — feeds the same "X/Y
-  bosses" text on the healer's hub-page raid-row.
+Fixed by deriving the denominator from each report's own real fight data
+instead of a shared constant:
 
-There is no shared source of truth between these two — keep them in sync by
-hand, or pass `-TotalBosses` explicitly on every call until you update both
-defaults.
+- `build_boss_report_data.ps1` writes a real `BossesAttempted` count to
+  `report_data.json` (every real boss pull this report has, kill or wipe —
+  not just the kills already captured in `Bosses`).
+- `render_healer_report.ps1` compares it against the real kill count and only
+  shows a "`<kills>`/`<attempted>`" denominator when a real wipe is present in
+  this report's own data; otherwise it just prints "`<N>` bosses killed".
+- `update_hub_pages.ps1` takes an optional `-BossesAttempted <N>` (only pass
+  it if you actually saw a wipe this raid night — omit it otherwise) for the
+  matching hub-page row text.
+
+Nothing to bump when a new boss is added to the tracked tier — this is a
+per-report fact now, not a per-tier constant.
 
 ### 4. What you don't need to touch
 

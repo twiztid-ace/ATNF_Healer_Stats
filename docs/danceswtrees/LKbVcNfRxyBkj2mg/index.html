@@ -190,7 +190,7 @@
   <div class="header">
     <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — Gruul / SSC / TK — July 15, 2026</p>
     <h1>Danceswtrees</h1>
-    <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>LKbVcNfRxyBkj2mg</span> &nbsp;·&nbsp; 12/10 bosses killed</p>
+    <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>LKbVcNfRxyBkj2mg</span> &nbsp;·&nbsp; 12 bosses killed</p>
   </div>
  
   
@@ -203,7 +203,8 @@
  
     <div class="consistency-banner">
       <div class="consistency-icon">✓</div>
-      <div class="consistency-text">Loadout is <strong>[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</strong> across all 12 boss kills — confirm by diffing gear/enchant/gem IDs across every fight before writing this, don't assume from one fight. If gear DID change mid-raid, say so explicitly here instead.</div>
+      <div class="consistency-text">Loadout is <strong>consistent, aside from two likely-benign single-kill gear swaps (MainHand, OffHand)</strong> across all 12 boss kills.</div>
+      
     </div>
  
     <div class="check-list">
@@ -224,16 +225,23 @@
       </div>
       
       <div class="check-item">
-        <div class="check-icon bad">✗</div>
-        <div>OffHand carries no permanent enchant</div>
-        <div class="check-note">item 29170</div>
+        <div class="check-icon note">i</div>
+        <div>MainHand and OffHand vary on a minority of kills</div>
+        <div class="check-note">single-kill variant</div>
+        <div class="check-detail">Both slots differ from the baseline loadout on exactly one kill each, not a lasting swap - consistent with a fight-specific choice rather than a gearing gap.</div>
+      </div>
+      
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Flask (Elixir of Draenic Wisdom) and Well Fed food buff both active on all 12 kills</div>
+        <div class="check-note">12/12 kills</div>
         <div class="check-detail"></div>
       </div>
       
       
     </div>
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">One real gear gap stands out independent of the kill-to-kill swaps: the Back slot (item 28765) carries no permanent enchant across every kill this raid night - a cheap, static enchant that would apply immediately and doesn't require any fight-specific loadout choice. OffHand carries a non-weapon Held-In-Off-Hand item (an orb) this raid, which cannot take a permanent enchant in this era regardless of what's equipped there - not a real gap.</div>
   </div>
  
   
@@ -244,6 +252,11 @@
     </div>
     <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own fight logs. Percentile is only shown where we've pulled the real WCL ranking for that exact pull — click a boss name for the full audit.</p>
  
+    
+    <div class="consistency-banner" style="background: rgba(181,80,58,0.10); border-color: rgba(181,80,58,0.35);">
+      <div class="consistency-icon" style="background: var(--rust);">!</div>
+      <div class="consistency-text"><strong>Danceswtrees died mid-fight on Lady Vashj</strong> - the raid's only self-death recorded this raid night, cutting off healing output for whatever remained of that encounter afterward. See the Vashj page for the full death-timeline breakdown.</div>
+    </div>
     
  
     <table class="boss-table">
@@ -358,7 +371,7 @@
     </tbody>
     </table>
 
-    <div class="coverage-note">[CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the generate-healer-report skill in Claude Code, or hand-author a real findings.json, before treating this as a real audit.]</div>
+    <div class="coverage-note">Hydross the Unstable (25th percentile), Kael'thas Sunstrider (30th), and The Lurker Below (39th) are this raid night's lowest-percentile kills and the clearest priorities for a full breakdown. Hydross pairs the raid's lowest raw HPS with overheal exceeding the Top 100 sample's worst parse; Kael'thas and Leotheras the Blind (9 real deaths, the most of the night) point to survivability rather than a single rotation gap. Every percentile shown here is matched to this exact report and fight ID, not a duplicate-upload fallback.</div>
   </div>
  
   <div class="footer">

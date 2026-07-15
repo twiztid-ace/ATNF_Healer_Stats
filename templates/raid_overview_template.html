@@ -190,7 +190,7 @@
   <div class="header">
     <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — {{RAID_TITLE}} — {{RAID_DATE_DISPLAY}}</p>
     <h1>{{HEALER_NAME}}</h1>
-    <p class="subline">{{HEALER_CLASS_SPEC}} &nbsp;·&nbsp; ilvl {{ITEM_LEVEL}} &nbsp;·&nbsp; report <span>{{REPORT_CODE}}</span> &nbsp;·&nbsp; {{N_KILLS}}/{{N_BOSSES}} bosses killed</p>
+    <p class="subline">{{HEALER_CLASS_SPEC}} &nbsp;·&nbsp; ilvl {{ITEM_LEVEL}} &nbsp;·&nbsp; report <span>{{REPORT_CODE}}</span> &nbsp;·&nbsp; {{BOSSES_KILLED_LABEL}}</p>
   </div>
  
   <!-- ===== GEAR AUDIT (RAID-WIDE, SINGLE CHECK) ===== -->
@@ -203,7 +203,8 @@
  
     <div class="consistency-banner">
       <div class="consistency-icon">✓</div>
-      <div class="consistency-text">Loadout is <strong><!--@SLOT:GEAR_CONSISTENCY_FINDING-->{{GEAR_CONSISTENCY_FINDING}}<!--@ENDSLOT--></strong> across all {{N_KILLS}} boss kills — confirm by diffing gear/enchant/gem IDs across every fight before writing this, don't assume from one fight. If gear DID change mid-raid, say so explicitly here instead.</div>
+      <div class="consistency-text">Loadout is <strong><!--@SLOT:GEAR_CONSISTENCY_FINDING-->{{GEAR_CONSISTENCY_FINDING}}<!--@ENDSLOT--></strong> across all {{N_KILLS}} boss kills.</div>
+      <!-- Authoring note (not rendered): confirm by diffing gear/enchant/gem IDs across every fight before writing GEAR_CONSISTENCY_FINDING above, don't assume from one fight. If gear DID change mid-raid, say so explicitly in that field instead. -->
     </div>
  
     <div class="check-list">
