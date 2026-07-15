@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Healer Audit — Fathom-Lord Karathress</title>
+<title>Healer Audit — Danceswtrees — Fathom-Lord Karathress</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -45,9 +45,8 @@
     padding: 40px 48px 32px;
     border-bottom: 1px solid var(--line);
     display:flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 24px;
+    flex-direction: column;
+    gap: 18px;
   }
   .eyebrow{
     font-family:'IBM Plex Mono', monospace;
@@ -72,7 +71,12 @@
   .subline span{ font-family:'IBM Plex Mono', monospace; }
 
   /* ===== Seal ===== */
-  .seal-wrap{ flex-shrink:0; text-align:center; }
+  /* Fixed width (matching .seal's own 108px) so a longer caption - the
+     iLvl/Raw Healing Rank seals need more words than the original "WCL rank,
+     all parses" - wraps neatly within the same column instead of expanding
+     the box past the circle above it, which is what was throwing off the
+     spacing between badges when more than one seal-wrap sits in a row. */
+  .seal-wrap{ flex-shrink:0; width: 108px; text-align:center; }
   .seal{ width: 108px; height: 108px; }
   .seal-label{
     font-family:'IBM Plex Mono', monospace;
@@ -115,6 +119,8 @@
     border-radius: 3px;
     overflow:hidden;
   }
+  /* 2026-07-12: cooldowns/consumables stat row grew a 5th stat (HPM); the Scorecard
+     grew its own 5th stat (Active Time) the same day - both now use this modifier. */
   .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
   .stat{
     padding: 16px 18px;
@@ -195,10 +201,40 @@
     font-size: 11px;
   }
   .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
-  .spell-group{ margin-bottom: 6px; }
-  .spell-group:last-child{ margin-bottom: 0; }
 
-  /* ===== Cooldown / consumable table (Druid-specific) ===== */
+  /* ===== Checklist ===== */
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.55);
+    text-align:right;
+  }
+
+  /* ===== Cooldown / consumable table (Druid-specific) =====
+       Deliberately NOT the ok/bad check-list pattern - cooldown counts and consumable
+       uptime are informational stats, not pass/fail checks, and design_tokens.md is
+       explicit that the numbers should carry the finding rather than the container
+       editorializing with color. Plain table + a coverage-note for the actual read. */
   .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
   .cd-table th{
     text-align:left;
@@ -231,6 +267,13 @@
   .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
   .target-bar-fill{ height:100%; background: var(--ink-2); }
   .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+
+  /* ===== Healer ranking ===== */
+  .healer-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; min-width:80px; }
+  .healer-bar-fill{ height:100%; background: var(--ink-2); }
+  .healer-bar-fill.is-character{ background: var(--copper); }
+  tr.is-character td{ font-weight:700; }
+
   .coverage-note{
     margin-top: 14px;
     font-size: 12px;
@@ -248,31 +291,66 @@
     display:flex;
     justify-content: space-between;
   }
+
+  .placeholder-tag{
+    display:inline-block;
+    margin-left: 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--copper);
+    border: 1px solid var(--copper);
+    border-radius: 20px;
+    padding: 2px 8px;
+    vertical-align: middle;
+  }
 </style>
 </head>
 <body>
 
 <div class="page">
 
-  <!-- ===== HEADER ===== -->
+  
   <div class="header">
     <div>
-      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC/TK 07.07.2026 · Fathom-Lord Karathress</p>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — July 7, 2026 · Fathom-Lord Karathress</p>
       <h1>Danceswtrees</h1>
-      <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; fight <span>33</span> &nbsp;·&nbsp; kill, 208s</p>
+      <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; fight <span>33</span> &nbsp;·&nbsp; kill, 208s</p>
     </div>
-    <div class="seal-wrap">
-      <svg class="seal" viewBox="0 0 120 120">
-        <circle cx="60" cy="60" r="56" fill="none" stroke="#C97A3D" stroke-width="2"/>
-        <circle cx="60" cy="60" r="48" fill="none" stroke="#C97A3D" stroke-width="1" stroke-dasharray="2 4"/>
-        <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#132A2C">70</text>
-        <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
-      </svg>
-      <div class="seal-label">WCL rank, all parses</div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-start; gap:12px 16px; align-items:flex-start;">
+      
+      <div class="seal-wrap">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#BEA55A" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#BEA55A" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#BEA55A">69</text>
+          <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+        </svg>
+        <div class="seal-label">WCL rank, all parses</div>
+      </div>
+      
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#AB9D58" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#AB9D58" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#AB9D58">2nd of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">ILVL HEALING RANK</text>
+        </svg>
+        <div class="seal-label">69% by ilvl 120</div>
+      </div>
+      
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#5F7A52" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#5F7A52" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#5F7A52">1st of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">RAW HEALING RANK</text>
+        </svg>
+        <div class="seal-label">238,187 healing</div>
+      </div>
     </div>
   </div>
 
-  <!-- ===== SCORECARD ===== -->
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">01</span>
@@ -282,12 +360,12 @@
       <div class="stat">
         <div class="stat-label">HPS</div>
         <div class="stat-value">1144</div>
-        <div class="stat-sub">Top 100: #1 2102 &nbsp;·&nbsp; avg 1814 &nbsp;·&nbsp; median 1788</div>
+        <div class="stat-sub">Top 100: #1 2123 &nbsp;·&nbsp; avg 1834 &nbsp;·&nbsp; median 1812</div>
       </div>
       <div class="stat">
         <div class="stat-label">Overheal</div>
         <div class="stat-value">35.3%</div>
-        <div class="stat-sub">Top 100: best 11.8% &nbsp;·&nbsp; median 34.3% &nbsp;·&nbsp; worst 46.5%</div>
+        <div class="stat-sub">Top 100: best 11.8% &nbsp;·&nbsp; median 34.6% &nbsp;·&nbsp; worst 46.5%</div>
       </div>
       <div class="stat">
         <div class="stat-label">Effective healing</div>
@@ -295,27 +373,28 @@
         <div class="stat-sub">over 208s kill</div>
       </div>
       <div class="stat">
+        
         <div class="stat-label">Active time</div>
-        <div class="stat-value warn">80.6%</div>
+        <div class="stat-value">80.6%</div>
         <div class="stat-sub">Top 100: #1 100% &nbsp;·&nbsp; avg 99.2% &nbsp;·&nbsp; median 99.5%</div>
       </div>
       <div class="stat">
         <div class="stat-label">Raid deaths</div>
-        <div class="stat-value warn">3</div>
+        <div class="stat-value">3</div>
         <div class="stat-sub">this kill, all classes</div>
       </div>
     </div>
 
     <div class="pctl-track">
-      <div class="pctl-marker" style="left:70%;" data-label="Danceswtrees · 70th"></div>
+      <div class="pctl-marker" style="left:69%;" data-label="Danceswtrees · 69th"></div>
     </div>
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
-    <div class="stat-sub" style="margin-top:6px;">WCL rank 5448 of 18027 Restoration Druid parses on this encounter (all difficulties/partitions, historical). Matched by exact report/fight ID (XJp8vAxzM4KtHYyb, fight 33) — no duplicate-upload fallback needed.</div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank ~5738 of 18510 Restoration Druid parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
 
-    <div class="coverage-note">A different shape from the first three kills: overheal (35.3%) actually sits close to the Top 100 median (34.3%), not past the sample's worst, and percentile (70th) is the best of the raid night so far. The real story is active time (80.6%) — the lowest of any kill analyzed, nearly 19 points under the Top 100 average (99.2%). This lines up directly with the raid death list below: Danceswtrees died during this kill (5441750ms), and dead characters can't cast — that alone accounts for the active-time gap, it isn't idle/AFK time during a live window. Two other raid members also died this kill (Shlicktree, Deepbowlz), both earlier than Danceswtrees's own death.</div>
+    <div class="coverage-note">HPS (1,144) ran below the Top 100 average (1,834), but the more telling number is active time (80.6% vs. 99.2% average) - a real, unusually large gap. Danceswtrees died mid-fight (one of 3 real deaths this kill), directly explaining the reduced activity: once she's dead, there's no more healing to log for the rest of the encounter.</div>
   </div>
 
-  <!-- ===== SPELL COMPOSITION ===== -->
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">02</span>
@@ -328,120 +407,144 @@
       <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
     </div>
 
-    <div class="spell-group">
-      <div class="spell-row compare-row">
-        <div class="spell-name">Lifebloom</div>
-        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:61.5%"></div></div>
-        <div class="spell-pct">61.5%</div>
-      </div>
-      <div class="spell-row compare-row">
-        <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:37.9%"></div></div>
-        <div class="spell-pct">37.9%</div>
-      </div>
+    
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Lifebloom (HoT)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:61.5%"></div></div>
+      <div class="spell-pct">61.5%</div>
     </div>
-
-    <div class="spell-group">
-      <div class="spell-row compare-row">
-        <div class="spell-name">Regrowth</div>
-        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:13.4%"></div></div>
-        <div class="spell-pct">13.4%</div>
-      </div>
-      <div class="spell-row compare-row">
-        <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:34.2%"></div></div>
-        <div class="spell-pct">34.2%</div>
-      </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:39.6%"></div></div>
+      <div class="spell-pct">39.6%</div>
     </div>
-
-    <div class="spell-group">
-      <div class="spell-row compare-row">
-        <div class="spell-name">Rejuvenation</div>
-        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:12%"></div></div>
-        <div class="spell-pct">12.0%</div>
-      </div>
-      <div class="spell-row compare-row">
-        <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:13.2%"></div></div>
-        <div class="spell-pct">13.2%</div>
-      </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Regrowth</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:13.4%"></div></div>
+      <div class="spell-pct">13.4%</div>
     </div>
-
-    <div class="spell-group">
-      <div class="spell-row compare-row">
-        <div class="spell-name">Lifebloom <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 33778)</span></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:6.5%"></div></div>
-        <div class="spell-pct">6.5%</div>
-      </div>
-      <div class="spell-row compare-row">
-        <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.5%"></div></div>
-        <div class="spell-pct">5.5%</div>
-      </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:34.6%"></div></div>
+      <div class="spell-pct">34.6%</div>
     </div>
-
-    <div class="spell-group">
-      <div class="spell-row compare-row">
-        <div class="spell-name">Swiftmend</div>
-        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:5.9%"></div></div>
-        <div class="spell-pct">5.9%</div>
-      </div>
-      <div class="spell-row compare-row">
-        <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.5%"></div></div>
-        <div class="spell-pct">4.5%</div>
-      </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Rejuvenation (guid 26982)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:12%"></div></div>
+      <div class="spell-pct">12%</div>
     </div>
-
-    <div class="spell-group">
-      <div class="spell-row compare-row">
-        <div class="spell-name">Healing Touch</div>
-        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.7%"></div></div>
-        <div class="spell-pct">0.7%</div>
-      </div>
-      <div class="spell-row compare-row">
-        <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.2%"></div></div>
-        <div class="spell-pct">1.2%</div>
-      </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:12.4%"></div></div>
+      <div class="spell-pct">12.4%</div>
     </div>
-
-    <div class="spell-group">
-      <div class="spell-row compare-row">
-        <div class="spell-name">Regrowth <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 9856)</span></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
-        <div class="spell-pct">0.0%</div>
-      </div>
-      <div class="spell-row compare-row">
-        <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.2%"></div></div>
-        <div class="spell-pct">1.2%</div>
-      </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Lifebloom (Bloom)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:6.5%"></div></div>
+      <div class="spell-pct">6.5%</div>
     </div>
-
-    <div class="spell-group">
-      <div class="spell-row compare-row">
-        <div class="spell-name">Rejuvenation <span style="font-family:'IBM Plex Mono',monospace; font-size:10px; opacity:0.6;">(guid 26981)</span></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
-        <div class="spell-pct">0.0%</div>
-      </div>
-      <div class="spell-row compare-row">
-        <div class="spell-name"></div>
-        <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.8%"></div></div>
-        <div class="spell-pct">0.8%</div>
-      </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.6%"></div></div>
+      <div class="spell-pct">5.6%</div>
     </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Swiftmend</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:5.9%"></div></div>
+      <div class="spell-pct">5.9%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.3%"></div></div>
+      <div class="spell-pct">4.3%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Healing Touch</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.7%"></div></div>
+      <div class="spell-pct">0.7%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.2%"></div></div>
+      <div class="spell-pct">1.2%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Rejuvenation (guid 26981)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.8%"></div></div>
+      <div class="spell-pct">0.8%</div>
+    </div>
+    
 
-    <div class="coverage-note">Union of both spell lists: Danceswtrees's 6 cast spells plus 2 benchmark-only guids never cast (Regrowth guid 9856 and Rejuvenation guid 26981, 1.2%/0.8% of the Top 100 average). The Lifebloom/Regrowth skew is the most extreme seen yet (61.5% vs. 37.9%, +23.6 on Lifebloom; 13.4% vs. 34.2%, -20.8 on Regrowth) — plausibly connected to the active-time gap above: with roughly a fifth of the fight spent dead, there was less total casting window available, and what did happen leaned toward quick Lifebloom refreshes over Regrowth's 2-second cast. That's a real, defensible correlation given the timeline, not a confirmed mechanism.</div>
+    <div class="coverage-note">Lifebloom's share ran 21.9 points ahead of the Top 100 average, one of the larger composition gaps of the raid night - consistent with a kill cut short by the self-death above.</div>
+
+    
+    
+    <div style="margin-top:20px;">
+      <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data where available; <span style="font-family:'IBM Plex Mono', monospace;">&#8224;</span> marks a rank the character didn't cast this kill, backfilled with a real cost observed elsewhere in the Top 100 sample; "?" only when neither source has it.</p>
+      <table class="cd-table">
+        <thead>
+          <tr>
+            <th>Spell</th>
+            <th style="text-align:right;">Mana cost</th>
+            <th style="text-align:right;">Danceswtrees</th>
+            <th style="text-align:right;">Top 100 avg</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td class="ability-name">Lifebloom (Bloom)</td>
+            <td class="num-cell">0 mana</td>
+            <td class="num-cell">6.5%</td>
+            <td class="num-cell">5.6%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name">Lifebloom (HoT)</td>
+            <td class="num-cell">220 mana</td>
+            <td class="num-cell">61.5%</td>
+            <td class="num-cell">39.6%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name">Rejuvenation</td>
+            <td class="num-cell">370 mana †</td>
+            <td class="num-cell">0%</td>
+            <td class="num-cell">0.8%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name"></td>
+            <td class="num-cell">415 mana</td>
+            <td class="num-cell">12%</td>
+            <td class="num-cell">12.4%</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
   </div>
 
-  <!-- ===== COOLDOWNS & CONSUMABLES ===== -->
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">03</span>
       <h2 class="section-title">Cooldowns &amp; consumables</h2>
     </div>
-    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Fathom-Lord Karathress.</p>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Fathom-Lord Karathress. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> (see WORKFLOW.md) - match abilities by guid, not localized name (gotcha #2).</p>
 
     <table class="cd-table">
       <thead>
@@ -453,105 +556,194 @@
         </tr>
       </thead>
       <tbody>
+        
+        
         <tr>
           <td class="ability-name">Innervate</td>
           <td class="num-cell">1</td>
           <td>self</td>
-          <td class="num-cell">0.8 (74%)</td>
+          <td class="num-cell">0.8 avg (71% self)</td>
         </tr>
+        
         <tr>
           <td class="ability-name">Nature's Swiftness</td>
           <td class="num-cell">1</td>
-          <td>self</td>
-          <td class="num-cell">0.8 (100%)</td>
+          <td>—</td>
+          <td class="num-cell">0.8 avg</td>
         </tr>
+        
         <tr>
           <td class="ability-name">Swiftmend</td>
           <td class="num-cell">3</td>
           <td>→ Banepain, → Whitewolf, → Turbarct</td>
-          <td class="num-cell">3.0 (3%)</td>
+          <td class="num-cell">2.8 avg (3% self)</td>
         </tr>
+        
+        <tr>
+          <td class="ability-name">Rebirth</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0.1 avg</td>
+        </tr>
+        
+        <tr>
+          <td class="ability-name">Dark Rune</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0.1 avg</td>
+        </tr>
+        
+        <tr>
+          <td class="ability-name">Mana Potion</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0.5 avg</td>
+        </tr>
+        
       </tbody>
     </table>
-    <!-- Tranquility omitted: not cast this kill (0), and the Top 100 average is also
-         0% used on this boss - matching the norm, not a deviation, so it doesn't earn
-         a row (see boss_page_template_druid.html's 2026-07-12 rule). Rebirth omitted:
-         not cast this kill and not relevant - Danceswtrees's own death near the end of
-         the fight left no time/reason for a battle-rez to be cast by them. -->
 
     <div class="stat-grid stat-grid-5" style="margin-top:22px;">
       <div class="stat">
+        
         <div class="stat-label">Flask / Elixir</div>
-        <div class="stat-value good">Yes</div>
-        <div class="stat-sub">Elixir of Draenic Wisdom — Top 100: 73% had one active at pull start</div>
+        <div class="stat-value">Elixirs</div>
+        <div class="stat-sub">Healing Power (Battle) + Elixir of Draenic Wisdom (Guardian) — Top 100 active at pull start: 70% flask, 100% Battle Elixir, 100% Guardian Elixir</div>
       </div>
       <div class="stat">
         <div class="stat-label">Food buff</div>
-        <div class="stat-value good">Yes</div>
-        <div class="stat-sub">Well Fed — Top 100: 73% had one active at pull start</div>
+        <div class="stat-value">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 76% had one active at pull start</div>
       </div>
       <div class="stat">
+        
         <div class="stat-label">Tree of Life uptime</div>
-        <div class="stat-value warn">3.6%</div>
-        <div class="stat-sub">Top 100 avg: 52.9%</div>
+        <div class="stat-value">3.6%</div>
+        <div class="stat-sub">Top 100 avg: 47.4% — omit this stat if not talented, not 0%</div>
       </div>
       <div class="stat">
         <div class="stat-label">Mana consumables</div>
         <div class="stat-value">0</div>
-        <div class="stat-sub">None used this kill — Top 100 avg 0.6 casts (54% used one)</div>
+        <div class="stat-sub">none used this kill — e.g. "1x Restore Mana", from *_casts_events.json (consumables register as casts, matched by name not guid - see benchmark_cooldowns.csv note on "Mana Potion")</div>
       </div>
       <div class="stat">
+        
         <div class="stat-label">HPM</div>
-        <div class="stat-value good">8.55</div>
-        <div class="stat-sub">Top 100: top1 11.55 &nbsp;·&nbsp; avg 8.07 &nbsp;·&nbsp; median 7.99</div>
+        <div class="stat-value">8.55</div>
+        <div class="stat-sub">Top 100: top1 11.69 &nbsp;·&nbsp; avg 8.15 &nbsp;·&nbsp; median 7.88</div>
       </div>
     </div>
 
-    <div class="coverage-note">Innervate was self-cast this kill, matching the Top 100 sample's majority pattern (74% self) — Danceswtrees's Innervate targeting has flipped between self and other across kills so far, not a fixed habit. Swiftmend (3 casts, all to others) lines up almost exactly with the Top 100 average (3.0) and correctly non-self (3% self in the sample). The real standout: Nature's Swiftness was self-cast at 5430202ms — just 11.5 seconds before Danceswtrees's own death at 5441750ms, a real, verifiable near-death cooldown use, plausibly an emergency self-heal attempt that didn't prevent the death. Tree of Life uptime (3.6%, far below the Top 100 average of 52.9%) is best read alongside the death above rather than as a standalone gap — this pipeline measures uptime across the full fight window, so a character who dies partway through will show a lower % than time-spent-alive-in-Tree-Form would, even with no change in in-combat behavior. HPM (8.55) is the first kill this raid night where Danceswtrees's mana efficiency beats both the Top 100 average and median (8.07/7.99) — a real positive outlier worth noting on an otherwise rough kill.</div>
+    <div class="coverage-note">Rebirth was never cast despite 3 real deaths this kill, including Shlicktree and Deepbowlz, who both died before Danceswtrees's own death and could plausibly have been answered. Mana Potion also went uncast against a 51%-used norm.</div>
   </div>
 
-  <!-- ===== TARGET DISTRIBUTION ===== -->
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">04</span>
       <h2 class="section-title">Target distribution</h2>
     </div>
-    <p class="section-desc">Top 5 recipients of Danceswtrees's healing on this kill (82.0% coverage) vs. Top 100 average on Fathom-Lord Karathress (72.9% coverage, 33.7% to top target).</p>
+    <p class="section-desc">Top 5 recipients of Danceswtrees's healing on this kill (82% coverage) vs. Top 100 average on Fathom-Lord Karathress (74% coverage, 34.5% to top target).</p>
 
     <div class="target-list">
+      
+      
       <div class="target-row">
         <div>Turbarct</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
         <div class="target-pct">42.3%</div>
       </div>
+      
       <div class="target-row">
         <div>Jotes</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:53.8%"></div></div>
         <div class="target-pct">22.8%</div>
       </div>
+      
       <div class="target-row">
         <div>Banepain</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:13.9%"></div></div>
         <div class="target-pct">5.9%</div>
       </div>
+      
       <div class="target-row">
         <div>Whitewolf</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:13.3%"></div></div>
         <div class="target-pct">5.6%</div>
       </div>
+      
       <div class="target-row">
         <div>Raezy</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:12.8%"></div></div>
         <div class="target-pct">5.4%</div>
       </div>
+      
     </div>
 
-    <div class="coverage-note">Coverage (82.0% vs. the Top 100's 72.9%, +9.1 points) and top target share (42.3% vs. 33.7%, +8.6 points) are both real gaps past the ±5 noise range — a more concentrated healing pattern than average on this kill, focused heavily on Turbarct and Jotes (65.1% combined). Whether this concentration is a cause or a consequence of the reduced active time above isn't determinable from this data alone — fewer casts overall naturally means fewer distinct targets get touched.</div>
+    <div class="coverage-note">Coverage (82% vs. 74% average) and top-target concentration (42.3% vs. 34.5% average) both ran modestly above the Top 100 norm - typical for a kill with real raid damage spread across 16 distinct targets.</div>
   </div>
+
+  
+  
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Healer ranking</h2>
+    </div>
+    <p class="section-desc">Danceswtrees vs. the other healers in this same raid on this same fight.</p>
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Healer</th>
+          <th>Raw healing</th>
+          <th style="text-align:right;">% of total</th>
+          <th style="text-align:right; cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">Item Level %</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr class="is-character">
+          <td class="ability-name">Danceswtrees</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="238,187 total healing"><div class="healer-bar-fill is-character" style="width:100%"></div></div></td>
+          <td class="num-cell">27.4%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">69% (ilvl 120)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Lippies</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="203,571 total healing"><div class="healer-bar-fill " style="width:85.5%"></div></div></td>
+          <td class="num-cell">23.4%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">33% (ilvl 124)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Crowns</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="182,289 total healing"><div class="healer-bar-fill " style="width:76.5%"></div></div></td>
+          <td class="num-cell">21.0%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">75% (ilvl 127)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Deshar</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="177,249 total healing"><div class="healer-bar-fill " style="width:74.4%"></div></div></td>
+          <td class="num-cell">20.4%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">31% (ilvl 113)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Shlicktree</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="67,117 total healing"><div class="healer-bar-fill " style="width:28.2%"></div></div></td>
+          <td class="num-cell">7.7%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">0% (ilvl 120)</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  
 
   <div class="footer">
     <span>All data real: Danceswtrees's fight log (XJp8vAxzM4KtHYyb, fight 33) + Top 100 Fathom-Lord Karathress benchmark (n=100)</span>
-    <span>tbc-audit style reference · healer variant · Resto Druid</span>
   </div>
 
 </div>

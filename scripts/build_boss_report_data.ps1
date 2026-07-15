@@ -231,7 +231,16 @@ $bmManaCostByGuid = if (Test-Path $manaCostPath) {
 
 $allBossPulls = @($fightsData.fights | Where-Object { $_.boss -ne 0 })
 $bossFights = @($allBossPulls | Where-Object { $_.kill -eq $true })
-Write-Host "$($bossFights.Count) boss kill(s) found for $CharacterName in report $ReportCode ($($allBossPulls.Count) real boss pull(s) attempted, including any wipes)."
+# Distinct boss IDs, NOT total pull count - a wipe on a boss followed by a
+# real kill of that SAME boss is one boss attempted, not two. The previous
+# version counted every individual pull (kill or wipe) as if it were a
+# separate boss, so a single real wipe-then-kill inflated "bosses attempted"
+# by one for a boss that was still just one real boss in the tier - confirmed
+# wrong on Danceswtrees's own XJp8vAxzM4KtHYyb report (Morogrim wiped once,
+# killed on the second pull, rendered as "10/11 bosses killed" when the real,
+# correct reading is "10/10 bosses killed, 1 wipe along the way").
+$distinctBossesAttempted = @($allBossPulls | Select-Object -ExpandProperty boss -Unique).Count
+Write-Host "$($bossFights.Count) boss kill(s) found for $CharacterName in report $ReportCode ($distinctBossesAttempted distinct boss(es) attempted, $($allBossPulls.Count) total real pull(s) including any wipes)."
 
 $results = [ordered]@{}
 $gearByBoss = [ordered]@{}
@@ -653,7 +662,7 @@ $output = [PSCustomObject]@{
     RaidDate         = $raidDate
     Bosses           = $results
     GearDiff         = $gearDiff
-    BossesAttempted  = $allBossPulls.Count
+    BossesAttempted  = $distinctBossesAttempted
     RaidWideIlvlHealingRankSummary = $raidWideIlvlHealingRankSummary
     RaidWideRawHealingRankSummary  = $raidWideRawHealingRankSummary
     BenchmarkManaCostByGuid        = $bmManaCostByGuid

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Raid Audit — Danceswtrees — SSC / TK July 7, 2026 (v2)</title>
+<title>Raid Audit — Danceswtrees — SSC / TK — July 7, 2026</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
-
+ 
   :root{
     --ink: #132A2C;
     --ink-2: #1C3A3D;
@@ -17,7 +17,7 @@
     --gold: #D9B25C;
     --line: rgba(19,42,44,0.16);
   }
-
+ 
   *{box-sizing:border-box;}
   body{
     margin:0;
@@ -29,7 +29,7 @@
     font-family:'Inter', sans-serif;
     padding: 48px 24px 80px;
   }
-
+ 
   .page{
     max-width: 920px;
     margin: 0 auto;
@@ -39,7 +39,7 @@
     box-shadow: 0 30px 80px rgba(0,0,0,0.45);
     overflow: hidden;
   }
-
+ 
   .header{
     padding: 40px 48px 32px;
     border-bottom: 1px solid var(--line);
@@ -65,15 +65,15 @@
     margin: 0;
   }
   .subline span{ font-family:'IBM Plex Mono', monospace; }
-
+ 
   .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
   .section:last-child{ border-bottom: none; }
   .section-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
   .section-num{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--copper); }
   .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
   .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
-
-  /* ===== Consistency / status banners ===== */
+ 
+  /* ===== Consistency banner ===== */
   .consistency-banner{
     display:flex;
     align-items:center;
@@ -84,20 +84,15 @@
     padding: 14px 18px;
     margin-bottom: 22px;
   }
-  .consistency-banner.pending{
-    background: rgba(217,178,92,0.14);
-    border-color: rgba(217,178,92,0.45);
-  }
   .consistency-icon{
     width: 26px; height: 26px; border-radius: 50%;
     background: var(--moss); color: var(--parchment);
     display:flex; align-items:center; justify-content:center;
     font-weight: 700; font-size: 14px; flex-shrink:0;
   }
-  .consistency-banner.pending .consistency-icon{ background: var(--gold); color: var(--ink); }
   .consistency-text{ font-size: 13px; }
   .consistency-text strong{ font-family:'IBM Plex Mono', monospace; }
-
+ 
   /* ===== Checklist ===== */
   .check-list{ display:flex; flex-direction:column; }
   .check-item{
@@ -119,14 +114,21 @@
   .check-icon.ok{ background: var(--moss); color: var(--parchment); }
   .check-icon.bad{ background: var(--rust); color: var(--parchment); }
   .check-icon.note{ background: var(--gold); color: var(--ink); }
-  /* Short data tag only (item id, enchant id) - not a sentence. See
-     raid_overview_template.html's guidance comment for why. */
+  /* check-note is a short DATA TAG (item id, enchant id, a number) - not a sentence.
+     It's narrow, right-aligned, small monospace, sitting in a fixed `auto`-width grid
+     column next to a flexible label - real prose put here wraps ragged-left in tiny
+     monospace type and squeezes the label column. If a finding needs more than ~4-5
+     words of explanation, that explanation belongs in check-detail (below) or the
+     section's closing coverage-note, never crammed into this column. */
   .check-note{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: rgba(19,42,44,0.55); text-align:right; white-space:nowrap; }
-  /* Optional full-width explanation line for a check-item whose one-line label isn't
-     enough on its own - spans under the label+tag columns, left-aligned, wraps
-     normally. */
+  /* Optional 4th line for a check-item that genuinely needs a real explanation (e.g.
+     "why this deviation isn't a bug") - spans under the label+tag columns, left-
+     aligned, wraps normally. Add ONLY when the one-line label truly isn't enough;
+     most check-items don't need this. Don't duplicate the same explanation again in
+     the section's coverage-note below - say it once, in whichever of the two spots
+     fits its length. */
   .check-detail{ grid-column: 2 / 4; font-size: 12px; color: rgba(19,42,44,0.6); line-height: 1.45; margin-top: 2px; }
-
+ 
   .coverage-note{
     margin-top: 14px;
     font-size: 12px;
@@ -134,7 +136,7 @@
     border-left: 3px solid var(--gold);
     padding-left: 12px;
   }
-
+ 
   /* ===== Boss table ===== */
   .boss-table{ width:100%; border-collapse: collapse; font-size: 13px; }
   .boss-table th{
@@ -147,17 +149,20 @@
     padding: 8px 10px;
     border-bottom: 1px solid var(--line);
   }
+  /* Native title="" tooltip on a header whose meaning isn't obvious from the
+     label alone - dotted underline + help cursor is the only hint needed,
+     consistent with this being a plain static site (no JS, no custom
+     tooltip widget). */
+  .th-help{ cursor: help; border-bottom-style: dotted; text-decoration: underline dotted; text-underline-offset: 3px; }
   .boss-table td{
     padding: 12px 10px;
     border-bottom: 1px dashed var(--line);
     vertical-align: middle;
   }
   .boss-table tr:last-child td{ border-bottom:none; }
-  .boss-table tr.pending-row{ opacity: 0.55; }
   .boss-name{ font-weight: 600; }
   .boss-name a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper); }
   .boss-name a:hover{ color: var(--copper); }
-  .boss-name .v1-link{ font-family:'IBM Plex Mono', monospace; font-size: 10px; font-weight:400; color: rgba(19,42,44,0.45); border-bottom:none; margin-left: 6px; }
   .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
   .pctl-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
   .pctl-pill{
@@ -171,7 +176,7 @@
   .pctl-pill.pending{ color: rgba(19,42,44,0.4); font-style: italic; font-weight:400; }
   .overheal-cell.high{ color: var(--rust); font-weight:600; }
   .link-arrow{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--copper); }
-
+ 
   .footer{
     padding: 24px 48px 32px;
     font-family:'IBM Plex Mono', monospace;
@@ -183,172 +188,231 @@
 </style>
 </head>
 <body>
-
+ 
 <div class="page">
-
-  <!-- ===== HEADER ===== -->
+ 
+  
   <div class="header">
-    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — SSC / TK — July 7, 2026 · v2</p>
+    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — SSC / TK — July 7, 2026</p>
     <h1>Danceswtrees</h1>
-    <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; 10/10 bosses killed</p>
+    <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; 10 bosses killed</p>
   </div>
-
-  <!-- ===== GEAR AUDIT ===== -->
+ 
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">01</span>
       <h2 class="section-title">Gear audit</h2>
     </div>
-    <p class="section-desc">v2 methodology: real <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;">combatantinfo</span> snapshot, not the old healing table's embedded gear field.</p>
-
+    <p class="section-desc">One audit for the whole raid night — gear was checked against every one of the 10 kills below.</p>
+ 
     <div class="consistency-banner">
       <div class="consistency-icon">✓</div>
-      <div class="consistency-text">Built from <strong>10 real combatantinfo snapshots, one per boss kill</strong> — every slot's item, enchant, and gems were diffed kill-by-kill, not assumed from a single pull. Every non-weapon slot is byte-identical across all 10 kills. The only real difference found is a mainhand/offhand swap on The Lurker Below specifically (see below) — this independently confirms and sharpens <a href="../2026-07-07-v1/index.html" style="color:var(--ink);">v1's audit</a>, which reported the same "9 of 10 kills consistent, one Lurker weapon swap" pattern from a different methodology.</div>
+      <div class="consistency-text">Loadout is <strong>consistent, aside from two likely-benign single-kill gear swaps (MainHand, OffHand)</strong> across all 10 boss kills.</div>
+      
     </div>
-
+ 
     <div class="check-list">
+      
+      
       <div class="check-item">
         <div class="check-icon ok">✓</div>
-        <div>17 of 17 real equipment slots filled, on every kill (excluding shirt/tabard)</div>
-        <div class="check-note">avg ilvl 120</div>
+        <div>18 of 19 real equipment slots filled in the baseline loadout (shirt and tabard are typically the two genuinely empty cosmetic slots, no stat impact)</div>
+        <div class="check-note">avg ilvl 114</div>
+        <div class="check-detail"></div>
       </div>
-      <div class="check-item">
-        <div class="check-icon ok">✓</div>
-        <div>Mainhand carries a permanent enchant and an active temporary weapon oil, on 9 of 10 kills</div>
-        <div class="check-note">item 28771 · ench 2343 + 2629</div>
-      </div>
+      
       <div class="check-item">
         <div class="check-icon note">i</div>
-        <div>Mainhand was a Fishing Pole instead of the real weapon, offhand unequipped, on The Lurker Below only</div>
-        <div class="check-note">item 25978</div>
-        <div class="check-detail">Not a gearing issue — some raiders fish during the Lurker Below pull specifically; this is the expected, benign swap for that one kill, confirmed real from the same combatantinfo snapshot used for every other check on this page.</div>
+        <div>8 of 9 enchantable slots carry a permanent enchant</div>
+        <div class="check-note"></div>
+        <div class="check-detail"></div>
       </div>
+      
       <div class="check-item">
-        <div class="check-icon bad">!</div>
-        <div>Back slot carries no permanent enchant, on all 10 kills</div>
+        <div class="check-icon ok">✓</div>
+        <div>10 of 10 kills had a complete consumable setup (Flask, or Battle + Guardian Elixir together)</div>
+        <div class="check-note"></div>
+        <div class="check-detail"></div>
+      </div>
+      
+      <div class="check-item">
+        <div class="check-icon bad">✗</div>
+        <div>Back carries no permanent enchant</div>
         <div class="check-note">item 28765</div>
+        <div class="check-detail"></div>
       </div>
-      <div class="check-item">
-        <div class="check-icon ok">✓</div>
-        <div>The one "empty" slot is the shirt — cosmetic only, no stat impact</div>
-        <div class="check-note">slot index 3</div>
-      </div>
+      
       <div class="check-item">
         <div class="check-icon note">i</div>
-        <div>Trinket 2 is quality 2 (uncommon), on all 10 kills — every other equipped item is quality 3–4</div>
-        <div class="check-note">item 25634</div>
+        <div>MainHand and OffHand vary on a minority of kills</div>
+        <div class="check-note">single-kill variant</div>
+        <div class="check-detail">Both slots differ from the baseline loadout on exactly one kill each, not a lasting swap - consistent with a fight-specific choice rather than a gearing gap.</div>
       </div>
+      
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>Elixir of Healing Power (Battle) and Elixir of Draenic Wisdom (Guardian) both active on all 10 kills, plus Well Fed food buff</div>
+        <div class="check-note">10/10 kills</div>
+        <div class="check-detail">A real, complete consumable setup all raid night - the Battle + Guardian Elixir pairing is a fully valid alternative to a Flask under the real TBC rule.</div>
+      </div>
+      
+      
     </div>
 
-    <div class="coverage-note">Gem count: 13 non-meta gems (all the same red gem, item 24029) plus 1 meta gem in the head slot, confirmed identical on all 10 snapshots — differs slightly from v1's stated "12 non-meta sockets," a real discrepancy between the two write-ups' recounting, not a bug in either. Ring enchants aren't flagged, per this era's self-only Enchanting restriction.</div>
+    <div class="coverage-note">One real gear gap stands out: the Back slot (item 28765) carries no permanent enchant across every kill this raid night - a cheap, static enchant that would apply immediately and doesn't require any fight-specific loadout choice.</div>
   </div>
-
-  <!-- ===== PER-BOSS SUMMARY ===== -->
+ 
+  
   <div class="section">
     <div class="section-head">
       <span class="section-num">02</span>
       <h2 class="section-title">Per-boss summary</h2>
     </div>
-    <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own events-based fight logs. Percentile is pulled from the real WCL ranking for the exact report/fight ID.</p>
+    <p class="section-desc">HPS and overheal are real, computed from Danceswtrees's own fight logs. Percentile is only shown where we've pulled the real WCL ranking for that exact pull — click a boss name for the full audit.</p>
 
-    <div class="consistency-banner">
-      <div class="consistency-icon">✓</div>
-      <div class="consistency-text"><strong>All 10 boss kills have been rebuilt under the v2 (events-based) pipeline.</strong> Each page below is built from Danceswtrees's real events data (healing, casts, consumables, deaths, active time) cross-referenced against a real Top 100 benchmark for that boss. The v1 pages remain available via each row's small "(v1)" link for reference.</div>
+    
+    
+    <p class="section-desc">iLvl Healing Rank: across the 10 kill(s) with another tracked-spec healer present, Danceswtrees ranked #1 (by WCL's own HPS Performance Comparison by Item Level) on 2 of them, averaging the 49th percentile by item level across those kills.</p>
+    
+    
+    <p class="section-desc">Raw Healing Rank: across the 10 kill(s) with another tracked-spec healer present, Danceswtrees ranked #1 by real raw total healing done on 3 of them.</p>
+    
+
+    
+    <div class="consistency-banner" style="background: rgba(181,80,58,0.10); border-color: rgba(181,80,58,0.35);">
+      <div class="consistency-icon" style="background: var(--rust);">!</div>
+      <div class="consistency-text"><strong>Overheal exceeded the Top 100 sample's single worst parse on 8 of 10 kills this raid night.</strong> This is the single most consistent pattern across the whole raid - see each boss's own page for the real numbers, and consider whether a rotation or target-priority adjustment could recover some of this as effective throughput.</div>
     </div>
-
+    
+ 
     <table class="boss-table">
       <thead>
         <tr>
           <th>Boss</th>
           <th style="text-align:right;">HPS</th>
           <th style="text-align:right;">Overheal</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">iLvl Healing Rank</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">Raw Healing Rank</th>
           <th style="text-align:right;">WCL Percentile</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
+        
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_hydross.html">Hydross the Unstable</a></td>
           <td class="num-cell">563</td>
           <td class="num-cell overheal-cell high">67.9%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">2nd/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">34th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_lurker.html">The Lurker Below</a></td>
           <td class="num-cell">646</td>
           <td class="num-cell overheal-cell high">53.8%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">30th</span></td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">4th/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">29th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
           <td class="num-cell">699</td>
           <td class="num-cell overheal-cell high">66.7%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">46th</span></td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">2nd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">45th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_karathress.html">Fathom-Lord Karathress</a></td>
           <td class="num-cell">1144</td>
           <td class="num-cell">35.3%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">70th</span></td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">69th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_morogrim.html">Morogrim Tidewalker</a></td>
           <td class="num-cell">891</td>
           <td class="num-cell overheal-cell high">57.4%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">64th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_vashj.html">Lady Vashj</a></td>
           <td class="num-cell">665</td>
           <td class="num-cell overheal-cell high">63.2%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">54th</span></td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">53th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_alar.html">Al'ar</a></td>
           <td class="num-cell">569</td>
           <td class="num-cell overheal-cell high">69.2%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/4</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/4</td>
           <td class="pctl-cell"><span class="pctl-pill has-data">50th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_voidreaver.html">Void Reaver</a></td>
           <td class="num-cell">1241</td>
           <td class="num-cell overheal-cell high">38.7%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">39th</span></td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/4</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/4</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">38th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_solarian.html">High Astromancer Solarian</a></td>
           <td class="num-cell">644</td>
           <td class="num-cell">52%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">84th</span></td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/4</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">2nd/4</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">83th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
         <tr>
           <td class="boss-name"><a href="healer_audit_kaelthas.html">Kael'thas Sunstrider</a></td>
           <td class="num-cell">477</td>
           <td class="num-cell overheal-cell high">72.2%</td>
-          <td class="pctl-cell"><span class="pctl-pill has-data">23rd</span></td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/4</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/4</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">22th</span></td>
           <td class="link-arrow">→</td>
         </tr>
+        
     </tbody>
     </table>
 
-    <div class="coverage-note">Across all 10 real kills, three patterns hold up consistently enough to call raid-night-level findings rather than one-off noise. <strong>Overheal exceeds the Top 100 sample's single worst sampled parse on 8 of 10 kills</strong> (all but Karathress and Solarian) — a real, recurring gap, not fight-specific bad luck. <strong>Lifebloom is overweighted against Regrowth on 8 of 10 kills</strong>, with Al'ar (+17.2) and Karathress (+23.6) the largest gaps — the two exceptions are genuinely boss-driven: Void Reaver's own Top 100 average is itself Regrowth-dominant (74.8%), and Solarian saw an all-in Regrowth approach (90.1%) that crowded out Lifebloom entirely. <strong>HPM sits below the Top 100 average on 9 of 10 kills</strong>, Karathress the sole exception (8.55 vs. avg 8.07) — a consistent mana-efficiency gap that tracks the overheal pattern (mana spent on healing that doesn't count as effective). Two real anomalies worth flagging on their own: Karathress's active time (80.6%, far below the 99.2% average) is directly explained by Danceswtrees's own death mid-fight, visible in that kill's death list — not idle time in a live window. Tree of Life uptime read 0% on two kills (Morogrim, Solarian) with no death to explain either — a real, unresolved gap worth a closer look. Percentile ranged from 23rd (Kael'thas, the weakest kill by nearly every metric) to 84th (Solarian, the strongest) — a wide spread across one raid night, underscoring that per-boss variance is real and each page's findings shouldn't be assumed to generalize to the others.</div>
+    <div class="coverage-note">Kael'thas Sunstrider (22nd percentile), The Lurker Below (29th), and Hydross the Unstable (34th) are this raid night's lowest-percentile kills and the clearest priorities for a full breakdown. Leotheras the Blind (8 real deaths, the most of the raid, including two players who died twice) and Void Reaver (6 deaths) point to survivability issues beyond a single rotation gap. Morogrim Tidewalker also had a real wipe before the successful kill shown here. Every percentile shown here is matched to this exact report and fight ID, not a duplicate-upload fallback.</div>
   </div>
-
+ 
   <div class="footer">
-    <span>All data real: Danceswtrees's fight logs (report XJp8vAxzM4KtHYyb) + WCL rankings where pulled — v2 events-based pipeline, 10/10 bosses migrated</span>
-    <span>tbc-audit style reference · healer variant · raid overview</span>
+    <span>All data real: Danceswtrees's fight logs (report XJp8vAxzM4KtHYyb) + WCL rankings where pulled</span>
   </div>
-
+ 
 </div>
-
+ 
 </body>
 </html>
+ 

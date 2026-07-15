@@ -54,7 +54,8 @@ param(
     [switch]$IsNewHealer,
     [switch]$ResortOnly,
     [string]$DocsRoot = "docs",
-    [string]$TemplatesRoot = "templates"
+    [string]$TemplatesRoot = "templates",
+    [string]$CharactersRoot = "data\Characters"
 )
 
 $ErrorActionPreference = "Stop"
@@ -69,6 +70,34 @@ if (-not $ResortOnly) {
     if ($missing.Count -gt 0) {
         Write-Host "ERROR: missing required parameter(s): $($missing -join ', ') (all required unless -ResortOnly is passed)."
         exit 1
+    }
+
+    # Prefer the real, already-computed BossesKilled/BossesAttempted from this
+    # report's own report_data.json over whatever was passed on the command
+    # line - added after a real bug: -BossesAttempted was hand-computed wrong
+    # (counted Morogrim's wipe-then-kill as 2 distinct bosses attempted
+    # instead of 1) and passed straight through to this hub row with no
+    # cross-check, rendering a wrong "10/11 bosses" for a raid that only ever
+    # had 10 real distinct bosses. report_data.json's own BossesAttempted
+    # (build_boss_report_data.ps1, itself already fixed for this bug) and
+    # Bosses.Count are the authoritative source whenever the file exists -
+    # the passed parameters are now only a fallback for a report_data.json
+    # that genuinely doesn't exist yet, and any real mismatch against what
+    # was passed gets a visible warning instead of silently trusting the
+    # stale/wrong value.
+    $reportDataPath = Join-Path (Join-Path $CharactersRoot $CharacterName) (Join-Path $ReportCode "$($ReportCode)_report_data.json")
+    if (Test-Path $reportDataPath) {
+        $realReportData = Get-Content $reportDataPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $realBossesKilled = @($realReportData.Bosses.PSObject.Properties.Name).Count
+        $realBossesAttempted = if ($realReportData.PSObject.Properties.Name -contains "BossesAttempted" -and $realReportData.BossesAttempted) { $realReportData.BossesAttempted } else { $realBossesKilled }
+        if ($realBossesKilled -ne $BossesKilled) {
+            Write-Host "  NOTE: -BossesKilled $BossesKilled passed, but $reportDataPath shows $realBossesKilled real boss kill(s) - using the real value."
+        }
+        if ($realBossesAttempted -ne $BossesAttempted) {
+            Write-Host "  NOTE: -BossesAttempted $BossesAttempted passed, but $reportDataPath shows $realBossesAttempted real distinct boss(es) attempted - using the real value."
+        }
+        $BossesKilled = $realBossesKilled
+        $BossesAttempted = $realBossesAttempted
     }
 }
 
