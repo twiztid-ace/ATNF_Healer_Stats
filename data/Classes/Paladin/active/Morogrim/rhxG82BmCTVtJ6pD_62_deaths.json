@@ -1,0 +1,159 @@
+{
+    "entries":  [
+                    {
+                        "name":  "아트라스피러",
+                        "id":  1,
+                        "guid":  16687483,
+                        "type":  "Shaman",
+                        "icon":  "Shaman-Restoration",
+                        "timestamp":  35850647,
+                        "fight":  62,
+                        "damage":  {
+                                       "total":  12208,
+                                       "activeTime":  0,
+                                       "activeTimeReduced":  0,
+                                       "overheal":  2790,
+                                       "abilities":  [
+                                                         {
+                                                             "guid":  37852,
+                                                             "name":  "Watery Grave Explosion",
+                                                             "total":  5287,
+                                                             "type":  16,
+                                                             "icon":  "spell_frost_arcticwinds.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  37764,
+                                                             "name":  "Earthquake",
+                                                             "total":  3966,
+                                                             "type":  1,
+                                                             "icon":  "spell_nature_earthquake.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  1,
+                                                             "name":  "Melee",
+                                                             "total":  2748,
+                                                             "type":  1,
+                                                             "icon":  "inv_axe_02.jpg"
+                                                         },
+                                                         {
+                                                             "guid":  41932,
+                                                             "name":  "Carnivorous Bite",
+                                                             "total":  207,
+                                                             "type":  1,
+                                                             "icon":  "ability_druid_rake.jpg"
+                                                         }
+                                                     ],
+                                       "damageAbilities":  [
+
+                                                           ],
+                                       "sources":  [
+                                                       {
+                                                           "name":  "아트라스피러",
+                                                           "total":  5287,
+                                                           "type":  "Shaman"
+                                                       },
+                                                       {
+                                                           "name":  "Morogrim Tidewalker",
+                                                           "total":  3966,
+                                                           "type":  "Boss"
+                                                       },
+                                                       {
+                                                           "name":  "Tidewalker Lurker",
+                                                           "total":  2955,
+                                                           "type":  "NPC"
+                                                       }
+                                                   ]
+                                   },
+                        "healing":  {
+                                        "total":  0,
+                                        "activeTime":  0,
+                                        "activeTimeReduced":  0,
+                                        "abilities":  [
+
+                                                      ],
+                                        "damageAbilities":  [
+
+                                                            ],
+                                        "sources":  [
+
+                                                    ]
+                                    },
+                        "deathWindow":  15704,
+                        "overkill":  2192,
+                        "events":  [
+                                       {
+                                           "timestamp":  35850633,
+                                           "type":  "damage",
+                                           "sourceID":  1,
+                                           "sourceIsFriendly":  true,
+                                           "targetID":  1,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Watery Grave Explosion",
+                                                           "guid":  37852,
+                                                           "type":  16,
+                                                           "abilityIcon":  "spell_frost_arcticwinds.jpg"
+                                                       },
+                                           "fight":  62,
+                                           "hitType":  1,
+                                           "amount":  3095,
+                                           "unmitigatedAmount":  5287,
+                                           "overkill":  2192,
+                                           "isAoE":  true,
+                                           "sourceMarker":  4,
+                                           "targetMarker":  4
+                                       },
+                                       {
+                                           "timestamp":  35848642,
+                                           "type":  "damage",
+                                           "sourceID":  288,
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  1,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Melee",
+                                                           "guid":  1,
+                                                           "type":  1,
+                                                           "abilityIcon":  "inv_axe_02.jpg"
+                                                       },
+                                           "fight":  62,
+                                           "hitType":  1,
+                                           "amount":  1060,
+                                           "mitigated":  1025,
+                                           "unmitigatedAmount":  2085,
+                                           "isAoE":  false,
+                                           "targetMarker":  4
+                                       },
+                                       {
+                                           "timestamp":  35847663,
+                                           "type":  "damage",
+                                           "sourceID":  288,
+                                           "sourceInstance":  1,
+                                           "sourceIsFriendly":  false,
+                                           "targetID":  1,
+                                           "targetIsFriendly":  true,
+                                           "ability":  {
+                                                           "name":  "Carnivorous Bite",
+                                                           "guid":  41932,
+                                                           "type":  1,
+                                                           "abilityIcon":  "ability_druid_rake.jpg"
+                                                       },
+                                           "fight":  62,
+                                           "hitType":  1,
+                                           "amount":  207,
+                                           "unmitigatedAmount":  207,
+                                           "isAoE":  false,
+                                           "tick":  true,
+                                           "targetMarker":  4
+                                       }
+                                   ],
+                        "killingBlow":  {
+                                            "name":  "Watery Grave Explosion",
+                                            "guid":  37852,
+                                            "type":  16,
+                                            "abilityIcon":  "spell_frost_arcticwinds.jpg"
+                                        }
+                    }
+                ]
+}
