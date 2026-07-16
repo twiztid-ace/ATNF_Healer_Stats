@@ -75,6 +75,10 @@ its raid folder has a `{code}_findings.json`/`{code}_analysis.json` next to its
   the 4 healers also has a real v2 site for at least one raid night (see "Current
   state") — the v1 pages remain only as historical reference, moved aside to
   `-v1`/`_v1`-suffixed sibling folders rather than deleted where superseded.
+  **Exception, 2026-07-16: Crowns's and Lippies's `-v1` folders were deleted**
+  at explicit user instruction as part of a full from-scratch site rebuild —
+  see "Current state" for the full story. This is a one-time deviation for
+  those two healers specifically, not a change to the general rule above.
 - **v2 (enhanced)**: events-based healing/casts (no truncation), cooldown/utility
   tracking with self-vs-other targets (Druid: Innervate/Nature's Swiftness/
   Swiftmend/Rebirth/Dark Rune, real buff uptime via Tree of Life interval
@@ -170,9 +174,14 @@ a lot of tokens for output that's almost entirely mechanical. Built to fix that:
 a 3-stage pipeline where a script computes every real number and pre-flags
 every script-safe judgment call, Claude authors only the handful of genuinely
 interpretive sentences, and a second script deterministically renders the final
-HTML. **No existing site was regenerated through this new pipeline** — the
-decision when this was built was to leave the 4 existing hand-written sites
-untouched and apply the new pipeline to future report generations only.
+HTML. **No existing site was regenerated through this new pipeline at first**
+— the original decision when this was built (2026-07-14) was to leave the 4
+existing hand-written sites untouched and apply the new pipeline to future
+report generations only. That held until 2026-07-16, when Crowns's and
+Lippies's sites were deliberately deleted and rebuilt from scratch through
+this pipeline for the same report code they already had — see "Recently
+closed" below. Danceswtrees's and Vajomee's original hand-written pages
+(`Fm9XdWYtz8VCLnwg`, `Z4zNt28raQ6GLbkC`) are still untouched by the pipeline.
 
 - `scripts\build_boss_analysis.ps1` — reads `{code}_report_data.json`, writes
   `{code}_analysis.json` next to it: per-boss deviation flags vs. the Top 100
@@ -485,17 +494,30 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
 ## Current state — what's solid vs. what's open
 
 **v1 (simple) — shipped, and superseded per class as v2 lands:**
-- 4 healer sites' worth of v1 pages still exist (`crowns/`, `danceswtrees/`,
-  `lippies/`, `vajomee/` under `docs/`), each with all 10 SSC/TK boss kills for
-  one raid night. This is the old gear-check + basic-spell-composition
+- v1-methodology pages still exist for Danceswtrees and Vajomee under `docs/`
+  (each with all 10 SSC/TK boss kills for one raid night). **Crowns and
+  Lippies no longer have any v1 page on disk as of 2026-07-16** — their `-v1`
+  folders were deleted along with everything else for those two healers (see
+  the correction below and "Recently closed" further down) — don't assume all
+  4 healers still have one just because this was true before that date. This
+  was the old gear-check + basic-spell-composition
   methodology — not being extended further, kept only as historical reference
   now that all four classes have a v2 pipeline. Danceswtrees's, Lippies's, and
-  Crowns's own v1 pages have already been superseded by real v2 pages for the
-  same raid night (moved aside to a `-v1`-suffixed sibling folder, not
-  deleted — Crowns's move happened 2026-07-13; folders were still date-named at
-  that point, renamed to report-code-named on 2026-07-14, see above — a stray
-  `_v1` (underscore) reference in one old cross-link was a genuine pre-existing
-  typo, not a second real naming convention, fixed during that rename). Vajomee's
+  Crowns's own v1 pages had been superseded by real v2 pages for the same raid
+  night (moved aside to a `-v1`-suffixed sibling folder, not deleted —
+  Crowns's move happened 2026-07-13; folders were still date-named at that
+  point, renamed to report-code-named on 2026-07-14, see above — a stray `_v1`
+  (underscore) reference in one old cross-link was a genuine pre-existing
+  typo, not a second real naming convention, fixed during that rename).
+  **Correction, 2026-07-16: Crowns's and Lippies's `-v1` folders no longer
+  exist** — both healers' entire `data\Characters\` and `docs\` trees for
+  report `XJp8vAxzM4KtHYyb` (v1, v2-hand-written, and the `-v1` sibling alike)
+  were deleted at explicit user instruction and rebuilt from scratch through
+  the local-scripting pipeline (see "Local-scripting pipeline" below) — a
+  deliberate, one-time deviation from the "kept forever, never deleted"
+  convention this file otherwise documents for `-v1` folders, not a
+  convention change. Danceswtrees's own `-v1` folder is untouched and still
+  follows the original convention. Vajomee's
   earliest raid night (2026-07-03, report `Mfz4kW6JpjFPArat`) still has only a
   v1 page, but that's a genuinely separate raid night from her v2 raid nights
   (2026-07-10/`Z4zNt28raQ6GLbkC`, 2026-07-12/`QTaWq74txvPF82AR`), not the same
@@ -579,18 +601,21 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   character's report needs checking against the full Top 100 sample before a
   "never does X" claim goes into permanent documentation).
 - **All four full v2 healer sites have been generated end-to-end**: Danceswtrees/
-  Druid (`docs\danceswtrees\Fm9XdWYtz8VCLnwg\`), Vajomee/Shaman
-  (`docs\vajomee\Z4zNt28raQ6GLbkC\`), Lippies/Priest (`docs\lippies\XJp8vAxzM4KtHYyb\`),
-  and Crowns/Paladin (`docs\crowns\XJp8vAxzM4KtHYyb\`, generated 2026-07-13) —
-  each a real raid overview + one page per boss kill, hand-written by Claude
-  from real `build_boss_report_data.ps1` output (not templated filler, and not
-  produced by the newer `render_healer_report.ps1` pipeline — see "Local-scripting
-  pipeline" above). Crowns's v1 pages for the same raid night were moved aside
-  to `docs\crowns\XJp8vAxzM4KtHYyb-v1\` (not deleted) once the v2 pages were
-  confirmed. **All folder names above reflect the 2026-07-14 report-code rename
-  — these were `docs\{healer}\{date}\` right up until that migration** (see
-  "data\Characters\ and docs\ folders" above). There is no more open per-healer
-  v2 site regen work on the original four-healer scope.
+  Druid (`docs\danceswtrees\Fm9XdWYtz8VCLnwg\`) and Vajomee/Shaman
+  (`docs\vajomee\Z4zNt28raQ6GLbkC\`) remain hand-written by Claude from real
+  `build_boss_report_data.ps1` output, generated 2026-07-13, untouched since.
+  **Lippies/Priest and Crowns/Paladin are different now** — both
+  (`docs\lippies\XJp8vAxzM4KtHYyb\`, `docs\crowns\XJp8vAxzM4KtHYyb\`) were
+  deleted and rebuilt from scratch on 2026-07-16 through the
+  `render_healer_report.ps1` pipeline (fresh WCL API pull, not reused data —
+  see "Recently closed" below), so these two are script-rendered, not
+  hand-written, and no longer have a `-v1` sibling folder (deleted along with
+  everything else for those two healers, at explicit user instruction — see
+  "Two generations" above for why this is a one-time deviation, not a
+  convention change). **All folder names above reflect the 2026-07-14
+  report-code rename — these were `docs\{healer}\{date}\` right up until that
+  migration** (see "data\Characters\ and docs\ folders" above). There is no
+  more open per-healer v2 site regen work on the original four-healer scope.
 
 **Recently closed:**
 - Crowns's v2 site regen (2026-07-13) — done. Has a full raid overview + all 10
@@ -665,12 +690,43 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
     off-hand weapon or shield can carry a permanent enchant in this era — a
     caster off-hand item never can, full stop, regardless of what's actually
     equipped there. Removed from the allowlist entirely, same treatment as
-    the existing ring exclusion (gotcha #6). **Not yet checked whether this
-    false-positive already appears in any of the 4 hand-written real v2
-    sites** (Danceswtrees/Vajomee/Lippies/Crowns's original pages predate the
-    render pipeline and were never regenerated through it — see "Local-
-    scripting pipeline" above) — worth a spot-check if a gear-audit accuracy
-    pass is ever done on those.
+    the existing ring exclusion (gotcha #6). **Checked for Lippies and Crowns
+    on 2026-07-16** (moot for them now — their pages are script-rendered with
+    the fix already applied, see "Recently closed" below) — **still not
+    checked for Danceswtrees's or Vajomee's original hand-written pages**
+    (`Fm9XdWYtz8VCLnwg`, `Z4zNt28raQ6GLbkC` — these predate the render
+    pipeline and have never been regenerated through it) — worth a spot-check
+    if a gear-audit accuracy pass is ever done on those two specifically.
+
+- **Crowns's and Lippies's sites were deleted and rebuilt from scratch through
+  the local-scripting pipeline (2026-07-16)**, at explicit user request after
+  a prior patch-in-place pass (refreshing benchmarks and correcting drifted
+  numbers in the existing hand-written `findings.json`, see below) was judged
+  insufficient — the user wanted a genuine from-scratch regeneration, not
+  edited old content. Everything for both healers (`data\Characters\`, `docs\`,
+  including the `-v1` siblings) was deleted and rebuilt via a fresh WCL API
+  pull for the same report code (`XJp8vAxzM4KtHYyb`) they already had — no new
+  raid night, just a new authoring method for an existing one. Two real,
+  previously-undiscovered errors in the OLD hand-written `findings.json` were
+  caught in the process, both from claims that didn't hold up against a
+  ground-up rebuild of the aggregate numbers they summarized (versus a
+  narrower drifted-number patch pass, which only checks individual cited
+  figures against fresh data, not whether the aggregate claim built from them
+  was ever correct): Lippies's raid-overview banner said overheal exceeded the
+  Top 100 sample's worst parse on "7 of 10" kills but omitted Lurker from the
+  list, despite Lurker's own boss page confirming the same fact — the real
+  count is 8 of 10; and a separate summary line said "6 of 10" kills landed
+  under the 20th percentile while naming 7 bosses in the same sentence — the
+  real count is 7 of 10. Also confirmed live: **the same WCL report+fight's
+  own percentile can drift slightly between two separate pulls of the same
+  report** (e.g. Crowns's Lady Vashj kill: 86th on 2026-07-13's pull, 85th on
+  2026-07-16's re-pull of the identical fight) — not previously documented,
+  worth remembering before treating a pulled percentile as a fixed, permanent
+  number. A same-day patch-in-place pass (before the full rebuild) also caught
+  and fixed the OffHand allowlist bug's real effect on Lippies specifically:
+  her original hand-written page never flagged two genuine missing-enchant
+  gaps (Feet, item 30100; Back, item 28765) — same class of miss as the
+  Danceswtrees Feet/OffHand catch noted above.
 
 **Explicitly open, in priority-ish order:**
 1. Tranquility's guid is unknown/unobserved (Druid-only concept) —
