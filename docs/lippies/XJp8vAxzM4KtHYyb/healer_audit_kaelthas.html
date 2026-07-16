@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Lippies — Kael'thas Sunstrider</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  /* ===== Header ===== */
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ===== Seal ===== */
+  /* Fixed width (matching .seal's own 108px) so a longer caption - the
+     iLvl/Raw Healing Rank seals need more words than the original "WCL rank,
+     all parses" - wraps neatly within the same column instead of expanding
+     the box past the circle above it, which is what was throwing off the
+     spacing between badges when more than one seal-wrap sits in a row. */
+  .seal-wrap{ flex-shrink:0; width: 108px; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  /* ===== Section shell ===== */
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--copper);
+  }
+  .section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+  .section-desc{
+    font-size: 13px;
+    color: rgba(19,42,44,0.6);
+    margin: -12px 0 20px;
+  }
+
+  /* ===== Stat row ===== */
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .stat{
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(19,42,44,0.55);
+    margin-bottom: 6px;
+  }
+  .stat-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  /* ===== Percentile bar ===== */
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{
+    position: absolute;
+    top: -8px;
+    width: 3px;
+    height: 26px;
+    background: var(--ink);
+  }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .pctl-scale{
+    display:flex; justify-content: space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(19,42,44,0.45);
+  }
+
+  /* ===== Spell composition bars ===== */
+  .spell-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items:center;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 13px;
+  }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{
+    height: 8px;
+    background: var(--parchment-dim);
+    border-radius: 4px;
+    overflow:hidden;
+  }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{
+    display:flex; gap: 18px; margin-bottom: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+
+  /* ===== Checklist ===== */
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.55);
+    text-align:right;
+  }
+
+  /* ===== Cooldown / consumable table (Priest-specific) =====
+       Deliberately NOT the ok/bad check-list pattern - cooldown counts and consumable
+       uptime are informational stats, not pass/fail checks, and design_tokens.md is
+       explicit that the numbers should carry the finding rather than the container
+       editorializing with color. Plain table + a coverage-note for the actual read. */
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cd-table td{
+    padding: 10px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
+
+  /* ===== Target distribution ===== */
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{
+    display:grid;
+    grid-template-columns: 120px 1fr 70px;
+    align-items:center;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+
+  /* ===== Healer ranking ===== */
+  .healer-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; min-width:80px; }
+  .healer-bar-fill{ height:100%; background: var(--ink-2); }
+  .healer-bar-fill.is-character{ background: var(--copper); }
+  tr.is-character td{ font-weight:700; }
+
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  /* ===== Footer ===== */
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .placeholder-tag{
+    display:inline-block;
+    margin-left: 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--copper);
+    border: 1px solid var(--copper);
+    border-radius: 20px;
+    padding: 2px 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — July 7, 2026 · Kael'thas Sunstrider</p>
+      <h1>Lippies</h1>
+      <p class="subline">Holy Priest &nbsp;·&nbsp; ilvl 111 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; fight <span>81</span> &nbsp;·&nbsp; kill, 476s</p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-start; gap:12px 16px; align-items:flex-start;">
+      
+      <div class="seal-wrap">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#B95B3E" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#B95B3E" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#B95B3E">7</text>
+          <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+        </svg>
+        <div class="seal-label">WCL rank, all parses</div>
+      </div>
+      
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#B5503A" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#B5503A" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#B5503A">5th of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">ILVL HEALING RANK</text>
+        </svg>
+        <div class="seal-label">7% by ilvl 129</div>
+      </div>
+      
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#C47948" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#C47948" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#C47948">4th of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">RAW HEALING RANK</text>
+        </svg>
+        <div class="seal-label">214,330 healing</div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid stat-grid-5">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value">450</div>
+        <div class="stat-sub">Top 100: #1 1362 &nbsp;·&nbsp; avg 1196 &nbsp;·&nbsp; median 1178</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value">66.6%</div>
+        <div class="stat-sub">Top 100: best 23.2% &nbsp;·&nbsp; median 35.4% &nbsp;·&nbsp; worst 52.3%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">214,330</div>
+        <div class="stat-sub">over 476s kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value">88.5%</div>
+        <div class="stat-sub">Top 100: #1 99.6% &nbsp;·&nbsp; avg 91.3% &nbsp;·&nbsp; median 91.2%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value">4</div>
+        <div class="stat-sub">this kill, all classes</div>
+      </div>
+    </div>
+
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:7%;" data-label="Lippies · 7th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank ~22878 of 24601 Holy Priest parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
+
+    <div class="coverage-note">Her lowest percentile of the entire raid (7th), on the night's second-longest kill (476s). Active time (88.5%) is below even this fight's own lower sample average (91.3%) — Kael'thas's real forced-movement phases pull every parse's active time down some, but hers still trails. Overheal (66.6%) again exceeds the sample's worst (52.3%).</div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">Lippies's real cast mix on this kill, vs. real Top 100 average on Kael'thas Sunstrider.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>Lippies</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
+    </div>
+
+    
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Flash Heal (guid 25233)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:48.5%"></div></div>
+      <div class="spell-pct">48.5%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Circle of Healing</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:17%"></div></div>
+      <div class="spell-pct">17%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:44.4%"></div></div>
+      <div class="spell-pct">44.4%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Renew</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:14.9%"></div></div>
+      <div class="spell-pct">14.9%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:12.5%"></div></div>
+      <div class="spell-pct">12.5%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Prayer of Mending</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:12.3%"></div></div>
+      <div class="spell-pct">12.3%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:9.8%"></div></div>
+      <div class="spell-pct">9.8%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Prayer of Healing</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:5.3%"></div></div>
+      <div class="spell-pct">5.3%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Greater Heal (guid 25210)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.5%"></div></div>
+      <div class="spell-pct">0.5%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Renewal</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.1%"></div></div>
+      <div class="spell-pct">0.1%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Flash Heal (guid 25235)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:22.3%"></div></div>
+      <div class="spell-pct">22.3%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Power Word: Shield</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.3%"></div></div>
+      <div class="spell-pct">4.3%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Greater Heal (guid 25213)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.8%"></div></div>
+      <div class="spell-pct">1.8%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Binding Heal</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.5%"></div></div>
+      <div class="spell-pct">1.5%</div>
+    </div>
+    
+    <div class="spell-row compare-row">
+      <div class="spell-name">Holy Word: Sanctify</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
+      <div class="spell-pct">0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.5%"></div></div>
+      <div class="spell-pct">0.5%</div>
+    </div>
+    
+
+    <div class="coverage-note">Circle of Healing again below norm (17% vs. 44.4%) — the seventh kill this raid with this pattern. Otherwise her mix (Renew, Prayer of Mending, Prayer of Healing all close to their own averages) tracks the benchmark reasonably well outside of the Flash Heal/Circle of Healing split already seen throughout the night.</div>
+
+    
+    
+    <div style="margin-top:20px;">
+      <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data where available; <span style="font-family:'IBM Plex Mono', monospace;">&#8224;</span> marks a rank the character didn't cast this kill, backfilled with a real cost observed elsewhere in the Top 100 sample; "?" only when neither source has it.</p>
+      <table class="cd-table">
+        <thead>
+          <tr>
+            <th>Spell</th>
+            <th style="text-align:right;">Mana cost</th>
+            <th style="text-align:right;">Lippies</th>
+            <th style="text-align:right;">Top 100 avg</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td class="ability-name">Flash Heal</td>
+            <td class="num-cell">400 mana</td>
+            <td class="num-cell">48.5%</td>
+            <td class="num-cell">0%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name"></td>
+            <td class="num-cell">470 mana †</td>
+            <td class="num-cell">0%</td>
+            <td class="num-cell">22.3%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name">Greater Heal</td>
+            <td class="num-cell">750 mana</td>
+            <td class="num-cell">0.5%</td>
+            <td class="num-cell">0%</td>
+          </tr>
+          
+          <tr>
+            <td class="ability-name"></td>
+            <td class="num-cell">825 mana †</td>
+            <td class="num-cell">0%</td>
+            <td class="num-cell">1.8%</td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+
+  
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Kael'thas Sunstrider. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> (see WORKFLOW.md) - match abilities by guid, not localized name (gotcha #2).</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">Lippies</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 100 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        
+        <tr>
+          <td class="ability-name">Shadowfiend</td>
+          <td class="num-cell">1</td>
+          <td>—</td>
+          <td class="num-cell">1 avg</td>
+        </tr>
+        
+        <tr>
+          <td class="ability-name">Power Word: Shield</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0 avg (0% self)</td>
+        </tr>
+        
+        <tr>
+          <td class="ability-name">Chakra</td>
+          <td class="num-cell">1</td>
+          <td>—</td>
+          <td class="num-cell">1.3 avg</td>
+        </tr>
+        
+        <tr>
+          <td class="ability-name">Blessing of Life</td>
+          <td class="num-cell">2</td>
+          <td>—</td>
+          <td class="num-cell">0.2 avg</td>
+        </tr>
+        
+        <tr>
+          <td class="ability-name">Fear Ward</td>
+          <td class="num-cell">1</td>
+          <td>→ Paladanwood</td>
+          <td class="num-cell">1 avg (4% self)</td>
+        </tr>
+        
+        <tr>
+          <td class="ability-name">Dark Rune</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0.9 avg</td>
+        </tr>
+        
+        <tr>
+          <td class="ability-name">Mana Potion</td>
+          <td class="num-cell">3</td>
+          <td>—</td>
+          <td class="num-cell">2.5 avg</td>
+        </tr>
+        
+      </tbody>
+    </table>
+
+    <div class="stat-grid stat-grid-5" style="margin-top:22px;">
+      <div class="stat">
+        
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value">Elixirs</div>
+        <div class="stat-sub">Healing Power (Battle) + Elixir of Draenic Wisdom (Guardian) — Top 100 active at pull start: 95% flask, 67% Battle Elixir, 100% Guardian Elixir</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 93% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value">3</div>
+        <div class="stat-sub">3x Mana Potion</div>
+      </div>
+      <div class="stat">
+        
+        <div class="stat-label">HPM</div>
+        <div class="stat-value">2.78</div>
+        <div class="stat-sub">Top 100: top1 7.57 &nbsp;·&nbsp; avg 5.85 &nbsp;·&nbsp; median 5.77</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Kael'thas is the one fight all raid where Fear Ward is genuinely expected — 87% of the Top 100 sample casts it here, a huge jump from every other boss (0-31% elsewhere), and Lippies matched that real norm with her own cast on Paladanwood. Four real deaths this kill: Banepain's and Sackajaweeba's land 43 seconds either side of her Mana Potion casts, and the simultaneous Deepbowlz/Vinnyvoss death sits 63 seconds from the nearest one — none close enough to read as correlated, and Mana Potion isn't a heal regardless. Power Word: Shield went uncast again across this 476-second fight.</div>
+  </div>
+
+  
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of Lippies's healing on this kill (43% coverage) vs. Top 100 average on Kael'thas Sunstrider (42.5% coverage, 13.3% to top target).</p>
+
+    <div class="target-list">
+      
+      
+      <div class="target-row">
+        <div>Turbarct</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
+        <div class="target-pct">14.2%</div>
+      </div>
+      
+      <div class="target-row">
+        <div>Paladanwood</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:55.7%"></div></div>
+        <div class="target-pct">7.9%</div>
+      </div>
+      
+      <div class="target-row">
+        <div>Jotes</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:52.6%"></div></div>
+        <div class="target-pct">7.5%</div>
+      </div>
+      
+      <div class="target-row">
+        <div>Vajony</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:49.8%"></div></div>
+        <div class="target-pct">7.1%</div>
+      </div>
+      
+      <div class="target-row">
+        <div>Pepsiweaving</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:44.6%"></div></div>
+        <div class="target-pct">6.3%</div>
+      </div>
+      
+    </div>
+
+    <div class="coverage-note">Coverage (43.0% vs. 42.5%) and top target share (14.2% vs. 13.3%) both essentially match the Top 100 norm — the second kill this raid (with Solarian) where targeting tracks the sample almost exactly.</div>
+  </div>
+
+  
+  
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Healer ranking</h2>
+    </div>
+    <p class="section-desc">Lippies vs. the other healers in this same raid on this same fight.</p>
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Healer</th>
+          <th>Raw healing</th>
+          <th style="text-align:right;">% of total</th>
+          <th style="text-align:right; cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">Item Level %</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr class="">
+          <td class="ability-name">Shlicktree</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="278,938 total healing"><div class="healer-bar-fill " style="width:100%"></div></div></td>
+          <td class="num-cell">23.9%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">50% (ilvl 122)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Crowns</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="249,662 total healing"><div class="healer-bar-fill " style="width:89.5%"></div></div></td>
+          <td class="num-cell">21.4%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">74% (ilvl 131)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Danceswtrees</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="227,198 total healing"><div class="healer-bar-fill " style="width:81.5%"></div></div></td>
+          <td class="num-cell">19.5%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">22% (ilvl 124)</td>
+        </tr>
+        
+        <tr class="is-character">
+          <td class="ability-name">Lippies</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="214,330 total healing"><div class="healer-bar-fill is-character" style="width:76.8%"></div></div></td>
+          <td class="num-cell">18.4%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">7% (ilvl 129)</td>
+        </tr>
+        
+        <tr class="">
+          <td class="ability-name">Turkeykin</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="195,075 total healing"><div class="healer-bar-fill " style="width:69.9%"></div></div></td>
+          <td class="num-cell">16.7%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">34% (ilvl 123)</td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  
+
+  <div class="footer">
+    <span>All data real: Lippies's fight log (XJp8vAxzM4KtHYyb, fight 81) + Top 100 Kael'thas Sunstrider benchmark (n=100)</span>
+  </div>
+
+</div>
+
+</body>
+</html>
