@@ -9,14 +9,51 @@ This file covers day-to-day setup and running the pipeline. For the full design
 (API details, file formats, known gotchas) see `WORKFLOW.md`. For orientation on
 the codebase's history and current state, see `CLAUDE.md`.
 
-Supported classes: **Resto Druid, Resto Shaman, Holy Priest, Holy Paladin.**
+Supported classes/builds: **Resto Druid, Resto Shaman, Holy Priest, Holy
+Paladin, Dreamstate Druid.**
+
+**The pipeline runs on Python now** (migrated from a Windows PowerShell 5.1
+implementation — see `CLAUDE.md` for the migration's own history). The
+original PowerShell scripts (`scripts\*.ps1`, `templates\*.html`) are kept in
+place, untouched, as a preserved reference/rollback copy — they are not the
+live implementation and should not be run going forward.
+
+## Running the pipeline (two ways)
+
+**With Claude-authored findings** (the intended way — produces a real,
+publishable report):
+
+```
+/generate-healer-report <CharacterName> <ReportCode-or-URL>
+```
+
+**Data only, no LLM** (proves the mechanical pipeline works end to end; every
+finding reads as an obvious placeholder — do not publish this output):
+
+```
+python -m pipeline.cli generate --character-name "<CharacterName>" --report-code "<ReportCode>" --placeholder-findings
+```
+
+Both run the exact same underlying steps (pull the character's raid data,
+refresh and re-summarize that class's Top 100 benchmark, compute the report's
+real numbers, render every page, update both hub pages) — the only
+difference is whether `findings.json`'s free-text analysis comes from Claude
+or from an obvious placeholder string. See "Running the pipeline in detail"
+below for the full breakdown, including running individual stages one at a
+time.
 
 ## Requirements
 
-- Windows PowerShell 5.1 (scripts are not verified on PowerShell 7+/pwsh, Linux,
-  or macOS — see `WORKFLOW.md` gotchas #13/#14/#19 for encoding/parsing traps
-  that are specific to Windows PowerShell 5.1's default codepage).
+- Python 3.10+ (developed and tested on 3.12). Install dependencies with
+  `pip install -r requirements.txt` (`requests`, `jinja2` — kept deliberately
+  minimal).
 - A Warcraft Logs v2 GraphQL API client ID/secret (see "Setup" below).
+- Tested on Windows; the pipeline has no Windows-specific code paths left
+  (the PowerShell 5.1 encoding/parsing traps documented in `WORKFLOW.md`
+  gotchas #13/#14/#19 don't apply to the Python implementation), but it
+  hasn't yet been run end-to-end on macOS/Linux — the underlying WCL API
+  calls and file I/O are platform-agnostic, so it's expected to work, just
+  not yet confirmed on a real non-Windows box.
 
 ## Setup
 
@@ -26,21 +63,24 @@ at the repo root (all gitignored — never commit them):
 - `v2_client_id.txt` — your WCL API client ID
 - `v2_client_secret.txt` — your WCL API client secret
 - `v2_access_token.txt` — created/refreshed automatically by
-  `scripts\lib\WclV2Api.psm1` on first run; you don't need to create this one
+  `pipeline\wcl_api.py` on first run; you don't need to create this one
   by hand
 
 Get a client ID/secret from your Warcraft Logs account's API Clients page
-(client type: "Client"). No other setup is required — all scripts assume the
+(client type: "Client"). No other setup is required — all commands assume the
 repo root as the working directory.
 
 ## Repo layout (short version)
 
 ```
-scripts\                     PowerShell pipeline scripts (see below)
-scripts\lib\                 Shared modules (WCL API client, template renderer)
-templates\                   HTML templates (per-class boss pages, raid overview, hub pages)
+pipeline\                    Python pipeline package (see below)
+templates_jinja\              Jinja2 HTML templates (per-class boss pages, raid overview, hub pages)
+scripts\                      Preserved PowerShell implementation (reference/rollback only, not live)
+templates\                    Preserved PowerShell-era HTML templates (reference/rollback only, not live)
 data\Classes\{Class}\        Top 100 benchmark pulls (active/archived + manifest.json)
 data\Characters\{Name}\{ReportCode}\   Per-character pulled data + generated report_data.json/analysis.json/findings.json
+data\Characters\{Name}\index.json      This healer's raid-night list (source of truth for their hub page)
+data\site_index.json          The site-wide healer list (source of truth for the homepage)
 docs\{healer}\{ReportCode}\  The generated static site (served via GitHub Pages from /docs)
 .claude\skills\generate-healer-report\   The Claude Code skill that runs this pipeline end to end
 ```
@@ -57,30 +97,30 @@ either, so nothing needs to be renamed retroactively.
 
 See `CLAUDE.md` for the full annotated tree.
 
-## Running the pipeline normally (with Claude Code)
+## Running the pipeline in detail
 
-The intended way to generate a report is the `generate-healer-report` Claude
-Code skill:
+### With Claude Code (produces a real, publishable report)
 
 ```
 /generate-healer-report <CharacterName> <ReportCode-or-URL>
 ```
 
-e.g. `/generate-healer-report Crowns XJp8vAxzM4KtHYyb`. This runs every step
-below in order, including the one step that genuinely needs an LLM (writing
-`findings.json`'s free-text analysis). See
+e.g. `/generate-healer-report Crowns XJp8vAxzM4KtHYyb`. This runs every stage
+below in order, including the one stage that genuinely needs an LLM (writing
+`findings.json`'s free-text analysis) — Claude shells out to
+`python -m pipeline.cli` for every other stage. See
 `.claude\skills\generate-healer-report\SKILL.md` for the full step-by-step
 runbook.
 
-## Running the pipeline manually, without Claude
+### Without Claude (data only, no LLM)
 
-Every step except one is a deterministic PowerShell script with no LLM
-involvement at all. You can run the whole pipeline by hand from a plain
-PowerShell prompt. **One script only exists to make this possible without
-Claude**: `build_placeholder_findings.ps1` stands in for the "Claude writes
-findings.json" step by filling every required finding with an obvious
-placeholder string, so the renderer has something to consume. Pages built this
-way clearly read as unfinished — every finding says:
+Every stage except one is a deterministic Python function with no LLM
+involvement at all — `pipeline\cli.py generate` chains them all into one
+command. **One stage only exists to make this possible without Claude**:
+`--placeholder-findings` stands in for the "Claude writes findings.json" step
+by filling every required finding with an obvious placeholder string, so the
+renderer has something to consume. Pages built this way clearly read as
+unfinished — every finding says:
 
 > [CLAUDE PLACEHOLDER - no real finding was generated for this page. Run the
 > generate-healer-report skill in Claude Code, or hand-author a real
@@ -93,62 +133,69 @@ real but isn't. Do not push placeholder pages to the live site — they exist
 only to prove the mechanical half of the pipeline works, or as a scaffold you
 fill in by hand afterward.
 
-Full manual sequence, run from the repo root:
+One-line version:
 
-```powershell
+```
+python -m pipeline.cli generate --character-name "<name>" --report-code "<code>" --placeholder-findings
+```
+
+This auto-resolves the character's real class/spec from the report itself (no
+need to know it up front), refreshes and re-summarizes that class's Top 100
+benchmark, computes the report's real numbers, writes the placeholder
+findings, renders every page, and updates both hub pages — printing the
+resolved pipeline class as it goes. If a real `findings.json` already exists
+for this report, it's used as-is and never overwritten by the placeholder,
+even with this flag passed.
+
+### Running individual stages
+
+Each stage `generate` chains is also its own subcommand, useful for
+re-running just one step (e.g. after editing `findings.json` by hand) without
+repeating the whole pipeline:
+
+```
 # 1. Pull the character's raid data for this report
-powershell -ExecutionPolicy Bypass -File scripts\pull_character_TEMPLATE.ps1 `
-    -ReportCode "<code>" -CharacterName "<name>"
-# Note the resolved class and raid date printed in its output - the class is
-# needed for every step below; the raid date is only ever used for display text
-# (output folders are keyed by report code, not date, since two raids can
-# happen on the same calendar day).
+python -m pipeline.cli pull-character --report-code "<code>" --character-name "<name>"
+# Prints the resolved pipeline class at the end - needed for every step below.
+# The raid date is only ever used for display text (output folders are keyed
+# by report code, not date, since two raids can happen on the same calendar day).
 
 # 2. Refresh that class's Top 100 benchmark (diff-based, cheap to re-run)
-powershell -ExecutionPolicy Bypass -File scripts\pull_top100_druid.ps1
-powershell -ExecutionPolicy Bypass -File scripts\pull_top100_shaman.ps1
-powershell -ExecutionPolicy Bypass -File scripts\pull_top100_priest_holy.ps1
-powershell -ExecutionPolicy Bypass -File scripts\pull_top100_paladin.ps1
-# (run only the one matching the resolved class)
+python -m pipeline.cli pull-top100 --class-name "<Class>"
 
 # 3. Re-summarize the benchmark CSVs
-powershell -ExecutionPolicy Bypass -File scripts\summarize_class_benchmarks.ps1 -ClassName "<Class>"
+python -m pipeline.cli summarize-benchmarks --class-name "<Class>"
 
 # 4. Compute the report's real numbers (zero API calls from here on)
-powershell -ExecutionPolicy Bypass -File scripts\build_boss_report_data.ps1 `
-    -CharacterName "<name>" -ReportCode "<code>" -ClassName "<Class>"
+python -m pipeline.cli build-report-data --character-name "<name>" --report-code "<code>" --class-name "<Class>"
 
 # 5. Pre-flag every script-safe judgment call (deviations, cooldown over/undercast, etc.)
-powershell -ExecutionPolicy Bypass -File scripts\build_boss_analysis.ps1 `
-    -CharacterName "<name>" -ReportCode "<code>" -ClassName "<Class>"
+python -m pipeline.cli build-analysis --character-name "<name>" --report-code "<code>" --class-name "<Class>"
 
 # 6. Stand in for Claude's findings.json with placeholder text
-powershell -ExecutionPolicy Bypass -File scripts\build_placeholder_findings.ps1 `
-    -CharacterName "<name>" -ReportCode "<code>"
-# Add -Force if a findings.json already exists and you specifically want to
+python -m pipeline.cli placeholder-findings --character-name "<name>" --report-code "<code>"
+# Add --force if a findings.json already exists and you specifically want to
 # replace it with placeholder text (this will not happen by accident - the
-# script refuses to overwrite an existing file otherwise).
+# command refuses to overwrite an existing file otherwise).
 
 # 7. Render every boss page + the raid overview
-powershell -ExecutionPolicy Bypass -File scripts\render_healer_report.ps1 `
-    -CharacterName "<name>" -ReportCode "<code>" -ClassName "<Class>" -RaidTitle "<title>"
+python -m pipeline.cli render --character-name "<name>" --report-code "<code>" --class-name "<Class>" --raid-title "<title>"
 
 # 8. Insert this raid night into the hub pages
-powershell -ExecutionPolicy Bypass -File scripts\update_hub_pages.ps1 `
-    -CharacterName "<name>" -RaidDate "<yyyy-MM-dd>" -ReportCode "<code>" `
-    -ClassName "<Class>" -BossesKilled <N> -RaidTitle "<title>" [-IsNewHealer]
-# -RaidDate here is display text only - the inserted link always points at
+python -m pipeline.cli update-hub --character-name "<name>" --raid-date "<yyyy-MM-dd>" --report-code "<code>" --class-name "<Class>" --bosses-killed <N> --raid-title "<title>"
+# --raid-date here is display text only - the inserted link always points at
 # <code>/index.html, matching step 7's report-code-named output folder. The
 # healer's raid-list is always re-sorted by real raid date (descending) after
 # the insert, so generating an older report after a newer one (a backfill)
 # still lands the new row in the correct chronological position, not just at
-# the top - see the next section.
+# the top - see the next section. New-healer registration on the site
+# homepage is automatic - no separate flag to remember.
 ```
 
 ### Keeping a healer's raid-list ordered by date
 
-`update_hub_pages.ps1` always re-sorts a healer's entire raid-list by raid date,
-descending, after inserting a new row — never just prepends it. This matters
+`update-hub` always re-sorts a healer's entire raid-list by raid date,
+descending, after inserting a new row — never just appends it. This matters
 because folders are keyed by report code (see above), so the order raids
 happen to get *generated* in no longer has any natural correlation with the
 order they actually happened in — backfilling an older raid after a newer one
@@ -157,39 +204,38 @@ is a real, expected scenario, not just a hypothetical.
 To re-sort an existing healer's raid-list without inserting anything (e.g.
 after a manual edit, or just to double-check ordering), run:
 
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts\update_hub_pages.ps1 -CharacterName "<name>" -ResortOnly
+```
+python -m pipeline.cli update-hub --character-name "<name>" --resort-only
 ```
 
-This only requires `-CharacterName` — every other row is parsed straight out of
-the existing page and re-sorted in place, with a `WARNING` printed (and that row
-sorted last, never dropped) if a row's date text can't be parsed.
+This only requires `--character-name` — it fully re-renders the hub page from
+the healer's existing `data\Characters\<name>\index.json`, sorted, with no
+data mutation.
 
-After step 8, `docs\<name-lowercase>\<code>\` has a full set of boss pages and a
-raid overview — but every coverage-note on every page is the placeholder text
-from step 6, not a real finding. To turn this into a real, publishable report,
+After step 8 (or the one-line data-only `generate` command), `docs\<name-lowercase>\<code>\`
+has a full set of boss pages and a raid overview — but if you used
+placeholder findings, every coverage-note on every page is the placeholder
+text, not a real finding. To turn this into a real, publishable report,
 either:
 - re-run `/generate-healer-report <name> <code>` in Claude Code (it will detect
   the existing `report_data.json`/`analysis.json` and just needs a real
   `findings.json` written and the render/hub steps re-run), or
 - hand-author a real `data\Characters\<name>\<code>\<code>_findings.json`
-  yourself, following the schema documented in `render_healer_report.ps1`'s own
-  header comment and in `SKILL.md`, then re-run steps 7-8 above.
+  yourself, following the schema documented in `pipeline\render_report.py`'s own
+  module docstring and in `SKILL.md`, then re-run steps 7-8 above.
 
 ## Adding a new boss
 
-There is no single source of truth for the boss list — it's duplicated across
-**6 hardcoded tables in 6 files**, plus **2 numeric defaults** that track total
-tier size separately. All of these must be kept consistent by hand. Everything
-else in the pipeline (`render_healer_report.ps1`'s per-boss rendering,
-`build_boss_analysis.ps1`, `build_boss_report_data.ps1`'s downstream logic, and
-every HTML template) iterates dynamically over whatever bosses are present in
-the data — none of it needs to change for a new boss.
+`pipeline\bosses.py` is the single source of truth for the boss list — one
+dict, one entry per boss. Everything else in the pipeline (`render_report.py`'s
+per-boss rendering, `build_analysis.py`, `build_report_data.py`'s downstream
+logic, and every Jinja2 template) iterates dynamically over whatever bosses
+are present in the data — none of it needs to change for a new boss.
 
 ### 1. Find the real encounter ID first
 
 Don't guess — confirm the boss's real WCL encounter ID with one real lookup
-before touching any of the tables below (same "test one real call before
+before adding the entry below (same "test one real call before
 building around an assumption" discipline as everywhere else in this
 pipeline). Two options:
 
@@ -199,86 +245,58 @@ pipeline). Two options:
   is not referenced by any script — treat it as a quick lookup only, and don't
   assume it has a genuinely new content tier just because it exists.
 - If the new zone isn't there yet, run a live GraphQL query through
-  `scripts\lib\WclV2Api.psm1`'s `Invoke-WclGraphQL`:
+  `pipeline\wcl_api.py`'s `invoke_wcl_graphql`:
   `query { worldData { zones { id name encounters { id name } } } }` (or
   `worldData { encounter(id: N) { name } }` if you already suspect an ID).
 
-### 2. Add the boss to all 6 tables
+### 2. Add the boss to `pipeline\bosses.py`
 
-Every table is keyed/cross-referenced by the same real encounter ID from step
-1. Field shapes differ slightly per file — match them exactly:
+One file, one dict entry — this used to be "6 hardcoded tables in 6 files"
+under the PowerShell implementation (see `CLAUDE.md` for that history); the
+Python port consolidated all of them into `pipeline\bosses.py`'s single
+`BOSSES` dict, keyed by the real encounter ID from step 1:
 
-| # | File | Table | Shape |
-|---|------|-------|-------|
-| 1-4 | `scripts\pull_top100_druid.ps1`, `pull_top100_shaman.ps1`, `pull_top100_priest_holy.ps1`, `pull_top100_paladin.ps1` | `$bosses` | `"BossName" = @{ file = "rankings_bossname.json"; encounterID = 100XXX }` |
-| 5 | `scripts\pull_character_TEMPLATE.ps1` | `$bossSlugs` | `100XXX = "bossslug"` |
-| 6 | `scripts\build_boss_report_data.ps1` | `$bossMeta` | `100XXX = @{ Slug = "bossslug"; FolderName = "BossName"; Display = "Boss Full Name" }` |
+```python
+100XXX: BossMeta(100XXX, "bossslug", "BossName", "Boss Full Name", "rankings_bossname.json"),
+```
 
-- `"BossName"`/`FolderName` must be the exact same string across tables 1-4
-  and 6 — it's used as a literal subfolder name under
-  `data\Classes\{Class}\active\`/`archived\`.
-- `bossslug` must match across tables 5 and 6 — it's used both as the
-  per-boss-kill filename slug (`fight14_bossslug_healing_events.json`) and as
-  the `Bosses` object's property name in `report_data.json`/`analysis.json`.
-- `$bossMeta` in `build_boss_report_data.ps1` is deliberately a **plain**
-  hashtable (`@{...}`), not `[ordered]@{...}` — its keys are bare integers,
-  and `[ordered]@{}` (`OrderedDictionary`) silently resolves an integer key
-  through its positional `this[int index]` indexer instead of a real
-  key lookup, so `$orderedDict[100623]` would silently return `$null` even
-  though the key is really present. **Don't "fix" this to `[ordered]@{}`.**
-- `pull_character_TEMPLATE.ps1`'s `Get-BossSlug` falls back to auto-deriving a
-  slug from the boss's display name if the encounter ID isn't in
-  `$bossSlugs` — meaning a missing table 5 entry won't hard-fail, just risk a
-  slug that silently doesn't match `build_boss_report_data.ps1`'s canonical
-  one. Don't rely on this fallback; add the explicit entry.
-- There's a 7th, separate table in the same shape in
-  `scripts\summarize_class_benchmarks.ps1` (`$bosses`, keyed the same way as
-  tables 1-4 but with a `display` field instead of `encounterID`) that also
-  needs the new boss added, so 6 files in total once you count it.
+- `"BossName"` (the `folder_name` field) is used as a literal subfolder name
+  under `data\Classes\{Class}\active\`/`archived\`.
+- `"bossslug"` is used both as the per-boss-kill filename slug
+  (`fight14_bossslug_healing_events.json`) and as the `Bosses` object's
+  property name in `report_data.json`/`analysis.json`.
+- `pull_character.py`'s `_get_boss_slug` falls back to auto-deriving a slug
+  from the boss's display name if the encounter ID isn't in `BOSSES` —
+  meaning a missing entry won't hard-fail, just risk a slug that silently
+  doesn't match the canonical one. Don't rely on this fallback; add the
+  explicit entry.
 
-If a boss ID ever turns up in real data with no `$bossMeta` entry,
-`build_boss_report_data.ps1` already prints an explicit warning naming exactly
-this fix (`WARNING: boss id $bossID ('$($fight.name)') has no known
-slug/display mapping - skipping. Add it to $bossMeta...`) rather than failing
-silently — a good sanity check that you didn't miss table 6.
+If a boss ID ever turns up in real data with no `BOSSES` entry,
+`build_report_data.py` already prints an explicit warning naming exactly
+this fix (`WARNING: boss id $bossID (...) has no known slug/display mapping
+- skipping. Add it to bosses.py...`) rather than failing silently — a good
+sanity check that you didn't miss the entry.
 
 ### 3. Nothing to bump — the "bosses killed" denominator is derived, not configured
 
-This used to be a manual step: two scripts each tracked "how many bosses are
-in the full tier" as a hardcoded `-TotalBosses` parameter (default `10`), and
-neither derived it from the tables above — so adding a boss meant remembering
-to bump both defaults by hand, and forgetting produced a nonsensical label
-like "12/10 bosses killed" once Gruul's Lair bosses started appearing
-alongside SSC/TK in the same report (this really happened, 2026-07-15).
-
-Fixed by deriving the denominator from each report's own real fight data
-instead of a shared constant:
-
-- `build_boss_report_data.ps1` writes a real `BossesAttempted` count to
-  `report_data.json` (every real boss pull this report has, kill or wipe —
-  not just the kills already captured in `Bosses`).
-- `render_healer_report.ps1` compares it against the real kill count and only
-  shows a "`<kills>`/`<attempted>`" denominator when a real wipe is present in
-  this report's own data; otherwise it just prints "`<N>` bosses killed".
-- `update_hub_pages.ps1` takes an optional `-BossesAttempted <N>` (only pass
-  it if you actually saw a wipe this raid night — omit it otherwise) for the
-  matching hub-page row text.
-
-Nothing to bump when a new boss is added to the tracked tier — this is a
-per-report fact now, not a per-tier constant.
+`build_report_data.py` writes a real `BossesAttempted` count to
+`report_data.json` (every real boss pull this report has, kill or wipe — not
+just the kills already captured in `Bosses`); `render_report.py` compares it
+against the real kill count and only shows a "`<kills>`/`<attempted>`"
+denominator when a real wipe is present in this report's own data. Nothing to
+bump when a new boss is added to the tracked tier — this is a per-report
+fact, not a per-tier constant (a real, already-fixed bug in the PowerShell
+predecessor — see `CLAUDE.md` for the "12/10 bosses killed" incident this
+design replaced).
 
 ### 4. What you don't need to touch
 
-- `manifest.json` — auto-populated by each `pull_top100_{class}.ps1` the next
-  time it runs; no manual edit needed.
-- `render_healer_report.ps1`'s per-boss rendering, `build_boss_analysis.ps1`,
-  `build_boss_report_data.ps1`'s fight-processing loop, and every HTML
-  template — all iterate dynamically over whatever boss keys are present in
-  the data, not a fixed list.
-- `scripts\migrate_class_to_active.ps1` has its own boss table too, but it's a
-  one-time, already-used migration tool for converting a *class* off the old
-  date-folder convention — irrelevant to adding a boss to an already-migrated
-  class.
+- `manifest.json` — auto-populated by `pipeline\pull_top100.py` the next time
+  it runs; no manual edit needed.
+- `render_report.py`'s per-boss rendering, `build_analysis.py`,
+  `build_report_data.py`'s fight-processing loop, and every Jinja2 template —
+  all iterate dynamically over whatever boss keys are present in the data,
+  not a fixed list.
 
 ### 5. New cooldowns
 
