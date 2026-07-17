@@ -74,7 +74,7 @@ regardless of which API version pulled the data.
 Use `parses/character` (not `rankings/character`) when you need the percentile for a
 *specific* fight rather than the character's all-time best on that boss.
 
-## v2 GraphQL API (Druid + Shaman + Priest + Paladin pipelines, migrated/ported 2026-07-12/2026-07-13/2026-07-13)
+## v2 GraphQL API (Druid + Shaman + Priest + Paladin + Dreamstate pipelines, migrated/ported 2026-07-12/2026-07-13/2026-07-13/2026-07-16)
 
 **Why this migration happened.** `parses/character` above (v1's "get every parse"
 endpoint) turned out to be structurally incomplete — real-tested against
@@ -222,6 +222,145 @@ character's report is a real starting point, but a claim about what a guid
 into permanent documentation** — the same discipline gotcha #32 already
 established for guid-rank disambiguation, extended here to a cast-vs-heal
 guid split.
+
+**Extended to Druid-Dreamstate (WCL classID 2 / specID 6) 2026-07-16 —
+genuinely different from every prior port: a SPEC of an already-tracked
+class, not a new class.** `data\Classes\classes.json` confirms Dreamstate is
+this custom "Fresh" realm's own homebrew hybrid spec (not a real retail/
+Classic Blizzard talent tree) — the same realm invents specs like this per
+class (Paladin has "Justicar", etc.). Because every prior port's own
+`$className` doubled as both the real WCL `className` argument AND the
+pipeline's `data\Classes\{...}\` folder key (spec was always 1:1 with class
+for the four tracked builds), Dreamstate needed a real split that didn't
+exist before:
+```powershell
+$className    = "Dreamstate"   # pipeline key only: data\Classes\Dreamstate\,
+                                # manifest.className, cooldown-guid-table key
+$wclClassName = "Druid"        # the REAL WCL characterRankings(className:)
+                                # and table(sourceClass:) value
+$wclSpecName  = "Dreamstate"   # the REAL WCL characterRankings(specName:) value
+```
+`pull_top100_dreamstate.ps1` is the only pull script where these three values
+genuinely differ — every prior class's `$className` var served all three
+roles identically. Get this split wrong and you either send WCL a nonsensical
+`className: "Dreamstate"` (a class WCL doesn't have) or collide Dreamstate's
+data into the existing `data\Classes\Druid\` (Restoration) tree.
+
+**Real-data discovery pass against a real report — but a genuinely new
+wrinkle: the discovery character (Turkeykin, report `XJp8vAxzM4KtHYyb`, the
+same shared report already used for the Priest/Paladin discovery passes)
+plays TWO real specs across the same report's boss kills**: Balance (DPS
+role) on all 6 SSC bosses, Dreamstate (healer role) on all 4 TK bosses
+(Al'ar, Void Reaver, Solarian, Kael'thas). Confirmed via the real rankings
+data's per-fight `roles.{tanks,healers,dps}.characters[]` arrays, each entry
+carrying its own real `class`/`spec` — `masterData.actors[].subType` (what
+every prior port's class resolution relied on) has NO spec field at all, so
+this case was invisible to the pipeline before this port. See "Per-fight spec
+resolution" below for the general mechanism this drove.
+
+Real confirmed kit, scoped ONLY to the 4 real Dreamstate fights (the 6
+Balance fights are genuinely different data — DPS rotation, not healer kit —
+and were excluded from the discovery, not just noted): Innervate (guid
+29166, carries over unchanged from Druid-Restoration, 3 real casts),
+Lifebloom (guid 33763, the dominant heal — 407 real casts across the 4
+fights), Rejuvenation (guid 26981), two real Regrowth ranks (guids 26980,
+9858 — Turkeykin's own casts lean on 9858, a rank the Top 100 benchmark
+average barely touches, a real and consistent style choice across all 4
+kills, not noise), Rebirth (guid 26994, same as Druid-Restoration's — kept
+per explicit instruction even though none of the 4 real fights had an actual
+cast), Dark Rune (guid 27869, class-agnostic consumable), real Mana Potion
+casts. **Confirmed ABSENT, not guessed from Druid-Restoration's own kit just
+because it's the same base class**: Nature's Swiftness (17116), Swiftmend
+(18562), Tranquility — zero real casts across all 4 real fights. Also a real,
+surprising finding worth naming rather than silently normalizing: Turkeykin's
+own real casts this raid also include abilities named "Power of Prayer"
+(32367), "Blessing of Life" (38332 — the SAME real guid already in Priest's
+own cooldown table), and "Mental Protection Field" (36480) — genuine evidence
+this realm's Dreamstate kit borrows/renames spell effects across class
+boundaries, not a data error. None of the three were added to the cooldown
+table (single incidental casts, no repeatable per-fight pattern), but worth
+remembering if a future Dreamstate discovery pass sees them again.
+`characterRankings(className: "Druid", specName: "Dreamstate", ...)`
+confirmed live against real Al'ar data before the script was written. See
+`pull_top100_dreamstate.ps1`'s own header for the full writeup.
+
+**Real finding, and a real dead end worth recording so it isn't re-walked:
+"Improved Faerie Fire uptime" does NOT appear as a discrete debuff event
+anywhere in this server's real data, checked exhaustively, but IS available
+through a completely different real field.** The user's original ask was for
+a boss-debuff uptime stat, expected to work the same way Tree of Life's
+buff-uptime does (`events(dataType: Buffs)`, apply/remove interval
+reconstruction). Checked the mirror-image query
+(`events(dataType: Debuffs, ...)`) three separate ways before concluding it
+genuinely isn't there: (1) scoped to Turkeykin's own Faerie Fire casts
+(guid 26993) across all 4 real fights — zero matching debuff events; (2) a
+second real Druid in the same raid (Livtyler) also casts Faerie Fire — same
+zero result, ruling out "someone else covers it, not a gap for this
+character" as the explanation; (3) the FULL real debuff table for each
+fight, unscoped by caster (`table(dataType: Debuffs, ...)` — the same
+aggregation WCL's own website renders) — 7 to 23 real debuffs per fight
+(Melt Armor, Weakened Soul, Tinnitus, Arcane Charge, Rend, etc.), none
+Faerie-Fire-related, in any of the 4 fights. **The real answer**: `table(
+dataType: Casts, sourceID:, fightIDs:[...])`'s own per-ability response
+entries carry a real `uptime` (ms) field for duration-based effects — Faerie
+Fire gets the same internal classification (`"type": 8`) as Lifebloom/
+Rejuvenation/Regrowth in the real response, and its `uptime` field tracks
+real, plausible, varying values (63.9%/75%/60.7%/47% across Turkeykin's 4
+real fights; 40-75% averaged across the real Top 100 sample per boss) even
+though no separate debuff-event timeline exists for it. `Get-
+ImprovedFaerieFireUptimeLocal` in both `pull_character_TEMPLATE.ps1` and
+`pull_top100_dreamstate.ps1` reads this field directly — there was nothing
+to interval-reconstruct once the real field was found, so this is NOT built
+as an event-based function parallel to `Get-TreeOfLifeUptimeLocal` the way
+originally planned. Source-scoped to the analyzed character (the `sourceID:`
+filter), the same scoping model as Tree of Life, not raid-wide.
+
+**Per-fight spec resolution (general mechanism, added 2026-07-16 — used by
+every class going forward, not Dreamstate-specific).** Turkeykin's real
+Balance/Dreamstate split (above) meant `pull_character_TEMPLATE.ps1` could no
+longer assume a character's class/spec is one fixed fact for their whole
+report — `masterData.actors[].subType` gives class only, and even that is
+one single value per report, with no per-fight granularity at all. Fixed by
+moving the report's own `rankings(fightIDs:[...], playerMetric: hps)` call
+(previously the LAST step, purely for percentile display) to run BEFORE the
+per-boss-kill dispatch, and reading each real fight's own
+`roles.{tanks,healers,dps}.characters[]` entry for the analyzed character
+name — the same real per-fight `class`/`spec` fields used for the Dreamstate
+discovery above. New optional `-Spec` parameter: when every real fight agrees
+on one spec, behavior is unchanged from every prior class (auto-resolved,
+zero behavior difference for Danceswtrees/Vajomee/Lippies/Crowns); when
+fights disagree and `-Spec` wasn't supplied, the script hard-stops and prints
+the real per-fight breakdown rather than guessing; when `-Spec` is supplied,
+only fights matching that resolved spec get pulled (healing/casts/
+consumables/gear/activetime/deaths) — the rest are logged as real, explicit
+`SKIP` lines, never silently pulled as if they were healer data. A new
+`{code}_spec_coverage.json` file (per-character, alongside `report_data.json`)
+records the full real picture — every boss in the report, its own resolved
+class/spec/role, and whether it was included — so `build_boss_report_data.ps1`
+can later compute a `SpecCoverage` object for `report_data.json` (`$null`/
+absent when every fight agreed, the common case) and the raid overview can
+mechanically surface a real "played a different spec on N of M bosses" note
+(`render_healer_report.ps1`'s new `SPEC_COVERAGE_NOTE`, `raid_overview_
+template.html`'s matching `<!--@OPTIONAL:SPEC_COVERAGE_NOTE-->` block) — no
+LLM involvement, same "fully mechanical, only present when there's a real
+finding" pattern as `BOSSES_KILLED_LABEL`.
+
+**Two real bugs found and fixed while building the above, both worth naming
+since they're non-obvious PowerShell/.NET traps that could bite again — see
+gotchas #34 and #35.**
+
+**Lesson: a discovery pass scoped to one character's real data can still miss
+the real mechanism entirely if the first thing tried (the "obvious" analog to
+an already-working feature) turns out to be a dead end** — Tree of Life's
+buff-uptime approach was a reasonable first guess for Improved Faerie Fire
+precisely because it's the ONE other uptime-shaped stat this pipeline
+already tracks, but the two abilities are logged completely differently on
+this server. Checking three genuinely different query shapes (scoped-source
+debuffs, unscoped debuffs, the WCL-website's-own aggregated debuff table)
+before concluding "not there" — and then trying an entirely different
+`dataType` (`Casts`, not `Debuffs`) at the user's direction — is what
+actually found the real mechanism. Don't stop at "the obvious approach
+returns nothing" without trying at least one structurally different query.
 
 **Auth**: OAuth2 client-credentials grant, not a query-string API key.
 - Register a client at `https://www.warcraftlogs.com/api/clients/` (Name: anything;
@@ -465,7 +604,10 @@ data can never change once pulled — that's pure wasted API budget against WCL'
 both rewritten to fix this. **As of Paladin's 2026-07-13 port, every class this
 project tracks is on this model** — the old date-folder convention is purely
 historical reference now (the shape a hypothetical future new class's data
-would start in, before being ported).
+would start in, before being ported). Dreamstate (2026-07-16) bootstrapped
+straight onto this model from its very first run, same as Shaman/Priest/
+Paladin each did — `data\Classes\Dreamstate\` never existed in the old
+date-folder shape at all.
 
 **Layout:**
 ```
@@ -622,12 +764,15 @@ Zone ID: **1056**
  
 | Class | ID | Restoration/Holy spec ID |
 |---|---|---|
-| Druid | 2 | 4 (Restoration) |
+| Druid | 2 | 4 (Restoration), 6 (Dreamstate — this realm's own homebrew hybrid spec, NOT a real retail/Classic talent tree, see the v2 GraphQL API section's Dreamstate writeup) |
 | Paladin | 6 | 1 (Holy) |
 | Priest | 7 | 1 (Discipline) or 2 (Holy) |
 | Shaman | 9 | 3 (Restoration) |
  
-Full class/spec table available via `GET /classes` if a new class comes up.
+Full class/spec table available via `GET /classes` if a new class comes up —
+also cached locally at `data\Classes\classes.json`, which is where Dreamstate's
+specID (and this realm's other invented per-class specs, e.g. Paladin
+"Justicar") were actually confirmed from.
  
 ## Pulling a specific character's raid data — exact commands
 
@@ -1551,6 +1696,65 @@ overview. Extensible — new raid nights get added as new dated entries.
     those specific pages was not done as part of this fix (out of scope for the
     task that found it) but is a real, low-priority cleanup candidate if anyone
     revisits those two healers' pages later.
+34. **`[ordered]@{}` (an `OrderedDictionary`) indexed with a real `[int]` value
+    resolves to its POSITIONAL indexer, not a key lookup — throws
+    `ArgumentOutOfRangeException` the moment the int exceeds the dictionary's
+    current `Count`.** Found while building the Dreamstate port's per-fight
+    spec resolution (2026-07-16): `$perFightSpec = [ordered]@{}` followed by
+    `$perFightSpec[[int]$fightEntry.fightID] = $found` crashed with "Specified
+    argument was out of the range of valid values. Parameter name: index" —
+    no line number in the top-level error, only visible after wrapping the
+    loop in a try/catch and printing `$_.InvocationInfo.PositionMessage`.
+    Root cause: `System.Collections.Specialized.OrderedDictionary` (what
+    `[ordered]@{}` creates) implements `IOrderedDictionary`, which exposes a
+    SEPARATE `this[int index]` positional indexer alongside the normal
+    `this[object key]` one — PowerShell's overload resolution picks the
+    positional one when the index expression's runtime type is genuinely
+    `int` (exactly what `[int]$fightEntry.fightID` produces), not the
+    key-lookup one a plain hashtable would use unambiguously. **Fix: use a
+    plain `@{}` Hashtable whenever integer keys are possible and insertion
+    order doesn't matter** — `Hashtable` has no positional indexer, so no
+    ambiguity exists. `[ordered]@{}` is still fine for string keys (every
+    other ordered hashtable in this codebase uses string keys) — this is
+    specifically an integer-key + `[ordered]` combination to avoid.
+35. **Re-reading a file this same pipeline already wrote can silently double-
+    wrap it if the read code re-applies a wrapper the write code already
+    applied.** Found in the same per-fight spec resolution work: the
+    "already have `{code}_v2_rankings.json`, reuse it" cached-read branch did
+    `$rankingsData = [PSCustomObject]@{ data = (Get-Content ... | ConvertFrom-
+    Json) }` — but the FILE on disk was already shaped `{"data": [...]}` (a
+    direct dump of `$rankingsResult.Data.reportData.report.rankings`, which
+    itself already has a top-level `data` array). Re-wrapping produced
+    `{data: {data: [...]}}`, so `foreach ($fightEntry in $rankingsData.data)`
+    iterated over ONE object (the inner `{data:[...]}` wrapper) instead of
+    the real per-fight entries — `$fightEntry.roles` was always missing, so
+    every single real fight silently showed "not found in any role list"
+    even though the fresh-fetch code path (which didn't re-wrap) worked
+    correctly. Caught by comparing two real runs against the same report:
+    the first (fresh fetch) correctly printed Turkeykin's real Balance/
+    Dreamstate breakdown; a second run (hitting the cached-file branch)
+    showed every fight as unresolved. **Lesson: when a "read the cached
+    version" code path exists alongside a "fetch it fresh" one, diff their
+    actual output shapes against each other on a real file, don't assume
+    they match just because they're meant to represent the same data** —
+    this class of bug produces no error at all, just silently wrong results.
+36. **A single real character can play more than one real spec across one
+    report's boss kills — never assume spec (or even class-appropriateness
+    of a pull) is a single fact for a whole report.** Confirmed real, not
+    hypothetical: Turkeykin (report `XJp8vAxzM4KtHYyb`, the same report
+    already used for the Priest/Paladin/Crowns/Lippies discovery passes and
+    rebuilds) plays Balance (a DPS spec) on all 6 real SSC bosses and
+    Dreamstate (a healer spec) on all 4 real TK bosses — a genuine mid-raid
+    respec, not a data anomaly. Every pull script before this (Druid/Shaman/
+    Priest/Paladin) resolved class ONCE, globally, from `masterData.actors[]
+    .subType` — which has no spec field at all and is a single value per
+    report regardless of fight — so this case was structurally invisible
+    until `pull_character_TEMPLATE.ps1` gained real per-fight spec resolution
+    (see the v2 GraphQL API section's "Per-fight spec resolution" writeup).
+    **Don't assume a healer-analysis pull script can treat "found this
+    character in this report" as sufficient to pull every one of their real
+    boss kills as healer data** — a character's role/spec can genuinely
+    differ fight-to-fight within the exact same raid log.
 
 ## Copyright / IP note
  

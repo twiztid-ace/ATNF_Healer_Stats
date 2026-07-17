@@ -2,13 +2,23 @@
 
 This is a WoW Classic (TBC/SSC-TK era) raid healer analysis pipeline: pull real combat
 log data from Warcraft Logs, benchmark it against Top 100 parses, and generate
-a static HTML site auditing each healer's performance per boss kill. All four Fresh
-SSC/TK healer classes' pipelines (`pull_character_TEMPLATE.ps1` — shared/class-agnostic —,
+a static HTML site auditing each healer's performance per boss kill. All five Fresh
+SSC/TK healer builds' pipelines (`pull_character_TEMPLATE.ps1` — shared/class-agnostic —,
 `pull_top100_druid.ps1`, `pull_top100_shaman.ps1`, `pull_top100_priest_holy.ps1`,
-`pull_top100_paladin.ps1`) now pull that data via WCL's **v2 GraphQL API** (Druid
-migrated 2026-07-12, Shaman ported the same day as its own "Phase 3" pilot, Priest
-ported 2026-07-13, Paladin ported the same day right after Priest — see WORKFLOW.md's
-"v2 GraphQL API" section). No class remains on the original v1 REST API.
+`pull_top100_paladin.ps1`, `pull_top100_dreamstate.ps1`) now pull that data via WCL's
+**v2 GraphQL API** (Druid migrated 2026-07-12, Shaman ported the same day as its own
+"Phase 3" pilot, Priest ported 2026-07-13, Paladin ported the same day right after
+Priest, Dreamstate ported 2026-07-16 — see WORKFLOW.md's "v2 GraphQL API" section).
+No build remains on the original v1 REST API.
+
+**Dreamstate is a SPEC of Druid, not a sixth class** — worth flagging immediately
+since it's easy to misread "five" above as "five classes." This project tracks four
+real WCL *classes* (Druid, Shaman, Priest, Paladin) and five real tracked *builds*
+(Druid-Restoration, Shaman-Restoration, Priest-Holy, Paladin-Holy, Druid-Dreamstate)
+— Dreamstate is a second, distinct spec under the same Druid class, a genuinely new
+axis this project hadn't needed before (see "Current state" below for the real,
+non-hypothetical case — a healer who plays a DIFFERENT spec on part of a raid —
+that drove this).
 
 **Read `WORKFLOW.md` first, in full, before touching anything.** It is the single
 source of truth for this project — API endpoints, file formats, known bugs, and 33
@@ -80,36 +90,48 @@ its raid folder has a `{code}_findings.json`/`{code}_analysis.json` next to its
   see "Current state" for the full story. This is a one-time deviation for
   those two healers specifically, not a change to the general rule above.
 - **v2 (enhanced)**: events-based healing/casts (no truncation), cooldown/utility
-  tracking with self-vs-other targets (Druid: Innervate/Nature's Swiftness/
-  Swiftmend/Rebirth/Dark Rune, real buff uptime via Tree of Life interval
-  reconstruction; Shaman: Earth Shield/Mana Tide Totem/Ancestral Swiftness/Dark
-  Rune; Priest: Shadowfiend/Power Word: Shield/Chakra/Blessing of Life/Fear Ward/
-  Dark Rune; Paladin: Holy Shock/Divine Favor/Divine Shield/Cleanse/Hand of
-  Protection/Blessing of Freedom/Dark Rune — no Rebirth-equivalent or
-  self-buff-uptime concept exists for Shaman, Priest, OR Paladin in this TBC
-  ruleset, confirmed against real data for all three, not assumed), Top 100
-  benchmarking, CSV summarization. **Resto Druid, Resto Shaman, Holy Priest, and
-  Holy Paladin** all have this now (see "Current state" below). All four full v2
-  healer sites have been generated end-to-end (Danceswtrees/Druid,
-  Vajomee/Shaman, Lippies/Priest, and Crowns/Paladin as of 2026-07-13) — every
-  healer this project tracks now has a real v2 site (see "Current state").
-  `examples/` has one older reference page but it's out of date (see below).
+  tracking with self-vs-other targets (Druid-Restoration: Innervate/Nature's
+  Swiftness/Swiftmend/Rebirth/Dark Rune, real buff uptime via Tree of Life
+  interval reconstruction; Shaman: Earth Shield/Mana Tide Totem/Ancestral
+  Swiftness/Dark Rune; Priest: Shadowfiend/Power Word: Shield/Chakra/Blessing of
+  Life/Fear Ward/Dark Rune; Paladin: Holy Shock/Divine Favor/Divine Shield/
+  Cleanse/Hand of Protection/Blessing of Freedom/Dark Rune — no Rebirth-
+  equivalent or self-buff-uptime concept exists for Shaman, Priest, OR Paladin in
+  this TBC ruleset, confirmed against real data for all three, not assumed;
+  Druid-Dreamstate, added 2026-07-16: Innervate/Rebirth/Dark Rune carried over
+  from Druid-Restoration, plus a real Improved Faerie Fire uptime stat unique to
+  this build — confirmed real absence of Nature's Swiftness/Swiftmend/
+  Tranquility, not assumed just because it shares a base class with
+  Restoration — see "Current state" below for the full discovery writeup), Top
+  100 benchmarking, CSV summarization. **Resto Druid, Resto Shaman, Holy Priest,
+  Holy Paladin, and Dreamstate Druid** all have this now (see "Current state"
+  below). All four ORIGINAL v2 healer sites have been generated end-to-end
+  (Danceswtrees/Druid, Vajomee/Shaman, Lippies/Priest, and Crowns/Paladin as of
+  2026-07-13), plus a fifth, Turkeykin/Dreamstate, added 2026-07-16 — see
+  "Current state" for why Turkeykin's site is deliberately NOT linked from the
+  main site index yet. `examples/` has one older reference page but it's out of
+  date (see below).
 
-## Data model — active/archived + manifest.json (all four classes now)
+## Data model — active/archived + manifest.json (all five builds now)
 
 Replaced the old "fresh date-stamped folder every pull" convention for Druid on
 2026-07-12, because that convention re-fetched all ~1,000 Top 100 parses from the
 WCL API on every single run even though the vast majority don't change between
 runs and a completed log's data can never change once pulled. Shaman was built
 directly on this model from day one when it was ported the same day, Priest the
-same way again on 2026-07-13, and Paladin the same way again right after Priest
-(no old date-folder data existed worth migrating forward for any of the three —
-see WORKFLOW.md's "v2 GraphQL API" section for why). Full design rationale,
-manifest schema, and the exact diff algorithm are in WORKFLOW.md's
-"Active/archived data model" section — read that before touching any pull
-script. The short version:
-- `data\Classes\{Druid,Shaman,Priest,Paladin}\manifest.json` tracks per-boss
-  `lastPulledDate`/`rankingsSnapshotDate` and per-parse `active`/`archived` status.
+same way again on 2026-07-13, Paladin the same way again right after Priest, and
+Dreamstate the same way again on 2026-07-16 (no old date-folder data existed
+worth migrating forward for any of the four — see WORKFLOW.md's "v2 GraphQL API"
+section for why). Full design rationale, manifest schema, and the exact diff
+algorithm are in WORKFLOW.md's "Active/archived data model" section — read that
+before touching any pull script. The short version:
+- `data\Classes\{Druid,Shaman,Priest,Paladin,Dreamstate}\manifest.json` tracks
+  per-boss `lastPulledDate`/`rankingsSnapshotDate` and per-parse
+  `active`/`archived` status. **`Dreamstate` is a pipeline-key folder name, not
+  a real WCL class** — its real WCL identity is `className: "Druid", specName:
+  "Dreamstate"`; keeping it in a folder separate from `data\Classes\Druid\`
+  (Restoration) is deliberate, not an inconsistency — see WORKFLOW.md's
+  Dreamstate writeup for the real-vs-pipeline class/spec split this required.
 - `active\` holds only what's currently in a boss's Top 100. `archived\` holds
   everything that's ever dropped out, kept forever, never deleted.
 - Staleness is always a plain `yyyy-MM-dd` date compared to today at read time —
@@ -163,6 +185,46 @@ re-parses every existing row's own date text and rewrites the whole list stably
 sorted by date descending on every insert, rather than just prepending — see
 that script's own header comment, and its `-ResortOnly` mode (re-sorts an
 existing healer's list without inserting anything, e.g. after a manual edit).
+
+## Mid-raid spec switching — a character can play >1 real spec in one report (2026-07-16)
+
+New, general, class-agnostic mechanism — not Dreamstate-specific, though
+Dreamstate's own discovery pass is what surfaced the real case that required
+it. `pull_character_TEMPLATE.ps1` used to resolve a character's class ONCE,
+globally, from `masterData.actors[].subType` — which has no spec field at
+all, and is one fixed value per report regardless of which fight you look at.
+**Real, confirmed case, not hypothetical**: Turkeykin (report
+`XJp8vAxzM4KtHYyb`, the same report already used for Crowns/Lippies) plays
+Balance (a DPS spec) on all 6 real SSC bosses and Dreamstate (a healer spec)
+on all 4 real TK bosses in that SAME report — a genuine mid-raid respec.
+
+- The report's own `rankings(fightIDs:[...])` call (previously the LAST step,
+  only for percentile display) now runs BEFORE the per-boss-kill dispatch,
+  since its per-fight `roles.{tanks,healers,dps}.characters[]` entries are the
+  only real source of per-fight spec (see WORKFLOW.md's "Per-fight spec
+  resolution" writeup in the v2 GraphQL API section for the full mechanism).
+- New optional `-Spec` parameter on `pull_character_TEMPLATE.ps1`. Every fight
+  agreeing on one spec (true for every character pulled before Dreamstate) —
+  zero behavior change, just a real confirmation instead of a global guess.
+  Fights disagreeing and `-Spec` not supplied — hard-stops with the real
+  per-fight breakdown rather than guessing which spec to analyze. `-Spec`
+  supplied — only pulls fights matching that spec; the rest are logged as
+  explicit `SKIP` lines, never silently treated as healer data.
+- New `{code}_spec_coverage.json` (per-character, next to `report_data.json`)
+  records every boss in the report with its own real resolved class/spec/role
+  and whether it was included — lets `build_boss_report_data.ps1` reconstruct
+  the full picture without re-querying the API.
+- `build_boss_report_data.ps1` computes a `SpecCoverage` object for
+  `report_data.json` from that file — `$null`/absent when every fight agreed
+  (the common case, zero effect on Danceswtrees/Vajomee/Lippies/Crowns).  When
+  present, it also narrows `BossesAttempted`/the boss-processing loop itself
+  to only the spec-matching fights — NOT left to the graceful missing-file
+  skip that already exists for other reasons.
+- `render_healer_report.ps1` surfaces a real, fully mechanical (no LLM)
+  sentence on the raid overview when `SpecCoverage` is present — new
+  `SPEC_COVERAGE_NOTE` token, wrapped in `raid_overview_template.html`'s new
+  `<!--@OPTIONAL:SPEC_COVERAGE_NOTE-->` block, omitted entirely (not an empty
+  paragraph) for every healer without a real spec split.
 
 ## Local-scripting pipeline (2026-07-14) — replaces Claude hand-writing HTML
 
@@ -279,7 +341,12 @@ scripts/
   pull_character_TEMPLATE.ps1        <- pulls one specific healer's full raid night (methodology-v2,
                                          events-based; migrated to the v2 GraphQL API 2026-07-12).
                                          Old v1-API version preserved as
-                                         pull_character_TEMPLATE_v1.ps1.
+                                         pull_character_TEMPLATE_v1.ps1. Gained real per-fight spec
+                                         resolution 2026-07-16 (general, class-agnostic - not
+                                         Dreamstate-specific, see "Mid-raid spec switching" above) -
+                                         the one script every prior class port required zero changes
+                                         to; this is the first real exception, driven by a genuine
+                                         multi-spec-in-one-report case (Turkeykin), not a hypothetical.
   pull_top100_druid.ps1              <- Top 100 Resto Druid benchmark pull, methodology-v2,
                                          parallelized, diff-based against manifest.json
                                          (active/archived model, see "Data model" below) — only
@@ -323,12 +390,34 @@ scripts/
                                          first draft of this finding was too broad and had to be
                                          corrected. Old v1-API version preserved as
                                          pull_top100_paladin_v1.ps1.
-  pull_top100_TEMPLATE.ps1           <- generic template any of the four classes' v2 scripts were
+  pull_top100_dreamstate.ps1          <- Top 100 Druid-Dreamstate benchmark pull, methodology-v2,
+                                         parallelized, diff-based against manifest.json (active/
+                                         archived model) — added 2026-07-16. **Genuinely different
+                                         from every prior port: Dreamstate is a SPEC of the already-
+                                         tracked Druid class, not a new class** — this script's real
+                                         WCL `className`/`specName` ("Druid"/"Dreamstate") differ from
+                                         its own pipeline identity (`data\Classes\Dreamstate\`), a
+                                         split no prior class needed (every other class's `$className`
+                                         served both roles identically). Real cooldowns (Innervate/
+                                         Rebirth/Dark Rune, carried over from Druid-Restoration) plus a
+                                         new Improved Faerie Fire uptime stat confirmed against a real
+                                         Turkeykin report (`XJp8vAxzM4KtHYyb`, the same report already
+                                         used for Crowns/Lippies) before being wired up - no Nature's
+                                         Swiftness/Swiftmend/Tranquility exist for this build,
+                                         confirmed absent from real data, not assumed just because it
+                                         shares a base class with Restoration. See WORKFLOW.md's "v2
+                                         GraphQL API" section for the full discovery writeup, including
+                                         the real dead-end (Improved Faerie Fire doesn't exist as a
+                                         discrete debuff event on this server at all - it's read from a
+                                         completely different real field instead). No v1 version exists
+                                         for this build - it was born directly on the v2 pipeline.
+  pull_top100_TEMPLATE.ps1           <- generic template any of the five builds' v2 scripts were
                                          ultimately generated from (via their preserved *_v1.ps1
-                                         ancestors); still the base for a hypothetical new class's
-                                         first pull script (pull_top100_druid.ps1/
-                                         pull_top100_shaman.ps1/pull_top100_priest_holy.ps1/
-                                         pull_top100_paladin.ps1 are the better structural reference
+                                         ancestors, where one exists); still the base for a
+                                         hypothetical new class's first pull script
+                                         (pull_top100_druid.ps1/pull_top100_shaman.ps1/
+                                         pull_top100_priest_holy.ps1/pull_top100_paladin.ps1/
+                                         pull_top100_dreamstate.ps1 are the better structural reference
                                          for porting straight to v2 instead)
   migrate_class_to_active.ps1        <- ONE-TIME migration tool, date-folder -> active/archived +
                                          manifest.json. Already run for Druid (2026-07-12, migrated
@@ -352,14 +441,17 @@ scripts/
                                          calls itself, so unaffected by the v1/v2 API migration.
   lib/WclV2Api.psm1                  <- shared module for the v2 GraphQL API (OAuth token fetch/
                                          cache, generic query POST, paginated events() wrapper). Used
-                                         by pull_character_TEMPLATE.ps1 and all four pull_top100_*.ps1
+                                         by pull_character_TEMPLATE.ps1 and all five pull_top100_*.ps1
                                          scripts — see WORKFLOW.md's "v2 GraphQL API" section for the
                                          full endpoint mapping and auth setup.
   build_boss_report_data.ps1         <- reads pulled character data + that class's benchmark_*.csv,
                                          writes {code}_report_data.json (every real number needed for
                                          a report, zero interpretation). Makes zero API calls. Now
                                          also writes a RaidDate field (added 2026-07-14 alongside the
-                                         report-code folder change - see above).
+                                         report-code folder change - see above), and (added 2026-07-16,
+                                         general/class-agnostic) a SpecCoverage field + real fight-list
+                                         narrowing when a character played more than one spec across
+                                         the report - see "Mid-raid spec switching" above.
   build_boss_analysis.ps1            <- NEW 2026-07-14, part of the local-scripting pipeline (see
                                          above) - report_data.json -> {code}_analysis.json, pre-flags
                                          every script-safe judgment call. Zero API calls, zero LLM.
@@ -413,9 +505,23 @@ templates/
                                          class either - see pull_top100_paladin.ps1's header). Also
                                          where the Holy Shock cast-vs-heal guid split lives (guid
                                          33072 cast, guid 33074 heal - see WORKFLOW.md's "v2 GraphQL
-                                         API" section). Every Fresh SSC/TK healer class now has its
-                                         own boss page template.
-  raid_overview_template.html        <- per-raid-night page (gear audit + 10-boss summary)
+                                         API" section). Every Fresh SSC/TK healer class had its own
+                                         boss page template as of this point.
+  boss_page_template_dreamstate.html <- Druid-Dreamstate variant, added 2026-07-16 - based on the
+                                         Druid-Restoration template's section *shape* (it's the closest
+                                         match, since Dreamstate keeps the Rebirth row unlike Shaman/
+                                         Priest/Paladin's templates), but with Dreamstate's own real
+                                         cooldowns (Innervate/Rebirth/Dark Rune) and the Tree of Life
+                                         stat block replaced by a new Improved Faerie Fire uptime stat
+                                         of the same shape (see pull_top100_dreamstate.ps1's header for
+                                         why this is a completely different real mechanism, not reused
+                                         Tree-of-Life code). No Nature's Swiftness/Swiftmend/Tranquility
+                                         rows - confirmed absent from real data, not assumed. Every
+                                         Fresh SSC/TK healer BUILD now has its own boss page template.
+  raid_overview_template.html        <- per-raid-night page (gear audit + 10-boss summary) - gained a
+                                         new, general, class-agnostic optional SPEC_COVERAGE_NOTE block
+                                         2026-07-16 (see "Mid-raid spec switching" above) - omitted
+                                         entirely for every healer without a real spec split.
   healer_raidlist_template.html      <- per-healer page (list of raid nights analyzed)
   site_index_template.html           <- site homepage (list of healers)
 
@@ -433,7 +539,10 @@ examples/
                                          rough visual reference, not as ground truth for either
                                          generation's current data shape.
 
-data/Classes/{Druid,Shaman,Priest,Paladin}/  (v2 — active/archived + manifest.json, see "Data model" below)
+data/Classes/{Druid,Shaman,Priest,Paladin,Dreamstate}/  (v2 — active/archived + manifest.json, see
+        "Data model" below. "Dreamstate" is a pipeline-key folder name, not a real WCL class - its
+        real WCL identity is className: "Druid", specName: "Dreamstate", kept in a separate folder
+        from data/Classes/Druid/ (Restoration) on purpose, see "Mid-raid spec switching" above)
   manifest.json                      <- per-boss lastPulledDate/rankingsSnapshotDate, per-parse
                                          active/archived status; class-level benchmarkGeneratedDate
   active/                            <- current Top 100 only
@@ -488,7 +597,7 @@ Not included here (repo-specific, never shared in the source conversation):
 pull script, kept only for the preserved `*_v1.ps1` reference scripts),
 `v2_client_id.txt`/`v2_client_secret.txt`/`v2_access_token.txt` (gitignored, v2
 GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
-`pull_character_TEMPLATE.ps1` and all four `pull_top100_*.ps1` scripts),
+`pull_character_TEMPLATE.ps1` and all five `pull_top100_*.ps1` scripts),
 `.gitignore`.
 
 ## Current state — what's solid vs. what's open
@@ -502,7 +611,9 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   4 healers still have one just because this was true before that date. This
   was the old gear-check + basic-spell-composition
   methodology — not being extended further, kept only as historical reference
-  now that all four classes have a v2 pipeline. Danceswtrees's, Lippies's, and
+  now that every original tracked class has a v2 pipeline (Dreamstate, added
+  later, was born directly on v2 and never had a v1 page at all — this whole
+  v1/v2 split doesn't apply to it). Danceswtrees's, Lippies's, and
   Crowns's own v1 pages had been superseded by real v2 pages for the same raid
   night (moved aside to a `-v1`-suffixed sibling folder, not deleted —
   Crowns's move happened 2026-07-13; folders were still date-named at that
@@ -529,7 +640,7 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   of these are the active data for their class anymore, superseded by the v2
   ports below.
 
-**v2 (enhanced) — Druid, Shaman, Priest, and Paladin — all four classes now:**
+**v2 (enhanced) — Druid-Restoration, Shaman, Priest, Paladin, and Druid-Dreamstate — all five builds now:**
 - `pull_character_TEMPLATE.ps1` (shared/class-agnostic) and `pull_top100_druid.ps1`
   were migrated from the v1 REST API to the v2 GraphQL API on 2026-07-12 (this was
   originally just meant to fix a null-percentile bug — v1's percentile endpoints
@@ -544,22 +655,28 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   all). All five scripts were equivalence/smoke tested against real data before
   the old v1-API versions were preserved as `*_v1.ps1` and the new versions
   promoted to the production filenames. Full mapping/rationale for all four
-  ported classes in WORKFLOW.md's "v2 GraphQL API" section (the durable copy —
-  plan files are session-scoped working documents, and the plan file at
-  `C:\Users\raymo\.claude\plans\playful-baking-sunset.md` holds only the Shaman
-  port's own plan; neither the Priest nor the Paladin port had a separate plan
-  file). **No class uses the v1 REST API or `apikey.txt` anymore.**
-- Pipeline validated end to end on real data for all four classes: events-based
+  originally-ported classes in WORKFLOW.md's "v2 GraphQL API" section — the
+  durable copy (plan files are session-scoped working documents, and the plan
+  file at `C:\Users\raymo\.claude\plans\playful-baking-sunset.md` holds only
+  the Shaman port's own plan; neither the Priest nor the Paladin port had a
+  separate plan file). **No class uses the v1 REST API or `apikey.txt`
+  anymore.** The same WORKFLOW.md section also has Dreamstate's own separate
+  writeup (added 2026-07-16, a genuinely different kind of port — a spec of
+  an already-tracked class, not a new class — see "Current state" below).
+- Pipeline validated end to end on real data for all five builds: events-based
   healing/casts (no truncation), cooldown/utility tracking with self-vs-other
-  targets (Druid: Innervate/Nature's Swiftness/Swiftmend/Rebirth/Dark Rune with
-  real Tree of Life buff uptime; Shaman: Earth Shield/Mana Tide Totem/Ancestral
-  Swiftness/Dark Rune, confirmed against a real Vajomee report; Priest:
-  Shadowfiend/Power Word: Shield/Chakra/Blessing of Life/Fear Ward/Dark Rune,
-  confirmed against a real Lippies report; Paladin: Holy Shock/Divine Favor/
-  Divine Shield/Cleanse/Hand of Protection/Blessing of Freedom/Dark Rune,
+  targets (Druid-Restoration: Innervate/Nature's Swiftness/Swiftmend/Rebirth/
+  Dark Rune with real Tree of Life buff uptime; Shaman: Earth Shield/Mana Tide
+  Totem/Ancestral Swiftness/Dark Rune, confirmed against a real Vajomee report;
+  Priest: Shadowfiend/Power Word: Shield/Chakra/Blessing of Life/Fear Ward/Dark
+  Rune, confirmed against a real Lippies report; Paladin: Holy Shock/Divine
+  Favor/Divine Shield/Cleanse/Hand of Protection/Blessing of Freedom/Dark Rune,
   confirmed against a real Crowns report — no Rebirth-equivalent or
   self-buff-uptime concept exists for Shaman, Priest, OR Paladin in this TBC
-  ruleset), each class's own boss page template.
+  ruleset; Druid-Dreamstate: Innervate/Rebirth/Dark Rune with a real Improved
+  Faerie Fire uptime stat, confirmed against a real Turkeykin report — no
+  Nature's Swiftness/Swiftmend/Tranquility exist for this build either,
+  confirmed absent, not assumed), each build's own boss page template.
 - All **10 of 10 bosses** pulled and confirmed on disk for Druid
   (`data\Classes\Druid\active\`, 1,000 parses), Shaman
   (`data\Classes\Shaman\active\`, ~995/1,000 — a handful of parses hit the known
@@ -571,11 +688,16 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   below. **Verify boss/parse counts against `manifest.json` or the actual folder
   before trusting a number someone recalls from memory** — this has drifted from
   reality before.
-- `summarize_class_benchmarks.ps1` has been run against all four classes' full
+- `summarize_class_benchmarks.ps1` has been run against all five builds' full
   active sets — all four `benchmark_*.csv` files exist for each in their own
-  `data\Classes\{Class}\active\`. Its cooldown-guid table and Tree-of-Life buff
-  column were made class-keyed while porting Shaman and extended again for
-  Priest and then Paladin (previously a single flat, ungated Druid-only table
+  `data\Classes\{Class}\active\` (`data\Classes\Dreamstate\active\` for the
+  fifth). Its cooldown-guid table and Tree-of-Life buff column are class-keyed
+  (made so while porting Shaman, extended again for Priest then Paladin), and
+  a third, parallel Improved-Faerie-Fire debuff-uptime column (new,
+  2026-07-16, deliberately its own flag rather than folded into the
+  Tree-of-Life one — the two uptime concepts have genuinely different real
+  data shapes) was added for Dreamstate (previously a single flat, ungated
+  Druid-only table
   that would have silently miscomputed cooldown numbers for any other class —
   see WORKFLOW.md gotcha #29/#30 area).
 - **Real finding from the Priest benchmark run**: Power Word: Shield's
@@ -600,8 +722,38 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   for the full writeup and the lesson it draws (a discovery pass scoped to one
   character's report needs checking against the full Top 100 sample before a
   "never does X" claim goes into permanent documentation).
-- **All four full v2 healer sites have been generated end-to-end**: Danceswtrees/
-  Druid (`docs\danceswtrees\Fm9XdWYtz8VCLnwg\`) and Vajomee/Shaman
+- **Druid-Dreamstate ported 2026-07-16** — genuinely different from every
+  prior port: a SPEC of the already-tracked Druid class (WCL classID 2 /
+  specID 6), not a new class. Real-data discovery pass against Turkeykin's
+  real report (`XJp8vAxzM4KtHYyb`, the same report already used for Crowns/
+  Lippies) confirmed the real kit: Innervate/Rebirth/Dark Rune carried over
+  from Druid-Restoration unchanged, plus a new Improved Faerie Fire uptime
+  stat unique to this build. **Confirmed absent, not assumed**: Nature's
+  Swiftness, Swiftmend, Tranquility — zero real casts across Turkeykin's 4
+  real Dreamstate fights. Discovery surfaced a real, non-hypothetical
+  complication no prior class port had: **Turkeykin plays TWO real specs in
+  that one report** — Balance (DPS) on all 6 SSC bosses, Dreamstate (healer)
+  on the 4 TK bosses — which is what drove the new general "Mid-raid spec
+  switching" mechanism (see above), not something specific to Dreamstate
+  itself. Improved Faerie Fire uptime also turned out to be a real dead end
+  on the first approach tried (an event-based debuff-interval reconstruction
+  parallel to Tree of Life's) — checked exhaustively (scoped, unscoped, AND
+  WCL's own aggregated debuff table, across all 4 real fights) and the
+  debuff genuinely never appears as a discrete event on this server. The real
+  mechanism, found instead: `table(dataType: Casts)`'s own per-ability
+  `uptime` field, which DOES carry real values (47-75% across Turkeykin's 4
+  fights) for this ability without any event-interval reconstruction needed
+  at all — see WORKFLOW.md's "v2 GraphQL API" section for the full writeup.
+  A real Top 100 benchmark pull completed for all 13 SSC/TK + Gruul's Lair/
+  Magtheridon's Lair bosses (1,299/1,300 real parses, 1 failed on a private
+  report — see `data\Classes\Dreamstate\active\`). **Two real, non-obvious
+  PowerShell/.NET bugs were caught and fixed while building the per-fight
+  spec resolution this port needed** — see WORKFLOW.md gotchas #34
+  (`[ordered]@{}` + integer-key indexing resolves to a positional indexer,
+  not a key lookup) and #35 (a cached-file re-read path silently double-
+  wrapped already-correctly-shaped JSON).
+- **All four ORIGINAL v2 healer sites have been generated end-to-end**:
+  Danceswtrees/Druid (`docs\danceswtrees\Fm9XdWYtz8VCLnwg\`) and Vajomee/Shaman
   (`docs\vajomee\Z4zNt28raQ6GLbkC\`) remain hand-written by Claude from real
   `build_boss_report_data.ps1` output, generated 2026-07-13, untouched since.
   **Lippies/Priest and Crowns/Paladin are different now** — both
@@ -616,6 +768,23 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   report-code rename — these were `docs\{healer}\{date}\` right up until that
   migration** (see "data\Characters\ and docs\ folders" above). There is no
   more open per-healer v2 site regen work on the original four-healer scope.
+- **A fifth real v2 site exists now too — Turkeykin/Dreamstate
+  (`docs\turkeykin\XJp8vAxzM4KtHYyb\`), added 2026-07-16 — but it is
+  DELIBERATELY NOT linked from the main site index (`docs\index.html`)**, at
+  explicit user instruction ("keep this healer hidden for now except by
+  users who have the direct url"). Her own hub page
+  (`docs\turkeykin\index.html`) exists and is fully functional (built via
+  `update_hub_pages.ps1` WITHOUT `-IsNewHealer`) — real content, real 4-boss
+  raid overview, reachable by anyone with the direct URL — she's just not
+  discoverable by browsing from `docs\index.html`. **Don't add
+  `-IsNewHealer` for Turkeykin in a future run without checking with the
+  user first** — that flag is specifically what would add her to the main
+  index and end the "hidden for now" state. `update_hub_pages.ps1` itself
+  had its own separate class-gate (a second `$classSpecMap` hard-stop, not
+  the one in `render_healer_report.ps1`) that was missed when Dreamstate was
+  first added and had to be fixed after a real failed manual run — worth
+  remembering that a new class/build addition to this pipeline has now
+  bitten this exact class-gate pattern twice, in two different scripts.
 
 **Recently closed:**
 - Crowns's v2 site regen (2026-07-13) — done. Has a full raid overview + all 10
@@ -727,6 +896,17 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
   her original hand-written page never flagged two genuine missing-enchant
   gaps (Feet, item 30100; Back, item 28765) — same class of miss as the
   Danceswtrees Feet/OffHand catch noted above.
+- **Druid-Dreamstate ported end-to-end (2026-07-16)** — real Top 100 pull
+  (1,299/1,300 parses across all 13 bosses), real report for Turkeykin
+  (report `XJp8vAxzM4KtHYyb`, 4 real boss kills — Al'ar, Void Reaver,
+  Solarian, Kael'thas), rendered and confirmed on disk
+  (`docs\turkeykin\XJp8vAxzM4KtHYyb\`), her own hub page built (deliberately
+  NOT linked from the main index, see the "v2" bullets above). New general
+  mid-raid spec-switching mechanism built and proven on real data alongside
+  it (see "Mid-raid spec switching" above). Both `CLAUDE.md` and
+  `WORKFLOW.md` updated the same day to reflect all of this — if this
+  section still says "four classes" or "four builds" anywhere by the time
+  you're reading it, that's stale, not current.
 
 **Explicitly open, in priority-ish order:**
 1. Tranquility's guid is unknown/unobserved (Druid-only concept) —
@@ -734,20 +914,35 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
    scripts and will silently show 0 forever until someone adds the real guid once
    it's actually seen in a pull.
 2. **Every class this project tracks (Druid, Shaman, Priest, Paladin) is now on
-   the v2 pipeline** — there is no more "port a class" work left on the
-   original four-class scope. If a fifth class is ever added, the playbook is
-   proven four times over now: (a) a real-data discovery pass BEFORE writing any
-   class-specific guid table (never assume a class's cooldown kit or
-   self-buff-uptime concept from memory, and don't over-generalize a finding
-   scoped to one character's report — check it against the full Top 100 sample
-   before it goes into permanent documentation, see the Holy Shock finding
-   above), (b) build the new pull script as a separate file modeled on the
-   existing v2 scripts, smoke-test on one boss into a scratch folder, then
-   promote, (c) add the class's entries to `build_boss_report_data.ps1`'s and
+   the v2 pipeline, and a fifth BUILD (Druid-Dreamstate) has now actually been
+   added too** — the playbook below is proven five times over now, including
+   once for a build that's a SPEC of an already-tracked class rather than a
+   whole new class (a real, previously-hypothetical scenario the (a)-(e) steps
+   below didn't originally anticipate — see the new (f) and (g)):
+   (a) a real-data discovery pass BEFORE writing any class-specific guid table
+   (never assume a class's cooldown kit or self-buff-uptime concept from
+   memory, and don't over-generalize a finding scoped to one character's
+   report — check it against the full Top 100 sample before it goes into
+   permanent documentation, see the Holy Shock finding above), (b) build the
+   new pull script as a separate file modeled on the existing v2 scripts,
+   smoke-test on one boss into a scratch folder, then promote, (c) add the
+   class's entries to `build_boss_report_data.ps1`'s and
    `summarize_class_benchmarks.ps1`'s class-keyed tables, (d) build
    `boss_page_template_{class}.html` from the existing templates' section
    *shape*, not their specific content, (e) extend the generate-healer-report
-   skill's class gate once proven end-to-end.
+   skill's class gate once proven end-to-end, (f) **new, from the Dreamstate
+   port**: if the new build shares a real WCL class with an already-tracked
+   one, don't assume its cooldown kit or self-buff-uptime concept carries over
+   just because the base class is the same — check independently, and design
+   a real split between the pipeline's own class-track key (folder/manifest/
+   table key) and the real WCL `className`/`specName` values from the start,
+   (g) **new, also from the Dreamstate port**: check EVERY script that gates
+   on a hardcoded class list, not just the ones you remember touching last
+   time — `render_healer_report.ps1`'s class gate and `update_hub_pages.ps1`'s
+   were both missed on the first pass (two separate `$classSpecMap`-shaped
+   hard-stops in two different scripts), and the second one only surfaced
+   after a real failed manual run. `grep` for the previous class list's exact
+   wording across `scripts\` before considering a new build "done."
 3. One narrow, accepted gap, reconfirmed with real Shaman, Priest, and Paladin
    data at a broadly similar rate: no `combatantinfo` snapshot even within the
    2-minute backward buffer, likely a late-joining player — 1 case for Druid
@@ -764,26 +959,33 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
    page must reflect this, not assume Holy Shock never heals. `build_boss_analysis.ps1`
    auto-tags this as the `paladin_holy_shock_guid_split` canned caveat for any
    report built through the new pipeline.
-6. **Gruul's Lair/Magtheridon's Lair rollout has a real rendered report for
-   Danceswtrees (Druid) AND Vajomee (Shaman) now — corrected 2026-07-16,
-   see below.** Both were pulled/analyzed/rendered from the same shared raid
-   log (report `LKbVcNfRxyBkj2mg`, see "Recently closed" above) the same day
-   (2026-07-15); an earlier version of this file said the rollout was
-   "Druid-only," which was checked against real files on disk (2026-07-16)
-   and found to be wrong — Vajomee's `data\Characters\Vajomee\LKbVcNfRxyBkj2mg\`
-   and `docs\vajomee\LKbVcNfRxyBkj2mg\` both exist in full (12 boss pages
-   including Maulgar/Gruul, real findings.json, linked from Vajomee's hub
-   page). **Lippies (Priest) and Crowns (Paladin) still only have their
-   original `XJp8vAxzM4KtHYyb` report on disk** (confirmed 2026-07-16, no
-   second report-code folder exists for either) — they genuinely haven't had
-   a new raid night generated since the tier was added. Nothing to migrate by
-   hand for either — the next `generate-healer-report` run for them will pick
-   up the new boss IDs automatically — but don't assume their sites already
-   reflect this the way Danceswtrees's and Vajomee's now do. **Lesson from
-   this correction: verify "which healers have X" claims against the actual
-   report-code folders on disk before trusting this file's phrasing — a
-   shared raid log means one pull session can silently cover more than one
-   healer, and this file didn't say so the first time.**
+6. **Not tracked, per explicit 2026-07-16 instruction**: whether Lippies/
+   Crowns (or any other healer) has a real rendered report against the
+   Gruul's Lair/Magtheridon's Lair tier. No healer this project tracks has
+   had a real raid night on those bosses recently, and this file no longer
+   monitors that gap — don't resurrect this as an open item without a new,
+   real reason to (e.g. an actual new pull against those bosses). Danceswtrees
+   and Vajomee's existing real reports against that tier (report
+   `LKbVcNfRxyBkj2mg`, see "Recently closed" above) are unaffected by this —
+   this is about not chasing further rollout, not about undoing what exists.
+7. **Dreamstate has only one real data point so far — Turkeykin.** Every prior
+   class port got a second real-report cross-check before being called
+   "regression-tested" in this file's own language; Dreamstate hasn't had
+   that yet. Not urgent (the one real data point is thorough — 4 real boss
+   kills, a real multi-spec-in-one-report case, a real Top 100 pull), but
+   worth naming so a future reader doesn't over-trust "confirmed against real
+   data" as broadly as the phrase reads for the other four builds.
+8. **Turkeykin's site is deliberately unlisted from the main site index** —
+   see the "v2" bullets above for the full framing. Revisit whenever the user
+   is ready to make her visible (re-run `update_hub_pages.ps1` with
+   `-IsNewHealer`) — don't do this proactively without checking first.
+9. **Not pushed to GitHub yet.** All of this session's Dreamstate work
+   (scripts, templates, Turkeykin's data/docs, the two doc files this section
+   lives in) is sitting in local commits only (this repo has an active
+   auto-commit hook, confirmed live — commits appear without an explicit
+   `git commit` being run) — none of it is live on GitHub Pages until an
+   actual `git push` happens. Confirm with the user before pushing, same as
+   any other shared/external action.
 
 ## Ground rules (condensed from WORKFLOW.md — read the real thing for why)
 
@@ -867,7 +1069,7 @@ specifically so the pages' relative links (`../index.html`, etc.) kept resolving
 correctly — spot-checked after the move: `docs/index.html`'s healer links,
 `docs/danceswtrees/index.html`'s `../index.html` back-link, and its raid-date
 subfolder link all still resolve. `scripts/`, `data/`, `templates/`,
-`reference/`, `examples/`, `WORKFLOW.md`, `CLAUDE.md`, `TODO.md` stay at repo
+`reference/`, `examples/`, `WORKFLOW.md`, `CLAUDE.md` stay at repo
 root — Pages only serves what's inside `docs/`, so keeping them at root just
 means they're not web-served (still visible in the repo browser itself, since
 the repo is public — Pages scoping doesn't hide them, it just keeps them out of
