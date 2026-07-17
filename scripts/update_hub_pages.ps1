@@ -102,13 +102,14 @@ if (-not $ResortOnly) {
 }
 
 $classSpecMap = @{
-    "Druid"   = "Restoration Druid"
-    "Shaman"  = "Restoration Shaman"
-    "Priest"  = "Holy Priest"
-    "Paladin" = "Holy Paladin"
+    "Druid"      = "Restoration Druid"
+    "Shaman"     = "Restoration Shaman"
+    "Priest"     = "Holy Priest"
+    "Paladin"    = "Holy Paladin"
+    "Dreamstate" = "Dreamstate Druid"
 }
 if ($ClassName -and -not $classSpecMap.ContainsKey($ClassName)) {
-    Write-Host "ERROR: unrecognized ClassName '$ClassName' - must be Druid, Shaman, Priest, or Paladin."
+    Write-Host "ERROR: unrecognized ClassName '$ClassName' - must be Druid, Shaman, Priest, Paladin, or Dreamstate."
     exit 1
 }
 $classSpec = if ($ClassName) { $classSpecMap[$ClassName] } else { $null }
