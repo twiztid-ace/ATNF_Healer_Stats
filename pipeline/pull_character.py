@@ -26,6 +26,7 @@ from pathlib import Path
 from typing import Any
 
 from pipeline import bosses as bosses_module
+from pipeline import classes as classes_module
 from pipeline import jsonio, paths, wcl_api
 from pipeline.numeric import round_net
 
@@ -35,6 +36,22 @@ TRACKED_HEALER_ICONS = {
     "Druid-Restoration", "Druid-Dreamstate", "Shaman-Restoration",
     "Priest-Holy", "Priest-Discipline", "Paladin-Holy",
 }
+
+
+def _resolve_pipeline_class_name(wcl_class_name: str | None, wcl_spec_name: str | None) -> str | None:
+    """Maps a real (WCL className, WCL specName) pair to this pipeline's own
+    class key (e.g. ("Druid", "Dreamstate") -> "Dreamstate", ("Druid",
+    "Restoration") -> "Druid") - the split every downstream step (build_report_data,
+    build_analysis, render_report, pull_top100) needs but the PowerShell
+    original never persisted anywhere, relying on a human reading console
+    output instead (see the generate-healer-report skill's "note the resolved
+    class" step). Returns None if no config matches (unsupported class/spec)."""
+    if not wcl_class_name or not wcl_spec_name:
+        return None
+    for key, cfg in classes_module.CLASSES.items():
+        if cfg.wcl_class_name == wcl_class_name and cfg.wcl_spec_name == wcl_spec_name:
+            return key
+    return None
 
 
 def _get_boss_slug(boss_id: int, boss_name: str) -> str:
@@ -558,7 +575,18 @@ def pull_character(
     print(f"Done. Output: {out_dir}")
     print(f"  Boss kills fully pulled (healing+casts+consumables+deaths ok): {total_done}")
     print(f"  Boss kills with at least one failed pull:                {total_failed}")
-    return out_dir
+
+    pipeline_class_name = _resolve_pipeline_class_name(class_name, resolved_spec)
+    return {
+        "out_dir": out_dir,
+        "wcl_class_name": class_name,
+        "resolved_spec": resolved_spec,
+        "pipeline_class_name": pipeline_class_name,
+        "raid_date": raid_date,
+        "boss_fights_count": len(boss_fights),
+        "total_done": total_done,
+        "total_failed": total_failed,
+    }
 
 
 def main() -> int:
