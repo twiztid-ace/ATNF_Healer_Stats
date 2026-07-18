@@ -44,6 +44,7 @@ class PullCharacterResult(TypedDict):
 
 TREE_OF_LIFE_GUID = 33891
 IMPROVED_FAERIE_FIRE_GUID = 26993
+HEALING_TOUCH_GUID = 26979
 TRACKED_HEALER_ICONS = {
     "Druid-Restoration", "Druid-Dreamstate", "Shaman-Restoration",
     "Priest-Holy", "Priest-Discipline", "Paladin-Holy",
@@ -87,7 +88,21 @@ def _resolve_ability_name_local(guid: int, cache: dict, access_token: str) -> di
     return entry
 
 
-def _get_tree_of_life_intervals(report_code: str, character_id: int, report_start: int, report_end: int, access_token: str) -> list[tuple[float, float]]:
+def _get_tree_of_life_events(report_code: str, character_id: int, report_start: int, report_end: int, access_token: str) -> list[dict]:
+    """Fetches the report-wide real Tree of Life buff events (one API call,
+    reused across every fight below) - but does NOT reconstruct continuous
+    report-wide intervals from them anymore. A single continuous reconstruction
+    across the whole report conflated "no applybuff/removebuff event fired
+    near this fight" with "genuinely out of the buff", which is wrong: this
+    realm's "Incarnation: Tree of Life" is a real, re-castable ability, and a
+    fight with zero real toggle events can mean EITHER "still up from an
+    earlier cast, nothing changed" OR "was never re-entered" - those aren't
+    distinguishable from the event stream alone. See
+    _tree_of_life_uptime_for_fight's per-fight, evidence-based resolution of
+    that ambiguity (confirmed against real data: a report-wide reconstruction
+    put Danceswtrees's real Karathress kill at 3.6% uptime; WCL's own
+    server-computed table(dataType: Casts) uptime for that exact fight was
+    76.3% - the per-fight approach here reproduces that 76.3% exactly)."""
     print(f"  Fetching report-wide Tree of Life buff events (guid {TREE_OF_LIFE_GUID})...")
     report_end_offset = report_end - report_start
 
@@ -108,12 +123,50 @@ def _get_tree_of_life_intervals(report_code: str, character_id: int, report_star
         return []
 
     tol_events = sorted((e for e in paged.items if e.get("abilityGameID") == TREE_OF_LIFE_GUID), key=lambda e: e["timestamp"])
+    print(f"  Fetched {len(tol_events)} real Tree of Life buff event(s) report-wide")
+    return tol_events
+
+
+def _tree_of_life_uptime_for_fight(tol_events: list[dict], fight_start: float, fight_end: float, fight_casts_events: list[dict]) -> float:
+    """Per-fight uptime, evidence-based rather than assumed from a report-wide
+    chain. Real rule, confirmed against real Danceswtrees data (see
+    _get_tree_of_life_events's docstring):
+      - A real removebuff is the first event seen inside this fight's own
+        window -> the buff was already up when the fight started (no earlier
+        applybuff needed inside the window to prove that), active from fight
+        start until that removal.
+      - A real applybuff is the first event seen -> NOT up at fight start,
+        inactive until that cast.
+      - Every following apply/remove pair inside the window reconstructs
+        normally.
+      - Zero real toggle events anywhere in the window -> ambiguous from this
+        signal alone (could mean "still up the whole fight, nothing to log"
+        OR "never re-entered"). Healing Touch (guid 26979) cannot be cast
+        while shapeshifted into Tree of Life - a real, hard game-mechanic
+        fact - so a real Healing Touch cast anywhere in the fight's own casts
+        proves the character was NOT in the buff for at least that moment;
+        per explicit instruction, treat that as 0% uptime for the whole
+        fight rather than estimating a partial window. No Healing Touch cast
+        either -> assume 100% (still up the entire fight)."""
+    duration = fight_end - fight_start
+    if duration <= 0:
+        return 0
+
+    in_window = sorted((e for e in tol_events if fight_start <= e["timestamp"] <= fight_end), key=lambda e: e["timestamp"])
+    if not in_window:
+        has_healing_touch = any(e.get("abilityGameID") == HEALING_TOUCH_GUID for e in fight_casts_events)
+        return 0 if has_healing_touch else 100
 
     intervals: list[tuple[float, float]] = []
     active = False
     interval_start = None
-    is_first_event = True
-    for ev in tol_events:
+    first = in_window[0]
+    if first["type"] == "removebuff":
+        intervals.append((fight_start, first["timestamp"]))
+    elif first["type"] == "applybuff":
+        active = True
+        interval_start = first["timestamp"]
+    for ev in in_window[1:]:
         if ev["type"] == "applybuff":
             if not active:
                 interval_start = ev["timestamp"]
@@ -122,33 +175,17 @@ def _get_tree_of_life_intervals(report_code: str, character_id: int, report_star
             if active:
                 intervals.append((interval_start, ev["timestamp"]))
                 active = False
-            elif is_first_event:
-                intervals.append((0, ev["timestamp"]))
-        is_first_event = False
     if active:
-        intervals.append((interval_start, report_end_offset))
+        intervals.append((interval_start, fight_end))
 
-    print(f"  Reconstructed {len(intervals)} Tree of Life interval(s) from {len(tol_events)} raw events")
-    return intervals
-
-
-def _tree_of_life_uptime_pct(intervals: list[tuple[float, float]], fight_start: float, fight_end: float) -> float:
-    overlap = 0
-    for iv_start, iv_end in intervals:
-        ov_start = max(iv_start, fight_start)
-        ov_end = min(iv_end, fight_end)
-        if ov_end > ov_start:
-            overlap += ov_end - ov_start
-    duration = fight_end - fight_start
-    if duration <= 0:
-        return 0
+    overlap = sum(min(iv_end, fight_end) - max(iv_start, fight_start) for iv_start, iv_end in intervals)
     return round_net((overlap / duration) * 100, 1)
 
 
 def _pull_one_fight(
     fight_id: int, boss_slug: str, start_time: float, end_time: float, report_code: str,
     character_id: int, character_name: str, actor_names: dict[int, str],
-    tree_of_life_intervals: list[tuple[float, float]], out_dir: Path, access_token: str,
+    tree_of_life_events: list[dict], out_dir: Path, access_token: str,
     compute_improved_faerie_fire: bool,
 ) -> dict:
     label = f"fight{fight_id:02d}_{boss_slug}"
@@ -273,7 +310,8 @@ def _pull_one_fight(
                 else:
                     cc = wcl_api.classify_consumables(snapshot["auras"])
                     food = next((a for a in snapshot["auras"] if a.get("name") == "Well Fed"), None)
-                    tree_of_life_pct = _tree_of_life_uptime_pct(tree_of_life_intervals, start_time, end_time)
+                    fight_casts_events = jsonio.read_json(casts_out)["events"] if casts_out.exists() else []
+                    tree_of_life_pct = _tree_of_life_uptime_for_fight(tree_of_life_events, start_time, end_time, fight_casts_events)
                     out = {
                         "flaskActive": bool(cc.flask), "flaskName": cc.flask["name"] if cc.flask else None,
                         "battleElixirActive": bool(cc.battle_elixir), "battleElixirName": cc.battle_elixir["name"] if cc.battle_elixir else None,
@@ -542,9 +580,9 @@ def pull_character(
 
     # ===== Step 4: per-boss-kill data =====
     print("=== Step 3: Fight data per boss kill (healing events, casts events, consumables, deaths) ===")
-    tree_of_life_intervals: list[tuple[float, float]] = []
+    tree_of_life_events: list[dict] = []
     if character_id:
-        tree_of_life_intervals = _get_tree_of_life_intervals(report_code, character_id, fights_data["start"], fights_data["end"], token)
+        tree_of_life_events = _get_tree_of_life_events(report_code, character_id, fights_data["start"], fights_data["end"], token)
 
     if not character_id:
         print("  SKIPPED - no report-local actor ID for the character (see warning above).")
@@ -564,7 +602,7 @@ def pull_character(
             futures = [
                 executor.submit(
                     _pull_one_fight, fight["id"], _get_boss_slug(fight["boss"], fight["name"]), fight["start_time"], fight["end_time"],
-                    report_code, character_id, character_name, actor_names, tree_of_life_intervals, out_dir, token, compute_improved_faerie_fire,
+                    report_code, character_id, character_name, actor_names, tree_of_life_events, out_dir, token, compute_improved_faerie_fire,
                 )
                 for fight in boss_fights
             ]

@@ -38,6 +38,7 @@ from pipeline.numeric import round_net
 
 TREE_OF_LIFE_GUID = 33891
 IMPROVED_FAERIE_FIRE_GUID = 26993
+HEALING_TOUCH_GUID = 26979
 
 
 def _now_iso() -> str:
@@ -155,7 +156,19 @@ def _get_consumables_snapshot(report_id: str, fight_id: int, start_time: float, 
     }
 
 
-def _get_tree_of_life_uptime(report_id: str, fight_id: int, start_time: float, end_time: float, source_id: int, access_token: str, messages: list[str], idx: int, player_name: str) -> float | None:
+def _get_tree_of_life_uptime(report_id: str, fight_id: int, start_time: float, end_time: float, source_id: int, access_token: str, messages: list[str], idx: int, player_name: str, casts_out: Path) -> float | None:
+    """Already fight-scoped (one parse = one fight), so the orphan-removebuff-
+    as-since-fight-start rule below was already correct for the "has real
+    toggle events" case. The real gap (confirmed against real Danceswtrees
+    data, see pull_character.py's _get_tree_of_life_events docstring): a
+    fight with ZERO real toggle events used to fall through to `intervals`
+    staying empty -> 0% uptime, silently treating "no signal" as "definitely
+    not in the buff". That's wrong when the ability was cast once and never
+    needed re-casting for the rest of a long sample - Healing Touch (guid
+    26979) can't be cast while shapeshifted into Tree of Life, a real hard
+    game-mechanic fact, so its presence (with zero toggle events) is the only
+    real evidence available that the parse was genuinely NOT in the buff;
+    absent that, assume it was up the whole fight rather than defaulting to 0."""
     q = f'query {{ reportData {{ report(code: "{report_id}") {{ events(fightIDs: [{fight_id}], sourceID: {source_id}, dataType: Buffs, startTime: {start_time}, endTime: {end_time}) {{ data }} }} }} }}'
     r = wcl_api.invoke_wcl_graphql(q, access_token=access_token)
     if r.errors:
@@ -165,6 +178,15 @@ def _get_tree_of_life_uptime(report_id: str, fight_id: int, start_time: float, e
         (e for e in r.data["reportData"]["report"]["events"]["data"] if e.get("abilityGameID") == TREE_OF_LIFE_GUID),
         key=lambda e: e["timestamp"],
     )
+    duration = end_time - start_time
+    if duration <= 0:
+        return 0
+
+    if not tol_events:
+        fight_casts_events = jsonio.read_json(casts_out)["events"] if casts_out.exists() else []
+        has_healing_touch = any(e.get("abilityGameID") == HEALING_TOUCH_GUID for e in fight_casts_events)
+        return 0 if has_healing_touch else 100
+
     intervals = []
     active = False
     interval_start = None
@@ -189,9 +211,6 @@ def _get_tree_of_life_uptime(report_id: str, fight_id: int, start_time: float, e
         ov_end = min(iv_end, end_time)
         if ov_end > ov_start:
             overlap += ov_end - ov_start
-    duration = end_time - start_time
-    if duration <= 0:
-        return 0
     return round_net((overlap / duration) * 100, 1)
 
 
@@ -272,7 +291,7 @@ def _pull_one_parse(
             has_buff_uptime = "TreeOfLife" in cfg.active_stat_blocks
             has_debuff_uptime = "ImprovedFaerieFire" in cfg.active_stat_blocks
             if has_buff_uptime:
-                tol_pct = _get_tree_of_life_uptime(report_id, fight_id, start, end, player_id, access_token, messages, idx, player_name)
+                tol_pct = _get_tree_of_life_uptime(report_id, fight_id, start, end, player_id, access_token, messages, idx, player_name, casts_out)
                 if tol_pct is None:
                     tol_pct = 0
                     parse_ok = False

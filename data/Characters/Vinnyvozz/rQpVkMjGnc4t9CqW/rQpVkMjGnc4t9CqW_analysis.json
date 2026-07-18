@@ -8,15 +8,15 @@
         "HPS": {
           "Value": 448,
           "Top1": 1680.0,
-          "Top100Avg": 1278.0,
-          "Median": 1247.0,
+          "Top100Avg": 1282.0,
+          "Median": 1253.0,
           "RatioToAvg": 0.35,
           "Flag": "below_avg"
         },
         "Overheal": {
           "Value": 73.5,
           "Best": 33.7,
-          "Median": 47.3,
+          "Median": 47.2,
           "Worst": 59.5,
           "GapToWorst": 14.0,
           "Flag": "exceeds_worst"
@@ -32,7 +32,7 @@
         "HPM": {
           "Value": 2.47,
           "Top1": 7.59,
-          "Top100Avg": 5.85,
+          "Top100Avg": 5.86,
           "Median": 5.91,
           "RatioToAvg": 0.42,
           "Flag": "below_avg",
@@ -40,14 +40,14 @@
         },
         "TargetCoverage": {
           "Value": 97.9,
-          "Top100Avg": 83.5,
-          "GapPoints": 14.4,
+          "Top100Avg": 83.6,
+          "GapPoints": 14.3,
           "Flag": "above_avg"
         },
         "Top1Concentration": {
           "Value": 35.8,
-          "Top100Avg": 48.5,
-          "GapPoints": -12.7,
+          "Top100Avg": 48.6,
+          "GapPoints": -12.8,
           "Flag": "below_avg"
         }
       },
@@ -56,24 +56,24 @@
           "Guid": 33763,
           "Name": "Lifebloom",
           "CharacterPct": 40.4,
-          "BenchmarkPct": 41.1,
-          "GapPoints": -0.7,
+          "BenchmarkPct": 41.0,
+          "GapPoints": -0.6,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26980,
           "Name": "Regrowth",
           "CharacterPct": 40.1,
-          "BenchmarkPct": 27.6,
-          "GapPoints": 12.5,
+          "BenchmarkPct": 27.8,
+          "GapPoints": 12.3,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26982,
           "Name": "Rejuvenation",
           "CharacterPct": 11.9,
-          "BenchmarkPct": 14.4,
-          "GapPoints": -2.5,
+          "BenchmarkPct": 14.2,
+          "GapPoints": -2.3,
           "BenchmarkOnly": false
         },
         {
@@ -88,8 +88,8 @@
           "Guid": 33778,
           "Name": "Lifebloom",
           "CharacterPct": 1.2,
-          "BenchmarkPct": 4.5,
-          "GapPoints": -3.3,
+          "BenchmarkPct": 4.6,
+          "GapPoints": -3.4,
           "BenchmarkOnly": false
         },
         {
@@ -112,15 +112,15 @@
           "Guid": 9857,
           "Name": "Regrowth",
           "CharacterPct": 0.0,
-          "BenchmarkPct": 1.0,
-          "GapPoints": -1.0,
+          "BenchmarkPct": 0.8,
+          "GapPoints": -0.8,
           "BenchmarkOnly": true
         }
       ],
       "TopSpellGap": {
         "Guid": 26980,
         "Name": "Regrowth",
-        "GapPoints": 12.5
+        "GapPoints": 12.3
       },
       "SpellRanks": [
         {
@@ -131,7 +131,7 @@
               "ManaCost": 0,
               "ManaCostSource": "known",
               "CharacterPct": 1.2,
-              "BenchmarkPct": 4.5,
+              "BenchmarkPct": 4.6,
               "RankLabel": "Bloom"
             },
             {
@@ -139,7 +139,7 @@
               "ManaCost": 220,
               "ManaCostSource": "character",
               "CharacterPct": 40.4,
-              "BenchmarkPct": 41.1,
+              "BenchmarkPct": 41.0,
               "RankLabel": "HoT"
             }
           ]
@@ -152,7 +152,7 @@
               "ManaCost": 485.0,
               "ManaCostSource": "benchmark",
               "CharacterPct": 0.0,
-              "BenchmarkPct": 1.0,
+              "BenchmarkPct": 0.8,
               "RankLabel": null
             },
             {
@@ -168,7 +168,7 @@
               "ManaCost": 675,
               "ManaCostSource": "character",
               "CharacterPct": 40.1,
-              "BenchmarkPct": 27.6,
+              "BenchmarkPct": 27.8,
               "RankLabel": null
             }
           ]
@@ -180,7 +180,7 @@
           "SelfCount": 0,
           "TargetLabel": "→ Quruella",
           "Top100AvgCasts": 0.8,
-          "Top100UsedPct": 77.0,
+          "Top100UsedPct": 79.0,
           "Top100SelfPct": 61.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -190,7 +190,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.9,
-          "Top100UsedPct": 84.0,
+          "Top100UsedPct": 86.0,
           "Top100SelfPct": 100.0,
           "Deviates": true,
           "DeviationDirection": "undercast"
@@ -240,10 +240,10 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.5,
-          "Top100UsedPct": 49.0,
+          "Top100UsedPct": 50.0,
           "Top100SelfPct": 100.0,
-          "Deviates": false,
-          "DeviationDirection": null
+          "Deviates": true,
+          "DeviationDirection": "undercast"
         }
       },
       "TranquilityInclude": false,
@@ -273,7 +273,7 @@
         "HPS": {
           "Value": 573,
           "Top1": 2304.0,
-          "Top100Avg": 1615.0,
+          "Top100Avg": 1617.0,
           "Median": 1563.0,
           "RatioToAvg": 0.35,
           "Flag": "below_avg"
@@ -281,7 +281,7 @@
         "Overheal": {
           "Value": 65.2,
           "Best": 16.4,
-          "Median": 35.5,
+          "Median": 35.6,
           "Worst": 49.1,
           "GapToWorst": 16.1,
           "Flag": "exceeds_worst"
@@ -297,22 +297,22 @@
         "HPM": {
           "Value": 3.89,
           "Top1": 10.81,
-          "Top100Avg": 7.37,
-          "Median": 7.15,
+          "Top100Avg": 7.35,
+          "Median": 7.09,
           "RatioToAvg": 0.53,
           "Flag": "below_avg",
           "Omit": false
         },
         "TargetCoverage": {
           "Value": 56.9,
-          "Top100Avg": 56.8,
-          "GapPoints": 0.1,
+          "Top100Avg": 56.7,
+          "GapPoints": 0.2,
           "Flag": "in_line"
         },
         "Top1Concentration": {
           "Value": 15.0,
-          "Top100Avg": 25.3,
-          "GapPoints": -10.3,
+          "Top100Avg": 25.2,
+          "GapPoints": -10.2,
           "Flag": "below_avg"
         }
       },
@@ -321,40 +321,40 @@
           "Guid": 26980,
           "Name": "Regrowth",
           "CharacterPct": 28.9,
-          "BenchmarkPct": 39.2,
-          "GapPoints": -10.3,
+          "BenchmarkPct": 40.0,
+          "GapPoints": -11.1,
           "BenchmarkOnly": false
         },
         {
           "Guid": 33763,
           "Name": "Lifebloom",
           "CharacterPct": 33.4,
-          "BenchmarkPct": 28.5,
-          "GapPoints": 4.9,
+          "BenchmarkPct": 27.9,
+          "GapPoints": 5.5,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26982,
           "Name": "Rejuvenation",
           "CharacterPct": 10.1,
-          "BenchmarkPct": 13.9,
-          "GapPoints": -3.8,
+          "BenchmarkPct": 14.0,
+          "GapPoints": -3.9,
           "BenchmarkOnly": false
         },
         {
           "Guid": 33778,
           "Name": "Lifebloom",
           "CharacterPct": 8.4,
-          "BenchmarkPct": 8.5,
-          "GapPoints": -0.1,
+          "BenchmarkPct": 8.3,
+          "GapPoints": 0.1,
           "BenchmarkOnly": false
         },
         {
           "Guid": 18562,
           "Name": "Swiftmend",
           "CharacterPct": 19.3,
-          "BenchmarkPct": 4.7,
-          "GapPoints": 14.6,
+          "BenchmarkPct": 4.6,
+          "GapPoints": 14.7,
           "BenchmarkOnly": false
         },
         {
@@ -369,8 +369,8 @@
           "Guid": 26979,
           "Name": "Healing Touch",
           "CharacterPct": 0.0,
-          "BenchmarkPct": 1.0,
-          "GapPoints": -1.0,
+          "BenchmarkPct": 0.9,
+          "GapPoints": -0.9,
           "BenchmarkOnly": true
         },
         {
@@ -385,7 +385,7 @@
       "TopSpellGap": {
         "Guid": 18562,
         "Name": "Swiftmend",
-        "GapPoints": 14.6
+        "GapPoints": 14.7
       },
       "SpellRanks": [
         {
@@ -404,7 +404,7 @@
               "ManaCost": 675,
               "ManaCostSource": "character",
               "CharacterPct": 28.9,
-              "BenchmarkPct": 39.2,
+              "BenchmarkPct": 40.0,
               "RankLabel": null
             }
           ]
@@ -417,7 +417,7 @@
               "ManaCost": 0,
               "ManaCostSource": "known",
               "CharacterPct": 8.4,
-              "BenchmarkPct": 8.5,
+              "BenchmarkPct": 8.3,
               "RankLabel": "Bloom"
             },
             {
@@ -425,7 +425,7 @@
               "ManaCost": 220,
               "ManaCostSource": "character",
               "CharacterPct": 33.4,
-              "BenchmarkPct": 28.5,
+              "BenchmarkPct": 27.9,
               "RankLabel": "HoT"
             }
           ]
@@ -446,7 +446,7 @@
               "ManaCost": 415,
               "ManaCostSource": "character",
               "CharacterPct": 10.1,
-              "BenchmarkPct": 13.9,
+              "BenchmarkPct": 14.0,
               "RankLabel": null
             }
           ]
@@ -468,7 +468,7 @@
           "SelfCount": 1,
           "TargetLabel": "self",
           "Top100AvgCasts": 0.8,
-          "Top100UsedPct": 75.0,
+          "Top100UsedPct": 74.0,
           "Top100SelfPct": 100.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -477,7 +477,7 @@
           "Count": 5,
           "SelfCount": 0,
           "TargetLabel": "→ Luffydonoo, → Megatauro, → Firewoody, → Vajony, → Fuggler",
-          "Top100AvgCasts": 3.2,
+          "Top100AvgCasts": 3.1,
           "Top100UsedPct": 92.0,
           "Top100SelfPct": 7.0,
           "Deviates": false,
@@ -498,7 +498,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.2,
-          "Top100UsedPct": 18.0,
+          "Top100UsedPct": 17.0,
           "Top100SelfPct": 0.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -518,7 +518,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.7,
-          "Top100UsedPct": 59.0,
+          "Top100UsedPct": 61.0,
           "Top100SelfPct": 100.0,
           "Deviates": true,
           "DeviationDirection": "undercast"
@@ -551,15 +551,15 @@
         "HPS": {
           "Value": 580,
           "Top1": 2083.0,
-          "Top100Avg": 1535.0,
-          "Median": 1496.0,
+          "Top100Avg": 1537.0,
+          "Median": 1503.0,
           "RatioToAvg": 0.38,
           "Flag": "below_avg"
         },
         "Overheal": {
           "Value": 69.3,
           "Best": 27.6,
-          "Median": 42.2,
+          "Median": 42.0,
           "Worst": 54.3,
           "GapToWorst": 15.0,
           "Flag": "exceeds_worst"
@@ -567,15 +567,15 @@
         "ActiveTime": {
           "Value": 99.6,
           "Top1": 100.0,
-          "Top100Avg": 99.0,
+          "Top100Avg": 99.1,
           "Median": 99.5,
-          "GapToAvg": 0.6,
+          "GapToAvg": 0.5,
           "Flag": "in_line"
         },
         "HPM": {
           "Value": 3.24,
           "Top1": 9.42,
-          "Top100Avg": 6.4,
+          "Top100Avg": 6.41,
           "Median": 6.26,
           "RatioToAvg": 0.51,
           "Flag": "below_avg",
@@ -599,8 +599,8 @@
           "Guid": 26980,
           "Name": "Regrowth",
           "CharacterPct": 36.3,
-          "BenchmarkPct": 52.8,
-          "GapPoints": -16.5,
+          "BenchmarkPct": 52.9,
+          "GapPoints": -16.6,
           "BenchmarkOnly": false
         },
         {
@@ -615,8 +615,8 @@
           "Guid": 26982,
           "Name": "Rejuvenation",
           "CharacterPct": 21.8,
-          "BenchmarkPct": 13.3,
-          "GapPoints": 8.5,
+          "BenchmarkPct": 13.0,
+          "GapPoints": 8.8,
           "BenchmarkOnly": false
         },
         {
@@ -672,7 +672,7 @@
       "TopSpellGap": {
         "Guid": 26980,
         "Name": "Regrowth",
-        "GapPoints": -16.5
+        "GapPoints": -16.6
       },
       "SpellRanks": [
         {
@@ -699,7 +699,7 @@
               "ManaCost": 675,
               "ManaCostSource": "character",
               "CharacterPct": 36.3,
-              "BenchmarkPct": 52.8,
+              "BenchmarkPct": 52.9,
               "RankLabel": null
             }
           ]
@@ -742,7 +742,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.8,
-          "Top100UsedPct": 81.0,
+          "Top100UsedPct": 82.0,
           "Top100SelfPct": 100.0,
           "Deviates": true,
           "DeviationDirection": "undercast"
@@ -782,7 +782,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.2,
-          "Top100UsedPct": 19.0,
+          "Top100UsedPct": 20.0,
           "Top100SelfPct": 100.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -792,7 +792,7 @@
           "SelfCount": 1,
           "TargetLabel": "self",
           "Top100AvgCasts": 0.7,
-          "Top100UsedPct": 62.0,
+          "Top100UsedPct": 64.0,
           "Top100SelfPct": 100.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -869,8 +869,8 @@
         "HPS": {
           "Value": 853,
           "Top1": 2123.0,
-          "Top100Avg": 1842.0,
-          "Median": 1815.0,
+          "Top100Avg": 1850.0,
+          "Median": 1821.0,
           "RatioToAvg": 0.46,
           "Flag": "below_avg"
         },
@@ -893,7 +893,7 @@
         "HPM": {
           "Value": 4.28,
           "Top1": 11.69,
-          "Top100Avg": 8.23,
+          "Top100Avg": 8.25,
           "Median": 8.0,
           "RatioToAvg": 0.52,
           "Flag": "below_avg",
@@ -901,14 +901,14 @@
         },
         "TargetCoverage": {
           "Value": 79.4,
-          "Top100Avg": 74.6,
-          "GapPoints": 4.8,
+          "Top100Avg": 75.3,
+          "GapPoints": 4.1,
           "Flag": "in_line"
         },
         "Top1Concentration": {
           "Value": 47.1,
-          "Top100Avg": 34.8,
-          "GapPoints": 12.3,
+          "Top100Avg": 35.2,
+          "GapPoints": 11.9,
           "Flag": "above_avg"
         }
       },
@@ -917,40 +917,40 @@
           "Guid": 33763,
           "Name": "Lifebloom",
           "CharacterPct": 30.6,
-          "BenchmarkPct": 40.0,
-          "GapPoints": -9.4,
+          "BenchmarkPct": 40.5,
+          "GapPoints": -9.9,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26980,
           "Name": "Regrowth",
           "CharacterPct": 36.0,
-          "BenchmarkPct": 33.8,
-          "GapPoints": 2.2,
+          "BenchmarkPct": 33.9,
+          "GapPoints": 2.1,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26982,
           "Name": "Rejuvenation",
           "CharacterPct": 24.1,
-          "BenchmarkPct": 12.9,
-          "GapPoints": 11.2,
+          "BenchmarkPct": 12.3,
+          "GapPoints": 11.8,
           "BenchmarkOnly": false
         },
         {
           "Guid": 33778,
           "Name": "Lifebloom",
           "CharacterPct": 6.5,
-          "BenchmarkPct": 5.5,
-          "GapPoints": 1.0,
+          "BenchmarkPct": 5.6,
+          "GapPoints": 0.9,
           "BenchmarkOnly": false
         },
         {
           "Guid": 18562,
           "Name": "Swiftmend",
           "CharacterPct": 2.9,
-          "BenchmarkPct": 4.4,
-          "GapPoints": -1.5,
+          "BenchmarkPct": 4.3,
+          "GapPoints": -1.4,
           "BenchmarkOnly": false
         },
         {
@@ -973,7 +973,7 @@
       "TopSpellGap": {
         "Guid": 26982,
         "Name": "Rejuvenation",
-        "GapPoints": 11.2
+        "GapPoints": 11.8
       },
       "SpellRanks": [
         {
@@ -984,7 +984,7 @@
               "ManaCost": 0,
               "ManaCostSource": "known",
               "CharacterPct": 6.5,
-              "BenchmarkPct": 5.5,
+              "BenchmarkPct": 5.6,
               "RankLabel": "Bloom"
             },
             {
@@ -992,7 +992,7 @@
               "ManaCost": 220,
               "ManaCostSource": "character",
               "CharacterPct": 30.6,
-              "BenchmarkPct": 40.0,
+              "BenchmarkPct": 40.5,
               "RankLabel": "HoT"
             }
           ]
@@ -1013,7 +1013,7 @@
               "ManaCost": 415,
               "ManaCostSource": "character",
               "CharacterPct": 24.1,
-              "BenchmarkPct": 12.9,
+              "BenchmarkPct": 12.3,
               "RankLabel": null
             }
           ]
@@ -1025,8 +1025,8 @@
           "SelfCount": 1,
           "TargetLabel": "self",
           "Top100AvgCasts": 0.8,
-          "Top100UsedPct": 80.0,
-          "Top100SelfPct": 69.0,
+          "Top100UsedPct": 79.0,
+          "Top100SelfPct": 70.0,
           "Deviates": false,
           "DeviationDirection": null
         },
@@ -1035,7 +1035,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.7,
-          "Top100UsedPct": 74.0,
+          "Top100UsedPct": 73.0,
           "Top100SelfPct": 100.0,
           "Deviates": true,
           "DeviationDirection": "undercast"
@@ -1046,7 +1046,7 @@
           "TargetLabel": "→ Staubaoz, → Leechers, → Calamety",
           "Top100AvgCasts": 2.9,
           "Top100UsedPct": 93.0,
-          "Top100SelfPct": 3.0,
+          "Top100SelfPct": 2.0,
           "Deviates": false,
           "DeviationDirection": null
         },
@@ -1065,7 +1065,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.1,
-          "Top100UsedPct": 10.0,
+          "Top100UsedPct": 9.0,
           "Top100SelfPct": 0.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -1075,7 +1075,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.1,
-          "Top100UsedPct": 9.0,
+          "Top100UsedPct": 10.0,
           "Top100SelfPct": 100.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -1085,7 +1085,7 @@
           "SelfCount": 1,
           "TargetLabel": "self",
           "Top100AvgCasts": 0.6,
-          "Top100UsedPct": 53.0,
+          "Top100UsedPct": 55.0,
           "Top100SelfPct": 100.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -1349,15 +1349,15 @@
         "HPS": {
           "Value": 564,
           "Top1": 1336.0,
-          "Top100Avg": 1142.0,
-          "Median": 1117.0,
+          "Top100Avg": 1144.0,
+          "Median": 1118.0,
           "RatioToAvg": 0.49,
           "Flag": "below_avg"
         },
         "Overheal": {
           "Value": 67.2,
           "Best": 34.3,
-          "Median": 44.7,
+          "Median": 44.6,
           "Worst": 53.5,
           "GapToWorst": 13.7,
           "Flag": "exceeds_worst"
@@ -1373,7 +1373,7 @@
         "HPM": {
           "Value": 3.96,
           "Top1": 9.07,
-          "Top100Avg": 6.94,
+          "Top100Avg": 6.93,
           "Median": 6.95,
           "RatioToAvg": 0.57,
           "Flag": "below_avg",
@@ -1381,8 +1381,8 @@
         },
         "TargetCoverage": {
           "Value": 45.0,
-          "Top100Avg": 50.9,
-          "GapPoints": -5.9,
+          "Top100Avg": 50.8,
+          "GapPoints": -5.8,
           "Flag": "in_line"
         },
         "Top1Concentration": {
@@ -1397,32 +1397,32 @@
           "Guid": 33763,
           "Name": "Lifebloom",
           "CharacterPct": 45.4,
-          "BenchmarkPct": 46.7,
-          "GapPoints": -1.3,
+          "BenchmarkPct": 46.3,
+          "GapPoints": -0.9,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26980,
           "Name": "Regrowth",
           "CharacterPct": 14.7,
-          "BenchmarkPct": 21.9,
-          "GapPoints": -7.2,
+          "BenchmarkPct": 22.4,
+          "GapPoints": -7.7,
           "BenchmarkOnly": false
         },
         {
           "Guid": 33778,
           "Name": "Lifebloom",
           "CharacterPct": 14.4,
-          "BenchmarkPct": 12.4,
-          "GapPoints": 2.0,
+          "BenchmarkPct": 12.3,
+          "GapPoints": 2.1,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26982,
           "Name": "Rejuvenation",
           "CharacterPct": 11.0,
-          "BenchmarkPct": 11.6,
-          "GapPoints": -0.6,
+          "BenchmarkPct": 11.7,
+          "GapPoints": -0.7,
           "BenchmarkOnly": false
         },
         {
@@ -1464,7 +1464,7 @@
               "ManaCost": 0,
               "ManaCostSource": "known",
               "CharacterPct": 14.4,
-              "BenchmarkPct": 12.4,
+              "BenchmarkPct": 12.3,
               "RankLabel": "Bloom"
             },
             {
@@ -1472,7 +1472,7 @@
               "ManaCost": 220,
               "ManaCostSource": "character",
               "CharacterPct": 45.4,
-              "BenchmarkPct": 46.7,
+              "BenchmarkPct": 46.3,
               "RankLabel": "HoT"
             }
           ]
@@ -1493,7 +1493,7 @@
               "ManaCost": 675,
               "ManaCostSource": "character",
               "CharacterPct": 14.7,
-              "BenchmarkPct": 21.9,
+              "BenchmarkPct": 22.4,
               "RankLabel": null
             }
           ]
@@ -1515,7 +1515,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 1.4,
-          "Top100UsedPct": 86.0,
+          "Top100UsedPct": 85.0,
           "Top100SelfPct": 100.0,
           "Deviates": true,
           "DeviationDirection": "undercast"
@@ -1631,7 +1631,7 @@
         "HPS": {
           "Value": 347,
           "Top1": 1494.0,
-          "Top100Avg": 1080.0,
+          "Top100Avg": 1082.0,
           "Median": 1064.0,
           "RatioToAvg": 0.32,
           "Flag": "below_avg"
@@ -1655,22 +1655,22 @@
         "HPM": {
           "Value": 2.57,
           "Top1": 8.15,
-          "Top100Avg": 6.27,
-          "Median": 6.23,
+          "Top100Avg": 6.26,
+          "Median": 6.18,
           "RatioToAvg": 0.41,
           "Flag": "below_avg",
           "Omit": false
         },
         "TargetCoverage": {
           "Value": 72.3,
-          "Top100Avg": 78.4,
-          "GapPoints": -6.1,
+          "Top100Avg": 77.9,
+          "GapPoints": -5.6,
           "Flag": "in_line"
         },
         "Top1Concentration": {
           "Value": 40.2,
-          "Top100Avg": 43.3,
-          "GapPoints": -3.1,
+          "Top100Avg": 42.7,
+          "GapPoints": -2.5,
           "Flag": "in_line"
         }
       },
@@ -1679,32 +1679,32 @@
           "Guid": 33763,
           "Name": "Lifebloom",
           "CharacterPct": 58.0,
-          "BenchmarkPct": 49.9,
-          "GapPoints": 8.1,
+          "BenchmarkPct": 49.4,
+          "GapPoints": 8.6,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26980,
           "Name": "Regrowth",
           "CharacterPct": 7.5,
-          "BenchmarkPct": 20.5,
-          "GapPoints": -13.0,
+          "BenchmarkPct": 21.0,
+          "GapPoints": -13.5,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26982,
           "Name": "Rejuvenation",
           "CharacterPct": 10.6,
-          "BenchmarkPct": 12.6,
-          "GapPoints": -2.0,
+          "BenchmarkPct": 12.5,
+          "GapPoints": -1.9,
           "BenchmarkOnly": false
         },
         {
           "Guid": 33778,
           "Name": "Lifebloom",
           "CharacterPct": 9.9,
-          "BenchmarkPct": 6.3,
-          "GapPoints": 3.6,
+          "BenchmarkPct": 6.4,
+          "GapPoints": 3.5,
           "BenchmarkOnly": false
         },
         {
@@ -1735,7 +1735,7 @@
       "TopSpellGap": {
         "Guid": 26980,
         "Name": "Regrowth",
-        "GapPoints": -13.0
+        "GapPoints": -13.5
       },
       "SpellRanks": [
         {
@@ -1746,7 +1746,7 @@
               "ManaCost": 0,
               "ManaCostSource": "known",
               "CharacterPct": 9.9,
-              "BenchmarkPct": 6.3,
+              "BenchmarkPct": 6.4,
               "RankLabel": "Bloom"
             },
             {
@@ -1754,7 +1754,7 @@
               "ManaCost": 220,
               "ManaCostSource": "character",
               "CharacterPct": 58.0,
-              "BenchmarkPct": 49.9,
+              "BenchmarkPct": 49.4,
               "RankLabel": "HoT"
             }
           ]
@@ -1775,7 +1775,7 @@
               "ManaCost": 415,
               "ManaCostSource": "character",
               "CharacterPct": 10.6,
-              "BenchmarkPct": 12.6,
+              "BenchmarkPct": 12.5,
               "RankLabel": null
             }
           ]
@@ -1787,7 +1787,7 @@
           "SelfCount": 1,
           "TargetLabel": "self",
           "Top100AvgCasts": 0.9,
-          "Top100UsedPct": 92.0,
+          "Top100UsedPct": 91.0,
           "Top100SelfPct": 72.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -1796,7 +1796,7 @@
           "Count": 0,
           "SelfCount": 0,
           "TargetLabel": "—",
-          "Top100AvgCasts": 1.2,
+          "Top100AvgCasts": 1.1,
           "Top100UsedPct": 85.0,
           "Top100SelfPct": 100.0,
           "Deviates": true,
@@ -1827,7 +1827,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.3,
-          "Top100UsedPct": 29.0,
+          "Top100UsedPct": 30.0,
           "Top100SelfPct": 0.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -1847,7 +1847,7 @@
           "SelfCount": 1,
           "TargetLabel": "self",
           "Top100AvgCasts": 1.2,
-          "Top100UsedPct": 64.0,
+          "Top100UsedPct": 65.0,
           "Top100SelfPct": 100.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -1880,15 +1880,15 @@
         "HPS": {
           "Value": 1187,
           "Top1": 3222.0,
-          "Top100Avg": 2465.0,
-          "Median": 2410.0,
+          "Top100Avg": 2474.0,
+          "Median": 2425.0,
           "RatioToAvg": 0.48,
           "Flag": "below_avg"
         },
         "Overheal": {
           "Value": 51.2,
           "Best": 10.4,
-          "Median": 22.2,
+          "Median": 22.3,
           "Worst": 33.0,
           "GapToWorst": 18.2,
           "Flag": "exceeds_worst"
@@ -1904,8 +1904,8 @@
         "HPM": {
           "Value": 6.03,
           "Top1": 11.12,
-          "Top100Avg": 8.38,
-          "Median": 8.33,
+          "Top100Avg": 8.36,
+          "Median": 8.29,
           "RatioToAvg": 0.72,
           "Flag": "below_avg",
           "Omit": false
@@ -1928,8 +1928,8 @@
           "Guid": 26980,
           "Name": "Regrowth",
           "CharacterPct": 25.7,
-          "BenchmarkPct": 76.4,
-          "GapPoints": -50.7,
+          "BenchmarkPct": 76.9,
+          "GapPoints": -51.2,
           "BenchmarkOnly": false
         },
         {
@@ -1960,25 +1960,25 @@
           "Guid": 33778,
           "Name": "Lifebloom",
           "CharacterPct": 20.3,
-          "BenchmarkPct": 2.7,
-          "GapPoints": 17.6,
+          "BenchmarkPct": 2.6,
+          "GapPoints": 17.7,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 18562,
+          "Name": "Swiftmend",
+          "CharacterPct": 1.5,
+          "BenchmarkPct": 1.8,
+          "GapPoints": -0.3,
           "BenchmarkOnly": false
         },
         {
           "Guid": 9856,
           "Name": "Regrowth",
           "CharacterPct": 0.0,
-          "BenchmarkPct": 1.8,
-          "GapPoints": -1.8,
+          "BenchmarkPct": 1.4,
+          "GapPoints": -1.4,
           "BenchmarkOnly": true
-        },
-        {
-          "Guid": 18562,
-          "Name": "Swiftmend",
-          "CharacterPct": 1.5,
-          "BenchmarkPct": 1.7,
-          "GapPoints": -0.2,
-          "BenchmarkOnly": false
         },
         {
           "Guid": 9857,
@@ -2000,7 +2000,7 @@
       "TopSpellGap": {
         "Guid": 26980,
         "Name": "Regrowth",
-        "GapPoints": -50.7
+        "GapPoints": -51.2
       },
       "SpellRanks": [
         {
@@ -2011,7 +2011,7 @@
               "ManaCost": 405.0,
               "ManaCostSource": "benchmark",
               "CharacterPct": 0.0,
-              "BenchmarkPct": 1.8,
+              "BenchmarkPct": 1.4,
               "RankLabel": null
             },
             {
@@ -2035,7 +2035,7 @@
               "ManaCost": 675,
               "ManaCostSource": "character",
               "CharacterPct": 25.7,
-              "BenchmarkPct": 76.4,
+              "BenchmarkPct": 76.9,
               "RankLabel": null
             }
           ]
@@ -2048,7 +2048,7 @@
               "ManaCost": 0,
               "ManaCostSource": "known",
               "CharacterPct": 20.3,
-              "BenchmarkPct": 2.7,
+              "BenchmarkPct": 2.6,
               "RankLabel": "Bloom"
             },
             {
@@ -2069,7 +2069,7 @@
           "TargetLabel": "self",
           "Top100AvgCasts": 1.0,
           "Top100UsedPct": 99.0,
-          "Top100SelfPct": 93.0,
+          "Top100SelfPct": 94.0,
           "Deviates": false,
           "DeviationDirection": null
         },
@@ -2078,7 +2078,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.6,
-          "Top100UsedPct": 54.0,
+          "Top100UsedPct": 55.0,
           "Top100SelfPct": 100.0,
           "Deviates": true,
           "DeviationDirection": "undercast"
@@ -2088,8 +2088,8 @@
           "SelfCount": 0,
           "TargetLabel": "→ Captinhelp",
           "Top100AvgCasts": 2.2,
-          "Top100UsedPct": 79.0,
-          "Top100SelfPct": 9.0,
+          "Top100UsedPct": 80.0,
+          "Top100SelfPct": 10.0,
           "Deviates": false,
           "DeviationDirection": null
         },
@@ -2118,7 +2118,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.2,
-          "Top100UsedPct": 19.0,
+          "Top100UsedPct": 20.0,
           "Top100SelfPct": 100.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -2128,7 +2128,7 @@
           "SelfCount": 1,
           "TargetLabel": "self",
           "Top100AvgCasts": 0.8,
-          "Top100UsedPct": 56.0,
+          "Top100UsedPct": 59.0,
           "Top100SelfPct": 100.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -2148,8 +2148,8 @@
         "HPS": {
           "Value": 288,
           "Top1": 1833.0,
-          "Top100Avg": 1239.0,
-          "Median": 1192.0,
+          "Top100Avg": 1241.0,
+          "Median": 1194.0,
           "RatioToAvg": 0.23,
           "Flag": "below_avg"
         },
@@ -2172,7 +2172,7 @@
         "HPM": {
           "Value": 1.86,
           "Top1": 7.55,
-          "Top100Avg": 4.84,
+          "Top100Avg": 4.86,
           "Median": 4.66,
           "RatioToAvg": 0.38,
           "Flag": "below_avg",
@@ -2180,14 +2180,14 @@
         },
         "TargetCoverage": {
           "Value": 58.5,
-          "Top100Avg": 52.9,
-          "GapPoints": 5.6,
+          "Top100Avg": 52.8,
+          "GapPoints": 5.7,
           "Flag": "in_line"
         },
         "Top1Concentration": {
           "Value": 18.1,
-          "Top100Avg": 16.2,
-          "GapPoints": 1.9,
+          "Top100Avg": 16.3,
+          "GapPoints": 1.8,
           "Flag": "in_line"
         }
       },
@@ -2196,8 +2196,8 @@
           "Guid": 26980,
           "Name": "Regrowth",
           "CharacterPct": 0.0,
-          "BenchmarkPct": 59.2,
-          "GapPoints": -59.2,
+          "BenchmarkPct": 59.3,
+          "GapPoints": -59.3,
           "BenchmarkOnly": true
         },
         {
@@ -2212,8 +2212,8 @@
           "Guid": 26982,
           "Name": "Rejuvenation",
           "CharacterPct": 2.7,
-          "BenchmarkPct": 10.1,
-          "GapPoints": -7.4,
+          "BenchmarkPct": 10.0,
+          "GapPoints": -7.3,
           "BenchmarkOnly": false
         },
         {
@@ -2241,19 +2241,19 @@
           "BenchmarkOnly": true
         },
         {
-          "Guid": null,
-          "Name": "癒合",
+          "Guid": 9857,
+          "Name": "Regrowth",
           "CharacterPct": 0.0,
           "BenchmarkPct": 1.8,
           "GapPoints": -1.8,
           "BenchmarkOnly": true
         },
         {
-          "Guid": 9857,
-          "Name": "Regrowth",
+          "Guid": null,
+          "Name": "癒合",
           "CharacterPct": 0.0,
-          "BenchmarkPct": 1.7,
-          "GapPoints": -1.7,
+          "BenchmarkPct": 1.8,
+          "GapPoints": -1.8,
           "BenchmarkOnly": true
         },
         {
@@ -2295,7 +2295,7 @@
               "ManaCost": 485.0,
               "ManaCostSource": "benchmark",
               "CharacterPct": 0.0,
-              "BenchmarkPct": 1.7,
+              "BenchmarkPct": 1.8,
               "RankLabel": null
             },
             {
@@ -2303,7 +2303,7 @@
               "ManaCost": 675.0,
               "ManaCostSource": "benchmark",
               "CharacterPct": 0.0,
-              "BenchmarkPct": 59.2,
+              "BenchmarkPct": 59.3,
               "RankLabel": null
             }
           ]
@@ -2337,7 +2337,7 @@
           "TargetLabel": "—",
           "Top100AvgCasts": 0.8,
           "Top100UsedPct": 82.0,
-          "Top100SelfPct": 41.0,
+          "Top100SelfPct": 43.0,
           "Deviates": true,
           "DeviationDirection": "undercast"
         },
@@ -2356,7 +2356,7 @@
           "SelfCount": 0,
           "TargetLabel": "→ Luffydonoo",
           "Top100AvgCasts": 2.4,
-          "Top100UsedPct": 90.0,
+          "Top100UsedPct": 91.0,
           "Top100SelfPct": 9.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -2396,7 +2396,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.6,
-          "Top100UsedPct": 60.0,
+          "Top100UsedPct": 61.0,
           "Top100SelfPct": 100.0,
           "Deviates": true,
           "DeviationDirection": "undercast"
@@ -2416,15 +2416,15 @@
         "HPS": {
           "Value": 486,
           "Top1": 1255.0,
-          "Top100Avg": 1018.0,
-          "Median": 1004.0,
+          "Top100Avg": 1020.0,
+          "Median": 1005.0,
           "RatioToAvg": 0.48,
           "Flag": "below_avg"
         },
         "Overheal": {
           "Value": 71.7,
           "Best": 33.7,
-          "Median": 51.9,
+          "Median": 51.7,
           "Worst": 61.7,
           "GapToWorst": 10.0,
           "Flag": "exceeds_worst"
@@ -2440,22 +2440,22 @@
         "HPM": {
           "Value": 3.58,
           "Top1": 8.37,
-          "Top100Avg": 6.09,
-          "Median": 5.98,
+          "Top100Avg": 6.11,
+          "Median": 6.01,
           "RatioToAvg": 0.59,
           "Flag": "below_avg",
           "Omit": false
         },
         "TargetCoverage": {
           "Value": 56.7,
-          "Top100Avg": 57.7,
-          "GapPoints": -1.0,
+          "Top100Avg": 57.8,
+          "GapPoints": -1.1,
           "Flag": "in_line"
         },
         "Top1Concentration": {
           "Value": 18.9,
-          "Top100Avg": 20.8,
-          "GapPoints": -1.9,
+          "Top100Avg": 20.9,
+          "GapPoints": -2.0,
           "Flag": "in_line"
         }
       },
@@ -2464,40 +2464,40 @@
           "Guid": 33763,
           "Name": "Lifebloom",
           "CharacterPct": 51.4,
-          "BenchmarkPct": 39.4,
-          "GapPoints": 12.0,
+          "BenchmarkPct": 39.8,
+          "GapPoints": 11.6,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26980,
           "Name": "Regrowth",
           "CharacterPct": 11.9,
-          "BenchmarkPct": 33.5,
-          "GapPoints": -21.6,
+          "BenchmarkPct": 33.3,
+          "GapPoints": -21.4,
           "BenchmarkOnly": false
         },
         {
           "Guid": 26982,
           "Name": "Rejuvenation",
           "CharacterPct": 11.0,
-          "BenchmarkPct": 10.2,
-          "GapPoints": 0.8,
+          "BenchmarkPct": 10.1,
+          "GapPoints": 0.9,
           "BenchmarkOnly": false
         },
         {
           "Guid": 33778,
           "Name": "Lifebloom",
           "CharacterPct": 14.2,
-          "BenchmarkPct": 8.3,
-          "GapPoints": 5.9,
+          "BenchmarkPct": 8.4,
+          "GapPoints": 5.8,
           "BenchmarkOnly": false
         },
         {
           "Guid": 18562,
           "Name": "Swiftmend",
           "CharacterPct": 11.4,
-          "BenchmarkPct": 5.0,
-          "GapPoints": 6.4,
+          "BenchmarkPct": 4.9,
+          "GapPoints": 6.5,
           "BenchmarkOnly": false
         },
         {
@@ -2520,7 +2520,7 @@
       "TopSpellGap": {
         "Guid": 26980,
         "Name": "Regrowth",
-        "GapPoints": -21.6
+        "GapPoints": -21.4
       },
       "SpellRanks": [
         {
@@ -2531,7 +2531,7 @@
               "ManaCost": 0,
               "ManaCostSource": "known",
               "CharacterPct": 14.2,
-              "BenchmarkPct": 8.3,
+              "BenchmarkPct": 8.4,
               "RankLabel": "Bloom"
             },
             {
@@ -2539,7 +2539,7 @@
               "ManaCost": 220,
               "ManaCostSource": "character",
               "CharacterPct": 51.4,
-              "BenchmarkPct": 39.4,
+              "BenchmarkPct": 39.8,
               "RankLabel": "HoT"
             }
           ]
@@ -2560,7 +2560,7 @@
               "ManaCost": 675,
               "ManaCostSource": "character",
               "CharacterPct": 11.9,
-              "BenchmarkPct": 33.5,
+              "BenchmarkPct": 33.3,
               "RankLabel": null
             }
           ]
@@ -2572,7 +2572,7 @@
           "SelfCount": 1,
           "TargetLabel": "self",
           "Top100AvgCasts": 1.1,
-          "Top100UsedPct": 97.0,
+          "Top100UsedPct": 96.0,
           "Top100SelfPct": 87.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -2622,7 +2622,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 0.4,
-          "Top100UsedPct": 16.0,
+          "Top100UsedPct": 17.0,
           "Top100SelfPct": 100.0,
           "Deviates": false,
           "DeviationDirection": null
@@ -2632,7 +2632,7 @@
           "SelfCount": 0,
           "TargetLabel": "—",
           "Top100AvgCasts": 2.1,
-          "Top100UsedPct": 70.0,
+          "Top100UsedPct": 71.0,
           "Top100SelfPct": 100.0,
           "Deviates": true,
           "DeviationDirection": "undercast"
@@ -2905,18 +2905,19 @@
         ],
         "OvercastBosses": []
       },
+      "Mana Potion": {
+        "UndercastBosses": [
+          "hydross",
+          "lurker",
+          "solarian",
+          "kaelthas"
+        ],
+        "OvercastBosses": []
+      },
       "Innervate": {
         "UndercastBosses": [
           "lurker",
           "solarian"
-        ],
-        "OvercastBosses": []
-      },
-      "Mana Potion": {
-        "UndercastBosses": [
-          "lurker",
-          "solarian",
-          "kaelthas"
         ],
         "OvercastBosses": []
       },

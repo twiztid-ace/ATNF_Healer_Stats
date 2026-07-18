@@ -1,0 +1,731 @@
+{
+  "entries": [
+    {
+      "name": "Palanerd",
+      "id": 22,
+      "guid": 58196883,
+      "type": "Paladin",
+      "icon": "Paladin-Protection",
+      "timestamp": 2544688,
+      "fight": 23,
+      "damage": {
+        "total": 20488,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 29082,
+        "blocked": 594,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 20488,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 20488,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4997,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 2512,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2485,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 4997,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Plaguedgoat",
+            "total": 2512,
+            "type": "Priest"
+          },
+          {
+            "name": "Evabloom",
+            "total": 2485,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 2923,
+      "overkill": 184,
+      "events": [
+        {
+          "timestamp": 2544667,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 23,
+          "hitType": 15,
+          "amount": 10251,
+          "mitigated": 9139,
+          "unmitigatedAmount": 19574,
+          "overkill": 184,
+          "isAoE": false,
+          "sourceMarker": 6,
+          "targetMarker": 1
+        },
+        {
+          "timestamp": 2543435,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 23,
+          "hitType": 4,
+          "amount": 6997,
+          "mitigated": 13523,
+          "unmitigatedAmount": 20520,
+          "blocked": 297,
+          "isAoE": false,
+          "sourceMarker": 6,
+          "targetMarker": 1
+        },
+        {
+          "timestamp": 2541744,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 23,
+          "hitType": 4,
+          "amount": 3056,
+          "mitigated": 6420,
+          "unmitigatedAmount": 9476,
+          "blocked": 297,
+          "isAoE": false,
+          "sourceMarker": 6,
+          "targetMarker": 1
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Modus",
+      "id": 7,
+      "guid": 50787323,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 2545092,
+      "fight": 23,
+      "damage": {
+        "total": 20178,
+        "totalReduced": 17971,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5025,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 13963,
+            "totalReduced": 11756,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 38366,
+            "name": "Multi-Toss",
+            "total": 2340,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 2280,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          },
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 1595,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 15558,
+            "totalReduced": 13351,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Sharkkis",
+            "total": 2340,
+            "type": "Boss"
+          },
+          {
+            "name": "Spitfire Totem",
+            "total": 2280,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7275,
+        "totalReduced": 5068,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 2247,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 2207,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1979,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 842,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 2489,
+            "totalReduced": 282,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 2280,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          },
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 1595,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 38366,
+            "name": "Multi-Toss",
+            "total": 911,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Plaguedgoat",
+            "total": 4186,
+            "totalReduced": 1979,
+            "type": "Priest"
+          },
+          {
+            "name": "Evabloom",
+            "total": 2247,
+            "type": "Druid"
+          },
+          {
+            "name": "Modus",
+            "total": 842,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 22123,
+      "overkill": 2364,
+      "events": [
+        {
+          "timestamp": 2545082,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 4123,
+          "unmitigatedAmount": 8694,
+          "overkill": 2364,
+          "absorbed": 2207,
+          "isAoE": false,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 2535631,
+          "type": "damage",
+          "sourceID": 127,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scorch",
+            "guid": 38296,
+            "type": 4,
+            "abilityIcon": "spell_fire_searingtotem.jpg"
+          },
+          "fight": 23,
+          "hitType": 16,
+          "amount": 2280,
+          "mitigated": 760,
+          "unmitigatedAmount": 3040,
+          "resisted": 760,
+          "isAoE": true
+        },
+        {
+          "timestamp": 2531766,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 5269,
+          "unmitigatedAmount": 5269,
+          "isAoE": false,
+          "sourceMarker": 6
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Shamyami",
+      "id": 35,
+      "guid": 50717938,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 2557674,
+      "fight": 23,
+      "damage": {
+        "total": 11461,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1423,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 8142,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 3319,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 11461,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 10673,
+      "overkill": 1577,
+      "events": [
+        {
+          "timestamp": 2557674,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 6565,
+          "unmitigatedAmount": 8142,
+          "overkill": 1577,
+          "isAoE": false,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 2547001,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 3319,
+          "mitigated": 1423,
+          "unmitigatedAmount": 4742,
+          "isAoE": true,
+          "sourceMarker": 6
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Trinidone",
+      "id": 4,
+      "guid": 60516932,
+      "type": "Hunter",
+      "icon": "Hunter-Survival",
+      "timestamp": 2578252,
+      "fight": 23,
+      "damage": {
+        "total": 13354,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 556,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 8548,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 4806,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 8548,
+            "type": "Boss"
+          },
+          {
+            "name": "Spitfire Totem",
+            "total": 4806,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 14145,
+      "overkill": 2561,
+      "events": [
+        {
+          "timestamp": 2578225,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 5987,
+          "mitigated": 356,
+          "unmitigatedAmount": 8904,
+          "overkill": 2561,
+          "isAoE": false,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 2564080,
+          "type": "damage",
+          "sourceID": 127,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scorch",
+            "guid": 38296,
+            "type": 4,
+            "abilityIcon": "spell_fire_searingtotem.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 4806,
+          "mitigated": 200,
+          "unmitigatedAmount": 5006,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Evabloom",
+      "id": 3,
+      "guid": 54740352,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 2587860,
+      "fight": 23,
+      "damage": {
+        "total": 10770,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 10770,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 10770,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 728,
+      "events": [
+        {
+          "timestamp": 2587842,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 10042,
+          "unmitigatedAmount": 10770,
+          "overkill": 728,
+          "isAoE": false,
+          "sourceMarker": 6
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Shlapt",
+      "id": 28,
+      "guid": 51451663,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 2593626,
+      "fight": 23,
+      "damage": {
+        "total": 9988,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 9988,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 9988,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 675,
+      "events": [
+        {
+          "timestamp": 2593586,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 9313,
+          "unmitigatedAmount": 9988,
+          "overkill": 675,
+          "isAoE": false,
+          "sourceMarker": 6
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}
