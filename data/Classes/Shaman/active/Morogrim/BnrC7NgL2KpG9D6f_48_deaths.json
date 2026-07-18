@@ -1,0 +1,1332 @@
+{
+  "entries": [
+    {
+      "name": "Shootdangit",
+      "id": 23,
+      "guid": 55376208,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 6876495,
+      "fight": 48,
+      "damage": {
+        "total": 12397,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1385,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7710,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3917,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 30486,
+            "name": "Super Sapper Charge",
+            "total": 770,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tidewalker Lurker",
+            "total": 7710,
+            "type": "NPC"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 3917,
+            "type": "Boss"
+          },
+          {
+            "name": "Shootdangit",
+            "total": 770,
+            "type": "Hunter"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2316,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 1193,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1123,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 2316,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lunastorm",
+            "total": 1193,
+            "type": "Shaman"
+          },
+          {
+            "name": "Workmoore",
+            "total": 1123,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 16380,
+      "overkill": 1054,
+      "events": [
+        {
+          "timestamp": 6876471,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 9,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 264,
+          "mitigated": 706,
+          "unmitigatedAmount": 2024,
+          "overkill": 1054,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6876470,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 10,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 2,
+          "amount": 2823,
+          "unmitigatedAmount": 2167,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6876469,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 11,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 1268,
+          "mitigated": 679,
+          "unmitigatedAmount": 1947,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Shammystride",
+      "id": 7,
+      "guid": 48988443,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 6927233,
+      "fight": 48,
+      "damage": {
+        "total": 10412,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 5523,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3843,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 1046,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shammystride",
+            "total": 5523,
+            "type": "Shaman"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 3843,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 1046,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 143,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27163,
+            "name": "Judgement of Light",
+            "total": 143,
+            "type": 2,
+            "icon": "spell_holy_healingaura.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 143,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Shammystride",
+            "total": 143,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 12115,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 6927217,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 1046,
+          "unmitigatedAmount": 1046,
+          "overkill": 0,
+          "isAoE": false,
+          "targetMarker": 6
+        },
+        {
+          "timestamp": 6924318,
+          "type": "damage",
+          "sourceID": 7,
+          "sourceIsFriendly": true,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Watery Grave Explosion",
+            "guid": 37852,
+            "type": 16,
+            "abilityIcon": "spell_frost_arcticwinds.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 5523,
+          "unmitigatedAmount": 5523,
+          "isAoE": true,
+          "sourceMarker": 6,
+          "targetMarker": 6
+        },
+        {
+          "timestamp": 6915102,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Earthquake",
+            "guid": 37764,
+            "type": 1,
+            "abilityIcon": "spell_nature_earthquake.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 3843,
+          "unmitigatedAmount": 3843,
+          "isAoE": true,
+          "targetMarker": 6
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Pumpzz",
+      "id": 13,
+      "guid": 54438382,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 6927234,
+      "fight": 48,
+      "damage": {
+        "total": 10107,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 5145,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3980,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 982,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Pumpzz",
+            "total": 5145,
+            "type": "Shaman"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 3980,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 982,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 48,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27163,
+            "name": "Judgement of Light",
+            "total": 48,
+            "type": 2,
+            "icon": "spell_holy_healingaura.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 48,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Pumpzz",
+            "total": 48,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 12131,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 6927233,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 982,
+          "unmitigatedAmount": 982,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6924318,
+          "type": "damage",
+          "sourceID": 13,
+          "sourceIsFriendly": true,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Watery Grave Explosion",
+            "guid": 37852,
+            "type": 16,
+            "abilityIcon": "spell_frost_arcticwinds.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 5145,
+          "unmitigatedAmount": 5145,
+          "isAoE": true
+        },
+        {
+          "timestamp": 6915102,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Earthquake",
+            "guid": 37764,
+            "type": 1,
+            "abilityIcon": "spell_nature_earthquake.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 3980,
+          "unmitigatedAmount": 3980,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Chaosboose",
+      "id": 5,
+      "guid": 43485229,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 6930452,
+      "fight": 48,
+      "damage": {
+        "total": 13662,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 4791,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10999,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 2663,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tidewalker Lurker",
+            "total": 10999,
+            "type": "NPC"
+          },
+          {
+            "name": "Environment",
+            "total": 2663,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1589,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 1395,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 194,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 801,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 788,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Chaosboose",
+            "total": 1395,
+            "type": "Priest"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 194,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 4497,
+      "overkill": 1886,
+      "events": [
+        {
+          "timestamp": 6930427,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 16,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 1109,
+          "mitigated": 601,
+          "unmitigatedAmount": 1710,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6930427,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 17,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 889,
+          "mitigated": 481,
+          "unmitigatedAmount": 1370,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6930427,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 18,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 2,
+          "amount": 275,
+          "unmitigatedAmount": 1666,
+          "overkill": 1886,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Boneypal",
+      "id": 44,
+      "guid": 54725803,
+      "type": "Paladin",
+      "icon": "Paladin-Justicar",
+      "timestamp": 6946303,
+      "fight": 48,
+      "damage": {
+        "total": 15538,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 25089,
+        "blocked": 3476,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7095,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 6501,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          },
+          {
+            "guid": 41932,
+            "name": "Carnivorous Bite",
+            "total": 1942,
+            "type": 1,
+            "icon": "ability_druid_rake.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tidewalker Lurker",
+            "total": 9037,
+            "type": "NPC"
+          },
+          {
+            "name": "Water Globule",
+            "total": 6501,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2250,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 1965,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 27163,
+            "name": "Judgement of Light",
+            "total": 285,
+            "type": 2,
+            "icon": "spell_holy_healingaura.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 2250,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lunastorm",
+            "total": 1965,
+            "type": "Shaman"
+          },
+          {
+            "name": "Boneypal",
+            "total": 285,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 4986,
+      "overkill": 881,
+      "events": [
+        {
+          "timestamp": 6946300,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 21,
+          "sourceIsFriendly": false,
+          "targetID": 44,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Carnivorous Bite",
+            "guid": 41932,
+            "type": 1,
+            "abilityIcon": "ability_druid_rake.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 90,
+          "mitigated": 61,
+          "unmitigatedAmount": 1032,
+          "overkill": 881,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 6945818,
+          "type": "damage",
+          "sourceID": 162,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 44,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Freeze",
+            "guid": 37871,
+            "type": 16,
+            "abilityIcon": "spell_frost_glacier.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 6501,
+          "mitigated": 415,
+          "unmitigatedAmount": 6916,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6945634,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 15,
+          "sourceIsFriendly": false,
+          "targetID": 44,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 534,
+          "mitigated": 948,
+          "unmitigatedAmount": 1482,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Carnivorous Bite",
+        "guid": 41932,
+        "type": 1,
+        "abilityIcon": "ability_druid_rake.jpg"
+      }
+    },
+    {
+      "name": "Lunastorm",
+      "id": 3,
+      "guid": 49735466,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 6946689,
+      "fight": 48,
+      "damage": {
+        "total": 9843,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 185,
+        "abilities": [
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 7194,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          },
+          {
+            "guid": 41932,
+            "name": "Carnivorous Bite",
+            "total": 2496,
+            "type": 1,
+            "icon": "ability_druid_rake.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 153,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Water Globule",
+            "total": 7347,
+            "type": "NPC"
+          },
+          {
+            "name": "Tidewalker Lurker",
+            "total": 2496,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 8128,
+      "overkill": 769,
+      "events": [
+        {
+          "timestamp": 6946680,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 16,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Carnivorous Bite",
+            "guid": 41932,
+            "type": 1,
+            "abilityIcon": "ability_druid_rake.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 63,
+          "unmitigatedAmount": 832,
+          "overkill": 769,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 6945818,
+          "type": "damage",
+          "sourceID": 162,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Freeze",
+            "guid": 37871,
+            "type": 16,
+            "abilityIcon": "spell_frost_glacier.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 7194,
+          "unmitigatedAmount": 7194,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6943682,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 16,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Carnivorous Bite",
+            "guid": 41932,
+            "type": 1,
+            "abilityIcon": "ability_druid_rake.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 832,
+          "unmitigatedAmount": 832,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Carnivorous Bite",
+        "guid": 41932,
+        "type": 1,
+        "abilityIcon": "ability_druid_rake.jpg"
+      }
+    },
+    {
+      "name": "Hogiscranked",
+      "id": 24,
+      "guid": 44724162,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 6949498,
+      "fight": 48,
+      "damage": {
+        "total": 13541,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1530,
+        "abilities": [
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 7431,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3805,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 2305,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Water Globule",
+            "total": 7622,
+            "type": "NPC"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 3805,
+            "type": "Boss"
+          },
+          {
+            "name": "Tidewalker Lurker",
+            "total": 2114,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2197,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 2197,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 2197,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Workmoore",
+            "total": 2197,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 34377,
+      "overkill": 146,
+      "events": [
+        {
+          "timestamp": 6949479,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 21,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 1010,
+          "mitigated": 671,
+          "unmitigatedAmount": 1681,
+          "isAoE": false,
+          "targetMarker": 7
+        },
+        {
+          "timestamp": 6949479,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceInstance": 16,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 958,
+          "mitigated": 733,
+          "unmitigatedAmount": 1837,
+          "overkill": 146,
+          "isAoE": false,
+          "targetMarker": 7
+        },
+        {
+          "timestamp": 6947866,
+          "type": "damage",
+          "sourceID": 162,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Freeze",
+            "guid": 37871,
+            "type": 16,
+            "abilityIcon": "spell_frost_glacier.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 7431,
+          "unmitigatedAmount": 7431,
+          "isAoE": false,
+          "targetMarker": 7
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Lunastorm",
+      "id": 3,
+      "guid": 49735466,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 6965267,
+      "fight": 48,
+      "damage": {
+        "total": 6688,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 6688,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Water Globule",
+            "total": 6688,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 4748,
+      "events": [
+        {
+          "timestamp": 6965238,
+          "type": "damage",
+          "sourceID": 162,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Freeze",
+            "guid": 37871,
+            "type": 16,
+            "abilityIcon": "spell_frost_glacier.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 1940,
+          "unmitigatedAmount": 6688,
+          "overkill": 4748,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Freeze",
+        "guid": 37871,
+        "type": 16,
+        "abilityIcon": "spell_frost_glacier.jpg"
+      }
+    },
+    {
+      "name": "Workmoore",
+      "id": 6,
+      "guid": 45417787,
+      "type": "Priest",
+      "icon": "Priest-Holy",
+      "timestamp": 6975431,
+      "fight": 48,
+      "damage": {
+        "total": 15676,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 309,
+        "abilities": [
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 13799,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1877,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Water Globule",
+            "total": 15676,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1090,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 1090,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 1090,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lunastorm",
+            "total": 1090,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 20534,
+      "overkill": 5765,
+      "events": [
+        {
+          "timestamp": 6960388,
+          "type": "damage",
+          "sourceID": 162,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Freeze",
+            "guid": 37871,
+            "type": 16,
+            "abilityIcon": "spell_frost_glacier.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 1336,
+          "unmitigatedAmount": 7101,
+          "overkill": 5765,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6960386,
+          "type": "damage",
+          "sourceID": 162,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 223,
+          "mitigated": 71,
+          "unmitigatedAmount": 294,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6953809,
+          "type": "damage",
+          "sourceID": 162,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Freeze",
+            "guid": 37871,
+            "type": 16,
+            "abilityIcon": "spell_frost_glacier.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 6698,
+          "unmitigatedAmount": 6698,
+          "isAoE": false
+        }
+      ]
+    }
+  ]
+}

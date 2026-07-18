@@ -1,0 +1,155 @@
+{
+  "entries": [
+    {
+      "name": "高兮霸",
+      "id": 25,
+      "guid": 76706952,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 12095361,
+      "fight": 11,
+      "damage": {
+        "total": 13046,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 10038,
+        "abilities": [
+          {
+            "guid": 36982,
+            "name": "Whirlwind",
+            "total": 11771,
+            "type": 1,
+            "icon": "ability_whirlwind.jpg"
+          },
+          {
+            "guid": 37016,
+            "name": "Shield Spike",
+            "total": 1275,
+            "type": 1,
+            "icon": "inv_ammo_arrow_01.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Devastation",
+            "total": 11771,
+            "type": "NPC"
+          },
+          {
+            "name": "Phaseshift Bulwark",
+            "total": 1275,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 150,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 150,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37016,
+            "name": "Shield Spike",
+            "total": 90,
+            "type": 1,
+            "icon": "inv_ammo_arrow_01.jpg"
+          },
+          {
+            "guid": 36982,
+            "name": "Whirlwind",
+            "total": 60,
+            "type": 1,
+            "icon": "ability_whirlwind.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "高兮霸",
+            "total": 150,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 2011,
+      "overkill": 868,
+      "events": [
+        {
+          "timestamp": 12095344,
+          "type": "damage",
+          "sourceID": 125,
+          "sourceIsFriendly": false,
+          "targetID": 25,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 36982,
+            "type": 1,
+            "abilityIcon": "ability_whirlwind.jpg"
+          },
+          "fight": 11,
+          "hitType": 1,
+          "amount": 5372,
+          "mitigated": 5321,
+          "unmitigatedAmount": 11561,
+          "overkill": 868,
+          "isAoE": true
+        },
+        {
+          "timestamp": 12093720,
+          "type": "damage",
+          "sourceID": 126,
+          "sourceIsFriendly": false,
+          "targetID": 25,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shield Spike",
+            "guid": 37016,
+            "type": 1,
+            "abilityIcon": "inv_ammo_arrow_01.jpg"
+          },
+          "fight": 11,
+          "hitType": 1,
+          "amount": 1275,
+          "unmitigatedAmount": 1159,
+          "isAoE": false
+        },
+        {
+          "timestamp": 12093333,
+          "type": "damage",
+          "sourceID": 125,
+          "sourceIsFriendly": false,
+          "targetID": 25,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 36982,
+            "type": 1,
+            "abilityIcon": "ability_whirlwind.jpg"
+          },
+          "fight": 11,
+          "hitType": 1,
+          "amount": 5531,
+          "mitigated": 4717,
+          "unmitigatedAmount": 10248,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Whirlwind",
+        "guid": 36982,
+        "type": 1,
+        "abilityIcon": "ability_whirlwind.jpg"
+      }
+    }
+  ]
+}

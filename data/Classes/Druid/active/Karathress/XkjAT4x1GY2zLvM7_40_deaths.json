@@ -1,0 +1,853 @@
+{
+  "entries": [
+    {
+      "name": "Zaytwo",
+      "id": 9,
+      "guid": 74342329,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 4662623,
+      "fight": 40,
+      "damage": {
+        "total": 14477,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 794,
+        "abilities": [
+          {
+            "guid": 29436,
+            "name": "Leeching Throw",
+            "total": 6717,
+            "type": 8,
+            "icon": "ability_hunter_aimedshot.jpg"
+          },
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 5100,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 2660,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Guard Sharkkis",
+            "total": 6717,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Caribdis",
+            "total": 5100,
+            "type": "Boss"
+          },
+          {
+            "name": "Spitfire Totem",
+            "total": 2660,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6540,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 3952,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 2588,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 3450,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 29436,
+            "name": "Leeching Throw",
+            "total": 3007,
+            "type": 8,
+            "icon": "ability_hunter_aimedshot.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 83,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Nicai",
+            "total": 3952,
+            "type": "Priest"
+          },
+          {
+            "name": "Lovegiver",
+            "total": 2588,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 33951,
+      "overkill": 184,
+      "events": [
+        {
+          "timestamp": 4662623,
+          "type": "damage",
+          "sourceID": 132,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Leeching Throw",
+            "guid": 29436,
+            "type": 8,
+            "abilityIcon": "ability_hunter_aimedshot.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 341,
+          "unmitigatedAmount": 525,
+          "overkill": 184,
+          "isAoE": false,
+          "tick": true,
+          "sourceMarker": 7
+        },
+        {
+          "timestamp": 4660612,
+          "type": "damage",
+          "sourceID": 132,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Leeching Throw",
+            "guid": 29436,
+            "type": 8,
+            "abilityIcon": "ability_hunter_aimedshot.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 525,
+          "unmitigatedAmount": 525,
+          "isAoE": false,
+          "tick": true,
+          "sourceMarker": 7
+        },
+        {
+          "timestamp": 4660349,
+          "type": "damage",
+          "sourceID": 139,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scorch",
+            "guid": 38296,
+            "type": 4,
+            "abilityIcon": "spell_fire_searingtotem.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 2660,
+          "mitigated": 80,
+          "unmitigatedAmount": 2740,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Leeching Throw",
+        "guid": 29436,
+        "type": 8,
+        "abilityIcon": "ability_hunter_aimedshot.jpg"
+      }
+    },
+    {
+      "name": "Rezpal",
+      "id": 16,
+      "guid": 66089989,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 4711932,
+      "fight": 40,
+      "damage": {
+        "total": 12725,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 8239,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 2994,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 348703,
+            "name": "Seal of the Martyr",
+            "total": 972,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 351761,
+            "name": "Judgement of the Martyr",
+            "total": 520,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 11233,
+            "type": "Boss"
+          },
+          {
+            "name": "Rezpal",
+            "total": 1492,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2205,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1199,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 1006,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 1474,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 348703,
+            "name": "Seal of the Martyr",
+            "total": 731,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Rezpal",
+            "total": 1199,
+            "type": "Paladin"
+          },
+          {
+            "name": "Slaskey",
+            "total": 1006,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 27728,
+      "overkill": 533,
+      "events": [
+        {
+          "timestamp": 4711931,
+          "type": "damage",
+          "sourceID": 131,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 7706,
+          "unmitigatedAmount": 8239,
+          "overkill": 533,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4706808,
+          "type": "damage",
+          "sourceID": 16,
+          "sourceIsFriendly": true,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Judgement of the Martyr",
+            "guid": 351761,
+            "type": 2,
+            "abilityIcon": "spell_shadow_lifedrain.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 204,
+          "unmitigatedAmount": 204,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4706171,
+          "type": "damage",
+          "sourceID": 16,
+          "sourceIsFriendly": true,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of the Martyr",
+            "guid": 348703,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 70,
+          "unmitigatedAmount": 70,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Belorath",
+      "id": 12,
+      "guid": 78386445,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 4725505,
+      "fight": 40,
+      "damage": {
+        "total": 9823,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 9823,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 9823,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 664,
+      "events": [
+        {
+          "timestamp": 4725487,
+          "type": "damage",
+          "sourceID": 131,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 9159,
+          "unmitigatedAmount": 9823,
+          "overkill": 664,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Nielara",
+      "id": 19,
+      "guid": 74290181,
+      "type": "Druid",
+      "icon": "Druid-Feral",
+      "timestamp": 4726774,
+      "fight": 40,
+      "damage": {
+        "total": 10250,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1222,
+        "abilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 10250,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 10250,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1056,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1056,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 1056,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Nielara",
+            "total": 1056,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 24307,
+      "overkill": 390,
+      "events": [
+        {
+          "timestamp": 4726756,
+          "type": "damage",
+          "sourceID": 131,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 6189,
+          "unmitigatedAmount": 6579,
+          "overkill": 390,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4702449,
+          "type": "damage",
+          "sourceID": 131,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 40,
+          "hitType": 16,
+          "amount": 3671,
+          "mitigated": 1222,
+          "unmitigatedAmount": 4893,
+          "resisted": 1223,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Sear Nova",
+        "guid": 38445,
+        "type": 4,
+        "abilityIcon": "spell_fire_sealoffire.jpg"
+      }
+    },
+    {
+      "name": "Goatedthroat",
+      "id": 17,
+      "guid": 78370628,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 4726775,
+      "fight": 40,
+      "damage": {
+        "total": 13923,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 13923,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 13923,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3968,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 2004,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1964,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 3968,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lovegiver",
+            "total": 2004,
+            "type": "Priest"
+          },
+          {
+            "name": "Goatedthroat",
+            "total": 1964,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 42552,
+      "overkill": 136,
+      "events": [
+        {
+          "timestamp": 4726755,
+          "type": "damage",
+          "sourceID": 131,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 6024,
+          "unmitigatedAmount": 6160,
+          "overkill": 136,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4702449,
+          "type": "damage",
+          "sourceID": 131,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 4714,
+          "unmitigatedAmount": 4714,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4684203,
+          "type": "damage",
+          "sourceID": 131,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 3049,
+          "unmitigatedAmount": 3049,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Sear Nova",
+        "guid": 38445,
+        "type": 4,
+        "abilityIcon": "spell_fire_sealoffire.jpg"
+      }
+    },
+    {
+      "name": "Tyleruno",
+      "id": 3,
+      "guid": 58686792,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 4726777,
+      "fight": 40,
+      "damage": {
+        "total": 18130,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 12107,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 6023,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 12107,
+            "type": "Boss"
+          },
+          {
+            "name": "Spitfire Totem",
+            "total": 6023,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6177,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 4200,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1977,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 5682,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          },
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 495,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Slaskey",
+            "total": 4200,
+            "type": "Druid"
+          },
+          {
+            "name": "Tyleruno",
+            "total": 1977,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 24308,
+      "overkill": 300,
+      "events": [
+        {
+          "timestamp": 4726757,
+          "type": "damage",
+          "sourceID": 131,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 6511,
+          "unmitigatedAmount": 6271,
+          "overkill": 300,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4709335,
+          "type": "damage",
+          "sourceID": 139,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scorch",
+            "guid": 38296,
+            "type": 4,
+            "abilityIcon": "spell_fire_searingtotem.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 6023,
+          "unmitigatedAmount": 4425,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4702449,
+          "type": "damage",
+          "sourceID": 131,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 40,
+          "hitType": 16,
+          "amount": 5296,
+          "unmitigatedAmount": 5174,
+          "resisted": 1274,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Sear Nova",
+        "guid": 38445,
+        "type": 4,
+        "abilityIcon": "spell_fire_sealoffire.jpg"
+      }
+    }
+  ]
+}

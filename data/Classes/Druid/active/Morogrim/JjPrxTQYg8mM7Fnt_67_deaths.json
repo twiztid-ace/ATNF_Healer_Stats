@@ -1,0 +1,411 @@
+{
+  "entries": [
+    {
+      "name": "Coltypew",
+      "id": 9,
+      "guid": 72892523,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 8719874,
+      "fight": 67,
+      "damage": {
+        "total": 8879,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 4894,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3985,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kekfury",
+            "total": 4894,
+            "type": "Shaman"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 3985,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 5369,
+      "overkill": 60,
+      "events": [
+        {
+          "timestamp": 8719872,
+          "type": "damage",
+          "sourceID": 180,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Earthquake",
+            "guid": 37764,
+            "type": 1,
+            "abilityIcon": "spell_nature_earthquake.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 3925,
+          "unmitigatedAmount": 3985,
+          "overkill": 60,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8714503,
+          "type": "damage",
+          "sourceID": 18,
+          "sourceIsFriendly": true,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Watery Grave Explosion",
+            "guid": 37852,
+            "type": 16,
+            "abilityIcon": "spell_frost_arcticwinds.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 4894,
+          "unmitigatedAmount": 4894,
+          "isAoE": true,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Earthquake",
+        "guid": 37764,
+        "type": 1,
+        "abilityIcon": "spell_nature_earthquake.jpg"
+      }
+    },
+    {
+      "name": "Thormestra",
+      "id": 6,
+      "guid": 73793819,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 8719876,
+      "fight": 67,
+      "damage": {
+        "total": 10332,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 5373,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3922,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 892,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 145,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Thormestra",
+            "total": 5518,
+            "type": "Paladin"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 3922,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 892,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 381,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 381,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 381,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Thormestra",
+            "total": 381,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 5367,
+      "overkill": 434,
+      "events": [
+        {
+          "timestamp": 8719871,
+          "type": "damage",
+          "sourceID": 180,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Earthquake",
+            "guid": 37764,
+            "type": 1,
+            "abilityIcon": "spell_nature_earthquake.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 3488,
+          "unmitigatedAmount": 3922,
+          "overkill": 434,
+          "isAoE": true,
+          "targetMarker": 6
+        },
+        {
+          "timestamp": 8719318,
+          "type": "damage",
+          "sourceID": 6,
+          "sourceIsFriendly": true,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 145,
+          "unmitigatedAmount": 145,
+          "isAoE": false,
+          "sourceMarker": 6,
+          "targetMarker": 6
+        },
+        {
+          "timestamp": 8717356,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 892,
+          "unmitigatedAmount": 892,
+          "overkill": 0,
+          "isAoE": false,
+          "targetMarker": 6
+        }
+      ],
+      "killingBlow": {
+        "name": "Earthquake",
+        "guid": 37764,
+        "type": 1,
+        "abilityIcon": "spell_nature_earthquake.jpg"
+      }
+    },
+    {
+      "name": "Pookeyy",
+      "id": 107,
+      "guid": 69344572,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 8821736,
+      "fight": 67,
+      "damage": {
+        "total": 11064,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 7035,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 4029,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Water Globule",
+            "total": 7035,
+            "type": "NPC"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 4029,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3172,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30911,
+            "name": "Siphon Life",
+            "total": 1961,
+            "type": 32,
+            "icon": "spell_shadow_requiem.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1211,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 2041,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Pookeyy",
+            "total": 1961,
+            "type": "Warlock"
+          },
+          {
+            "name": "Pph",
+            "total": 1211,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 13155,
+      "overkill": 47,
+      "events": [
+        {
+          "timestamp": 8821726,
+          "type": "damage",
+          "sourceID": 180,
+          "sourceIsFriendly": false,
+          "targetID": 107,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Earthquake",
+            "guid": 37764,
+            "type": 1,
+            "abilityIcon": "spell_nature_earthquake.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 3982,
+          "unmitigatedAmount": 4029,
+          "overkill": 47,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8818474,
+          "type": "damage",
+          "sourceID": 186,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 107,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Freeze",
+            "guid": 37871,
+            "type": 16,
+            "abilityIcon": "spell_frost_glacier.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 7035,
+          "unmitigatedAmount": 7035,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Earthquake",
+        "guid": 37764,
+        "type": 1,
+        "abilityIcon": "spell_nature_earthquake.jpg"
+      }
+    }
+  ]
+}

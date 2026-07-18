@@ -1,0 +1,302 @@
+{
+  "entries": [
+    {
+      "name": "뉴욕씨티",
+      "id": 12,
+      "guid": 25398139,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 1490302,
+      "fight": 14,
+      "damage": {
+        "total": 9721,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2564,
+        "abilities": [
+          {
+            "guid": 28168,
+            "name": "Arcing Smash",
+            "total": 9721,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Coilfang Guardian",
+            "total": 9721,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2154,
+      "events": [
+        {
+          "timestamp": 1490290,
+          "type": "damage",
+          "sourceID": 99,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcing Smash",
+            "guid": 28168,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 14,
+          "hitType": 1,
+          "amount": 7567,
+          "mitigated": 2564,
+          "unmitigatedAmount": 12285,
+          "overkill": 2154,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcing Smash",
+        "guid": 28168,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "송이쿠",
+      "id": 31,
+      "guid": 26505378,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 1496794,
+      "fight": 14,
+      "damage": {
+        "total": 23007,
+        "totalReduced": 21140,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 9093,
+        "abilities": [
+          {
+            "guid": 28168,
+            "name": "Arcing Smash",
+            "total": 14640,
+            "totalReduced": 14158,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 3997,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 2985,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          },
+          {
+            "guid": 37770,
+            "name": "Shoot",
+            "total": 1385,
+            "totalReduced": 0,
+            "type": 1,
+            "icon": "ability_marksmanship.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Coilfang Guardian",
+            "total": 14640,
+            "totalReduced": 14158,
+            "type": "NPC"
+          },
+          {
+            "name": "Environment",
+            "total": 6982,
+            "type": "Boss"
+          },
+          {
+            "name": "Coilfang Ambusher",
+            "total": 1385,
+            "totalReduced": 0,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 8881,
+        "totalReduced": 7014,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 4693,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 1867,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 10915,
+            "name": "Flash Heal",
+            "total": 1397,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 924,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 28168,
+            "name": "Arcing Smash",
+            "total": 3062,
+            "totalReduced": 2580,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 2516,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 1918,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          },
+          {
+            "guid": 37770,
+            "name": "Shoot",
+            "total": 1385,
+            "totalReduced": 0,
+            "type": 1,
+            "icon": "ability_marksmanship.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "송이쿠",
+            "total": 5371,
+            "totalReduced": 3504,
+            "type": "Priest"
+          },
+          {
+            "name": "분사기",
+            "total": 3510,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 35460,
+      "overkill": 5015,
+      "events": [
+        {
+          "timestamp": 1496777,
+          "type": "damage",
+          "sourceID": 99,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcing Smash",
+            "guid": 28168,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 14,
+          "hitType": 1,
+          "amount": 3338,
+          "mitigated": 4740,
+          "unmitigatedAmount": 13093,
+          "overkill": 5015,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1490291,
+          "type": "damage",
+          "sourceID": 99,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcing Smash",
+            "guid": 28168,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 14,
+          "hitType": 1,
+          "amount": 5805,
+          "mitigated": 3567,
+          "unmitigatedAmount": 9854,
+          "absorbed": 482,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1486593,
+          "type": "damage",
+          "sourceID": 100,
+          "sourceInstance": 5,
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shoot",
+            "guid": 37770,
+            "type": 1,
+            "abilityIcon": "ability_marksmanship.jpg"
+          },
+          "fight": 14,
+          "hitType": 1,
+          "amount": 0,
+          "mitigated": 786,
+          "unmitigatedAmount": 2171,
+          "absorbed": 1385,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcing Smash",
+        "guid": 28168,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    }
+  ]
+}

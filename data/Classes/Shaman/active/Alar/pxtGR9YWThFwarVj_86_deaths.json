@@ -1,0 +1,998 @@
+{
+  "entries": [
+    {
+      "name": "Xiber",
+      "id": 21,
+      "guid": 53113684,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 11813183,
+      "fight": 86,
+      "damage": {
+        "total": 15253,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1246,
+        "abilities": [
+          {
+            "guid": 34341,
+            "name": "Ember Blast",
+            "total": 11134,
+            "type": 4,
+            "icon": "ability_warlock_inferno.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 2199,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1920,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 13333,
+            "type": "Boss"
+          },
+          {
+            "name": "Ember of Al'ar",
+            "total": 1920,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3924,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 2126,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 904,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 894,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 2199,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1725,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Iiquið",
+            "total": 2126,
+            "type": "Priest"
+          },
+          {
+            "name": "Thoren",
+            "total": 904,
+            "type": "Shaman"
+          },
+          {
+            "name": "Xiber",
+            "total": 894,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 25755,
+      "overkill": 140,
+      "events": [
+        {
+          "timestamp": 11813182,
+          "type": "damage",
+          "sourceID": 1215,
+          "sourceIsFriendly": false,
+          "targetID": 21,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Ember Blast",
+            "guid": 34341,
+            "type": 4,
+            "abilityIcon": "ability_warlock_inferno.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 10994,
+          "unmitigatedAmount": 11134,
+          "overkill": 140,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 11790883,
+          "type": "damage",
+          "sourceID": 1215,
+          "sourceIsFriendly": false,
+          "targetID": 21,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Buffet",
+            "guid": 34121,
+            "type": 4,
+            "abilityIcon": "spell_fire_fireball.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 2199,
+          "unmitigatedAmount": 2199,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 11787427,
+          "type": "damage",
+          "sourceID": 1216,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 21,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 1920,
+          "mitigated": 1246,
+          "unmitigatedAmount": 3166,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Ember Blast",
+        "guid": 34341,
+        "type": 4,
+        "abilityIcon": "ability_warlock_inferno.jpg"
+      }
+    },
+    {
+      "name": "Triplev",
+      "id": 20,
+      "guid": 56437000,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 11813184,
+      "fight": 86,
+      "damage": {
+        "total": 10837,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34341,
+            "name": "Ember Blast",
+            "total": 10837,
+            "type": 4,
+            "icon": "ability_warlock_inferno.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 10837,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1133,
+      "events": [
+        {
+          "timestamp": 11813181,
+          "type": "damage",
+          "sourceID": 1215,
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Ember Blast",
+            "guid": 34341,
+            "type": 4,
+            "abilityIcon": "ability_warlock_inferno.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 9704,
+          "unmitigatedAmount": 10837,
+          "overkill": 1133,
+          "isAoE": true,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Ember Blast",
+        "guid": 34341,
+        "type": 4,
+        "abilityIcon": "ability_warlock_inferno.jpg"
+      }
+    },
+    {
+      "name": "Truemadnezz",
+      "id": 23,
+      "guid": 51593250,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 11834243,
+      "fight": 86,
+      "damage": {
+        "total": 20135,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 20135,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 20135,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 9596,
+      "events": [
+        {
+          "timestamp": 11834216,
+          "type": "damage",
+          "sourceID": 1215,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 86,
+          "hitType": 15,
+          "amount": 10539,
+          "unmitigatedAmount": 15611,
+          "overkill": 9596,
+          "isAoE": false,
+          "targetMarker": 5
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Tenpence",
+      "id": 7,
+      "guid": 43547063,
+      "type": "Druid",
+      "icon": "Druid-Warden",
+      "timestamp": 11903501,
+      "fight": 86,
+      "damage": {
+        "total": 25564,
+        "totalReduced": 23242,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 25564,
+            "totalReduced": 23242,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 25564,
+            "totalReduced": 23242,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5540,
+        "totalReduced": 3218,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 2322,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 19942,
+            "name": "Flash of Light",
+            "total": 1325,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 379,
+            "name": "Earth Shield",
+            "total": 975,
+            "type": 8,
+            "icon": "spell_nature_skinofearth.jpg"
+          },
+          {
+            "guid": 25222,
+            "name": "Renew",
+            "total": 918,
+            "type": 2,
+            "icon": "spell_holy_renew.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5540,
+            "totalReduced": 3218,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Iiquið",
+            "total": 3240,
+            "totalReduced": 918,
+            "type": "Priest"
+          },
+          {
+            "name": "Sylmerin",
+            "total": 1325,
+            "type": "Paladin"
+          },
+          {
+            "name": "Thoren",
+            "total": 975,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 2007,
+      "overkill": 4112,
+      "events": [
+        {
+          "timestamp": 11903468,
+          "type": "damage",
+          "sourceID": 1215,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 86,
+          "hitType": 15,
+          "amount": 7649,
+          "unmitigatedAmount": 13632,
+          "overkill": 4112,
+          "absorbed": 2322,
+          "isAoE": false,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 11901461,
+          "type": "damage",
+          "sourceID": 1215,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 86,
+          "hitType": 15,
+          "amount": 11481,
+          "unmitigatedAmount": 11139,
+          "isAoE": false,
+          "targetMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Ishtastic",
+      "id": 22,
+      "guid": 42620300,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 11905511,
+      "fight": 86,
+      "damage": {
+        "total": 9978,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1631,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9978,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 9978,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1441,
+      "events": [
+        {
+          "timestamp": 11905469,
+          "type": "damage",
+          "sourceID": 1215,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 8537,
+          "mitigated": 1631,
+          "unmitigatedAmount": 11609,
+          "overkill": 1441,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Vodooboi",
+      "id": 27,
+      "guid": 57393917,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 11922672,
+      "fight": 86,
+      "damage": {
+        "total": 16991,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34133,
+            "name": "Ember Blast",
+            "total": 9136,
+            "type": 4,
+            "icon": "trade_engineering.jpg"
+          },
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 7855,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Ember of Al'ar",
+            "total": 9136,
+            "type": "NPC"
+          },
+          {
+            "name": "Environment",
+            "total": 7855,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7203,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25420,
+            "name": "Lesser Healing Wave",
+            "total": 3627,
+            "type": 8,
+            "icon": "spell_nature_healingwavelesser.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 3576,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 7203,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Thoren",
+            "total": 3627,
+            "type": "Shaman"
+          },
+          {
+            "name": "Lektricity",
+            "total": 3576,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 17803,
+      "overkill": 55,
+      "events": [
+        {
+          "timestamp": 11922660,
+          "type": "damage",
+          "sourceID": 1216,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Ember Blast",
+            "guid": 34133,
+            "type": 4,
+            "abilityIcon": "trade_engineering.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 9081,
+          "unmitigatedAmount": 7028,
+          "overkill": 55,
+          "isAoE": true
+        },
+        {
+          "timestamp": 11906863,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 2828,
+          "unmitigatedAmount": 2357,
+          "isAoE": true
+        },
+        {
+          "timestamp": 11905864,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 2787,
+          "unmitigatedAmount": 2534,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Ember Blast",
+        "guid": 34133,
+        "type": 4,
+        "abilityIcon": "trade_engineering.jpg"
+      }
+    },
+    {
+      "name": "Moistinator",
+      "id": 1,
+      "guid": 65675203,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 11951072,
+      "fight": 86,
+      "damage": {
+        "total": 17098,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34133,
+            "name": "Ember Blast",
+            "total": 8813,
+            "type": 4,
+            "icon": "trade_engineering.jpg"
+          },
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 5679,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 1811,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 520,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 275,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Ember of Al'ar",
+            "total": 8813,
+            "type": "NPC"
+          },
+          {
+            "name": "Environment",
+            "total": 6199,
+            "type": "Boss"
+          },
+          {
+            "name": "Al'ar",
+            "total": 1811,
+            "type": "Boss"
+          },
+          {
+            "name": "Moistinator",
+            "total": 275,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7767,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25396,
+            "name": "Healing Wave",
+            "total": 4820,
+            "type": 8,
+            "icon": "spell_nature_magicimmunity.jpg"
+          },
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 2067,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 880,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34133,
+            "name": "Ember Blast",
+            "total": 7247,
+            "type": 4,
+            "icon": "trade_engineering.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 520,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Thoren",
+            "total": 5700,
+            "type": "Shaman"
+          },
+          {
+            "name": "Iiquið",
+            "total": 2067,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 28405,
+      "overkill": 4,
+      "events": [
+        {
+          "timestamp": 11951063,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 2753,
+          "unmitigatedAmount": 2278,
+          "overkill": 4,
+          "isAoE": true
+        },
+        {
+          "timestamp": 11950068,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 2922,
+          "unmitigatedAmount": 2656,
+          "isAoE": true
+        },
+        {
+          "timestamp": 11948692,
+          "type": "damage",
+          "sourceID": 1,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 66,
+          "unmitigatedAmount": 66,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    },
+    {
+      "name": "Tenpence",
+      "id": 7,
+      "guid": 43547063,
+      "type": "Druid",
+      "icon": "Druid-Warden",
+      "timestamp": 11973788,
+      "fight": 86,
+      "damage": {
+        "total": 15755,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 287,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 15755,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 15755,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 158,
+      "events": [
+        {
+          "timestamp": 11973779,
+          "type": "damage",
+          "sourceID": 1215,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 86,
+          "hitType": 15,
+          "amount": 15597,
+          "mitigated": 287,
+          "unmitigatedAmount": 16042,
+          "overkill": 158,
+          "isAoE": false,
+          "targetMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

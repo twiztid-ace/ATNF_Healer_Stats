@@ -1,0 +1,1081 @@
+{
+  "entries": [
+    {
+      "name": "雕行天下",
+      "id": 11,
+      "guid": 66720655,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 977399,
+      "fight": 7,
+      "damage": {
+        "total": 20086,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 14466,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 35412,
+            "name": "Charge",
+            "total": 5620,
+            "type": 4,
+            "icon": "ability_warrior_charge.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 14466,
+            "type": "Boss"
+          },
+          {
+            "name": "Al'ar",
+            "total": 5620,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7846,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25213,
+            "name": "Greater Heal",
+            "total": 4279,
+            "type": 2,
+            "icon": "spell_holy_greaterheal.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 3567,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35412,
+            "name": "Charge",
+            "total": 5620,
+            "type": 4,
+            "icon": "ability_warrior_charge.jpg"
+          },
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 2226,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "哦豁耶",
+            "total": 4279,
+            "type": "Priest"
+          },
+          {
+            "name": "一锤电晕",
+            "total": 3567,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 43570,
+      "overkill": 2004,
+      "events": [
+        {
+          "timestamp": 977385,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 1199,
+          "unmitigatedAmount": 2464,
+          "overkill": 2004,
+          "isAoE": true
+        },
+        {
+          "timestamp": 976371,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 3240,
+          "unmitigatedAmount": 2700,
+          "isAoE": true
+        },
+        {
+          "timestamp": 975387,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 2619,
+          "unmitigatedAmount": 2381,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    },
+    {
+      "name": "强硬打桩机",
+      "id": 22,
+      "guid": 76728303,
+      "type": "Druid",
+      "icon": "Druid-Guardian",
+      "timestamp": 995463,
+      "fight": 7,
+      "damage": {
+        "total": 23159,
+        "totalReduced": 22636,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3998,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 23159,
+            "totalReduced": 22636,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 23159,
+            "totalReduced": 22636,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2919,
+        "totalReduced": 2396,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27137,
+            "name": "Flash of Light",
+            "total": 2396,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 523,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 2919,
+            "totalReduced": 2396,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Funnymudpi",
+            "total": 2396,
+            "type": "Paladin"
+          },
+          {
+            "name": "哦豁耶",
+            "total": 523,
+            "totalReduced": 0,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 2009,
+      "overkill": 2816,
+      "events": [
+        {
+          "timestamp": 995438,
+          "type": "damage",
+          "sourceID": 86,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 6151,
+          "mitigated": 3998,
+          "unmitigatedAmount": 12965,
+          "overkill": 2816,
+          "isAoE": false
+        },
+        {
+          "timestamp": 993430,
+          "type": "damage",
+          "sourceID": 86,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 7,
+          "hitType": 15,
+          "amount": 13669,
+          "unmitigatedAmount": 13680,
+          "absorbed": 523,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "卡尔老爹",
+      "id": 7,
+      "guid": 95976783,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 1004016,
+      "fight": 7,
+      "damage": {
+        "total": 15480,
+        "totalReduced": 11816,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5141,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9893,
+            "totalReduced": 8088,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 3573,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 2014,
+            "totalReduced": 155,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 11907,
+            "totalReduced": 8243,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 3573,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5055,
+        "totalReduced": 1391,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 3664,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 1391,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 2014,
+            "totalReduced": 155,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1805,
+            "totalReduced": 0,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 1236,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "卡尔老爹",
+            "total": 5055,
+            "totalReduced": 1391,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 32888,
+      "overkill": 2069,
+      "events": [
+        {
+          "timestamp": 1003985,
+          "type": "damage",
+          "sourceID": 86,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 6019,
+          "mitigated": 5141,
+          "unmitigatedAmount": 15034,
+          "overkill": 2069,
+          "absorbed": 1805,
+          "isAoE": false
+        },
+        {
+          "timestamp": 998834,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 2328,
+          "unmitigatedAmount": 2328,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 991431,
+          "type": "damage",
+          "sourceID": 86,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Buffet",
+            "guid": 34121,
+            "type": 4,
+            "abilityIcon": "spell_fire_fireball.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 155,
+          "unmitigatedAmount": 2014,
+          "absorbed": 1859,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "黑风小萨",
+      "id": 9,
+      "guid": 96049682,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 1013100,
+      "fight": 7,
+      "damage": {
+        "total": 12787,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 223,
+        "abilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 10749,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 2038,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 10749,
+            "type": "Boss"
+          },
+          {
+            "name": "Al'ar",
+            "total": 2038,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2886,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 10622,
+            "name": "Chain Heal",
+            "total": 1229,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 871,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 786,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 1622,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 1264,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "一锤电晕",
+            "total": 2100,
+            "type": "Shaman"
+          },
+          {
+            "name": "黑风小萨",
+            "total": 786,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 22658,
+      "overkill": 64,
+      "events": [
+        {
+          "timestamp": 1013076,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 2193,
+          "mitigated": 223,
+          "unmitigatedAmount": 2480,
+          "overkill": 64,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1006820,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 2859,
+          "unmitigatedAmount": 2382,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1005819,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 2972,
+          "unmitigatedAmount": 2702,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    },
+    {
+      "name": "达克赛德",
+      "id": 23,
+      "guid": 72640283,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 1015109,
+      "fight": 7,
+      "damage": {
+        "total": 19777,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 13174,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 35369,
+            "name": "Rebirth",
+            "total": 6026,
+            "type": 4,
+            "icon": "spell_fire_burnout.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 577,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 13751,
+            "type": "Boss"
+          },
+          {
+            "name": "Al'ar",
+            "total": 6026,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6602,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 2572,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 10622,
+            "name": "Chain Heal",
+            "total": 2396,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1304,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 330,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 2830,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 35369,
+            "name": "Rebirth",
+            "total": 2580,
+            "type": 4,
+            "icon": "spell_fire_burnout.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 577,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "一锤电晕",
+            "total": 4968,
+            "type": "Shaman"
+          },
+          {
+            "name": "达克赛德",
+            "total": 1634,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 50989,
+      "overkill": 2799,
+      "events": [
+        {
+          "timestamp": 1015074,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 788,
+          "unmitigatedAmount": 2389,
+          "overkill": 2799,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1014073,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 3128,
+          "unmitigatedAmount": 2257,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1013076,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 3403,
+          "unmitigatedAmount": 2679,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    },
+    {
+      "name": "雕行天下",
+      "id": 11,
+      "guid": 66720655,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 1016097,
+      "fight": 7,
+      "damage": {
+        "total": 12225,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1392,
+        "abilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 10263,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 1962,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 10263,
+            "type": "Boss"
+          },
+          {
+            "name": "Al'ar",
+            "total": 1962,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6262,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 10965,
+            "name": "Greater Heal",
+            "total": 3439,
+            "type": 2,
+            "icon": "spell_holy_greaterheal.jpg"
+          },
+          {
+            "guid": 25420,
+            "name": "Lesser Healing Wave",
+            "total": 1443,
+            "type": 8,
+            "icon": "spell_nature_healingwavelesser.jpg"
+          },
+          {
+            "guid": 27137,
+            "name": "Flash of Light",
+            "total": 1380,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 1443,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "哦豁耶",
+            "total": 3439,
+            "type": "Priest"
+          },
+          {
+            "name": "雕行天下",
+            "total": 1443,
+            "type": "Shaman"
+          },
+          {
+            "name": "Funnymudpi",
+            "total": 1380,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 32832,
+      "overkill": 2472,
+      "events": [
+        {
+          "timestamp": 1016077,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 895,
+          "unmitigatedAmount": 2590,
+          "overkill": 2472,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1015073,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 3036,
+          "unmitigatedAmount": 2530,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1014073,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 2022,
+          "mitigated": 605,
+          "unmitigatedAmount": 2627,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    }
+  ]
+}

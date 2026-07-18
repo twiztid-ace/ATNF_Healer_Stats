@@ -1,0 +1,183 @@
+{
+  "entries": [
+    {
+      "name": "Vapegirl",
+      "id": 31,
+      "guid": 65115734,
+      "type": "Hunter",
+      "icon": "Hunter-Survival",
+      "timestamp": 2501961,
+      "fight": 18,
+      "damage": {
+        "total": 14646,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3490,
+        "abilities": [
+          {
+            "guid": 37478,
+            "name": "Geyser",
+            "total": 6641,
+            "type": 16,
+            "icon": "spell_frost_frostblast.jpg"
+          },
+          {
+            "guid": 37770,
+            "name": "Shoot",
+            "total": 4505,
+            "type": 1,
+            "icon": "ability_marksmanship.jpg"
+          },
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 3500,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Lurker Below",
+            "total": 6641,
+            "type": "Boss"
+          },
+          {
+            "name": "Coilfang Ambusher",
+            "total": 4505,
+            "type": "NPC"
+          },
+          {
+            "name": "Environment",
+            "total": 3500,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3507,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1011,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 2511,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          },
+          {
+            "guid": 37478,
+            "name": "Geyser",
+            "total": 996,
+            "type": 16,
+            "icon": "spell_frost_frostblast.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Vapegirl",
+            "total": 2496,
+            "type": "Hunter"
+          },
+          {
+            "name": "Grasscity",
+            "total": 1011,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 48705,
+      "overkill": 783,
+      "events": [
+        {
+          "timestamp": 2501960,
+          "type": "damage",
+          "sourceID": 116,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shoot",
+            "guid": 37770,
+            "type": 1,
+            "abilityIcon": "ability_marksmanship.jpg"
+          },
+          "fight": 18,
+          "hitType": 1,
+          "amount": 971,
+          "mitigated": 1252,
+          "unmitigatedAmount": 3006,
+          "overkill": 783,
+          "isAoE": false
+        },
+        {
+          "timestamp": 2500673,
+          "type": "damage",
+          "sourceID": 116,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shoot",
+            "guid": 37770,
+            "type": 1,
+            "abilityIcon": "ability_marksmanship.jpg"
+          },
+          "fight": 18,
+          "hitType": 1,
+          "amount": 1341,
+          "mitigated": 957,
+          "unmitigatedAmount": 2298,
+          "isAoE": false
+        },
+        {
+          "timestamp": 2499395,
+          "type": "damage",
+          "sourceID": 116,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shoot",
+            "guid": 37770,
+            "type": 1,
+            "abilityIcon": "ability_marksmanship.jpg"
+          },
+          "fight": 18,
+          "hitType": 1,
+          "amount": 1410,
+          "mitigated": 1005,
+          "unmitigatedAmount": 2415,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Shoot",
+        "guid": 37770,
+        "type": 1,
+        "abilityIcon": "ability_marksmanship.jpg"
+      }
+    }
+  ]
+}

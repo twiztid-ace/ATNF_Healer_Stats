@@ -1,0 +1,407 @@
+{
+  "entries": [
+    {
+      "name": "Baldam",
+      "id": 28,
+      "guid": 54325058,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 759969,
+      "fight": 10,
+      "damage": {
+        "total": 15034,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 15034,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 15034,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3370,
+      "events": [
+        {
+          "timestamp": 759947,
+          "type": "damage",
+          "sourceID": 57,
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 10,
+          "hitType": 2,
+          "amount": 11664,
+          "unmitigatedAmount": 12902,
+          "overkill": 3370,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Slowdow",
+      "id": 3,
+      "guid": 47466624,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 942980,
+      "fight": 10,
+      "damage": {
+        "total": 11078,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 11078,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 11078,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 3000,
+      "overkill": 2185,
+      "events": [
+        {
+          "timestamp": 942947,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 10,
+          "hitType": 1,
+          "amount": 697,
+          "unmitigatedAmount": 2217,
+          "overkill": 2185,
+          "isAoE": true
+        },
+        {
+          "timestamp": 941951,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 10,
+          "hitType": 1,
+          "amount": 3179,
+          "unmitigatedAmount": 2649,
+          "isAoE": true
+        },
+        {
+          "timestamp": 940939,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 10,
+          "hitType": 1,
+          "amount": 2683,
+          "unmitigatedAmount": 2439,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    },
+    {
+      "name": "Pollydarton",
+      "id": 7,
+      "guid": 54917372,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 1093143,
+      "fight": 10,
+      "damage": {
+        "total": 16917,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 15744,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 351761,
+            "name": "Judgement of the Martyr",
+            "total": 1043,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          },
+          {
+            "guid": 348703,
+            "name": "Seal of the Martyr",
+            "total": 130,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 15744,
+            "type": "Boss"
+          },
+          {
+            "name": "Pollydarton",
+            "total": 1173,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6055,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 3540,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1395,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 34863,
+            "name": "Circle of Healing",
+            "total": 734,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 386,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 5367,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 351761,
+            "name": "Judgement of the Martyr",
+            "total": 688,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Jaylév",
+            "total": 2467,
+            "type": "Priest"
+          },
+          {
+            "name": "Troogie",
+            "total": 1807,
+            "type": "Priest"
+          },
+          {
+            "name": "Löf",
+            "total": 1395,
+            "type": "Druid"
+          },
+          {
+            "name": "Pollydarton",
+            "total": 386,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 47568,
+      "overkill": 1205,
+      "events": [
+        {
+          "timestamp": 1093142,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 10,
+          "hitType": 1,
+          "amount": 2624,
+          "unmitigatedAmount": 2735,
+          "overkill": 1205,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1092149,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 10,
+          "hitType": 1,
+          "amount": 3081,
+          "unmitigatedAmount": 2370,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1091142,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 10,
+          "hitType": 1,
+          "amount": 3233,
+          "unmitigatedAmount": 2694,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    }
+  ]
+}

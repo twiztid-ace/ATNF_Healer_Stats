@@ -1,0 +1,328 @@
+{
+  "entries": [
+    {
+      "name": "Cheefkoch",
+      "id": 8,
+      "guid": 54775018,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 4767242,
+      "fight": 34,
+      "damage": {
+        "total": 13612,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3609,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8230,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 36979,
+            "name": "Multi-Shot",
+            "total": 4488,
+            "type": 64,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 36985,
+            "name": "Holy Nova",
+            "total": 894,
+            "type": 2,
+            "icon": "spell_holy_holybolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Infinity Blades",
+            "total": 8230,
+            "type": "NPC"
+          },
+          {
+            "name": "Netherstrand Longbow",
+            "total": 4488,
+            "type": "NPC"
+          },
+          {
+            "name": "Cosmic Infuser",
+            "total": 894,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 487,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 487,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 36985,
+            "name": "Holy Nova",
+            "total": 487,
+            "type": 2,
+            "icon": "spell_holy_holybolt.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Cheefkoch",
+            "total": 487,
+            "type": "Rogue"
+          }
+        ]
+      },
+      "deathWindow": 1780,
+      "overkill": 947,
+      "events": [
+        {
+          "timestamp": 4767221,
+          "type": "damage",
+          "sourceID": 164,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 34,
+          "hitType": 1,
+          "amount": 1716,
+          "mitigated": 1168,
+          "unmitigatedAmount": 3831,
+          "overkill": 947,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4767218,
+          "type": "damage",
+          "sourceID": 159,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Multi-Shot",
+            "guid": 36979,
+            "type": 64,
+            "abilityIcon": "ability_upgrademoonglaive.jpg"
+          },
+          "fight": 34,
+          "hitType": 1,
+          "amount": 4488,
+          "unmitigatedAmount": 4488,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4766717,
+          "type": "damage",
+          "sourceID": 164,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 34,
+          "hitType": 1,
+          "amount": 5567,
+          "mitigated": 2441,
+          "unmitigatedAmount": 8008,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Luanblack",
+      "id": 16,
+      "guid": 60193666,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 4868361,
+      "fight": 34,
+      "damage": {
+        "total": 13323,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 13323,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Thaladred the Darkener",
+            "total": 13323,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 4818,
+      "events": [
+        {
+          "timestamp": 4868340,
+          "type": "damage",
+          "sourceID": 140,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 34,
+          "hitType": 15,
+          "amount": 8505,
+          "unmitigatedAmount": 13252,
+          "overkill": 4818,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Ferrarigox",
+      "id": 15,
+      "guid": 54614011,
+      "type": "Priest",
+      "icon": "Priest-Holy",
+      "timestamp": 4923198,
+      "fight": 34,
+      "damage": {
+        "total": 10788,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 10788,
+        "abilities": [
+          {
+            "guid": 36805,
+            "name": "Fireball",
+            "total": 10788,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 10788,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2067,
+      "events": [
+        {
+          "timestamp": 4923198,
+          "type": "damage",
+          "sourceID": 153,
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 36805,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 34,
+          "hitType": 1,
+          "amount": 8721,
+          "mitigated": 10788,
+          "unmitigatedAmount": 21576,
+          "overkill": 2067,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Fireball",
+        "guid": 36805,
+        "type": 4,
+        "abilityIcon": "spell_fire_flamebolt.jpg"
+      }
+    },
+    {
+      "name": "Ferrarigox",
+      "id": 15,
+      "guid": 54614011,
+      "type": "Priest",
+      "icon": "Priest-Holy",
+      "timestamp": 4938206,
+      "fight": 34,
+      "damage": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 0,
+      "events": []
+    }
+  ]
+}

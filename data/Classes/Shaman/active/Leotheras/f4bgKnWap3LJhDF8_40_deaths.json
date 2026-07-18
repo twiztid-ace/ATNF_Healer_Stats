@@ -1,0 +1,173 @@
+{
+  "entries": [
+    {
+      "name": "Hëllscream",
+      "id": 44,
+      "guid": 42791261,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 4041031,
+      "fight": 40,
+      "damage": {
+        "total": 22869,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 12348,
+        "abilities": [
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 14894,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7975,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Leotheras the Blind",
+            "total": 22869,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7637,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 5616,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 27137,
+            "name": "Flash of Light",
+            "total": 1516,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 505,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 7637,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lorash",
+            "total": 4666,
+            "type": "Shaman"
+          },
+          {
+            "name": "Lilzilla",
+            "total": 1516,
+            "type": "Paladin"
+          },
+          {
+            "name": "Cryomace",
+            "total": 950,
+            "type": "Shaman"
+          },
+          {
+            "name": "Hëllscream",
+            "total": 505,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 12569,
+      "overkill": 2608,
+      "events": [
+        {
+          "timestamp": 4041017,
+          "type": "damage",
+          "sourceID": 160,
+          "sourceIsFriendly": false,
+          "targetID": 44,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 176,
+          "mitigated": 1467,
+          "unmitigatedAmount": 4251,
+          "overkill": 2608,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4040968,
+          "type": "damage",
+          "sourceID": 160,
+          "sourceIsFriendly": false,
+          "targetID": 44,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 5191,
+          "mitigated": 2735,
+          "unmitigatedAmount": 7926,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4039446,
+          "type": "damage",
+          "sourceID": 160,
+          "sourceIsFriendly": false,
+          "targetID": 44,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 40,
+          "hitType": 1,
+          "amount": 1862,
+          "mitigated": 1018,
+          "unmitigatedAmount": 2880,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}
