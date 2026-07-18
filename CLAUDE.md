@@ -86,8 +86,12 @@ but a prior session backfilled real `report_data.json`/`analysis.json`/
 `python -m pipeline.cli render` like any other report.** Don't assume a page
 predating 2026-07-14 is still hand-written-only without checking for these
 three files first; the true test is file presence, not the report's age.
-Vajomee's earliest raid night (`Mfz4kW6JpjFPArat`) has not been checked this
-same way and may or may not still be hand-written-only.
+**Correction (found 2026-07-18 while re-verifying the healer/report-code
+table): Vajomee's earliest raid night (`Mfz4kW6JpjFPArat`) has now been
+checked this same way — it has the full `report_data.json`/`analysis.json`/
+`findings.json` trio, no `-v1`-suffixed sibling folder, and its rendered
+`healer_audit_hydross.html` contains 26 percentile/benchmark references. It
+is fully script-rendered v2, not hand-written-only.**
 
 These two axes are independent: a page's methodology (v1/v2) says nothing
 about how its HTML got produced, and vice versa.
@@ -296,8 +300,13 @@ spec) on all 4 real TK bosses in that SAME report — a genuine mid-raid respec.
 
 `data\site_index.json` is the authoritative list — **check it directly**
 rather than trusting a hardcoded table in this file, which has already gone
-stale once (this rewrite found 5 undocumented healers and 2 undocumented
-report-code folders that a previous version of this file didn't know about).
+stale twice: the Python rewrite found 5 undocumented healers and 2
+undocumented report-code folders, and a 2026-07-18 re-verification (cross-
+checking `site_index.json`, `docs\index.html`, and every healer's own
+`index.json`) then found Vinnyvozz missing a 4th report code
+(`Z4zNt28raQ6GLbkC`) and Vajomee's `Mfz4kW6JpjFPArat` mislabeled "v1-only"
+when it's actually full v2 — both already fixed below. A future session
+should re-verify the same way rather than trust this table indefinitely.
 As of 2026-07-18:
 
 | Healer | Class (pipeline key) | Display | Known report codes |
@@ -305,9 +314,9 @@ As of 2026-07-18:
 | Crowns | Paladin | Holy Paladin | `XJp8vAxzM4KtHYyb`, `rQpVkMjGnc4t9CqW` |
 | Danceswtrees | Druid | Restoration Druid | `Fm9XdWYtz8VCLnwg`, `LKbVcNfRxyBkj2mg`, `XJp8vAxzM4KtHYyb` |
 | Lippies | Priest | Holy Priest | `XJp8vAxzM4KtHYyb` |
-| Vajomee | Shaman | Restoration Shaman | `Mfz4kW6JpjFPArat` (v1-only, earliest raid night), `Z4zNt28raQ6GLbkC`, `QTaWq74txvPF82AR`, `LKbVcNfRxyBkj2mg` |
+| Vajomee | Shaman | Restoration Shaman | `Mfz4kW6JpjFPArat` (earliest raid night), `Z4zNt28raQ6GLbkC`, `QTaWq74txvPF82AR`, `LKbVcNfRxyBkj2mg` |
 | Turkeykin | Dreamstate | Dreamstate Druid | `XJp8vAxzM4KtHYyb` |
-| Vinnyvozz | Druid | Restoration Druid | `rQpVkMjGnc4t9CqW`, `Mfz4kW6JpjFPArat`, `QTaWq74txvPF82AR` |
+| Vinnyvozz | Druid | Restoration Druid | `rQpVkMjGnc4t9CqW`, `Mfz4kW6JpjFPArat`, `Z4zNt28raQ6GLbkC`, `QTaWq74txvPF82AR` |
 | Lasmur | Priest | Holy Priest | `Mfz4kW6JpjFPArat`, `QTaWq74txvPF82AR`, `rQpVkMjGnc4t9CqW`, `Z4zNt28raQ6GLbkC` |
 | Shlicktree | Druid | Restoration Druid | `LKbVcNfRxyBkj2mg`, `XJp8vAxzM4KtHYyb` |
 | Kilsby | Paladin | Holy Paladin | `LKbVcNfRxyBkj2mg`, `Mfz4kW6JpjFPArat` |
@@ -444,9 +453,21 @@ narrative summary.
   to findings.json), Dark Rune, real Tree of Life buff uptime. Tranquility is
   conditional too, but on a fixed numeric rule (cast while ≤20% of the Top
   100 sample does, or didn't cast while ≥50% did) — omitted otherwise,
-  including the common case where nobody casts it. **Tranquility's own guid
-  is still unknown/unobserved** — `cooldown_guids["Tranquility"]` is an empty
-  list and will silently show 0 forever until a real cast is seen in a pull.
+  including the common case where nobody casts it. **Tranquility's real cast
+  guid is 26983** — confirmed 2026-07-18 across 170 files in the full Top 100
+  Druid sample (icon `spell_nature_tranquility.jpg`) and cross-checked
+  against real casts by two tracked healers (Vinnyvozz, Shlicktree). Wired
+  into `CLASSES["Druid"].cooldown_guids["Tranquility"]`. Before this fix the
+  guid list was empty, which silently forced 0 matches regardless of real
+  data (`summarize_benchmarks.py`'s `len(guid_list) > 0 else []` guard) — the
+  Top 100 benchmark CSV and every already-published Druid page understated
+  Tranquility usage as a result. Fixed by re-running `summarize-benchmarks`
+  for Druid and regenerating all 9 affected character/report-code
+  combinations (Danceswtrees x3, Vinnyvozz x4, Shlicktree x2); 4 stale
+  `findings.json` sentences across 3 Vinnyvozz reports that had
+  hand-described this exact gap (citing healing-event guid 44208, the
+  separate real heal-application guid) were corrected to match the
+  now-accurate cooldown table rather than explain away the old discrepancy.
 - **Shaman-Restoration**: Earth Shield, Mana Tide Totem, Ancestral
   Swiftness, Dark Rune. No Rebirth-equivalent or self-buff-uptime concept —
   confirmed absent from real data, not assumed.
@@ -549,28 +570,28 @@ narrative summary.
   the Holy Shock cast/heal split above is the concrete example: the first
   draft claim (scoped only to Crowns's 8 casts) was too broad and had to be
   corrected after checking the wider sample.
+- **Adding a new class/build to the pipeline follows the same discipline as
+  every prior port.** `pipeline\bosses.py` and `pipeline\classes.py` are the
+  only two files with hardcoded boss/class tables now (the Python port's
+  whole point was consolidating what used to be duplicated across 5+
+  PowerShell files into these two) — still do a real-data discovery pass
+  against an actual pulled report before writing any new cooldown-guid
+  entry, and still check the full Top 100 sample (per the rule above) before
+  a "this ability never does X" claim goes into permanent documentation.
 
 ## Explicitly open, in priority-ish order
 
-1. **Tranquility's guid is unknown/unobserved** — `CLASSES["Druid"].cooldown_guids["Tranquility"]`
-   is an empty list and will silently show 0 forever until a real cast is
-   seen in a pull. Add the real guid once observed, don't guess it.
-2. **A narrow, accepted data gap**: no `CombatantInfo` snapshot even within
+1. **A narrow, accepted data gap**: no `CombatantInfo` snapshot even within
    the 2-minute backward buffer for a small fraction of parses across every
    class (~0.1% Druid, ~0.5% Shaman, ~1.1% Priest, ~1.1% Paladin), likely
    late-joining players — reported as a failure for that one player's
    consumables/gear data, not chased further.
-3. **Power Word: Shield's Top 100 benchmark is a real but misleading ~0%**
+2. **Power Word: Shield's Top 100 benchmark is a real but misleading ~0%**
    and **Holy Shock's cast/heal use two different real guids** — see
    "Per-build real cooldown/utility kits" above. Both are auto-tagged canned
    caveats in `build_analysis.py`; any findings.json prose must still name
    them explicitly, the tag alone doesn't write the sentence.
-4. **This file's own healer/report-code table has already gone stale once**
-   (5 healers and 2 report-code folders were undocumented before this
-   rewrite) — a future session should re-verify against `data\site_index.json`
-   and `docs\index.html` directly rather than trust this table indefinitely,
-   the same caution this file now gives itself.
-5. **Known, separate content-debt item, not fixed in this rewrite**: several
+3. **Known, separate content-debt item, not fixed in this rewrite**: several
    already-published `docs\**\healer_audit_*.html` pages contain internal
    jargon leaked into public coverage-note prose — e.g. literal "(see
    WORKFLOW.md)" and "gotcha #2" text in
@@ -578,14 +599,6 @@ narrative summary.
    means regenerating already-published site content (a real content job,
    not a docs edit) — flagged here so it isn't lost, not attempted as part
    of this file's own rewrite.
-6. Adding a new class/build to the pipeline: `pipeline\bosses.py` and
-   `pipeline\classes.py` are the only two files with hardcoded
-   boss/class tables now (the Python port's whole point was consolidating
-   what used to be duplicated across 5+ PowerShell files into these two) —
-   still do a real-data discovery pass against an actual pulled report
-   before writing any new cooldown-guid entry, and still check the full Top
-   100 sample before a "this ability never does X" claim goes into
-   permanent documentation, same discipline as every prior port.
 
 ## Hosting — GitHub Pages
 

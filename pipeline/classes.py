@@ -49,7 +49,7 @@ CLASSES: dict[str, ClassConfig] = {
             "Innervate": [29166],
             "Nature's Swiftness": [17116],
             "Swiftmend": [18562],
-            "Tranquility": [],
+            "Tranquility": [26983],
             "Rebirth": [26994],
             "Dark Rune": [27869],
         },

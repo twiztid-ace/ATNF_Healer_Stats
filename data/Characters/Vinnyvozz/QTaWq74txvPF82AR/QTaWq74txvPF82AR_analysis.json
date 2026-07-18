@@ -199,14 +199,14 @@
           "DeviationDirection": null
         },
         "Tranquility": {
-          "Count": 0,
-          "SelfCount": 0,
-          "TargetLabel": "—",
-          "Top100AvgCasts": 0.0,
-          "Top100UsedPct": 0.0,
-          "Top100SelfPct": null,
-          "Deviates": false,
-          "DeviationDirection": null
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 13.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
         },
         "Rebirth": {
           "Count": 0,
@@ -239,7 +239,7 @@
           "DeviationDirection": null
         }
       },
-      "TranquilityInclude": false,
+      "TranquilityInclude": true,
       "RebirthCandidates": {
         "Deaths": [
           {
@@ -287,30 +287,30 @@
         {
           "DeathName": "Blockarina",
           "DeathTimestamp": 2681633,
-          "NearestCooldown": "Swiftmend",
-          "NearestCooldownTimestamp": 2636538,
-          "DeltaMs": 45095
+          "NearestCooldown": "Tranquility",
+          "NearestCooldownTimestamp": 2675031,
+          "DeltaMs": 6602
         },
         {
           "DeathName": "Ghostpepperx",
           "DeathTimestamp": 2681915,
-          "NearestCooldown": "Swiftmend",
-          "NearestCooldownTimestamp": 2636538,
-          "DeltaMs": 45377
+          "NearestCooldown": "Tranquility",
+          "NearestCooldownTimestamp": 2675031,
+          "DeltaMs": 6884
         },
         {
           "DeathName": "Vinnyvozz",
           "DeathTimestamp": 2681918,
-          "NearestCooldown": "Swiftmend",
-          "NearestCooldownTimestamp": 2636538,
-          "DeltaMs": 45380
+          "NearestCooldown": "Tranquility",
+          "NearestCooldownTimestamp": 2675031,
+          "DeltaMs": 6887
         },
         {
           "DeathName": "Quruella",
           "DeathTimestamp": 2687133,
-          "NearestCooldown": "Swiftmend",
-          "NearestCooldownTimestamp": 2636538,
-          "DeltaMs": 50595
+          "NearestCooldown": "Tranquility",
+          "NearestCooldownTimestamp": 2675031,
+          "DeltaMs": 12102
         },
         {
           "DeathName": "Lasmur",
@@ -354,6 +354,12 @@
     ],
     "OverhealExceedsWorstBosses": [],
     "CooldownDeviations": {
+      "Tranquility": {
+        "UndercastBosses": [],
+        "OvercastBosses": [
+          "kaelthas"
+        ]
+      },
       "Rebirth": {
         "UndercastBosses": [
           "kaelthas"
