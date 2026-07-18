@@ -1,0 +1,651 @@
+{
+  "entries": [
+    {
+      "name": "Dizah",
+      "id": 24,
+      "guid": 74882291,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 10334108,
+      "fight": 68,
+      "damage": {
+        "total": 11334,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 9000,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 2334,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "High Astromancer Solarian",
+            "total": 11334,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1913,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1073,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 840,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 1913,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Cutehands",
+            "total": 1073,
+            "type": "Priest"
+          },
+          {
+            "name": "Reylion",
+            "total": 840,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 2585,
+      "overkill": 48,
+      "events": [
+        {
+          "timestamp": 10334082,
+          "type": "damage",
+          "sourceID": 183,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blinding Light",
+            "guid": 33009,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 2286,
+          "unmitigatedAmount": 2334,
+          "overkill": 48,
+          "isAoE": true
+        },
+        {
+          "timestamp": 10333495,
+          "type": "damage",
+          "sourceID": 183,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 3000,
+          "unmitigatedAmount": 3000,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10332503,
+          "type": "damage",
+          "sourceID": 183,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 3000,
+          "unmitigatedAmount": 3000,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Blinding Light",
+        "guid": 33009,
+        "type": 64,
+        "abilityIcon": "spell_nature_starfall.jpg"
+      }
+    },
+    {
+      "name": "Ivegotabig",
+      "id": 6,
+      "guid": 63371844,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 10335338,
+      "fight": 68,
+      "damage": {
+        "total": 13663,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 6087,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10773,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 2890,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "High Astromancer Solarian",
+            "total": 13663,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2075,
+      "overkill": 2249,
+      "events": [
+        {
+          "timestamp": 10335276,
+          "type": "damage",
+          "sourceID": 183,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 3069,
+          "mitigated": 3042,
+          "unmitigatedAmount": 8360,
+          "overkill": 2249,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10334081,
+          "type": "damage",
+          "sourceID": 183,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blinding Light",
+            "guid": 33009,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 2890,
+          "unmitigatedAmount": 2502,
+          "isAoE": true
+        },
+        {
+          "timestamp": 10333201,
+          "type": "damage",
+          "sourceID": 183,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 5455,
+          "mitigated": 3045,
+          "unmitigatedAmount": 8500,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Ðori",
+      "id": 8,
+      "guid": 66400120,
+      "type": "Druid",
+      "icon": "Druid-Feral",
+      "timestamp": 10345319,
+      "fight": 68,
+      "damage": {
+        "total": 16632,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 750,
+        "abilities": [
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 8250,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 6054,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 2328,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "High Astromancer Solarian",
+            "total": 10578,
+            "type": "Boss"
+          },
+          {
+            "name": "Ðori",
+            "total": 6054,
+            "type": "Druid"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5824,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 2772,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 2200,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 852,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 2772,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 2200,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 852,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Cutehands",
+            "total": 4972,
+            "type": "Priest"
+          },
+          {
+            "name": "Ðori",
+            "total": 852,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 18062,
+      "overkill": 164,
+      "events": [
+        {
+          "timestamp": 10345302,
+          "type": "damage",
+          "sourceID": 183,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 2836,
+          "unmitigatedAmount": 3000,
+          "overkill": 164,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10344243,
+          "type": "damage",
+          "sourceID": 183,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 68,
+          "hitType": 16,
+          "amount": 2250,
+          "mitigated": 750,
+          "unmitigatedAmount": 3000,
+          "resisted": 750,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10343255,
+          "type": "damage",
+          "sourceID": 183,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 3000,
+          "unmitigatedAmount": 3000,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Missiles",
+        "guid": 39414,
+        "type": 64,
+        "abilityIcon": "spell_nature_starfall.jpg"
+      }
+    },
+    {
+      "name": "Reylion",
+      "id": 15,
+      "guid": 72207578,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 10347499,
+      "fight": 68,
+      "damage": {
+        "total": 12953,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 577,
+        "abilities": [
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 6500,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 4720,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 1733,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Reylion",
+            "total": 6500,
+            "type": "Priest"
+          },
+          {
+            "name": "Environment",
+            "total": 4720,
+            "type": "Boss"
+          },
+          {
+            "name": "High Astromancer Solarian",
+            "total": 1733,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3042,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1668,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 1169,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 39373,
+            "name": "Shadowmend",
+            "total": 205,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 1934,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 1108,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Cutehands",
+            "total": 1668,
+            "type": "Priest"
+          },
+          {
+            "name": "Reylion",
+            "total": 1374,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 13406,
+      "overkill": 1010,
+      "events": [
+        {
+          "timestamp": 10347488,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 1310,
+          "unmitigatedAmount": 2320,
+          "overkill": 1010,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 10339344,
+          "type": "damage",
+          "sourceID": 15,
+          "sourceIsFriendly": true,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Wrath of the Astromancer",
+            "guid": 42787,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 6500,
+          "unmitigatedAmount": 6500,
+          "isAoE": true,
+          "sourceMarker": 8,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 10334438,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 2400,
+          "unmitigatedAmount": 2400,
+          "isAoE": false,
+          "tick": true,
+          "sourceMarker": 8,
+          "targetMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Word: Death",
+        "guid": 32409,
+        "type": 32,
+        "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+      }
+    }
+  ]
+}

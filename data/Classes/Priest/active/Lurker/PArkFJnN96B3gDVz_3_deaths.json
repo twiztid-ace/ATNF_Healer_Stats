@@ -1,0 +1,228 @@
+{
+  "entries": [
+    {
+      "name": "Quadcity",
+      "id": 22,
+      "guid": 54745436,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 1009517,
+      "fight": 3,
+      "damage": {
+        "total": 14256,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 10,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 14256,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Lurker Below",
+            "total": 14256,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 6884,
+      "events": [
+        {
+          "timestamp": 1009516,
+          "type": "damage",
+          "sourceID": 80,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 3,
+          "hitType": 15,
+          "amount": 7372,
+          "mitigated": 10,
+          "unmitigatedAmount": 14266,
+          "overkill": 6884,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Juiceslinger",
+      "id": 5,
+      "guid": 57796041,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 1035364,
+      "fight": 3,
+      "damage": {
+        "total": 9756,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 6000,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          },
+          {
+            "guid": 37478,
+            "name": "Geyser",
+            "total": 3756,
+            "type": 16,
+            "icon": "spell_frost_frostblast.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 6000,
+            "type": "Boss"
+          },
+          {
+            "name": "The Lurker Below",
+            "total": 3756,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1824,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30294,
+            "name": "Soul Leech",
+            "total": 1824,
+            "type": 32,
+            "icon": "spell_shadow_soulleech_3.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 1824,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Juiceslinger",
+            "total": 1824,
+            "type": "Warlock"
+          }
+        ]
+      },
+      "deathWindow": 45366,
+      "overkill": 257,
+      "events": [
+        {
+          "timestamp": 1035324,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scalding Water",
+            "guid": 37284,
+            "type": 4,
+            "abilityIcon": "spell_fire_masterofelements.jpg"
+          },
+          "fight": 3,
+          "hitType": 1,
+          "amount": 243,
+          "unmitigatedAmount": 500,
+          "overkill": 257,
+          "isAoE": false
+        },
+        {
+          "timestamp": 1034348,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scalding Water",
+            "guid": 37284,
+            "type": 4,
+            "abilityIcon": "spell_fire_masterofelements.jpg"
+          },
+          "fight": 3,
+          "hitType": 1,
+          "amount": 500,
+          "unmitigatedAmount": 500,
+          "isAoE": false
+        },
+        {
+          "timestamp": 1032702,
+          "type": "damage",
+          "sourceID": 80,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Geyser",
+            "guid": 37478,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostblast.jpg"
+          },
+          "fight": 3,
+          "hitType": 1,
+          "amount": 3756,
+          "unmitigatedAmount": 3756,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Scalding Water",
+        "guid": 37284,
+        "type": 4,
+        "abilityIcon": "spell_fire_masterofelements.jpg"
+      }
+    }
+  ]
+}

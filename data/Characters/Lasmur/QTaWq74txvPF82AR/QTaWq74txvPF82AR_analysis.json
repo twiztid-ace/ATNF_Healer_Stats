@@ -1,0 +1,312 @@
+{
+  "CharacterName": "Lasmur",
+  "ReportCode": "QTaWq74txvPF82AR",
+  "ClassName": "Priest",
+  "Bosses": {
+    "kaelthas": {
+      "Deviations": {
+        "HPS": {
+          "Value": 769,
+          "Top1": 1366.0,
+          "Top100Avg": 1202.0,
+          "Median": 1187.0,
+          "RatioToAvg": 0.64,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 43.3,
+          "Best": 23.2,
+          "Median": 35.3,
+          "Worst": 52.3,
+          "GapToWorst": -9.0,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 86.6,
+          "Top1": 99.6,
+          "Top100Avg": 91.3,
+          "Median": 91.2,
+          "GapToAvg": -4.7,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 4.85,
+          "Top1": 7.57,
+          "Top100Avg": 5.87,
+          "Median": 5.77,
+          "RatioToAvg": 0.83,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 56.7,
+          "Top100Avg": 42.5,
+          "GapPoints": 14.2,
+          "Flag": "above_avg"
+        },
+        "Top1Concentration": {
+          "Value": 22.4,
+          "Top100Avg": 13.4,
+          "GapPoints": 9.0,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 33.7,
+          "BenchmarkPct": 44.6,
+          "GapPoints": -10.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 25.0,
+          "BenchmarkPct": 22.1,
+          "GapPoints": 2.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 23.4,
+          "BenchmarkPct": 12.5,
+          "GapPoints": 10.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 12.5,
+          "BenchmarkPct": 10.0,
+          "GapPoints": 2.5,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 5.4,
+          "BenchmarkPct": 4.2,
+          "GapPoints": 1.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25213,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.7,
+          "GapPoints": -1.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Binding Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.5,
+          "GapPoints": -1.5,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Holy Word: Sanctify",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.6,
+          "GapPoints": -0.6,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 34866,
+        "Name": "Circle of Healing",
+        "GapPoints": -10.9
+      },
+      "SpellRanks": [],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 1.0,
+          "Top100UsedPct": 92.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 1.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 1.3,
+          "Top100UsedPct": 82.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 8.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Fear Ward": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Captinhelp",
+          "Top100AvgCasts": 1.0,
+          "Top100UsedPct": 87.0,
+          "Top100SelfPct": 4.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.9,
+          "Top100UsedPct": 43.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 2.5,
+          "Top100UsedPct": 98.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [
+        {
+          "Name": "Lasmur",
+          "Timestamp": 2785683
+        },
+        {
+          "Name": "Lasmur",
+          "Timestamp": 2800696
+        }
+      ],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Blockarina",
+          "DeathTimestamp": 2681633,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 2668803,
+          "DeltaMs": 12830
+        },
+        {
+          "DeathName": "Ghostpepperx",
+          "DeathTimestamp": 2681915,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 2668803,
+          "DeltaMs": 13112
+        },
+        {
+          "DeathName": "Vinnyvozz",
+          "DeathTimestamp": 2681918,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 2668803,
+          "DeltaMs": 13115
+        },
+        {
+          "DeathName": "Quruella",
+          "DeathTimestamp": 2687133,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 2668803,
+          "DeltaMs": 18330
+        },
+        {
+          "DeathName": "Lasmur",
+          "DeathTimestamp": 2785683,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 2668803,
+          "DeltaMs": 116880
+        },
+        {
+          "DeathName": "Silkyrebel",
+          "DeathTimestamp": 2787959,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 2668803,
+          "DeltaMs": 119156
+        },
+        {
+          "DeathName": "Lasmur",
+          "DeathTimestamp": 2800696,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 2668803,
+          "DeltaMs": 131893
+        },
+        {
+          "DeathName": "Captinhelp",
+          "DeathTimestamp": 2819671,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 2668803,
+          "DeltaMs": 150868
+        }
+      ],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    }
+  },
+  "RaidWideRollups": {
+    "DeathCountByBoss": [
+      {
+        "Slug": "kaelthas",
+        "DeathCount": 8,
+        "Rank": 1
+      }
+    ],
+    "OverhealExceedsWorstBosses": [],
+    "CooldownDeviations": {
+      "Blessing of Life": {
+        "UndercastBosses": [],
+        "OvercastBosses": [
+          "kaelthas"
+        ]
+      }
+    },
+    "SelfDeathBosses": [
+      "kaelthas"
+    ],
+    "LowestPercentileBosses": [
+      {
+        "Slug": "kaelthas",
+        "Percentile": 71
+      }
+    ]
+  },
+  "GearAnalysis": {
+    "MissingEnchantFlags": [],
+    "DifferingSlotsAnnotated": [],
+    "EnchantableSlotCount": 9,
+    "EnchantedSlotCount": 9,
+    "ConsumableSetup": {
+      "TotalBosses": 1,
+      "CompleteCount": 1,
+      "UnknownCount": 0,
+      "IncompleteBosses": []
+    }
+  }
+}

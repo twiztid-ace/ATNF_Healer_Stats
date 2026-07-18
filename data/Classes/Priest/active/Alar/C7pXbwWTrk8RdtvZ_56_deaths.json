@@ -1,0 +1,151 @@
+{
+  "entries": [
+    {
+      "name": "Smokeshadow",
+      "id": 28,
+      "guid": 53845739,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 7524193,
+      "fight": 56,
+      "damage": {
+        "total": 11731,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 11731,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 11731,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1066,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1066,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 1066,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Wynderia",
+            "total": 1066,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 3008,
+      "overkill": 641,
+      "events": [
+        {
+          "timestamp": 7524164,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 56,
+          "hitType": 1,
+          "amount": 2353,
+          "unmitigatedAmount": 2303,
+          "overkill": 641,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7523167,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 56,
+          "hitType": 1,
+          "amount": 3304,
+          "unmitigatedAmount": 2754,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7522171,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 56,
+          "hitType": 1,
+          "amount": 3037,
+          "unmitigatedAmount": 2761,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    }
+  ]
+}

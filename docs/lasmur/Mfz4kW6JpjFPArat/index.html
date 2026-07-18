@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Raid Audit — Lasmur — SSC / TK — July 3, 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 920px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{ display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px; }
+  .section-num{ font-family:'IBM Plex Mono', monospace; font-size: 12px; color: var(--copper); }
+  .section-title{ font-family:'Cormorant Garamond', serif; font-weight: 600; font-size: 24px; margin: 0; }
+  .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: -12px 0 20px; }
+
+  .consistency-banner{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    background: rgba(95,122,82,0.12);
+    border: 1px solid rgba(95,122,82,0.35);
+    border-radius: 3px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+  }
+  .consistency-icon{
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--moss); color: var(--parchment);
+    display:flex; align-items:center; justify-content:center;
+    font-weight: 700; font-size: 14px; flex-shrink:0;
+  }
+  .consistency-text{ font-size: 13px; }
+  .consistency-text strong{ font-family:'IBM Plex Mono', monospace; }
+
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    grid-auto-rows: auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px; border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px; font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-icon.note{ background: var(--gold); color: var(--ink); }
+  .check-note{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: rgba(19,42,44,0.55); text-align:right; white-space:nowrap; }
+  .check-detail{ grid-column: 2 / 4; font-size: 12px; color: rgba(19,42,44,0.6); line-height: 1.45; margin-top: 2px; }
+
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  .boss-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .boss-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .th-help{ cursor: help; border-bottom-style: dotted; text-decoration: underline dotted; text-underline-offset: 3px; }
+  .boss-table td{
+    padding: 12px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .boss-table tr:last-child td{ border-bottom:none; }
+  .boss-name{ font-weight: 600; }
+  .boss-name a{ color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--copper); }
+  .boss-name a:hover{ color: var(--copper); }
+  .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .pctl-pill{
+    display:inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    background: var(--parchment-dim);
+  }
+  .pctl-pill.has-data{ background: rgba(201,122,61,0.15); color: var(--ink); font-weight:600; }
+  .pctl-pill.pending{ color: rgba(19,42,44,0.4); font-style: italic; font-weight:400; }
+  .overheal-cell.high{ color: var(--rust); font-weight:600; }
+  .link-arrow{ font-family:'IBM Plex Mono', monospace; font-size: 11px; color: var(--copper); }
+
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — SSC / TK — July 3, 2026</p>
+    <h1>Lasmur</h1>
+    <p class="subline">Holy Priest &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>Mfz4kW6JpjFPArat</span> &nbsp;·&nbsp; 10 bosses killed</p>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Gear audit</h2>
+    </div>
+    <p class="section-desc">One audit for the whole raid night — gear was checked against every one of the 10 kills below.</p>
+
+    <div class="consistency-banner">
+      <div class="consistency-icon">✓</div>
+      <div class="consistency-text">Loadout is <strong>not fully consistent - Finger1 differs across kills and is flagged for review, alongside one benign single-kill Main Hand swap</strong> across all 10 boss kills.</div>
+    </div>
+
+    <div class="check-list">
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>19 of 19 real equipment slots filled in the baseline loadout (shirt and tabard are typically the two genuinely empty cosmetic slots, no stat impact)</div>
+        <div class="check-note">avg ilvl 114</div>
+        <div class="check-detail"></div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon ok">✓</div>
+        <div>9 of 9 enchantable slots carry a permanent enchant</div>
+        <div class="check-note"></div>
+        <div class="check-detail"></div>
+      </div>
+      <div class="check-item">
+        <div class="check-icon bad">✗</div>
+        <div>9 of 10 kills had a complete consumable setup (Flask, or Battle + Guardian Elixir together)</div>
+        <div class="check-note"></div>
+        <div class="check-detail">Missing on: Fathom-Lord Karathress.</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">The Finger1 variant doesn&#39;t read as a clean single-kill swap - worth confirming whether it was a deliberate ring change or a real equipping gap on some kills. All 9 enchantable slots carry a permanent enchant, and consumables were complete on 9 of 10 kills; Fathom-Lord Karathress is the one exception, with no elixir of either kind active that pull.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Per-boss summary</h2>
+    </div>
+    <p class="section-desc">HPS and overheal are real, computed from Lasmur's own fight logs. Percentile is only shown where we've pulled the real WCL ranking for that exact pull — click a boss name for the full audit.</p>
+
+    <p class="section-desc">iLvl Healing Rank: across the 10 kill(s) with another tracked-spec healer present, Lasmur ranked #1 (by WCL&#39;s own HPS Performance Comparison by Item Level) on 2 of them, averaging the 38th percentile by item level across those kills.</p>
+    <p class="section-desc">Raw Healing Rank: across the 10 kill(s) with another tracked-spec healer present, Lasmur ranked #1 by real raw total healing done on 7 of them.</p>
+
+    <div class="consistency-banner" style="background: rgba(181,80,58,0.10); border-color: rgba(181,80,58,0.35);">
+      <div class="consistency-icon" style="background: var(--rust);">!</div>
+      <div class="consistency-text"><strong>Leotheras the Blind was by far the deadliest kill of the raid</strong> (22 deaths, more than double the next-highest kill), and Lasmur died personally 3 times during it - plus 2 more times on Morogrim Tidewalker, the only other kill with a self-death this raid.</div>
+    </div>
+
+    <table class="boss-table">
+      <thead>
+        <tr>
+          <th>Boss</th>
+          <th style="text-align:right;">HPS</th>
+          <th style="text-align:right;">Overheal</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">iLvl Healing Rank</th>
+          <th style="text-align:right;" class="th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">Raw Healing Rank</th>
+          <th style="text-align:right;">WCL Percentile</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_hydross.html">Hydross the Unstable</a></td>
+          <td class="num-cell">683</td>
+          <td class="num-cell">57.7%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">46th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_lurker.html">The Lurker Below</a></td>
+          <td class="num-cell">585</td>
+          <td class="num-cell overheal-cell high">43.3%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">5th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">4th/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">12th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_leotheras.html">Leotheras the Blind</a></td>
+          <td class="num-cell">790</td>
+          <td class="num-cell overheal-cell high">39.3%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">35th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_karathress.html">Fathom-Lord Karathress</a></td>
+          <td class="num-cell">1241</td>
+          <td class="num-cell">39.4%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">64th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_morogrim.html">Morogrim Tidewalker</a></td>
+          <td class="num-cell">744</td>
+          <td class="num-cell overheal-cell high">54.8%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">5th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">3rd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">21th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_vashj.html">Lady Vashj</a></td>
+          <td class="num-cell">634</td>
+          <td class="num-cell">51.8%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">4th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">31th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_alar.html">Al&#39;ar</a></td>
+          <td class="num-cell">501</td>
+          <td class="num-cell overheal-cell high">53.6%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">3rd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">2nd/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">30th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_voidreaver.html">Void Reaver</a></td>
+          <td class="num-cell">2289</td>
+          <td class="num-cell overheal-cell high">26.6%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">5th/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">47th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_solarian.html">High Astromancer Solarian</a></td>
+          <td class="num-cell">629</td>
+          <td class="num-cell overheal-cell high">65.3%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">2nd/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">22th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+        <tr>
+          <td class="boss-name"><a href="healer_audit_kaelthas.html">Kael&#39;thas Sunstrider</a></td>
+          <td class="num-cell">765</td>
+          <td class="num-cell">49.7%</td>
+          <td class="pctl-cell th-help" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">1st/5</td>
+          <td class="pctl-cell th-help" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">1st/5</td>
+          <td class="pctl-cell"><span class="pctl-pill has-data">71th</span></td>
+          <td class="link-arrow">→</td>
+        </tr>
+    </tbody>
+    </table>
+
+    <div class="coverage-note">Two consistent, raid-wide patterns stand out. First, Blessing of Life - a self-cast the Top 100 sample uses on only 3-8% of parses per boss - was cast on 8 of 10 kills, the most consistent cooldown deviation of the raid. Second, Circle of Healing undershot the Top 100 sample&#39;s share on 8 of 10 kills, with Renew, Prayer of Mending, and Power Word: Shield making up the difference; Power Word: Shield&#39;s own near-0% Top 100 usage rate on most bosses is a known benchmark bias, not a real norm, so its low usage isn&#39;t read as underuse anywhere in this report. Leotheras the Blind was by far the deadliest kill of the raid (22 deaths, more than double the next-highest kill), and Lasmur died personally 3 times during it, plus 2 more times on Morogrim Tidewalker - the only two kills flagged for self-deaths this raid. Solarian&#39;s 9 deaths landed in a tight ~12-second burst rather than spread across the pull. The three weakest kills by percentile were Lurker (12th), Morogrim (21st), and Solarian (22nd); Kael&#39;thas Sunstrider was the strongest (71st).</div>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Lasmur's fight logs (report Mfz4kW6JpjFPArat) + WCL rankings where pulled</span>
+  </div>
+
+</div>
+
+</body>
+</html>

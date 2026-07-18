@@ -1,0 +1,910 @@
+{
+  "entries": [
+    {
+      "name": "Vajomee",
+      "id": 6,
+      "guid": 47546240,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 7317898,
+      "fight": 53,
+      "damage": {
+        "total": 9262,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3552,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6730,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 38145,
+            "name": "Forked Lightning",
+            "total": 2532,
+            "type": 8,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Coilfang Elite",
+            "total": 6730,
+            "type": "NPC"
+          },
+          {
+            "name": "Lady Vashj",
+            "total": 2532,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 770,
+      "overkill": 309,
+      "events": [
+        {
+          "timestamp": 7317886,
+          "type": "damage",
+          "sourceID": 164,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 6421,
+          "mitigated": 3552,
+          "unmitigatedAmount": 10282,
+          "overkill": 309,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7317116,
+          "type": "damage",
+          "sourceID": 156,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Forked Lightning",
+            "guid": 38145,
+            "type": 8,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 2532,
+          "unmitigatedAmount": 2532,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Captinspanky",
+      "id": 66,
+      "guid": 46270849,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 7373949,
+      "fight": 53,
+      "damage": {
+        "total": 11186,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38253,
+            "name": "Poison Bolt",
+            "total": 5849,
+            "type": 8,
+            "icon": "spell_nature_corrosivebreath.jpg"
+          },
+          {
+            "guid": 38145,
+            "name": "Forked Lightning",
+            "total": 5337,
+            "type": 8,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tainted Elemental",
+            "total": 5849,
+            "type": "NPC"
+          },
+          {
+            "name": "Lady Vashj",
+            "total": 5337,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 267,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 8941,
+            "name": "Regrowth",
+            "total": 267,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38145,
+            "name": "Forked Lightning",
+            "total": 267,
+            "type": 8,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Shlicktree",
+            "total": 267,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 32699,
+      "overkill": 1644,
+      "events": [
+        {
+          "timestamp": 7373933,
+          "type": "damage",
+          "sourceID": 156,
+          "sourceIsFriendly": false,
+          "targetID": 66,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Forked Lightning",
+            "guid": 38145,
+            "type": 8,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 1030,
+          "unmitigatedAmount": 2674,
+          "overkill": 1644,
+          "isAoE": true,
+          "targetMarker": 3
+        },
+        {
+          "timestamp": 7367581,
+          "type": "damage",
+          "sourceID": 166,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 66,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Poison Bolt",
+            "guid": 38253,
+            "type": 8,
+            "abilityIcon": "spell_nature_corrosivebreath.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 1971,
+          "unmitigatedAmount": 1971,
+          "isAoE": false,
+          "tick": true,
+          "targetMarker": 3
+        },
+        {
+          "timestamp": 7363584,
+          "type": "damage",
+          "sourceID": 166,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 66,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Poison Bolt",
+            "guid": 38253,
+            "type": 8,
+            "abilityIcon": "spell_nature_corrosivebreath.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 1971,
+          "unmitigatedAmount": 1971,
+          "isAoE": false,
+          "tick": true,
+          "targetMarker": 3
+        }
+      ],
+      "killingBlow": {
+        "name": "Forked Lightning",
+        "guid": 38145,
+        "type": 8,
+        "abilityIcon": "spell_nature_chainlightning.jpg"
+      }
+    },
+    {
+      "name": "Danceswtrees",
+      "id": 18,
+      "guid": 54804174,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 7384344,
+      "fight": 53,
+      "damage": {
+        "total": 10308,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 4683,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10308,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Coilfang Strider",
+            "total": 10308,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 906,
+      "events": [
+        {
+          "timestamp": 7384319,
+          "type": "damage",
+          "sourceID": 168,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 9402,
+          "mitigated": 4683,
+          "unmitigatedAmount": 14991,
+          "overkill": 906,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Purehentai",
+      "id": 21,
+      "guid": 54671437,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 7579653,
+      "fight": 53,
+      "damage": {
+        "total": 13676,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 12676,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          },
+          {
+            "guid": 38316,
+            "name": "Entangle",
+            "total": 1000,
+            "type": 8,
+            "icon": "spell_nature_stranglevines.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 12676,
+            "type": "Boss"
+          },
+          {
+            "name": "Lady Vashj",
+            "total": 1000,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2580,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 2476,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 104,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 2580,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Morguesmpson",
+            "total": 2476,
+            "type": "Priest"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 104,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 3854,
+      "overkill": 752,
+      "events": [
+        {
+          "timestamp": 7579637,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 21,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 2417,
+          "unmitigatedAmount": 3169,
+          "overkill": 752,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 7578611,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 21,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 3169,
+          "unmitigatedAmount": 3169,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 7577789,
+          "type": "damage",
+          "sourceID": 156,
+          "sourceIsFriendly": false,
+          "targetID": 21,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Entangle",
+            "guid": 38316,
+            "type": 8,
+            "abilityIcon": "spell_nature_stranglevines.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 500,
+          "unmitigatedAmount": 500,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Toxic Spores",
+        "guid": 360327,
+        "type": 8,
+        "abilityIcon": "spell_nature_abolishmagic.jpg"
+      }
+    },
+    {
+      "name": "Staubz",
+      "id": 34,
+      "guid": 54458809,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 7580614,
+      "fight": 53,
+      "damage": {
+        "total": 17755,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 16655,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          },
+          {
+            "guid": 38316,
+            "name": "Entangle",
+            "total": 1100,
+            "type": 8,
+            "icon": "spell_nature_stranglevines.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 16655,
+            "type": "Boss"
+          },
+          {
+            "name": "Lady Vashj",
+            "total": 1100,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5900,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 2024,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 1009,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 8941,
+            "name": "Regrowth",
+            "total": 267,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 104,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 5350,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          },
+          {
+            "guid": 38316,
+            "name": "Entangle",
+            "total": 550,
+            "type": 8,
+            "icon": "spell_nature_stranglevines.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Staubz",
+            "total": 2496,
+            "type": "Warrior"
+          },
+          {
+            "name": "Morguesmpson",
+            "total": 2024,
+            "type": "Priest"
+          },
+          {
+            "name": "Shlicktree",
+            "total": 1276,
+            "type": "Druid"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 104,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 3994,
+      "overkill": 395,
+      "events": [
+        {
+          "timestamp": 7580613,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 34,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 2936,
+          "unmitigatedAmount": 3028,
+          "overkill": 395,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 7579792,
+          "type": "damage",
+          "sourceID": 156,
+          "sourceIsFriendly": false,
+          "targetID": 34,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Entangle",
+            "guid": 38316,
+            "type": 8,
+            "abilityIcon": "spell_nature_stranglevines.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 550,
+          "unmitigatedAmount": 500,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 7579637,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 34,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 3331,
+          "unmitigatedAmount": 3028,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Toxic Spores",
+        "guid": 360327,
+        "type": 8,
+        "abilityIcon": "spell_nature_abolishmagic.jpg"
+      }
+    },
+    {
+      "name": "Deepbowlz",
+      "id": 31,
+      "guid": 44720876,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 7580654,
+      "fight": 53,
+      "damage": {
+        "total": 19168,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 17518,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          },
+          {
+            "guid": 38316,
+            "name": "Entangle",
+            "total": 1650,
+            "type": 8,
+            "icon": "spell_nature_stranglevines.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 17518,
+            "type": "Boss"
+          },
+          {
+            "name": "Lady Vashj",
+            "total": 1650,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7245,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 2566,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 27235,
+            "name": "Master Healthstone",
+            "total": 2080,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 2018,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 448,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 103,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 6145,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          },
+          {
+            "guid": 38316,
+            "name": "Entangle",
+            "total": 1100,
+            "type": 8,
+            "icon": "spell_nature_stranglevines.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Morguesmpson",
+            "total": 2566,
+            "type": "Priest"
+          },
+          {
+            "name": "Deepbowlz",
+            "total": 2558,
+            "type": "Warrior"
+          },
+          {
+            "name": "Shlicktree",
+            "total": 2018,
+            "type": "Druid"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 103,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 4833,
+      "overkill": 719,
+      "events": [
+        {
+          "timestamp": 7580616,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 2785,
+          "unmitigatedAmount": 3185,
+          "overkill": 719,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 7579792,
+          "type": "damage",
+          "sourceID": 156,
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Entangle",
+            "guid": 38316,
+            "type": 8,
+            "abilityIcon": "spell_nature_stranglevines.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 550,
+          "unmitigatedAmount": 500,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 7579637,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 3503,
+          "unmitigatedAmount": 3185,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Toxic Spores",
+        "guid": 360327,
+        "type": 8,
+        "abilityIcon": "spell_nature_abolishmagic.jpg"
+      }
+    }
+  ]
+}

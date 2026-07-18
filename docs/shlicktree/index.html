@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shlicktree — Raid Analysis</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+    min-height: 100vh;
+  }
+
+  .page{
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  .header{ padding: 40px 48px 32px; border-bottom: 1px solid var(--line); }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  .eyebrow a{ color: var(--copper); text-decoration: none; }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 44px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{ font-size: 14px; color: rgba(19,42,44,0.65); margin: 0; }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  .section{ padding: 32px 48px; }
+
+  .raid-list{ display:flex; flex-direction:column; }
+  .raid-row{
+    display:grid;
+    grid-template-columns: 1fr auto auto;
+    align-items:center;
+    gap: 18px;
+    padding: 18px 4px;
+    border-top: 1px dashed var(--line);
+    text-decoration: none;
+    color: var(--ink);
+    transition: padding-left 0.15s ease;
+  }
+  .raid-row:first-child{ border-top:none; }
+  .raid-row:hover{ padding-left: 10px; }
+  .raid-row:hover .raid-title{ color: var(--copper); }
+  .raid-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 20px;
+    transition: color 0.15s ease;
+  }
+  .raid-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.5);
+  }
+  .raid-arrow{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--copper);
+    opacity: 0.6;
+  }
+  .raid-row:hover .raid-arrow{ opacity: 1; }
+
+  .empty-note{
+    font-size: 13px;
+    color: rgba(19,42,44,0.5);
+    font-style: italic;
+    padding: 12px 4px;
+  }
+
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <p class="eyebrow"><a href="../index.html">← All healers</a> &nbsp;·&nbsp; Restoration Druid</p>
+    <h1>Shlicktree</h1>
+    <p class="subline">Dreamscythe-US &nbsp;·&nbsp; <span>1 raid night analyzed</span></p>
+  </div>
+
+  <div class="section">
+    <div class="raid-list">
+      <a class="raid-row" href="XJp8vAxzM4KtHYyb/index.html">
+        <div>
+          <div class="raid-title">SSC/TK - 2026-07-07</div>
+          <div class="raid-meta">July 7, 2026 &nbsp;&middot;&nbsp; report XJp8vAxzM4KtHYyb</div>
+        </div>
+        <div class="raid-meta">10 bosses killed</div>
+        <div class="raid-arrow">→</div>
+      </a>
+    </div>
+    <div class="empty-note">More raid nights will appear here as they're analyzed.</div>
+  </div>
+
+  <div class="footer">
+    <span>All Thunder No Fury · Healer Analysis</span>
+  </div>
+
+</div>
+
+</body>
+</html>

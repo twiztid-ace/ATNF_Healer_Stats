@@ -1,0 +1,133 @@
+{
+  "entries": [
+    {
+      "name": "박화란",
+      "id": 1,
+      "guid": 30432931,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 1710970,
+      "fight": 9,
+      "damage": {
+        "total": 10017,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 4433,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8143,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 1874,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Ember of Al'ar",
+            "total": 8143,
+            "type": "NPC"
+          },
+          {
+            "name": "Al'ar",
+            "total": 1874,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2233,
+      "overkill": 914,
+      "events": [
+        {
+          "timestamp": 1710949,
+          "type": "damage",
+          "sourceID": 98,
+          "sourceInstance": 5,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 9,
+          "hitType": 1,
+          "amount": 734,
+          "mitigated": 1445,
+          "unmitigatedAmount": 3093,
+          "overkill": 914,
+          "isAoE": false,
+          "targetMarker": 3
+        },
+        {
+          "timestamp": 1710737,
+          "type": "damage",
+          "sourceID": 98,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 9,
+          "hitType": 1,
+          "amount": 1639,
+          "mitigated": 1438,
+          "unmitigatedAmount": 3077,
+          "isAoE": false,
+          "targetMarker": 3
+        },
+        {
+          "timestamp": 1708955,
+          "type": "damage",
+          "sourceID": 98,
+          "sourceInstance": 5,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 9,
+          "hitType": 1,
+          "amount": 1607,
+          "mitigated": 1409,
+          "unmitigatedAmount": 3016,
+          "isAoE": false,
+          "targetMarker": 3
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

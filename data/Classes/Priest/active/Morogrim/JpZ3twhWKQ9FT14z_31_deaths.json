@@ -1,0 +1,126 @@
+{
+  "entries": [
+    {
+      "name": "Lipi",
+      "id": 35,
+      "guid": 42664665,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 3518248,
+      "fight": 31,
+      "damage": {
+        "total": 9258,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 5168,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 4090,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tinklebum",
+            "total": 5168,
+            "type": "Shaman"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 4090,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 680,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 680,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 680,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Teist",
+            "total": 680,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 5369,
+      "overkill": 8,
+      "events": [
+        {
+          "timestamp": 3518242,
+          "type": "damage",
+          "sourceID": 119,
+          "sourceIsFriendly": false,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Earthquake",
+            "guid": 37764,
+            "type": 1,
+            "abilityIcon": "spell_nature_earthquake.jpg"
+          },
+          "fight": 31,
+          "hitType": 1,
+          "amount": 4082,
+          "unmitigatedAmount": 4090,
+          "overkill": 8,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3512873,
+          "type": "damage",
+          "sourceID": 33,
+          "sourceIsFriendly": true,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Watery Grave Explosion",
+            "guid": 37852,
+            "type": 16,
+            "abilityIcon": "spell_frost_arcticwinds.jpg"
+          },
+          "fight": 31,
+          "hitType": 1,
+          "amount": 5168,
+          "unmitigatedAmount": 5168,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Earthquake",
+        "guid": 37764,
+        "type": 1,
+        "abilityIcon": "spell_nature_earthquake.jpg"
+      }
+    }
+  ]
+}

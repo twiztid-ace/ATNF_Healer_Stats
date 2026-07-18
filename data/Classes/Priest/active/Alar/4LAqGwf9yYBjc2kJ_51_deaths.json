@@ -1,0 +1,619 @@
+{
+  "entries": [
+    {
+      "name": "Metatronic",
+      "id": 27,
+      "guid": 53907438,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 7951265,
+      "fight": 51,
+      "damage": {
+        "total": 11085,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34133,
+            "name": "Ember Blast",
+            "total": 7761,
+            "type": 4,
+            "icon": "trade_engineering.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 1862,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 1462,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Ember of Al'ar",
+            "total": 7761,
+            "type": "NPC"
+          },
+          {
+            "name": "Al'ar",
+            "total": 1862,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 1462,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 729,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 729,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 365,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 364,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Metatronic",
+            "total": 729,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 20132,
+      "overkill": 1237,
+      "events": [
+        {
+          "timestamp": 7951264,
+          "type": "damage",
+          "sourceID": 251,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Ember Blast",
+            "guid": 34133,
+            "type": 4,
+            "abilityIcon": "trade_engineering.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 6524,
+          "unmitigatedAmount": 7761,
+          "overkill": 1237,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7941843,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 1462,
+          "unmitigatedAmount": 1462,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7931132,
+          "type": "damage",
+          "sourceID": 250,
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Buffet",
+            "guid": 34121,
+            "type": 4,
+            "abilityIcon": "spell_fire_fireball.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 1862,
+          "unmitigatedAmount": 1862,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Ember Blast",
+        "guid": 34133,
+        "type": 4,
+        "abilityIcon": "trade_engineering.jpg"
+      }
+    },
+    {
+      "name": "Trems",
+      "id": 69,
+      "guid": 72868662,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 7965183,
+      "fight": 51,
+      "damage": {
+        "total": 9933,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34133,
+            "name": "Ember Blast",
+            "total": 7135,
+            "type": 4,
+            "icon": "trade_engineering.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 2201,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 531,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 66,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Ember of Al'ar",
+            "total": 7135,
+            "type": "NPC"
+          },
+          {
+            "name": "Al'ar",
+            "total": 2201,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 531,
+            "type": "Boss"
+          },
+          {
+            "name": "Trems",
+            "total": 66,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 10273,
+      "overkill": 486,
+      "events": [
+        {
+          "timestamp": 7965152,
+          "type": "damage",
+          "sourceID": 250,
+          "sourceIsFriendly": false,
+          "targetID": 69,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Buffet",
+            "guid": 34121,
+            "type": 4,
+            "abilityIcon": "spell_fire_fireball.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 1715,
+          "unmitigatedAmount": 2201,
+          "overkill": 486,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7959542,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 69,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 531,
+          "unmitigatedAmount": 531,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7956837,
+          "type": "damage",
+          "sourceID": 251,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 69,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Ember Blast",
+            "guid": 34133,
+            "type": 4,
+            "abilityIcon": "trade_engineering.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 7135,
+          "unmitigatedAmount": 7135,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Buffet",
+        "guid": 34121,
+        "type": 4,
+        "abilityIcon": "spell_fire_fireball.jpg"
+      }
+    },
+    {
+      "name": "Metatronic",
+      "id": 27,
+      "guid": 53907438,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 8012085,
+      "fight": 51,
+      "damage": {
+        "total": 10919,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35181,
+            "name": "Dive Bomb",
+            "total": 6060,
+            "type": 4,
+            "icon": "spell_fire_fireball02.jpg"
+          },
+          {
+            "guid": 35369,
+            "name": "Rebirth",
+            "total": 4859,
+            "type": 4,
+            "icon": "spell_fire_burnout.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 10919,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2783,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25420,
+            "name": "Lesser Healing Wave",
+            "total": 2783,
+            "type": 8,
+            "icon": "spell_nature_healingwavelesser.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35181,
+            "name": "Dive Bomb",
+            "total": 2783,
+            "type": 4,
+            "icon": "spell_fire_fireball02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Metatronic",
+            "total": 2783,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 4592,
+      "overkill": 337,
+      "events": [
+        {
+          "timestamp": 8012069,
+          "type": "damage",
+          "sourceID": 250,
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Rebirth",
+            "guid": 35369,
+            "type": 4,
+            "abilityIcon": "spell_fire_burnout.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 4522,
+          "unmitigatedAmount": 4859,
+          "overkill": 337,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8007477,
+          "type": "damage",
+          "sourceID": 250,
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Dive Bomb",
+            "guid": 35181,
+            "type": 4,
+            "abilityIcon": "spell_fire_fireball02.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 6060,
+          "unmitigatedAmount": 6060,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Rebirth",
+        "guid": 35369,
+        "type": 4,
+        "abilityIcon": "spell_fire_burnout.jpg"
+      }
+    },
+    {
+      "name": "Trems",
+      "id": 69,
+      "guid": 72868662,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 8090819,
+      "fight": 51,
+      "damage": {
+        "total": 9999,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 8504,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 1227,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 268,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 8504,
+            "type": "Boss"
+          },
+          {
+            "name": "Trems",
+            "total": 1495,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1293,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 968,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 325,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 968,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 325,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Qookd",
+            "total": 968,
+            "type": "Priest"
+          },
+          {
+            "name": "Trems",
+            "total": 325,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 9795,
+      "overkill": 579,
+      "events": [
+        {
+          "timestamp": 8090781,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 69,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 2211,
+          "unmitigatedAmount": 2325,
+          "overkill": 579,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8089790,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 69,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 3013,
+          "unmitigatedAmount": 2739,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8089617,
+          "type": "damage",
+          "sourceID": 69,
+          "sourceIsFriendly": true,
+          "targetID": 69,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 247,
+          "unmitigatedAmount": 247,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    }
+  ]
+}

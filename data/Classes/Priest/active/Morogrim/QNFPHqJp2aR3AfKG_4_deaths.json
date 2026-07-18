@@ -1,0 +1,387 @@
+{
+  "entries": [
+    {
+      "name": "Abracowdabra",
+      "id": 10,
+      "guid": 47680283,
+      "type": "Druid",
+      "icon": "Druid-Balance",
+      "timestamp": 5238101,
+      "fight": 4,
+      "damage": {
+        "total": 11860,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 5186,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3936,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 1500,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 1238,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Abracowdabra",
+            "total": 5186,
+            "type": "Druid"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 3936,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 2738,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1035,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1035,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 1035,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Sjera",
+            "total": 1035,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 12137,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 5238092,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 1238,
+          "unmitigatedAmount": 1238,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5235194,
+          "type": "damage",
+          "sourceID": 10,
+          "sourceIsFriendly": true,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Watery Grave Explosion",
+            "guid": 37852,
+            "type": 16,
+            "abilityIcon": "spell_frost_arcticwinds.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 5186,
+          "unmitigatedAmount": 5186,
+          "isAoE": true
+        },
+        {
+          "timestamp": 5235179,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scalding Water",
+            "guid": 37284,
+            "type": 4,
+            "abilityIcon": "spell_fire_masterofelements.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 500,
+          "unmitigatedAmount": 500,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Zoegtatam",
+      "id": 24,
+      "guid": 46601770,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 5247039,
+      "fight": 4,
+      "damage": {
+        "total": 18605,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1704,
+        "abilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 5373,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5298,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 4000,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3934,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Mechusclaw",
+            "total": 5373,
+            "type": "Druid"
+          },
+          {
+            "name": "Tidewalker Lurker",
+            "total": 4919,
+            "type": "NPC"
+          },
+          {
+            "name": "Environment",
+            "total": 4000,
+            "type": "Boss"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 3934,
+            "type": "Boss"
+          },
+          {
+            "name": "Water Globule",
+            "total": 379,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7816,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 5258,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 25308,
+            "name": "Prayer of Healing",
+            "total": 2558,
+            "type": 2,
+            "icon": "spell_holy_prayerofhealing02.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 3935,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3787,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 50,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 44,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Flyinglotusx",
+            "total": 5258,
+            "type": "Priest"
+          },
+          {
+            "name": "Sjera",
+            "total": 2558,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 23129,
+      "overkill": 209,
+      "events": [
+        {
+          "timestamp": 5247005,
+          "type": "damage",
+          "sourceID": 63,
+          "sourceInstance": 24,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 1392,
+          "mitigated": 764,
+          "unmitigatedAmount": 2156,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5247005,
+          "type": "damage",
+          "sourceID": 63,
+          "sourceInstance": 22,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 1128,
+          "mitigated": 733,
+          "unmitigatedAmount": 2070,
+          "overkill": 209,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5246747,
+          "type": "damage",
+          "sourceID": 67,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 189,
+          "mitigated": 103,
+          "unmitigatedAmount": 292,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

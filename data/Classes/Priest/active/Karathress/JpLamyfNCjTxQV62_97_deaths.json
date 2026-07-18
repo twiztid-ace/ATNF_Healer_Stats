@@ -1,0 +1,126 @@
+{
+  "entries": [
+    {
+      "name": "帝辟艾斯硫辟",
+      "id": 3,
+      "guid": 95947597,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 16838966,
+      "fight": 97,
+      "damage": {
+        "total": 11704,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 5859,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 5845,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Guard Caribdis",
+            "total": 5859,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 5845,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 20432,
+      "overkill": 14,
+      "events": [
+        {
+          "timestamp": 16838946,
+          "type": "damage",
+          "sourceID": 568,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 97,
+          "hitType": 1,
+          "amount": 5831,
+          "unmitigatedAmount": 5845,
+          "overkill": 14,
+          "isAoE": false,
+          "sourceMarker": 1
+        },
+        {
+          "timestamp": 16834441,
+          "type": "damage",
+          "sourceID": 566,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 97,
+          "hitType": 1,
+          "amount": 3008,
+          "unmitigatedAmount": 3008,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 16818514,
+          "type": "damage",
+          "sourceID": 566,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 97,
+          "hitType": 1,
+          "amount": 2851,
+          "unmitigatedAmount": 2851,
+          "isAoE": true,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}

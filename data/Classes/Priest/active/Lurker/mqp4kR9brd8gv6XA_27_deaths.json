@@ -1,0 +1,422 @@
+{
+  "entries": [
+    {
+      "name": "Compulsive",
+      "id": 22,
+      "guid": 52045157,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 3924653,
+      "fight": 27,
+      "damage": {
+        "total": 9200,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37433,
+            "name": "Spout",
+            "total": 7208,
+            "type": 22,
+            "icon": "spell_frost_chillingblast.jpg"
+          },
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 1992,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Lurker Below",
+            "total": 7208,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 1992,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 238,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 238,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 238,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Jacobcwl",
+            "total": 238,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 4796,
+      "overkill": 219,
+      "events": [
+        {
+          "timestamp": 3924644,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scalding Water",
+            "guid": 37284,
+            "type": 4,
+            "abilityIcon": "spell_fire_masterofelements.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 281,
+          "unmitigatedAmount": 500,
+          "overkill": 219,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3923355,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scalding Water",
+            "guid": 37284,
+            "type": 4,
+            "abilityIcon": "spell_fire_masterofelements.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 500,
+          "unmitigatedAmount": 500,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3922853,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scalding Water",
+            "guid": 37284,
+            "type": 4,
+            "abilityIcon": "spell_fire_masterofelements.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 496,
+          "unmitigatedAmount": 496,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Scalding Water",
+        "guid": 37284,
+        "type": 4,
+        "abilityIcon": "spell_fire_masterofelements.jpg"
+      }
+    },
+    {
+      "name": "Dbldggmr",
+      "id": 36,
+      "guid": 56584614,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 3943498,
+      "fight": 27,
+      "damage": {
+        "total": 9170,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1290,
+        "abilities": [
+          {
+            "guid": 37363,
+            "name": "Whirl",
+            "total": 3591,
+            "type": 1,
+            "icon": "trade_engineering.jpg"
+          },
+          {
+            "guid": 37478,
+            "name": "Geyser",
+            "total": 3579,
+            "type": 16,
+            "icon": "spell_frost_frostblast.jpg"
+          },
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 2000,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Lurker Below",
+            "total": 7170,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 2000,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 8614,
+      "overkill": 316,
+      "events": [
+        {
+          "timestamp": 3943487,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 36,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scalding Water",
+            "guid": 37284,
+            "type": 4,
+            "abilityIcon": "spell_fire_masterofelements.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 184,
+          "unmitigatedAmount": 500,
+          "overkill": 316,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3942463,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 36,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scalding Water",
+            "guid": 37284,
+            "type": 4,
+            "abilityIcon": "spell_fire_masterofelements.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 500,
+          "unmitigatedAmount": 500,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3940701,
+          "type": "damage",
+          "sourceID": 88,
+          "sourceIsFriendly": false,
+          "targetID": 36,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Geyser",
+            "guid": 37478,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostblast.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 3579,
+          "unmitigatedAmount": 3579,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Scalding Water",
+        "guid": 37284,
+        "type": 4,
+        "abilityIcon": "spell_fire_masterofelements.jpg"
+      }
+    },
+    {
+      "name": "Klydda",
+      "id": 2,
+      "guid": 51764832,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 3971600,
+      "fight": 27,
+      "damage": {
+        "total": 8052,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37433,
+            "name": "Spout",
+            "total": 7148,
+            "type": 22,
+            "icon": "spell_frost_chillingblast.jpg"
+          },
+          {
+            "guid": 27869,
+            "name": "Dark Rune",
+            "total": 904,
+            "type": 32,
+            "icon": "inv_misc_rune_04.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Lurker Below",
+            "total": 7148,
+            "type": "Boss"
+          },
+          {
+            "name": "Klydda",
+            "total": 904,
+            "type": "Warlock"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 23572,
+      "overkill": 109,
+      "events": [
+        {
+          "timestamp": 3971577,
+          "type": "damage",
+          "sourceID": 88,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Spout",
+            "guid": 37433,
+            "type": 22,
+            "abilityIcon": "spell_frost_chillingblast.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 3475,
+          "unmitigatedAmount": 3584,
+          "overkill": 109,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3971372,
+          "type": "damage",
+          "sourceID": 88,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Spout",
+            "guid": 37433,
+            "type": 22,
+            "abilityIcon": "spell_frost_chillingblast.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 3564,
+          "unmitigatedAmount": 3564,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3948005,
+          "type": "damage",
+          "sourceID": 2,
+          "sourceIsFriendly": true,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Dark Rune",
+            "guid": 27869,
+            "type": 32,
+            "abilityIcon": "inv_misc_rune_04.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 904,
+          "unmitigatedAmount": 904,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Spout",
+        "guid": 37433,
+        "type": 22,
+        "abilityIcon": "spell_frost_chillingblast.jpg"
+      }
+    }
+  ]
+}

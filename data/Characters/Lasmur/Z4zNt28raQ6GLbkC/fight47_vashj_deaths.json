@@ -1,0 +1,513 @@
+{
+  "entries": [
+    {
+      "name": "Balancemaker",
+      "id": 28,
+      "guid": 98274960,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 7143935,
+      "fight": 47,
+      "damage": {
+        "total": 10796,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3687,
+        "abilities": [
+          {
+            "guid": 38295,
+            "name": "Shoot",
+            "total": 10796,
+            "type": 1,
+            "icon": "ability_marksmanship.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Lady Vashj",
+            "total": 10796,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3069,
+      "events": [
+        {
+          "timestamp": 7143928,
+          "type": "damage",
+          "sourceID": 190,
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shoot",
+            "guid": 38295,
+            "type": 1,
+            "abilityIcon": "ability_marksmanship.jpg"
+          },
+          "fight": 47,
+          "hitType": 1,
+          "amount": 7727,
+          "mitigated": 3687,
+          "unmitigatedAmount": 14483,
+          "overkill": 3069,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Shoot",
+        "guid": 38295,
+        "type": 1,
+        "abilityIcon": "ability_marksmanship.jpg"
+      }
+    },
+    {
+      "name": "Zuggnuggs",
+      "id": 34,
+      "guid": 45361370,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 7266758,
+      "fight": 47,
+      "damage": {
+        "total": 11949,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38253,
+            "name": "Poison Bolt",
+            "total": 11949,
+            "type": 8,
+            "icon": "spell_nature_corrosivebreath.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tainted Elemental",
+            "total": 11949,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 8005,
+      "overkill": 2456,
+      "events": [
+        {
+          "timestamp": 7266757,
+          "type": "damage",
+          "sourceID": 199,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 34,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Poison Bolt",
+            "guid": 38253,
+            "type": 8,
+            "abilityIcon": "spell_nature_corrosivebreath.jpg"
+          },
+          "fight": 47,
+          "hitType": 1,
+          "amount": 1533,
+          "unmitigatedAmount": 3989,
+          "overkill": 2456,
+          "isAoE": false,
+          "tick": true,
+          "targetMarker": 3
+        },
+        {
+          "timestamp": 7262754,
+          "type": "damage",
+          "sourceID": 199,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 34,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Poison Bolt",
+            "guid": 38253,
+            "type": 8,
+            "abilityIcon": "spell_nature_corrosivebreath.jpg"
+          },
+          "fight": 47,
+          "hitType": 1,
+          "amount": 3989,
+          "unmitigatedAmount": 3989,
+          "isAoE": false,
+          "tick": true,
+          "targetMarker": 3
+        },
+        {
+          "timestamp": 7260677,
+          "type": "damage",
+          "sourceID": 199,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 34,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Poison Bolt",
+            "guid": 38253,
+            "type": 8,
+            "abilityIcon": "spell_nature_corrosivebreath.jpg"
+          },
+          "fight": 47,
+          "hitType": 1,
+          "amount": 2014,
+          "unmitigatedAmount": 2014,
+          "isAoE": false,
+          "targetMarker": 3
+        }
+      ],
+      "killingBlow": {
+        "name": "Poison Bolt",
+        "guid": 38253,
+        "type": 8,
+        "abilityIcon": "spell_nature_corrosivebreath.jpg"
+      }
+    },
+    {
+      "name": "Lasmur",
+      "id": 48,
+      "guid": 54919417,
+      "type": "Priest",
+      "icon": "Priest-Holy",
+      "timestamp": 7314274,
+      "fight": 47,
+      "damage": {
+        "total": 15707,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 15707,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Coilfang Elite",
+            "total": 15707,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 6626,
+      "events": [
+        {
+          "timestamp": 7314263,
+          "type": "damage",
+          "sourceID": 201,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 48,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 47,
+          "hitType": 2,
+          "amount": 9081,
+          "unmitigatedAmount": 10465,
+          "overkill": 6626,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Lasmur",
+      "id": 48,
+      "guid": 54919417,
+      "type": "Priest",
+      "icon": "Priest-Holy",
+      "timestamp": 7329318,
+      "fight": 47,
+      "damage": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 0,
+      "events": []
+    },
+    {
+      "name": "Ghostpepperx",
+      "id": 24,
+      "guid": 54455590,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 7513356,
+      "fight": 47,
+      "damage": {
+        "total": 12935,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2056,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12935,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Lady Vashj",
+            "total": 12935,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3543,
+      "events": [
+        {
+          "timestamp": 7513335,
+          "type": "damage",
+          "sourceID": 190,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 47,
+          "hitType": 1,
+          "amount": 9392,
+          "mitigated": 2056,
+          "unmitigatedAmount": 14991,
+          "overkill": 3543,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Hezrun",
+      "id": 29,
+      "guid": 48301431,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 7575083,
+      "fight": 47,
+      "damage": {
+        "total": 17593,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38281,
+            "name": "Static Charge",
+            "total": 17593,
+            "type": 8,
+            "icon": "spell_nature_lightningoverload.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Hezrun",
+            "total": 17593,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6578,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 10328,
+            "name": "Holy Light",
+            "total": 2495,
+            "type": 2,
+            "icon": "spell_holy_holybolt.jpg"
+          },
+          {
+            "guid": 28495,
+            "name": "Healing Potion",
+            "total": 1587,
+            "type": 1,
+            "icon": "inv_potion_131.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38281,
+            "name": "Static Charge",
+            "total": 6578,
+            "type": 8,
+            "icon": "spell_nature_lightningoverload.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Hezrun",
+            "total": 4083,
+            "type": "Warrior"
+          },
+          {
+            "name": "Velanaa",
+            "total": 2495,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 15999,
+      "overkill": 31,
+      "events": [
+        {
+          "timestamp": 7575060,
+          "type": "damage",
+          "sourceID": 29,
+          "sourceIsFriendly": true,
+          "targetID": 29,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Static Charge",
+            "guid": 38281,
+            "type": 8,
+            "abilityIcon": "spell_nature_lightningoverload.jpg"
+          },
+          "fight": 47,
+          "hitType": 1,
+          "amount": 1972,
+          "unmitigatedAmount": 1821,
+          "overkill": 31,
+          "isAoE": true,
+          "sourceMarker": 8,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 7573047,
+          "type": "damage",
+          "sourceID": 29,
+          "sourceIsFriendly": true,
+          "targetID": 29,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Static Charge",
+            "guid": 38281,
+            "type": 8,
+            "abilityIcon": "spell_nature_lightningoverload.jpg"
+          },
+          "fight": 47,
+          "hitType": 1,
+          "amount": 1972,
+          "unmitigatedAmount": 1793,
+          "isAoE": true,
+          "sourceMarker": 8,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 7571048,
+          "type": "damage",
+          "sourceID": 29,
+          "sourceIsFriendly": true,
+          "targetID": 29,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Static Charge",
+            "guid": 38281,
+            "type": 8,
+            "abilityIcon": "spell_nature_lightningoverload.jpg"
+          },
+          "fight": 47,
+          "hitType": 1,
+          "amount": 1855,
+          "unmitigatedAmount": 1687,
+          "isAoE": true,
+          "sourceMarker": 8,
+          "targetMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Static Charge",
+        "guid": 38281,
+        "type": 8,
+        "abilityIcon": "spell_nature_lightningoverload.jpg"
+      }
+    }
+  ]
+}

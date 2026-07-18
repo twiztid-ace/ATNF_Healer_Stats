@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Lasmur — Morogrim Tidewalker</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  .seal-wrap{ flex-shrink:0; width: 108px; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--copper);
+  }
+  .section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+  .section-desc{
+    font-size: 13px;
+    color: rgba(19,42,44,0.6);
+    margin: -12px 0 20px;
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .stat{
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(19,42,44,0.55);
+    margin-bottom: 6px;
+  }
+  .stat-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{
+    position: absolute;
+    top: -8px;
+    width: 3px;
+    height: 26px;
+    background: var(--ink);
+  }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .pctl-scale{
+    display:flex; justify-content: space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(19,42,44,0.45);
+  }
+
+  .spell-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items:center;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 13px;
+  }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{
+    height: 8px;
+    background: var(--parchment-dim);
+    border-radius: 4px;
+    overflow:hidden;
+  }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{
+    display:flex; gap: 18px; margin-bottom: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.55);
+    text-align:right;
+  }
+
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cd-table td{
+    padding: 10px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
+
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{
+    display:grid;
+    grid-template-columns: 120px 1fr 70px;
+    align-items:center;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+
+  .healer-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; min-width:80px; }
+  .healer-bar-fill{ height:100%; background: var(--ink-2); }
+  .healer-bar-fill.is-character{ background: var(--copper); }
+  tr.is-character td{ font-weight:700; }
+
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .placeholder-tag{
+    display:inline-block;
+    margin-left: 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--copper);
+    border: 1px solid var(--copper);
+    border-radius: 20px;
+    padding: 2px 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — July 10, 2026 · Morogrim Tidewalker</p>
+      <h1>Lasmur</h1>
+      <p class="subline">Holy Priest &nbsp;·&nbsp; ilvl 115 &nbsp;·&nbsp; report <span>Z4zNt28raQ6GLbkC</span> &nbsp;·&nbsp; fight <span>42</span> &nbsp;·&nbsp; kill, 267s</p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-start; gap:12px 16px; align-items:flex-start;">
+      <div class="seal-wrap">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#C8844C" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#C8844C" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#C8844C">32</text>
+          <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+        </svg>
+        <div class="seal-label">WCL rank, all parses</div>
+      </div>
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL&#39;s own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#D3A256" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#D3A256" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#D3A256">3rd of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">ILVL HEALING RANK</text>
+        </svg>
+        <div class="seal-label">32% by ilvl 126</div>
+      </div>
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#5F7A52" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#5F7A52" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#5F7A52">1st of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">RAW HEALING RANK</text>
+        </svg>
+        <div class="seal-label">220,229 healing</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid stat-grid-5">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value">826</div>
+        <div class="stat-sub">Top 100: #1 2191 &nbsp;·&nbsp; avg 1845 &nbsp;·&nbsp; median 1814</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value">48.9%</div>
+        <div class="stat-sub">Top 100: best 16.7% &nbsp;·&nbsp; median 29.8% &nbsp;·&nbsp; worst 45.4%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">220,229</div>
+        <div class="stat-sub">over 267s kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value">98.6%</div>
+        <div class="stat-sub">Top 100: #1 99.9% &nbsp;·&nbsp; avg 97.7% &nbsp;·&nbsp; median 98.1%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value">3</div>
+        <div class="stat-sub">this kill, all classes</div>
+      </div>
+    </div>
+
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:32%;" data-label="Lasmur · 32th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank ~17904 of 26330 Holy Priest parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
+
+    <div class="coverage-note">32nd percentile; overheal (48.9%) exceeded the sample&#39;s worst parse (45.4%) by 3.5 points, and HPM (4.38) ran at 0.6x the sample average. Three deaths this kill.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">Lasmur's real cast mix on this kill, vs. real Top 100 average on Morogrim Tidewalker.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>Lasmur</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Circle of Healing</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:33.8%"></div></div>
+      <div class="spell-pct">33.8%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:58.4%"></div></div>
+      <div class="spell-pct">58.4%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Prayer of Mending</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:23.5%"></div></div>
+      <div class="spell-pct">23.5%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:8.4%"></div></div>
+      <div class="spell-pct">8.4%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Renew</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:18.8%"></div></div>
+      <div class="spell-pct">18.8%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:8.7%"></div></div>
+      <div class="spell-pct">8.7%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Flash Heal</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:15.7%"></div></div>
+      <div class="spell-pct">15.7%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:13.4%"></div></div>
+      <div class="spell-pct">13.4%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Power Word: Shield</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:8.2%"></div></div>
+      <div class="spell-pct">8.2%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.9%"></div></div>
+      <div class="spell-pct">3.9%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Prayer of Healing</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:2.1%"></div></div>
+      <div class="spell-pct">2.1%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Greater Heal</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:2.0%"></div></div>
+      <div class="spell-pct">2.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Binding Heal</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.9%"></div></div>
+      <div class="spell-pct">0.9%</div>
+    </div>
+
+    <div class="coverage-note">Circle of Healing (33.8%) undershot the sample&#39;s 58.4% share; Prayer of Mending (23.5%) ran well ahead of the sample&#39;s 8.4%.</div>
+
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Morogrim Tidewalker. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> - match abilities by guid, not localized name.</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">Lasmur</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 100 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ability-name">Shadowfiend</td>
+          <td class="num-cell">1</td>
+          <td>—</td>
+          <td class="num-cell">0.9 avg</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Power Word: Shield</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0 avg (never used)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Chakra</td>
+          <td class="num-cell">1</td>
+          <td>—</td>
+          <td class="num-cell">0.6 avg</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Blessing of Life</td>
+          <td class="num-cell">2</td>
+          <td>—</td>
+          <td class="num-cell">0.1 avg</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Fear Ward</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0 avg (never used)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Dark Rune</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0.3 avg</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Mana Potion</td>
+          <td class="num-cell">1</td>
+          <td>—</td>
+          <td class="num-cell">0.9 avg</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="stat-grid stat-grid-5" style="margin-top:22px;">
+      <div class="stat">
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value">Elixirs</div>
+        <div class="stat-sub">Healing Power (Battle) + Elixir of Draenic Wisdom (Guardian) — Top 100 active at pull start: 90% flask, 100% Battle Elixir, 100% Guardian Elixir</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 97% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value">1</div>
+        <div class="stat-sub">1x Mana Potion</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">HPM</div>
+        <div class="stat-value">4.38</div>
+        <div class="stat-sub">Top 100: top1 9.55 &nbsp;·&nbsp; avg 7.28 &nbsp;·&nbsp; median 7.22</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Shadowfiend, Chakra, and Mana Potion all landed in line with the sample; Blessing of Life was cast twice, both self-targeted. None of the three deaths this kill land near a real save-type cooldown - the nearest casts (Blessing of Life, Chakra, Mana Potion) are all self-targeted resource/buff tools.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of Lasmur's healing on this kill (70.4% coverage) vs. Top 100 average on Morogrim Tidewalker (44.0% coverage, 17.0% to top target).</p>
+
+    <div class="target-list">
+      <div class="target-row">
+        <div>Captinhelp</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:100.0%"></div></div>
+        <div class="target-pct">50.3%</div>
+      </div>
+      <div class="target-row">
+        <div>Braila</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:13.2%"></div></div>
+        <div class="target-pct">6.6%</div>
+      </div>
+      <div class="target-row">
+        <div>Megatauro</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:10.5%"></div></div>
+        <div class="target-pct">5.3%</div>
+      </div>
+      <div class="target-row">
+        <div>Leechers</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:8.9%"></div></div>
+        <div class="target-pct">4.5%</div>
+      </div>
+      <div class="target-row">
+        <div>Rolopally</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:7.6%"></div></div>
+        <div class="target-pct">3.8%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">The most tank-concentrated kill of the raid: Captinhelp took 50.3% of healing, close to triple the sample&#39;s typical top-target share (17.0%), with coverage (70.4%) also well above the sample average (44.0%).</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Healer ranking</h2>
+    </div>
+    <p class="section-desc">Lasmur vs. the other healers in this same raid on this same fight.</p>
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Healer</th>
+          <th>Raw healing</th>
+          <th style="text-align:right;">% of total</th>
+          <th style="text-align:right; cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">Item Level %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="is-character">
+          <td class="ability-name">Lasmur</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="220,229 total healing"><div class="healer-bar-fill is-character" style="width:100.0%"></div></div></td>
+          <td class="num-cell">23.6%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">32% (ilvl 126)</td>
+        </tr>
+        <tr class="">
+          <td class="ability-name">Vajomee</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="219,121 total healing"><div class="healer-bar-fill " style="width:99.5%"></div></div></td>
+          <td class="num-cell">23.5%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">56% (ilvl 121)</td>
+        </tr>
+        <tr class="">
+          <td class="ability-name">Vinnyvozz</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="213,887 total healing"><div class="healer-bar-fill " style="width:97.1%"></div></div></td>
+          <td class="num-cell">22.9%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">48% (ilvl 125)</td>
+        </tr>
+        <tr class="">
+          <td class="ability-name">Fuggler</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="173,754 total healing"><div class="healer-bar-fill " style="width:78.9%"></div></div></td>
+          <td class="num-cell">18.6%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">26% (ilvl 126)</td>
+        </tr>
+        <tr class="">
+          <td class="ability-name">Velanaa</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="106,168 total healing"><div class="healer-bar-fill " style="width:48.2%"></div></div></td>
+          <td class="num-cell">11.4%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">9% (ilvl 118)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Lasmur's fight log (Z4zNt28raQ6GLbkC, fight 42) + Top 100 Morogrim Tidewalker benchmark (n=100)</span>
+  </div>
+
+</div>
+
+</body>
+</html>

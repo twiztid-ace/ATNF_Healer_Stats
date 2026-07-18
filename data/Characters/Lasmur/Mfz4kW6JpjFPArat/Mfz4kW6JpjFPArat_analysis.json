@@ -1,0 +1,2687 @@
+{
+  "CharacterName": "Lasmur",
+  "ReportCode": "Mfz4kW6JpjFPArat",
+  "ClassName": "Priest",
+  "Bosses": {
+    "hydross": {
+      "Deviations": {
+        "HPS": {
+          "Value": 683,
+          "Top1": 2416.0,
+          "Top100Avg": 1484.0,
+          "Median": 1432.0,
+          "RatioToAvg": 0.46,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 57.7,
+          "Best": 21.4,
+          "Median": 40.2,
+          "Worst": 58.4,
+          "GapToWorst": -0.7,
+          "Flag": "near_worst"
+        },
+        "ActiveTime": {
+          "Value": 97.9,
+          "Top1": 99.6,
+          "Top100Avg": 97.3,
+          "Median": 97.5,
+          "GapToAvg": 0.6,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 2.86,
+          "Top1": 7.21,
+          "Top100Avg": 5.3,
+          "Median": 5.17,
+          "RatioToAvg": 0.54,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 93.1,
+          "Top100Avg": 71.0,
+          "GapPoints": 22.1,
+          "Flag": "above_avg"
+        },
+        "Top1Concentration": {
+          "Value": 32.3,
+          "Top100Avg": 37.3,
+          "GapPoints": -5.0,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 10.6,
+          "BenchmarkPct": 32.6,
+          "GapPoints": -22.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 15.8,
+          "BenchmarkPct": 30.4,
+          "GapPoints": -14.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 34.3,
+          "BenchmarkPct": 14.0,
+          "GapPoints": 20.3,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 22.1,
+          "BenchmarkPct": 9.1,
+          "GapPoints": 13.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 14.9,
+          "BenchmarkPct": 5.4,
+          "GapPoints": 9.5,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25213,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 3.9,
+          "GapPoints": -3.9,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Binding Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.4,
+          "GapPoints": -1.4,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 6064,
+          "Name": "Heal",
+          "CharacterPct": 2.3,
+          "BenchmarkPct": 1.0,
+          "GapPoints": 1.3,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 10963,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.5,
+          "GapPoints": -0.5,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 25235,
+        "Name": "Flash Heal",
+        "GapPoints": -22.0
+      },
+      "SpellRanks": [
+        {
+          "Name": "Greater Heal",
+          "Ranks": [
+            {
+              "Guid": 10963,
+              "ManaCost": 455.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.5,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25213,
+              "ManaCost": 825.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 3.9,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.7,
+          "Top100UsedPct": 66.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.5,
+          "Top100UsedPct": 49.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 6.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Fear Ward": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 16.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.6,
+          "Top100UsedPct": 59.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    },
+    "lurker": {
+      "Deviations": {
+        "HPS": {
+          "Value": 585,
+          "Top1": 2860.0,
+          "Top100Avg": 2340.0,
+          "Median": 2300.0,
+          "RatioToAvg": 0.25,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 43.3,
+          "Best": 11.4,
+          "Median": 27.0,
+          "Worst": 40.5,
+          "GapToWorst": 2.8,
+          "Flag": "exceeds_worst"
+        },
+        "ActiveTime": {
+          "Value": 96.0,
+          "Top1": 99.5,
+          "Top100Avg": 95.4,
+          "Median": 95.5,
+          "GapToAvg": 0.6,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 4.04,
+          "Top1": 10.2,
+          "Top100Avg": 8.27,
+          "Median": 8.2,
+          "RatioToAvg": 0.49,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 82.2,
+          "Top100Avg": 45.7,
+          "GapPoints": 36.5,
+          "Flag": "above_avg"
+        },
+        "Top1Concentration": {
+          "Value": 48.0,
+          "Top100Avg": 11.9,
+          "GapPoints": 36.1,
+          "Flag": "above_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 33.1,
+          "BenchmarkPct": 71.2,
+          "GapPoints": -38.1,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 30.3,
+          "BenchmarkPct": 9.1,
+          "GapPoints": 21.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 18.7,
+          "BenchmarkPct": 7.9,
+          "GapPoints": 10.8,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 10.1,
+          "BenchmarkPct": 6.3,
+          "GapPoints": 3.8,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 7.1,
+          "BenchmarkPct": 2.1,
+          "GapPoints": 5.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": null,
+          "Name": "Binding Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.7,
+          "GapPoints": -0.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 34864,
+          "Name": "Circle of Healing",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.7,
+          "GapPoints": -0.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 25213,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.5,
+          "GapPoints": -0.5,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 19279,
+          "Name": "Devouring Plague",
+          "CharacterPct": 0.6,
+          "BenchmarkPct": 0.0,
+          "GapPoints": 0.6,
+          "BenchmarkOnly": false,
+          "CharacterOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 34866,
+        "Name": "Circle of Healing",
+        "GapPoints": -38.1
+      },
+      "SpellRanks": [
+        {
+          "Name": "Circle of Healing",
+          "Ranks": [
+            {
+              "Guid": 34864,
+              "ManaCost": 375.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.7,
+              "RankLabel": null
+            },
+            {
+              "Guid": 34866,
+              "ManaCost": 450,
+              "ManaCostSource": "character",
+              "CharacterPct": 33.1,
+              "BenchmarkPct": 71.2,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.7,
+          "Top100UsedPct": 72.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.5,
+          "Top100UsedPct": 48.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 4.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Fear Ward": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 17.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.7,
+          "Top100UsedPct": 73.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    },
+    "leotheras": {
+      "Deviations": {
+        "HPS": {
+          "Value": 790,
+          "Top1": 3954.0,
+          "Top100Avg": 2854.0,
+          "Median": 2769.0,
+          "RatioToAvg": 0.28,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 39.3,
+          "Best": 14.4,
+          "Median": 24.6,
+          "Worst": 38.4,
+          "GapToWorst": 0.9,
+          "Flag": "exceeds_worst"
+        },
+        "ActiveTime": {
+          "Value": 99.3,
+          "Top1": 99.6,
+          "Top100Avg": 96.3,
+          "Median": 97.1,
+          "GapToAvg": 3.0,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 5.06,
+          "Top1": 14.75,
+          "Top100Avg": 9.95,
+          "Median": 9.83,
+          "RatioToAvg": 0.51,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 48.8,
+          "Top100Avg": 39.7,
+          "GapPoints": 9.1,
+          "Flag": "in_line"
+        },
+        "Top1Concentration": {
+          "Value": 12.3,
+          "Top100Avg": 9.1,
+          "GapPoints": 3.2,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 30.3,
+          "BenchmarkPct": 77.3,
+          "GapPoints": -47.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 21.0,
+          "BenchmarkPct": 7.9,
+          "GapPoints": 13.1,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 27.3,
+          "BenchmarkPct": 7.4,
+          "GapPoints": 19.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 15.5,
+          "BenchmarkPct": 2.9,
+          "GapPoints": 12.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 6.0,
+          "BenchmarkPct": 1.8,
+          "GapPoints": 4.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 34865,
+          "Name": "Circle of Healing",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.7,
+          "GapPoints": -0.7,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 34866,
+        "Name": "Circle of Healing",
+        "GapPoints": -47.0
+      },
+      "SpellRanks": [
+        {
+          "Name": "Circle of Healing",
+          "Ranks": [
+            {
+              "Guid": 34865,
+              "ManaCost": 412.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.7,
+              "RankLabel": null
+            },
+            {
+              "Guid": 34866,
+              "ManaCost": 450,
+              "ManaCostSource": "character",
+              "CharacterPct": 30.3,
+              "BenchmarkPct": 77.3,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 82.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.6,
+          "Top100UsedPct": 55.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 7.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Fear Ward": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.3,
+          "Top100UsedPct": 32.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 81.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [
+        {
+          "Name": "Lasmur",
+          "Timestamp": 4451650
+        },
+        {
+          "Name": "Lasmur",
+          "Timestamp": 4466651
+        },
+        {
+          "Name": "Lasmur",
+          "Timestamp": 4705393
+        }
+      ],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Dormammoo",
+          "DeathTimestamp": 4450442,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4445128,
+          "DeltaMs": 5314
+        },
+        {
+          "DeathName": "Lasmur",
+          "DeathTimestamp": 4451650,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4445128,
+          "DeltaMs": 6522
+        },
+        {
+          "DeathName": "Ghostpepperx",
+          "DeathTimestamp": 4461633,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4445128,
+          "DeltaMs": 16505
+        },
+        {
+          "DeathName": "Lasmur",
+          "DeathTimestamp": 4466651,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4445128,
+          "DeltaMs": 21523
+        },
+        {
+          "DeathName": "Staubaoz",
+          "DeathTimestamp": 4482658,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4445128,
+          "DeltaMs": 37530
+        },
+        {
+          "DeathName": "Beublic",
+          "DeathTimestamp": 4483663,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4445128,
+          "DeltaMs": 38535
+        },
+        {
+          "DeathName": "Calamety",
+          "DeathTimestamp": 4486667,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4445128,
+          "DeltaMs": 41539
+        },
+        {
+          "DeathName": "Vinnyvozz",
+          "DeathTimestamp": 4489634,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4445128,
+          "DeltaMs": 44506
+        },
+        {
+          "DeathName": "Clippies",
+          "DeathTimestamp": 4573388,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 4585092,
+          "DeltaMs": 11704
+        },
+        {
+          "DeathName": "Victim",
+          "DeathTimestamp": 4615628,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 4635194,
+          "DeltaMs": 19566
+        },
+        {
+          "DeathName": "Captinhelp",
+          "DeathTimestamp": 4643859,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 4635194,
+          "DeltaMs": 8665
+        },
+        {
+          "DeathName": "Thugalina",
+          "DeathTimestamp": 4643860,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 4635194,
+          "DeltaMs": 8666
+        },
+        {
+          "DeathName": "Hezrun",
+          "DeathTimestamp": 4653444,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 3223
+        },
+        {
+          "DeathName": "Staubaoz",
+          "DeathTimestamp": 4665741,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 9074
+        },
+        {
+          "DeathName": "Brotauren",
+          "DeathTimestamp": 4670510,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 13843
+        },
+        {
+          "DeathName": "Silkyrebel",
+          "DeathTimestamp": 4675297,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 18630
+        },
+        {
+          "DeathName": "Banepain",
+          "DeathTimestamp": 4689169,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 32502
+        },
+        {
+          "DeathName": "Brotauren",
+          "DeathTimestamp": 4705010,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 48343
+        },
+        {
+          "DeathName": "Lasmur",
+          "DeathTimestamp": 4705393,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 48726
+        },
+        {
+          "DeathName": "Megatauro",
+          "DeathTimestamp": 4708384,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 51717
+        },
+        {
+          "DeathName": "Nameitis",
+          "DeathTimestamp": 4713277,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 56610
+        },
+        {
+          "DeathName": "Vinnyvozz",
+          "DeathTimestamp": 4715096,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 4656667,
+          "DeltaMs": 58429
+        }
+      ],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    },
+    "karathress": {
+      "Deviations": {
+        "HPS": {
+          "Value": 1241,
+          "Top1": 2713.0,
+          "Top100Avg": 2241.0,
+          "Median": 2204.0,
+          "RatioToAvg": 0.55,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 39.4,
+          "Best": 11.9,
+          "Median": 26.0,
+          "Worst": 43.0,
+          "GapToWorst": -3.6,
+          "Flag": "near_worst"
+        },
+        "ActiveTime": {
+          "Value": 97.8,
+          "Top1": 99.7,
+          "Top100Avg": 97.3,
+          "Median": 97.8,
+          "GapToAvg": 0.5,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 5.11,
+          "Top1": 10.01,
+          "Top100Avg": 7.86,
+          "Median": 7.86,
+          "RatioToAvg": 0.65,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 77.0,
+          "Top100Avg": 47.4,
+          "GapPoints": 29.6,
+          "Flag": "above_avg"
+        },
+        "Top1Concentration": {
+          "Value": 40.3,
+          "Top100Avg": 16.4,
+          "GapPoints": 23.9,
+          "Flag": "above_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 24.9,
+          "BenchmarkPct": 63.5,
+          "GapPoints": -38.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 21.6,
+          "BenchmarkPct": 14.3,
+          "GapPoints": 7.3,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 21.5,
+          "BenchmarkPct": 8.3,
+          "GapPoints": 13.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 25.4,
+          "BenchmarkPct": 5.2,
+          "GapPoints": 20.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 6.7,
+          "BenchmarkPct": 3.4,
+          "GapPoints": 3.3,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25213,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.9,
+          "GapPoints": -1.9,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Binding Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.4,
+          "GapPoints": -1.4,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Prayer of Healing",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.5,
+          "GapPoints": -0.5,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 34866,
+        "Name": "Circle of Healing",
+        "GapPoints": -38.6
+      },
+      "SpellRanks": [],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 77.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 44.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 5.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Fear Ward": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 21.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 76.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Ghostpepperx",
+          "DeathTimestamp": 5583580,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 5589399,
+          "DeltaMs": 5819
+        },
+        {
+          "DeathName": "Megatauro",
+          "DeathTimestamp": 5636143,
+          "NearestCooldown": "Shadowfiend",
+          "NearestCooldownTimestamp": 5601898,
+          "DeltaMs": 34245
+        }
+      ],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    },
+    "morogrim": {
+      "Deviations": {
+        "HPS": {
+          "Value": 744,
+          "Top1": 2191.0,
+          "Top100Avg": 1845.0,
+          "Median": 1814.0,
+          "RatioToAvg": 0.4,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 54.8,
+          "Best": 16.7,
+          "Median": 29.8,
+          "Worst": 45.4,
+          "GapToWorst": 9.4,
+          "Flag": "exceeds_worst"
+        },
+        "ActiveTime": {
+          "Value": 97.7,
+          "Top1": 99.9,
+          "Top100Avg": 97.7,
+          "Median": 98.1,
+          "GapToAvg": 0.0,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 4.02,
+          "Top1": 9.55,
+          "Top100Avg": 7.28,
+          "Median": 7.22,
+          "RatioToAvg": 0.55,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 71.9,
+          "Top100Avg": 44.0,
+          "GapPoints": 27.9,
+          "Flag": "above_avg"
+        },
+        "Top1Concentration": {
+          "Value": 53.2,
+          "Top100Avg": 17.0,
+          "GapPoints": 36.2,
+          "Flag": "above_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 37.3,
+          "BenchmarkPct": 58.4,
+          "GapPoints": -21.1,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 15.4,
+          "BenchmarkPct": 13.4,
+          "GapPoints": 2.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 14.3,
+          "BenchmarkPct": 8.7,
+          "GapPoints": 5.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 23.1,
+          "BenchmarkPct": 8.4,
+          "GapPoints": 14.7,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 9.9,
+          "BenchmarkPct": 3.9,
+          "GapPoints": 6.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25308,
+          "Name": "Prayer of Healing",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 2.1,
+          "GapPoints": -2.1,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 25213,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 2.0,
+          "GapPoints": -2.0,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Binding Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.9,
+          "GapPoints": -0.9,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 34866,
+        "Name": "Circle of Healing",
+        "GapPoints": -21.1
+      },
+      "SpellRanks": [],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.9,
+          "Top100UsedPct": 89.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.6,
+          "Top100UsedPct": 62.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 5.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Fear Ward": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.3,
+          "Top100UsedPct": 28.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.9,
+          "Top100UsedPct": 74.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [
+        {
+          "Name": "Lasmur",
+          "Timestamp": 6397833
+        },
+        {
+          "Name": "Lasmur",
+          "Timestamp": 6412834
+        }
+      ],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Lasmur",
+          "DeathTimestamp": 6397833,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 6369397,
+          "DeltaMs": 28436
+        },
+        {
+          "DeathName": "Lasmur",
+          "DeathTimestamp": 6412834,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 6450058,
+          "DeltaMs": 37224
+        }
+      ],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    },
+    "vashj": {
+      "Deviations": {
+        "HPS": {
+          "Value": 634,
+          "Top1": 1540.0,
+          "Top100Avg": 1292.0,
+          "Median": 1296.0,
+          "RatioToAvg": 0.49,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 51.8,
+          "Best": 15.4,
+          "Median": 30.4,
+          "Worst": 74.6,
+          "GapToWorst": -22.8,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 94.8,
+          "Top1": 100.0,
+          "Top100Avg": 97.5,
+          "Median": 98.6,
+          "GapToAvg": -2.7,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 4.19,
+          "Top1": 7.77,
+          "Top100Avg": 6.31,
+          "Median": 6.28,
+          "RatioToAvg": 0.66,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 48.6,
+          "Top100Avg": 41.4,
+          "GapPoints": 7.2,
+          "Flag": "in_line"
+        },
+        "Top1Concentration": {
+          "Value": 22.8,
+          "Top100Avg": 13.1,
+          "GapPoints": 9.7,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 26.6,
+          "BenchmarkPct": 29.8,
+          "GapPoints": -3.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 28.4,
+          "BenchmarkPct": 25.4,
+          "GapPoints": 3.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 14.0,
+          "BenchmarkPct": 22.6,
+          "GapPoints": -8.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 22.6,
+          "BenchmarkPct": 8.6,
+          "GapPoints": 14.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": null,
+          "Name": "Binding Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 4.1,
+          "GapPoints": -4.1,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 6.6,
+          "BenchmarkPct": 2.6,
+          "GapPoints": 4.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25213,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.7,
+          "GapPoints": -1.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10928,
+          "Name": "Renew",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.9,
+          "GapPoints": -0.9,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10915,
+          "Name": "Flash Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.6,
+          "GapPoints": -0.6,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 2060,
+          "Name": "Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.5,
+          "GapPoints": -0.5,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 25308,
+          "Name": "Prayer of Healing",
+          "CharacterPct": 1.8,
+          "BenchmarkPct": 0.0,
+          "GapPoints": 1.8,
+          "BenchmarkOnly": false,
+          "CharacterOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 33110,
+        "Name": "Prayer of Mending",
+        "GapPoints": 14.0
+      },
+      "SpellRanks": [
+        {
+          "Name": "Renew",
+          "Ranks": [
+            {
+              "Guid": 10928,
+              "ManaCost": 305.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.9,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25222,
+              "ManaCost": 450,
+              "ManaCostSource": "character",
+              "CharacterPct": 28.4,
+              "BenchmarkPct": 25.4,
+              "RankLabel": null
+            }
+          ]
+        },
+        {
+          "Name": "Flash Heal",
+          "Ranks": [
+            {
+              "Guid": 10915,
+              "ManaCost": 265.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.6,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25235,
+              "ManaCost": 470,
+              "ManaCostSource": "character",
+              "CharacterPct": 14.0,
+              "BenchmarkPct": 22.6,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 1.1,
+          "Top100UsedPct": 97.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 1.3,
+          "Top100UsedPct": 80.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 7.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Fear Ward": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.3,
+          "Top100UsedPct": 30.0,
+          "Top100SelfPct": 44.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 1.0,
+          "Top100UsedPct": 44.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 2.7,
+          "Top100UsedPct": 98.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Ghostpepperx",
+          "DeathTimestamp": 7421448,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 7387752,
+          "DeltaMs": 33696
+        },
+        {
+          "DeathName": "Vajomee",
+          "DeathTimestamp": 7451959,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 7468203,
+          "DeltaMs": 16244
+        }
+      ],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    },
+    "alar": {
+      "Deviations": {
+        "HPS": {
+          "Value": 501,
+          "Top1": 1897.0,
+          "Top100Avg": 1354.0,
+          "Median": 1340.0,
+          "RatioToAvg": 0.37,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 53.6,
+          "Best": 16.0,
+          "Median": 34.1,
+          "Worst": 46.7,
+          "GapToWorst": 6.9,
+          "Flag": "exceeds_worst"
+        },
+        "ActiveTime": {
+          "Value": 95.5,
+          "Top1": 99.8,
+          "Top100Avg": 97.9,
+          "Median": 98.4,
+          "GapToAvg": -2.4,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 3.42,
+          "Top1": 8.07,
+          "Top100Avg": 5.88,
+          "Median": 5.82,
+          "RatioToAvg": 0.58,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 87.6,
+          "Top100Avg": 49.8,
+          "GapPoints": 37.8,
+          "Flag": "above_avg"
+        },
+        "Top1Concentration": {
+          "Value": 38.5,
+          "Top100Avg": 18.9,
+          "GapPoints": 19.6,
+          "Flag": "above_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 14.1,
+          "BenchmarkPct": 42.6,
+          "GapPoints": -28.5,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 11.6,
+          "BenchmarkPct": 20.4,
+          "GapPoints": -8.8,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 34.6,
+          "BenchmarkPct": 14.2,
+          "GapPoints": 20.4,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 17.1,
+          "BenchmarkPct": 7.8,
+          "GapPoints": 9.3,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 19.6,
+          "BenchmarkPct": 4.7,
+          "GapPoints": 14.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25213,
+          "Name": "Greater Heal",
+          "CharacterPct": 3.1,
+          "BenchmarkPct": 3.2,
+          "GapPoints": -0.1,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25308,
+          "Name": "Prayer of Healing",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.2,
+          "GapPoints": -1.2,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Binding Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.1,
+          "GapPoints": -1.1,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10963,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.6,
+          "GapPoints": -0.6,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10964,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.5,
+          "GapPoints": -0.5,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 34866,
+        "Name": "Circle of Healing",
+        "GapPoints": -28.5
+      },
+      "SpellRanks": [
+        {
+          "Name": "Greater Heal",
+          "Ranks": [
+            {
+              "Guid": 25213,
+              "ManaCost": 0,
+              "ManaCostSource": "character",
+              "CharacterPct": 3.1,
+              "BenchmarkPct": 3.2,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10963,
+              "ManaCost": 455.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.6,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10964,
+              "ManaCost": 545.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.5,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.9,
+          "Top100UsedPct": 89.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 72.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 2.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Fear Ward": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 33.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 1.5,
+          "Top100UsedPct": 96.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Captinhelp",
+          "DeathTimestamp": 10082319,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 10054798,
+          "DeltaMs": 27521
+        }
+      ],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    },
+    "voidreaver": {
+      "Deviations": {
+        "HPS": {
+          "Value": 2289,
+          "Top1": 4254.0,
+          "Top100Avg": 3735.0,
+          "Median": 3697.0,
+          "RatioToAvg": 0.61,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 26.6,
+          "Best": 6.2,
+          "Median": 13.2,
+          "Worst": 23.5,
+          "GapToWorst": 3.1,
+          "Flag": "exceeds_worst"
+        },
+        "ActiveTime": {
+          "Value": 98.6,
+          "Top1": 99.7,
+          "Top100Avg": 97.5,
+          "Median": 97.9,
+          "GapToAvg": 1.1,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 8.84,
+          "Top1": 14.14,
+          "Top100Avg": 12.19,
+          "Median": 12.1,
+          "RatioToAvg": 0.73,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 48.2,
+          "Top100Avg": 37.7,
+          "GapPoints": 10.5,
+          "Flag": "above_avg"
+        },
+        "Top1Concentration": {
+          "Value": 19.5,
+          "Top100Avg": 8.4,
+          "GapPoints": 11.1,
+          "Flag": "above_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 70.7,
+          "BenchmarkPct": 81.9,
+          "GapPoints": -11.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 17.9,
+          "BenchmarkPct": 7.2,
+          "GapPoints": 10.7,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": null,
+          "Name": "Prayer of Healing",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 6.0,
+          "GapPoints": -6.0,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 7.4,
+          "BenchmarkPct": 2.5,
+          "GapPoints": 4.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 0.5,
+          "BenchmarkPct": 0.9,
+          "GapPoints": -0.4,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 3.5,
+          "BenchmarkPct": 0.6,
+          "GapPoints": 2.9,
+          "BenchmarkOnly": false
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 34866,
+        "Name": "Circle of Healing",
+        "GapPoints": -11.2
+      },
+      "SpellRanks": [],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.7,
+          "Top100UsedPct": 70.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.7,
+          "Top100UsedPct": 74.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 8.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Fear Ward": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 24.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 81.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    },
+    "solarian": {
+      "Deviations": {
+        "HPS": {
+          "Value": 629,
+          "Top1": 2349.0,
+          "Top100Avg": 1889.0,
+          "Median": 1865.0,
+          "RatioToAvg": 0.33,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 65.3,
+          "Best": 6.0,
+          "Median": 31.3,
+          "Worst": 62.2,
+          "GapToWorst": 3.1,
+          "Flag": "exceeds_worst"
+        },
+        "ActiveTime": {
+          "Value": 97.3,
+          "Top1": 99.8,
+          "Top100Avg": 95.7,
+          "Median": 96.2,
+          "GapToAvg": 1.6,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 3.22,
+          "Top1": 7.84,
+          "Top100Avg": 6.05,
+          "Median": 6.0,
+          "RatioToAvg": 0.53,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 53.6,
+          "Top100Avg": 49.2,
+          "GapPoints": 4.4,
+          "Flag": "in_line"
+        },
+        "Top1Concentration": {
+          "Value": 24.6,
+          "Top100Avg": 14.7,
+          "GapPoints": 9.9,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 15.0,
+          "BenchmarkPct": 42.1,
+          "GapPoints": -27.1,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 46.6,
+          "BenchmarkPct": 40.7,
+          "GapPoints": 5.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 7.8,
+          "BenchmarkPct": 5.6,
+          "GapPoints": 2.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 16.0,
+          "BenchmarkPct": 3.7,
+          "GapPoints": 12.3,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 14.6,
+          "BenchmarkPct": 2.6,
+          "GapPoints": 12.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25233,
+          "Name": "Flash Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 2.1,
+          "GapPoints": -2.1,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Binding Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.0,
+          "GapPoints": -1.0,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 34864,
+          "Name": "Circle of Healing",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.8,
+          "GapPoints": -0.8,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 25235,
+        "Name": "Flash Heal",
+        "GapPoints": -27.1
+      },
+      "SpellRanks": [
+        {
+          "Name": "Flash Heal",
+          "Ranks": [
+            {
+              "Guid": 25233,
+              "ManaCost": 400.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 2.1,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25235,
+              "ManaCost": 470,
+              "ManaCostSource": "character",
+              "CharacterPct": 15.0,
+              "BenchmarkPct": 42.1,
+              "RankLabel": null
+            }
+          ]
+        },
+        {
+          "Name": "Circle of Healing",
+          "Ranks": [
+            {
+              "Guid": 34864,
+              "ManaCost": 375.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.8,
+              "RankLabel": null
+            },
+            {
+              "Guid": 34866,
+              "ManaCost": 450,
+              "ManaCostSource": "character",
+              "CharacterPct": 46.6,
+              "BenchmarkPct": 40.7,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.5,
+          "Top100UsedPct": 54.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.3,
+          "Top100UsedPct": 34.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 3.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Fear Ward": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Captinhelp",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 8.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 7.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 43.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Clippies",
+          "DeathTimestamp": 11904183,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 11909201,
+          "DeltaMs": 5018
+        },
+        {
+          "DeathName": "Vajomee",
+          "DeathTimestamp": 11908486,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 11909201,
+          "DeltaMs": 715
+        },
+        {
+          "DeathName": "Vinnyvozz",
+          "DeathTimestamp": 11908789,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 11909201,
+          "DeltaMs": 412
+        },
+        {
+          "DeathName": "Enëlye",
+          "DeathTimestamp": 11909024,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 11909201,
+          "DeltaMs": 177
+        },
+        {
+          "DeathName": "Nameitis",
+          "DeathTimestamp": 11909063,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 11909201,
+          "DeltaMs": 138
+        },
+        {
+          "DeathName": "Ghostpepperx",
+          "DeathTimestamp": 11910333,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 11911064,
+          "DeltaMs": 731
+        },
+        {
+          "DeathName": "Banepain",
+          "DeathTimestamp": 11910528,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 11911064,
+          "DeltaMs": 536
+        },
+        {
+          "DeathName": "Porgrok",
+          "DeathTimestamp": 11910760,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 11911064,
+          "DeltaMs": 304
+        },
+        {
+          "DeathName": "Zitish",
+          "DeathTimestamp": 11916217,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 11911064,
+          "DeltaMs": 5153
+        }
+      ],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    },
+    "kaelthas": {
+      "Deviations": {
+        "HPS": {
+          "Value": 765,
+          "Top1": 1366.0,
+          "Top100Avg": 1202.0,
+          "Median": 1187.0,
+          "RatioToAvg": 0.64,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 49.7,
+          "Best": 23.2,
+          "Median": 35.3,
+          "Worst": 52.3,
+          "GapToWorst": -2.6,
+          "Flag": "near_worst"
+        },
+        "ActiveTime": {
+          "Value": 95.5,
+          "Top1": 99.6,
+          "Top100Avg": 91.3,
+          "Median": 91.2,
+          "GapToAvg": 4.2,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 4.28,
+          "Top1": 7.57,
+          "Top100Avg": 5.87,
+          "Median": 5.77,
+          "RatioToAvg": 0.73,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 63.8,
+          "Top100Avg": 42.5,
+          "GapPoints": 21.3,
+          "Flag": "above_avg"
+        },
+        "Top1Concentration": {
+          "Value": 21.8,
+          "Top100Avg": 13.4,
+          "GapPoints": 8.4,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 34866,
+          "Name": "Circle of Healing",
+          "CharacterPct": 31.0,
+          "BenchmarkPct": 44.6,
+          "GapPoints": -13.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25235,
+          "Name": "Flash Heal",
+          "CharacterPct": 11.8,
+          "BenchmarkPct": 22.1,
+          "GapPoints": -10.3,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25222,
+          "Name": "Renew",
+          "CharacterPct": 22.0,
+          "BenchmarkPct": 12.5,
+          "GapPoints": 9.5,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 33110,
+          "Name": "Prayer of Mending",
+          "CharacterPct": 22.8,
+          "BenchmarkPct": 10.0,
+          "GapPoints": 12.8,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25218,
+          "Name": "Power Word: Shield",
+          "CharacterPct": 7.9,
+          "BenchmarkPct": 4.2,
+          "GapPoints": 3.7,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25213,
+          "Name": "Greater Heal",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.7,
+          "GapPoints": -1.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 32546,
+          "Name": "Binding Heal",
+          "CharacterPct": 1.0,
+          "BenchmarkPct": 1.5,
+          "GapPoints": -0.5,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": null,
+          "Name": "Holy Word: Sanctify",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.6,
+          "GapPoints": -0.6,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 25308,
+          "Name": "Prayer of Healing",
+          "CharacterPct": 3.5,
+          "BenchmarkPct": 0.0,
+          "GapPoints": 3.5,
+          "BenchmarkOnly": false,
+          "CharacterOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 34866,
+        "Name": "Circle of Healing",
+        "GapPoints": -13.6
+      },
+      "SpellRanks": [],
+      "Cooldowns": {
+        "Shadowfiend": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 1.0,
+          "Top100UsedPct": 92.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Power Word: Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 1.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Chakra": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 1.3,
+          "Top100UsedPct": 82.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Life": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 8.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Fear Ward": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Captinhelp",
+          "Top100AvgCasts": 1.0,
+          "Top100UsedPct": 87.0,
+          "Top100SelfPct": 4.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.9,
+          "Top100UsedPct": 43.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 2,
+          "SelfCount": 2,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 2.5,
+          "Top100UsedPct": 98.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Vinnyvozz",
+          "DeathTimestamp": 13099240,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 13178113,
+          "DeltaMs": 78873
+        },
+        {
+          "DeathName": "Vajomee",
+          "DeathTimestamp": 13151693,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 13178113,
+          "DeltaMs": 26420
+        },
+        {
+          "DeathName": "Beublic",
+          "DeathTimestamp": 13157993,
+          "NearestCooldown": "Blessing of Life",
+          "NearestCooldownTimestamp": 13178113,
+          "DeltaMs": 20120
+        },
+        {
+          "DeathName": "Calamety",
+          "DeathTimestamp": 13318246,
+          "NearestCooldown": "Chakra",
+          "NearestCooldownTimestamp": 13210871,
+          "DeltaMs": 107375
+        }
+      ],
+      "CannedCaveats": [
+        "priest_pws_benchmark_bias"
+      ]
+    }
+  },
+  "RaidWideRollups": {
+    "DeathCountByBoss": [
+      {
+        "Slug": "leotheras",
+        "DeathCount": 22,
+        "Rank": 1
+      },
+      {
+        "Slug": "solarian",
+        "DeathCount": 9,
+        "Rank": 2
+      },
+      {
+        "Slug": "kaelthas",
+        "DeathCount": 4,
+        "Rank": 3
+      },
+      {
+        "Slug": "karathress",
+        "DeathCount": 2,
+        "Rank": 4
+      },
+      {
+        "Slug": "morogrim",
+        "DeathCount": 2,
+        "Rank": 5
+      },
+      {
+        "Slug": "vashj",
+        "DeathCount": 2,
+        "Rank": 6
+      },
+      {
+        "Slug": "alar",
+        "DeathCount": 1,
+        "Rank": 7
+      },
+      {
+        "Slug": "hydross",
+        "DeathCount": 0,
+        "Rank": 8
+      },
+      {
+        "Slug": "lurker",
+        "DeathCount": 0,
+        "Rank": 9
+      },
+      {
+        "Slug": "voidreaver",
+        "DeathCount": 0,
+        "Rank": 10
+      }
+    ],
+    "OverhealExceedsWorstBosses": [
+      "lurker",
+      "leotheras",
+      "morogrim",
+      "alar",
+      "voidreaver",
+      "solarian"
+    ],
+    "CooldownDeviations": {
+      "Blessing of Life": {
+        "UndercastBosses": [],
+        "OvercastBosses": [
+          "hydross",
+          "leotheras",
+          "karathress",
+          "morogrim",
+          "vashj",
+          "voidreaver",
+          "solarian",
+          "kaelthas"
+        ]
+      },
+      "Mana Potion": {
+        "UndercastBosses": [
+          "hydross"
+        ],
+        "OvercastBosses": []
+      },
+      "Shadowfiend": {
+        "UndercastBosses": [
+          "leotheras"
+        ],
+        "OvercastBosses": []
+      },
+      "Fear Ward": {
+        "UndercastBosses": [],
+        "OvercastBosses": [
+          "solarian"
+        ]
+      }
+    },
+    "SelfDeathBosses": [
+      "leotheras",
+      "morogrim"
+    ],
+    "LowestPercentileBosses": [
+      {
+        "Slug": "lurker",
+        "Percentile": 12
+      },
+      {
+        "Slug": "morogrim",
+        "Percentile": 21
+      },
+      {
+        "Slug": "solarian",
+        "Percentile": 22
+      }
+    ]
+  },
+  "GearAnalysis": {
+    "MissingEnchantFlags": [],
+    "DifferingSlotsAnnotated": [
+      {
+        "SlotIndex": 10,
+        "SlotName": "Finger1",
+        "LikelyBenign": false,
+        "Reason": "needs review"
+      },
+      {
+        "SlotIndex": 15,
+        "SlotName": "MainHand",
+        "LikelyBenign": true,
+        "Reason": "single/minority-kill variant"
+      }
+    ],
+    "EnchantableSlotCount": 9,
+    "EnchantedSlotCount": 9,
+    "ConsumableSetup": {
+      "TotalBosses": 10,
+      "CompleteCount": 9,
+      "UnknownCount": 0,
+      "IncompleteBosses": [
+        "Fathom-Lord Karathress"
+      ]
+    }
+  }
+}

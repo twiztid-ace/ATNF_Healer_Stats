@@ -1,0 +1,360 @@
+{
+  "entries": [
+    {
+      "name": "Kangosha",
+      "id": 35,
+      "guid": 79269951,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 9870505,
+      "fight": 67,
+      "damage": {
+        "total": 11425,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 5778,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 3275,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 2372,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shartsmella",
+            "total": 5778,
+            "type": "Warrior"
+          },
+          {
+            "name": "Environment",
+            "total": 3275,
+            "type": "Boss"
+          },
+          {
+            "name": "High Astromancer Solarian",
+            "total": 2372,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 339,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 339,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 339,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Kangosha",
+            "total": 339,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 1280,
+      "overkill": 2325,
+      "events": [
+        {
+          "timestamp": 9870472,
+          "type": "damage",
+          "sourceID": 38,
+          "sourceIsFriendly": true,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Wrath of the Astromancer",
+            "guid": 42787,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 3453,
+          "unmitigatedAmount": 5778,
+          "overkill": 2325,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 9869312,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 3275,
+          "unmitigatedAmount": 3275,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 9869192,
+          "type": "damage",
+          "sourceID": 220,
+          "sourceIsFriendly": false,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blinding Light",
+            "guid": 33009,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 2372,
+          "unmitigatedAmount": 2372,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Wrath of the Astromancer",
+        "guid": 42787,
+        "type": 64,
+        "abilityIcon": "spell_nature_wispsplode.jpg"
+      }
+    },
+    {
+      "name": "Zxap",
+      "id": 19,
+      "guid": 73656987,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 9876708,
+      "fight": 67,
+      "damage": {
+        "total": 16964,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 575,
+        "abilities": [
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 9449,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 5788,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 1727,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 9449,
+            "type": "Boss"
+          },
+          {
+            "name": "Shartsmella",
+            "total": 5788,
+            "type": "Warrior"
+          },
+          {
+            "name": "High Astromancer Solarian",
+            "total": 1727,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5175,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 3744,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1092,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 339,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 3914,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 1261,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Zxap",
+            "total": 3744,
+            "type": "Shaman"
+          },
+          {
+            "name": "Iskie",
+            "total": 1092,
+            "type": "Priest"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 339,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 7499,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 9876691,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 9449,
+          "unmitigatedAmount": 9449,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 9870471,
+          "type": "damage",
+          "sourceID": 38,
+          "sourceIsFriendly": true,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Wrath of the Astromancer",
+            "guid": 42787,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 67,
+          "hitType": 1,
+          "amount": 5788,
+          "unmitigatedAmount": 5788,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 9869192,
+          "type": "damage",
+          "sourceID": 220,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blinding Light",
+            "guid": 33009,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 67,
+          "hitType": 16,
+          "amount": 1727,
+          "mitigated": 575,
+          "unmitigatedAmount": 2302,
+          "resisted": 576,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

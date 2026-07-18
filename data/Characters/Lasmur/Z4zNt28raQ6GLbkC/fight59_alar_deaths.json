@@ -1,0 +1,485 @@
+{
+  "entries": [
+    {
+      "name": "Rolopally",
+      "id": 66,
+      "guid": 54616403,
+      "type": "Paladin",
+      "icon": "Paladin-Justicar",
+      "timestamp": 10081261,
+      "fight": 59,
+      "damage": {
+        "total": 19540,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 18927,
+        "blocked": 1638,
+        "abilities": [
+          {
+            "guid": 34287,
+            "name": "Flame Quills",
+            "total": 12947,
+            "type": 4,
+            "icon": "spell_fire_flare.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6593,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 12947,
+            "type": "Boss"
+          },
+          {
+            "name": "Ember of Al'ar",
+            "total": 6593,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 5300,
+      "overkill": 4313,
+      "events": [
+        {
+          "timestamp": 10081244,
+          "type": "damage",
+          "sourceID": 439,
+          "sourceIsFriendly": false,
+          "targetID": 66,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Quills",
+            "guid": 34287,
+            "type": 4,
+            "abilityIcon": "spell_fire_flare.jpg"
+          },
+          "fight": 59,
+          "hitType": 16,
+          "amount": 1417,
+          "mitigated": 2397,
+          "unmitigatedAmount": 8127,
+          "resisted": 2032,
+          "overkill": 4313,
+          "isAoE": true
+        },
+        {
+          "timestamp": 10081088,
+          "type": "damage",
+          "sourceID": 440,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 66,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 59,
+          "hitType": 4,
+          "amount": 914,
+          "mitigated": 2248,
+          "unmitigatedAmount": 3162,
+          "blocked": 234,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 10080232,
+          "type": "damage",
+          "sourceID": 439,
+          "sourceIsFriendly": false,
+          "targetID": 66,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Quills",
+            "guid": 34287,
+            "type": 4,
+            "abilityIcon": "spell_fire_flare.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 7217,
+          "mitigated": 461,
+          "unmitigatedAmount": 7678,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Quills",
+        "guid": 34287,
+        "type": 4,
+        "abilityIcon": "spell_fire_flare.jpg"
+      }
+    },
+    {
+      "name": "Nameitis",
+      "id": 113,
+      "guid": 60989991,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 10087525,
+      "fight": 59,
+      "damage": {
+        "total": 14660,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 7613,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 14660,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Ember of Al'ar",
+            "total": 14660,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1541,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25420,
+            "name": "Lesser Healing Wave",
+            "total": 1541,
+            "type": 8,
+            "icon": "spell_nature_healingwavelesser.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1541,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Nameitis",
+            "total": 1541,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 4014,
+      "overkill": 1885,
+      "events": [
+        {
+          "timestamp": 10087517,
+          "type": "damage",
+          "sourceID": 440,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 113,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 307,
+          "mitigated": 1138,
+          "unmitigatedAmount": 3330,
+          "overkill": 1885,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10087024,
+          "type": "damage",
+          "sourceID": 440,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 113,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 2000,
+          "mitigated": 1039,
+          "unmitigatedAmount": 3039,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10087024,
+          "type": "damage",
+          "sourceID": 440,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 113,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1872,
+          "mitigated": 971,
+          "unmitigatedAmount": 2843,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Nameitis",
+      "id": 113,
+      "guid": 60989991,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 10138330,
+      "fight": 59,
+      "damage": {
+        "total": 1799,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 1799,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 1799,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 99,
+      "events": [
+        {
+          "timestamp": 10138327,
+          "type": "damage",
+          "sourceID": 439,
+          "sourceIsFriendly": false,
+          "targetID": 113,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Buffet",
+            "guid": 34121,
+            "type": 4,
+            "abilityIcon": "spell_fire_fireball.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1700,
+          "unmitigatedAmount": 1799,
+          "overkill": 99,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Buffet",
+        "guid": 34121,
+        "type": 4,
+        "abilityIcon": "spell_fire_fireball.jpg"
+      }
+    },
+    {
+      "name": "Luffydonoo",
+      "id": 65,
+      "guid": 49772732,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 10268790,
+      "fight": 59,
+      "damage": {
+        "total": 13955,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 13955,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 13955,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 826,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25222,
+            "name": "Renew",
+            "total": 826,
+            "type": 2,
+            "icon": "spell_holy_renew.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35383,
+            "name": "Flame Patch",
+            "total": 826,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lasmur",
+            "total": 826,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 4001,
+      "overkill": 197,
+      "events": [
+        {
+          "timestamp": 10268776,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 65,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 4096,
+          "unmitigatedAmount": 2788,
+          "overkill": 197,
+          "isAoE": true
+        },
+        {
+          "timestamp": 10267769,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 65,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 3646,
+          "unmitigatedAmount": 2549,
+          "isAoE": true
+        },
+        {
+          "timestamp": 10265769,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 65,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Patch",
+            "guid": 35383,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 3267,
+          "unmitigatedAmount": 2475,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Patch",
+        "guid": 35383,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    }
+  ]
+}

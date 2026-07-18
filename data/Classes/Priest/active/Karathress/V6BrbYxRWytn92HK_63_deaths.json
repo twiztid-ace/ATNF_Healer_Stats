@@ -1,0 +1,189 @@
+{
+  "entries": [
+    {
+      "name": "Mezmar",
+      "id": 8,
+      "guid": 55607084,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 8140225,
+      "fight": 63,
+      "damage": {
+        "total": 10674,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10674,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Guard Sharkkis",
+            "total": 10674,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 380,
+      "events": [
+        {
+          "timestamp": 8140201,
+          "type": "damage",
+          "sourceID": 170,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 63,
+          "hitType": 2,
+          "amount": 10294,
+          "unmitigatedAmount": 6757,
+          "overkill": 380,
+          "isAoE": false,
+          "sourceMarker": 7
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Darkcrystal",
+      "id": 17,
+      "guid": 45234892,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 8144240,
+      "fight": 63,
+      "damage": {
+        "total": 9675,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3582,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9675,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Guard Sharkkis",
+            "total": 9675,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 103,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 39373,
+            "name": "Shadowmend",
+            "total": 103,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 103,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Darkcrystal",
+            "total": 103,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 2017,
+      "overkill": 801,
+      "events": [
+        {
+          "timestamp": 8144218,
+          "type": "damage",
+          "sourceID": 170,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 63,
+          "hitType": 1,
+          "amount": 4241,
+          "mitigated": 1867,
+          "unmitigatedAmount": 6909,
+          "overkill": 801,
+          "isAoE": false,
+          "sourceMarker": 7
+        },
+        {
+          "timestamp": 8142201,
+          "type": "damage",
+          "sourceID": 170,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 63,
+          "hitType": 1,
+          "amount": 4633,
+          "mitigated": 1715,
+          "unmitigatedAmount": 6348,
+          "isAoE": false,
+          "sourceMarker": 7
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}
