@@ -1,0 +1,116 @@
+{
+  "entries": [
+    {
+      "name": "Hezrun",
+      "id": 19,
+      "guid": 48301431,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 752901,
+      "fight": 7,
+      "damage": {
+        "total": 12664,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": -16,
+            "name": "Melee",
+            "total": 12664,
+            "type": 16,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Pure Spawn of Hydross",
+            "total": 12664,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 845,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 845,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": -16,
+            "name": "Melee",
+            "total": 845,
+            "type": 16,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Fuggler",
+            "total": 845,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 2015,
+      "overkill": 385,
+      "events": [
+        {
+          "timestamp": 752891,
+          "type": "damage",
+          "sourceID": 78,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": -16,
+            "type": 16,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 7,
+          "hitType": 2,
+          "amount": 8244,
+          "unmitigatedAmount": 3922,
+          "overkill": 385,
+          "isAoE": false
+        },
+        {
+          "timestamp": 750876,
+          "type": "damage",
+          "sourceID": 78,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": -16,
+            "type": 16,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 7,
+          "hitType": 1,
+          "amount": 4035,
+          "unmitigatedAmount": 3668,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": -16,
+        "type": 16,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

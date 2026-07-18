@@ -1,0 +1,72 @@
+{
+  "CharacterName": "Crowns",
+  "ReportCode": "rQpVkMjGnc4t9CqW",
+  "BossFindings": {
+    "hydross": {
+      "SCORECARD_FINDING": "HPS landed at the 20th percentile (359 vs. a Top 100 average of 1436), tracing back to spending 86.3% of healing on Flash of Light against a sample that leans on Holy Light (70.0%) instead - a pattern that recurs on almost every kill this raid, not a one-off. Overheal (48.1%) and active time (88.1%) both sat in line with the sample.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light (guid 27137) covered 86.3% of healing here versus just 5.8% for the Top 100 sample - the largest single spell-composition gap of the raid. Holy Light (guid 27136), the sample's primary spell at 70.0%, was cast for only 10.3% here.",
+      "COOLDOWN_FINDING": "Divine Favor went unused despite 66% of the Top 100 sample casting it at least once, and Mana Potion also went unused against a 79% sample usage rate. Holy Shock wasn't cast this kill either (0 of a typical 24% usage rate) - no deaths to check it against, so no missed-save story here.",
+      "TARGET_FINDING": "The top 5 healed targets covered 65.2% of total healing against a 98.1% sample average, and the single most-healed target (Luffydonoo, 17.7%) covered far less than the sample's typical top-target share (87.9%) - healing was spread across 13 distinct targets rather than concentrated on a couple of players."
+    },
+    "lurker": {
+      "SCORECARD_FINDING": "The best relative kill of the raid so far by percentile (78th), though HPS (717) still trails the Top 100 average (1381) - the same Flash of Light-heavy composition seen raid-wide, just less pronounced here. Overheal, active time, and HPM all landed in line with the sample.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light made up 56.4% of healing against 14.8% for the sample, while Holy Light (42.0%) undershot the sample's 64.3% - the same directional gap as the rest of the raid, just smaller in magnitude here.",
+      "COOLDOWN_FINDING": "Divine Favor, Holy Shock, and Mana Potion were each cast once, all self-targeted and in line with how the sample typically uses them. Hand of Protection went to Firewoody - a real cast of an ability only 2% of the Top 100 sample used at all this kill. One death (Staubaoz) landed 2.8 seconds after the Holy Shock cast, but Holy Shock isn't a defensive/save ability aimed at a specific target's survival, so this reads as coincidental timing rather than a real correlation.",
+      "TARGET_FINDING": "Healing coverage (53.7% from the top 5 targets, spread across 22 distinct targets) again ran well below the sample's typical concentration (84.7% coverage, 60.9% top-target share)."
+    },
+    "leotheras": {
+      "SCORECARD_FINDING": "The strongest kill of the raid by percentile (88th) despite HPS (834) still trailing the Top 100 average (1370) - overheal, active time, and HPM all sat in line with the sample here, and the spell-composition gap was the smallest of the raid.",
+      "SPELL_COMPOSITION_FINDING": "Holy Light (75.0%) and Flash of Light (25.0%) were close to the sample's own mix (71.1% / 14.5%) - the one kill this raid where composition wasn't the story.",
+      "COOLDOWN_FINDING": "Divine Favor and Holy Shock both went unused (0 vs. 79% and 49% sample usage respectively) - Holy Shock's usage rate here sits under the 50% threshold this pipeline flags as a real undercast, so it isn't called out as a deviation, but it's still a real 0. Five deaths landed this kill (Luffydonoo, Calamety, Porgrok, Luffydonoo, Calamety); the two closest in time both trail the single Mana Potion cast by 6.8-10.2 seconds, and Mana Potion is a self-buff, not a save cooldown for other players - no real cooldown-to-death correlation here.",
+      "TARGET_FINDING": "Target coverage (38.5% from the top 5, 59.9% sample average) and top-target share (9.4% vs. 20.9%) both ran below the sample - healing was spread thin across this kill's targets."
+    },
+    "karathress": {
+      "SCORECARD_FINDING": "Percentile landed at the midpoint of the raid (47th); HPS (709) trailed the Top 100 average (1622) by the usual composition-driven gap, while HPM (5.87, 1.25x the average) and active time (94.3%) both ran above the sample.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light (55.9%) again outpaced the sample's 9.7%, while Holy Light (41.2%) undershot the sample's 77.0% share - the same raid-wide directional gap.",
+      "COOLDOWN_FINDING": "Divine Favor went unused against a 69% sample usage rate. Cleanse was cast once, on Thugalina - a real dispel only 3% of the sample used at all this kill. No deaths this kill, so no cooldown-to-death timing to check.",
+      "TARGET_FINDING": "Thugalina absorbed 42.9% of total healing (the tank, plausibly), and the top 5 covered 66.5% overall - both still below the sample's typical spread (70.0% top-target, 92.5% top-5 coverage), across 20 distinct targets."
+    },
+    "morogrim": {
+      "SCORECARD_FINDING": "The lowest percentile of the raid outside Al'ar (16th) - active time (71.7%) ran a real 23.7 points below the sample average (95.4%), the largest activity gap of the raid, on top of the usual Flash of Light-driven HPS shortfall.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light (63.1%) outpaced the sample's 16.4% by the widest cast-rate margin outside Al'ar and Solarian; Holy Light (23.3%) undershot the sample's 62.2%.",
+      "COOLDOWN_FINDING": "Divine Favor, Mana Potion, and Holy Shock all went unused this kill, and all three sit at or above the 50%+ sample-usage threshold this pipeline flags as a real undercast (80%, 95%, and 56% respectively) - the most cooldowns flagged as missing on any single kill this raid. No deaths this kill.",
+      "TARGET_FINDING": "The one kill this raid where target spread matched the sample closely: Captinhelp alone took 61.0% of healing (top-target share 66.9% for the sample) and the top 5 covered 85.9% (sample 86.4%) - a real single-target-heavy kill, not the usual wide spread."
+    },
+    "vashj": {
+      "SCORECARD_FINDING": "Percentile landed above the midpoint (60th); HPS (551) trailed the sample average (948) by the smallest relative margin of the raid so far (0.58x), and overheal, active time, and HPM all sat in line with the sample.",
+      "SPELL_COMPOSITION_FINDING": "The smallest Flash of Light gap of the raid to this point: 71.9% here against a sample that itself leans Flash of Light on this kill (54.1%, the only boss where the Top 100 sample favors Flash of Light over Holy Light). Holy Light (26.5%) was close to the sample's 30.1%.",
+      "COOLDOWN_FINDING": "Divine Favor again went unused against an 86% sample usage rate. Cleanse was cast three times (self, Sheriffgoose, Fuggler), in line with the sample. Four deaths this kill (Calamety twice, Captinhelp, Enëlye); the closest lands 4.3 seconds after a Cleanse cast, but Cleanse removes a dispellable effect rather than preventing death outright, and the remaining three deaths trail Cleanse casts by 37-95 seconds - no real save-cooldown correlation here.",
+      "TARGET_FINDING": "Target coverage (37.4% from the top 5 vs. a 50.2% sample average) ran below the sample, though top-target concentration (8.3% vs. 18.0%) was close enough to read as in line."
+    },
+    "alar": {
+      "SCORECARD_FINDING": "The lowest percentile of the raid (8th) and the largest active-time shortfall after Morogrim (65.2% vs. a 93.5% sample average, -28.3 points) - Crowns cast zero Holy Light this kill, the only boss this raid with a 100% Flash of Light spell mix.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light covered 92.1% of healing against a 24.8% sample share - the widest gap of the raid after Solarian. Holy Light was never cast here at all, versus a 50.6% share in the Top 100 sample.",
+      "COOLDOWN_FINDING": "Mana Potion went unused against a 96% sample usage rate - the highest benchmark usage rate of any cooldown flagged this raid, and the clearest single miss. Divine Favor also went unused (86% sample rate). Hand of Protection was cast on Crowns's own self, a real use of an ability only 5% of the sample used at all. One death (Leechers) trails the nearest Holy Shock cast by nearly 48 seconds - too far apart to read as related.",
+      "TARGET_FINDING": "Target coverage (45.1% vs. a 75.6% sample average) and top-target share (12.3% vs. 37.6%) both ran well below the sample, consistent with the low active-time and HPS this kill."
+    },
+    "voidreaver": {
+      "SCORECARD_FINDING": "Overheal (41.9%) exceeded the Top 100 sample's worst parse (36.4%) - the only kill this raid where that happened - despite active time (96.2%) running slightly above the sample average. HPM (4.1, 0.75x the average) was also the least efficient kill of the raid so far.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light (37.8%) again outpaced the sample (10.2%), though Holy Light (62.2%) was close to the sample's 66.3% - composition wasn't the main story on this kill, efficiency and overheal were.",
+      "COOLDOWN_FINDING": "Divine Favor went unused against an 80% sample usage rate. Holy Shock wasn't cast either, with no deaths this kill to check it against.",
+      "TARGET_FINDING": "Target coverage (62.0% vs. 67.4% sample average) and top-target share (19.2% vs. 26.3%) both landed close enough to the sample to read as in line - the overheal and HPM gaps above are the real story on this kill, not target spread."
+    },
+    "solarian": {
+      "SCORECARD_FINDING": "HPM (6.23, 1.36x the sample average) was the most efficient kill of the raid, but HPS (504) still trailed the sample (1557) - Crowns cast exclusively Flash of Light this kill, the widest spell-composition gap of the entire raid.",
+      "SPELL_COMPOSITION_FINDING": "100% of healing came from Flash of Light against a 10.0% sample share; Holy Light was never cast at all here, versus a 69.7% share in the Top 100 sample - the single most one-sided kill of the raid.",
+      "COOLDOWN_FINDING": "Every tracked cooldown went unused this kill (Holy Shock, Divine Favor, Divine Shield, Cleanse, Hand of Protection, Blessing of Freedom, Dark Rune, Mana Potion), though none individually cross this pipeline's 50%+ sample-usage undercast threshold - a quiet kill for utility casts rather than one specific miss. No deaths this kill.",
+      "TARGET_FINDING": "Target coverage (51.7% vs. 62.8% sample average) ran below the sample; top-target share (13.9% vs. 19.7%) was close enough to read as in line."
+    },
+    "kaelthas": {
+      "SCORECARD_FINDING": "By far the deadliest kill of the raid - 16 deaths, more than triple the next-highest (Leotheras, 5) - though active time (78.4%) and overheal (42.3%) both still landed in line with the sample, suggesting the death count reflects raid-wide fight difficulty rather than a gap in Crowns's own coverage.",
+      "SPELL_COMPOSITION_FINDING": "Flash of Light (71.8%) again outpaced the sample's 35.7%, while Holy Light (27.2%) undershot the sample's 45.1% - consistent with the raid-wide pattern.",
+      "COOLDOWN_FINDING": "Divine Favor went unused against an 83% sample usage rate - the eighth kill this raid with that same gap. Of the 16 deaths, 13 trail the single Holy Shock cast by 37-80 seconds and 3 trail the single Mana Potion cast by 6-9 seconds; none of those cooldowns are direct save abilities for other players, so none of these read as a real missed-save opportunity - just a high-death kill with casts scattered well before or after each one.",
+      "TARGET_FINDING": "Target coverage (48.8% vs. 62.8% sample average) and top-target share (11.6% vs. 25.4%) both ran below the sample, in line with the wide-spread healing pattern seen most of this raid."
+    }
+  },
+  "RaidOverview": {
+    "GEAR_CONSISTENCY_FINDING": "consistent except for four single-kill variants (Trinket2, Main Hand, Off Hand, Ranged)",
+    "GEAR_FINDING_NOTE": "All four varying slots differed on only one kill each - real gear/weapon swaps for a specific encounter, not a drifting loadout. All 9 enchantable slots carried a permanent enchant on every kill, and all 10 kills had a complete consumable setup (Battle Elixir + Guardian Elixir together, no flask used this raid).",
+    "RAID_SUMMARY_FINDING": "The dominant story of this raid is spell composition: Crowns leaned on Flash of Light over Holy Light on every single kill, the direct opposite of the Top 100 sample's own mix on 9 of 10 bosses, and it tracks closely with a below-average HPS on all 10 kills. Divine Favor was cast exactly once across the entire raid (on The Lurker Below) despite the Top 100 sample using it on roughly two-thirds to seven-eighths of parses on most of these bosses. The three lowest-percentile kills were Al'ar (8th), Morogrim Tidewalker (16th), and Hydross the Unstable (20th). Kael'thas Sunstrider was by far the deadliest kill of the raid at 16 deaths, more than triple the next-highest, though Crowns's own active time and overheal stayed in line with the sample on that kill.",
+    "RAID_WARNING_BANNER": "<strong>Flash of Light dominated Crowns's healing on every kill this raid</strong> (25-100% of total healing, versus a 6-54% share in the Top 100 sample), while Holy Light - the sample's primary spell on 9 of 10 kills - was used far less, or not at all on 2 kills (Al'ar, Solarian). This is the single largest, most consistent pattern in the raid and tracks closely with the below-average HPS on every kill."
+  }
+}

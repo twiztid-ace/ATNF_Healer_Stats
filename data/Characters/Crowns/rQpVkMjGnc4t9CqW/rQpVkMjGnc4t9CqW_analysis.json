@@ -1,0 +1,2895 @@
+{
+  "CharacterName": "Crowns",
+  "ReportCode": "rQpVkMjGnc4t9CqW",
+  "ClassName": "Paladin",
+  "Bosses": {
+    "hydross": {
+      "Deviations": {
+        "HPS": {
+          "Value": 359,
+          "Top1": 2126.0,
+          "Top100Avg": 1436.0,
+          "Median": 1363.0,
+          "RatioToAvg": 0.25,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 48.1,
+          "Best": 9.2,
+          "Median": 44.1,
+          "Worst": 66.5,
+          "GapToWorst": -18.4,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 88.1,
+          "Top1": 98.8,
+          "Top100Avg": 91.7,
+          "Median": 91.9,
+          "GapToAvg": -3.6,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 4.98,
+          "Top1": 6.47,
+          "Top100Avg": 4.14,
+          "Median": 4.05,
+          "RatioToAvg": 1.2,
+          "Flag": "above_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 65.2,
+          "Top100Avg": 98.1,
+          "GapPoints": -32.9,
+          "Flag": "below_avg"
+        },
+        "Top1Concentration": {
+          "Value": 17.7,
+          "Top100Avg": 87.9,
+          "GapPoints": -70.2,
+          "Flag": "below_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 10.3,
+          "BenchmarkPct": 70.0,
+          "GapPoints": -59.7,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 10.4,
+          "GapPoints": -10.4,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 7.8,
+          "GapPoints": -7.8,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 86.3,
+          "BenchmarkPct": 5.8,
+          "GapPoints": 80.5,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 2.6,
+          "GapPoints": -2.6,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 27135,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.5,
+          "GapPoints": -1.5,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Lay on Hands",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.6,
+          "GapPoints": -0.6,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Holy Shock",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.6,
+          "GapPoints": -0.6,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 1042,
+          "Name": "Holy Light",
+          "CharacterPct": 3.4,
+          "BenchmarkPct": 0.0,
+          "GapPoints": 3.4,
+          "BenchmarkOnly": false,
+          "CharacterOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 80.5
+      },
+      "SpellRanks": [
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 1042,
+              "ManaCost": 275,
+              "ManaCostSource": "character",
+              "CharacterPct": 3.4,
+              "BenchmarkPct": 0.0,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 2.6,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 7.8,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 10.4,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27135,
+              "ManaCost": 710.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 1.5,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840,
+              "ManaCostSource": "character",
+              "CharacterPct": 10.3,
+              "BenchmarkPct": 70.0,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 24.0,
+          "Top100SelfPct": 3.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Favor": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.7,
+          "Top100UsedPct": 66.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Divine Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 10.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Hand of Protection": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 4.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Freedom": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 22.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 79.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [],
+      "CannedCaveats": [
+        "paladin_holy_shock_guid_split"
+      ]
+    },
+    "lurker": {
+      "Deviations": {
+        "HPS": {
+          "Value": 717,
+          "Top1": 2194.0,
+          "Top100Avg": 1381.0,
+          "Median": 1320.0,
+          "RatioToAvg": 0.52,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 33.6,
+          "Best": 7.5,
+          "Median": 28.1,
+          "Worst": 52.8,
+          "GapToWorst": -19.2,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 95.0,
+          "Top1": 98.1,
+          "Top100Avg": 90.8,
+          "Median": 92.5,
+          "GapToAvg": 4.2,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 5.3,
+          "Top1": 7.28,
+          "Top100Avg": 5.18,
+          "Median": 5.1,
+          "RatioToAvg": 1.02,
+          "Flag": "in_line",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 53.7,
+          "Top100Avg": 84.7,
+          "GapPoints": -31.0,
+          "Flag": "below_avg"
+        },
+        "Top1Concentration": {
+          "Value": 12.2,
+          "Top100Avg": 60.9,
+          "GapPoints": -48.7,
+          "Flag": "below_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 42.0,
+          "BenchmarkPct": 64.3,
+          "GapPoints": -22.3,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 56.4,
+          "BenchmarkPct": 14.8,
+          "GapPoints": 41.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 9.8,
+          "GapPoints": -9.8,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 5.9,
+          "GapPoints": -5.9,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 3.6,
+          "GapPoints": -3.6,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 33074,
+          "Name": "Holy Shock",
+          "CharacterPct": 1.6,
+          "BenchmarkPct": 0.6,
+          "GapPoints": 1.0,
+          "BenchmarkOnly": false
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 41.6
+      },
+      "SpellRanks": [
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 3.6,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 5.9,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 9.8,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840,
+              "ManaCostSource": "character",
+              "CharacterPct": 42.0,
+              "BenchmarkPct": 64.3,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.5,
+          "Top100UsedPct": 35.0,
+          "Top100SelfPct": 29.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Favor": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.9,
+          "Top100UsedPct": 77.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 25.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Hand of Protection": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Firewoody",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 2.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Blessing of Freedom": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 1.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.3,
+          "Top100UsedPct": 28.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 80.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Staubaoz",
+          "DeathTimestamp": 1688281,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 1691050,
+          "DeltaMs": 2769
+        }
+      ],
+      "CannedCaveats": []
+    },
+    "leotheras": {
+      "Deviations": {
+        "HPS": {
+          "Value": 834,
+          "Top1": 1804.0,
+          "Top100Avg": 1370.0,
+          "Median": 1348.0,
+          "RatioToAvg": 0.61,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 26.3,
+          "Best": 13.2,
+          "Median": 28.5,
+          "Worst": 47.4,
+          "GapToWorst": -21.1,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 90.4,
+          "Top1": 99.2,
+          "Top100Avg": 94.4,
+          "Median": 95.8,
+          "GapToAvg": -4.0,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 5.28,
+          "Top1": 7.18,
+          "Top100Avg": 5.07,
+          "Median": 5.01,
+          "RatioToAvg": 1.04,
+          "Flag": "in_line",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 38.5,
+          "Top100Avg": 59.9,
+          "GapPoints": -21.4,
+          "Flag": "below_avg"
+        },
+        "Top1Concentration": {
+          "Value": 9.4,
+          "Top100Avg": 20.9,
+          "GapPoints": -11.5,
+          "Flag": "below_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 75.0,
+          "BenchmarkPct": 71.1,
+          "GapPoints": 3.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 25.0,
+          "BenchmarkPct": 14.5,
+          "GapPoints": 10.5,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 6.5,
+          "GapPoints": -6.5,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 3.5,
+          "GapPoints": -3.5,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.8,
+          "GapPoints": -1.8,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 33074,
+          "Name": "Holy Shock",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.8,
+          "GapPoints": -0.8,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Lay on Hands",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.6,
+          "GapPoints": -0.6,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 10.5
+      },
+      "SpellRanks": [
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 1.8,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 3.5,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 6.5,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840,
+              "ManaCostSource": "character",
+              "CharacterPct": 75.0,
+              "BenchmarkPct": 71.1,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 49.0,
+          "Top100SelfPct": 9.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Favor": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.9,
+          "Top100UsedPct": 79.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Divine Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 43.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Hand of Protection": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 37.0,
+          "Top100SelfPct": 5.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Freedom": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.3,
+          "Top100UsedPct": 27.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 1.0,
+          "Top100UsedPct": 92.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Luffydonoo",
+          "DeathTimestamp": 2701098,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 2694267,
+          "DeltaMs": 6831
+        },
+        {
+          "DeathName": "Calamety",
+          "DeathTimestamp": 2704447,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 2694267,
+          "DeltaMs": 10180
+        },
+        {
+          "DeathName": "Porgrok",
+          "DeathTimestamp": 2757628,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 2694267,
+          "DeltaMs": 63361
+        },
+        {
+          "DeathName": "Luffydonoo",
+          "DeathTimestamp": 2803172,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 2694267,
+          "DeltaMs": 108905
+        },
+        {
+          "DeathName": "Calamety",
+          "DeathTimestamp": 2809607,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 2694267,
+          "DeltaMs": 115340
+        }
+      ],
+      "CannedCaveats": [
+        "paladin_holy_shock_guid_split"
+      ]
+    },
+    "karathress": {
+      "Deviations": {
+        "HPS": {
+          "Value": 709,
+          "Top1": 2100.0,
+          "Top100Avg": 1622.0,
+          "Median": 1596.0,
+          "RatioToAvg": 0.44,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 26.8,
+          "Best": 8.6,
+          "Median": 32.1,
+          "Worst": 59.4,
+          "GapToWorst": -32.6,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 94.3,
+          "Top1": 99.3,
+          "Top100Avg": 89.7,
+          "Median": 91.2,
+          "GapToAvg": 4.6,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 5.87,
+          "Top1": 7.52,
+          "Top100Avg": 4.71,
+          "Median": 4.73,
+          "RatioToAvg": 1.25,
+          "Flag": "above_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 66.5,
+          "Top100Avg": 92.5,
+          "GapPoints": -26.0,
+          "Flag": "below_avg"
+        },
+        "Top1Concentration": {
+          "Value": 42.9,
+          "Top100Avg": 70.0,
+          "GapPoints": -27.1,
+          "Flag": "below_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 41.2,
+          "BenchmarkPct": 77.0,
+          "GapPoints": -35.8,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 55.9,
+          "BenchmarkPct": 9.7,
+          "GapPoints": 46.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 7.4,
+          "GapPoints": -7.4,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 3.0,
+          "GapPoints": -3.0,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.2,
+          "GapPoints": -1.2,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 33074,
+          "Name": "Holy Shock",
+          "CharacterPct": 1.6,
+          "BenchmarkPct": 0.5,
+          "GapPoints": 1.1,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 1042,
+          "Name": "Holy Light",
+          "CharacterPct": 1.3,
+          "BenchmarkPct": 0.0,
+          "GapPoints": 1.3,
+          "BenchmarkOnly": false,
+          "CharacterOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 46.2
+      },
+      "SpellRanks": [
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 1042,
+              "ManaCost": 275,
+              "ManaCostSource": "character",
+              "CharacterPct": 1.3,
+              "BenchmarkPct": 0.0,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 1.2,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 3.0,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 7.4,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840,
+              "ManaCostSource": "character",
+              "CharacterPct": 41.2,
+              "BenchmarkPct": 77.0,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Vinnyvozz",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 28.0,
+          "Top100SelfPct": 14.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Favor": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.7,
+          "Top100UsedPct": 69.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Divine Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.3,
+          "Top100UsedPct": 32.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Thugalina",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 3.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Hand of Protection": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 2.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Freedom": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 9.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.6,
+          "Top100UsedPct": 58.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [],
+      "CannedCaveats": []
+    },
+    "morogrim": {
+      "Deviations": {
+        "HPS": {
+          "Value": 450,
+          "Top1": 1619.0,
+          "Top100Avg": 1226.0,
+          "Median": 1191.0,
+          "RatioToAvg": 0.37,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 39.8,
+          "Best": 16.1,
+          "Median": 36.9,
+          "Worst": 55.1,
+          "GapToWorst": -15.3,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 71.7,
+          "Top1": 99.5,
+          "Top100Avg": 95.4,
+          "Median": 96.6,
+          "GapToAvg": -23.7,
+          "Flag": "below_avg"
+        },
+        "HPM": {
+          "Value": 5.55,
+          "Top1": 7.72,
+          "Top100Avg": 4.86,
+          "Median": 4.69,
+          "RatioToAvg": 1.14,
+          "Flag": "above_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 85.9,
+          "Top100Avg": 86.4,
+          "GapPoints": -0.5,
+          "Flag": "in_line"
+        },
+        "Top1Concentration": {
+          "Value": 61.0,
+          "Top100Avg": 66.9,
+          "GapPoints": -5.9,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 23.3,
+          "BenchmarkPct": 62.2,
+          "GapPoints": -38.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 63.1,
+          "BenchmarkPct": 16.4,
+          "GapPoints": 46.7,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 8.5,
+          "GapPoints": -8.5,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 5.7,
+          "GapPoints": -5.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 3.4,
+          "GapPoints": -3.4,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Holy Shock",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.1,
+          "GapPoints": -1.1,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 27135,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.9,
+          "GapPoints": -0.9,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": null,
+          "Name": "Lay on Hands",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.7,
+          "GapPoints": -0.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 1042,
+          "Name": "Holy Light",
+          "CharacterPct": 13.5,
+          "BenchmarkPct": 0.6,
+          "GapPoints": 12.9,
+          "BenchmarkOnly": false
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 46.7
+      },
+      "SpellRanks": [
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 1042,
+              "ManaCost": 275,
+              "ManaCostSource": "character",
+              "CharacterPct": 13.5,
+              "BenchmarkPct": 0.6,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 3.4,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 5.7,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 8.5,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27135,
+              "ManaCost": 710.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.9,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840,
+              "ManaCostSource": "character",
+              "CharacterPct": 23.3,
+              "BenchmarkPct": 62.2,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 1.3,
+          "Top100UsedPct": 56.0,
+          "Top100SelfPct": 14.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Divine Favor": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 1.0,
+          "Top100UsedPct": 80.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Divine Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 44.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 4.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Hand of Protection": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Vinnyvozz",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 23.0,
+          "Top100SelfPct": 9.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Freedom": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 2.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 33.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 1.2,
+          "Top100UsedPct": 95.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [],
+      "CannedCaveats": [
+        "paladin_holy_shock_guid_split"
+      ]
+    },
+    "vashj": {
+      "Deviations": {
+        "HPS": {
+          "Value": 551,
+          "Top1": 1103.0,
+          "Top100Avg": 948.0,
+          "Median": 931.0,
+          "RatioToAvg": 0.58,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 25.4,
+          "Best": 10.2,
+          "Median": 22.0,
+          "Worst": 39.5,
+          "GapToWorst": -14.1,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 93.1,
+          "Top1": 99.7,
+          "Top100Avg": 95.3,
+          "Median": 95.8,
+          "GapToAvg": -2.2,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 6.4,
+          "Top1": 8.78,
+          "Top100Avg": 6.62,
+          "Median": 6.54,
+          "RatioToAvg": 0.97,
+          "Flag": "in_line",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 37.4,
+          "Top100Avg": 50.2,
+          "GapPoints": -12.8,
+          "Flag": "below_avg"
+        },
+        "Top1Concentration": {
+          "Value": 8.3,
+          "Top100Avg": 18.0,
+          "GapPoints": -9.7,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 71.9,
+          "BenchmarkPct": 54.1,
+          "GapPoints": 17.8,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 26.5,
+          "BenchmarkPct": 30.1,
+          "GapPoints": -3.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 5.2,
+          "GapPoints": -5.2,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 3.4,
+          "GapPoints": -3.4,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 3.0,
+          "GapPoints": -3.0,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 19943,
+          "Name": "Flash of Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.4,
+          "GapPoints": -1.4,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 33074,
+          "Name": "Holy Shock",
+          "CharacterPct": 0.7,
+          "BenchmarkPct": 0.9,
+          "GapPoints": -0.2,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 27135,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.7,
+          "GapPoints": -0.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 1042,
+          "Name": "Holy Light",
+          "CharacterPct": 0.9,
+          "BenchmarkPct": 0.0,
+          "GapPoints": 0.9,
+          "BenchmarkOnly": false,
+          "CharacterOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 17.8
+      },
+      "SpellRanks": [
+        {
+          "Name": "Flash of Light",
+          "Ranks": [
+            {
+              "Guid": 19943,
+              "ManaCost": 140.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 1.4,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27137,
+              "ManaCost": 180,
+              "ManaCostSource": "character",
+              "CharacterPct": 71.9,
+              "BenchmarkPct": 54.1,
+              "RankLabel": null
+            }
+          ]
+        },
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 1042,
+              "ManaCost": 275,
+              "ManaCostSource": "character",
+              "CharacterPct": 0.9,
+              "BenchmarkPct": 0.0,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 3.4,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 3.0,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 5.2,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27135,
+              "ManaCost": 710.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 0.7,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840,
+              "ManaCostSource": "character",
+              "CharacterPct": 26.5,
+              "BenchmarkPct": 30.1,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Sheriffgoose",
+          "Top100AvgCasts": 2.0,
+          "Top100UsedPct": 73.0,
+          "Top100SelfPct": 26.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Favor": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 2.2,
+          "Top100UsedPct": 86.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Divine Shield": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.6,
+          "Top100UsedPct": 58.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 3,
+          "SelfCount": 1,
+          "TargetLabel": "self, → Sheriffgoose, → Fuggler",
+          "Top100AvgCasts": 1.7,
+          "Top100UsedPct": 63.0,
+          "Top100SelfPct": 15.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Hand of Protection": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 5.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Freedom": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Luffydonoo",
+          "Top100AvgCasts": 0.6,
+          "Top100UsedPct": 35.0,
+          "Top100SelfPct": 12.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 1.1,
+          "Top100UsedPct": 41.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 3.2,
+          "Top100UsedPct": 100.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Calamety",
+          "DeathTimestamp": 5510613,
+          "NearestCooldown": "Cleanse",
+          "NearestCooldownTimestamp": 5514935,
+          "DeltaMs": 4322
+        },
+        {
+          "DeathName": "Calamety",
+          "DeathTimestamp": 5555737,
+          "NearestCooldown": "Cleanse",
+          "NearestCooldownTimestamp": 5518349,
+          "DeltaMs": 37388
+        },
+        {
+          "DeathName": "Captinhelp",
+          "DeathTimestamp": 5611321,
+          "NearestCooldown": "Cleanse",
+          "NearestCooldownTimestamp": 5518349,
+          "DeltaMs": 92972
+        },
+        {
+          "DeathName": "Enëlye",
+          "DeathTimestamp": 5613805,
+          "NearestCooldown": "Cleanse",
+          "NearestCooldownTimestamp": 5518349,
+          "DeltaMs": 95456
+        }
+      ],
+      "CannedCaveats": []
+    },
+    "alar": {
+      "Deviations": {
+        "HPS": {
+          "Value": 265,
+          "Top1": 1611.0,
+          "Top100Avg": 1015.0,
+          "Median": 972.0,
+          "RatioToAvg": 0.26,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 39.5,
+          "Best": 9.2,
+          "Median": 30.4,
+          "Worst": 53.8,
+          "GapToWorst": -14.3,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 65.2,
+          "Top1": 99.9,
+          "Top100Avg": 93.5,
+          "Median": 94.9,
+          "GapToAvg": -28.3,
+          "Flag": "below_avg"
+        },
+        "HPM": {
+          "Value": 5.4,
+          "Top1": 7.36,
+          "Top100Avg": 5.25,
+          "Median": 5.3,
+          "RatioToAvg": 1.03,
+          "Flag": "in_line",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 45.1,
+          "Top100Avg": 75.6,
+          "GapPoints": -30.5,
+          "Flag": "below_avg"
+        },
+        "Top1Concentration": {
+          "Value": 12.3,
+          "Top100Avg": 37.6,
+          "GapPoints": -25.3,
+          "Flag": "below_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 50.6,
+          "GapPoints": -50.6,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 92.1,
+          "BenchmarkPct": 24.8,
+          "GapPoints": 67.3,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 8.2,
+          "GapPoints": -8.2,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 7.0,
+          "GapPoints": -7.0,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 6.1,
+          "GapPoints": -6.1,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 33074,
+          "Name": "Holy Shock",
+          "CharacterPct": 4.1,
+          "BenchmarkPct": 1.5,
+          "GapPoints": 2.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 1042,
+          "Name": "Holy Light",
+          "CharacterPct": 3.7,
+          "BenchmarkPct": 0.0,
+          "GapPoints": 3.7,
+          "BenchmarkOnly": false,
+          "CharacterOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 67.3
+      },
+      "SpellRanks": [
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 1042,
+              "ManaCost": 275,
+              "ManaCostSource": "character",
+              "CharacterPct": 3.7,
+              "BenchmarkPct": 0.0,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 6.1,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 7.0,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 8.2,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 50.6,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 2,
+          "SelfCount": 0,
+          "TargetLabel": "→ Silkyrebel, → Leechers",
+          "Top100AvgCasts": 1.8,
+          "Top100UsedPct": 74.0,
+          "Top100SelfPct": 21.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Favor": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 1.3,
+          "Top100UsedPct": 86.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Divine Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 44.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Hand of Protection": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 5.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": true,
+          "DeviationDirection": "overcast"
+        },
+        "Blessing of Freedom": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 2.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 33.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 1.6,
+          "Top100UsedPct": 96.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Leechers",
+          "DeathTimestamp": 7368264,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 7320340,
+          "DeltaMs": 47924
+        }
+      ],
+      "CannedCaveats": []
+    },
+    "voidreaver": {
+      "Deviations": {
+        "HPS": {
+          "Value": 762,
+          "Top1": 2149.0,
+          "Top100Avg": 1780.0,
+          "Median": 1757.0,
+          "RatioToAvg": 0.43,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 41.9,
+          "Best": 10.3,
+          "Median": 21.2,
+          "Worst": 36.4,
+          "GapToWorst": 5.5,
+          "Flag": "exceeds_worst"
+        },
+        "ActiveTime": {
+          "Value": 96.2,
+          "Top1": 99.4,
+          "Top100Avg": 95.7,
+          "Median": 95.6,
+          "GapToAvg": 0.5,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 4.1,
+          "Top1": 7.97,
+          "Top100Avg": 5.47,
+          "Median": 5.44,
+          "RatioToAvg": 0.75,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 62.0,
+          "Top100Avg": 67.4,
+          "GapPoints": -5.4,
+          "Flag": "in_line"
+        },
+        "Top1Concentration": {
+          "Value": 19.2,
+          "Top100Avg": 26.3,
+          "GapPoints": -7.1,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 62.2,
+          "BenchmarkPct": 66.3,
+          "GapPoints": -4.1,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 37.8,
+          "BenchmarkPct": 10.2,
+          "GapPoints": 27.6,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 9.1,
+          "GapPoints": -9.1,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 6.2,
+          "GapPoints": -6.2,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 27135,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 4.7,
+          "GapPoints": -4.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.8,
+          "GapPoints": -1.8,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 33074,
+          "Name": "Holy Shock",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 0.6,
+          "GapPoints": -0.6,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 27.6
+      },
+      "SpellRanks": [
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 1.8,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 6.2,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 9.1,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27135,
+              "ManaCost": 710.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 4.7,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840,
+              "ManaCostSource": "character",
+              "CharacterPct": 62.2,
+              "BenchmarkPct": 66.3,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.7,
+          "Top100UsedPct": 43.0,
+          "Top100SelfPct": 7.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Favor": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.9,
+          "Top100UsedPct": 80.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Divine Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 12.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Hand of Protection": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.1,
+          "Top100UsedPct": 6.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Freedom": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 34.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 1.1,
+          "Top100UsedPct": 94.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [],
+      "CannedCaveats": [
+        "paladin_holy_shock_guid_split"
+      ]
+    },
+    "solarian": {
+      "Deviations": {
+        "HPS": {
+          "Value": 504,
+          "Top1": 2356.0,
+          "Top100Avg": 1557.0,
+          "Median": 1482.0,
+          "RatioToAvg": 0.32,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 37.2,
+          "Best": 9.1,
+          "Median": 33.0,
+          "Worst": 58.2,
+          "GapToWorst": -21.0,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 82.9,
+          "Top1": 99.0,
+          "Top100Avg": 92.0,
+          "Median": 92.1,
+          "GapToAvg": -9.1,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 6.23,
+          "Top1": 9.4,
+          "Top100Avg": 4.59,
+          "Median": 4.34,
+          "RatioToAvg": 1.36,
+          "Flag": "above_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 51.7,
+          "Top100Avg": 62.8,
+          "GapPoints": -11.1,
+          "Flag": "below_avg"
+        },
+        "Top1Concentration": {
+          "Value": 13.9,
+          "Top100Avg": 19.7,
+          "GapPoints": -5.8,
+          "Flag": "in_line"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 69.7,
+          "GapPoints": -69.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 100.0,
+          "BenchmarkPct": 10.0,
+          "GapPoints": 90.0,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 9.4,
+          "GapPoints": -9.4,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 5.3,
+          "GapPoints": -5.3,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 27135,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 2.6,
+          "GapPoints": -2.6,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 33074,
+          "Name": "Holy Shock",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.2,
+          "GapPoints": -1.2,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.1,
+          "GapPoints": -1.1,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 90.0
+      },
+      "SpellRanks": [
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 1.1,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 5.3,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 9.4,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27135,
+              "ManaCost": 710.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 2.6,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 69.7,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.6,
+          "Top100UsedPct": 40.0,
+          "Top100SelfPct": 3.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Favor": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.5,
+          "Top100UsedPct": 47.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Shield": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 4.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 1.0,
+          "Top100SelfPct": 0.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Hand of Protection": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Freedom": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 0.0,
+          "Top100SelfPct": null,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 4.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.4,
+          "Top100UsedPct": 40.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [],
+      "CannedCaveats": [
+        "paladin_holy_shock_guid_split"
+      ]
+    },
+    "kaelthas": {
+      "Deviations": {
+        "HPS": {
+          "Value": 405,
+          "Top1": 1084.0,
+          "Top100Avg": 845.0,
+          "Median": 830.0,
+          "RatioToAvg": 0.48,
+          "Flag": "below_avg"
+        },
+        "Overheal": {
+          "Value": 42.3,
+          "Best": 8.7,
+          "Median": 31.3,
+          "Worst": 47.4,
+          "GapToWorst": -5.1,
+          "Flag": "in_line"
+        },
+        "ActiveTime": {
+          "Value": 78.4,
+          "Top1": 99.2,
+          "Top100Avg": 83.5,
+          "Median": 84.6,
+          "GapToAvg": -5.1,
+          "Flag": "in_line"
+        },
+        "HPM": {
+          "Value": 4.72,
+          "Top1": 8.66,
+          "Top100Avg": 5.6,
+          "Median": 5.44,
+          "RatioToAvg": 0.84,
+          "Flag": "below_avg",
+          "Omit": false
+        },
+        "TargetCoverage": {
+          "Value": 48.8,
+          "Top100Avg": 62.8,
+          "GapPoints": -14.0,
+          "Flag": "below_avg"
+        },
+        "Top1Concentration": {
+          "Value": 11.6,
+          "Top100Avg": 25.4,
+          "GapPoints": -13.8,
+          "Flag": "below_avg"
+        }
+      },
+      "SpellGaps": [
+        {
+          "Guid": 27136,
+          "Name": "Holy Light",
+          "CharacterPct": 27.2,
+          "BenchmarkPct": 45.1,
+          "GapPoints": -17.9,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 27137,
+          "Name": "Flash of Light",
+          "CharacterPct": 71.8,
+          "BenchmarkPct": 35.7,
+          "GapPoints": 36.1,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 25292,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 7.4,
+          "GapPoints": -7.4,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10329,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 5.7,
+          "GapPoints": -5.7,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 10328,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.9,
+          "GapPoints": -1.9,
+          "BenchmarkOnly": true
+        },
+        {
+          "Guid": 33074,
+          "Name": "Holy Shock",
+          "CharacterPct": 0.9,
+          "BenchmarkPct": 1.7,
+          "GapPoints": -0.8,
+          "BenchmarkOnly": false
+        },
+        {
+          "Guid": 27135,
+          "Name": "Holy Light",
+          "CharacterPct": 0.0,
+          "BenchmarkPct": 1.2,
+          "GapPoints": -1.2,
+          "BenchmarkOnly": true
+        }
+      ],
+      "TopSpellGap": {
+        "Guid": 27137,
+        "Name": "Flash of Light",
+        "GapPoints": 36.1
+      },
+      "SpellRanks": [
+        {
+          "Name": "Holy Light",
+          "Ranks": [
+            {
+              "Guid": 10328,
+              "ManaCost": 465.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 1.9,
+              "RankLabel": null
+            },
+            {
+              "Guid": 10329,
+              "ManaCost": 580.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 5.7,
+              "RankLabel": null
+            },
+            {
+              "Guid": 25292,
+              "ManaCost": 660.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 7.4,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27135,
+              "ManaCost": 710.0,
+              "ManaCostSource": "benchmark",
+              "CharacterPct": 0.0,
+              "BenchmarkPct": 1.2,
+              "RankLabel": null
+            },
+            {
+              "Guid": 27136,
+              "ManaCost": 840,
+              "ManaCostSource": "character",
+              "CharacterPct": 27.2,
+              "BenchmarkPct": 45.1,
+              "RankLabel": null
+            }
+          ]
+        }
+      ],
+      "Cooldowns": {
+        "Holy Shock": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Firewoody",
+          "Top100AvgCasts": 3.7,
+          "Top100UsedPct": 81.0,
+          "Top100SelfPct": 13.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Divine Favor": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 2.0,
+          "Top100UsedPct": 83.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": true,
+          "DeviationDirection": "undercast"
+        },
+        "Divine Shield": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 0.8,
+          "Top100UsedPct": 76.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Cleanse": {
+          "Count": 1,
+          "SelfCount": 0,
+          "TargetLabel": "→ Vajony",
+          "Top100AvgCasts": 0.5,
+          "Top100UsedPct": 32.0,
+          "Top100SelfPct": 2.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Hand of Protection": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.2,
+          "Top100UsedPct": 18.0,
+          "Top100SelfPct": 5.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Blessing of Freedom": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.0,
+          "Top100UsedPct": 3.0,
+          "Top100SelfPct": 33.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Dark Rune": {
+          "Count": 0,
+          "SelfCount": 0,
+          "TargetLabel": "—",
+          "Top100AvgCasts": 0.9,
+          "Top100UsedPct": 38.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        },
+        "Mana Potion": {
+          "Count": 1,
+          "SelfCount": 1,
+          "TargetLabel": "self",
+          "Top100AvgCasts": 3.0,
+          "Top100UsedPct": 100.0,
+          "Top100SelfPct": 100.0,
+          "Deviates": false,
+          "DeviationDirection": null
+        }
+      },
+      "TranquilityInclude": null,
+      "RebirthCandidates": null,
+      "SelfDeaths": [],
+      "DeathsNearestCooldown": [
+        {
+          "DeathName": "Firewoody",
+          "DeathTimestamp": 10670885,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 79873
+        },
+        {
+          "DeathName": "Cheesypoo",
+          "DeathTimestamp": 10681799,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 68959
+        },
+        {
+          "DeathName": "Luffydonoo",
+          "DeathTimestamp": 10681802,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 68956
+        },
+        {
+          "DeathName": "Calamety",
+          "DeathTimestamp": 10689097,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 61661
+        },
+        {
+          "DeathName": "Thugalina",
+          "DeathTimestamp": 10693235,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 57523
+        },
+        {
+          "DeathName": "Dormammoo",
+          "DeathTimestamp": 10696081,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 54677
+        },
+        {
+          "DeathName": "Lasmur",
+          "DeathTimestamp": 10696782,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 53976
+        },
+        {
+          "DeathName": "Hezrun",
+          "DeathTimestamp": 10701087,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 49671
+        },
+        {
+          "DeathName": "Leechers",
+          "DeathTimestamp": 10702493,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 48265
+        },
+        {
+          "DeathName": "Vajony",
+          "DeathTimestamp": 10705594,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 45164
+        },
+        {
+          "DeathName": "Staubaoz",
+          "DeathTimestamp": 10707213,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 43545
+        },
+        {
+          "DeathName": "Quruella",
+          "DeathTimestamp": 10710917,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 39841
+        },
+        {
+          "DeathName": "Megatauro",
+          "DeathTimestamp": 10713784,
+          "NearestCooldown": "Holy Shock",
+          "NearestCooldownTimestamp": 10750758,
+          "DeltaMs": 36974
+        },
+        {
+          "DeathName": "Enëlye",
+          "DeathTimestamp": 10763068,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 10770881,
+          "DeltaMs": 7813
+        },
+        {
+          "DeathName": "Enëlye",
+          "DeathTimestamp": 10776602,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 10770881,
+          "DeltaMs": 5721
+        },
+        {
+          "DeathName": "Firewoody",
+          "DeathTimestamp": 10780235,
+          "NearestCooldown": "Mana Potion",
+          "NearestCooldownTimestamp": 10770881,
+          "DeltaMs": 9354
+        }
+      ],
+      "CannedCaveats": []
+    }
+  },
+  "RaidWideRollups": {
+    "DeathCountByBoss": [
+      {
+        "Slug": "kaelthas",
+        "DeathCount": 16,
+        "Rank": 1
+      },
+      {
+        "Slug": "leotheras",
+        "DeathCount": 5,
+        "Rank": 2
+      },
+      {
+        "Slug": "vashj",
+        "DeathCount": 4,
+        "Rank": 3
+      },
+      {
+        "Slug": "alar",
+        "DeathCount": 1,
+        "Rank": 4
+      },
+      {
+        "Slug": "hydross",
+        "DeathCount": 1,
+        "Rank": 5
+      },
+      {
+        "Slug": "lurker",
+        "DeathCount": 1,
+        "Rank": 6
+      },
+      {
+        "Slug": "karathress",
+        "DeathCount": 0,
+        "Rank": 7
+      },
+      {
+        "Slug": "morogrim",
+        "DeathCount": 0,
+        "Rank": 8
+      },
+      {
+        "Slug": "solarian",
+        "DeathCount": 0,
+        "Rank": 9
+      },
+      {
+        "Slug": "voidreaver",
+        "DeathCount": 0,
+        "Rank": 10
+      }
+    ],
+    "OverhealExceedsWorstBosses": [
+      "voidreaver"
+    ],
+    "CooldownDeviations": {
+      "Divine Favor": {
+        "UndercastBosses": [
+          "hydross",
+          "leotheras",
+          "karathress",
+          "morogrim",
+          "vashj",
+          "alar",
+          "voidreaver",
+          "kaelthas"
+        ],
+        "OvercastBosses": []
+      },
+      "Mana Potion": {
+        "UndercastBosses": [
+          "hydross",
+          "morogrim",
+          "alar"
+        ],
+        "OvercastBosses": []
+      },
+      "Hand of Protection": {
+        "UndercastBosses": [],
+        "OvercastBosses": [
+          "lurker",
+          "alar"
+        ]
+      },
+      "Cleanse": {
+        "UndercastBosses": [],
+        "OvercastBosses": [
+          "karathress"
+        ]
+      },
+      "Holy Shock": {
+        "UndercastBosses": [
+          "morogrim"
+        ],
+        "OvercastBosses": []
+      }
+    },
+    "SelfDeathBosses": [],
+    "LowestPercentileBosses": [
+      {
+        "Slug": "alar",
+        "Percentile": 8
+      },
+      {
+        "Slug": "morogrim",
+        "Percentile": 16
+      },
+      {
+        "Slug": "hydross",
+        "Percentile": 20
+      }
+    ]
+  },
+  "GearAnalysis": {
+    "MissingEnchantFlags": [],
+    "DifferingSlotsAnnotated": [
+      {
+        "SlotIndex": 13,
+        "SlotName": "Trinket2",
+        "LikelyBenign": true,
+        "Reason": "single/minority-kill variant"
+      },
+      {
+        "SlotIndex": 15,
+        "SlotName": "MainHand",
+        "LikelyBenign": true,
+        "Reason": "single/minority-kill variant"
+      },
+      {
+        "SlotIndex": 16,
+        "SlotName": "OffHand",
+        "LikelyBenign": true,
+        "Reason": "single/minority-kill variant"
+      },
+      {
+        "SlotIndex": 17,
+        "SlotName": "Ranged",
+        "LikelyBenign": true,
+        "Reason": "single/minority-kill variant"
+      }
+    ],
+    "EnchantableSlotCount": 9,
+    "EnchantedSlotCount": 9,
+    "ConsumableSetup": {
+      "TotalBosses": 10,
+      "CompleteCount": 10,
+      "UnknownCount": 0,
+      "IncompleteBosses": []
+    }
+  }
+}
