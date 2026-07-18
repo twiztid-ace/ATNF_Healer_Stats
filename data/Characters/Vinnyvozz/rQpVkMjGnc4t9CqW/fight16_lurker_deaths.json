@@ -1,0 +1,161 @@
+{
+  "entries": [
+    {
+      "name": "Staubaoz",
+      "id": 28,
+      "guid": 46584684,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 1688281,
+      "fight": 16,
+      "damage": {
+        "total": 12728,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 6122,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8813,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37363,
+            "name": "Whirl",
+            "total": 3415,
+            "type": 1,
+            "icon": "trade_engineering.jpg"
+          },
+          {
+            "guid": 37284,
+            "name": "Scalding Water",
+            "total": 500,
+            "type": 4,
+            "icon": "spell_fire_masterofelements.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Lurker Below",
+            "total": 12228,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 500,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 908,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34865,
+            "name": "Circle of Healing",
+            "total": 908,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37363,
+            "name": "Whirl",
+            "total": 908,
+            "type": 1,
+            "icon": "trade_engineering.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Skeetpriest",
+            "total": 908,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 2872,
+      "overkill": 1241,
+      "events": [
+        {
+          "timestamp": 1688249,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 16,
+          "hitType": 1,
+          "amount": 7572,
+          "mitigated": 4372,
+          "unmitigatedAmount": 13185,
+          "overkill": 1241,
+          "isAoE": false
+        },
+        {
+          "timestamp": 1686699,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirl",
+            "guid": 37363,
+            "type": 1,
+            "abilityIcon": "trade_engineering.jpg"
+          },
+          "fight": 16,
+          "hitType": 1,
+          "amount": 3415,
+          "mitigated": 1750,
+          "unmitigatedAmount": 5165,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1685377,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scalding Water",
+            "guid": 37284,
+            "type": 4,
+            "abilityIcon": "spell_fire_masterofelements.jpg"
+          },
+          "fight": 16,
+          "hitType": 1,
+          "amount": 500,
+          "unmitigatedAmount": 500,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

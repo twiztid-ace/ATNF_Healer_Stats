@@ -1,0 +1,2088 @@
+{
+  "entries": [
+    {
+      "name": "Firewoody",
+      "id": 10,
+      "guid": 50208368,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 10670885,
+      "fight": 80,
+      "damage": {
+        "total": 7232,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 486,
+        "abilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 7232,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 7232,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 218,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 218,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 218,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Silkyrebel",
+            "total": 218,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 3637,
+      "overkill": 348,
+      "events": [
+        {
+          "timestamp": 10670859,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 1643,
+          "unmitigatedAmount": 1991,
+          "overkill": 348,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10670858,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 1863,
+          "unmitigatedAmount": 1863,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10667222,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 16,
+          "amount": 1459,
+          "mitigated": 486,
+          "unmitigatedAmount": 1945,
+          "resisted": 486,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Beam",
+        "guid": 35873,
+        "type": 64,
+        "abilityIcon": "spell_nature_chainlightning.jpg"
+      }
+    },
+    {
+      "name": "Cheesypoo",
+      "id": 8,
+      "guid": 43082553,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 10681799,
+      "fight": 80,
+      "damage": {
+        "total": 15950,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1575,
+        "abilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 13661,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 2289,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 15950,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5045,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25420,
+            "name": "Lesser Healing Wave",
+            "total": 2549,
+            "type": 8,
+            "icon": "spell_nature_healingwavelesser.jpg"
+          },
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 4254,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 791,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Fuggler",
+            "total": 2549,
+            "type": "Shaman"
+          },
+          {
+            "name": "Cheesypoo",
+            "total": 2496,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 16935,
+      "overkill": 462,
+      "events": [
+        {
+          "timestamp": 10681769,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 1559,
+          "unmitigatedAmount": 2021,
+          "overkill": 462,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10681768,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 16,
+          "amount": 1542,
+          "mitigated": 513,
+          "unmitigatedAmount": 2055,
+          "resisted": 514,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10681768,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 1910,
+          "unmitigatedAmount": 1910,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Beam",
+        "guid": 35873,
+        "type": 64,
+        "abilityIcon": "spell_nature_chainlightning.jpg"
+      }
+    },
+    {
+      "name": "Luffydonoo",
+      "id": 16,
+      "guid": 49772732,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 10681802,
+      "fight": 80,
+      "damage": {
+        "total": 20339,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 485,
+        "abilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 17429,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 35859,
+            "name": "Nether Vapor",
+            "total": 2221,
+            "type": 32,
+            "icon": "spell_shadow_gathershadows.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 689,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 18118,
+            "type": "Boss"
+          },
+          {
+            "name": "Nether Vapor",
+            "total": 2221,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7063,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27137,
+            "name": "Flash of Light",
+            "total": 2942,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1767,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1600,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 564,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 27163,
+            "name": "Judgement of Light",
+            "total": 190,
+            "type": 2,
+            "icon": "spell_holy_healingaura.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 3724,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 35859,
+            "name": "Nether Vapor",
+            "total": 2221,
+            "type": 32,
+            "icon": "spell_shadow_gathershadows.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 689,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Vinnyvozz",
+            "total": 3367,
+            "type": "Druid"
+          },
+          {
+            "name": "Crowns",
+            "total": 2942,
+            "type": "Paladin"
+          },
+          {
+            "name": "Luffydonoo",
+            "total": 754,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 26801,
+      "overkill": 1484,
+      "events": [
+        {
+          "timestamp": 10681769,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 792,
+          "unmitigatedAmount": 2069,
+          "overkill": 1484,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10681768,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 2036,
+          "unmitigatedAmount": 1851,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10681768,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 2351,
+          "unmitigatedAmount": 2137,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Beam",
+        "guid": 35873,
+        "type": 64,
+        "abilityIcon": "spell_nature_chainlightning.jpg"
+      }
+    },
+    {
+      "name": "Calamety",
+      "id": 20,
+      "guid": 47361729,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 10689097,
+      "fight": 80,
+      "damage": {
+        "total": 4019,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 4019,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 4019,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 13,
+      "overkill": 799,
+      "events": [
+        {
+          "timestamp": 10689078,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 1182,
+          "unmitigatedAmount": 1981,
+          "overkill": 799,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10689065,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 2038,
+          "unmitigatedAmount": 2038,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Beam",
+        "guid": 35873,
+        "type": 64,
+        "abilityIcon": "spell_nature_chainlightning.jpg"
+      }
+    },
+    {
+      "name": "Thugalina",
+      "id": 30,
+      "guid": 61688130,
+      "type": "Paladin",
+      "icon": "Paladin-Justicar",
+      "timestamp": 10693235,
+      "fight": 80,
+      "damage": {
+        "total": 5096,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 9499,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5096,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 5096,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 339,
+      "events": [
+        {
+          "timestamp": 10693204,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 30,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 4757,
+          "mitigated": 9499,
+          "unmitigatedAmount": 14595,
+          "overkill": 339,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Dormammoo",
+      "id": 11,
+      "guid": 46201240,
+      "type": "Druid",
+      "icon": "Druid-Balance",
+      "timestamp": 10696081,
+      "fight": 80,
+      "damage": {
+        "total": 15833,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 12228,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12912,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 2026,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 895,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 14938,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 895,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 943,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34865,
+            "name": "Circle of Healing",
+            "total": 943,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 895,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 48,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Skeetpriest",
+            "total": 943,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 10661,
+      "overkill": 3220,
+      "events": [
+        {
+          "timestamp": 10696071,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 3575,
+          "mitigated": 6435,
+          "unmitigatedAmount": 13230,
+          "overkill": 3220,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10694056,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 6117,
+          "mitigated": 5793,
+          "unmitigatedAmount": 11910,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10685966,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 895,
+          "unmitigatedAmount": 895,
+          "overkill": 0,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Lasmur",
+      "id": 24,
+      "guid": 54919417,
+      "type": "Priest",
+      "icon": "Priest-Holy",
+      "timestamp": 10696782,
+      "fight": 80,
+      "damage": {
+        "total": 11801,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1959,
+        "abilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 11801,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 11801,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1054,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 1054,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 1054,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Silkyrebel",
+            "total": 1054,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 14561,
+      "overkill": 1406,
+      "events": [
+        {
+          "timestamp": 10681783,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 517,
+          "unmitigatedAmount": 1923,
+          "overkill": 1406,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10681768,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 16,
+          "amount": 944,
+          "mitigated": 943,
+          "unmitigatedAmount": 1887,
+          "resisted": 944,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10681768,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 1861,
+          "unmitigatedAmount": 1861,
+          "isAoE": false
+        }
+      ]
+    },
+    {
+      "name": "Hezrun",
+      "id": 19,
+      "guid": 48301431,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 10701087,
+      "fight": 80,
+      "damage": {
+        "total": 25962,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 12152,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 16118,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 9844,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 25962,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 10548,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 3492,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 28495,
+            "name": "Healing Potion",
+            "total": 2186,
+            "type": 1,
+            "icon": "inv_potion_131.jpg"
+          },
+          {
+            "guid": 34865,
+            "name": "Circle of Healing",
+            "total": 955,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 944,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 9791,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 757,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Hezrun",
+            "total": 6101,
+            "type": "Warrior"
+          },
+          {
+            "name": "Fuggler",
+            "total": 3492,
+            "type": "Shaman"
+          },
+          {
+            "name": "Skeetpriest",
+            "total": 955,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 12015,
+      "overkill": 3620,
+      "events": [
+        {
+          "timestamp": 10701079,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 5259,
+          "mitigated": 6222,
+          "unmitigatedAmount": 15101,
+          "overkill": 3620,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10697744,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 7239,
+          "mitigated": 5074,
+          "unmitigatedAmount": 12313,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10689078,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 2049,
+          "unmitigatedAmount": 1863,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Leechers",
+      "id": 12,
+      "guid": 47025047,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 10702493,
+      "fight": 80,
+      "damage": {
+        "total": 10911,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1787,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10911,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 10911,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2679,
+      "events": [
+        {
+          "timestamp": 10702468,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 8232,
+          "mitigated": 1787,
+          "unmitigatedAmount": 12698,
+          "overkill": 2679,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Vajony",
+      "id": 15,
+      "guid": 54624241,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 10705594,
+      "fight": 80,
+      "damage": {
+        "total": 16643,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 10084,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8574,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 5099,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 35859,
+            "name": "Nether Vapor",
+            "total": 1370,
+            "type": 32,
+            "icon": "spell_shadow_gathershadows.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 822,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 477,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 14150,
+            "type": "Boss"
+          },
+          {
+            "name": "Nether Vapor",
+            "total": 1370,
+            "type": "NPC"
+          },
+          {
+            "name": "Vajony",
+            "total": 822,
+            "type": "Paladin"
+          },
+          {
+            "name": "Environment",
+            "total": 301,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5669,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 27136,
+            "name": "Holy Light",
+            "total": 2298,
+            "type": 2,
+            "icon": "spell_holy_holybolt.jpg"
+          },
+          {
+            "guid": 27163,
+            "name": "Judgement of Light",
+            "total": 570,
+            "type": 2,
+            "icon": "spell_holy_healingaura.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 305,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 3808,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 35859,
+            "name": "Nether Vapor",
+            "total": 1370,
+            "type": 32,
+            "icon": "spell_shadow_gathershadows.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 301,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 190,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Vajony",
+            "total": 5669,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 23962,
+      "overkill": 2345,
+      "events": [
+        {
+          "timestamp": 10705567,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 6229,
+          "mitigated": 7185,
+          "unmitigatedAmount": 15759,
+          "overkill": 2345,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10703360,
+          "type": "damage",
+          "sourceID": 15,
+          "sourceIsFriendly": true,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 212,
+          "unmitigatedAmount": 212,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10700119,
+          "type": "damage",
+          "sourceID": 15,
+          "sourceIsFriendly": true,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 97,
+          "unmitigatedAmount": 97,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Staubaoz",
+      "id": 28,
+      "guid": 46584684,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 10707213,
+      "fight": 80,
+      "damage": {
+        "total": 14934,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 87,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 14934,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 14934,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 7718,
+      "events": [
+        {
+          "timestamp": 10707191,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 15,
+          "amount": 7216,
+          "mitigated": 87,
+          "unmitigatedAmount": 15021,
+          "overkill": 7718,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Quruella",
+      "id": 64,
+      "guid": 45972734,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 10710917,
+      "fight": 80,
+      "damage": {
+        "total": 10328,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 10327,
+        "abilities": [
+          {
+            "guid": 36805,
+            "name": "Fireball",
+            "total": 10328,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 10328,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1484,
+      "events": [
+        {
+          "timestamp": 10710883,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 64,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 36805,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 8844,
+          "mitigated": 10327,
+          "unmitigatedAmount": 20655,
+          "overkill": 1484,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Fireball",
+        "guid": 36805,
+        "type": 4,
+        "abilityIcon": "spell_fire_flamebolt.jpg"
+      }
+    },
+    {
+      "name": "Megatauro",
+      "id": 17,
+      "guid": 47805513,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 10713784,
+      "fight": 80,
+      "damage": {
+        "total": 11586,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2947,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 11586,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 11586,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 192,
+      "events": [
+        {
+          "timestamp": 10713746,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 15,
+          "amount": 11394,
+          "mitigated": 2947,
+          "unmitigatedAmount": 14533,
+          "overkill": 192,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Enëlye",
+      "id": 29,
+      "guid": 55168935,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 10763068,
+      "fight": 80,
+      "damage": {
+        "total": 2769,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1277,
+        "abilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 1395,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 873,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          },
+          {
+            "guid": 35859,
+            "name": "Nether Vapor",
+            "total": 501,
+            "type": 32,
+            "icon": "spell_shadow_gathershadows.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 2268,
+            "type": "Boss"
+          },
+          {
+            "name": "Nether Vapor",
+            "total": 501,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 524,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 524,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 349,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          },
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 175,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Vinnyvozz",
+            "total": 524,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 1669,
+      "overkill": 164,
+      "events": [
+        {
+          "timestamp": 10763044,
+          "type": "damage",
+          "sourceID": 408,
+          "sourceInstance": 8,
+          "sourceIsFriendly": false,
+          "targetID": 29,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Vapor",
+            "guid": 35859,
+            "type": 32,
+            "abilityIcon": "spell_shadow_gathershadows.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 337,
+          "mitigated": 501,
+          "unmitigatedAmount": 1002,
+          "overkill": 164,
+          "isAoE": true
+        },
+        {
+          "timestamp": 10762311,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 29,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shock Barrier",
+            "guid": 36822,
+            "type": 1,
+            "abilityIcon": "spell_nature_lightningshield.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 87,
+          "mitigated": 31,
+          "unmitigatedAmount": 118,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10761968,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 29,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 16,
+          "amount": 1395,
+          "mitigated": 464,
+          "unmitigatedAmount": 1859,
+          "resisted": 465,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Vapor",
+        "guid": 35859,
+        "type": 32,
+        "abilityIcon": "spell_shadow_gathershadows.jpg"
+      }
+    },
+    {
+      "name": "Enëlye",
+      "id": 29,
+      "guid": 55168935,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 10776602,
+      "fight": 80,
+      "damage": {
+        "total": 6561,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 243,
+        "abilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 5794,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 767,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 6561,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3770,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 2525,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 982,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 263,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 1859,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 251,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Skeetpriest",
+            "total": 2525,
+            "type": "Priest"
+          },
+          {
+            "name": "Lasmur",
+            "total": 982,
+            "type": "Priest"
+          },
+          {
+            "name": "Vinnyvozz",
+            "total": 263,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 3652,
+      "overkill": 228,
+      "events": [
+        {
+          "timestamp": 10776574,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 29,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 1815,
+          "unmitigatedAmount": 2043,
+          "overkill": 228,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10776573,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 29,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 1892,
+          "unmitigatedAmount": 1892,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10776559,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 29,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shock Barrier",
+            "guid": 36822,
+            "type": 1,
+            "abilityIcon": "spell_nature_lightningshield.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 516,
+          "mitigated": 163,
+          "unmitigatedAmount": 679,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Beam",
+        "guid": 35873,
+        "type": 64,
+        "abilityIcon": "spell_nature_chainlightning.jpg"
+      }
+    },
+    {
+      "name": "Firewoody",
+      "id": 10,
+      "guid": 50208368,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 10780235,
+      "fight": 80,
+      "damage": {
+        "total": 7894,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 124,
+        "abilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 6027,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 1053,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 814,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 7080,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 814,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 12864,
+      "overkill": 141,
+      "events": [
+        {
+          "timestamp": 10780210,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 2000,
+          "unmitigatedAmount": 2141,
+          "overkill": 141,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10779774,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shock Barrier",
+            "guid": 36822,
+            "type": 1,
+            "abilityIcon": "spell_nature_lightningshield.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 193,
+          "mitigated": 23,
+          "unmitigatedAmount": 216,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10777300,
+          "type": "damage",
+          "sourceID": 394,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shock Barrier",
+            "guid": 36822,
+            "type": 1,
+            "abilityIcon": "spell_nature_lightningshield.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 62,
+          "mitigated": 7,
+          "unmitigatedAmount": 69,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Beam",
+        "guid": 35873,
+        "type": 64,
+        "abilityIcon": "spell_nature_chainlightning.jpg"
+      }
+    }
+  ]
+}
