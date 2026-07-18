@@ -40,7 +40,6 @@
     overflow: hidden;
   }
 
-  /* ===== Header ===== */
   .header{
     padding: 40px 48px 32px;
     border-bottom: 1px solid var(--line);
@@ -70,12 +69,6 @@
   }
   .subline span{ font-family:'IBM Plex Mono', monospace; }
 
-  /* ===== Seal ===== */
-  /* Fixed width (matching .seal's own 108px) so a longer caption - the
-     iLvl/Raw Healing Rank seals need more words than the original "WCL rank,
-     all parses" - wraps neatly within the same column instead of expanding
-     the box past the circle above it, which is what was throwing off the
-     spacing between badges when more than one seal-wrap sits in a row. */
   .seal-wrap{ flex-shrink:0; width: 108px; text-align:center; }
   .seal{ width: 108px; height: 108px; }
   .seal-label{
@@ -87,7 +80,6 @@
     color: rgba(19,42,44,0.55);
   }
 
-  /* ===== Section shell ===== */
   .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
   .section:last-child{ border-bottom: none; }
   .section-head{
@@ -110,7 +102,6 @@
     margin: -12px 0 20px;
   }
 
-  /* ===== Stat row ===== */
   .stat-grid{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -141,7 +132,6 @@
   .stat-value.warn{ color: var(--rust); }
   .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
 
-  /* ===== Percentile bar ===== */
   .pctl-track{
     position: relative;
     height: 10px;
@@ -174,7 +164,6 @@
     color: rgba(19,42,44,0.45);
   }
 
-  /* ===== Spell composition bars ===== */
   .spell-row{
     display:grid;
     grid-template-columns: 140px 1fr 60px;
@@ -200,7 +189,6 @@
   }
   .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
 
-  /* ===== Checklist ===== */
   .check-list{ display:flex; flex-direction:column; }
   .check-item{
     display:grid;
@@ -228,11 +216,6 @@
     text-align:right;
   }
 
-  /* ===== Cooldown / consumable table (Paladin-specific) =====
-       Deliberately NOT the ok/bad check-list pattern - cooldown counts and consumable
-       uptime are informational stats, not pass/fail checks, and design_tokens.md is
-       explicit that the numbers should carry the finding rather than the container
-       editorializing with color. Plain table + a coverage-note for the actual read. */
   .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
   .cd-table th{
     text-align:left;
@@ -253,7 +236,6 @@
   .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
   .cd-table .ability-name{ font-weight: 500; }
 
-  /* ===== Target distribution ===== */
   .target-list{ display:flex; flex-direction:column; gap:8px; }
   .target-row{
     display:grid;
@@ -266,7 +248,6 @@
   .target-bar-fill{ height:100%; background: var(--ink-2); }
   .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
 
-  /* ===== Healer ranking ===== */
   .healer-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; min-width:80px; }
   .healer-bar-fill{ height:100%; background: var(--ink-2); }
   .healer-bar-fill.is-character{ background: var(--copper); }
@@ -280,7 +261,6 @@
     padding-left: 12px;
   }
 
-  /* ===== Footer ===== */
   .footer{
     padding: 24px 48px 32px;
     font-family:'IBM Plex Mono', monospace;
@@ -307,7 +287,6 @@
 
 <div class="page">
 
-  
   <div class="header">
     <div>
       <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — July 7, 2026 · High Astromancer Solarian</p>
@@ -315,7 +294,6 @@
       <p class="subline">Holy Paladin &nbsp;·&nbsp; ilvl 126 &nbsp;·&nbsp; report <span>XJp8vAxzM4KtHYyb</span> &nbsp;·&nbsp; fight <span>73</span> &nbsp;·&nbsp; kill, 143s</p>
     </div>
     <div style="display:flex; flex-wrap:wrap; justify-content:flex-start; gap:12px 16px; align-items:flex-start;">
-      
       <div class="seal-wrap">
         <svg class="seal" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="56" fill="none" stroke="#778554" stroke-width="2"/>
@@ -325,8 +303,7 @@
         </svg>
         <div class="seal-label">WCL rank, all parses</div>
       </div>
-      
-      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL&#39;s own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
         <svg class="seal" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="56" fill="none" stroke="#5F7A52" stroke-width="2"/>
           <circle cx="60" cy="60" r="48" fill="none" stroke="#5F7A52" stroke-width="1" stroke-dasharray="2 4"/>
@@ -335,7 +312,6 @@
         </svg>
         <div class="seal-label">92% by ilvl 127</div>
       </div>
-      
       <div class="seal-wrap" style="cursor:help;" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">
         <svg class="seal" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="56" fill="none" stroke="#5F7A52" stroke-width="2"/>
@@ -348,7 +324,6 @@
     </div>
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">01</span>
@@ -388,10 +363,9 @@
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
     <div class="stat-sub" style="margin-top:6px;">WCL rank ~1768 of 22109 Holy Paladin parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
 
-    <div class="coverage-note">92nd percentile, the best kill of the raid. HPM (7.4) is nearly double the Top 100 average (4.53) — the most mana-efficient kill of the raid — even though raw HPS (786) still trails the median (1482). Spell mix here is the most extreme expression of this raid's Flash-of-Light lean: 98.2% of output, against the Top 100 average's Holy-Light-dominant mix.</div>
+    <div class="coverage-note">92nd percentile, the best kill of the raid. HPM (7.4) is nearly double the Top 100 average (4.53) — the most mana-efficient kill of the raid — even though raw HPS (786) still trails the median (1482). Spell mix here is the most extreme expression of this raid&#39;s Flash-of-Light lean: 98.2% of output, against the Top 100 average&#39;s Holy-Light-dominant mix.</div>
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">02</span>
@@ -404,8 +378,6 @@
       <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
     </div>
 
-    
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Flash of Light</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:98.2%"></div></div>
@@ -416,7 +388,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:9.4%"></div></div>
       <div class="spell-pct">9.4%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Holy Shock</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:1.8%"></div></div>
@@ -427,7 +398,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.2%"></div></div>
       <div class="spell-pct">1.2%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Holy Light (guid 27136)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -438,7 +408,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:71.1%"></div></div>
       <div class="spell-pct">71.1%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Holy Light (guid 25292)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -449,7 +418,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:8.8%"></div></div>
       <div class="spell-pct">8.8%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Holy Light (guid 10329)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -460,7 +428,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:6%"></div></div>
       <div class="spell-pct">6%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Holy Light (guid 27135)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -471,7 +438,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.8%"></div></div>
       <div class="spell-pct">1.8%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Holy Light (guid 10328)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -482,12 +448,9 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.9%"></div></div>
       <div class="spell-pct">0.9%</div>
     </div>
-    
 
-    <div class="coverage-note">The most extreme expression of this raid's Flash-of-Light lean: 98.2% of Crowns's output this kill, against a Top 100 average that's still Holy-Light-dominant (71.1%) — Crowns casts almost no Holy Light at all on this particular boss.</div>
+    <div class="coverage-note">The most extreme expression of this raid&#39;s Flash-of-Light lean: 98.2% of Crowns&#39;s output this kill, against a Top 100 average that&#39;s still Holy-Light-dominant (71.1%) — Crowns casts almost no Holy Light at all on this particular boss.</div>
 
-    
-    
     <div style="margin-top:20px;">
       <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data where available; <span style="font-family:'IBM Plex Mono', monospace;">&#8224;</span> marks a rank the character didn't cast this kill, backfilled with a real cost observed elsewhere in the Top 100 sample; "?" only when neither source has it.</p>
       <table class="cd-table">
@@ -500,55 +463,47 @@
           </tr>
         </thead>
         <tbody>
-          
           <tr>
             <td class="ability-name">Holy Light</td>
             <td class="num-cell">465 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">0.9%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">580 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">6%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">660 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">8.8%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">710 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">1.8%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">840 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">71.1%</td>
           </tr>
-          
         </tbody>
       </table>
     </div>
-    
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">03</span>
       <h2 class="section-title">Cooldowns &amp; consumables</h2>
     </div>
-    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on High Astromancer Solarian. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> (see WORKFLOW.md) - match abilities by guid, not localized name (gotcha #2).</p>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on High Astromancer Solarian. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> - match abilities by guid, not localized name.</p>
 
     <table class="cd-table">
       <thead>
@@ -560,70 +515,59 @@
         </tr>
       </thead>
       <tbody>
-        
-        
         <tr>
           <td class="ability-name">Holy Shock</td>
           <td class="num-cell">1</td>
           <td>→ Captinspanky</td>
           <td class="num-cell">0.6 avg (3% self)</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Divine Favor</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0.5 avg</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Divine Shield</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0 avg</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Cleanse</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0 avg (0% self)</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Hand of Protection</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0 avg (never used)</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Blessing of Freedom</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0 avg (never used)</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Dark Rune</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0 avg</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Mana Potion</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0.4 avg</td>
         </tr>
-        
       </tbody>
     </table>
 
     <div class="stat-grid stat-grid-5" style="margin-top:22px;">
       <div class="stat">
-        
         <div class="stat-label">Flask / Elixir</div>
         <div class="stat-value">Elixirs</div>
         <div class="stat-sub">Healing Power (Battle) + Elixir of Draenic Wisdom (Guardian) — Top 100 active at pull start: 44% flask, 20% Battle Elixir, 30% Guardian Elixir</div>
@@ -639,17 +583,15 @@
         <div class="stat-sub">none used this kill</div>
       </div>
       <div class="stat">
-        
         <div class="stat-label">HPM</div>
         <div class="stat-value">7.4</div>
         <div class="stat-sub">Top 100: top1 9.4 &nbsp;·&nbsp; avg 4.53 &nbsp;·&nbsp; median 4.32</div>
       </div>
     </div>
 
-    <div class="coverage-note">Zero real deaths this kill. Holy Shock's single cast landed on Captinspanky rather than self — a genuinely other-targeted use, consistent with 97% of this boss's Top 100 sample casting it on someone other than themselves (self%: 3%). This is the raid's best kill by both percentile (92nd) and mana efficiency (HPM 7.4).</div>
+    <div class="coverage-note">Zero real deaths this kill. Holy Shock&#39;s single cast landed on Captinspanky rather than self — a genuinely other-targeted use, consistent with 97% of this boss&#39;s Top 100 sample casting it on someone other than themselves (self%: 3%). This is the raid&#39;s best kill by both percentile (92nd) and mana efficiency (HPM 7.4).</div>
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">04</span>
@@ -658,45 +600,36 @@
     <p class="section-desc">Top 5 recipients of Crowns's healing on this kill (42.9% coverage) vs. Top 100 average on High Astromancer Solarian (62.8% coverage, 19.8% to top target).</p>
 
     <div class="target-list">
-      
-      
       <div class="target-row">
         <div>Sackajaweeba</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
         <div class="target-pct">11.2%</div>
       </div>
-      
       <div class="target-row">
         <div>Banepain</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:96.2%"></div></div>
         <div class="target-pct">10.8%</div>
       </div>
-      
       <div class="target-row">
         <div>Vajony</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:77.5%"></div></div>
         <div class="target-pct">8.7%</div>
       </div>
-      
       <div class="target-row">
         <div>Danceswtrees</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:56.7%"></div></div>
         <div class="target-pct">6.4%</div>
       </div>
-      
       <div class="target-row">
         <div>Raezy</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:51.9%"></div></div>
         <div class="target-pct">5.8%</div>
       </div>
-      
     </div>
 
-    <div class="coverage-note">Top target (11.2%) and coverage (42.9%) both trail the Top 100 average — consistent with the raid-wide broad-spread pattern, on the kill where Crowns's spell mix is also the most extreme (see section 02).</div>
+    <div class="coverage-note">Top target (11.2%) and coverage (42.9%) both trail the Top 100 average — consistent with the raid-wide broad-spread pattern, on the kill where Crowns&#39;s spell mix is also the most extreme (see section 02).</div>
   </div>
 
-  
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">05</span>
@@ -713,46 +646,39 @@
         </tr>
       </thead>
       <tbody>
-        
         <tr class="is-character">
           <td class="ability-name">Crowns</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="112,325 total healing"><div class="healer-bar-fill is-character" style="width:100%"></div></div></td>
           <td class="num-cell">28.2%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">92% (ilvl 127)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Danceswtrees</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="91,976 total healing"><div class="healer-bar-fill " style="width:81.9%"></div></div></td>
           <td class="num-cell">23.1%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">83% (ilvl 120)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Shlicktree</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="78,163 total healing"><div class="healer-bar-fill " style="width:69.6%"></div></div></td>
           <td class="num-cell">19.6%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">67% (ilvl 120)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Lippies</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="75,201 total healing"><div class="healer-bar-fill " style="width:66.9%"></div></div></td>
           <td class="num-cell">18.9%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">10% (ilvl 124)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Turkeykin</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="40,224 total healing"><div class="healer-bar-fill " style="width:35.8%"></div></div></td>
           <td class="num-cell">10.1%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">30% (ilvl 116)</td>
         </tr>
-        
       </tbody>
     </table>
   </div>
-  
 
   <div class="footer">
     <span>All data real: Crowns's fight log (XJp8vAxzM4KtHYyb, fight 73) + Top 100 High Astromancer Solarian benchmark (n=100)</span>

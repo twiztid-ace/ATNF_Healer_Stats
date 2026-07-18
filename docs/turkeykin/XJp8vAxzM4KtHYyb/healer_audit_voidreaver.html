@@ -40,7 +40,6 @@
     overflow: hidden;
   }
 
-  /* ===== Header ===== */
   .header{
     padding: 40px 48px 32px;
     border-bottom: 1px solid var(--line);
@@ -70,7 +69,6 @@
   }
   .subline span{ font-family:'IBM Plex Mono', monospace; }
 
-  /* ===== Seal ===== */
   .seal-wrap{ flex-shrink:0; width: 108px; text-align:center; }
   .seal{ width: 108px; height: 108px; }
   .seal-label{
@@ -82,7 +80,6 @@
     color: rgba(19,42,44,0.55);
   }
 
-  /* ===== Section shell ===== */
   .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
   .section:last-child{ border-bottom: none; }
   .section-head{
@@ -105,7 +102,6 @@
     margin: -12px 0 20px;
   }
 
-  /* ===== Stat row ===== */
   .stat-grid{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -136,7 +132,6 @@
   .stat-value.warn{ color: var(--rust); }
   .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
 
-  /* ===== Percentile bar ===== */
   .pctl-track{
     position: relative;
     height: 10px;
@@ -169,7 +164,6 @@
     color: rgba(19,42,44,0.45);
   }
 
-  /* ===== Spell composition bars ===== */
   .spell-row{
     display:grid;
     grid-template-columns: 140px 1fr 60px;
@@ -195,7 +189,6 @@
   }
   .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
 
-  /* ===== Checklist ===== */
   .check-list{ display:flex; flex-direction:column; }
   .check-item{
     display:grid;
@@ -223,11 +216,6 @@
     text-align:right;
   }
 
-  /* ===== Cooldown / consumable table (Dreamstate-specific) =====
-       Deliberately NOT the ok/bad check-list pattern - cooldown counts and consumable
-       uptime are informational stats, not pass/fail checks, and design_tokens.md is
-       explicit that the numbers should carry the finding rather than the container
-       editorializing with color. Plain table + a coverage-note for the actual read. */
   .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
   .cd-table th{
     text-align:left;
@@ -248,7 +236,6 @@
   .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
   .cd-table .ability-name{ font-weight: 500; }
 
-  /* ===== Target distribution ===== */
   .target-list{ display:flex; flex-direction:column; gap:8px; }
   .target-row{
     display:grid;
@@ -261,7 +248,6 @@
   .target-bar-fill{ height:100%; background: var(--ink-2); }
   .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
 
-  /* ===== Healer ranking ===== */
   .healer-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; min-width:80px; }
   .healer-bar-fill{ height:100%; background: var(--ink-2); }
   .healer-bar-fill.is-character{ background: var(--copper); }
@@ -275,7 +261,6 @@
     padding-left: 12px;
   }
 
-  /* ===== Footer ===== */
   .footer{
     padding: 24px 48px 32px;
     font-family:'IBM Plex Mono', monospace;
@@ -302,7 +287,6 @@
 
 <div class="page">
 
-  
   <div class="header">
     <div>
       <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — July 7, 2026 · Void Reaver</p>
@@ -319,7 +303,7 @@
         </svg>
         <div class="seal-label">WCL rank, all parses</div>
       </div>
-      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL&#39;s own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
         <svg class="seal" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="56" fill="none" stroke="#AB9D58" stroke-width="2"/>
           <circle cx="60" cy="60" r="48" fill="none" stroke="#AB9D58" stroke-width="1" stroke-dasharray="2 4"/>
@@ -340,7 +324,6 @@
     </div>
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">01</span>
@@ -380,10 +363,9 @@
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
     <div class="stat-sub" style="margin-top:6px;">WCL rank ~987 of 2194 Dreamstate Druid parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
 
-    <div class="coverage-note">55th percentile, the best of this raid's four real Dreamstate kills by a wide margin. HPS (1072) still trails the Top 100 average (1791) at 60% of it, and HPM (5.93) is 73% of the Top 100 average (8.09) — a real gap, but the smallest of the raid. This was also the deadliest of the four kills, with 6 real deaths.</div>
+    <div class="coverage-note">55th percentile, the best of this raid&#39;s four real Dreamstate kills by a wide margin. HPS (1072) still trails the Top 100 average (1791) at 60% of it, and HPM (5.93) is 73% of the Top 100 average (8.09) — a real gap, but the smallest of the raid. This was also the deadliest of the four kills, with 6 real deaths.</div>
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">02</span>
@@ -396,8 +378,6 @@
       <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
     </div>
 
-    
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Lifebloom (HoT)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:36.6%"></div></div>
@@ -408,7 +388,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:24.1%"></div></div>
       <div class="spell-pct">24.1%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Regrowth (guid 9858)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:32.7%"></div></div>
@@ -419,7 +398,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.4%"></div></div>
       <div class="spell-pct">1.4%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Lifebloom (Bloom)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:19%"></div></div>
@@ -430,7 +408,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:12.7%"></div></div>
       <div class="spell-pct">12.7%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Regrowth (guid 26980)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:11.2%"></div></div>
@@ -441,7 +418,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:45%"></div></div>
       <div class="spell-pct">45%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Rejuvenation (guid 26981)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.6%"></div></div>
@@ -452,7 +428,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0%"></div></div>
       <div class="spell-pct">0%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Rejuvenation (guid 26982)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -463,7 +438,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:8.1%"></div></div>
       <div class="spell-pct">8.1%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Regrowth (guid 9857)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -474,7 +448,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:4.7%"></div></div>
       <div class="spell-pct">4.7%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Tranquility</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -485,7 +458,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.5%"></div></div>
       <div class="spell-pct">1.5%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Regrowth (guid 9856)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -496,7 +468,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.8%"></div></div>
       <div class="spell-pct">0.8%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Healing Touch</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -507,12 +478,9 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.7%"></div></div>
       <div class="spell-pct">0.7%</div>
     </div>
-    
 
-    <div class="coverage-note">The Top 100 sample leans heavily on one real Regrowth rank (guid 26980, 45% of output) that Turkeykin barely touches (11.2%) — she instead casts mostly a different real rank (guid 9858, 32.7%) the benchmark almost never uses. Lifebloom itself splits across two real ranks in both her own mix and the benchmark's (guid 33763/33778), in broadly similar relative proportions.</div>
+    <div class="coverage-note">The Top 100 sample leans heavily on one real Regrowth rank (guid 26980, 45% of output) that Turkeykin barely touches (11.2%), replaced mostly by a different real rank (guid 9858, 32.7%) the benchmark almost never uses. Lifebloom itself splits across two real ranks in both Turkeykin&#39;s own mix and the benchmark&#39;s (guid 33763/33778), in broadly similar relative proportions.</div>
 
-    
-    
     <div style="margin-top:20px;">
       <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data where available; <span style="font-family:'IBM Plex Mono', monospace;">&#8224;</span> marks a rank the character didn't cast this kill, backfilled with a real cost observed elsewhere in the Top 100 sample; "?" only when neither source has it.</p>
       <table class="cd-table">
@@ -525,76 +493,65 @@
           </tr>
         </thead>
         <tbody>
-          
           <tr>
             <td class="ability-name">Regrowth</td>
             <td class="num-cell">405 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">0.8%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">485 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">4.7%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">575 mana</td>
             <td class="num-cell">32.7%</td>
             <td class="num-cell">1.4%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">675 mana</td>
             <td class="num-cell">11.2%</td>
             <td class="num-cell">45%</td>
           </tr>
-          
           <tr>
             <td class="ability-name">Lifebloom (Bloom)</td>
             <td class="num-cell">0 mana</td>
             <td class="num-cell">19%</td>
             <td class="num-cell">12.7%</td>
           </tr>
-          
           <tr>
             <td class="ability-name">Lifebloom (HoT)</td>
             <td class="num-cell">220 mana</td>
             <td class="num-cell">36.6%</td>
             <td class="num-cell">24.1%</td>
           </tr>
-          
           <tr>
             <td class="ability-name">Rejuvenation</td>
             <td class="num-cell">370 mana</td>
             <td class="num-cell">0.6%</td>
             <td class="num-cell">0%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">415 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">8.1%</td>
           </tr>
-          
         </tbody>
       </table>
     </div>
-    
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">03</span>
       <h2 class="section-title">Cooldowns &amp; consumables</h2>
     </div>
-    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and Improved Faerie Fire status on this kill, vs. real Top 100 average on Void Reaver. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> (see WORKFLOW.md) - match abilities by guid, not localized name (gotcha #2).</p>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and Improved Faerie Fire status on this kill, vs. real Top 100 average on Void Reaver. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> - match abilities by guid, not localized name.</p>
 
     <table class="cd-table">
       <thead>
@@ -606,36 +563,30 @@
         </tr>
       </thead>
       <tbody>
-        
-        
         <tr>
           <td class="ability-name">Innervate</td>
           <td class="num-cell">1</td>
           <td>self</td>
           <td class="num-cell">1 avg (59% self)</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Rebirth</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0.1 avg</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Dark Rune</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0.3 avg</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Mana Potion</td>
           <td class="num-cell">2</td>
           <td>—</td>
           <td class="num-cell">1.2 avg</td>
         </tr>
-        
       </tbody>
     </table>
 
@@ -651,7 +602,6 @@
         <div class="stat-sub">Well Fed — Top 100: 96% had one active at pull start</div>
       </div>
       <div class="stat">
-        
         <div class="stat-label">Improved Faerie Fire uptime</div>
         <div class="stat-value">75%</div>
         <div class="stat-sub">Top 100 avg: 62.7%</div>
@@ -668,10 +618,9 @@
       </div>
     </div>
 
-    <div class="coverage-note">Innervate was cast once, self, in line with the Top 100 norm (96% usage). Six real deaths this kill — the raid's deadliest — but Rebirth was never cast despite all 6 being real, checkable candidates; none of the other cooldowns land close enough in time to read as a missed save (the nearest is Churbert's and Purehentai's simultaneous death, 3.9 seconds after an Innervate cast — Innervate doesn't heal or resurrect, so not a plausible correlation).</div>
+    <div class="coverage-note">Innervate was cast once, self, in line with the Top 100 norm (96% usage). Six real deaths this kill — the raid&#39;s deadliest — but Rebirth was never cast despite all 6 being real, checkable candidates; none of the other cooldowns land close enough in time to read as a missed save (the nearest is Churbert&#39;s and Purehentai&#39;s simultaneous death, 3.9 seconds after an Innervate cast — Innervate doesn&#39;t heal or resurrect, so not a plausible correlation).</div>
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">04</span>
@@ -680,44 +629,36 @@
     <p class="section-desc">Top 5 recipients of Turkeykin's healing on this kill (55.7% coverage) vs. Top 100 average on Void Reaver (47.6% coverage, 13.9% to top target).</p>
 
     <div class="target-list">
-      
       <div class="target-row">
         <div>Deepbowlz</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
         <div class="target-pct">12.9%</div>
       </div>
-      
       <div class="target-row">
         <div>Jotes</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:97.1%"></div></div>
         <div class="target-pct">12.6%</div>
       </div>
-      
       <div class="target-row">
         <div>Vajony</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:90.6%"></div></div>
         <div class="target-pct">11.7%</div>
       </div>
-      
       <div class="target-row">
         <div>Vinnyvoss</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:76.7%"></div></div>
         <div class="target-pct">9.9%</div>
       </div>
-      
       <div class="target-row">
         <div>Destromental</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:66%"></div></div>
         <div class="target-pct">8.5%</div>
       </div>
-      
     </div>
 
-    <div class="coverage-note">Coverage (55.7%) runs a bit above the Top 100 average (47.6%) — modestly broader spread than typical, though top target share (12.9%) matches the norm closely (13.9%), so this isn't a dramatic targeting shift, just a somewhat wider real spread.</div>
+    <div class="coverage-note">Coverage (55.7%) runs a bit above the Top 100 average (47.6%) — modestly broader spread than typical, though top target share (12.9%) matches the norm closely (13.9%), so this isn&#39;t a dramatic targeting shift, just a somewhat wider real spread.</div>
   </div>
 
-  
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">05</span>
@@ -734,46 +675,39 @@
         </tr>
       </thead>
       <tbody>
-        
         <tr class="">
           <td class="ability-name">Lippies</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="377,332 total healing"><div class="healer-bar-fill " style="width:100%"></div></div></td>
           <td class="num-cell">25.2%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">10% (ilvl 124)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Crowns</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="295,700 total healing"><div class="healer-bar-fill " style="width:78.4%"></div></div></td>
           <td class="num-cell">19.7%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">90% (ilvl 127)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Danceswtrees</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="295,399 total healing"><div class="healer-bar-fill " style="width:78.3%"></div></div></td>
           <td class="num-cell">19.7%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">38% (ilvl 120)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Shlicktree</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="274,632 total healing"><div class="healer-bar-fill " style="width:72.8%"></div></div></td>
           <td class="num-cell">18.3%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">28% (ilvl 120)</td>
         </tr>
-        
         <tr class="is-character">
           <td class="ability-name">Turkeykin</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="255,061 total healing"><div class="healer-bar-fill is-character" style="width:67.6%"></div></div></td>
           <td class="num-cell">17.0%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">55% (ilvl 116)</td>
         </tr>
-        
       </tbody>
     </table>
   </div>
-  
 
   <div class="footer">
     <span>All data real: Turkeykin's fight log (XJp8vAxzM4KtHYyb, fight 65) + Top 100 Void Reaver benchmark (n=100)</span>

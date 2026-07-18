@@ -79,9 +79,15 @@ authoring path** — the PowerShell-hand-render and PowerShell-script-render
 mechanisms are both retired along with the rest of `scripts\`. A page's
 `data\Characters\` folder having a `{code}_findings.json`/`{code}_analysis.json`
 next to its `report_data.json` tells you it went through the script-rendered
-pipeline (true of every report generated since 2026-07-14); a page predating
-that (Danceswtrees's `Fm9XdWYtz8VCLnwg`, Vajomee's early raid nights) was
-hand-written and has never been regenerated through the renderer.
+pipeline. **Correction (found 2026-07-18 while fixing gendered pronouns
+raid-wide): Danceswtrees's `Fm9XdWYtz8VCLnwg` was originally hand-written,
+but a prior session backfilled real `report_data.json`/`analysis.json`/
+`findings.json` for it — it now has the full trio and renders cleanly through
+`python -m pipeline.cli render` like any other report.** Don't assume a page
+predating 2026-07-14 is still hand-written-only without checking for these
+three files first; the true test is file presence, not the report's age.
+Vajomee's earliest raid night (`Mfz4kW6JpjFPArat`) has not been checked this
+same way and may or may not still be hand-written-only.
 
 These two axes are independent: a page's methodology (v1/v2) says nothing
 about how its HTML got produced, and vice versa.
@@ -297,11 +303,11 @@ As of 2026-07-18:
 | Healer | Class (pipeline key) | Display | Known report codes |
 |---|---|---|---|
 | Crowns | Paladin | Holy Paladin | `XJp8vAxzM4KtHYyb`, `rQpVkMjGnc4t9CqW` |
-| Danceswtrees | Druid | Restoration Druid | `Fm9XdWYtz8VCLnwg` (hand-written, retired authoring path), `LKbVcNfRxyBkj2mg`, `XJp8vAxzM4KtHYyb` |
+| Danceswtrees | Druid | Restoration Druid | `Fm9XdWYtz8VCLnwg`, `LKbVcNfRxyBkj2mg`, `XJp8vAxzM4KtHYyb` |
 | Lippies | Priest | Holy Priest | `XJp8vAxzM4KtHYyb` |
 | Vajomee | Shaman | Restoration Shaman | `Mfz4kW6JpjFPArat` (v1-only, earliest raid night), `Z4zNt28raQ6GLbkC`, `QTaWq74txvPF82AR`, `LKbVcNfRxyBkj2mg` |
 | Turkeykin | Dreamstate | Dreamstate Druid | `XJp8vAxzM4KtHYyb` |
-| Vinnyvozz | Druid | Restoration Druid | `rQpVkMjGnc4t9CqW`, `Mfz4kW6JpjFPArat` |
+| Vinnyvozz | Druid | Restoration Druid | `rQpVkMjGnc4t9CqW`, `Mfz4kW6JpjFPArat`, `QTaWq74txvPF82AR` |
 | Lasmur | Priest | Holy Priest | `Mfz4kW6JpjFPArat`, `QTaWq74txvPF82AR`, `rQpVkMjGnc4t9CqW`, `Z4zNt28raQ6GLbkC` |
 | Shlicktree | Druid | Restoration Druid | `LKbVcNfRxyBkj2mg`, `XJp8vAxzM4KtHYyb` |
 | Kilsby | Paladin | Holy Paladin | `LKbVcNfRxyBkj2mg`, `Mfz4kW6JpjFPArat` |
