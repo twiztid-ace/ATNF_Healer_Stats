@@ -959,33 +959,6 @@ GraphQL OAuth credentials used by `WclV2Api.psm1`, now shared by
    page must reflect this, not assume Holy Shock never heals. `build_boss_analysis.ps1`
    auto-tags this as the `paladin_holy_shock_guid_split` canned caveat for any
    report built through the new pipeline.
-6. **Not tracked, per explicit 2026-07-16 instruction**: whether Lippies/
-   Crowns (or any other healer) has a real rendered report against the
-   Gruul's Lair/Magtheridon's Lair tier. No healer this project tracks has
-   had a real raid night on those bosses recently, and this file no longer
-   monitors that gap — don't resurrect this as an open item without a new,
-   real reason to (e.g. an actual new pull against those bosses). Danceswtrees
-   and Vajomee's existing real reports against that tier (report
-   `LKbVcNfRxyBkj2mg`, see "Recently closed" above) are unaffected by this —
-   this is about not chasing further rollout, not about undoing what exists.
-7. **Dreamstate has only one real data point so far — Turkeykin.** Every prior
-   class port got a second real-report cross-check before being called
-   "regression-tested" in this file's own language; Dreamstate hasn't had
-   that yet. Not urgent (the one real data point is thorough — 4 real boss
-   kills, a real multi-spec-in-one-report case, a real Top 100 pull), but
-   worth naming so a future reader doesn't over-trust "confirmed against real
-   data" as broadly as the phrase reads for the other four builds.
-8. **Turkeykin's site is deliberately unlisted from the main site index** —
-   see the "v2" bullets above for the full framing. Revisit whenever the user
-   is ready to make her visible (re-run `update_hub_pages.ps1` with
-   `-IsNewHealer`) — don't do this proactively without checking first.
-9. **Not pushed to GitHub yet.** All of this session's Dreamstate work
-   (scripts, templates, Turkeykin's data/docs, the two doc files this section
-   lives in) is sitting in local commits only (this repo has an active
-   auto-commit hook, confirmed live — commits appear without an explicit
-   `git commit` being run) — none of it is live on GitHub Pages until an
-   actual `git push` happens. Confirm with the user before pushing, same as
-   any other shared/external action.
 
 ## Ground rules (condensed from WORKFLOW.md — read the real thing for why)
 
