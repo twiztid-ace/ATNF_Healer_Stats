@@ -1,18 +1,30 @@
 ---
 name: generate-healer-report
-description: Generates a complete v2 healer report (per-boss audit pages + raid overview, real data only) for a given character name and Warcraft Logs report code. Pulls the character's raid data, refreshes that class's Top 100 benchmark, re-summarizes it, computes real per-boss stats, and builds/updates every affected docs/ page. Use when the user asks to build, generate, regenerate, or update a healer's report for a specific raid log.
+description: Generates a complete v2 healer report (per-boss audit pages + raid overview, real data only) for a given character name and Warcraft Logs report code. Pulls the character's raid data, refreshes that class's Top 100 benchmark, re-summarizes it, computes real per-boss stats, and builds/updates every affected docs/ page. Also supports a report-code-only invocation that runs this for every healer already tracked in data/site_index.json who appears in that report. Use when the user asks to build, generate, regenerate, or update a healer's report for a specific raid log, or to pull/refresh a whole raid log for everyone already tracked.
 user-invocable: true
 disable-model-invocation: true
 tools: PowerShell, Read, Write, Edit, Glob, Grep
-argument-hint: <CharacterName> <ReportCode-or-URL>
+argument-hint: <CharacterName> <ReportCode-or-URL> | <ReportCode-or-URL>
 ---
 
 # Generate a healer report
 
-Invoked as `/generate-healer-report <CharacterName> <ReportCode-or-URL>`, e.g.
-`/generate-healer-report Danceswtrees XJp8vAxzM4KtHYyb`. The two values in
-`$ARGUMENTS` are the character name and a report code or full WCL report URL, in
-that order — if either is missing or ambiguous, ask the user rather than guessing.
+Invoked one of two ways:
+
+- `/generate-healer-report <CharacterName> <ReportCode-or-URL>`, e.g.
+  `/generate-healer-report Danceswtrees XJp8vAxzM4KtHYyb` — the single-healer flow,
+  documented below in "Pipeline".
+- `/generate-healer-report <ReportCode-or-URL>` (one argument only), e.g.
+  `/generate-healer-report XJp8vAxzM4KtHYyb` — runs the same pipeline for **every
+  healer already tracked in `data\site_index.json`** who actually appears in that
+  report. See "Running for every already-tracked healer" below instead of the
+  single-healer "Pipeline" section.
+
+If `$ARGUMENTS` has two tokens, treat the first as the character name and the
+second as the report code/URL. If it has exactly one token, treat it as the
+report code/URL and use the batch flow. If it's ambiguous some other way (more
+than two tokens, or a first token that isn't a plausible character name and
+isn't a report code either), ask the user rather than guessing.
 
 Turns `CharacterName` + `ReportCode` (or a full WCL report URL) into a complete,
 real v2 report: one audit page per boss kill, a raid overview (gear audit + per-boss
@@ -30,23 +42,24 @@ runbook for *this specific task*, not a replacement for those.
 
 Step 2 resolves the character's class (and, since 2026-07-16, spec — see
 below). **Druid-Restoration, Shaman-Restoration, Priest-Holy, Paladin-Holy,
-and Druid-Dreamstate are all on the real v2 pipeline today**
-(`pull_top100_druid.ps1`/`pull_top100_shaman.ps1`/`pull_top100_priest_holy.ps1`/
-`pull_top100_paladin.ps1`/`pull_top100_dreamstate.ps1`,
-`boss_page_template_druid.html`/`boss_page_template_shaman.html`/
-`boss_page_template_priest.html`/`boss_page_template_paladin.html`/
-`boss_page_template_dreamstate.html`, and the cooldown-guid tables in
-`build_boss_report_data.ps1` cover all five — Priest added 2026-07-13, Paladin
-added the same day right after, both ported the same way Shaman was;
-Dreamstate added 2026-07-16, ported the same way but with one real wrinkle:
-it's a SPEC of the already-tracked Druid class (WCL classID 2 / specID 6), not
-a new class of its own — `-ClassName "Dreamstate"` is still the correct
-pipeline value end-to-end (own `data\Classes\Dreamstate\` folder/manifest,
-own cooldown table), it just maps to the real WCL `className: "Druid",
-specName: "Dreamstate"` internally (see `pull_top100_dreamstate.ps1`'s header
-for the full split). Real-data discovery pass against a real report before
-writing any guid table for every one of these (Lippies for Priest, Crowns for
-Paladin, Turkeykin for Dreamstate — see each script's own header).
+and Druid-Dreamstate are all on the pipeline today** — `pipeline\classes.py`
+is the single source of truth for all five (WCL classID/specID, cooldown-guid
+table, boss-page template, target-mode map), replacing what used to be five
+separate `pull_top100_{class}.ps1` scripts' own hardcoded headers plus a
+matching entry in `build_boss_report_data.ps1`. Priest added 2026-07-13,
+Paladin added the same day right after, both ported the same way Shaman was;
+Dreamstate added 2026-07-16 with one real wrinkle: it's a SPEC of the
+already-tracked Druid class (WCL classID 2 / specID 6), not a new class of
+its own — `--class-name "Dreamstate"` is still the correct pipeline value
+end-to-end (own `data\Classes\Dreamstate\` folder/manifest, own cooldown
+table), it just maps to the real WCL `className: "Druid", specName:
+"Dreamstate"` internally (see `pipeline\classes.py`'s `ClassConfig` for the
+full split, and `scripts\pull_top100_dreamstate.ps1`'s header — preserved as
+historical reference — for the original discovery writeup). Real-data
+discovery pass against a real report before writing any guid table for every
+one of these (Lippies for Priest, Crowns for Paladin, Turkeykin for
+Dreamstate — see each preserved `scripts\pull_top100_*.ps1` header for the
+full writeup).
 
 **If the resolved class/spec combination isn't one of the five above: stop and
 tell the user clearly** — name the class and spec, say it isn't on the v2
@@ -61,7 +74,7 @@ doesn't even have.
 kills** — confirmed real, not hypothetical (Turkeykin plays Balance DPS on 6
 SSC bosses and Dreamstate healer on 4 TK bosses in the same real report,
 `XJp8vAxzM4KtHYyb`). Step 2 below now resolves spec per real boss kill, not
-once globally — if fights disagree, it asks for an explicit `-Spec` and pulls
+once globally — if fights disagree, it asks for an explicit `--spec` and pulls
 only the fights where the character was actually in that spec, never blending
 a DPS off-spec fight into a healer report.
 
@@ -69,12 +82,12 @@ a DPS off-spec fight into a healer report.
 
 ### 1. Resolve inputs
 Accept a character name and a report code or full WCL URL. If given a URL, extract
-the code the same way `pull_character_TEMPLATE.ps1` does:
+the code the same way `pipeline\pull_character.py` does:
 `warcraftlogs\.com/reports/([A-Za-z0-9]+)`.
 
 ### 2. Pull character data
 ```
-powershell -ExecutionPolicy Bypass -File scripts\pull_character_TEMPLATE.ps1 -ReportCode "<code>" -CharacterName "<name>"
+python -m pipeline.cli pull-character --report-code "<code>" --character-name "<name>"
 ```
 This resolves class from the report's own `actors[]`, derives the raid date
 from the report title, resolves real per-fight SPEC from the report's own
@@ -87,39 +100,35 @@ Read its output carefully:
   the user what went wrong (wrong report code, character not in this report, etc.).
 - **If it hard-stops with "plays more than one real spec across this report's
   boss kills"**, it will print the real per-fight breakdown (which spec on
-  which boss). Re-run with `-Spec "<the healing spec>"` added — don't guess
+  which boss). Re-run with `--spec "<the healing spec>"` added — don't guess
   which one to pick, ask the user if it's not obvious from the breakdown
   (e.g. which spec has the `healers` role vs. `dps`/`tanks`).
-- Note the resolved class (and spec, once step 2 finishes) — this drives every
-  step after this one. Check it against the class/spec-support gate above
-  before continuing. A resolved class of "Druid" is NOT enough on its own
-  since 2026-07-16 — confirm whether the real spec is Restoration or
-  Dreamstate before picking `-ClassName` for steps 3-9 below (`"Druid"` for
-  Restoration, `"Dreamstate"` for Dreamstate — never `"Druid"` for a
-  Dreamstate healer, see the real WCL-className-vs-pipeline-key split in
-  `pull_top100_dreamstate.ps1`'s header).
+- The command prints `Resolved pipeline class: <Class> (WCL: <realClass>/<realSpec>)`
+  at the end — this is the already-resolved pipeline class key to use for
+  `--class-name` in steps 3-9 below, computed automatically from the real
+  (WCL className, WCL specName) pair via `pipeline/classes.py` (e.g. real
+  Druid/Dreamstate → pipeline key `"Dreamstate"`, never `"Druid"` for a
+  Dreamstate healer — see that module for the full class/build table). You
+  no longer need to infer this by hand from the class/spec-support gate
+  above; just read it off this line.
 - Note the resolved raid date (used only for display text later — the actual
   `data\Characters\{name}\{code}\` and `docs\{healer}\{code}\` folders are keyed
   by report code, not date, since two raids can happen on the same calendar day).
 
 ### 3. Update the matching class's Top 100 benchmark data
 ```
-powershell -ExecutionPolicy Bypass -File scripts\pull_top100_druid.ps1
-powershell -ExecutionPolicy Bypass -File scripts\pull_top100_shaman.ps1
-powershell -ExecutionPolicy Bypass -File scripts\pull_top100_priest_holy.ps1
-powershell -ExecutionPolicy Bypass -File scripts\pull_top100_paladin.ps1
-powershell -ExecutionPolicy Bypass -File scripts\pull_top100_dreamstate.ps1
+python -m pipeline.cli pull-top100 --class-name "<Class>"
 ```
-Dispatch to whichever script matches the resolved class/spec from step 2
-(Druid-Restoration → `pull_top100_druid.ps1`, Druid-Dreamstate →
-`pull_top100_dreamstate.ps1`, Shaman, Priest, or Paladin today — see the gate
-above). This is diff-based against `manifest.json` — it only makes real API
-calls for parses that are genuinely new or have re-entered the Top 100 since
-the last run, so running it here is cheap even if it was run recently.
+One consolidated engine dispatched by `--class-name` (Druid, Shaman, Priest,
+Paladin, or Dreamstate — using the resolved pipeline class from step 2's own
+output line). This is diff-based against `manifest.json` — it only makes
+real API calls for parses that are genuinely new or have re-entered the Top
+100 since the last run, so running it here is cheap even if it was run
+recently.
 
 ### 4. Run the summarization
 ```
-powershell -ExecutionPolicy Bypass -File scripts\summarize_class_benchmarks.ps1 -ClassName "<Class>"
+python -m pipeline.cli summarize-benchmarks --class-name "<Class>"
 ```
 Regenerates all four `data\Classes\<Class>\active\benchmark_*.csv` files from the
 now-current Top 100 data. Always run this after step 3, even if step 3 found no new
@@ -127,7 +136,7 @@ parses — cheap, local, no API calls.
 
 ### 5. Compute report data
 ```
-powershell -ExecutionPolicy Bypass -File scripts\build_boss_report_data.ps1 -CharacterName "<name>" -ReportCode "<code>" -ClassName "<Class>"
+python -m pipeline.cli build-report-data --character-name "<name>" --report-code "<code>" --class-name "<Class>"
 ```
 Writes `data\Characters\<name>\<code>\<code>_report_data.json` — one clean JSON with
 every real number needed for every boss page and the raid overview: HPS/overheal,
@@ -144,7 +153,7 @@ files already on disk — steps 6-9 should never need to touch the network.
 
 ### 6. Compute analysis flags (script, no LLM)
 ```
-powershell -ExecutionPolicy Bypass -File scripts\build_boss_analysis.ps1 -CharacterName "<name>" -ReportCode "<code>" -ClassName "<Class>"
+python -m pipeline.cli build-analysis --character-name "<name>" --report-code "<code>" --class-name "<Class>"
 ```
 Writes `<code>_analysis.json` next to `report_data.json` — pre-computes every
 script-safe numeric judgment call so step 7 is verification and wording, not
@@ -159,7 +168,7 @@ facts only, no include/omit decision — Druid-Restoration AND Druid-Dreamstate
 both, since Dreamstate keeps Rebirth in its own cooldown table), `SelfDeaths`,
 nearest-cooldown-to-each-death lookups, canned-caveat tags (see below), and a
 gear analysis (missing-enchant flags, differing-slot annotations) built from the
-same 19-slot/enchantable-slot tables `scripts\lib\ReportRenderLib.psm1` uses
+same 19-slot/enchantable-slot tables `pipeline\render_lib.py` uses
 everywhere else in this pipeline. Zero API calls, zero judgment calls of its own.
 
 ### 7. Author findings.json (the only step touching an LLM)
@@ -205,17 +214,17 @@ saying and how to phrase it. Concretely, before writing each boss's findings:
 **Validate before moving on**: every boss slug in `report_data.json.Bosses` has
 all 4 required keys non-empty in `BossFindings`, and `RaidOverview` has its 3
 required keys (`GEAR_CONSISTENCY_FINDING`, `GEAR_FINDING_NOTE`,
-`RAID_SUMMARY_FINDING`) non-empty. `render_healer_report.ps1` in the next step
+`RAID_SUMMARY_FINDING`) non-empty. `pipeline\render_report.py` in the next step
 also checks this and refuses to write a page on any gap — don't rely on it
 catching a typo'd boss slug for you, though; check the slug names match
 `report_data.json` exactly.
 
 ### 8. Render boss pages + raid overview (script, no LLM)
 ```
-powershell -ExecutionPolicy Bypass -File scripts\render_healer_report.ps1 -CharacterName "<name>" -ReportCode "<code>" -ClassName "<Class>" -RaidTitle "<title>"
+python -m pipeline.cli render --character-name "<name>" --report-code "<code>" --class-name "<Class>" --raid-title "<title>"
 ```
-Merges `report_data.json` + `analysis.json` + `findings.json` + the class's boss
-template + `raid_overview_template.html` into
+Merges `report_data.json` + `analysis.json` + `findings.json` + the class's
+Jinja2 boss template + `raid_overview.html.jinja` into
 `docs\<healer>\<code>\healer_audit_<bossSlug>.html` (one per boss) and
 `docs\<healer>\<code>\index.html` — the output folder always mirrors whatever
 `data\Characters\<name>\` folder the input JSON was found in (a report code for
@@ -230,40 +239,114 @@ missing or misspelled — fix `findings.json`, don't patch the rendered HTML by 
 
 ### 9. Update hub pages (script, no LLM)
 ```
-powershell -ExecutionPolicy Bypass -File scripts\update_hub_pages.ps1 -CharacterName "<name>" -RaidDate "<date>" -ReportCode "<code>" -ClassName "<Class>" -BossesKilled <N> -RaidTitle "<title>" [-IsNewHealer]
+python -m pipeline.cli update-hub --character-name "<name>" --raid-date "<date>" --report-code "<code>" --class-name "<Class>" --bosses-killed <N> --raid-title "<title>"
 ```
-`-RaidDate` is display text only (shown next to the raid title on the hub
+`--raid-date` is display text only (shown next to the raid title on the hub
 page) — the inserted row's link always points at `<code>/index.html`, matching
-step 8's report-code-named output folder exactly. Surgical upsert only —
-inserts one new raid-row into `docs\<healer>\index.html`
-(creating the file from `healer_raidlist_template.html` if this is a brand-new
-healer) and, only with `-IsNewHealer`, one new healer-row into `docs\index.html`.
-Every existing row in both files is preserved; re-running it for a report code
-that's already listed is a safe no-op (it detects the duplicate and skips).
-`-BossesKilled` is the boss count actually killed this raid night (e.g. `9` for
-a raid that downed 9 of 10 bosses) — don't hardcode 10.
+step 8's report-code-named output folder exactly. This upserts the healer's
+`data\Characters\<name>\index.json` (creating it if this is a brand-new healer)
+and fully re-renders both `docs\<healer>\index.html` and, when this healer
+isn't already registered, `docs\index.html` too — new-healer registration is
+now automatic (no separate `-IsNewHealer` flag to remember) based on whether
+the healer already appears in `data\site_index.json`. Every existing raid
+night is preserved; re-running it for a report code that's already listed is
+a safe no-op update rather than a duplicate insert. `--bosses-killed` is the
+boss count actually killed this raid night (e.g. `9` for a raid that downed 9
+of 10 bosses) — don't hardcode 10, though note the command prefers the real
+count from `report_data.json` over whatever's passed here if that file exists.
 
 **The healer's raid-list is always re-sorted by real raid date, descending,
-after the insert** — never just prepended to the top. Report-code-keyed
+after the insert** — never just appended to the top. Report-code-keyed
 folders mean generation order no longer tracks raid-chronology order (a
 backfilled older raid generated after a newer one is real, not hypothetical),
-so relying on insertion order would silently produce a wrong-order list. If you
-ever need to re-sort an existing healer's list without inserting anything (e.g.
-after a manual edit), run the same script with just `-CharacterName` and
-`-ResortOnly` — it re-parses every existing row's own date text (tolerating the
-two real date-text formats seen across already-published pages) and rewrites
-the list in place. A row whose date can't be parsed sorts last with a
-`WARNING`, never silently dropped.
+so relying on insertion order would silently produce a wrong-order list. If
+you ever need to re-sort an existing healer's list without inserting anything
+(e.g. after a manual edit), run the same command with just
+`--character-name` and `--resort-only` — this is now just a full re-render
+from the existing `index.json`, not a separate code path, so it can't drift
+out of sync with the insert logic the way the old HTML-scrape approach could.
+
+## Running for every already-tracked healer
+
+Invoked as `/generate-healer-report <ReportCode-or-URL>` (one argument only).
+Use when a raid log is shared by more than one already-tracked healer (a real,
+confirmed scenario — see `CLAUDE.md`'s writeup of report `LKbVcNfRxyBkj2mg`,
+pulled and rendered for both Danceswtrees and Vajomee the same day) and the
+user wants the whole log processed in one pass instead of one
+`/generate-healer-report <name> <code>` invocation per healer.
+
+"Already-tracked" means every `character_name` in `data\site_index.json` —
+**not** every folder under `data\Characters\`. A healer can have real pulled
+data on disk while being deliberately excluded from `site_index.json` (see
+`CLAUDE.md`'s Turkeykin note — kept unlisted from the site homepage on
+purpose). Don't add `--character-names` to sweep in a healer who isn't in
+`site_index.json` without checking with the user first — same reasoning as
+not adding `-IsNewHealer`/registering a hidden healer without checking, this
+skill just has a wider blast radius now that one invocation can touch several
+healers at once.
+
+### 1. Resolve the report code
+Same as single-healer step 1 — extract the code from a full WCL URL if given
+one.
+
+### 2. First pass — pull + compute, stop before findings
+```
+python -m pipeline.cli generate-all --report-code "<code>"
+```
+This loops the single-healer pipeline's steps 2-6 (pull character data,
+refresh + re-summarize the resolved class's Top 100 benchmark once per
+distinct class, compute `report_data.json` + `analysis.json`) across every
+healer in `site_index.json`, and prints a per-healer summary line at the end:
+`done`, `skipped`, `needs-findings`, or `error`. Read it carefully:
+
+- `skipped` with "was not found in this report's actors" or "plays more than
+  one real spec" — expected and fine; that healer genuinely isn't a real hit
+  in this report, or needs a `--spec` this batch command can't guess (re-run
+  `pull-character` for that one name by hand with `--spec`, then re-run this
+  same `generate-all` command — it reuses the cached pull).
+- `skipped` with "unsupported class/spec" or "0 boss kills" — also expected
+  and fine; nothing to do for that healer.
+- `error` — the command already stopped the whole batch here rather than
+  repeating the same failure for every remaining name (see its own output for
+  why — almost always a bad or private report code). Fix that and re-run
+  before doing anything else.
+- `needs-findings` — this is the real output of this pass: one or more
+  healers with real `report_data.json`/`analysis.json` on disk, ready for
+  step 3 below. Note every `<code>_findings.json` path it printed.
+
+### 3. Author a real findings.json for every healer that needs one
+For each `needs-findings` healer from step 2, follow single-healer step 7
+exactly — read that healer's own `<code>_report_data.json` **and**
+`<code>_analysis.json`, write their own `<code>_findings.json` — using the
+same schema, the same `CannedCaveats`/`RebirthCandidates`/etc. rules, and the
+same validation ("every boss slug has all 4 required keys, `RaidOverview` has
+its 3 required keys") described there. **Each healer's findings are their
+own** — never reuse or copy prose across healers just because they share a
+report code; the same kill can look very different from a Druid's cooldown
+kit than from a Shaman's, and a coverage note is specific to the person it's
+about.
+
+### 4. Second pass — render + update hub for everyone now ready
+```
+python -m pipeline.cli generate-all --report-code "<code>"
+```
+The exact same command as step 2, run again. Any healer whose
+`<code>_findings.json` now exists (written in step 3) proceeds straight to
+render + hub-update this time — `generate-all` always checks for an existing
+findings.json before deciding whether a healer still `needs-findings`, so
+there's no separate "render-only" flag to remember. Healers who were
+`skipped` in step 2 stay skipped (the underlying reason hasn't changed); this
+is expected, not a bug.
 
 ## Rules that came from real bugs
 
-Most of these are now enforced mechanically (in `build_boss_analysis.ps1`,
-`scripts\lib\ReportRenderLib.psm1`, or `render_healer_report.ps1`) rather than
+Most of these are now enforced mechanically (in `pipeline\build_analysis.py`,
+`pipeline\render_lib.py`, or `pipeline\render_report.py`) rather than
 needing to be remembered while writing prose — noted below so you know where to
 look if a rendered page looks wrong, rather than re-deriving the fix by hand.
 
 - **Guid-based grouping only, never by display name** — enforced by
-  `build_boss_report_data.ps1`'s already-guid-grouped `SpellRows`/`CooldownRows`
+  `pipeline\build_report_data.py`'s already-guid-grouped `SpellRows`/`CooldownRows`
   and by the renderer's own spell-name collision logic (a `(guid N)` suffix is
   only added when a display name is genuinely ambiguous). Two guids can share a
   display name and mean genuinely different things (e.g. Lifebloom's HoT-tick vs.
@@ -286,7 +369,7 @@ look if a rendered page looks wrong, rather than re-deriving the fix by hand.
   for those three classes regardless of what `findings.json` says.
   **Druid-Dreamstate is the one non-"Druid"-named class that DOES keep this
   concept** (real guid 26994, same as Druid-Restoration's) — don't lump it in
-  with Shaman/Priest/Paladin's "no such concept" treatment; `build_boss_analysis.ps1`
+  with Shaman/Priest/Paladin's "no such concept" treatment; `pipeline\build_analysis.py`
   computes real `RebirthCandidates` for Dreamstate too (fixed 2026-07-16 — this
   used to be gated on a single `$ClassName -eq "Druid"` check covering both
   Tranquility and Rebirth together, which would have silently left Dreamstate's
@@ -311,7 +394,7 @@ look if a rendered page looks wrong, rather than re-deriving the fix by hand.
 
 ## Verification before calling this done
 
-- `render_healer_report.ps1` already refuses to write a page with an unfilled
+- `pipeline\render_report.py` already refuses to write a page with an unfilled
   `{{TOKEN}}` or a `-v1`-suffixed output folder — a clean run is a real signal,
   not just an absence of errors.
 - Spot-check 2-3 numbers on one rendered page against the raw
@@ -323,3 +406,9 @@ look if a rendered page looks wrong, rather than re-deriving the fix by hand.
   changed).
 - Confirm the raid-night count in `docs\<healer>\index.html` (bumped
   automatically by step 9) matches the number of real boss pages actually built.
+- **For a batch run**: re-check the step 2/4 per-healer summary lines rather
+  than assuming "no error" means "everyone got a page" — a healer can land on
+  `skipped` legitimately (not in this report, unsupported class, 0 boss
+  kills) and that's a correctly-finished run, not a partial failure. Confirm
+  every healer you expected a real page for actually landed on `done`, not
+  still sitting on `needs-findings` because step 3 was skipped for them.

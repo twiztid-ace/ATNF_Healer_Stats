@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Lippies — Raid Analysis</title>
+<title>All Thunder No Fury — Healer Analysis</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -48,21 +48,20 @@
     color: var(--copper);
     margin: 0 0 10px;
   }
-  .eyebrow a{ color: var(--copper); text-decoration: none; }
   h1{
     font-family:'Cormorant Garamond', serif;
     font-weight: 600;
-    font-size: 44px;
-    line-height: 1.05;
+    font-size: 40px;
+    line-height: 1.08;
     margin: 0 0 8px;
   }
   .subline{ font-size: 14px; color: rgba(19,42,44,0.65); margin: 0; }
-  .subline span{ font-family:'IBM Plex Mono', monospace; }
 
   .section{ padding: 32px 48px; }
+  .section-desc{ font-size: 13px; color: rgba(19,42,44,0.6); margin: 0 0 20px; }
 
-  .raid-list{ display:flex; flex-direction:column; }
-  .raid-row{
+  .healer-list{ display:flex; flex-direction:column; }
+  .healer-row{
     display:grid;
     grid-template-columns: 1fr auto auto;
     align-items:center;
@@ -73,33 +72,26 @@
     color: var(--ink);
     transition: padding-left 0.15s ease;
   }
-  .raid-row:first-child{ border-top:none; }
-  .raid-row:hover{ padding-left: 10px; }
-  .raid-row:hover .raid-title{ color: var(--copper); }
-  .raid-title{
+  .healer-row:first-child{ border-top:none; }
+  .healer-row:hover{ padding-left: 10px; }
+  .healer-row:hover .healer-name{ color: var(--copper); }
+  .healer-name{
     font-family:'Cormorant Garamond', serif;
     font-weight: 600;
     font-size: 20px;
     transition: color 0.15s ease;
   }
-  .raid-meta{
+  .healer-class{
     font-family:'IBM Plex Mono', monospace;
     font-size: 11px;
     color: rgba(19,42,44,0.5);
   }
-  .raid-arrow{
+  .healer-arrow{
     font-family:'IBM Plex Mono', monospace;
     color: var(--copper);
     opacity: 0.6;
   }
-  .raid-row:hover .raid-arrow{ opacity: 1; }
-
-  .empty-note{
-    font-size: 13px;
-    color: rgba(19,42,44,0.5);
-    font-style: italic;
-    padding: 12px 4px;
-  }
+  .healer-row:hover .healer-arrow{ opacity: 1; }
 
   .footer{
     padding: 24px 48px 32px;
@@ -114,23 +106,24 @@
 <div class="page">
 
   <div class="header">
-    <p class="eyebrow"><a href="../index.html">← All healers</a> &nbsp;·&nbsp; Holy Priest</p>
-    <h1>Lippies</h1>
-    <p class="subline">Dreamscythe-US &nbsp;·&nbsp; <span>1 raid night analyzed</span></p>
+    <p class="eyebrow">Guild Healer Analysis</p>
+    <h1>All Thunder No Fury</h1>
+    <p class="subline">Select a healer to view their raid history and per-boss audits.</p>
   </div>
 
   <div class="section">
-    <div class="raid-list">
-      <a class="raid-row" href="XJp8vAxzM4KtHYyb/index.html">
+    <p class="section-desc">Each healer's page lists every raid night analyzed, broken down boss by boss.</p>
+    <div class="healer-list">
+      {% for healer in healers %}
+      <a class="healer-row" href="{{ healer.healer_slug }}/index.html">
         <div>
-          <div class="raid-title">SSC / TK</div>
-          <div class="raid-meta">July 7, 2026 &nbsp;&middot;&nbsp; report XJp8vAxzM4KtHYyb</div>
+          <div class="healer-name">{{ healer.character_name }}</div>
         </div>
-        <div class="raid-meta">10 bosses killed</div>
-        <div class="raid-arrow">→</div>
+        <div class="healer-class">{{ healer.display_name }}</div>
+        <div class="healer-arrow">→</div>
       </a>
+      {% endfor %}
     </div>
-    <div class="empty-note">More raid nights will appear here as they're analyzed.</div>
   </div>
 
   <div class="footer">

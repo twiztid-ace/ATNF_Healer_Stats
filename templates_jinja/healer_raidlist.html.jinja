@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Lippies — Raid Analysis</title>
+<title>{{ healer_name }} — Raid Analysis</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -114,21 +114,23 @@
 <div class="page">
 
   <div class="header">
-    <p class="eyebrow"><a href="../index.html">← All healers</a> &nbsp;·&nbsp; Holy Priest</p>
-    <h1>Lippies</h1>
-    <p class="subline">Dreamscythe-US &nbsp;·&nbsp; <span>1 raid night analyzed</span></p>
+    <p class="eyebrow"><a href="../index.html">← All healers</a> &nbsp;·&nbsp; {{ healer_class_spec }}</p>
+    <h1>{{ healer_name }}</h1>
+    <p class="subline">{{ server }}-{{ region }} &nbsp;·&nbsp; <span>{{ raid_count_label }}</span></p>
   </div>
 
   <div class="section">
     <div class="raid-list">
-      <a class="raid-row" href="XJp8vAxzM4KtHYyb/index.html">
+      {% for row in raid_nights %}
+      <a class="raid-row" href="{{ row.report_code }}/index.html">
         <div>
-          <div class="raid-title">SSC / TK</div>
-          <div class="raid-meta">July 7, 2026 &nbsp;&middot;&nbsp; report XJp8vAxzM4KtHYyb</div>
+          <div class="raid-title">{{ row.raid_title }}</div>
+          <div class="raid-meta">{{ row.raid_date_display }} &nbsp;&middot;&nbsp; report {{ row.report_code }}</div>
         </div>
-        <div class="raid-meta">10 bosses killed</div>
+        <div class="raid-meta">{{ row.bosses_label }}</div>
         <div class="raid-arrow">→</div>
       </a>
+      {% endfor %}
     </div>
     <div class="empty-note">More raid nights will appear here as they're analyzed.</div>
   </div>
