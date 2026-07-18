@@ -1,0 +1,1580 @@
+{
+  "entries": [
+    {
+      "name": "Valesca",
+      "id": 13,
+      "guid": 45141910,
+      "type": "Druid",
+      "icon": "Druid-Balance",
+      "timestamp": 5313617,
+      "fight": 39,
+      "damage": {
+        "total": 14037,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 14037,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 14037,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 7670,
+      "events": [
+        {
+          "timestamp": 5313614,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 6367,
+          "unmitigatedAmount": 14037,
+          "overkill": 7670,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Titanz",
+      "id": 17,
+      "guid": 55333727,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 5314649,
+      "fight": 39,
+      "damage": {
+        "total": 32810,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5964,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 32810,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Guard Tidalvess",
+            "total": 32810,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 32,
+      "overkill": 2000,
+      "events": [
+        {
+          "timestamp": 5314632,
+          "type": "damage",
+          "sourceID": 144,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 2,
+          "amount": 17226,
+          "unmitigatedAmount": 11910,
+          "isAoE": false,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 5314632,
+          "type": "damage",
+          "sourceID": 144,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 5727,
+          "mitigated": 2957,
+          "unmitigatedAmount": 10684,
+          "overkill": 2000,
+          "isAoE": false,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 5314600,
+          "type": "damage",
+          "sourceID": 144,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 7857,
+          "mitigated": 3007,
+          "unmitigatedAmount": 10864,
+          "isAoE": false,
+          "sourceMarker": 4
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Makeitnasty",
+      "id": 36,
+      "guid": 55934335,
+      "type": "Paladin",
+      "icon": "Paladin-Holy",
+      "timestamp": 5327617,
+      "fight": 39,
+      "damage": {
+        "total": 10484,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1522,
+        "abilities": [
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 7488,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 2996,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Guard Caribdis",
+            "total": 7488,
+            "type": "Boss"
+          },
+          {
+            "name": "Spitfire Totem",
+            "total": 2996,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 30524,
+      "overkill": 737,
+      "events": [
+        {
+          "timestamp": 5327570,
+          "type": "damage",
+          "sourceID": 148,
+          "sourceIsFriendly": false,
+          "targetID": 36,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scorch",
+            "guid": 38296,
+            "type": 4,
+            "abilityIcon": "spell_fire_searingtotem.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 2259,
+          "unmitigatedAmount": 2996,
+          "overkill": 737,
+          "isAoE": true
+        },
+        {
+          "timestamp": 5326047,
+          "type": "damage",
+          "sourceID": 143,
+          "sourceIsFriendly": false,
+          "targetID": 36,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 2921,
+          "unmitigatedAmount": 2921,
+          "isAoE": true,
+          "sourceMarker": 1
+        },
+        {
+          "timestamp": 5308296,
+          "type": "damage",
+          "sourceID": 143,
+          "sourceIsFriendly": false,
+          "targetID": 36,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 39,
+          "hitType": 16,
+          "amount": 2350,
+          "mitigated": 783,
+          "unmitigatedAmount": 3133,
+          "resisted": 783,
+          "isAoE": true,
+          "sourceMarker": 1
+        }
+      ],
+      "killingBlow": {
+        "name": "Scorch",
+        "guid": 38296,
+        "type": 4,
+        "abilityIcon": "spell_fire_searingtotem.jpg"
+      }
+    },
+    {
+      "name": "Sánadar",
+      "id": 20,
+      "guid": 48620500,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 5327875,
+      "fight": 39,
+      "damage": {
+        "total": 14293,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 14293,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 14293,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 11459,
+      "events": [
+        {
+          "timestamp": 5327873,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 2834,
+          "unmitigatedAmount": 14293,
+          "overkill": 11459,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Kharet",
+      "id": 1,
+      "guid": 47125437,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 5330408,
+      "fight": 39,
+      "damage": {
+        "total": 21280,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1736,
+        "abilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 10412,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 6796,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38366,
+            "name": "Multi-Toss",
+            "total": 2589,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 30486,
+            "name": "Super Sapper Charge",
+            "total": 1483,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 10412,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Caribdis",
+            "total": 6796,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Sharkkis",
+            "total": 2589,
+            "type": "Boss"
+          },
+          {
+            "name": "Kharet",
+            "total": 1483,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7650,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 4834,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1636,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 730,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 450,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 3578,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38366,
+            "name": "Multi-Toss",
+            "total": 2589,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 30486,
+            "name": "Super Sapper Charge",
+            "total": 1483,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Groks",
+            "total": 4834,
+            "type": "Shaman"
+          },
+          {
+            "name": "Kharet",
+            "total": 2086,
+            "type": "Warrior"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 730,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 32954,
+      "overkill": 2657,
+      "events": [
+        {
+          "timestamp": 5330405,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 7755,
+          "unmitigatedAmount": 9015,
+          "overkill": 2657,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 5326728,
+          "type": "damage",
+          "sourceID": 143,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 3520,
+          "unmitigatedAmount": 3048,
+          "isAoE": true,
+          "sourceMarker": 1
+        },
+        {
+          "timestamp": 5308476,
+          "type": "damage",
+          "sourceID": 1,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Super Sapper Charge",
+            "guid": 30486,
+            "type": 4,
+            "abilityIcon": "spell_fire_selfdestruct.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 1483,
+          "unmitigatedAmount": 1070,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Sear Nova",
+        "guid": 38445,
+        "type": 4,
+        "abilityIcon": "spell_fire_sealoffire.jpg"
+      }
+    },
+    {
+      "name": "Meuklus",
+      "id": 23,
+      "guid": 51973060,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 5330409,
+      "fight": 39,
+      "damage": {
+        "total": 13742,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 4060,
+        "abilities": [
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 7368,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 6374,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Guard Caribdis",
+            "total": 7368,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 6374,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4221,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 2407,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1085,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 729,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 4221,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Groks",
+            "total": 2407,
+            "type": "Shaman"
+          },
+          {
+            "name": "Meuklus",
+            "total": 1085,
+            "type": "Shaman"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 729,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 33043,
+      "overkill": 482,
+      "events": [
+        {
+          "timestamp": 5330393,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 5892,
+          "mitigated": 2732,
+          "unmitigatedAmount": 9106,
+          "overkill": 482,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 5326471,
+          "type": "damage",
+          "sourceID": 143,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 39,
+          "hitType": 16,
+          "amount": 1469,
+          "mitigated": 1328,
+          "unmitigatedAmount": 2797,
+          "resisted": 699,
+          "isAoE": true,
+          "sourceMarker": 1
+        },
+        {
+          "timestamp": 5308892,
+          "type": "damage",
+          "sourceID": 143,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 2903,
+          "unmitigatedAmount": 2903,
+          "isAoE": true,
+          "sourceMarker": 1
+        }
+      ],
+      "killingBlow": {
+        "name": "Sear Nova",
+        "guid": 38445,
+        "type": 4,
+        "abilityIcon": "spell_fire_sealoffire.jpg"
+      }
+    },
+    {
+      "name": "Velosham",
+      "id": 40,
+      "guid": 54138549,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 5330411,
+      "fight": 39,
+      "damage": {
+        "total": 16967,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 767,
+        "abilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 8906,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 8061,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 8906,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Caribdis",
+            "total": 8061,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4115,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 2266,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1120,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 729,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 4115,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Groks",
+            "total": 2266,
+            "type": "Shaman"
+          },
+          {
+            "name": "Velosham",
+            "total": 1120,
+            "type": "Shaman"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 729,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 33018,
+      "overkill": 3523,
+      "events": [
+        {
+          "timestamp": 5330398,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 40,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 5383,
+          "unmitigatedAmount": 8906,
+          "overkill": 3523,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 5326535,
+          "type": "damage",
+          "sourceID": 143,
+          "sourceIsFriendly": false,
+          "targetID": 40,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 39,
+          "hitType": 16,
+          "amount": 2303,
+          "mitigated": 767,
+          "unmitigatedAmount": 3070,
+          "resisted": 768,
+          "isAoE": true,
+          "sourceMarker": 1
+        },
+        {
+          "timestamp": 5308822,
+          "type": "damage",
+          "sourceID": 143,
+          "sourceIsFriendly": false,
+          "targetID": 40,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 2971,
+          "unmitigatedAmount": 2971,
+          "isAoE": true,
+          "sourceMarker": 1
+        }
+      ],
+      "killingBlow": {
+        "name": "Sear Nova",
+        "guid": 38445,
+        "type": 4,
+        "abilityIcon": "spell_fire_sealoffire.jpg"
+      }
+    },
+    {
+      "name": "Maddawg",
+      "id": 16,
+      "guid": 51865006,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 5330414,
+      "fight": 39,
+      "damage": {
+        "total": 18800,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1413,
+        "abilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 8912,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 5688,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38366,
+            "name": "Multi-Toss",
+            "total": 3434,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 30486,
+            "name": "Super Sapper Charge",
+            "total": 766,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 8912,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Caribdis",
+            "total": 5688,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Sharkkis",
+            "total": 3434,
+            "type": "Boss"
+          },
+          {
+            "name": "Maddawg",
+            "total": 766,
+            "type": "Rogue"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6501,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 3398,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 2135,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 968,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38366,
+            "name": "Multi-Toss",
+            "total": 3434,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 2301,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 30486,
+            "name": "Super Sapper Charge",
+            "total": 766,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Groks",
+            "total": 3398,
+            "type": "Shaman"
+          },
+          {
+            "name": "Maddawg",
+            "total": 2135,
+            "type": "Rogue"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 968,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 32895,
+      "overkill": 1625,
+      "events": [
+        {
+          "timestamp": 5330389,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 7287,
+          "unmitigatedAmount": 8912,
+          "overkill": 1625,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 5326623,
+          "type": "damage",
+          "sourceID": 143,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt Volley",
+            "guid": 38335,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 2796,
+          "unmitigatedAmount": 2796,
+          "isAoE": true,
+          "sourceMarker": 1
+        },
+        {
+          "timestamp": 5308182,
+          "type": "damage",
+          "sourceID": 16,
+          "sourceIsFriendly": true,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Super Sapper Charge",
+            "guid": 30486,
+            "type": 4,
+            "abilityIcon": "spell_fire_selfdestruct.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 766,
+          "unmitigatedAmount": 766,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Sear Nova",
+        "guid": 38445,
+        "type": 4,
+        "abilityIcon": "spell_fire_sealoffire.jpg"
+      }
+    },
+    {
+      "name": "Pockowned",
+      "id": 28,
+      "guid": 56750964,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 5330416,
+      "fight": 39,
+      "damage": {
+        "total": 23738,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2360,
+        "abilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 9277,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 29436,
+            "name": "Leeching Throw",
+            "total": 3150,
+            "type": 8,
+            "icon": "ability_hunter_aimedshot.jpg"
+          },
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 2832,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38366,
+            "name": "Multi-Toss",
+            "total": 2559,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 2502,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 9277,
+            "type": "Boss"
+          },
+          {
+            "name": "Pockowned",
+            "total": 5920,
+            "type": "Paladin"
+          },
+          {
+            "name": "Fathom-Guard Sharkkis",
+            "total": 5709,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Caribdis",
+            "total": 2832,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 12619,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 8234,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 2148,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1209,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 1028,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29436,
+            "name": "Leeching Throw",
+            "total": 3041,
+            "type": 8,
+            "icon": "ability_hunter_aimedshot.jpg"
+          },
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 2657,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38366,
+            "name": "Multi-Toss",
+            "total": 2075,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 1792,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 1623,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Groks",
+            "total": 8234,
+            "type": "Shaman"
+          },
+          {
+            "name": "Xindira",
+            "total": 2148,
+            "type": "Priest"
+          },
+          {
+            "name": "Pockowned",
+            "total": 1209,
+            "type": "Paladin"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 1028,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 34907,
+      "overkill": 1042,
+      "events": [
+        {
+          "timestamp": 5330402,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 8235,
+          "unmitigatedAmount": 9277,
+          "overkill": 1042,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 5329585,
+          "type": "damage",
+          "sourceID": 28,
+          "sourceIsFriendly": true,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 106,
+          "unmitigatedAmount": 106,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5329585,
+          "type": "damage",
+          "sourceID": 28,
+          "sourceIsFriendly": true,
+          "targetID": 28,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 108,
+          "unmitigatedAmount": 108,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Sear Nova",
+        "guid": 38445,
+        "type": 4,
+        "abilityIcon": "spell_fire_sealoffire.jpg"
+      }
+    },
+    {
+      "name": "Drumcodine",
+      "id": 2,
+      "guid": 49301956,
+      "type": "Druid",
+      "icon": "Druid-Guardian",
+      "timestamp": 5335602,
+      "fight": 39,
+      "damage": {
+        "total": 51842,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 132464,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 46454,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 5388,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 51842,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 31556,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 12890,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 27136,
+            "name": "Holy Light",
+            "total": 12621,
+            "type": 2,
+            "icon": "spell_holy_holybolt.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 4299,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 1040,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 706,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 30697,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 859,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Groks",
+            "total": 12890,
+            "type": "Shaman"
+          },
+          {
+            "name": "Makeitnasty",
+            "total": 12621,
+            "type": "Paladin"
+          },
+          {
+            "name": "Vosla",
+            "total": 5339,
+            "type": "Druid"
+          },
+          {
+            "name": "Drumcodine",
+            "total": 706,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 5172,
+      "overkill": 2621,
+      "events": [
+        {
+          "timestamp": 5335565,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 15,
+          "amount": 7485,
+          "mitigated": 16843,
+          "unmitigatedAmount": 26949,
+          "overkill": 2621,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 5334875,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 7736,
+          "mitigated": 23208,
+          "unmitigatedAmount": 30944,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 5334185,
+          "type": "damage",
+          "sourceID": 141,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 7037,
+          "mitigated": 21107,
+          "unmitigatedAmount": 28144,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

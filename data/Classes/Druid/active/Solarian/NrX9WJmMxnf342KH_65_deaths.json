@@ -1,0 +1,120 @@
+{
+  "entries": [
+    {
+      "name": "Orbb",
+      "id": 17,
+      "guid": 31695542,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 9788074,
+      "fight": 65,
+      "damage": {
+        "total": 11740,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3045,
+        "abilities": [
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 6600,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5140,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "High Astromancer Solarian",
+            "total": 11740,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2179,
+      "overkill": 415,
+      "events": [
+        {
+          "timestamp": 9788071,
+          "type": "damage",
+          "sourceID": 198,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 65,
+          "hitType": 1,
+          "amount": 2885,
+          "unmitigatedAmount": 3000,
+          "overkill": 415,
+          "isAoE": false
+        },
+        {
+          "timestamp": 9787021,
+          "type": "damage",
+          "sourceID": 198,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 65,
+          "hitType": 1,
+          "amount": 3300,
+          "unmitigatedAmount": 3000,
+          "isAoE": false
+        },
+        {
+          "timestamp": 9785892,
+          "type": "damage",
+          "sourceID": 198,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 65,
+          "hitType": 1,
+          "amount": 5140,
+          "mitigated": 3045,
+          "unmitigatedAmount": 8185,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Missiles",
+        "guid": 39414,
+        "type": 64,
+        "abilityIcon": "spell_nature_starfall.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "entries": [
+    {
+      "name": "Evilface",
+      "id": 15,
+      "guid": 95561849,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 7168859,
+      "fight": 64,
+      "damage": {
+        "total": 10774,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 5375,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 4176,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 1223,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Evilface",
+            "total": 5375,
+            "type": "Warlock"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 4176,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 1223,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 10532,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 7168843,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 1223,
+          "unmitigatedAmount": 1223,
+          "overkill": 0,
+          "isAoE": false,
+          "targetMarker": 3
+        },
+        {
+          "timestamp": 7166276,
+          "type": "damage",
+          "sourceID": 15,
+          "sourceIsFriendly": true,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Watery Grave Explosion",
+            "guid": 37852,
+            "type": 16,
+            "abilityIcon": "spell_frost_arcticwinds.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 5375,
+          "unmitigatedAmount": 5375,
+          "isAoE": true,
+          "sourceMarker": 3,
+          "targetMarker": 3
+        },
+        {
+          "timestamp": 7158311,
+          "type": "damage",
+          "sourceID": 366,
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Earthquake",
+            "guid": 37764,
+            "type": 1,
+            "abilityIcon": "spell_nature_earthquake.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 4176,
+          "unmitigatedAmount": 4176,
+          "isAoE": true,
+          "targetMarker": 3
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

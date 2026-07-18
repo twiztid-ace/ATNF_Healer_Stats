@@ -1,0 +1,148 @@
+{
+  "entries": [
+    {
+      "name": "Teags",
+      "id": 14,
+      "guid": 42808752,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 7528905,
+      "fight": 57,
+      "damage": {
+        "total": 11384,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 802,
+        "abilities": [
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 8663,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 2721,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "High Astromancer Solarian",
+            "total": 11384,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 60,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 60,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 60,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Teags",
+            "total": 60,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 4780,
+      "overkill": 150,
+      "events": [
+        {
+          "timestamp": 7528891,
+          "type": "damage",
+          "sourceID": 273,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 57,
+          "hitType": 16,
+          "amount": 2449,
+          "mitigated": 401,
+          "unmitigatedAmount": 3000,
+          "resisted": 750,
+          "overkill": 150,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 7527831,
+          "type": "damage",
+          "sourceID": 273,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 57,
+          "hitType": 1,
+          "amount": 3465,
+          "unmitigatedAmount": 3000,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 7526895,
+          "type": "damage",
+          "sourceID": 273,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 57,
+          "hitType": 16,
+          "amount": 2599,
+          "mitigated": 401,
+          "unmitigatedAmount": 3000,
+          "resisted": 750,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Missiles",
+        "guid": 39414,
+        "type": 64,
+        "abilityIcon": "spell_nature_starfall.jpg"
+      }
+    }
+  ]
+}

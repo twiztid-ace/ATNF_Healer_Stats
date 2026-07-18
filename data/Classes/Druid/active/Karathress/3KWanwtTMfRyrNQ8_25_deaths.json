@@ -1,0 +1,191 @@
+{
+  "entries": [
+    {
+      "name": "Sixxlack",
+      "id": 35,
+      "guid": 73070996,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 3589785,
+      "fight": 25,
+      "damage": {
+        "total": 12195,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1715,
+        "abilities": [
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 5070,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 29436,
+            "name": "Leeching Throw",
+            "total": 3126,
+            "type": 8,
+            "icon": "ability_hunter_aimedshot.jpg"
+          },
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 2020,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 1979,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 7090,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Sharkkis",
+            "total": 3126,
+            "type": "Boss"
+          },
+          {
+            "name": "Spitfire Totem",
+            "total": 1979,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1730,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 919,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 811,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29436,
+            "name": "Leeching Throw",
+            "total": 1448,
+            "type": 8,
+            "icon": "ability_hunter_aimedshot.jpg"
+          },
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 282,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Yoinka",
+            "total": 919,
+            "type": "Priest"
+          },
+          {
+            "name": "Sixxlack",
+            "total": 811,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 12840,
+      "overkill": 326,
+      "events": [
+        {
+          "timestamp": 3589769,
+          "type": "damage",
+          "sourceID": 125,
+          "sourceIsFriendly": false,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 1694,
+          "mitigated": 866,
+          "unmitigatedAmount": 2886,
+          "overkill": 326,
+          "isAoE": true,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 3588293,
+          "type": "damage",
+          "sourceID": 127,
+          "sourceIsFriendly": false,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Leeching Throw",
+            "guid": 29436,
+            "type": 8,
+            "abilityIcon": "ability_hunter_aimedshot.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 521,
+          "unmitigatedAmount": 521,
+          "isAoE": false,
+          "tick": true,
+          "sourceMarker": 7
+        },
+        {
+          "timestamp": 3587021,
+          "type": "damage",
+          "sourceID": 129,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 35,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scorch",
+            "guid": 38296,
+            "type": 4,
+            "abilityIcon": "spell_fire_searingtotem.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 1979,
+          "mitigated": 849,
+          "unmitigatedAmount": 2828,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Sear Nova",
+        "guid": 38445,
+        "type": 4,
+        "abilityIcon": "spell_fire_sealoffire.jpg"
+      }
+    }
+  ]
+}

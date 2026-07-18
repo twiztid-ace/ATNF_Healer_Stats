@@ -1,0 +1,404 @@
+{
+  "entries": [
+    {
+      "name": "Mistario",
+      "id": 18,
+      "guid": 52241842,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 4275903,
+      "fight": 32,
+      "damage": {
+        "total": 23777,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1699,
+        "abilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 11146,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 38441,
+            "name": "Cataclysmic Bolt",
+            "total": 8571,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 29436,
+            "name": "Leeching Throw",
+            "total": 3144,
+            "type": 8,
+            "icon": "ability_hunter_aimedshot.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 916,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Lord Karathress",
+            "total": 19717,
+            "type": "Boss"
+          },
+          {
+            "name": "Fathom-Guard Sharkkis",
+            "total": 3144,
+            "type": "Boss"
+          },
+          {
+            "name": "Spitfire Totem",
+            "total": 916,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 10054,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 6590,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 3464,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38445,
+            "name": "Sear Nova",
+            "total": 6321,
+            "type": 4,
+            "icon": "spell_fire_sealoffire.jpg"
+          },
+          {
+            "guid": 29436,
+            "name": "Leeching Throw",
+            "total": 2817,
+            "type": 8,
+            "icon": "ability_hunter_aimedshot.jpg"
+          },
+          {
+            "guid": 38296,
+            "name": "Scorch",
+            "total": 916,
+            "type": 4,
+            "icon": "spell_fire_searingtotem.jpg",
+            "petName": "Spitfire Totem"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Holychie",
+            "total": 6590,
+            "type": "Shaman"
+          },
+          {
+            "name": "Junave",
+            "total": 3464,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 67738,
+      "overkill": 3232,
+      "events": [
+        {
+          "timestamp": 4275902,
+          "type": "damage",
+          "sourceID": 128,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cataclysmic Bolt",
+            "guid": 38441,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 32,
+          "hitType": 1,
+          "amount": 5339,
+          "unmitigatedAmount": 8571,
+          "overkill": 3232,
+          "isAoE": false,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 4269623,
+          "type": "damage",
+          "sourceID": 128,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sear Nova",
+            "guid": 38445,
+            "type": 4,
+            "abilityIcon": "spell_fire_sealoffire.jpg"
+          },
+          "fight": 32,
+          "hitType": 1,
+          "amount": 5177,
+          "unmitigatedAmount": 5177,
+          "isAoE": true,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 4245785,
+          "type": "damage",
+          "sourceID": 135,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Scorch",
+            "guid": 38296,
+            "type": 4,
+            "abilityIcon": "spell_fire_searingtotem.jpg"
+          },
+          "fight": 32,
+          "hitType": 16,
+          "amount": 916,
+          "mitigated": 1699,
+          "unmitigatedAmount": 2615,
+          "resisted": 1308,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cataclysmic Bolt",
+        "guid": 38441,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Kampffalke",
+      "id": 33,
+      "guid": 51612014,
+      "type": "Druid",
+      "icon": "Druid-Feral",
+      "timestamp": 4278833,
+      "fight": 32,
+      "damage": {
+        "total": 66775,
+        "totalReduced": 62309,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 112564,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 54909,
+            "totalReduced": 52273,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 6580,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38358,
+            "name": "Tidal Surge",
+            "total": 5286,
+            "totalReduced": 3456,
+            "type": 16,
+            "icon": "spell_frost_summonwaterelemental.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Fathom-Guard Caribdis",
+            "total": 66775,
+            "totalReduced": 62309,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 48738,
+        "totalReduced": 44272,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 24904,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 25222,
+            "name": "Renew",
+            "total": 10241,
+            "type": 2,
+            "icon": "spell_holy_renew.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 5850,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 4466,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 1925,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 38538,
+            "totalReduced": 35902,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 38335,
+            "name": "Water Bolt Volley",
+            "total": 6580,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          },
+          {
+            "guid": 38358,
+            "name": "Tidal Surge",
+            "total": 3620,
+            "totalReduced": 1790,
+            "type": 16,
+            "icon": "spell_frost_summonwaterelemental.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Junave",
+            "total": 42513,
+            "totalReduced": 38047,
+            "type": "Priest"
+          },
+          {
+            "name": "Kampffalke",
+            "total": 6225,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 82819,
+      "overkill": 1789,
+      "events": [
+        {
+          "timestamp": 4278814,
+          "type": "damage",
+          "sourceID": 127,
+          "sourceIsFriendly": false,
+          "targetID": 33,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 32,
+          "hitType": 1,
+          "amount": 926,
+          "mitigated": 5297,
+          "unmitigatedAmount": 8012,
+          "overkill": 1789,
+          "isAoE": false,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 4276791,
+          "type": "damage",
+          "sourceID": 127,
+          "sourceIsFriendly": false,
+          "targetID": 33,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 32,
+          "hitType": 1,
+          "amount": 1865,
+          "mitigated": 3638,
+          "unmitigatedAmount": 5503,
+          "isAoE": false,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 4274790,
+          "type": "damage",
+          "sourceID": 127,
+          "sourceIsFriendly": false,
+          "targetID": 33,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 32,
+          "hitType": 1,
+          "amount": 1863,
+          "mitigated": 3633,
+          "unmitigatedAmount": 5496,
+          "isAoE": false,
+          "sourceMarker": 6
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

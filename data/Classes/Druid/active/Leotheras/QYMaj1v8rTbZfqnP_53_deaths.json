@@ -1,0 +1,895 @@
+{
+  "entries": [
+    {
+      "name": "Clavvadin",
+      "id": 17,
+      "guid": 61147815,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 6320633,
+      "fight": 53,
+      "damage": {
+        "total": 10625,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37675,
+            "name": "Chaos Blast",
+            "total": 5025,
+            "type": 4,
+            "icon": "spell_fire_felflamebolt.jpg"
+          },
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 5000,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          },
+          {
+            "guid": 351761,
+            "name": "Judgement of the Martyr",
+            "total": 429,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          },
+          {
+            "guid": 348703,
+            "name": "Seal of the Martyr",
+            "total": 171,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Leotheras the Blind",
+            "total": 10025,
+            "type": "Boss"
+          },
+          {
+            "name": "Clavvadin",
+            "total": 600,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1128,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 478,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 365,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 27163,
+            "name": "Judgement of Light",
+            "total": 285,
+            "type": 2,
+            "icon": "spell_holy_healingaura.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37675,
+            "name": "Chaos Blast",
+            "total": 478,
+            "type": 4,
+            "icon": "spell_fire_felflamebolt.jpg"
+          },
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 460,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          },
+          {
+            "guid": 351761,
+            "name": "Judgement of the Martyr",
+            "total": 142,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          },
+          {
+            "guid": 348703,
+            "name": "Seal of the Martyr",
+            "total": 48,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Clavvadin",
+            "total": 650,
+            "type": "Paladin"
+          },
+          {
+            "name": "Delenie",
+            "total": 478,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 4843,
+      "overkill": 390,
+      "events": [
+        {
+          "timestamp": 6320595,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Chaos Blast",
+            "guid": 37675,
+            "type": 4,
+            "abilityIcon": "spell_fire_felflamebolt.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 2960,
+          "unmitigatedAmount": 1675,
+          "overkill": 390,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6320534,
+          "type": "damage",
+          "sourceID": 17,
+          "sourceIsFriendly": true,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of the Martyr",
+            "guid": 348703,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 123,
+          "unmitigatedAmount": 123,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6318751,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 2500,
+          "unmitigatedAmount": 2500,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Chaos Blast",
+        "guid": 37675,
+        "type": 4,
+        "abilityIcon": "spell_fire_felflamebolt.jpg"
+      }
+    },
+    {
+      "name": "Applejohn",
+      "id": 27,
+      "guid": 54082721,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 6321774,
+      "fight": 53,
+      "damage": {
+        "total": 15374,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3243,
+        "abilities": [
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 13257,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          },
+          {
+            "guid": 37675,
+            "name": "Chaos Blast",
+            "total": 1675,
+            "type": 4,
+            "icon": "spell_fire_felflamebolt.jpg"
+          },
+          {
+            "guid": 351761,
+            "name": "Judgement of the Martyr",
+            "total": 442,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Leotheras the Blind",
+            "total": 14932,
+            "type": "Boss"
+          },
+          {
+            "name": "Applejohn",
+            "total": 442,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5899,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1938,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 1912,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 1781,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 268,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 5845,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          },
+          {
+            "guid": 351761,
+            "name": "Judgement of the Martyr",
+            "total": 54,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Falcony",
+            "total": 1938,
+            "type": "Priest"
+          },
+          {
+            "name": "Delenie",
+            "total": 1912,
+            "type": "Druid"
+          },
+          {
+            "name": "Ghandaho",
+            "total": 1781,
+            "type": "Shaman"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 268,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 11002,
+      "overkill": 368,
+      "events": [
+        {
+          "timestamp": 6321743,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 2132,
+          "unmitigatedAmount": 2500,
+          "overkill": 368,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 6320593,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Chaos Blast",
+            "guid": 37675,
+            "type": 4,
+            "abilityIcon": "spell_fire_felflamebolt.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 1675,
+          "unmitigatedAmount": 1675,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6318751,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 27,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 2500,
+          "unmitigatedAmount": 2500,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Whirlwind",
+        "guid": 37641,
+        "type": 1,
+        "abilityIcon": "ability_gouge.jpg"
+      }
+    },
+    {
+      "name": "Clavvadin",
+      "id": 17,
+      "guid": 61147815,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 6354019,
+      "fight": 53,
+      "damage": {
+        "total": 10194,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37675,
+            "name": "Chaos Blast",
+            "total": 10050,
+            "type": 4,
+            "icon": "spell_fire_felflamebolt.jpg"
+          },
+          {
+            "guid": 351761,
+            "name": "Judgement of the Martyr",
+            "total": 97,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          },
+          {
+            "guid": 348703,
+            "name": "Seal of the Martyr",
+            "total": 47,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Leotheras the Blind",
+            "total": 10050,
+            "type": "Boss"
+          },
+          {
+            "name": "Clavvadin",
+            "total": 144,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2255,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1944,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 311,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37675,
+            "name": "Chaos Blast",
+            "total": 2111,
+            "type": 4,
+            "icon": "spell_fire_felflamebolt.jpg"
+          },
+          {
+            "guid": 351761,
+            "name": "Judgement of the Martyr",
+            "total": 97,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          },
+          {
+            "guid": 348703,
+            "name": "Seal of the Martyr",
+            "total": 47,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Falcony",
+            "total": 1944,
+            "type": "Priest"
+          },
+          {
+            "name": "Clavvadin",
+            "total": 311,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 5776,
+      "overkill": 562,
+      "events": [
+        {
+          "timestamp": 6354016,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Chaos Blast",
+            "guid": 37675,
+            "type": 4,
+            "abilityIcon": "spell_fire_felflamebolt.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 4463,
+          "unmitigatedAmount": 1675,
+          "overkill": 562,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6350964,
+          "type": "damage",
+          "sourceID": 17,
+          "sourceIsFriendly": true,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Judgement of the Martyr",
+            "guid": 351761,
+            "type": 2,
+            "abilityIcon": "spell_shadow_lifedrain.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 97,
+          "unmitigatedAmount": 97,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6350776,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Chaos Blast",
+            "guid": 37675,
+            "type": 4,
+            "abilityIcon": "spell_fire_felflamebolt.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 3350,
+          "unmitigatedAmount": 1675,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Chaos Blast",
+        "guid": 37675,
+        "type": 4,
+        "abilityIcon": "spell_fire_felflamebolt.jpg"
+      }
+    },
+    {
+      "name": "Fatalxd",
+      "id": 18,
+      "guid": 43195149,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 6385355,
+      "fight": 53,
+      "damage": {
+        "total": 16924,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 7932,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 16924,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Leotheras the Blind",
+            "total": 16924,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5027,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 4306,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 478,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 27163,
+            "name": "Judgement of Light",
+            "total": 190,
+            "type": 2,
+            "icon": "spell_holy_healingaura.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 53,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5027,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Delenie",
+            "total": 4784,
+            "type": "Druid"
+          },
+          {
+            "name": "Fatalxd",
+            "total": 190,
+            "type": "Warrior"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 53,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 2664,
+      "overkill": 313,
+      "events": [
+        {
+          "timestamp": 6385317,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 15,
+          "amount": 4509,
+          "mitigated": 415,
+          "unmitigatedAmount": 5237,
+          "overkill": 313,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6384276,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 5532,
+          "mitigated": 3480,
+          "unmitigatedAmount": 9012,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6382653,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 6570,
+          "mitigated": 4037,
+          "unmitigatedAmount": 10607,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Ogluesniffer",
+      "id": 19,
+      "guid": 57116069,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 6396491,
+      "fight": 53,
+      "damage": {
+        "total": 10593,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5539,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7426,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 3167,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Leotheras the Blind",
+            "total": 10593,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 202,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 107,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          },
+          {
+            "guid": 27163,
+            "name": "Judgement of Light",
+            "total": 95,
+            "type": 2,
+            "icon": "spell_holy_healingaura.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 149,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 53,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 107,
+            "type": "Pet"
+          },
+          {
+            "name": "Ogluesniffer",
+            "total": 95,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 3007,
+      "overkill": 42,
+      "events": [
+        {
+          "timestamp": 6396491,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 1708,
+          "mitigated": 750,
+          "unmitigatedAmount": 2500,
+          "overkill": 42,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 6394536,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 15,
+          "amount": 7426,
+          "mitigated": 3206,
+          "unmitigatedAmount": 10632,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6393484,
+          "type": "damage",
+          "sourceID": 561,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 1417,
+          "mitigated": 1583,
+          "unmitigatedAmount": 3000,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Whirlwind",
+        "guid": 37641,
+        "type": 1,
+        "abilityIcon": "ability_gouge.jpg"
+      }
+    }
+  ]
+}

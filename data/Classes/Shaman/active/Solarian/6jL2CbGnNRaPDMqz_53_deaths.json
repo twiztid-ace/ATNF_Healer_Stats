@@ -1,0 +1,137 @@
+{
+  "entries": [
+    {
+      "name": "Cemow",
+      "id": 10,
+      "guid": 45608360,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 5528001,
+      "fight": 53,
+      "damage": {
+        "total": 15369,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 10184,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 15369,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "High Astromancer Solarian",
+            "total": 15369,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1383,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 1383,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1383,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Cabet",
+            "total": 1383,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 2000,
+      "overkill": 2512,
+      "events": [
+        {
+          "timestamp": 5527999,
+          "type": "damage",
+          "sourceID": 194,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 2360,
+          "mitigated": 3782,
+          "unmitigatedAmount": 8654,
+          "overkill": 2512,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5526774,
+          "type": "damage",
+          "sourceID": 194,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 5140,
+          "mitigated": 3135,
+          "unmitigatedAmount": 8275,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5525999,
+          "type": "damage",
+          "sourceID": 194,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 5357,
+          "mitigated": 3267,
+          "unmitigatedAmount": 8624,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

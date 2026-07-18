@@ -1,0 +1,126 @@
+{
+  "entries": [
+    {
+      "name": "Aarcher",
+      "id": 36,
+      "guid": 58135024,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 2231783,
+      "fight": 19,
+      "damage": {
+        "total": 10724,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34190,
+            "name": "Arcane Orb",
+            "total": 10724,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 10724,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 781,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 781,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34190,
+            "name": "Arcane Orb",
+            "total": 781,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Aarcher",
+            "total": 781,
+            "type": "Hunter"
+          }
+        ]
+      },
+      "deathWindow": 19486,
+      "overkill": 178,
+      "events": [
+        {
+          "timestamp": 2231759,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 36,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Orb",
+            "guid": 34190,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 19,
+          "hitType": 1,
+          "amount": 4848,
+          "unmitigatedAmount": 5026,
+          "overkill": 178,
+          "isAoE": true
+        },
+        {
+          "timestamp": 2212273,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 36,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Orb",
+            "guid": 34190,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 19,
+          "hitType": 1,
+          "amount": 5698,
+          "unmitigatedAmount": 5698,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Orb",
+        "guid": 34190,
+        "type": 64,
+        "abilityIcon": "spell_nature_wispsplode.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,786 @@
+{
+  "entries": [
+    {
+      "name": "Zugmok",
+      "id": 154,
+      "guid": 51419620,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 113783923,
+      "fight": 121,
+      "damage": {
+        "total": 13235,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 16438,
+        "blocked": 183,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12486,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 41932,
+            "name": "Carnivorous Bite",
+            "total": 749,
+            "type": 1,
+            "icon": "ability_druid_rake.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tidewalker Lurker",
+            "total": 13235,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1023,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1023,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 41932,
+            "name": "Carnivorous Bite",
+            "total": 749,
+            "type": 1,
+            "icon": "ability_druid_rake.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 274,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Billybishop",
+            "total": 1023,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 3990,
+      "overkill": 188,
+      "events": [
+        {
+          "timestamp": 113783882,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 5,
+          "sourceIsFriendly": false,
+          "targetID": 154,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 443,
+          "mitigated": 1283,
+          "unmitigatedAmount": 1914,
+          "overkill": 188,
+          "isAoE": false
+        },
+        {
+          "timestamp": 113783881,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 154,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 645,
+          "mitigated": 1309,
+          "unmitigatedAmount": 1954,
+          "isAoE": false
+        },
+        {
+          "timestamp": 113783881,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 154,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 4,
+          "amount": 395,
+          "mitigated": 1354,
+          "unmitigatedAmount": 1749,
+          "blocked": 183,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Billybishop",
+      "id": 173,
+      "guid": 81578938,
+      "type": "Priest",
+      "icon": "Priest-Holy",
+      "timestamp": 113796948,
+      "fight": 121,
+      "damage": {
+        "total": 15670,
+        "totalReduced": 13824,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5144,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 15670,
+            "totalReduced": 13824,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tidewalker Lurker",
+            "total": 15670,
+            "totalReduced": 13824,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1925,
+        "totalReduced": 79,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 1846,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 79,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1925,
+            "totalReduced": 79,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Naughtia",
+            "total": 1846,
+            "totalReduced": 0,
+            "type": "Priest"
+          },
+          {
+            "name": "Zalem",
+            "total": 79,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 2001,
+      "overkill": 42,
+      "events": [
+        {
+          "timestamp": 113784990,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 11,
+          "sourceIsFriendly": false,
+          "targetID": 173,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 1384,
+          "mitigated": 430,
+          "unmitigatedAmount": 1814,
+          "isAoE": false
+        },
+        {
+          "timestamp": 113784990,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 12,
+          "sourceIsFriendly": false,
+          "targetID": 173,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 1342,
+          "mitigated": 416,
+          "unmitigatedAmount": 1758,
+          "isAoE": false
+        },
+        {
+          "timestamp": 113784990,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 9,
+          "sourceIsFriendly": false,
+          "targetID": 173,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 1429,
+          "mitigated": 444,
+          "unmitigatedAmount": 1873,
+          "isAoE": false
+        }
+      ]
+    },
+    {
+      "name": "Wylerun",
+      "id": 162,
+      "guid": 54719744,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 113905380,
+      "fight": 121,
+      "damage": {
+        "total": 10887,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37852,
+            "name": "Watery Grave Explosion",
+            "total": 5567,
+            "type": 16,
+            "icon": "spell_frost_arcticwinds.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3851,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 854,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 410,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 205,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Wylerun",
+            "total": 6182,
+            "type": "Paladin"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 3851,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 854,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 18994,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 113905379,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 162,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 854,
+          "unmitigatedAmount": 854,
+          "overkill": 0,
+          "isAoE": false,
+          "targetMarker": 1
+        },
+        {
+          "timestamp": 113902565,
+          "type": "damage",
+          "sourceID": 162,
+          "sourceIsFriendly": true,
+          "targetID": 162,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Watery Grave Explosion",
+            "guid": 37852,
+            "type": 16,
+            "abilityIcon": "spell_frost_arcticwinds.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 5567,
+          "unmitigatedAmount": 5567,
+          "isAoE": true,
+          "sourceMarker": 1,
+          "targetMarker": 1
+        },
+        {
+          "timestamp": 113894953,
+          "type": "damage",
+          "sourceID": 236,
+          "sourceIsFriendly": false,
+          "targetID": 162,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Earthquake",
+            "guid": 37764,
+            "type": 1,
+            "abilityIcon": "spell_nature_earthquake.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 3851,
+          "unmitigatedAmount": 3851,
+          "isAoE": true,
+          "targetMarker": 1
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Mjrbuzzkill",
+      "id": 140,
+      "guid": 48516315,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 113991990,
+      "fight": 121,
+      "damage": {
+        "total": 13041,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1631,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12833,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 41932,
+            "name": "Carnivorous Bite",
+            "total": 208,
+            "type": 1,
+            "icon": "ability_druid_rake.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tidewalker Lurker",
+            "total": 13041,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 4310,
+      "overkill": 547,
+      "events": [
+        {
+          "timestamp": 113991973,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 33,
+          "sourceIsFriendly": false,
+          "targetID": 140,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 1224,
+          "mitigated": 305,
+          "unmitigatedAmount": 2076,
+          "overkill": 547,
+          "isAoE": false
+        },
+        {
+          "timestamp": 113991709,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 25,
+          "sourceIsFriendly": false,
+          "targetID": 140,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Carnivorous Bite",
+            "guid": 41932,
+            "type": 1,
+            "abilityIcon": "ability_druid_rake.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 208,
+          "unmitigatedAmount": 208,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 113990843,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 36,
+          "sourceIsFriendly": false,
+          "targetID": 140,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 2,
+          "amount": 3360,
+          "unmitigatedAmount": 1969,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Zugmok",
+      "id": 154,
+      "guid": 51419620,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 114000686,
+      "fight": 121,
+      "damage": {
+        "total": 21406,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 8993,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 14130,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 4300,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 41932,
+            "name": "Carnivorous Bite",
+            "total": 2976,
+            "type": 1,
+            "icon": "ability_druid_rake.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tidewalker Lurker",
+            "total": 17106,
+            "type": "NPC"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 4300,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 10739,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34865,
+            "name": "Circle of Healing",
+            "total": 3732,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 28495,
+            "name": "Healing Potion",
+            "total": 2295,
+            "type": 1,
+            "icon": "inv_potion_131.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 2061,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 25233,
+            "name": "Flash Heal",
+            "total": 1183,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 943,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5837,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37764,
+            "name": "Earthquake",
+            "total": 3971,
+            "type": 1,
+            "icon": "spell_nature_earthquake.jpg"
+          },
+          {
+            "guid": 41932,
+            "name": "Carnivorous Bite",
+            "total": 931,
+            "type": 1,
+            "icon": "ability_druid_rake.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lestast",
+            "total": 5858,
+            "type": "Priest"
+          },
+          {
+            "name": "Zugmok",
+            "total": 2820,
+            "type": "Warrior"
+          },
+          {
+            "name": "Craftbin",
+            "total": 2061,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 32973,
+      "overkill": 543,
+      "events": [
+        {
+          "timestamp": 114000672,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 34,
+          "sourceIsFriendly": false,
+          "targetID": 154,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 430,
+          "mitigated": 705,
+          "unmitigatedAmount": 1678,
+          "overkill": 543,
+          "isAoE": false
+        },
+        {
+          "timestamp": 113999675,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 26,
+          "sourceIsFriendly": false,
+          "targetID": 154,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Carnivorous Bite",
+            "guid": 41932,
+            "type": 1,
+            "abilityIcon": "ability_druid_rake.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 686,
+          "unmitigatedAmount": 624,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 113998649,
+          "type": "damage",
+          "sourceID": 238,
+          "sourceInstance": 34,
+          "sourceIsFriendly": false,
+          "targetID": 154,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 121,
+          "hitType": 1,
+          "amount": 1107,
+          "mitigated": 838,
+          "unmitigatedAmount": 1945,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

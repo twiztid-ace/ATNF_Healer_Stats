@@ -1,0 +1,638 @@
+{
+  "entries": [
+    {
+      "name": "Divinity",
+      "id": 18,
+      "guid": 19427317,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 5639902,
+      "fight": 39,
+      "damage": {
+        "total": 11066,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2660,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6253,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 36979,
+            "name": "Multi-Shot",
+            "total": 4185,
+            "type": 64,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 348703,
+            "name": "Seal of the Martyr",
+            "total": 628,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherstrand Longbow",
+            "total": 10438,
+            "type": "NPC"
+          },
+          {
+            "name": "Divinity",
+            "total": 628,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 24044,
+      "overkill": 499,
+      "events": [
+        {
+          "timestamp": 5639869,
+          "type": "damage",
+          "sourceID": 121,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 1544,
+          "mitigated": 1724,
+          "unmitigatedAmount": 3767,
+          "overkill": 499,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5636984,
+          "type": "damage",
+          "sourceID": 121,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Multi-Shot",
+            "guid": 36979,
+            "type": 64,
+            "abilityIcon": "ability_upgrademoonglaive.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 4185,
+          "unmitigatedAmount": 4185,
+          "isAoE": true
+        },
+        {
+          "timestamp": 5636734,
+          "type": "damage",
+          "sourceID": 121,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 15,
+          "amount": 4210,
+          "mitigated": 936,
+          "unmitigatedAmount": 5146,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "薩齊齊",
+      "id": 1,
+      "guid": 19489821,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 5750509,
+      "fight": 39,
+      "damage": {
+        "total": 12734,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12734,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Thaladred the Darkener",
+            "total": 12734,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3105,
+      "events": [
+        {
+          "timestamp": 5750493,
+          "type": "damage",
+          "sourceID": 104,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 15,
+          "amount": 9629,
+          "unmitigatedAmount": 11809,
+          "overkill": 3105,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Cozy",
+      "id": 9,
+      "guid": 19503619,
+      "type": "Paladin",
+      "icon": "Paladin-Holy",
+      "timestamp": 5870595,
+      "fight": 39,
+      "damage": {
+        "total": 70406,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 63781,
+        "abilities": [
+          {
+            "guid": 36731,
+            "name": "Flame Strike",
+            "total": 70406,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 70406,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 60569,
+      "events": [
+        {
+          "timestamp": 5870581,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Strike",
+            "guid": 36731,
+            "type": 4,
+            "abilityIcon": "spell_fire_selfdestruct.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 9837,
+          "mitigated": 63781,
+          "unmitigatedAmount": 134187,
+          "overkill": 60569,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Strike",
+        "guid": 36731,
+        "type": 4,
+        "abilityIcon": "spell_fire_selfdestruct.jpg"
+      }
+    },
+    {
+      "name": "Divinity",
+      "id": 18,
+      "guid": 19427317,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 5995457,
+      "fight": 39,
+      "damage": {
+        "total": 14394,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1627,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 14394,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 14394,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 8809,
+      "events": [
+        {
+          "timestamp": 5995438,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 15,
+          "amount": 5585,
+          "mitigated": 1627,
+          "unmitigatedAmount": 16021,
+          "overkill": 8809,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "古爾丹作弊",
+      "id": 19,
+      "guid": 19408740,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 5997885,
+      "fight": 39,
+      "damage": {
+        "total": 12068,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2080,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12068,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 12068,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3940,
+      "events": [
+        {
+          "timestamp": 5997853,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 8128,
+          "mitigated": 2080,
+          "unmitigatedAmount": 14148,
+          "overkill": 3940,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "小胖賊",
+      "id": 26,
+      "guid": 19306632,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 6008567,
+      "fight": 39,
+      "damage": {
+        "total": 13447,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 13447,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 13447,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3372,
+      "events": [
+        {
+          "timestamp": 6008533,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 26,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 15,
+          "amount": 10075,
+          "unmitigatedAmount": 12926,
+          "overkill": 3372,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "香板沙梨",
+      "id": 12,
+      "guid": 19476196,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 6067612,
+      "fight": 39,
+      "damage": {
+        "total": 7013,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 947,
+        "abilities": [
+          {
+            "guid": 35873,
+            "name": "Nether Beam",
+            "total": 3816,
+            "type": 64,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 36822,
+            "name": "Shock Barrier",
+            "total": 2014,
+            "type": 1,
+            "icon": "spell_nature_lightningshield.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 713,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 35859,
+            "name": "Nether Vapor",
+            "total": 470,
+            "type": 32,
+            "icon": "spell_shadow_gathershadows.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Kael'thas Sunstrider",
+            "total": 5830,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 713,
+            "type": "Boss"
+          },
+          {
+            "name": "Nether Vapor",
+            "total": 470,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 11005,
+      "overkill": 1382,
+      "events": [
+        {
+          "timestamp": 6067596,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 604,
+          "mitigated": 80,
+          "unmitigatedAmount": 2066,
+          "overkill": 1382,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6067595,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Beam",
+            "guid": 35873,
+            "type": 64,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 1830,
+          "mitigated": 80,
+          "unmitigatedAmount": 1910,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6064697,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 713,
+          "unmitigatedAmount": 713,
+          "overkill": 0,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Beam",
+        "guid": 35873,
+        "type": 64,
+        "abilityIcon": "spell_nature_chainlightning.jpg"
+      }
+    }
+  ]
+}

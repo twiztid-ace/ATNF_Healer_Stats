@@ -1,0 +1,103 @@
+{
+  "entries": [
+    {
+      "name": "Snubz",
+      "id": 20,
+      "guid": 67451401,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 3881882,
+      "fight": 28,
+      "damage": {
+        "total": 10839,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5064,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8879,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 1960,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 10839,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 1994,
+      "overkill": 321,
+      "events": [
+        {
+          "timestamp": 3881871,
+          "type": "damage",
+          "sourceID": 117,
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Buffet",
+            "guid": 34121,
+            "type": 4,
+            "abilityIcon": "spell_fire_fireball.jpg"
+          },
+          "fight": 28,
+          "hitType": 1,
+          "amount": 1639,
+          "unmitigatedAmount": 1960,
+          "overkill": 321,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 3879877,
+          "type": "damage",
+          "sourceID": 117,
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 28,
+          "hitType": 1,
+          "amount": 8879,
+          "mitigated": 5064,
+          "unmitigatedAmount": 13943,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Buffet",
+        "guid": 34121,
+        "type": 4,
+        "abilityIcon": "spell_fire_fireball.jpg"
+      }
+    }
+  ]
+}

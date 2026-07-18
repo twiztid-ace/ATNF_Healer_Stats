@@ -1,0 +1,1470 @@
+{
+  "entries": [
+    {
+      "name": "Sergega",
+      "id": 22,
+      "guid": 52003576,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 8120081,
+      "fight": 52,
+      "damage": {
+        "total": 17037,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38145,
+            "name": "Forked Lightning",
+            "total": 14991,
+            "type": 8,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 38253,
+            "name": "Poison Bolt",
+            "total": 2046,
+            "type": 8,
+            "icon": "spell_nature_corrosivebreath.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Lady Vashj",
+            "total": 14991,
+            "type": "Boss"
+          },
+          {
+            "name": "Tainted Elemental",
+            "total": 2046,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7347,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34865,
+            "name": "Circle of Healing",
+            "total": 7347,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38145,
+            "name": "Forked Lightning",
+            "total": 7347,
+            "type": 8,
+            "icon": "spell_nature_chainlightning.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Moondc",
+            "total": 7347,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 74629,
+      "overkill": 7,
+      "events": [
+        {
+          "timestamp": 8120066,
+          "type": "damage",
+          "sourceID": 193,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Poison Bolt",
+            "guid": 38253,
+            "type": 8,
+            "abilityIcon": "spell_nature_corrosivebreath.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 2039,
+          "unmitigatedAmount": 2046,
+          "overkill": 7,
+          "isAoE": false
+        },
+        {
+          "timestamp": 8118225,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Forked Lightning",
+            "guid": 38145,
+            "type": 8,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 2330,
+          "unmitigatedAmount": 2330,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8114981,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Forked Lightning",
+            "guid": 38145,
+            "type": 8,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 2601,
+          "unmitigatedAmount": 2601,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Poison Bolt",
+        "guid": 38253,
+        "type": 8,
+        "abilityIcon": "spell_nature_corrosivebreath.jpg"
+      }
+    },
+    {
+      "name": "Gorzbalxua",
+      "id": 13,
+      "guid": 53028212,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 8165033,
+      "fight": 52,
+      "damage": {
+        "total": 9957,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5662,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9957,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Coilfang Strider",
+            "total": 9957,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 976,
+      "events": [
+        {
+          "timestamp": 8165024,
+          "type": "damage",
+          "sourceID": 195,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 8981,
+          "mitigated": 5662,
+          "unmitigatedAmount": 15619,
+          "overkill": 976,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Spalax",
+      "id": 3,
+      "guid": 45530433,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 8208526,
+      "fight": 52,
+      "damage": {
+        "total": 18152,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3225,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 18152,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Coilfang Strider",
+            "total": 18152,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 7646,
+      "events": [
+        {
+          "timestamp": 8208482,
+          "type": "damage",
+          "sourceID": 195,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 10506,
+          "mitigated": 3225,
+          "unmitigatedAmount": 21377,
+          "overkill": 7646,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Djekhani",
+      "id": 23,
+      "guid": 44160220,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 8215758,
+      "fight": 52,
+      "damage": {
+        "total": 10970,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 10800,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10970,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Coilfang Strider",
+            "total": 10970,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2067,
+      "events": [
+        {
+          "timestamp": 8215747,
+          "type": "damage",
+          "sourceID": 195,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 8903,
+          "mitigated": 10800,
+          "unmitigatedAmount": 21770,
+          "overkill": 2067,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Cheaprevo",
+      "id": 6,
+      "guid": 51922667,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 8281648,
+      "fight": 52,
+      "damage": {
+        "total": 9152,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5858,
+        "abilities": [
+          {
+            "guid": 38295,
+            "name": "Shoot",
+            "total": 9152,
+            "type": 1,
+            "icon": "ability_marksmanship.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Lady Vashj",
+            "total": 9152,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 111,
+      "events": [
+        {
+          "timestamp": 8281647,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shoot",
+            "guid": 38295,
+            "type": 1,
+            "abilityIcon": "ability_marksmanship.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 9041,
+          "mitigated": 5858,
+          "unmitigatedAmount": 15010,
+          "overkill": 111,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Shoot",
+        "guid": 38295,
+        "type": 1,
+        "abilityIcon": "ability_marksmanship.jpg"
+      }
+    },
+    {
+      "name": "Shamchishka",
+      "id": 16,
+      "guid": 57120062,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 8283693,
+      "fight": 52,
+      "damage": {
+        "total": 28458,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 9086,
+        "abilities": [
+          {
+            "guid": 38145,
+            "name": "Forked Lightning",
+            "total": 12589,
+            "type": 8,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9295,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 38259,
+            "name": "Mind Blast",
+            "total": 6574,
+            "type": 32,
+            "icon": "spell_shadow_unholyfrenzy.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Coilfang Strider",
+            "total": 15869,
+            "type": "NPC"
+          },
+          {
+            "name": "Lady Vashj",
+            "total": 12589,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 16909,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 939,
+            "name": "Healing Wave",
+            "total": 8164,
+            "type": 8,
+            "icon": "spell_nature_magicimmunity.jpg"
+          },
+          {
+            "guid": 25420,
+            "name": "Lesser Healing Wave",
+            "total": 6918,
+            "type": 8,
+            "icon": "spell_nature_healingwavelesser.jpg"
+          },
+          {
+            "guid": 34865,
+            "name": "Circle of Healing",
+            "total": 1827,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38145,
+            "name": "Forked Lightning",
+            "total": 12239,
+            "type": 8,
+            "icon": "spell_nature_chainlightning.jpg"
+          },
+          {
+            "guid": 38259,
+            "name": "Mind Blast",
+            "total": 4670,
+            "type": 32,
+            "icon": "spell_shadow_unholyfrenzy.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Xinlao",
+            "total": 15082,
+            "type": "Shaman"
+          },
+          {
+            "name": "Moondc",
+            "total": 1827,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 81580,
+      "overkill": 1950,
+      "events": [
+        {
+          "timestamp": 8283684,
+          "type": "damage",
+          "sourceID": 195,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 7345,
+          "mitigated": 7782,
+          "unmitigatedAmount": 17077,
+          "overkill": 1950,
+          "isAoE": false
+        },
+        {
+          "timestamp": 8282985,
+          "type": "damage",
+          "sourceID": 195,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Mind Blast",
+            "guid": 38259,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholyfrenzy.jpg"
+          },
+          "fight": 52,
+          "hitType": 16,
+          "amount": 1904,
+          "mitigated": 634,
+          "unmitigatedAmount": 2538,
+          "resisted": 634,
+          "isAoE": false
+        },
+        {
+          "timestamp": 8274977,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Forked Lightning",
+            "guid": 38145,
+            "type": 8,
+            "abilityIcon": "spell_nature_chainlightning.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 2618,
+          "unmitigatedAmount": 2618,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Hantireks",
+      "id": 1,
+      "guid": 56325810,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 8387213,
+      "fight": 52,
+      "damage": {
+        "total": 14406,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2773,
+        "abilities": [
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 9806,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          },
+          {
+            "guid": 38310,
+            "name": "Multi-Shot",
+            "total": 4600,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 9806,
+            "type": "Boss"
+          },
+          {
+            "name": "Lady Vashj",
+            "total": 4600,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2337,
+      "overkill": 3971,
+      "events": [
+        {
+          "timestamp": 8387197,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Multi-Shot",
+            "guid": 38310,
+            "type": 1,
+            "abilityIcon": "ability_upgrademoonglaive.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 629,
+          "mitigated": 2773,
+          "unmitigatedAmount": 7373,
+          "overkill": 3971,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8386867,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 3268,
+          "unmitigatedAmount": 3268,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 8385869,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 3269,
+          "unmitigatedAmount": 3269,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Multi-Shot",
+        "guid": 38310,
+        "type": 1,
+        "abilityIcon": "ability_upgrademoonglaive.jpg"
+      }
+    },
+    {
+      "name": "Xinlao",
+      "id": 8,
+      "guid": 54120773,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 8387215,
+      "fight": 52,
+      "damage": {
+        "total": 16538,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 4969,
+        "abilities": [
+          {
+            "guid": 38310,
+            "name": "Multi-Shot",
+            "total": 9450,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 6222,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          },
+          {
+            "guid": 27869,
+            "name": "Dark Rune",
+            "total": 866,
+            "type": 32,
+            "icon": "inv_misc_rune_04.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Lady Vashj",
+            "total": 9450,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 6222,
+            "type": "Boss"
+          },
+          {
+            "name": "Xinlao",
+            "total": 866,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3365,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34865,
+            "name": "Circle of Healing",
+            "total": 1791,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 939,
+            "name": "Healing Wave",
+            "total": 1574,
+            "type": 8,
+            "icon": "spell_nature_magicimmunity.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38310,
+            "name": "Multi-Shot",
+            "total": 3365,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Moondc",
+            "total": 1791,
+            "type": "Priest"
+          },
+          {
+            "name": "Xinlao",
+            "total": 1574,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 33754,
+      "overkill": 3776,
+      "events": [
+        {
+          "timestamp": 8387185,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Multi-Shot",
+            "guid": 38310,
+            "type": 1,
+            "abilityIcon": "ability_upgrademoonglaive.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 1066,
+          "mitigated": 2547,
+          "unmitigatedAmount": 7389,
+          "overkill": 3776,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8385898,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 3111,
+          "unmitigatedAmount": 3111,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 8384881,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 3111,
+          "unmitigatedAmount": 3111,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Multi-Shot",
+        "guid": 38310,
+        "type": 1,
+        "abilityIcon": "ability_upgrademoonglaive.jpg"
+      }
+    },
+    {
+      "name": "Sergega",
+      "id": 22,
+      "guid": 52003576,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 8396598,
+      "fight": 52,
+      "damage": {
+        "total": 12649,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1040,
+        "abilities": [
+          {
+            "guid": 38310,
+            "name": "Multi-Shot",
+            "total": 6434,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 6215,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Lady Vashj",
+            "total": 6434,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 6215,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1833,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34865,
+            "name": "Circle of Healing",
+            "total": 1833,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 1833,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Moondc",
+            "total": 1833,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 8196,
+      "overkill": 2733,
+      "events": [
+        {
+          "timestamp": 8396578,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Multi-Shot",
+            "guid": 38310,
+            "type": 1,
+            "abilityIcon": "ability_upgrademoonglaive.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 3701,
+          "mitigated": 1040,
+          "unmitigatedAmount": 7474,
+          "overkill": 2733,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8389389,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 3108,
+          "unmitigatedAmount": 3108,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 8388382,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 3107,
+          "unmitigatedAmount": 3107,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Multi-Shot",
+        "guid": 38310,
+        "type": 1,
+        "abilityIcon": "ability_upgrademoonglaive.jpg"
+      }
+    },
+    {
+      "name": "Shamchishka",
+      "id": 16,
+      "guid": 57120062,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 8397466,
+      "fight": 52,
+      "damage": {
+        "total": 27269,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5872,
+        "abilities": [
+          {
+            "guid": 38281,
+            "name": "Static Charge",
+            "total": 15996,
+            "type": 8,
+            "icon": "spell_nature_lightningoverload.jpg"
+          },
+          {
+            "guid": 38310,
+            "name": "Multi-Shot",
+            "total": 8431,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          },
+          {
+            "guid": 360327,
+            "name": "Toxic Spores",
+            "total": 2842,
+            "type": 8,
+            "icon": "spell_nature_abolishmagic.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shamchishka",
+            "total": 15996,
+            "type": "Shaman"
+          },
+          {
+            "name": "Lady Vashj",
+            "total": 8431,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 2842,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 18628,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25396,
+            "name": "Healing Wave",
+            "total": 9616,
+            "type": 8,
+            "icon": "spell_nature_magicimmunity.jpg"
+          },
+          {
+            "guid": 25420,
+            "name": "Lesser Healing Wave",
+            "total": 9012,
+            "type": 8,
+            "icon": "spell_nature_healingwavelesser.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38281,
+            "name": "Static Charge",
+            "total": 15585,
+            "type": 8,
+            "icon": "spell_nature_lightningoverload.jpg"
+          },
+          {
+            "guid": 38310,
+            "name": "Multi-Shot",
+            "total": 3043,
+            "type": 1,
+            "icon": "ability_upgrademoonglaive.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Xinlao",
+            "total": 9616,
+            "type": "Shaman"
+          },
+          {
+            "name": "Shamchishka",
+            "total": 7913,
+            "type": "Shaman"
+          },
+          {
+            "name": "Djekhani",
+            "total": 1099,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 60005,
+      "overkill": 842,
+      "events": [
+        {
+          "timestamp": 8397465,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Toxic Spores",
+            "guid": 360327,
+            "type": 8,
+            "abilityIcon": "spell_nature_abolishmagic.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 2000,
+          "unmitigatedAmount": 2842,
+          "overkill": 842,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 8396597,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Multi-Shot",
+            "guid": 38310,
+            "type": 1,
+            "abilityIcon": "ability_upgrademoonglaive.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 4082,
+          "mitigated": 2844,
+          "unmitigatedAmount": 6926,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8363520,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Multi-Shot",
+            "guid": 38310,
+            "type": 1,
+            "abilityIcon": "ability_upgrademoonglaive.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 4349,
+          "mitigated": 3028,
+          "unmitigatedAmount": 7377,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Toxic Spores",
+        "guid": 360327,
+        "type": 8,
+        "abilityIcon": "spell_nature_abolishmagic.jpg"
+      }
+    },
+    {
+      "name": "Gorzbalxua",
+      "id": 13,
+      "guid": 53028212,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 8400861,
+      "fight": 52,
+      "damage": {
+        "total": 17228,
+        "totalReduced": 15331,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 38281,
+            "name": "Static Charge",
+            "total": 11924,
+            "type": 8,
+            "icon": "spell_nature_lightningoverload.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 5304,
+            "totalReduced": 3407,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Gorzbalxua",
+            "total": 10225,
+            "type": "Priest"
+          },
+          {
+            "name": "Environment",
+            "total": 5304,
+            "totalReduced": 3407,
+            "type": "Boss"
+          },
+          {
+            "name": "Dmze",
+            "total": 1699,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "healing": {
+        "total": 9136,
+        "totalReduced": 7239,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 3658,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          },
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 1897,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 1064,
+            "name": "Chain Heal",
+            "total": 1085,
+            "type": 8,
+            "icon": "inv_1115_shaman_chainheal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38281,
+            "name": "Static Charge",
+            "total": 6154,
+            "type": 8,
+            "icon": "spell_nature_lightningoverload.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 2982,
+            "totalReduced": 1085,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Gorzbalxua",
+            "total": 4393,
+            "totalReduced": 2496,
+            "type": "Priest"
+          },
+          {
+            "name": "Moondc",
+            "total": 3658,
+            "type": "Priest"
+          },
+          {
+            "name": "Xinlao",
+            "total": 1085,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 60748,
+      "overkill": 333,
+      "events": [
+        {
+          "timestamp": 8400825,
+          "type": "damage",
+          "sourceID": 13,
+          "sourceIsFriendly": true,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Static Charge",
+            "guid": 38281,
+            "type": 8,
+            "abilityIcon": "spell_nature_lightningoverload.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 1421,
+          "unmitigatedAmount": 1754,
+          "overkill": 333,
+          "isAoE": true,
+          "sourceMarker": 8,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 8398815,
+          "type": "damage",
+          "sourceID": 13,
+          "sourceIsFriendly": true,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Static Charge",
+            "guid": 38281,
+            "type": 8,
+            "abilityIcon": "spell_nature_lightningoverload.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 1663,
+          "unmitigatedAmount": 1663,
+          "isAoE": true,
+          "sourceMarker": 8,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 8396820,
+          "type": "damage",
+          "sourceID": 13,
+          "sourceIsFriendly": true,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Static Charge",
+            "guid": 38281,
+            "type": 8,
+            "abilityIcon": "spell_nature_lightningoverload.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 1620,
+          "unmitigatedAmount": 1620,
+          "isAoE": true,
+          "sourceMarker": 8,
+          "targetMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Static Charge",
+        "guid": 38281,
+        "type": 8,
+        "abilityIcon": "spell_nature_lightningoverload.jpg"
+      }
+    }
+  ]
+}

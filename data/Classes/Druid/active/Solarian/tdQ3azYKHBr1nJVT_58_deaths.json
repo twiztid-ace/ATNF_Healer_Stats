@@ -1,0 +1,141 @@
+{
+  "entries": [
+    {
+      "name": "Rehji",
+      "id": 17,
+      "guid": 73023308,
+      "type": "Druid",
+      "icon": "Druid-Feral",
+      "timestamp": 7290965,
+      "fight": 58,
+      "damage": {
+        "total": 10716,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 571,
+        "abilities": [
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 9000,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 1716,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "High Astromancer Solarian",
+            "total": 10716,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 408,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 408,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 33009,
+            "name": "Blinding Light",
+            "total": 408,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Rehji",
+            "total": 408,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 7535,
+      "overkill": 119,
+      "events": [
+        {
+          "timestamp": 7290953,
+          "type": "damage",
+          "sourceID": 286,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 2881,
+          "unmitigatedAmount": 3000,
+          "overkill": 119,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7289973,
+          "type": "damage",
+          "sourceID": 286,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 3000,
+          "unmitigatedAmount": 3000,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7289075,
+          "type": "damage",
+          "sourceID": 286,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 3000,
+          "unmitigatedAmount": 3000,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Missiles",
+        "guid": 39414,
+        "type": 64,
+        "abilityIcon": "spell_nature_starfall.jpg"
+      }
+    }
+  ]
+}

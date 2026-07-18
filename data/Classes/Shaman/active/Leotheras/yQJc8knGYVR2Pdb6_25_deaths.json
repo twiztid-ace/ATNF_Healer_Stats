@@ -1,0 +1,392 @@
+{
+  "entries": [
+    {
+      "name": "Habibibear",
+      "id": 10,
+      "guid": 79902778,
+      "type": "Druid",
+      "icon": "Druid-Balance",
+      "timestamp": 3402580,
+      "fight": 25,
+      "damage": {
+        "total": 13304,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1371,
+        "abilities": [
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 13304,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Leotheras the Blind",
+            "total": 13304,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2033,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 2033,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 2033,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Elpodlo",
+            "total": 2033,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 15002,
+      "overkill": 357,
+      "events": [
+        {
+          "timestamp": 3402579,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 2008,
+          "unmitigatedAmount": 2365,
+          "overkill": 357,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 3399565,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 2365,
+          "unmitigatedAmount": 2365,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 3396568,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 2365,
+          "unmitigatedAmount": 2365,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Whirlwind",
+        "guid": 37641,
+        "type": 1,
+        "abilityIcon": "ability_gouge.jpg"
+      }
+    },
+    {
+      "name": "Slotyk",
+      "id": 40,
+      "guid": 74220432,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 3408610,
+      "fight": 25,
+      "damage": {
+        "total": 28882,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 6980,
+        "abilities": [
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 28882,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Leotheras the Blind",
+            "total": 28882,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 18683,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 11331,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 3205,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1651,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37641,
+            "name": "Whirlwind",
+            "total": 18683,
+            "type": 1,
+            "icon": "ability_gouge.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Elpodlo",
+            "total": 11331,
+            "type": "Shaman"
+          },
+          {
+            "name": "Slotyk",
+            "total": 4147,
+            "type": "Warrior"
+          },
+          {
+            "name": "Feetsniffers",
+            "total": 3205,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 26011,
+      "overkill": 596,
+      "events": [
+        {
+          "timestamp": 3408581,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 40,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 2017,
+          "unmitigatedAmount": 2375,
+          "overkill": 596,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 3405574,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 40,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 2612,
+          "unmitigatedAmount": 2375,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 3402579,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 40,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 37641,
+            "type": 1,
+            "abilityIcon": "ability_gouge.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 2612,
+          "unmitigatedAmount": 2375,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Whirlwind",
+        "guid": 37641,
+        "type": 1,
+        "abilityIcon": "ability_gouge.jpg"
+      }
+    },
+    {
+      "name": "Tazbingoe",
+      "id": 23,
+      "guid": 79989144,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 3453757,
+      "fight": 25,
+      "damage": {
+        "total": 11465,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1782,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 11465,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Leotheras the Blind",
+            "total": 11465,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 905,
+      "overkill": 1775,
+      "events": [
+        {
+          "timestamp": 3453741,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 1651,
+          "mitigated": 532,
+          "unmitigatedAmount": 3958,
+          "overkill": 1775,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3452836,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 25,
+          "hitType": 1,
+          "amount": 8039,
+          "mitigated": 1250,
+          "unmitigatedAmount": 9289,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

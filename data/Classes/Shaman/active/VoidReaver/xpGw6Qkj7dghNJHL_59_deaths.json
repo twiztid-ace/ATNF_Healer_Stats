@@ -1,0 +1,901 @@
+{
+  "entries": [
+    {
+      "name": "Stubed",
+      "id": 23,
+      "guid": 52350863,
+      "type": "Druid",
+      "icon": "Druid-Balance",
+      "timestamp": 8151106,
+      "fight": 59,
+      "damage": {
+        "total": 17622,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2469,
+        "abilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 17622,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Void Reaver",
+            "total": 17622,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7393,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 6509,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 884,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 7393,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Junave",
+            "total": 6509,
+            "type": "Priest"
+          },
+          {
+            "name": "Holychie",
+            "total": 884,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 45717,
+      "overkill": 607,
+      "events": [
+        {
+          "timestamp": 8151084,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1150,
+          "unmitigatedAmount": 1757,
+          "overkill": 607,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8150060,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1906,
+          "unmitigatedAmount": 1906,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8149065,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1809,
+          "unmitigatedAmount": 1809,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Pounding",
+        "guid": 34164,
+        "type": 64,
+        "abilityIcon": "ability_thunderclap.jpg"
+      }
+    },
+    {
+      "name": "Synkuxia",
+      "id": 20,
+      "guid": 52071612,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 8163026,
+      "fight": 59,
+      "damage": {
+        "total": 20046,
+        "totalReduced": 16428,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 534,
+        "abilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 14388,
+            "totalReduced": 10770,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 5658,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Void Reaver",
+            "total": 14388,
+            "totalReduced": 10770,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 5658,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 12236,
+        "totalReduced": 8618,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25308,
+            "name": "Prayer of Healing",
+            "total": 5038,
+            "type": 2,
+            "icon": "spell_holy_prayerofhealing02.jpg"
+          },
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 3618,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 3580,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 11657,
+            "totalReduced": 8039,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 579,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Junave",
+            "total": 5038,
+            "type": "Priest"
+          },
+          {
+            "name": "Synkuxia",
+            "total": 3618,
+            "totalReduced": 0,
+            "type": "Priest"
+          },
+          {
+            "name": "Holychie",
+            "total": 3580,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 32448,
+      "overkill": 155,
+      "events": [
+        {
+          "timestamp": 8163023,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 271,
+          "unmitigatedAmount": 2235,
+          "overkill": 155,
+          "absorbed": 1809,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8162015,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1620,
+          "unmitigatedAmount": 1620,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8158686,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 3817,
+          "unmitigatedAmount": 3817,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Pounding",
+        "guid": 34164,
+        "type": 64,
+        "abilityIcon": "ability_thunderclap.jpg"
+      }
+    },
+    {
+      "name": "Kampffalke",
+      "id": 33,
+      "guid": 51612014,
+      "type": "Druid",
+      "icon": "Druid-Feral",
+      "timestamp": 8164019,
+      "fight": 59,
+      "damage": {
+        "total": 23689,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1784,
+        "abilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 23689,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Void Reaver",
+            "total": 23689,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 12415,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 3637,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 3541,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 1949,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          },
+          {
+            "guid": 25566,
+            "name": "Healing Stream",
+            "total": 792,
+            "type": 8,
+            "icon": "inv_spear_04.jpg",
+            "petName": "zzOLDHealing Stream Totem VI"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 12415,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Kampffalke",
+            "total": 6133,
+            "type": "Druid"
+          },
+          {
+            "name": "Holychie",
+            "total": 3541,
+            "type": "Shaman"
+          },
+          {
+            "name": "Junave",
+            "total": 1949,
+            "type": "Priest"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 792,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 58654,
+      "overkill": 1169,
+      "events": [
+        {
+          "timestamp": 8164014,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 33,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 784,
+          "unmitigatedAmount": 1953,
+          "overkill": 1169,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8163017,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 33,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1550,
+          "unmitigatedAmount": 1550,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8162014,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 33,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1493,
+          "unmitigatedAmount": 1493,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Pounding",
+        "guid": 34164,
+        "type": 64,
+        "abilityIcon": "ability_thunderclap.jpg"
+      }
+    },
+    {
+      "name": "Xierro",
+      "id": 17,
+      "guid": 52226997,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 8164021,
+      "fight": 59,
+      "damage": {
+        "total": 22119,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2289,
+        "abilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 22119,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Void Reaver",
+            "total": 22119,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 11181,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 7249,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 1983,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 1949,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 11181,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Holychie",
+            "total": 7249,
+            "type": "Shaman"
+          },
+          {
+            "name": "Junave",
+            "total": 3932,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 58648,
+      "overkill": 874,
+      "events": [
+        {
+          "timestamp": 8164007,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 16,
+          "amount": 434,
+          "mitigated": 435,
+          "unmitigatedAmount": 1743,
+          "resisted": 436,
+          "overkill": 874,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8163016,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1767,
+          "unmitigatedAmount": 1767,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8162013,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1718,
+          "unmitigatedAmount": 1718,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Pounding",
+        "guid": 34164,
+        "type": 64,
+        "abilityIcon": "ability_thunderclap.jpg"
+      }
+    },
+    {
+      "name": "Araor",
+      "id": 14,
+      "guid": 51494642,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 8164022,
+      "fight": 59,
+      "damage": {
+        "total": 19024,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3367,
+        "abilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 19024,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Void Reaver",
+            "total": 19024,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7456,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 4247,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          },
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 3209,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 34164,
+            "name": "Pounding",
+            "total": 7456,
+            "type": 64,
+            "icon": "ability_thunderclap.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Junave",
+            "total": 4247,
+            "type": "Priest"
+          },
+          {
+            "name": "Holychie",
+            "total": 3209,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 44076,
+      "overkill": 1548,
+      "events": [
+        {
+          "timestamp": 8164018,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 638,
+          "unmitigatedAmount": 2186,
+          "overkill": 1548,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8163017,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1636,
+          "unmitigatedAmount": 1636,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8162014,
+          "type": "damage",
+          "sourceID": 176,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Pounding",
+            "guid": 34164,
+            "type": 64,
+            "abilityIcon": "ability_thunderclap.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1808,
+          "unmitigatedAmount": 1808,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Pounding",
+        "guid": 34164,
+        "type": 64,
+        "abilityIcon": "ability_thunderclap.jpg"
+      }
+    },
+    {
+      "name": "Pisdaboy",
+      "id": 25,
+      "guid": 48803544,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 8250062,
+      "fight": 59,
+      "damage": {
+        "total": 10748,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34190,
+            "name": "Arcane Orb",
+            "total": 10748,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 10748,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 4693,
+      "overkill": 3135,
+      "events": [
+        {
+          "timestamp": 8250033,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 25,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Orb",
+            "guid": 34190,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 1653,
+          "unmitigatedAmount": 4788,
+          "overkill": 3135,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8245340,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 25,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Orb",
+            "guid": 34190,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 59,
+          "hitType": 1,
+          "amount": 5960,
+          "unmitigatedAmount": 5960,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Orb",
+        "guid": 34190,
+        "type": 64,
+        "abilityIcon": "spell_nature_wispsplode.jpg"
+      }
+    }
+  ]
+}

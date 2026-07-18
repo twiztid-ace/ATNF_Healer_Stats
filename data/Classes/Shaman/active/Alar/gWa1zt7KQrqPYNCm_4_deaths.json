@@ -1,0 +1,263 @@
+{
+  "entries": [
+    {
+      "name": "Alterez",
+      "id": 1,
+      "guid": 42812482,
+      "type": "Paladin",
+      "icon": "Paladin-Protection",
+      "timestamp": 6719591,
+      "fight": 4,
+      "damage": {
+        "total": 16438,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3506,
+        "blocked": 334,
+        "abilities": [
+          {
+            "guid": 34133,
+            "name": "Ember Blast",
+            "total": 15644,
+            "type": 4,
+            "icon": "trade_engineering.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 794,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Ember of Al'ar",
+            "total": 16438,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 1004,
+      "overkill": 181,
+      "events": [
+        {
+          "timestamp": 6719581,
+          "type": "damage",
+          "sourceID": 87,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Ember Blast",
+            "guid": 34133,
+            "type": 4,
+            "abilityIcon": "trade_engineering.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 7269,
+          "mitigated": 476,
+          "unmitigatedAmount": 7926,
+          "overkill": 181,
+          "isAoE": true,
+          "targetMarker": 1
+        },
+        {
+          "timestamp": 6719579,
+          "type": "damage",
+          "sourceID": 87,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Ember Blast",
+            "guid": 34133,
+            "type": 4,
+            "abilityIcon": "trade_engineering.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 8194,
+          "mitigated": 523,
+          "unmitigatedAmount": 8717,
+          "isAoE": true,
+          "targetMarker": 1
+        },
+        {
+          "timestamp": 6718577,
+          "type": "damage",
+          "sourceID": 87,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 4,
+          "hitType": 4,
+          "amount": 794,
+          "mitigated": 2507,
+          "unmitigatedAmount": 3301,
+          "blocked": 334,
+          "isAoE": false,
+          "targetMarker": 1
+        }
+      ],
+      "killingBlow": {
+        "name": "Ember Blast",
+        "guid": 34133,
+        "type": 4,
+        "abilityIcon": "trade_engineering.jpg"
+      }
+    },
+    {
+      "name": "Karenreed",
+      "id": 17,
+      "guid": 54881459,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 6817851,
+      "fight": 4,
+      "damage": {
+        "total": 9476,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 35369,
+            "name": "Rebirth",
+            "total": 4432,
+            "type": 4,
+            "icon": "spell_fire_burnout.jpg"
+          },
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 3009,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 34121,
+            "name": "Flame Buffet",
+            "total": 2035,
+            "type": 4,
+            "icon": "spell_fire_fireball.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Al'ar",
+            "total": 6467,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 3009,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 3274,
+      "overkill": 525,
+      "events": [
+        {
+          "timestamp": 6817797,
+          "type": "damage",
+          "sourceID": 84,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Flame Buffet",
+            "guid": 34121,
+            "type": 4,
+            "abilityIcon": "spell_fire_fireball.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 1510,
+          "unmitigatedAmount": 2035,
+          "overkill": 525,
+          "isAoE": true
+        },
+        {
+          "timestamp": 6817741,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 3009,
+          "unmitigatedAmount": 3009,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6814523,
+          "type": "damage",
+          "sourceID": 84,
+          "sourceIsFriendly": false,
+          "targetID": 17,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Rebirth",
+            "guid": 35369,
+            "type": 4,
+            "abilityIcon": "spell_fire_burnout.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 4432,
+          "unmitigatedAmount": 4432,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Flame Buffet",
+        "guid": 34121,
+        "type": 4,
+        "abilityIcon": "spell_fire_fireball.jpg"
+      }
+    }
+  ]
+}
