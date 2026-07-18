@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healer Audit — Shlicktree — Al&#39;ar</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink: #132A2C;
+    --ink-2: #1C3A3D;
+    --parchment: #F3E9D6;
+    --parchment-dim: #E8DBC2;
+    --copper: #C97A3D;
+    --moss: #5F7A52;
+    --rust: #B5503A;
+    --gold: #D9B25C;
+    --line: rgba(19,42,44,0.16);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: var(--ink);
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+    color: var(--parchment);
+    font-family:'Inter', sans-serif;
+    padding: 48px 24px 80px;
+  }
+
+  .page{
+    max-width: 880px;
+    margin: 0 auto;
+    background: var(--parchment);
+    color: var(--ink);
+    border-radius: 4px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45);
+    overflow: hidden;
+  }
+
+  .header{
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--line);
+    display:flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--copper);
+    margin: 0 0 10px;
+  }
+  h1{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1.05;
+    margin: 0 0 8px;
+  }
+  .subline{
+    font-size: 14px;
+    color: rgba(19,42,44,0.65);
+    margin: 0;
+  }
+  .subline span{ font-family:'IBM Plex Mono', monospace; }
+
+  .seal-wrap{ flex-shrink:0; width: 108px; text-align:center; }
+  .seal{ width: 108px; height: 108px; }
+  .seal-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    color: rgba(19,42,44,0.55);
+  }
+
+  .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
+  .section:last-child{ border-bottom: none; }
+  .section-head{
+    display:flex; align-items:baseline; gap: 12px; margin-bottom: 20px;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--copper);
+  }
+  .section-title{
+    font-family:'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin: 0;
+  }
+  .section-desc{
+    font-size: 13px;
+    color: rgba(19,42,44,0.6);
+    margin: -12px 0 20px;
+  }
+
+  .stat-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    overflow:hidden;
+  }
+  .stat-grid.stat-grid-5{ grid-template-columns: repeat(5, 1fr); }
+  .stat{
+    padding: 16px 18px;
+    border-right: 1px solid var(--line);
+  }
+  .stat:last-child{ border-right:none; }
+  .stat-label{
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(19,42,44,0.55);
+    margin-bottom: 6px;
+  }
+  .stat-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .stat-value.good{ color: var(--moss); }
+  .stat-value.warn{ color: var(--rust); }
+  .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
+
+  .pctl-track{
+    position: relative;
+    height: 10px;
+    background: linear-gradient(to right, var(--rust), var(--gold) 60%, var(--moss));
+    border-radius: 5px;
+    margin: 18px 0 6px;
+  }
+  .pctl-marker{
+    position: absolute;
+    top: -8px;
+    width: 3px;
+    height: 26px;
+    background: var(--ink);
+  }
+  .pctl-marker::after{
+    content: attr(data-label);
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .pctl-scale{
+    display:flex; justify-content: space-between;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: rgba(19,42,44,0.45);
+  }
+
+  .spell-row{
+    display:grid;
+    grid-template-columns: 140px 1fr 60px;
+    align-items:center;
+    gap: 14px;
+    padding: 9px 0;
+    font-size: 13px;
+  }
+  .spell-name{ font-weight: 500; }
+  .spell-bar-track{
+    height: 8px;
+    background: var(--parchment-dim);
+    border-radius: 4px;
+    overflow:hidden;
+  }
+  .spell-bar-fill{ height:100%; border-radius:4px; background: var(--copper); }
+  .spell-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .compare-row .spell-bar-fill.dim{ background: rgba(19,42,44,0.25); }
+  .compare-legend{
+    display:flex; gap: 18px; margin-bottom: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+  .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+
+  .check-list{ display:flex; flex-direction:column; }
+  .check-item{
+    display:grid;
+    grid-template-columns: 22px 1fr auto;
+    align-items:center;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+  }
+  .check-item:first-child{ border-top:none; }
+  .check-icon{
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .check-icon.ok{ background: var(--moss); color: var(--parchment); }
+  .check-icon.bad{ background: var(--rust); color: var(--parchment); }
+  .check-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.55);
+    text-align:right;
+  }
+
+  .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
+  .cd-table th{
+    text-align:left;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(19,42,44,0.5);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .cd-table td{
+    padding: 10px 10px;
+    border-bottom: 1px dashed var(--line);
+    vertical-align: middle;
+  }
+  .cd-table tr:last-child td{ border-bottom:none; }
+  .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+  .cd-table .ability-name{ font-weight: 500; }
+
+  .target-list{ display:flex; flex-direction:column; gap:8px; }
+  .target-row{
+    display:grid;
+    grid-template-columns: 120px 1fr 70px;
+    align-items:center;
+    gap: 12px;
+    font-size: 13px;
+  }
+  .target-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; }
+  .target-bar-fill{ height:100%; background: var(--ink-2); }
+  .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
+
+  .healer-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; min-width:80px; }
+  .healer-bar-fill{ height:100%; background: var(--ink-2); }
+  .healer-bar-fill.is-character{ background: var(--copper); }
+  tr.is-character td{ font-weight:700; }
+
+  .coverage-note{
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(19,42,44,0.6);
+    border-left: 3px solid var(--gold);
+    padding-left: 12px;
+  }
+
+  .footer{
+    padding: 24px 48px 32px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: rgba(19,42,44,0.4);
+    display:flex;
+    justify-content: space-between;
+  }
+
+  .placeholder-tag{
+    display:inline-block;
+    margin-left: 10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--copper);
+    border: 1px solid var(--copper);
+    border-radius: 20px;
+    padding: 2px 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — Gruul / SSC / TK - 2026-07-15 — July 15, 2026 · Al&#39;ar</p>
+      <h1>Shlicktree</h1>
+      <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 121 &nbsp;·&nbsp; report <span>LKbVcNfRxyBkj2mg</span> &nbsp;·&nbsp; fight <span>62</span> &nbsp;·&nbsp; kill, 319s</p>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; justify-content:flex-start; gap:12px 16px; align-items:flex-start;">
+      <div class="seal-wrap">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#D8AF5B" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#D8AF5B" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="66" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="26" fill="#D8AF5B">58</text>
+          <text x="60" y="82" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">PERCENTILE</text>
+        </svg>
+        <div class="seal-label">WCL rank, all parses</div>
+      </div>
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL&#39;s own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#AB9D58" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#AB9D58" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#AB9D58">2nd of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">ILVL HEALING RANK</text>
+        </svg>
+        <div class="seal-label">58% by ilvl 124</div>
+      </div>
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">
+        <svg class="seal" viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#AB9D58" stroke-width="2"/>
+          <circle cx="60" cy="60" r="48" fill="none" stroke="#AB9D58" stroke-width="1" stroke-dasharray="2 4"/>
+          <text x="60" y="60" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="22" fill="#AB9D58">2nd of 5</text>
+          <text x="60" y="78" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="0.05em" fill="#132A2C" opacity="0.6">RAW HEALING RANK</text>
+        </svg>
+        <div class="seal-label">192,441 healing</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Scorecard</h2>
+    </div>
+    <div class="stat-grid stat-grid-5">
+      <div class="stat">
+        <div class="stat-label">HPS</div>
+        <div class="stat-value">603</div>
+        <div class="stat-sub">Top 100: #1 1494 &nbsp;·&nbsp; avg 1080 &nbsp;·&nbsp; median 1064</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Overheal</div>
+        <div class="stat-value">64.9%</div>
+        <div class="stat-sub">Top 100: best 33.3% &nbsp;·&nbsp; median 50.1% &nbsp;·&nbsp; worst 61.1%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Effective healing</div>
+        <div class="stat-value">192,441</div>
+        <div class="stat-sub">over 319s kill</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Active time</div>
+        <div class="stat-value">99.3%</div>
+        <div class="stat-sub">Top 100: #1 100.0% &nbsp;·&nbsp; avg 99.2% &nbsp;·&nbsp; median 99.5%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Raid deaths</div>
+        <div class="stat-value">0</div>
+        <div class="stat-sub">this kill, all classes</div>
+      </div>
+    </div>
+
+    <div class="pctl-track">
+      <div class="pctl-marker" style="left:58%;" data-label="Shlicktree · 58th"></div>
+    </div>
+    <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
+    <div class="stat-sub" style="margin-top:6px;">WCL rank ~7550 of 17978 Restoration Druid parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
+
+    <div class="coverage-note">HPS (603) ran below the Top 100 average (1,080, a 56% ratio), and overheal (64.9%) exceeds the sample&#39;s single worst parse (61.1%) by 3.8 points - a solid 58th-percentile kill, ranking 2nd of 5 tracked healers by item-level rank, with zero real deaths logged. Item level bracket rose from 121 to 124 starting this kill - see the raid overview for the real gear change behind it.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Spell composition</h2>
+    </div>
+    <p class="section-desc">Shlicktree's real cast mix on this kill, vs. real Top 100 average on Al&#39;ar.</p>
+
+    <div class="compare-legend">
+      <span><span class="dot" style="background:#C97A3D"></span>Shlicktree</span>
+      <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
+    </div>
+
+    <div class="spell-row compare-row">
+      <div class="spell-name">Lifebloom (HoT)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:39.0%"></div></div>
+      <div class="spell-pct">39.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:49.9%"></div></div>
+      <div class="spell-pct">49.9%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Rejuvenation (guid 26982)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:23.4%"></div></div>
+      <div class="spell-pct">23.4%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:12.6%"></div></div>
+      <div class="spell-pct">12.6%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Regrowth (guid 26980)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:18.2%"></div></div>
+      <div class="spell-pct">18.2%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:20.5%"></div></div>
+      <div class="spell-pct">20.5%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Regrowth (guid 8941)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:8.2%"></div></div>
+      <div class="spell-pct">8.2%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Lifebloom (Bloom)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:7.3%"></div></div>
+      <div class="spell-pct">7.3%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:6.3%"></div></div>
+      <div class="spell-pct">6.3%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Swiftmend</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:3.8%"></div></div>
+      <div class="spell-pct">3.8%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:6.1%"></div></div>
+      <div class="spell-pct">6.1%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Rejuvenation (guid 26981)</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.3%"></div></div>
+      <div class="spell-pct">1.3%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name">Healing Touch</div>
+      <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0.0%"></div></div>
+      <div class="spell-pct">0.0%</div>
+    </div>
+    <div class="spell-row compare-row">
+      <div class="spell-name"></div>
+      <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:0.9%"></div></div>
+      <div class="spell-pct">0.9%</div>
+    </div>
+
+    <div class="coverage-note">Lifebloom&#39;s HoT tick fell 10.9 points below its Top 100 benchmark share (39.0% vs 49.9%) while Rejuvenation ran 10.8 points ahead (23.4% vs 12.6%).</div>
+
+    <div style="margin-top:20px;">
+      <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data where available; <span style="font-family:'IBM Plex Mono', monospace;">&#8224;</span> marks a rank the character didn't cast this kill, backfilled with a real cost observed elsewhere in the Top 100 sample; "?" only when neither source has it.</p>
+      <table class="cd-table">
+        <thead>
+          <tr>
+            <th>Spell</th>
+            <th style="text-align:right;">Mana cost</th>
+            <th style="text-align:right;">Shlicktree</th>
+            <th style="text-align:right;">Top 100 avg</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="ability-name">Lifebloom (Bloom)</td>
+            <td class="num-cell">0 mana</td>
+            <td class="num-cell">7.3%</td>
+            <td class="num-cell">6.3%</td>
+          </tr>
+          <tr>
+            <td class="ability-name">Lifebloom (HoT)</td>
+            <td class="num-cell">220 mana</td>
+            <td class="num-cell">39.0%</td>
+            <td class="num-cell">49.9%</td>
+          </tr>
+          <tr>
+            <td class="ability-name">Regrowth</td>
+            <td class="num-cell">275 mana</td>
+            <td class="num-cell">8.2%</td>
+            <td class="num-cell">0.0%</td>
+          </tr>
+          <tr>
+            <td class="ability-name"></td>
+            <td class="num-cell">675 mana</td>
+            <td class="num-cell">18.2%</td>
+            <td class="num-cell">20.5%</td>
+          </tr>
+          <tr>
+            <td class="ability-name">Rejuvenation</td>
+            <td class="num-cell">370.0 mana †</td>
+            <td class="num-cell">0.0%</td>
+            <td class="num-cell">1.3%</td>
+          </tr>
+          <tr>
+            <td class="ability-name"></td>
+            <td class="num-cell">415 mana</td>
+            <td class="num-cell">23.4%</td>
+            <td class="num-cell">12.6%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Cooldowns &amp; consumables</h2>
+    </div>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Al&#39;ar. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> - match abilities by guid, not localized name.</p>
+
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Cooldown / utility</th>
+          <th style="text-align:right;">Shlicktree</th>
+          <th>Target</th>
+          <th style="text-align:right;">Top 100 avg (self%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ability-name">Innervate</td>
+          <td class="num-cell">1</td>
+          <td>self</td>
+          <td class="num-cell">0.9 avg (72% self)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Nature&#39;s Swiftness</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">1.2 avg</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Swiftmend</td>
+          <td class="num-cell">2</td>
+          <td>→ Jotes, self</td>
+          <td class="num-cell">6.3 avg (5% self)</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Dark Rune</td>
+          <td class="num-cell">0</td>
+          <td>—</td>
+          <td class="num-cell">0.2 avg</td>
+        </tr>
+        <tr>
+          <td class="ability-name">Mana Potion</td>
+          <td class="num-cell">2</td>
+          <td>—</td>
+          <td class="num-cell">1.2 avg</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="stat-grid stat-grid-5" style="margin-top:22px;">
+      <div class="stat">
+        <div class="stat-label">Flask / Elixir</div>
+        <div class="stat-value">Elixirs</div>
+        <div class="stat-sub">Healing Power (Battle) + Elixir of Draenic Wisdom (Guardian) — Top 100 active at pull start: 65% flask, 86% Battle Elixir, 86% Guardian Elixir</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Food buff</div>
+        <div class="stat-value">Yes</div>
+        <div class="stat-sub">Well Fed — Top 100: 68% had one active at pull start</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Tree of Life uptime</div>
+        <div class="stat-value">0.0%</div>
+        <div class="stat-sub">Top 100 avg: 54.9%</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Mana consumables</div>
+        <div class="stat-value">2</div>
+        <div class="stat-sub">2x Mana Potion</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">HPM</div>
+        <div class="stat-value">4.5</div>
+        <div class="stat-sub">Top 100: top1 8.15 &nbsp;·&nbsp; avg 6.27 &nbsp;·&nbsp; median 6.23</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">A self-cast Innervate was in line with benchmark; Nature&#39;s Swiftness again went uncast (85% Top 100 usage). No deaths to answer.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Target distribution</h2>
+    </div>
+    <p class="section-desc">Top 5 recipients of Shlicktree's healing on this kill (84.9% coverage) vs. Top 100 average on Al&#39;ar (78.4% coverage, 43.3% to top target).</p>
+
+    <div class="target-list">
+      <div class="target-row">
+        <div>Jotes</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:100.0%"></div></div>
+        <div class="target-pct">32.0%</div>
+      </div>
+      <div class="target-row">
+        <div>Paladanwood</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:94.0%"></div></div>
+        <div class="target-pct">30.1%</div>
+      </div>
+      <div class="target-row">
+        <div>Turbarct</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:49.5%"></div></div>
+        <div class="target-pct">15.8%</div>
+      </div>
+      <div class="target-row">
+        <div>Pepsiweaving</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:11.4%"></div></div>
+        <div class="target-pct">3.6%</div>
+      </div>
+      <div class="target-row">
+        <div>Héz</div>
+        <div class="target-bar-track"><div class="target-bar-fill" style="width:10.7%"></div></div>
+        <div class="target-pct">3.4%</div>
+      </div>
+    </div>
+
+    <div class="coverage-note">Top-target concentration (32.0% on Jotes) ran 11.3 points below the Top 100 average (43.3%) - a wider spread than typical - across 14 distinct targets.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Healer ranking</h2>
+    </div>
+    <p class="section-desc">Shlicktree vs. the other healers in this same raid on this same fight.</p>
+    <table class="cd-table">
+      <thead>
+        <tr>
+          <th>Healer</th>
+          <th>Raw healing</th>
+          <th style="text-align:right;">% of total</th>
+          <th style="text-align:right; cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">Item Level %</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="">
+          <td class="ability-name">Danceswtrees</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="235,045 total healing"><div class="healer-bar-fill " style="width:100.0%"></div></div></td>
+          <td class="num-cell">32.0%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">85% (ilvl 120)</td>
+        </tr>
+        <tr class="is-character">
+          <td class="ability-name">Shlicktree</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="192,441 total healing"><div class="healer-bar-fill is-character" style="width:81.9%"></div></div></td>
+          <td class="num-cell">26.2%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">58% (ilvl 124)</td>
+        </tr>
+        <tr class="">
+          <td class="ability-name">Kilsby</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="144,381 total healing"><div class="healer-bar-fill " style="width:61.4%"></div></div></td>
+          <td class="num-cell">19.7%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">57% (ilvl 128)</td>
+        </tr>
+        <tr class="">
+          <td class="ability-name">Vajomee</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="98,094 total healing"><div class="healer-bar-fill " style="width:41.7%"></div></div></td>
+          <td class="num-cell">13.4%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">9% (ilvl 123)</td>
+        </tr>
+        <tr class="">
+          <td class="ability-name">Morguesmpson</td>
+          <td><div class="healer-bar-track" style="cursor:help;" title="63,544 total healing"><div class="healer-bar-fill " style="width:27.0%"></div></div></td>
+          <td class="num-cell">8.7%</td>
+          <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">0% (ilvl 128)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <span>All data real: Shlicktree's fight log (LKbVcNfRxyBkj2mg, fight 62) + Top 100 Al&#39;ar benchmark (n=100)</span>
+  </div>
+
+</div>
+
+</body>
+</html>

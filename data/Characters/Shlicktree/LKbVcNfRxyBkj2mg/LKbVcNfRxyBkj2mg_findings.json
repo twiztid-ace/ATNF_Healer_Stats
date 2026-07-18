@@ -1,0 +1,104 @@
+{
+    "CharacterName": "Shlicktree",
+    "ReportCode": "LKbVcNfRxyBkj2mg",
+    "BossFindings": {
+        "maulgar": {
+            "SCORECARD_FINDING": "No usable combat data was captured for this kill: healing, casts, mana spent, and active time all came back empty or failed outright (a real, documented data-capture gap - see CLAUDE.md's 'no combatantinfo snapshot' item - not a genuine 0 HPS performance). One real death was logged (Pointsetta). Treat the 0th-percentile, last-place ranking shown here as a data artifact, not a real result.",
+            "SPELL_COMPOSITION_FINDING": "No spell casts were captured for this kill at all - nothing to compare against the Top 100 benchmark.",
+            "COOLDOWN_FINDING": "No cooldown casts were captured for this kill - the same data gap noted above. Innervate/Nature's Swiftness/Rebirth usage cannot be assessed here.",
+            "TARGET_FINDING": "No healing targets were captured for this kill - nothing to report.",
+            "IncludeRebirthRow": false
+        },
+        "gruul": {
+            "SCORECARD_FINDING": "HPS (890) ran below the Top 100 average (1,300, a 68% ratio) but this was still a strong 90th-percentile kill, ranking 1st of 5 tracked healers by both item-level rank and raw healing. One real death (Vinnyvoss) was logged. Note: this kill (like Maulgar before it) captured zero consumables/buffs data - Flask, Battle Elixir, Guardian Elixir, and Food all read false, the only two kills of the raid night where that happens, unlike every other kill's real Battle+Guardian Elixir readings.",
+            "SPELL_COMPOSITION_FINDING": "Rejuvenation ran 14.7 points ahead of its Top 100 benchmark share (34.2% vs 19.5%) - the top composition gap this kill - while Regrowth ran 12.8 points behind (13.0% vs 25.8%).",
+            "COOLDOWN_FINDING": "Nature's Swiftness went uncast (72% Top 100 usage) - the start of a pattern that holds for the entire raid night (see raid overview). A self-cast Innervate and two Swiftmends (one self, one on Jotes) were both in line with benchmark norms. Vinnyvoss's death has no cooldown near it worth calling a save - the nearest cast (a self-targeted Mana Potion) landed 9 seconds later.",
+            "TARGET_FINDING": "Top-target concentration (49.1% on Jotes) ran 13.0 points above the Top 100 average (36.1%) - the most concentrated healing profile relative to benchmark this kill - across 17 distinct targets.",
+            "IncludeRebirthRow": true
+        },
+        "hydross": {
+            "SCORECARD_FINDING": "HPS (599) ran below the Top 100 average (1,278, a 47% ratio), and overheal (66.4%) exceeds the sample's single worst parse (59.5%) by 6.9 points - a 40th-percentile kill, ranking 3rd of 5 tracked healers by item-level rank, with 2 real deaths logged.",
+            "SPELL_COMPOSITION_FINDING": "Rejuvenation ran 7.7 points ahead of its Top 100 benchmark share (22.1% vs 14.4%); the rest of the composition (Lifebloom's HoT tick, Regrowth) tracked within 5 points of benchmark.",
+            "COOLDOWN_FINDING": "Innervate and Nature's Swiftness both went uncast (77%/84% Top 100 usage). Neither of the 2 real deaths (Staubz, Deepbowlz) lines up closely with a cooldown that could plausibly have prevented it - the nearest casts (Swiftmend, Mana Potion) are incidental timing, 3-19 seconds off.",
+            "TARGET_FINDING": "Coverage (97.4%) ran 13.9 points above the Top 100 average (83.5%) - close to full-raid coverage - across a narrow 7-target spread, concentrated on the tank Turbarct (45.5%).",
+            "IncludeRebirthRow": true
+        },
+        "leotheras": {
+            "SCORECARD_FINDING": "HPS (1,115) ran below the Top 100 average (1,535, a 73% ratio) but this was still a strong 93rd-percentile kill, ranking 1st of 5 tracked healers by item-level rank - the raid's single highest kill by that measure - despite 9 real deaths, the most of any kill this raid night (including Shlicktree's own).",
+            "SPELL_COMPOSITION_FINDING": "Regrowth fell 35.0 points below its Top 100 benchmark share (17.8% vs 52.8%) - the largest composition gap of the raid - while Rejuvenation ran 31.4 points ahead (44.7% vs 13.3%), the most Rejuvenation-heavy kill of the night.",
+            "COOLDOWN_FINDING": "Nature's Swiftness went uncast again (81% Top 100 usage); a self-cast Innervate was in line with benchmark. Only one Swiftmend was cast the entire kill, and it happens to be the 'nearest' cooldown to all 9 real deaths purely because it's the only cooldown logged (0.8-22.5 seconds removed) - not a real save for any of them, including Shlicktree's own death. No Rebirth was attempted despite the heavy death count on a kill that still succeeded, meaning real time remained afterward - a real, plausible missed opportunity.",
+            "TARGET_FINDING": "Coverage (54.7%) and top-target concentration (16.1%) both tracked close to the Top 100 norm, across 20 distinct targets - consistent with a chaotic, high-death fight. Shlicktree's own name is the 5th-highest healing target (9.0%).",
+            "IncludeRebirthRow": true
+        },
+        "karathress": {
+            "SCORECARD_FINDING": "HPS (715) ran well below the Top 100 average (1,842, a 39% ratio), and overheal (59.6%) exceeds the sample's single worst parse (46.5%) by 13.1 points - a weak 12th-percentile kill, last of 5 tracked healers by item-level rank, with 2 real deaths logged.",
+            "SPELL_COMPOSITION_FINDING": "Regrowth fell 18.6 points below its Top 100 benchmark share (15.2% vs 33.8%) while Rejuvenation ran 17.2 points ahead (30.1% vs 12.9%).",
+            "COOLDOWN_FINDING": "Innervate and Nature's Swiftness both went uncast (80%/74% Top 100 usage). Staubz's death lands almost exactly on a Swiftmend cast (200ms apart), but that Swiftmend was aimed at Braila, not Staubz - coincidental timing, not a save; Zuggnuggs's death has no cooldown nearby worth calling out.",
+            "TARGET_FINDING": "Coverage (83.3%) and top-target concentration (27.0% on Turbarct) both tracked in line with the Top 100 norm, across 16 distinct targets.",
+            "IncludeRebirthRow": true
+        },
+        "morogrim": {
+            "SCORECARD_FINDING": "The raid's second-lowest kill: a self-death 51 seconds after the kill's only Swiftmend cast cut active time to 40.6% (Top 100 average 99.2%), producing a 1st-percentile result and last place among tracked healers by both item-level rank and raw healing. HPS (331, 23% of the Top 100 average) reflects the shortened window as much as raw output.",
+            "SPELL_COMPOSITION_FINDING": "Lifebloom's Bloom tick was never cast this kill (0% vs a real 9.6% Top 100 benchmark share) - the top composition gap - while the HoT tick itself ran 6.4 points ahead of benchmark (43.8% vs 37.4%).",
+            "COOLDOWN_FINDING": "Innervate and Nature's Swiftness both went uncast (93%/87% Top 100 usage) - unsurprising given the short active window. Shlicktree's own death, and the two deaths that followed it (Deepbowlz, Vinnyvoss, both at the same timestamp), all land 51-92 seconds after the kill's only Swiftmend cast - too far removed to call a missed save.",
+            "TARGET_FINDING": "Coverage (97.4%) and top-target concentration (60.6% on Turbarct) both ran well above the Top 100 average (67.4%/38.8%, +30.0/+21.8 points) - the most concentrated target profile of the raid night - across a narrow 6-target spread, consistent with the short window Shlicktree was actually healing in.",
+            "IncludeRebirthRow": true
+        },
+        "lurker": {
+            "SCORECARD_FINDING": "HPS (843) ran below the Top 100 average (1,615, a 52% ratio), and overheal (55.9%) exceeds the sample's single worst parse (49.1%) by 6.8 points - a solid 61st-percentile kill, ranking 1st of 5 tracked healers by both item-level rank and raw healing, on a clean kill with zero real deaths.",
+            "SPELL_COMPOSITION_FINDING": "Regrowth fell 23.5 points below its Top 100 benchmark share (15.7% vs 39.2%) while Lifebloom's HoT tick and Rejuvenation both ran ahead (+8.9 and +10.2 points).",
+            "COOLDOWN_FINDING": "Innervate and Nature's Swiftness both went uncast (90%/75% Top 100 usage). No deaths to answer.",
+            "TARGET_FINDING": "Coverage (65.1%) and top-target concentration (31.5% on Turbarct) both tracked in line with the Top 100 norm, across 18 distinct targets.",
+            "IncludeRebirthRow": false
+        },
+        "vashj": {
+            "SCORECARD_FINDING": "HPS (694) ran below the Top 100 average (1,142, a 61% ratio), and overheal (54.3%) sits just 0.8 points above the sample's single worst parse (53.5%) - a real but narrow gap - on a solid 60th-percentile kill, ranking 1st of 5 tracked healers by item-level rank and raw healing, with 6 real deaths on the raid's longest fight (543 seconds).",
+            "SPELL_COMPOSITION_FINDING": "The off-rank Regrowth cast (guid 8941) carried 15.0 points more healing than its Top 100 benchmark share (0%) - the top composition gap this kill - while Lifebloom's HoT tick ran 12.2 points behind its own benchmark share (34.5% vs 46.7%).",
+            "COOLDOWN_FINDING": "A self-cast Innervate was in line with benchmark; Nature's Swiftness again went uncast (86% Top 100 usage). None of the 6 real deaths lines up closely with a cooldown that could plausibly have prevented it - the nearest casts (Swiftmend, Mana Potion) are all 7.5-98 seconds removed, mostly incidental timing.",
+            "TARGET_FINDING": "Coverage (55.0%) and top-target concentration (15.6%) both tracked in line with the Top 100 norm, across the raid's widest spread (21 distinct targets). Shlicktree's own name is the 3rd-highest healing target (13.5%).",
+            "IncludeRebirthRow": true
+        },
+        "alar": {
+            "SCORECARD_FINDING": "HPS (603) ran below the Top 100 average (1,080, a 56% ratio), and overheal (64.9%) exceeds the sample's single worst parse (61.1%) by 3.8 points - a solid 58th-percentile kill, ranking 2nd of 5 tracked healers by item-level rank, with zero real deaths logged. Item level bracket rose from 121 to 124 starting this kill - see the raid overview for the real gear change behind it.",
+            "SPELL_COMPOSITION_FINDING": "Lifebloom's HoT tick fell 10.9 points below its Top 100 benchmark share (39.0% vs 49.9%) while Rejuvenation ran 10.8 points ahead (23.4% vs 12.6%).",
+            "COOLDOWN_FINDING": "A self-cast Innervate was in line with benchmark; Nature's Swiftness again went uncast (85% Top 100 usage). No deaths to answer.",
+            "TARGET_FINDING": "Top-target concentration (32.0% on Jotes) ran 11.3 points below the Top 100 average (43.3%) - a wider spread than typical - across 14 distinct targets.",
+            "IncludeRebirthRow": false
+        },
+        "voidreaver": {
+            "SCORECARD_FINDING": "HPS (1,517) ran below the Top 100 average (2,465, a 62% ratio), and overheal (41.5%) exceeds the sample's single worst parse (33.0%) by 8.5 points - a strong 71st-percentile kill, ranking 3rd of 5 tracked healers by item-level rank, with 2 real deaths logged.",
+            "SPELL_COMPOSITION_FINDING": "Regrowth fell 35.7 points below its Top 100 benchmark share (40.7% vs 76.4%) - the largest composition gap this kill - while Rejuvenation and Lifebloom's HoT tick both ran well ahead (+19.4 and +16.1 points). Real Tranquility healing also shows up here (guid 44208, 4.1% of total) - the cooldown table below still reads 0 casts for it, a known, documented tracking gap (Tranquility's cooldown guid hasn't been added to this pipeline yet - CLAUDE.md item 1), not evidence it wasn't cast.",
+            "COOLDOWN_FINDING": "A self-cast Innervate was in line with benchmark; Nature's Swiftness again went uncast (54% Top 100 usage). Both real deaths (Captinspanky, Staubz) land close to the same Innervate cast (0.8-14.2 seconds after) - a self-buff cooldown, not a rescue tool, so this is coincidental timing rather than a missed save.",
+            "TARGET_FINDING": "Coverage (58.4%) ran 21.2 points above the Top 100 average (37.2%) - the largest positive coverage gap of the raid night - across 21 distinct targets.",
+            "IncludeRebirthRow": true
+        },
+        "solarian": {
+            "SCORECARD_FINDING": "HPS (362) ran well below the Top 100 average (1,239, a 29% ratio), and overheal (82.5%) exceeds the sample's single worst parse (65.4%) by 17.1 points - the largest overheal gap of the raid night - landing at a weak 23rd percentile, last of 5 tracked healers by both item-level rank and raw healing, with 1 real death logged.",
+            "SPELL_COMPOSITION_FINDING": "The off-rank Regrowth cast (guid 8941, a lower-cost rank) carried more healing than the top rank this kill (33.4% vs 22.3%) - a real, unusual rank-preference reversal, since the Top 100 benchmark shows 0% usage of that lower rank here and channels almost everything through the top rank instead (59.2%).",
+            "COOLDOWN_FINDING": "Innervate, Nature's Swiftness, and Swiftmend all went uncast this kill (82%/72%/90% Top 100 usage respectively) - one of only two kills this raid where Swiftmend itself is flagged as a real statistical deviation (the other, Maulgar, has no usable data at all), making this the one kill with real data where it's a genuine gap. Captinspanky's death has no cooldown nearby worth calling a save - the nearest cast (a self-targeted Mana Potion) landed 7.5 seconds later.",
+            "TARGET_FINDING": "Top-target concentration (26.7% on Jotes) ran 10.5 points above the Top 100 average (16.2%) across 19 distinct targets.",
+            "IncludeRebirthRow": true
+        },
+        "kaelthas": {
+            "SCORECARD_FINDING": "HPS (533) ran below the Top 100 average (1,018, a 52% ratio) on the raid's longest kill (487 seconds), and overheal (68.6%) exceeds the sample's single worst parse (61.7%) by 6.9 points - a middling 35th-percentile kill, ranking 1st of 5 tracked healers by both item-level rank and raw healing, with 6 real deaths logged.",
+            "SPELL_COMPOSITION_FINDING": "Rejuvenation ran 11.6 points ahead of its Top 100 benchmark share (21.8% vs 10.2%) while Lifebloom's HoT tick ran 11.5 points behind (27.9% vs 39.4%). A small, real Greater Rune of Warding absorb (0.2% of total) also shows up here, not present in the Top 100 benchmark composition for this fight.",
+            "COOLDOWN_FINDING": "A self-cast Innervate was in line with benchmark; Nature's Swiftness again went uncast (87% Top 100 usage, the highest of the raid). Rebirth was cast once, on Staubz, about 25 seconds after Staubz's own death - a real, if delayed, response; the other 5 real deaths (Nameitis, Vajomee, Kilsby, Churbert, Morguesmpson) were never rebirthed, though none line up closely enough with any other cooldown to call a missed save.",
+            "TARGET_FINDING": "Coverage (65.9%) and top-target concentration (18.8%) both tracked in line with the Top 100 norm, across the raid's widest spread (24 distinct targets).",
+            "IncludeRebirthRow": true
+        }
+    },
+    "RaidOverview": {
+        "GEAR_CONSISTENCY_FINDING": "Four slots vary across the 12 kills. Head and Wrist show a genuine gear upgrade starting on Al'ar (helm item 24264 to 30219, bracer item 29183 to 30062) and holding through the rest of the raid - matches the item-level bracket rising from 121 to 124 at the same point. Chest and MainHand show a separate, non-item pattern: the same items throughout, but a temporary enchant present on 9 of 12 kills and absent on Maulgar, Gruul, and Al'ar - the exact same on/off split on both slots. Chest armor can't carry a real temporary weapon-oil-style enchant in this ruleset, so this reads as the same WCL data artifact already flagged in Shlicktree's XJp8vAxzM4KtHYyb report (also on the Chest slot there), not two independent equipment changes - flagged for review, not resolved.",
+        "GEAR_FINDING_NOTE": "8 of 9 enchantable slots carry a permanent enchant on every kill; the Back slot (Cape, item 279240) never does - the one persistent, real gear gap. Maulgar and Gruul, the raid's first two kills, are also the only two kills where consumables/buffs data reads empty across the board (Flask, Battle Elixir, Guardian Elixir, and Food all false). Maulgar's is part of a total data-capture failure for that kill (see its own findings); Gruul has real healing/cast/cooldown data alongside the empty buff reading, which makes it a genuine, narrower gap worth flagging on its own.",
+        "RAID_SUMMARY_FINDING": "11 of the 12 real bosses attempted this raid night have usable combat data; Maulgar's own pull failed to capture healing, casts, active time, or consumables entirely (a documented data-capture gap, not a real 0 HPS result - see its own findings). Across the 11 usable kills, Shlicktree ranked 1st of 5 tracked healers present by item-level rank on 5 of 12 kills (45% average rank percentile) and 1st by raw healing on 4 of 11 (Maulgar excluded from the raw-healing comparison for the same data reason). Nature's Swiftness was never cast on any of the 12 kills - the raid's single most consistent cooldown gap, continuing the exact same pattern seen in Shlicktree's previous raid night (report XJp8vAxzM4KtHYyb). Overheal matched or exceeded the Top 100 sample's own single worst parse on 9 of 12 kills. Deaths concentrated on Leotheras (9, the raid's highest) and a tie between Kael'thas and Vashj (6 each); Shlicktree died twice this raid, on Leotheras and Morogrim, with the Morogrim self-death (51 seconds after that kill's only Swiftmend cast) driving active time down to 40.6% and producing a 1st-percentile result, the raid's second-lowest after the data-gap Maulgar kill.",
+        "RAID_WARNING_BANNER": "<strong>Maulgar's own data pull failed entirely</strong> (0 healing, 0 casts, no active-time or consumables data captured) - a known data-capture gap, not a real 0 HPS result; don't read its 0th-percentile ranking as genuine. <strong>Nature's Swiftness was never cast on any of the 12 kills</strong> this raid night, continuing the same pattern from Shlicktree's previous report.",
+        "GearCheckItems": [
+            {
+                "Icon": "ok",
+                "Description": "Elixir of Healing Power (Battle) and Elixir of Draenic Wisdom (Guardian) both active on 10 of 12 kills, plus Well Fed food buff",
+                "Detail": "10/12 kills",
+                "LongDetail": "Same complete consumable setup confirmed in Shlicktree's previous report - the Battle + Guardian Elixir pairing is a fully valid alternative to a Flask under the real TBC rule. Missing on Maulgar (data-capture failure, see raid summary) and Gruul (real combat data present, but consumables/buffs read empty for this kill specifically)."
+            }
+        ]
+    }
+}
