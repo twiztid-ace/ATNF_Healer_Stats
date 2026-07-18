@@ -19,6 +19,7 @@ import base64
 import json
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
+from pathlib import Path
 from typing import Any, Callable
 
 import requests
@@ -27,6 +28,11 @@ from pipeline import jsonio
 
 TOKEN_ENDPOINT = "https://www.warcraftlogs.com/oauth/token"
 GRAPHQL_ENDPOINT = "https://www.warcraftlogs.com/api/v2/client"
+# (connect, read) timeout tuple for every request in this module - a stalled
+# socket must surface as a normal error result within a bounded time instead
+# of hanging a worker thread indefinitely (pull_top100.py/pull_character.py
+# fan these calls out across a ThreadPoolExecutor).
+REQUEST_TIMEOUT = (10, 30)
 
 
 @dataclass
@@ -87,8 +93,6 @@ def get_wcl_access_token(
     expiring. Checked fresh on every call rather than cached in-process, same
     as the PowerShell original (token lifetime is ~360 days, so refresh is
     rare; each invocation is short-lived anyway)."""
-    from pathlib import Path
-
     token_path = Path(token_file)
     if token_path.exists() and not force_refresh:
         cached = jsonio.read_text(token_path).strip()
@@ -116,6 +120,7 @@ def get_wcl_access_token(
         TOKEN_ENDPOINT,
         auth=(client_id, client_secret),
         data={"grant_type": "client_credentials"},
+        timeout=REQUEST_TIMEOUT,
     )
     resp.raise_for_status()
     access_token = resp.json()["access_token"]
@@ -140,7 +145,7 @@ def invoke_wcl_graphql(
         body["variables"] = variables
 
     try:
-        resp = requests.post(GRAPHQL_ENDPOINT, headers=headers, json=body)
+        resp = requests.post(GRAPHQL_ENDPOINT, headers=headers, json=body, timeout=REQUEST_TIMEOUT)
         if resp.status_code == 401 and not is_retry:
             fresh_token = get_wcl_access_token(force_refresh=True)
             return invoke_wcl_graphql(query, variables, fresh_token, is_retry=True)

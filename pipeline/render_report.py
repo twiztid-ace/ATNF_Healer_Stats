@@ -21,39 +21,18 @@ Jinja2 configuration choices (see the migration plan's Phase 4 risk notes):
 from __future__ import annotations
 
 import argparse
-import datetime as _dt
 from pathlib import Path
 from typing import Any
 
-from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
-
+from pipeline import classes as classes_module
 from pipeline import jsonio, paths, render_lib
 from pipeline.numeric import round_net
 
-CLASS_SPEC_BY_CLASS = {
-    "Druid": "Restoration Druid",
-    "Shaman": "Restoration Shaman",
-    "Priest": "Holy Priest",
-    "Paladin": "Holy Paladin",
-    "Dreamstate": "Dreamstate Druid",
-}
-
-TEMPLATE_BY_CLASS = {
-    "Druid": "boss_page_druid.html.jinja",
-    "Shaman": "boss_page_shaman.html.jinja",
-    "Priest": "boss_page_priest.html.jinja",
-    "Paladin": "boss_page_paladin.html.jinja",
-    "Dreamstate": "boss_page_dreamstate.html.jinja",
-}
-
-
-def _format_long_date(yyyy_mm_dd: str) -> str:
-    """Matches PowerShell's ToString("MMMM d, yyyy") - full month name, day
-    with no leading zero, 4-digit year. Built manually rather than via
-    strftime's "%-d"/"%#d" (platform-specific: Unix vs Windows use different
-    flags for "no leading zero", so neither is portable)."""
-    dt = _dt.datetime.strptime(yyyy_mm_dd, "%Y-%m-%d")
-    return f"{dt.strftime('%B')} {dt.day}, {dt.year}"
+# Derived from classes.py's CLASSES (the single source of truth - see that
+# module's docstring) rather than duplicated here, so a new class/build only
+# needs one edit instead of drifting between this file and classes.py.
+CLASS_SPEC_BY_CLASS = {key: cfg.display_name for key, cfg in classes_module.CLASSES.items()}
+TEMPLATE_BY_CLASS = {key: cfg.template_name for key, cfg in classes_module.CLASSES.items()}
 
 
 def _thousands(value: float) -> str:
@@ -94,16 +73,6 @@ def _format_cooldown_benchmark(avg_casts, used_pct, self_pct, show_self_pct: boo
         return f"{avg_casts} avg"
     self_display = round_net(float(self_pct), 0) if self_pct not in (None, "") else 0
     return f"{avg_casts} avg ({self_display}% self)"
-
-
-def _make_env(templates_root: str) -> Environment:
-    return Environment(
-        loader=FileSystemLoader(templates_root),
-        autoescape=select_autoescape(["html", "jinja"]),
-        undefined=StrictUndefined,
-        trim_blocks=True,
-        lstrip_blocks=True,
-    )
 
 
 def _validate_findings(report_data: dict, findings: dict) -> None:
@@ -180,12 +149,12 @@ def render_healer_report(
     raid_date_display = None
     if raw_raid_date:
         try:
-            raid_date_display = _format_long_date(raw_raid_date)
+            raid_date_display = render_lib.format_long_date(raw_raid_date)
         except ValueError:
             raid_date_display = raw_raid_date
     else:
         try:
-            raid_date_display = _format_long_date(folder_name)
+            raid_date_display = render_lib.format_long_date(folder_name)
         except ValueError:
             raid_date_display = folder_name
 
@@ -198,7 +167,7 @@ def render_healer_report(
     out_dir = Path(output_root) / healer_slug / raid_date_folder
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    env = _make_env(templates_root)
+    env = render_lib.make_jinja_env(templates_root)
     boss_template = env.get_template(TEMPLATE_BY_CLASS[class_name])
 
     full_raid_title_for_boss_pages = f"{raid_title} — {raid_date_display}"
@@ -398,9 +367,13 @@ def render_healer_report(
             "benchmark_n": sample_n,
         }
 
+        # Note: no post-render scan for a literal "{{" here (the PowerShell
+        # original had one) - undefined=StrictUndefined above already raises
+        # immediately on any unfilled template variable, which is the actual
+        # failure mode this was guarding against. A textual "{{" scan risks a
+        # false positive on legitimate findings.json prose that happens to
+        # quote template syntax, for no real extra safety.
         page_html = boss_template.render(**context)
-        if "{{" in page_html:
-            raise ValueError(f"{slug} page still has an unfilled {{{{TOKEN}}}} after rendering - refusing to write a broken page.")
 
         out_path = out_dir / f"healer_audit_{slug}.html"
         jsonio.write_text(out_path, page_html)
@@ -535,8 +508,6 @@ def render_healer_report(
     }
 
     overview_html = overview_template.render(**overview_context)
-    if "{{" in overview_html:
-        raise ValueError("raid overview still has an unfilled {{TOKEN}} after rendering - refusing to write a broken page.")
 
     overview_out_path = out_dir / "index.html"
     jsonio.write_text(overview_out_path, overview_html)

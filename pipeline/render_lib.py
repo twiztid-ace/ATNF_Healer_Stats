@@ -13,11 +13,38 @@ wrappers over that single source of truth.
 
 from __future__ import annotations
 
+import datetime as _dt
+
+from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
+
 from pipeline import classes as classes_module
 
 EM_DASH = "—"
 RIGHT_ARROW = "→"
 MULT_SIGN = "×"
+
+
+def make_jinja_env(templates_root: str) -> Environment:
+    """Shared Jinja2 config for both the per-boss/raid-overview renderer
+    (render_report.py) and the hub-page renderer (hub_pages.py) - kept in one
+    place so the two can't drift apart (autoescape/StrictUndefined behavior
+    matters for both, see render_report.py's module docstring)."""
+    return Environment(
+        loader=FileSystemLoader(templates_root),
+        autoescape=select_autoescape(["html", "jinja"]),
+        undefined=StrictUndefined,
+        trim_blocks=True,
+        lstrip_blocks=True,
+    )
+
+
+def format_long_date(yyyy_mm_dd: str) -> str:
+    """Matches PowerShell's ToString("MMMM d, yyyy") - full month name, day
+    with no leading zero, 4-digit year. Built manually rather than via
+    strftime's "%-d"/"%#d" (platform-specific: Unix vs Windows use different
+    flags for "no leading zero", so neither is portable)."""
+    dt = _dt.datetime.strptime(yyyy_mm_dd, "%Y-%m-%d")
+    return f"{dt.strftime('%B')} {dt.day}, {dt.year}"
 
 # ===== 19-slot gear order (WORKFLOW.md gotcha #31) - fixed WoW combatantinfo
 # gear[] position, confirmed real, never re-derive this ad hoc. =====

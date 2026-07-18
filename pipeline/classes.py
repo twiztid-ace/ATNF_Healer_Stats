@@ -25,7 +25,7 @@ class ClassConfig:
     class_id: int                       # real WCL classID
     spec_id: int                         # real WCL specID
     display_name: str                     # "Restoration Druid", "Dreamstate Druid", etc.
-    template_name: str                     # boss_page_template_{x}.html
+    template_name: str                     # boss_page_{x}.html.jinja, under templates_jinja/
     manifest_root_key: str                  # data/Classes/{key}
     cooldown_guids: dict[str, list[int]]      # ability name -> real guid(s), ordered
     target_mode: dict[str, str]                # ability name -> "party"|"self"|"other"
@@ -43,7 +43,7 @@ CLASSES: dict[str, ClassConfig] = {
         class_id=2,
         spec_id=4,
         display_name="Restoration Druid",
-        template_name="boss_page_template_druid.html",
+        template_name="boss_page_druid.html.jinja",
         manifest_root_key="Druid",
         cooldown_guids={
             "Innervate": [29166],
@@ -68,7 +68,7 @@ CLASSES: dict[str, ClassConfig] = {
         class_id=9,
         spec_id=3,
         display_name="Restoration Shaman",
-        template_name="boss_page_template_shaman.html",
+        template_name="boss_page_shaman.html.jinja",
         manifest_root_key="Shaman",
         cooldown_guids={
             "Earth Shield": [32594],
@@ -91,7 +91,7 @@ CLASSES: dict[str, ClassConfig] = {
         class_id=7,
         spec_id=2,
         display_name="Holy Priest",
-        template_name="boss_page_template_priest.html",
+        template_name="boss_page_priest.html.jinja",
         manifest_root_key="Priest",
         cooldown_guids={
             "Shadowfiend": [34433],
@@ -116,7 +116,7 @@ CLASSES: dict[str, ClassConfig] = {
         class_id=6,
         spec_id=1,
         display_name="Holy Paladin",
-        template_name="boss_page_template_paladin.html",
+        template_name="boss_page_paladin.html.jinja",
         manifest_root_key="Paladin",
         cooldown_guids={
             "Holy Shock": [33072],
@@ -148,7 +148,7 @@ CLASSES: dict[str, ClassConfig] = {
         class_id=2,
         spec_id=6,
         display_name="Dreamstate Druid",
-        template_name="boss_page_template_dreamstate.html",
+        template_name="boss_page_dreamstate.html.jinja",
         manifest_root_key="Dreamstate",
         cooldown_guids={
             "Innervate": [29166],

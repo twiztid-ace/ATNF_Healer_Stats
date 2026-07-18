@@ -26,22 +26,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from jinja2 import Environment, FileSystemLoader, StrictUndefined, select_autoescape
-
 from pipeline import classes as classes_module
-from pipeline import jsonio
+from pipeline import jsonio, render_lib
 
 DISPLAY_NAME_TO_CLASS = {cfg.display_name: key for key, cfg in classes_module.CLASSES.items()}
-
-
-def _make_env(templates_root: str) -> Environment:
-    return Environment(
-        loader=FileSystemLoader(templates_root),
-        autoescape=select_autoescape(["html", "jinja"]),
-        undefined=StrictUndefined,
-        trim_blocks=True,
-        lstrip_blocks=True,
-    )
 
 
 def _bosses_label(bosses_killed: int, bosses_attempted: int) -> str:
@@ -52,12 +40,6 @@ def _bosses_label(bosses_killed: int, bosses_attempted: int) -> str:
 
 def _raid_count_label(count: int) -> str:
     return f"{count} {'raid night' if count == 1 else 'raid nights'} analyzed"
-
-
-def _format_long_date(yyyy_mm_dd: str) -> str:
-    import datetime as _dt
-    dt = _dt.datetime.strptime(yyyy_mm_dd, "%Y-%m-%d")
-    return f"{dt.strftime('%B')} {dt.day}, {dt.year}"
 
 
 def _healer_index_path(characters_root: str, character_name: str) -> Path:
@@ -175,7 +157,7 @@ def resort_only(character_name: str, characters_root: str = "data/Characters", d
 
 
 def render_healer_hub(index_data: dict, docs_root: str = "docs", templates_root: str = "templates_jinja") -> Path:
-    env = _make_env(templates_root)
+    env = render_lib.make_jinja_env(templates_root)
     template = env.get_template("healer_raidlist.html.jinja")
     cfg = classes_module.get(index_data["class_name"])
 
@@ -183,7 +165,7 @@ def render_healer_hub(index_data: dict, docs_root: str = "docs", templates_root:
     for r in index_data["raid_nights"]:
         raid_rows.append({
             "report_code": r["report_code"], "raid_title": r["raid_title"],
-            "raid_date_display": _format_long_date(r["raid_date"]),
+            "raid_date_display": render_lib.format_long_date(r["raid_date"]),
             "bosses_label": _bosses_label(r["bosses_killed"], r["bosses_attempted"]),
         })
 
@@ -200,7 +182,7 @@ def render_healer_hub(index_data: dict, docs_root: str = "docs", templates_root:
 
 
 def render_site_index(site_index: dict, docs_root: str = "docs", templates_root: str = "templates_jinja") -> Path:
-    env = _make_env(templates_root)
+    env = render_lib.make_jinja_env(templates_root)
     template = env.get_template("site_index.html.jinja")
     html = template.render(healers=site_index["healers"])
     out_path = Path(docs_root) / "index.html"

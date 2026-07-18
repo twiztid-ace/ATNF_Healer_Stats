@@ -35,6 +35,19 @@ from pipeline import (
 )
 
 
+def _findings_source(findings_path) -> str:
+    """"placeholder" if findings.json's content is actually the placeholder
+    text (whether written moments ago via --placeholder-findings, or already
+    sitting there from an earlier placeholder run), "v2" otherwise. Checked
+    by content rather than by whether --placeholder-findings was passed on
+    *this* invocation, since a prior real findings.json is reused as-is (see
+    the "Using existing ..." branches above) regardless of that flag."""
+    findings = jsonio.read_json(findings_path)
+    if findings.get("RaidOverview", {}).get("RAID_SUMMARY_FINDING") == placeholder_findings_module.PLACEHOLDER:
+        return "placeholder"
+    return "v2"
+
+
 def _add_common_roots(parser: argparse.ArgumentParser, *, characters=True, classes=False, templates=False, docs=False, data=False) -> None:
     if characters:
         parser.add_argument("--characters-root", default="data/Characters")
@@ -68,7 +81,7 @@ def cmd_summarize_benchmarks(args: argparse.Namespace) -> int:
 
 
 def cmd_build_report_data(args: argparse.Namespace) -> int:
-    build_report_data_module.build_report_data(args.character_name, args.report_code, args.class_name, args.characters_root)
+    build_report_data_module.build_report_data(args.character_name, args.report_code, args.class_name, args.characters_root, args.classes_root)
     return 0
 
 
@@ -132,7 +145,7 @@ def cmd_generate(args: argparse.Namespace) -> int:
     summarize_benchmarks_module.summarize_benchmarks(class_name, args.classes_root)
 
     print("\n=== generate: step 4/6 - compute report data + analysis ===")
-    build_report_data_module.build_report_data(args.character_name, args.report_code, class_name, args.characters_root)
+    build_report_data_module.build_report_data(args.character_name, args.report_code, class_name, args.characters_root, args.classes_root)
     build_analysis_module.build_analysis(args.character_name, args.report_code, class_name, args.characters_root)
 
     char_root = args.characters_root
@@ -171,7 +184,7 @@ def cmd_generate(args: argparse.Namespace) -> int:
     hub_pages.upsert_raid_night(
         args.character_name, class_name, args.report_code, pull_result["raid_date"], args.raid_title,
         bosses_killed, bosses_attempted, args.server, args.region,
-        "v2" if not args.placeholder_findings else "v2",
+        _findings_source(findings_path),
         args.characters_root, args.docs_root, args.templates_root, args.data_root,
     )
 
@@ -243,7 +256,7 @@ def cmd_generate_all(args: argparse.Namespace) -> int:
         else:
             print(f"  {class_name}'s Top 100 benchmark already refreshed earlier this run - reusing.")
 
-        build_report_data_module.build_report_data(name, args.report_code, class_name, args.characters_root)
+        build_report_data_module.build_report_data(name, args.report_code, class_name, args.characters_root, args.classes_root)
         build_analysis_module.build_analysis(name, args.report_code, class_name, args.characters_root)
 
         report_data_file = paths.find_file_recursive(f"{args.characters_root}/{name}", f"{args.report_code}_report_data.json")
@@ -272,7 +285,8 @@ def cmd_generate_all(args: argparse.Namespace) -> int:
         bosses_attempted = report_data.get("BossesAttempted") or bosses_killed
         hub_pages.upsert_raid_night(
             name, class_name, args.report_code, pull_result["raid_date"], args.raid_title,
-            bosses_killed, bosses_attempted, args.server, args.region, "v2",
+            bosses_killed, bosses_attempted, args.server, args.region,
+            _findings_source(findings_path),
             args.characters_root, args.docs_root, args.templates_root, args.data_root,
         )
         results.append((name, "done", f"{bosses_killed}/{bosses_attempted} bosses"))
@@ -315,7 +329,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--character-name", required=True)
     p.add_argument("--report-code", required=True)
     p.add_argument("--class-name", required=True)
-    _add_common_roots(p)
+    _add_common_roots(p, classes=True)
     p.set_defaults(func=cmd_build_report_data)
 
     p = sub.add_parser("build-analysis", help="Pre-flag script-safe judgment calls into analysis.json")

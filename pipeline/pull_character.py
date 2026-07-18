@@ -23,12 +23,24 @@ import sys
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
+from typing import Any, TypedDict
 
 from pipeline import bosses as bosses_module
 from pipeline import classes as classes_module
 from pipeline import jsonio, paths, wcl_api
 from pipeline.numeric import round_net
+
+
+class PullCharacterResult(TypedDict):
+    out_dir: Path
+    wcl_class_name: str | None
+    resolved_spec: str | None
+    pipeline_class_name: str | None
+    raid_date: str
+    boss_fights_count: int
+    total_done: int
+    total_failed: int
+
 
 TREE_OF_LIFE_GUID = 33891
 IMPROVED_FAERIE_FIRE_GUID = 26993
@@ -335,7 +347,7 @@ def pull_character(
     report_code: str, character_name: str, server: str | None = None, region: str | None = None,
     class_name: str | None = None, spec: str | None = None, date_override: str | None = None,
     max_threads: int = 10, characters_root: str = "data/Characters",
-) -> Path:
+) -> PullCharacterResult:
     m = re.search(r"warcraftlogs\.com/reports/([A-Za-z0-9]+)", report_code)
     if m:
         report_code = m.group(1)

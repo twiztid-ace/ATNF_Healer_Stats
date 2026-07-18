@@ -45,6 +45,7 @@ def build_report_data(
     report_code: str,
     class_name: str,
     characters_root: str = "data/Characters",
+    classes_root: str = "data/Classes",
 ) -> dict[str, Any]:
     cfg = classes_module.get(class_name)
     cooldown_guids = cfg.cooldown_guids
@@ -85,7 +86,7 @@ def build_report_data(
             ],
         }
 
-    bench_dir = Path("data/Classes") / class_name / "active"
+    bench_dir = Path(classes_root) / class_name / "active"
     if not bench_dir.exists():
         raise FileNotFoundError(
             f"{bench_dir} not found - run pull_top100.py --class-name {class_name} "
@@ -428,9 +429,10 @@ def main() -> int:
     parser.add_argument("--report-code", required=True)
     parser.add_argument("--class-name", required=True)
     parser.add_argument("--characters-root", default="data/Characters")
+    parser.add_argument("--classes-root", default="data/Classes")
     args = parser.parse_args()
 
-    build_report_data(args.character_name, args.report_code, args.class_name, args.characters_root)
+    build_report_data(args.character_name, args.report_code, args.class_name, args.characters_root, args.classes_root)
     return 0
 
 
