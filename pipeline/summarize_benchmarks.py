@@ -409,7 +409,7 @@ def summarize_benchmarks(
     )
     csvio.write_csv(out_cooldowns, sorted(cooldown_rows, key=lambda r: (r["Boss"], r["Ability"])))
     csvio.write_csv(out_buffs, sorted(buff_rows, key=lambda r: r["Boss"]))
-    manacost_rows = sorted(mana_cost_by_guid_agg.values(), key=lambda r: (r["Name"], r["Guid"]))
+    manacost_rows = sorted(mana_cost_by_guid_agg.values(), key=lambda r: (r["Name"] or "", r["Guid"]))
     csvio.write_csv(out_manacost, manacost_rows)
 
     if using_active_model:

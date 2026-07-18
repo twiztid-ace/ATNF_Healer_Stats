@@ -224,6 +224,61 @@ either:
   yourself, following the schema documented in `pipeline\render_report.py`'s own
   module docstring and in `SKILL.md`, then re-run steps 7-8 above.
 
+## Running the pipeline for every already-tracked healer against one report
+
+A raid log is often shared by more than one tracked healer (e.g. a Druid and
+a Shaman healing the same raid night) — `pipeline\pull_character.py` already
+resolves each character independently from the report's own `actors[]`/
+`rankings()` data, so nothing about a single pull assumes there's only one
+healer in the log. `generate-all` is a thin loop around the same per-stage
+functions `generate` uses, run once per healer already registered in
+`data\site_index.json`, instead of requiring one `/generate-healer-report`
+invocation per name:
+
+```
+python -m pipeline.cli generate-all --report-code "<ReportCode>" --placeholder-findings
+```
+
+For each already-tracked healer (default: everyone in `data\site_index.json`
+— **not** every folder under `data\Characters\`, since a healer can be
+pulled once and deliberately kept unlisted from the site homepage, see
+`CLAUDE.md`'s Turkeykin note; pass `--character-names "A,B,C"` to include
+someone not in `site_index.json`, or to scope the run to fewer names), it:
+
+- Pulls that character's data for this report code, same as `pull-character`.
+- **Skips that one healer, and only that healer**, and keeps going, when the
+  character genuinely isn't in this report (not found in `actors[]`), or
+  when they play more than one real spec across this report's boss kills and
+  need an explicit `--spec` (re-run `pull-character` for that one name by
+  hand with `--spec` if this happens, then re-run `generate-all` — it will
+  find the cached pull and pick up from there).
+- **Stops the whole batch immediately** on any other failure (bad/private
+  report code, an API error) — that kind of failure is report-level, not
+  per-healer, so retrying it once per remaining name would just repeat the
+  same failure and burn API calls for nothing.
+- Skips a healer whose resolved class/spec isn't on the pipeline yet, or who
+  has 0 boss kills in this report (benched, or off-spec the whole night).
+- Refreshes and re-summarizes each *distinct* resolved class's Top 100
+  benchmark once per run, not once per healer sharing that class.
+- Computes `report_data.json`/`analysis.json` for every healer that made it
+  this far, same as `build-report-data`/`build-analysis`.
+- Renders pages and upserts the hub pages for any healer whose
+  `findings.json` already exists (or gets a placeholder one, with
+  `--placeholder-findings`) — otherwise it prints exactly which
+  `..._findings.json` path still needs authoring and moves on to the next
+  healer, without blocking the rest of the batch.
+
+Prints a per-healer summary line (`done`, `skipped`, `needs-findings`, or
+`error`) at the end either way.
+
+**With Claude-authored findings**, the same `/generate-healer-report` skill
+handles this too — pass it just a report code (no character name) and it
+runs `generate-all` twice: once to pull every already-tracked healer and
+stop right before findings, once more (after authoring a real
+`<code>_findings.json` for each healer that needed one) to render and update
+every affected hub page. See `.claude\skills\generate-healer-report\SKILL.md`'s
+"Running for every already-tracked healer" section for the exact steps.
+
 ## Adding a new boss
 
 `pipeline\bosses.py` is the single source of truth for the boss list — one

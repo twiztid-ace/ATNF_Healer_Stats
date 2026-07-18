@@ -179,6 +179,110 @@ def cmd_generate(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_generate_all(args: argparse.Namespace) -> int:
+    site_index = hub_pages.load_site_index(args.data_root)
+    if args.character_names:
+        names = [n.strip() for n in args.character_names.split(",") if n.strip()]
+    else:
+        names = [h["character_name"] for h in site_index["healers"]]
+
+    if not names:
+        print(
+            "No healers registered in data/site_index.json, and no --character-names override "
+            "was given - nothing to do. (Registering a healer's first report via `generate` also "
+            "registers them here for future generate-all runs.)"
+        )
+        return 1
+
+    print(f"=== generate-all: report {args.report_code} against {len(names)} already-tracked healer(s): {', '.join(names)} ===")
+
+    class_names_refreshed: set[str] = set()
+    results: list[tuple[str, str, str]] = []
+
+    for name in names:
+        print(f"\n--- {name} ---")
+        try:
+            pull_result = pull_character_module.pull_character(
+                args.report_code, name, max_threads=args.max_threads, characters_root=args.characters_root,
+            )
+        except RuntimeError as exc:
+            message = str(exc)
+            # Per-character conditions (not in this report's actors[], or plays
+            # more than one spec and needs an explicit --spec) only rule this
+            # one healer out - every other name may still be a real hit. Any
+            # other RuntimeError (bad/private report code, API failure) will
+            # fail identically for every remaining name, so stop the batch
+            # instead of burning API calls repeating the same failure N times.
+            if "was not found in this report's actors" in message or "plays more than one real spec" in message:
+                print(f"  SKIP {name}: {message}")
+                results.append((name, "skipped", message.splitlines()[0]))
+                continue
+            print(f"  ERROR {name}: {message}")
+            print("  This looks like a report-level failure (bad/private report code, or an API error) "
+                  "rather than something specific to this healer - stopping the batch rather than "
+                  "repeating the same failure for every remaining name.")
+            results.append((name, "error", message.splitlines()[0]))
+            break
+
+        class_name = pull_result["pipeline_class_name"]
+        if not class_name:
+            print(f"  SKIP {name}: unsupported class/spec (WCL: {pull_result['wcl_class_name']}/{pull_result['resolved_spec']}) - not on the pipeline yet.")
+            results.append((name, "skipped", "unsupported class/spec"))
+            continue
+        if pull_result["boss_fights_count"] == 0:
+            print(f"  SKIP {name}: 0 boss kills resolved for this character/spec in this report (not present, benched, or off-spec throughout).")
+            results.append((name, "skipped", "0 boss kills in this report"))
+            continue
+        print(f"  Resolved pipeline class: {class_name}")
+
+        if class_name not in class_names_refreshed:
+            print(f"  Refreshing {class_name}'s Top 100 benchmark...")
+            pull_top100_module.pull_top100(class_name, args.max_threads, args.classes_root)
+            summarize_benchmarks_module.summarize_benchmarks(class_name, args.classes_root)
+            class_names_refreshed.add(class_name)
+        else:
+            print(f"  {class_name}'s Top 100 benchmark already refreshed earlier this run - reusing.")
+
+        build_report_data_module.build_report_data(name, args.report_code, class_name, args.characters_root)
+        build_analysis_module.build_analysis(name, args.report_code, class_name, args.characters_root)
+
+        report_data_file = paths.find_file_recursive(f"{args.characters_root}/{name}", f"{args.report_code}_report_data.json")
+        char_dir = report_data_file.parent
+        findings_path = char_dir / f"{args.report_code}_findings.json"
+
+        if not findings_path.exists():
+            if args.placeholder_findings:
+                placeholder_findings_module.build_placeholder_findings(name, args.report_code, args.characters_root)
+            else:
+                print(f"  {name}: report_data.json + analysis.json ready, but no findings.json yet - "
+                      f"skipping render/hub for now. Author {findings_path} (see render_report.py's "
+                      f"docstring, or the generate-healer-report skill), then re-run this same command.")
+                results.append((name, "needs-findings", str(findings_path)))
+                continue
+        else:
+            print(f"  Using existing {findings_path}.")
+
+        render_report_module.render_healer_report(
+            name, args.report_code, class_name, raid_title=args.raid_title,
+            characters_root=args.characters_root, templates_root=args.templates_root, output_root=args.docs_root,
+        )
+
+        report_data = jsonio.read_json(report_data_file)
+        bosses_killed = len(report_data["Bosses"])
+        bosses_attempted = report_data.get("BossesAttempted") or bosses_killed
+        hub_pages.upsert_raid_night(
+            name, class_name, args.report_code, pull_result["raid_date"], args.raid_title,
+            bosses_killed, bosses_attempted, args.server, args.region, "v2",
+            args.characters_root, args.docs_root, args.templates_root, args.data_root,
+        )
+        results.append((name, "done", f"{bosses_killed}/{bosses_attempted} bosses"))
+
+    print("\n=== generate-all summary ===")
+    for name, status, detail in results:
+        print(f"  {name}: {status} - {detail}")
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="python -m pipeline.cli", description="ATNF Healer Analysis pipeline orchestrator")
     sub = parser.add_subparsers(dest="command", required=True)
@@ -263,6 +367,17 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--placeholder-findings", action="store_true", help="Data-only run: stand in for the LLM findings-authoring step with placeholder text")
     _add_common_roots(p, classes=True, templates=True, docs=True, data=True)
     p.set_defaults(func=cmd_generate)
+
+    p = sub.add_parser("generate-all", help="Run the full pipeline for every already-tracked healer against one report code")
+    p.add_argument("--report-code", required=True)
+    p.add_argument("--character-names", default=None, help="Comma-separated override list; default is every healer already in data/site_index.json")
+    p.add_argument("--raid-title", default="SSC / TK")
+    p.add_argument("--server", default="Dreamscythe")
+    p.add_argument("--region", default="US")
+    p.add_argument("--max-threads", type=int, default=10)
+    p.add_argument("--placeholder-findings", action="store_true", help="Data-only run: stand in for the LLM findings-authoring step with placeholder text, for every healer that needs it")
+    _add_common_roots(p, classes=True, templates=True, docs=True, data=True)
+    p.set_defaults(func=cmd_generate_all)
 
     return parser
 

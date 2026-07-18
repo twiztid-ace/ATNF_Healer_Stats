@@ -1,18 +1,30 @@
 ---
 name: generate-healer-report
-description: Generates a complete v2 healer report (per-boss audit pages + raid overview, real data only) for a given character name and Warcraft Logs report code. Pulls the character's raid data, refreshes that class's Top 100 benchmark, re-summarizes it, computes real per-boss stats, and builds/updates every affected docs/ page. Use when the user asks to build, generate, regenerate, or update a healer's report for a specific raid log.
+description: Generates a complete v2 healer report (per-boss audit pages + raid overview, real data only) for a given character name and Warcraft Logs report code. Pulls the character's raid data, refreshes that class's Top 100 benchmark, re-summarizes it, computes real per-boss stats, and builds/updates every affected docs/ page. Also supports a report-code-only invocation that runs this for every healer already tracked in data/site_index.json who appears in that report. Use when the user asks to build, generate, regenerate, or update a healer's report for a specific raid log, or to pull/refresh a whole raid log for everyone already tracked.
 user-invocable: true
 disable-model-invocation: true
 tools: PowerShell, Read, Write, Edit, Glob, Grep
-argument-hint: <CharacterName> <ReportCode-or-URL>
+argument-hint: <CharacterName> <ReportCode-or-URL> | <ReportCode-or-URL>
 ---
 
 # Generate a healer report
 
-Invoked as `/generate-healer-report <CharacterName> <ReportCode-or-URL>`, e.g.
-`/generate-healer-report Danceswtrees XJp8vAxzM4KtHYyb`. The two values in
-`$ARGUMENTS` are the character name and a report code or full WCL report URL, in
-that order — if either is missing or ambiguous, ask the user rather than guessing.
+Invoked one of two ways:
+
+- `/generate-healer-report <CharacterName> <ReportCode-or-URL>`, e.g.
+  `/generate-healer-report Danceswtrees XJp8vAxzM4KtHYyb` — the single-healer flow,
+  documented below in "Pipeline".
+- `/generate-healer-report <ReportCode-or-URL>` (one argument only), e.g.
+  `/generate-healer-report XJp8vAxzM4KtHYyb` — runs the same pipeline for **every
+  healer already tracked in `data\site_index.json`** who actually appears in that
+  report. See "Running for every already-tracked healer" below instead of the
+  single-healer "Pipeline" section.
+
+If `$ARGUMENTS` has two tokens, treat the first as the character name and the
+second as the report code/URL. If it has exactly one token, treat it as the
+report code/URL and use the batch flow. If it's ambiguous some other way (more
+than two tokens, or a first token that isn't a plausible character name and
+isn't a report code either), ask the user rather than guessing.
 
 Turns `CharacterName` + `ReportCode` (or a full WCL report URL) into a complete,
 real v2 report: one audit page per boss kill, a raid overview (gear audit + per-boss
@@ -254,6 +266,78 @@ you ever need to re-sort an existing healer's list without inserting anything
 from the existing `index.json`, not a separate code path, so it can't drift
 out of sync with the insert logic the way the old HTML-scrape approach could.
 
+## Running for every already-tracked healer
+
+Invoked as `/generate-healer-report <ReportCode-or-URL>` (one argument only).
+Use when a raid log is shared by more than one already-tracked healer (a real,
+confirmed scenario — see `CLAUDE.md`'s writeup of report `LKbVcNfRxyBkj2mg`,
+pulled and rendered for both Danceswtrees and Vajomee the same day) and the
+user wants the whole log processed in one pass instead of one
+`/generate-healer-report <name> <code>` invocation per healer.
+
+"Already-tracked" means every `character_name` in `data\site_index.json` —
+**not** every folder under `data\Characters\`. A healer can have real pulled
+data on disk while being deliberately excluded from `site_index.json` (see
+`CLAUDE.md`'s Turkeykin note — kept unlisted from the site homepage on
+purpose). Don't add `--character-names` to sweep in a healer who isn't in
+`site_index.json` without checking with the user first — same reasoning as
+not adding `-IsNewHealer`/registering a hidden healer without checking, this
+skill just has a wider blast radius now that one invocation can touch several
+healers at once.
+
+### 1. Resolve the report code
+Same as single-healer step 1 — extract the code from a full WCL URL if given
+one.
+
+### 2. First pass — pull + compute, stop before findings
+```
+python -m pipeline.cli generate-all --report-code "<code>"
+```
+This loops the single-healer pipeline's steps 2-6 (pull character data,
+refresh + re-summarize the resolved class's Top 100 benchmark once per
+distinct class, compute `report_data.json` + `analysis.json`) across every
+healer in `site_index.json`, and prints a per-healer summary line at the end:
+`done`, `skipped`, `needs-findings`, or `error`. Read it carefully:
+
+- `skipped` with "was not found in this report's actors" or "plays more than
+  one real spec" — expected and fine; that healer genuinely isn't a real hit
+  in this report, or needs a `--spec` this batch command can't guess (re-run
+  `pull-character` for that one name by hand with `--spec`, then re-run this
+  same `generate-all` command — it reuses the cached pull).
+- `skipped` with "unsupported class/spec" or "0 boss kills" — also expected
+  and fine; nothing to do for that healer.
+- `error` — the command already stopped the whole batch here rather than
+  repeating the same failure for every remaining name (see its own output for
+  why — almost always a bad or private report code). Fix that and re-run
+  before doing anything else.
+- `needs-findings` — this is the real output of this pass: one or more
+  healers with real `report_data.json`/`analysis.json` on disk, ready for
+  step 3 below. Note every `<code>_findings.json` path it printed.
+
+### 3. Author a real findings.json for every healer that needs one
+For each `needs-findings` healer from step 2, follow single-healer step 7
+exactly — read that healer's own `<code>_report_data.json` **and**
+`<code>_analysis.json`, write their own `<code>_findings.json` — using the
+same schema, the same `CannedCaveats`/`RebirthCandidates`/etc. rules, and the
+same validation ("every boss slug has all 4 required keys, `RaidOverview` has
+its 3 required keys") described there. **Each healer's findings are their
+own** — never reuse or copy prose across healers just because they share a
+report code; the same kill can look very different from a Druid's cooldown
+kit than from a Shaman's, and a coverage note is specific to the person it's
+about.
+
+### 4. Second pass — render + update hub for everyone now ready
+```
+python -m pipeline.cli generate-all --report-code "<code>"
+```
+The exact same command as step 2, run again. Any healer whose
+`<code>_findings.json` now exists (written in step 3) proceeds straight to
+render + hub-update this time — `generate-all` always checks for an existing
+findings.json before deciding whether a healer still `needs-findings`, so
+there's no separate "render-only" flag to remember. Healers who were
+`skipped` in step 2 stay skipped (the underlying reason hasn't changed); this
+is expected, not a bug.
+
 ## Rules that came from real bugs
 
 Most of these are now enforced mechanically (in `pipeline\build_analysis.py`,
@@ -322,3 +406,9 @@ look if a rendered page looks wrong, rather than re-deriving the fix by hand.
   changed).
 - Confirm the raid-night count in `docs\<healer>\index.html` (bumped
   automatically by step 9) matches the number of real boss pages actually built.
+- **For a batch run**: re-check the step 2/4 per-healer summary lines rather
+  than assuming "no error" means "everyone got a page" — a healer can land on
+  `skipped` legitimately (not in this report, unsupported class, 0 boss
+  kills) and that's a correctly-finished run, not a partial failure. Confirm
+  every healer you expected a real page for actually landed on `done`, not
+  still sitting on `needs-findings` because step 3 was skipped for them.
