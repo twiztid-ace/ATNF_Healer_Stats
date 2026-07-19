@@ -247,9 +247,13 @@ def _pull_one_fight(
         return True
 
     def get_combatant_info_snapshot() -> dict | None:
-        buffer_ms = 120000
-        query_start = max(0, start_time - buffer_ms)
-        q = f'query {{ reportData {{ report(code: "{report_code}") {{ events(dataType: CombatantInfo, startTime: {query_start}, endTime: {end_time}) {{ data }} }} }} }}'
+        # Search from the report's own start, not a fixed backward buffer - confirmed via
+        # live data (2026-07-18) that real WoW combat logs only emit a fresh COMBATANT_INFO
+        # snapshot near an encounter's first real pull, not on every wipe-and-repull. Gear/
+        # consumables genuinely carry over unchanged across repulls, but a same-boss repull's
+        # valid snapshot commonly sits 5-17 minutes before the repull itself, well past a
+        # 2-minute buffer - that narrower buffer was silently misreporting these as "no data".
+        q = f'query {{ reportData {{ report(code: "{report_code}") {{ events(dataType: CombatantInfo, startTime: 0, endTime: {end_time}) {{ data }} }} }} }}'
         r = wcl_api.invoke_wcl_graphql(q, access_token=access_token)
         if r.errors:
             messages.append(f"  {label} - combatantinfo request FAILED (network/API error) - {r.errors}")
@@ -257,12 +261,20 @@ def _pull_one_fight(
         all_events = r.data["reportData"]["report"]["events"]["data"]
         candidates = [e for e in all_events if e.get("sourceID") == character_id]
         if not candidates:
-            messages.append(f"  {label} - combatantinfo request OK but found {len(all_events)} total entries, NONE for sourceID={character_id} even with a {buffer_ms // 1000}s backward buffer")
+            messages.append(f"  {label} - combatantinfo request OK but found {len(all_events)} total entries, NONE for sourceID={character_id} anywhere earlier in the report")
             return None
-        closest = min(candidates, key=lambda e: abs(e["timestamp"] - start_time))
+        # Confirmed via live data (2026-07-18, Charmaine/Poliovictim): WCL sometimes logs a
+        # corrupted stub entry (auras: [], all-zero stats, placeholder talent icons) that can
+        # sit closer in time than a real snapshot - prefer any candidate with a genuinely
+        # non-empty auras list before falling back to plain closest-by-distance.
+        real_candidates = [e for e in candidates if e.get("auras")]
+        pool = real_candidates if real_candidates else candidates
+        closest = min(pool, key=lambda e: abs(e["timestamp"] - start_time))
         gap_ms = closest["timestamp"] - start_time
         if gap_ms > 2000:
-            messages.append(f"  {label} - WARNING: closest combatantinfo snapshot is {round(gap_ms / 1000, 1)}s AFTER fight start - no earlier snapshot found even with the backward buffer (consumable/gear status may not reflect the true pull-start state)")
+            messages.append(f"  {label} - WARNING: closest combatantinfo snapshot is {round(gap_ms / 1000, 1)}s AFTER fight start - no earlier snapshot found anywhere in the report (consumable/gear status may not reflect the true pull-start state)")
+        elif gap_ms < -120000:
+            messages.append(f"  {label} - combatantinfo snapshot found {round(-gap_ms / 1000, 1)}s before official fight start (using it - this is an earlier attempt's snapshot; expected since WoW doesn't re-log gear/consumables on every repull)")
         elif gap_ms < -1000:
             messages.append(f"  {label} - combatantinfo snapshot found {round(-gap_ms / 1000, 1)}s before official fight start (using it - this is expected, see script header)")
         if not closest.get("auras") and not closest.get("gear"):

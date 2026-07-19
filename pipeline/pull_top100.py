@@ -131,9 +131,12 @@ def _get_events(
 
 
 def _get_consumables_snapshot(report_id: str, fight_id: int, start_time: float, end_time: float, source_id: int, access_token: str, messages: list[str], idx: int, player_name: str) -> dict | None:
-    buffer_ms = 120000
-    query_start = max(0, start_time - buffer_ms)
-    q = f'query {{ reportData {{ report(code: "{report_id}") {{ events(dataType: CombatantInfo, startTime: {query_start}, endTime: {end_time}) {{ data }} }} }} }}'
+    # See pull_character.py's identical fix (2026-07-18): search from the report's own
+    # start, not a fixed backward buffer. Real WoW combat logs only emit a fresh
+    # COMBATANT_INFO snapshot near an encounter's first real pull, not on every
+    # wipe-and-repull, so a same-boss repull's valid snapshot commonly sits well past
+    # a 2-minute window even though gear/consumables genuinely haven't changed.
+    q = f'query {{ reportData {{ report(code: "{report_id}") {{ events(dataType: CombatantInfo, startTime: 0, endTime: {end_time}) {{ data }} }} }} }}'
     r = wcl_api.invoke_wcl_graphql(q, access_token=access_token)
     if r.errors:
         messages.append(f"[{idx}] FAILED combatantinfo for {report_id}/{fight_id} ({player_name}) - {r.errors}")
@@ -141,9 +144,14 @@ def _get_consumables_snapshot(report_id: str, fight_id: int, start_time: float, 
     all_events = r.data["reportData"]["report"]["events"]["data"]
     candidates = [e for e in all_events if e.get("sourceID") == source_id]
     if not candidates:
-        messages.append(f"[{idx}] combatantinfo OK but no entry for sourceID={source_id} even with backward buffer ({report_id}/{fight_id}, {player_name})")
+        messages.append(f"[{idx}] combatantinfo OK but no entry for sourceID={source_id} anywhere earlier in the report ({report_id}/{fight_id}, {player_name})")
         return None
-    closest = min(candidates, key=lambda e: abs(e["timestamp"] - start_time))
+    # See pull_character.py's identical fix (2026-07-18, Charmaine/Poliovictim): WCL sometimes
+    # logs a corrupted stub entry (auras: [], all-zero stats) that can sit closer in time than
+    # a real snapshot - prefer any candidate with a genuinely non-empty auras list first.
+    real_candidates = [e for e in candidates if e.get("auras")]
+    pool = real_candidates if real_candidates else candidates
+    closest = min(pool, key=lambda e: abs(e["timestamp"] - start_time))
     if not closest.get("auras"):
         return None
     cc = wcl_api.classify_consumables(closest["auras"])

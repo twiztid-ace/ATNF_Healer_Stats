@@ -393,13 +393,54 @@ response even though the same response's `abilities[]` IS truncated — the
 bug is specifically in the nested breakdown arrays, not every field.
 
 **Buff/consumable uptime — two different mechanisms, not one.** Flask/food
-come from a `CombatantInfo` snapshot event queried with a 2-minute backward
-buffer from the fight's start (picking whichever snapshot is closest,
-preferring one before start) — reported as plain yes/no (a snapshot can't
-say more), since these consumables last far longer than one fight. A snapshot
-doesn't always exist even within that buffer (~0.1-1.1% of parses across
-classes, likely late joiners) — reported as a real data gap for that one
-player, never silently treated as "no flask." Tree of Life (Druid-only) and
+come from a `CombatantInfo` snapshot event, searched from the report's own
+start (not a fixed backward buffer — see correction below), picking whichever
+snapshot is closest to the fight's start (preferring one before it) —
+reported as plain yes/no (a snapshot can't say more), since these consumables
+last far longer than one fight. **Correction (2026-07-18): the original
+"~0.1-1.1% of parses, likely late joiners" theory was wrong for most of these
+gaps** — root-caused via live data (not guessed): real WoW combat logs only
+emit a fresh `COMBATANT_INFO` snapshot near an encounter's *first* real pull,
+not on every wipe-and-repull, so a same-boss repull's valid snapshot commonly
+sits 5-17 minutes before the repull itself — well past the old 2-minute
+buffer, which silently misreported these as "no data" even though gear/
+consumables genuinely hadn't changed. A second, smaller bug compounded it:
+WCL sometimes logs a corrupted stub entry (`auras: []`, all-zero stats,
+placeholder talent icons) that can sit closer in time than a real snapshot,
+so the naive "closest by time" pick grabbed the stub instead. Both are fixed
+in `pull_character.py`/`pull_top100.py` (search the whole report; prefer any
+candidate with a non-empty `auras` list before falling back to plain
+closest-by-time) — recovered 40 of 47 known-gap benchmark parses via a
+one-off backfill. **The genuinely irrecoverable residual (7 of 47, confirmed
+via a live "zero CombatantInfo events for this player anywhere in the
+report" check) is a real, first-pull-of-the-session gap** — not late
+joining, just a report where that snapshot was never logged at all — this
+part of the original framing holds and isn't chased further.
+
+**Related downstream bug, found and fixed the same day: 31 orphaned benchmark
+parses.** The original CombatantInfo bug above had a second consequence —
+`pull_top100.py`'s per-parse fetch only writes a manifest entry if the whole
+parse's fetch succeeds end-to-end, but files are written incrementally per
+data type. When the consumables step failed (the bug above), `result["ok"]`
+went `False` and the manifest write was skipped entirely, even though
+healing/casts/activetime had already succeeded — leaving real files on disk
+under `active/{Boss}/` with zero manifest record. Once that report/fight/
+player combo dropped out of the *live* Top 100 rankings (routine as the
+benchmark refreshes), it fell into a permanent blind spot: not "new" (not in
+fresh rankings), not "active" or "archived" (never had a manifest key to
+begin with) — invisible to every future diff-based run, and the reason
+`summarize_benchmarks.py` printed a `no rankings entry matched ... skipping`
+warning for it on every re-run. Confirmed via 100% overlap: all 31 orphans
+found (Druid 1, Paladin 14, Priest 11, Shaman 5) were also in the original
+47-parse CombatantInfo-gap list, none outside it. Fixed by reconciling all
+31: moved their files from `active/{Boss}/` to `archived/{Boss}/` (they'd
+genuinely fallen out of Top 100, so `archived` — not `active` — is the
+correct status) and backfilled a real manifest entry for each (`hps`
+recomputed from the real pulled healing data and each fight's live-fetched
+duration; `rank` left `null` since the true historical Top 100 rank was
+never recorded anywhere and can't be reconstructed — not guessed). Confirmed
+zero orphans and zero warnings remain across all 4 classes after re-running
+`summarize-benchmarks`. Tree of Life (Druid-only) and
 Improved Faerie Fire uptime (Dreamstate-only) are different — they toggle
 mid-fight, so a snapshot isn't enough:
 - **Tree of Life** needs real interval reconstruction from
@@ -581,11 +622,13 @@ narrative summary.
 
 ## Explicitly open, in priority-ish order
 
-1. **A narrow, accepted data gap**: no `CombatantInfo` snapshot even within
-   the 2-minute backward buffer for a small fraction of parses across every
-   class (~0.1% Druid, ~0.5% Shaman, ~1.1% Priest, ~1.1% Paladin), likely
-   late-joining players — reported as a failure for that one player's
-   consumables/gear data, not chased further.
+1. **A narrow, confirmed-irrecoverable data gap** (down from ~0.1-1.1% of
+   parses per class to 7 known cases total, after the 2026-07-18 root-cause
+   fix documented in "WCL v2 GraphQL API reference" above recovered the rest)
+   — a real first-pull-of-the-session gap where WCL never logged a
+   `CombatantInfo` snapshot for that player anywhere in the report at all,
+   confirmed live rather than assumed. Reported as a failure for that one
+   player's consumables/gear data, not chased further.
 2. **Power Word: Shield's Top 100 benchmark is a real but misleading ~0%**
    and **Holy Shock's cast/heal use two different real guids** — see
    "Per-build real cooldown/utility kits" above. Both are auto-tagged canned
