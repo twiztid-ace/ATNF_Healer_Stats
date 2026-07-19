@@ -158,9 +158,6 @@ def render_healer_report(
         except ValueError:
             raid_date_display = folder_name
 
-    if raid_date_folder.lower().endswith("-v1"):
-        raise ValueError(f"refusing to render into '{raid_date_folder}' - this looks like a preserved v1 folder. Never overwrite v1 output.")
-
     _validate_findings(report_data, findings)
 
     item_level = _compute_item_level(report_data)

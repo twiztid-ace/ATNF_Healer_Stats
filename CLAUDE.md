@@ -62,49 +62,34 @@ status line showing WCL rate limits) and its one real dependency,
 live at `tools\statusline.ps1` / `tools\WclV2Api.psm1` (the latter trimmed to
 just the three functions the status line actually uses).
 
-## Two independent axes — don't confuse them
+## Report authoring mechanism — retired PowerShell hand-render vs. live Python render_report.py
 
-**Axis 1 — report *methodology*: v1 (simple) vs. v2 (enhanced).** v1 was a
-gear-check + basic spell-composition build on the old truncated
-`/report/tables/` healing view. v2 is the events-based rewrite (no
-truncation), with cooldown/utility tracking, self-vs-other targeting, and
-Top 100 benchmarking. **Every currently-tracked healer's pages are v2** — v1
-pages only survive as historical `-v1`-suffixed sibling folders for a few
-already-superseded raid nights (see "Current state" below), never as anyone's
-only page. This axis has nothing to do with the language/API migrations below
-— it's about what the report *computes and shows*, not what pulled or
-rendered it.
-
-**Axis 2 — *authoring mechanism*: retired PowerShell hand-render vs. live
-Python `render_report.py`.** Before 2026-07-14, every v2 page was Claude
-hand-writing ~550 lines of HTML per boss page directly. `render_healer_report.ps1`
-(then its Python successor, `pipeline\render_report.py`, since the language
-migration) replaced that with a mechanical renderer: a script computes every
-real number and pre-flags every script-safe judgment call
-(`build_analysis.py`), Claude authors only a handful of genuinely
-interpretive sentences (`{code}_findings.json`), and the renderer
-deterministically produces the final HTML. **This is now the only live
-authoring path** — the PowerShell-hand-render and PowerShell-script-render
-mechanisms are both retired along with the rest of `scripts\` (deleted
-2026-07-19, see "The pipeline runs on Python now" above). A page's
-`data\Characters\` folder having a `{code}_findings.json`/`{code}_analysis.json`
-next to its `report_data.json` tells you it went through the script-rendered
-pipeline. **Correction (found 2026-07-18 while fixing gendered pronouns
-raid-wide): Danceswtrees's `Fm9XdWYtz8VCLnwg` was originally hand-written,
-but a prior session backfilled real `report_data.json`/`analysis.json`/
-`findings.json` for it — it now has the full trio and renders cleanly through
+Before 2026-07-14, every page was Claude hand-writing ~550 lines of HTML per
+boss page directly. `render_healer_report.ps1` (then its Python successor,
+`pipeline\render_report.py`, since the language migration) replaced that
+with a mechanical renderer: a script computes every real number and
+pre-flags every script-safe judgment call (`build_analysis.py`), Claude
+authors only a handful of genuinely interpretive sentences
+(`{code}_findings.json`), and the renderer deterministically produces the
+final HTML. **This is now the only live authoring path** — the
+PowerShell-hand-render and PowerShell-script-render mechanisms are both
+retired along with the rest of `scripts\` (deleted 2026-07-19, see "The
+pipeline runs on Python now" above). A page's `data\Characters\` folder
+having a `{code}_findings.json`/`{code}_analysis.json` next to its
+`report_data.json` tells you it went through the script-rendered pipeline.
+**Correction (found 2026-07-18 while fixing gendered pronouns raid-wide):
+Danceswtrees's `Fm9XdWYtz8VCLnwg` was originally hand-written, but a prior
+session backfilled real `report_data.json`/`analysis.json`/`findings.json`
+for it — it now has the full trio and renders cleanly through
 `python -m pipeline.cli render` like any other report.** Don't assume a page
 predating 2026-07-14 is still hand-written-only without checking for these
 three files first; the true test is file presence, not the report's age.
 **Correction (found 2026-07-18 while re-verifying the healer/report-code
 table): Vajomee's earliest raid night (`Mfz4kW6JpjFPArat`) has now been
 checked this same way — it has the full `report_data.json`/`analysis.json`/
-`findings.json` trio, no `-v1`-suffixed sibling folder, and its rendered
-`healer_audit_hydross.html` contains 26 percentile/benchmark references. It
-is fully script-rendered v2, not hand-written-only.**
-
-These two axes are independent: a page's methodology (v1/v2) says nothing
-about how its HTML got produced, and vice versa.
+`findings.json` trio and its rendered `healer_audit_hydross.html` contains
+26 percentile/benchmark references. It is fully script-rendered, not
+hand-written-only.**
 
 ## Repo structure
 
@@ -207,8 +192,6 @@ docs\                                 <- the actual generated static site, serve
   {healer}\index.html                  <- per-healer raid-night list
   {healer}\{ReportCode}\index.html     <- raid overview for that night
   {healer}\{ReportCode}\healer_audit_{boss}.html  <- one per boss kill
-  {healer}\{ReportCode}-v1\...         <- a preserved v1-methodology sibling site, where
-                                         one still exists (never overwritten)
 
 .claude\skills\generate-healer-report\SKILL.md   <- the Claude Code skill that runs this
                                          pipeline end to end (fully Python, see its own
@@ -264,11 +247,6 @@ hypothetical). `pipeline\hub_pages.py`'s `update-hub` command always
 re-sorts the whole list from `index.json` after an insert (or via
 `--resort-only` with no insert), rather than relying on append order.
 
-**`-v1`-suffixed sibling folders are permanent, never overwritten.** Several
-healers have an old v1-methodology site sitting alongside their v2 site for
-the same raid night. `render_report.py` refuses to write into any output
-folder whose name ends in `-v1`.
-
 ## Mid-raid spec switching — a character can play >1 real spec in one report
 
 General, class-agnostic mechanism (not Dreamstate-specific, though
@@ -309,8 +287,9 @@ stale twice: the Python rewrite found 5 undocumented healers and 2
 undocumented report-code folders, and a 2026-07-18 re-verification (cross-
 checking `site_index.json`, `docs\index.html`, and every healer's own
 `index.json`) then found Vinnyvozz missing a 4th report code
-(`Z4zNt28raQ6GLbkC`) and Vajomee's `Mfz4kW6JpjFPArat` mislabeled "v1-only"
-when it's actually full v2 — both already fixed below. A future session
+(`Z4zNt28raQ6GLbkC`) and Vajomee's `Mfz4kW6JpjFPArat` mislabeled as only
+partially tracked when it's actually fully tracked and rendered — both
+already fixed below. A future session
 should re-verify the same way rather than trust this table indefinitely.
 As of 2026-07-18:
 
@@ -666,8 +645,8 @@ asking the person to paste `git` output:
 `v2_client_*.txt` are confirmed not tracked (`git ls-files` doesn't list
 them) — safe as long as `.gitignore` isn't changed to drop those lines.
 `apikey.txt` itself was deleted 2026-07-19 (it was unused, kept only for the
-now-also-deleted `*_v1.ps1` reference scripts) — its `.gitignore` line was
-removed at the same time.
+now-also-deleted old PowerShell reference scripts) — its `.gitignore` line
+was removed at the same time.
 
 **Served from `master:/docs`** (Settings → Pages → Source → Deploy from a
 branch → `master` / `/docs`), not a dedicated `gh-pages` branch — avoids

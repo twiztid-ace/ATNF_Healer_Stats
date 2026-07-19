@@ -1,6 +1,6 @@
 ---
 name: generate-healer-report
-description: Generates a complete v2 healer report (per-boss audit pages + raid overview, real data only) for a given character name and Warcraft Logs report code. Pulls the character's raid data, refreshes that class's Top 100 benchmark, re-summarizes it, computes real per-boss stats, and builds/updates every affected docs/ page. Also supports a report-code-only invocation that runs this for every healer already tracked in data/site_index.json who appears in that report. Use when the user asks to build, generate, regenerate, or update a healer's report for a specific raid log, or to pull/refresh a whole raid log for everyone already tracked.
+description: Generates a complete healer report (per-boss audit pages + raid overview, real data only) for a given character name and Warcraft Logs report code. Pulls the character's raid data, refreshes that class's Top 100 benchmark, re-summarizes it, computes real per-boss stats, and builds/updates every affected docs/ page. Also supports a report-code-only invocation that runs this for every healer already tracked in data/site_index.json who appears in that report. Use when the user asks to build, generate, regenerate, or update a healer's report for a specific raid log, or to pull/refresh a whole raid log for everyone already tracked.
 user-invocable: true
 disable-model-invocation: true
 tools: PowerShell, Read, Write, Edit, Glob, Grep
@@ -27,7 +27,7 @@ than two tokens, or a first token that isn't a plausible character name and
 isn't a report code either), ask the user rather than guessing.
 
 Turns `CharacterName` + `ReportCode` (or a full WCL report URL) into a complete,
-real v2 report: one audit page per boss kill, a raid overview (gear audit + per-boss
+real report: one audit page per boss kill, a raid overview (gear audit + per-boss
 summary), and every existing page that needs a new entry for it.
 
 Run this from the repo root (`C:\Users\raymo\wc_logs`) — every script here assumes
@@ -35,8 +35,8 @@ that working directory, same as the rest of this pipeline.
 
 **Read `CLAUDE.md` first if this is a fresh session with no other context on
 this project** — this skill assumes familiarity with the active/archived data
-model, the events-vs-tables history, and the v1/v2 split. This file is the
-runbook for *this specific task*, not a replacement for that.
+model and the events-vs-tables history. This file is the runbook for *this
+specific task*, not a replacement for that.
 
 ## Before starting: confirm the class AND spec are supported
 
@@ -62,7 +62,7 @@ for every one of these (Lippies for Priest, Crowns for Paladin, Turkeykin for
 Dreamstate).
 
 **If the resolved class/spec combination isn't one of the five above: stop and
-tell the user clearly** — name the class and spec, say it isn't on the v2
+tell the user clearly** — name the class and spec, say it isn't on the
 pipeline yet, and don't proceed past step 2. Don't attempt a "best effort"
 fallback (e.g. quietly reusing another class's cooldown list or template for
 an unsupported class/spec, or assuming a Druid pulled here is Restoration just
@@ -232,10 +232,9 @@ anything pulled after the ReportCode-keyed folder change, or a legacy
 `yyyy-MM-dd` date for anything pulled before it), so this needs no `-date`
 parameter of its own. Deterministic, safe to re-run any time benchmark data
 shifts (new Top 100 parses, re-entries) since it always rebuilds from the
-current JSON. **Refuses to write into any `-v1`-suffixed output folder** — that
-guard is enforced in code, not just documented here. If it exits with an
-"unfilled `{{TOKEN}}`" error, that means a required findings.json key is
-missing or misspelled — fix `findings.json`, don't patch the rendered HTML by hand.
+current JSON. If it exits with an "unfilled `{{TOKEN}}`" error, that means a
+required findings.json key is missing or misspelled — fix `findings.json`,
+don't patch the rendered HTML by hand.
 
 ### 9. Update hub pages (script, no LLM)
 ```
@@ -400,15 +399,13 @@ look if a rendered page looks wrong, rather than re-deriving the fix by hand.
 ## Verification before calling this done
 
 - `pipeline\render_report.py` already refuses to write a page with an unfilled
-  `{{TOKEN}}` or a `-v1`-suffixed output folder — a clean run is a real signal,
-  not just an absence of errors.
+  `{{TOKEN}}` — a clean run is a real signal, not just an absence of errors.
 - Spot-check 2-3 numbers on one rendered page against the raw
   `<code>_report_data.json`/`<code>_analysis.json` — a copy/transcription mistake
   in `findings.json`'s prose (a stated number that doesn't match the real data)
   is the one class of error the scripts can't catch for you.
-- Confirm no `-v1` folder was touched (`git status` should show only new files
-  under the plain `\<code>\` folder, plus the two hub pages from step 9 if they
-  changed).
+- Confirm `git status` shows only new files under the plain `\<code>\` folder,
+  plus the two hub pages from step 9 if they changed.
 - Confirm the raid-night count in `docs\<healer>\index.html` (bumped
   automatically by step 9) matches the number of real boss pages actually built.
 - **For a batch run**: re-check the step 2/4 per-healer summary lines rather

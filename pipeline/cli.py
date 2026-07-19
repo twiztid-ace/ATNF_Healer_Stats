@@ -38,14 +38,15 @@ from pipeline import (
 def _findings_source(findings_path) -> str:
     """"placeholder" if findings.json's content is actually the placeholder
     text (whether written moments ago via --placeholder-findings, or already
-    sitting there from an earlier placeholder run), "v2" otherwise. Checked
-    by content rather than by whether --placeholder-findings was passed on
-    *this* invocation, since a prior real findings.json is reused as-is (see
-    the "Using existing ..." branches above) regardless of that flag."""
+    sitting there from an earlier placeholder run), "pipeline" otherwise.
+    Checked by content rather than by whether --placeholder-findings was
+    passed on *this* invocation, since a prior real findings.json is reused
+    as-is (see the "Using existing ..." branches above) regardless of that
+    flag."""
     findings = jsonio.read_json(findings_path)
     if findings.get("RaidOverview", {}).get("RAID_SUMMARY_FINDING") == placeholder_findings_module.PLACEHOLDER:
         return "placeholder"
-    return "v2"
+    return "pipeline"
 
 
 def _add_common_roots(parser: argparse.ArgumentParser, *, characters=True, classes=False, templates=False, docs=False, data=False) -> None:
@@ -116,7 +117,7 @@ def cmd_update_hub(args: argparse.Namespace) -> int:
             return 1
         hub_pages.upsert_raid_night(
             args.character_name, args.class_name, args.report_code, args.raid_date, args.raid_title,
-            args.bosses_killed, args.bosses_attempted, args.server, args.region, "v2",
+            args.bosses_killed, args.bosses_attempted, args.server, args.region, "pipeline",
             args.characters_root, args.docs_root, args.templates_root, args.data_root,
         )
     return 0

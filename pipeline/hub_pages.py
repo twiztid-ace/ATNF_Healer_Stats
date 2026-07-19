@@ -74,7 +74,7 @@ def upsert_raid_night(
     bosses_attempted: int = 0,
     server: str = "Dreamscythe",
     region: str = "US",
-    source: str = "v2",
+    source: str = "pipeline",
     characters_root: str = "data/Characters",
     docs_root: str = "docs",
     templates_root: str = "templates_jinja",
