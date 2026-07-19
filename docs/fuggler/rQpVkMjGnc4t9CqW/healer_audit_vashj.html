@@ -21,10 +21,15 @@
   *{box-sizing:border-box;}
   body{
     margin:0;
-    background: var(--ink);
+    background-color: var(--ink);
     background-image:
       radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%),
+      url('../../assets/bg-default.png');
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: 15% 0%, 90% 80%, center center;
+    background-size: auto, auto, cover;
+    background-attachment: scroll, scroll, fixed;
     color: var(--parchment);
     font-family:'Inter', sans-serif;
     padding: 48px 24px 80px;
@@ -289,7 +294,7 @@
 
   <div class="header">
     <div>
-      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC/TK - 2026-07-17 — July 17, 2026 · Lady Vashj</p>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — July 17, 2026 · Lady Vashj</p>
       <h1>Fuggler</h1>
       <p class="subline">Restoration Shaman &nbsp;·&nbsp; ilvl 120 &nbsp;·&nbsp; report <span>rQpVkMjGnc4t9CqW</span> &nbsp;·&nbsp; fight <span>45</span> &nbsp;·&nbsp; kill, 476s</p>
     </div>

@@ -21,10 +21,15 @@
   *{box-sizing:border-box;}
   body{
     margin:0;
-    background: var(--ink);
+    background-color: var(--ink);
     background-image:
       radial-gradient(circle at 15% 0%, rgba(217,178,92,0.06), transparent 40%),
-      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%);
+      radial-gradient(circle at 90% 80%, rgba(201,122,61,0.05), transparent 45%),
+      url('../../assets/bg-default.png');
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: 15% 0%, 90% 80%, center center;
+    background-size: auto, auto, cover;
+    background-attachment: scroll, scroll, fixed;
     color: var(--parchment);
     font-family:'Inter', sans-serif;
     padding: 48px 24px 80px;
@@ -308,7 +313,7 @@
 
   <div class="header">
     <div>
-      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — Pug SSC / TK — June 30, 2026 · Fathom-Lord Karathress</p>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — June 30, 2026 · Fathom-Lord Karathress</p>
       <h1>Danceswtrees</h1>
       <p class="subline">Restoration Druid &nbsp;·&nbsp; ilvl 113 &nbsp;·&nbsp; report <span>Fm9XdWYtz8VCLnwg</span> &nbsp;·&nbsp; fight <span>36</span> &nbsp;·&nbsp; kill, 265s &nbsp;·&nbsp; <span style="color:var(--copper);">Bloodhoof Clan · Mulgore</span></p>
     </div>
