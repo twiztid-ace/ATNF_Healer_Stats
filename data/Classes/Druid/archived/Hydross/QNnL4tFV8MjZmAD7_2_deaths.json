@@ -1,0 +1,177 @@
+{
+  "entries": [
+    {
+      "name": "Barbery",
+      "id": 7,
+      "guid": 58835949,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 549017,
+      "fight": 2,
+      "damage": {
+        "total": 24145,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1107,
+        "abilities": [
+          {
+            "guid": -8,
+            "name": "Melee",
+            "total": 13009,
+            "type": 8,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 38235,
+            "name": "Water Tomb",
+            "total": 11136,
+            "type": 16,
+            "icon": "spell_frost_manarecharge.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tainted Spawn of Hydross",
+            "total": 13009,
+            "type": "NPC"
+          },
+          {
+            "name": "Hydross the Unstable",
+            "total": 11136,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 9118,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25423,
+            "name": "Chain Heal",
+            "total": 6676,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1427,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 10623,
+            "name": "Chain Heal",
+            "total": 625,
+            "type": 8,
+            "icon": "spell_nature_healingwavegreater.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 390,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 38235,
+            "name": "Water Tomb",
+            "total": 9118,
+            "type": 16,
+            "icon": "spell_frost_manarecharge.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Leelith",
+            "total": 7301,
+            "type": "Shaman"
+          },
+          {
+            "name": "Barbery",
+            "total": 1817,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 31889,
+      "overkill": 3133,
+      "events": [
+        {
+          "timestamp": 548991,
+          "type": "damage",
+          "sourceID": 46,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": -8,
+            "type": 8,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 2,
+          "hitType": 1,
+          "amount": 576,
+          "unmitigatedAmount": 3371,
+          "overkill": 3133,
+          "isAoE": false
+        },
+        {
+          "timestamp": 548176,
+          "type": "damage",
+          "sourceID": 46,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": -8,
+            "type": 8,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 2,
+          "hitType": 1,
+          "amount": 4075,
+          "unmitigatedAmount": 3704,
+          "isAoE": false
+        },
+        {
+          "timestamp": 546710,
+          "type": "damage",
+          "sourceID": 46,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": -8,
+            "type": 8,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 2,
+          "hitType": 16,
+          "amount": 2667,
+          "mitigated": 565,
+          "unmitigatedAmount": 3232,
+          "resisted": 808,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": -8,
+        "type": 8,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

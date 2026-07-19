@@ -186,7 +186,7 @@ def _pull_one_fight(
     fight_id: int, boss_slug: str, start_time: float, end_time: float, report_code: str,
     character_id: int, character_name: str, actor_names: dict[int, str],
     tree_of_life_events: list[dict], out_dir: Path, access_token: str,
-    compute_improved_faerie_fire: bool,
+    compute_improved_faerie_fire: bool, report_end_time: float,
 ) -> dict:
     label = f"fight{fight_id:02d}_{boss_slug}"
     messages: list[str] = []
@@ -247,13 +247,17 @@ def _pull_one_fight(
         return True
 
     def get_combatant_info_snapshot() -> dict | None:
-        # Search from the report's own start, not a fixed backward buffer - confirmed via
-        # live data (2026-07-18) that real WoW combat logs only emit a fresh COMBATANT_INFO
-        # snapshot near an encounter's first real pull, not on every wipe-and-repull. Gear/
-        # consumables genuinely carry over unchanged across repulls, but a same-boss repull's
-        # valid snapshot commonly sits 5-17 minutes before the repull itself, well past a
-        # 2-minute buffer - that narrower buffer was silently misreporting these as "no data".
-        q = f'query {{ reportData {{ report(code: "{report_code}") {{ events(dataType: CombatantInfo, startTime: 0, endTime: {end_time}) {{ data }} }} }} }}'
+        # Search the report's own full start-to-end window, not this fight's own end time -
+        # confirmed via live data (2026-07-18) that real WoW combat logs only emit a fresh
+        # COMBATANT_INFO snapshot near an encounter's first real pull, not on every
+        # wipe-and-repull. Gear/consumables genuinely carry over unchanged across repulls,
+        # but a same-boss repull's valid snapshot commonly sits 5-17 minutes before the
+        # repull itself - and for a fight that ISN'T the report's last one, the only real
+        # snapshot can just as easily land AFTER this fight ends (a late arrival relative to
+        # an early fight, snapshotted near a later pull in the same report) - confirmed live
+        # 2026-07-18 fixing 6 of 7 benchmark parses wrongly marked irrecoverable, see
+        # CLAUDE.md. Using fight-scoped end_time here would silently miss both cases.
+        q = f'query {{ reportData {{ report(code: "{report_code}") {{ events(dataType: CombatantInfo, startTime: 0, endTime: {report_end_time}) {{ data }} }} }} }}'
         r = wcl_api.invoke_wcl_graphql(q, access_token=access_token)
         if r.errors:
             messages.append(f"  {label} - combatantinfo request FAILED (network/API error) - {r.errors}")
@@ -615,6 +619,7 @@ def pull_character(
                 executor.submit(
                     _pull_one_fight, fight["id"], _get_boss_slug(fight["boss"], fight["name"]), fight["start_time"], fight["end_time"],
                     report_code, character_id, character_name, actor_names, tree_of_life_events, out_dir, token, compute_improved_faerie_fire,
+                    fights_data["end"],
                 )
                 for fight in boss_fights
             ]

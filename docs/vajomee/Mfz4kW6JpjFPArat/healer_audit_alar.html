@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Healer Audit — Vajomee — Al'ar</title>
+<title>Healer Audit — Vajomee — Al&#39;ar</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
@@ -40,7 +40,6 @@
     overflow: hidden;
   }
 
-  /* ===== Header ===== */
   .header{
     padding: 40px 48px 32px;
     border-bottom: 1px solid var(--line);
@@ -70,12 +69,6 @@
   }
   .subline span{ font-family:'IBM Plex Mono', monospace; }
 
-  /* ===== Seal ===== */
-  /* Fixed width (matching .seal's own 108px) so a longer caption - the
-     iLvl/Raw Healing Rank seals need more words than the original "WCL rank,
-     all parses" - wraps neatly within the same column instead of expanding
-     the box past the circle above it, which is what was throwing off the
-     spacing between badges when more than one seal-wrap sits in a row. */
   .seal-wrap{ flex-shrink:0; width: 108px; text-align:center; }
   .seal{ width: 108px; height: 108px; }
   .seal-label{
@@ -87,7 +80,6 @@
     color: rgba(19,42,44,0.55);
   }
 
-  /* ===== Section shell ===== */
   .section{ padding: 32px 48px; border-bottom: 1px solid var(--line); }
   .section:last-child{ border-bottom: none; }
   .section-head{
@@ -110,7 +102,6 @@
     margin: -12px 0 20px;
   }
 
-  /* ===== Stat row ===== */
   .stat-grid{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
@@ -141,7 +132,6 @@
   .stat-value.warn{ color: var(--rust); }
   .stat-sub{ font-size: 11px; color: rgba(19,42,44,0.5); margin-top:2px; }
 
-  /* ===== Percentile bar ===== */
   .pctl-track{
     position: relative;
     height: 10px;
@@ -174,7 +164,6 @@
     color: rgba(19,42,44,0.45);
   }
 
-  /* ===== Spell composition bars ===== */
   .spell-row{
     display:grid;
     grid-template-columns: 140px 1fr 60px;
@@ -200,7 +189,6 @@
   }
   .dot{ display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
 
-  /* ===== Checklist ===== */
   .check-list{ display:flex; flex-direction:column; }
   .check-item{
     display:grid;
@@ -228,11 +216,6 @@
     text-align:right;
   }
 
-  /* ===== Cooldown / consumable table (Shaman-specific) =====
-       Deliberately NOT the ok/bad check-list pattern - cooldown counts and consumable
-       uptime are informational stats, not pass/fail checks, and design_tokens.md is
-       explicit that the numbers should carry the finding rather than the container
-       editorializing with color. Plain table + a coverage-note for the actual read. */
   .cd-table{ width:100%; border-collapse: collapse; font-size: 13px; }
   .cd-table th{
     text-align:left;
@@ -253,7 +236,6 @@
   .cd-table .num-cell{ font-family:'IBM Plex Mono', monospace; text-align:right; }
   .cd-table .ability-name{ font-weight: 500; }
 
-  /* ===== Target distribution ===== */
   .target-list{ display:flex; flex-direction:column; gap:8px; }
   .target-row{
     display:grid;
@@ -266,7 +248,6 @@
   .target-bar-fill{ height:100%; background: var(--ink-2); }
   .target-pct{ font-family:'IBM Plex Mono', monospace; text-align:right; }
 
-  /* ===== Healer ranking ===== */
   .healer-bar-track{ height:14px; background:var(--parchment-dim); border-radius:3px; overflow:hidden; min-width:80px; }
   .healer-bar-fill{ height:100%; background: var(--ink-2); }
   .healer-bar-fill.is-character{ background: var(--copper); }
@@ -280,7 +261,6 @@
     padding-left: 12px;
   }
 
-  /* ===== Footer ===== */
   .footer{
     padding: 24px 48px 32px;
     font-family:'IBM Plex Mono', monospace;
@@ -307,15 +287,13 @@
 
 <div class="page">
 
-  
   <div class="header">
     <div>
-      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — July 3, 2026 · Al'ar</p>
+      <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — SSC / TK — July 3, 2026 · Al&#39;ar</p>
       <h1>Vajomee</h1>
       <p class="subline">Restoration Shaman &nbsp;·&nbsp; ilvl 114 &nbsp;·&nbsp; report <span>Mfz4kW6JpjFPArat</span> &nbsp;·&nbsp; fight <span>63</span> &nbsp;·&nbsp; kill, 353s</p>
     </div>
     <div style="display:flex; flex-wrap:wrap; justify-content:flex-start; gap:12px 16px; align-items:flex-start;">
-      
       <div class="seal-wrap">
         <svg class="seal" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="56" fill="none" stroke="#C57C49" stroke-width="2"/>
@@ -325,8 +303,7 @@
         </svg>
         <div class="seal-label">WCL rank, all parses</div>
       </div>
-      
-      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL's own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
+      <div class="seal-wrap" style="cursor:help;" title="Rank among the other healers in this same raid on this same fight, using WCL&#39;s own real HPS Performance Comparison (By Item Level) percentile per healer - not the Top 100 sample.">
         <svg class="seal" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="56" fill="none" stroke="#C47948" stroke-width="2"/>
           <circle cx="60" cy="60" r="48" fill="none" stroke="#C47948" stroke-width="1" stroke-dasharray="2 4"/>
@@ -335,7 +312,6 @@
         </svg>
         <div class="seal-label">27% by ilvl 120</div>
       </div>
-      
       <div class="seal-wrap" style="cursor:help;" title="Rank among the same healers in this same raid on this same fight, using real raw total healing done instead of an item-level-adjusted percentile - a genuinely independent ranking from iLvl Healing Rank, not the same number relabeled.">
         <svg class="seal" viewBox="0 0 120 120">
           <circle cx="60" cy="60" r="56" fill="none" stroke="#D3A256" stroke-width="2"/>
@@ -348,7 +324,6 @@
     </div>
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">01</span>
@@ -388,24 +363,21 @@
     <div class="pctl-scale"><span>0th</span><span>50th</span><span>100th</span></div>
     <div class="stat-sub" style="margin-top:6px;">WCL rank ~19862 of 27209 Restoration Shaman parses on this encounter (all difficulties/partitions, historical). If matched via a duplicate raid upload rather than an exact report/fight ID, say so explicitly here.</div>
 
-    <div class="coverage-note">HPS (395) ran well below the Top 100 average (1,121), and overheal (52.6%) exceeds the sample's single worst parse (50.6%) by 2 points - active time (78% vs. 96.2% average, a real 18.2-point gap) was also notable - landing at the 27th percentile, one of the raid's three lowest kills, with 1 real death logged. This is also the one kill this raid night with no Battle or Guardian Elixir active at all (food only) - a real, confirmed consumable gap that may plausibly explain part of the weak HPM and active-time numbers here specifically.</div>
+    <div class="coverage-note">HPS (395) ran well below the Top 100 average (1,121), and overheal (52.6%) exceeds the sample&#39;s single worst parse (50.6%) by 2 points - active time (78% vs. 96.2% average, a real 18.2-point gap) was also notable - landing at the 27th percentile, one of the raid&#39;s three lowest kills, with 1 real death logged. This is also the one kill this raid night with no Battle or Guardian Elixir active at all (food only) - a real, confirmed consumable gap that may plausibly explain part of the weak HPM and active-time numbers here specifically.</div>
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">02</span>
       <h2 class="section-title">Spell composition</h2>
     </div>
-    <p class="section-desc">Vajomee's real cast mix on this kill, vs. real Top 100 average on Al'ar.</p>
+    <p class="section-desc">Vajomee's real cast mix on this kill, vs. real Top 100 average on Al&#39;ar.</p>
 
     <div class="compare-legend">
       <span><span class="dot" style="background:#C97A3D"></span>Vajomee</span>
       <span><span class="dot" style="background:rgba(19,42,44,0.25)"></span>Top 100 avg</span>
     </div>
 
-    
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Chain Heal (guid 10623)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:58.2%"></div></div>
@@ -416,7 +388,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3.4%"></div></div>
       <div class="spell-pct">3.4%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Chain Heal (guid 25423)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:21.2%"></div></div>
@@ -427,7 +398,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:55.1%"></div></div>
       <div class="spell-pct">55.1%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Lesser Healing Wave</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:8.6%"></div></div>
@@ -438,7 +408,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:11%"></div></div>
       <div class="spell-pct">11%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Earth Shield</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:7.1%"></div></div>
@@ -449,7 +418,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:9.2%"></div></div>
       <div class="spell-pct">9.2%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Healing Wave (guid 25396)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:3.4%"></div></div>
@@ -460,7 +428,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.6%"></div></div>
       <div class="spell-pct">5.6%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Chain Heal (guid 25422)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -471,7 +438,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:5.7%"></div></div>
       <div class="spell-pct">5.7%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Chain Heal (guid 10622)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -482,7 +448,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:3%"></div></div>
       <div class="spell-pct">3%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Healing Stream</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -493,7 +458,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:2%"></div></div>
       <div class="spell-pct">2%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Chain Heal (guid 1064)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -504,7 +468,6 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.7%"></div></div>
       <div class="spell-pct">1.7%</div>
     </div>
-    
     <div class="spell-row compare-row">
       <div class="spell-name">Healing Wave (guid 8005)</div>
       <div class="spell-bar-track"><div class="spell-bar-fill" style="width:0%"></div></div>
@@ -515,12 +478,9 @@
       <div class="spell-bar-track"><div class="spell-bar-fill dim" style="width:1.1%"></div></div>
       <div class="spell-pct">1.1%</div>
     </div>
-    
 
-    <div class="coverage-note">Chain Heal's share ran 54.8 points ahead of the Top 100 average - a real, sizeable gap.</div>
+    <div class="coverage-note">Chain Heal&#39;s share ran 54.8 points ahead of the Top 100 average - a real, sizeable gap.</div>
 
-    
-    
     <div style="margin-top:20px;">
       <p class="section-desc" style="margin:0 0 10px;">Spells with more than one real rank in play this kill (different real guids sharing a display name, not the same spell cast at different frequencies) — mana cost is this kill's own real cast data where available; <span style="font-family:'IBM Plex Mono', monospace;">&#8224;</span> marks a rank the character didn't cast this kill, backfilled with a real cost observed elsewhere in the Top 100 sample; "?" only when neither source has it.</p>
       <table class="cd-table">
@@ -533,69 +493,59 @@
           </tr>
         </thead>
         <tbody>
-          
           <tr>
             <td class="ability-name">Chain Heal</td>
             <td class="num-cell">260 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">1.7%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">315 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">3%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">405 mana</td>
             <td class="num-cell">58.2%</td>
             <td class="num-cell">3.4%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">435 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">5.7%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">540 mana</td>
             <td class="num-cell">21.2%</td>
             <td class="num-cell">55.1%</td>
           </tr>
-          
           <tr>
             <td class="ability-name">Healing Wave</td>
             <td class="num-cell">340 mana †</td>
             <td class="num-cell">0%</td>
             <td class="num-cell">1.1%</td>
           </tr>
-          
           <tr>
             <td class="ability-name"></td>
             <td class="num-cell">720 mana</td>
             <td class="num-cell">3.4%</td>
             <td class="num-cell">5.6%</td>
           </tr>
-          
         </tbody>
       </table>
     </div>
-    
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">03</span>
       <h2 class="section-title">Cooldowns &amp; consumables</h2>
     </div>
-    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Al'ar. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> (see WORKFLOW.md) - match abilities by guid, not localized name (gotcha #2).</p>
+    <p class="section-desc">Real cooldown/utility usage, consumable casts, mana efficiency, and self-buff status on this kill, vs. real Top 100 average on Al&#39;ar. Sourced from the fight's <span class="placeholder-tag">*_casts_events.json</span> and <span class="placeholder-tag">*_consumables.json</span> - match abilities by guid, not localized name.</p>
 
     <table class="cd-table">
       <thead>
@@ -607,49 +557,41 @@
         </tr>
       </thead>
       <tbody>
-        
-        
         <tr>
           <td class="ability-name">Earth Shield</td>
           <td class="num-cell">5</td>
           <td>→ Braila ×4, → Captinhelp</td>
           <td class="num-cell">4.6 avg (0% self)</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Mana Tide Totem</td>
           <td class="num-cell">1</td>
           <td>—</td>
           <td class="num-cell">1 avg</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Ancestral Swiftness</td>
           <td class="num-cell">1</td>
           <td>—</td>
           <td class="num-cell">1.1 avg</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Dark Rune</td>
           <td class="num-cell">0</td>
           <td>—</td>
           <td class="num-cell">0.3 avg</td>
         </tr>
-        
         <tr>
           <td class="ability-name">Mana Potion</td>
           <td class="num-cell">2</td>
           <td>—</td>
           <td class="num-cell">1.3 avg</td>
         </tr>
-        
       </tbody>
     </table>
 
     <div class="stat-grid stat-grid-5" style="margin-top:22px;">
       <div class="stat">
-        
         <div class="stat-label">Flask / Elixir</div>
         <div class="stat-value">No</div>
         <div class="stat-sub">none — Top 100 active at pull start: 70% flask, 100% Battle Elixir, 83% Guardian Elixir</div>
@@ -665,64 +607,53 @@
         <div class="stat-sub">2x Mana Potion</div>
       </div>
       <div class="stat">
-        
         <div class="stat-label">HPM</div>
         <div class="stat-value">3.44</div>
         <div class="stat-sub">Top 100: top1 9.47 &nbsp;·&nbsp; avg 6.63 &nbsp;·&nbsp; median 6.54</div>
       </div>
     </div>
 
-    <div class="coverage-note">Every tracked cooldown here matched or exceeded the Top 100 sample - 5 real Earth Shields (Braila x4, Captinhelp), tied for the heaviest count of the raid night. Captinhelp's death doesn't land close enough to any cooldown (the nearest, Earth Shield, is nearly 2 minutes removed) to call a real save.</div>
+    <div class="coverage-note">Every tracked cooldown here matched or exceeded the Top 100 sample - 5 real Earth Shields (Braila x4, Captinhelp), tied for the heaviest count of the raid night. Captinhelp&#39;s death doesn&#39;t land close enough to any cooldown (the nearest, Earth Shield, is nearly 2 minutes removed) to call a real save.</div>
   </div>
 
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">04</span>
       <h2 class="section-title">Target distribution</h2>
     </div>
-    <p class="section-desc">Top 5 recipients of Vajomee's healing on this kill (60.2% coverage) vs. Top 100 average on Al'ar (54.5% coverage, 23.6% to top target).</p>
+    <p class="section-desc">Top 5 recipients of Vajomee's healing on this kill (60.2% coverage) vs. Top 100 average on Al&#39;ar (54.5% coverage, 23.6% to top target).</p>
 
     <div class="target-list">
-      
-      
       <div class="target-row">
         <div>Braila</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
         <div class="target-pct">17.7%</div>
       </div>
-      
       <div class="target-row">
         <div>Captinhelp</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:89.9%"></div></div>
         <div class="target-pct">15.9%</div>
       </div>
-      
       <div class="target-row">
         <div>Banepain</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:55.9%"></div></div>
         <div class="target-pct">9.9%</div>
       </div>
-      
       <div class="target-row">
         <div>Victim</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:48.6%"></div></div>
         <div class="target-pct">8.6%</div>
       </div>
-      
       <div class="target-row">
         <div>Thugalina</div>
         <div class="target-bar-track"><div class="target-bar-fill" style="width:46.7%"></div></div>
         <div class="target-pct">8.2%</div>
       </div>
-      
     </div>
 
     <div class="coverage-note">Coverage (60.2% vs. 54.5% average) and top-target concentration (17.7% vs. 23.6% average) both tracked modestly below the Top 100 norm, across 23 distinct targets.</div>
   </div>
 
-  
-  
   <div class="section">
     <div class="section-head">
       <span class="section-num">05</span>
@@ -739,49 +670,42 @@
         </tr>
       </thead>
       <tbody>
-        
         <tr class="">
           <td class="ability-name">Vinnyvozz</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="181,313 total healing"><div class="healer-bar-fill " style="width:100%"></div></div></td>
           <td class="num-cell">24.2%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">36% (ilvl 125)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Lasmur</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="176,679 total healing"><div class="healer-bar-fill " style="width:97.4%"></div></div></td>
           <td class="num-cell">23.5%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">30% (ilvl 126)</td>
         </tr>
-        
         <tr class="is-character">
           <td class="ability-name">Vajomee</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="139,246 total healing"><div class="healer-bar-fill is-character" style="width:76.8%"></div></div></td>
           <td class="num-cell">18.6%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">27% (ilvl 120)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Kilsby</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="129,963 total healing"><div class="healer-bar-fill " style="width:71.7%"></div></div></td>
           <td class="num-cell">17.3%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">31% (ilvl 128)</td>
         </tr>
-        
         <tr class="">
           <td class="ability-name">Zitish</td>
           <td><div class="healer-bar-track" style="cursor:help;" title="123,102 total healing"><div class="healer-bar-fill " style="width:67.9%"></div></div></td>
           <td class="num-cell">16.4%</td>
           <td class="num-cell" style="cursor:help;" title="WCL's own Item Level percentile: how this healer's HPS on this kill compares to other same-spec, similar-item-level healers across WCL's whole parse database. Higher = stronger performance for that gear level, not just more gear.">17% (ilvl 126)</td>
         </tr>
-        
       </tbody>
     </table>
   </div>
-  
 
   <div class="footer">
-    <span>All data real: Vajomee's fight log (Mfz4kW6JpjFPArat, fight 63) + Top 100 Al'ar benchmark (n=100)</span>
+    <span>All data real: Vajomee's fight log (Mfz4kW6JpjFPArat, fight 63) + Top 100 Al&#39;ar benchmark (n=100)</span>
   </div>
 
 </div>

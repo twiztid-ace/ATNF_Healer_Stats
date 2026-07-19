@@ -249,7 +249,7 @@ def _pull_one_parse(
     with state.fights_lock:
         cached = state.fights_cache.get(report_id)
     if cached is None:
-        report_query = f'query {{ reportData {{ report(code: "{report_id}") {{ fights {{ id startTime endTime }} masterData {{ actors {{ id name }} }} }} }} }}'
+        report_query = f'query {{ reportData {{ report(code: "{report_id}") {{ endTime fights {{ id startTime endTime }} masterData {{ actors {{ id name }} }} }} }} }}'
         r = wcl_api.invoke_wcl_graphql(report_query, access_token=access_token)
         if r.errors or not r.data.get("reportData", {}).get("report"):
             result["ok"] = False
@@ -259,7 +259,7 @@ def _pull_one_parse(
         fights = [{"id": f["id"], "start_time": int(f["startTime"]), "end_time": int(f["endTime"])} for f in report["fights"]]
         actor_names = {int(a["id"]): a["name"] for a in report["masterData"]["actors"] if a.get("id") is not None}
         actors_by_name = {a["name"]: a["id"] for a in report["masterData"]["actors"] if a.get("name")}
-        cached = {"fights": fights, "actor_names": actor_names, "actors_by_name": actors_by_name}
+        cached = {"fights": fights, "actor_names": actor_names, "actors_by_name": actors_by_name, "report_end_time": int(report["endTime"])}
         with state.fights_lock:
             state.fights_cache[report_id] = cached
 
@@ -291,7 +291,11 @@ def _pull_one_parse(
 
     consumables_out = out_dir / f"{report_id}_{fight_id}_{safe_name}_consumables.json"
     if not consumables_out.exists():
-        snapshot = _get_consumables_snapshot(report_id, fight_id, start, end, player_id, access_token, messages, idx, player_name)
+        # Query window must extend to the report's real end, not this fight's own end -
+        # a player's only real CombatantInfo snapshot can land AFTER an early fight ends
+        # (a late arrival relative to that fight, snapshotted near a later pull in the
+        # same report) - confirmed live 2026-07-18, see CLAUDE.md.
+        snapshot = _get_consumables_snapshot(report_id, fight_id, start, cached["report_end_time"], player_id, access_token, messages, idx, player_name)
         if snapshot is None:
             parse_ok = False
         else:

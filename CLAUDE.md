@@ -417,11 +417,37 @@ so the naive "closest by time" pick grabbed the stub instead. Both are fixed
 in `pull_character.py`/`pull_top100.py` (search the whole report; prefer any
 candidate with a non-empty `auras` list before falling back to plain
 closest-by-time) — recovered 40 of 47 known-gap benchmark parses via a
-one-off backfill. **The genuinely irrecoverable residual (7 of 47, confirmed
-via a live "zero CombatantInfo events for this player anywhere in the
-report" check) is a real, first-pull-of-the-session gap** — not late
-joining, just a report where that snapshot was never logged at all — this
-part of the original framing holds and isn't chased further.
+one-off backfill, leaving a residual 7 originally (wrongly) documented here
+as all genuinely irrecoverable. **Correction (2026-07-18, later the same
+day): 6 of those 7 were actually a THIRD bug, not a real WCL data gap.**
+`_get_consumables_snapshot()`'s query window was capped at the CURRENT
+FIGHT's own end time rather than the report's real end time. For any fight
+that isn't the report's last one, a player's only real snapshot can just as
+easily land AFTER that fight ends (a late arrival relative to an early fight,
+snapshotted near a later pull in the same report) as before it — the
+"5-17 minutes before" pattern above was never the only shape this gap took.
+Confirmed live: re-querying with `endTime` set to the report's own end (not
+the fight's) found real, non-stub CombatantInfo snapshots — some over 20
+minutes after the affected fight's end — for 6 of the 7 "irrecoverable"
+parses (Druid `mJZktyx87h9ACKYB`/`129rzp7hZxTPckvw`/`QNnL4tFV8MjZmAD7`,
+Shaman `3KaAHwZNxd8QWBjh`, Paladin `28gJvWA71xFqGBXw`/`TnwD3NLcMgWh9Q6f`).
+Fixed in both `pull_top100.py` (report-level `endTime` now fetched and
+cached alongside the fight list, passed to the snapshot query instead of the
+fight's own end) and `pull_character.py` (`_pull_one_fight` now takes a
+separate `report_end_time` param for the same purpose) — the `start_time`
+used for "closest snapshot" distance-ranking is untouched, only the query's
+outer `endTime` bound changed. All 6 recovered parses backfilled and
+`summarize-benchmarks` re-run for Druid/Shaman/Paladin the same session, zero
+warnings. A subagent check of all 10 tracked healers' own published reports
+(25 healer+reportcode combos) found this bug had NOT yet manifested as a
+missing file for any of them — impact was confined to Top 100 benchmark
+data. **Only 1 of the original 7 (Priest `KpzcyqGLXMNWj3bC` fight 6, player
+雪落无痕) is genuinely irrecoverable** — re-confirmed live the same session:
+zero CombatantInfo events anywhere in that report for that player, full
+stop. Lesson worth keeping: a number this file stated as "confirmed live" was
+still wrong 7 hours later — a claim of live verification describes the check
+that was run, not a guarantee the conclusion was correctly scoped; a repeat
+of the same check with a wider window overturned it.
 
 **Related downstream bug, found and fixed the same day: 31 orphaned benchmark
 parses.** The original CombatantInfo bug above had a second consequence —
@@ -625,29 +651,6 @@ narrative summary.
   against an actual pulled report before writing any new cooldown-guid
   entry, and still check the full Top 100 sample (per the rule above) before
   a "this ability never does X" claim goes into permanent documentation.
-
-## Explicitly open, in priority-ish order
-
-1. **A narrow, confirmed-irrecoverable data gap** (down from ~0.1-1.1% of
-   parses per class to 7 known cases total, after the 2026-07-18 root-cause
-   fix documented in "WCL v2 GraphQL API reference" above recovered the rest)
-   — a real first-pull-of-the-session gap where WCL never logged a
-   `CombatantInfo` snapshot for that player anywhere in the report at all,
-   confirmed live rather than assumed. Reported as a failure for that one
-   player's consumables/gear data, not chased further.
-2. **Power Word: Shield's Top 100 benchmark is a real but misleading ~0%**
-   and **Holy Shock's cast/heal use two different real guids** — see
-   "Per-build real cooldown/utility kits" above. Both are auto-tagged canned
-   caveats in `build_analysis.py`; any findings.json prose must still name
-   them explicitly, the tag alone doesn't write the sentence.
-3. **Known, separate content-debt item, not fixed in this rewrite**: several
-   already-published `docs\**\healer_audit_*.html` pages contain internal
-   jargon leaked into public coverage-note prose — e.g. literal "(see
-   WORKFLOW.md)" and "gotcha #2" text in
-   `docs\crowns\XJp8vAxzM4KtHYyb\healer_audit_hydross.html`. Fixing this
-   means regenerating already-published site content (a real content job,
-   not a docs edit) — flagged here so it isn't lost, not attempted as part
-   of this file's own rewrite.
 
 ## Hosting — GitHub Pages
 
