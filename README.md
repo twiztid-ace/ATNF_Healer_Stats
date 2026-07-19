@@ -15,9 +15,10 @@ Paladin, Dreamstate Druid.**
 
 **The pipeline runs on Python now** (migrated from a Windows PowerShell 5.1
 implementation — see `CLAUDE.md` for the migration's own history). The
-original PowerShell scripts (`scripts\*.ps1`, `templates\*.html`) are kept in
-place, untouched, as a preserved reference/rollback copy — they are not the
-live implementation and should not be run going forward.
+original PowerShell scripts (`scripts\*.ps1`, `templates\*.html`) were kept
+as a preserved reference/rollback copy through the migration, then deleted
+2026-07-19 once the Python pipeline was verified stable (git history still
+has them if ever needed).
 
 ## Running the pipeline (two ways)
 
@@ -76,8 +77,7 @@ repo root as the working directory.
 ```
 pipeline\                    Python pipeline package (see below)
 templates_jinja\              Jinja2 HTML templates (per-class boss pages, raid overview, hub pages)
-scripts\                      Preserved PowerShell implementation (reference/rollback only, not live)
-templates\                    Preserved PowerShell-era HTML templates (reference/rollback only, not live)
+tools\                        Live, non-pipeline tooling (statusline.ps1 + its WCL API helper)
 data\Classes\{Class}\        Top 100 benchmark pulls (active/archived + manifest.json)
 data\Characters\{Name}\{ReportCode}\   Per-character pulled data + generated report_data.json/analysis.json/findings.json
 data\Characters\{Name}\index.json      This healer's raid-night list (source of truth for their hub page)

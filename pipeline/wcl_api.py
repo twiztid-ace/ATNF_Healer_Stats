@@ -1,8 +1,10 @@
 """Shared OAuth2 + GraphQL client for Warcraft Logs' v2 API.
 
-Function-for-function port of scripts/lib/WclV2Api.psm1. Requires the same
-three gitignored files at the repo root: v2_client_id.txt, v2_client_secret.txt,
-and v2_access_token.txt (created automatically on first use).
+Function-for-function port of the old scripts/lib/WclV2Api.psm1 (deleted
+2026-07-19; a trimmed copy lives on at tools/WclV2Api.psm1 for the status
+line). Requires the same three gitignored files at the repo root:
+v2_client_id.txt, v2_client_secret.txt, and v2_access_token.txt (created
+automatically on first use).
 
 Two PowerShell-specific gotchas documented in the original module simply
 don't apply here and are not ported:

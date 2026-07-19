@@ -43,15 +43,24 @@ resolution) carried over unchanged — only the implementation language and,
 in Phase 4, the templating engine (hand-rolled `@LOOP`/`@SLOT`/`@OPTIONAL`
 HTML-comment primitives → Jinja2) changed.
 
-**`scripts\*.ps1` and `templates\*.html` still exist on disk, untouched, as a
-preserved reference/rollback copy — they are not the live implementation and
-should not be run going forward.** Don't extend them, don't fix bugs in them,
-don't use them as a template for a new feature. `pipeline\*.py` and
-`templates_jinja\*.jinja` are the real, current implementation. If you're
-orienting from a past version of this file (or from memory) that talks about
-running a `.ps1` script to do real work, that's stale — translate it to the
-matching `python -m pipeline.cli <subcommand>` call instead (see "Repo
-structure" and README.md's "Running the pipeline in detail").
+**The old `scripts\*.ps1` and `templates\*.html` PowerShell implementation was
+deleted 2026-07-19** — it had been kept as a preserved reference/rollback copy
+through the Python migration, but the migration is long since verified stable
+(this file's own "Ground rules" and "Explicitly open" sections record every
+real methodology bug found and fixed since), so the rollback safety net was
+removed; git history still has it if it's ever needed again (pre-2026-07-19
+commits). `pipeline\*.py` and `templates_jinja\*.jinja` are the real, current,
+and now *only* implementation. If you're orienting from a past version of
+this file (or from memory) that talks about running a `.ps1` script to do
+real work, or that describes `scripts\`/`templates\`/`reference\`/`examples\`
+as present on disk, that's stale — translate it to the matching
+`python -m pipeline.cli <subcommand>` call instead (see "Repo structure" and
+README.md's "Running the pipeline in detail"). The one thing that moved
+rather than being deleted outright: `scripts\statusline.ps1` (a Claude Code
+status line showing WCL rate limits) and its one real dependency,
+`scripts\lib\WclV2Api.psm1`, are live tooling, not pipeline code — they now
+live at `tools\statusline.ps1` / `tools\WclV2Api.psm1` (the latter trimmed to
+just the three functions the status line actually uses).
 
 ## Two independent axes — don't confuse them
 
@@ -76,7 +85,8 @@ real number and pre-flags every script-safe judgment call
 interpretive sentences (`{code}_findings.json`), and the renderer
 deterministically produces the final HTML. **This is now the only live
 authoring path** — the PowerShell-hand-render and PowerShell-script-render
-mechanisms are both retired along with the rest of `scripts\`. A page's
+mechanisms are both retired along with the rest of `scripts\` (deleted
+2026-07-19, see "The pipeline runs on Python now" above). A page's
 `data\Characters\` folder having a `{code}_findings.json`/`{code}_analysis.json`
 next to its `report_data.json` tells you it went through the script-rendered
 pipeline. **Correction (found 2026-07-18 while fixing gendered pronouns
@@ -154,21 +164,17 @@ templates_jinja\                     <- Jinja2 templates (the live template set)
   boss_page_{druid,shaman,priest,paladin,dreamstate}.html.jinja  <- per-build boss page
   raid_overview.html.jinja, healer_raidlist.html.jinja, site_index.html.jinja
 
-scripts\                             <- PRESERVED PowerShell implementation. Reference/
-                                         rollback only - do not run, do not extend.
-templates\                           <- PRESERVED PowerShell-era HTML templates. Same.
-scripts\archive\                     <- older-still PowerShell reference (pre-v2-API
-                                         *_v1.ps1 scripts, one-off backfill scripts) -
-                                         already historical even relative to scripts\.
-
-reference\
-  warcraftlogs_api.json              <- the v1 REST API's swagger spec - historical only,
-                                         nothing on the live pipeline calls v1 anymore
-
-examples\
-  healer_audit_hydross.html          <- ONE old hand-filled example page, predates the
-                                         events-based rewrite - visual reference only,
-                                         not representative of current output shape
+tools\                                <- live, non-pipeline tooling (not part of the report
+                                         pipeline itself)
+  statusline.ps1                     <- Claude Code status line for this repo (Claude's own
+                                         usage + WCL rate limit) - not currently the active
+                                         statusLine command (global ~/.claude/settings.json
+                                         points at a separate, simpler script instead)
+  WclV2Api.psm1                      <- trimmed OAuth2+GraphQL helper statusline.ps1 needs -
+                                         moved out of the old scripts\lib\ when that folder
+                                         was deleted (see "The pipeline runs on Python now"
+                                         above), kept to just the 3 functions a status line
+                                         actually calls
 
 data\
   Classes\{Druid,Shaman,Priest,Paladin,Dreamstate}\   <- Top 100 benchmark pulls, see
@@ -208,8 +214,7 @@ docs\                                 <- the actual generated static site, serve
                                          pipeline end to end (fully Python, see its own
                                          "Pipeline" section for the exact command sequence)
 
-.gitignore, apikey.txt (unused, kept only for the preserved *_v1.ps1 reference scripts),
-v2_client_id.txt / v2_client_secret.txt / v2_access_token.txt (gitignored, live v2
+.gitignore, v2_client_id.txt / v2_client_secret.txt / v2_access_token.txt (gitignored, live v2
 GraphQL OAuth credentials used by pipeline\wcl_api.py)
 ```
 
@@ -337,8 +342,7 @@ file, not a second real fact.
 
 **`data\Classes\{Shaman,Priest,Paladin}\2026-07-10\`** (or similar dates)
 may still exist as old pre-active/archived-model pulls, preserved untouched
-— not the active data for their class, same preservation convention as the
-PowerShell scripts.
+— not the active data for their class.
 
 ## WCL v2 GraphQL API reference
 
@@ -351,7 +355,9 @@ PowerShell scripts.
 auto-created/refreshed by `pipeline\wcl_api.py` — real tokens observed to
 last ~360 days). The old v1 REST API (`fresh.warcraftlogs.com/v1`,
 query-param `api_key`) is fully retired — nothing in the live pipeline calls
-it; `reference\warcraftlogs_api.json` (its swagger spec) is historical only.
+it; its swagger spec (`reference\warcraftlogs_api.json`) was deleted
+2026-07-19 along with the rest of the PowerShell-era rollback material (git
+history still has it if ever needed).
 
 **Rate limits**: points/hour (`rateLimitData{limitPerHour,
 pointsSpentThisHour, pointsResetIn}`), cost scales with query complexity —
@@ -654,9 +660,11 @@ asking the person to paste `git` output:
 ```powershell
 & "$env:LOCALAPPDATA\Atlassian\SourceTree\git_local\bin\git.exe" -C "C:\Users\raymo\wc_logs" status
 ```
-`apikey.txt`/`v2_client_*.txt` are confirmed not tracked (`git ls-files`
-doesn't list them) — safe as long as `.gitignore` isn't changed to drop those
-lines.
+`v2_client_*.txt` are confirmed not tracked (`git ls-files` doesn't list
+them) — safe as long as `.gitignore` isn't changed to drop those lines.
+`apikey.txt` itself was deleted 2026-07-19 (it was unused, kept only for the
+now-also-deleted `*_v1.ps1` reference scripts) — its `.gitignore` line was
+removed at the same time.
 
 **Served from `master:/docs`** (Settings → Pages → Source → Deploy from a
 branch → `master` / `/docs`), not a dedicated `gh-pages` branch — avoids

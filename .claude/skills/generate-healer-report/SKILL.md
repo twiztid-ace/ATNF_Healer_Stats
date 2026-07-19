@@ -54,12 +54,12 @@ its own — `--class-name "Dreamstate"` is still the correct pipeline value
 end-to-end (own `data\Classes\Dreamstate\` folder/manifest, own cooldown
 table), it just maps to the real WCL `className: "Druid", specName:
 "Dreamstate"` internally (see `pipeline\classes.py`'s `ClassConfig` for the
-full split, and `scripts\pull_top100_dreamstate.ps1`'s header — preserved as
-historical reference — for the original discovery writeup). Real-data
-discovery pass against a real report before writing any guid table for every
-one of these (Lippies for Priest, Crowns for Paladin, Turkeykin for
-Dreamstate — see each preserved `scripts\pull_top100_*.ps1` header for the
-full writeup).
+full split — the original PowerShell discovery-writeup scripts this used to
+point to, `scripts\pull_top100_*.ps1`, were deleted 2026-07-19 along with the
+rest of the retired PowerShell implementation; git history still has them).
+Real-data discovery pass against a real report before writing any guid table
+for every one of these (Lippies for Priest, Crowns for Paladin, Turkeykin for
+Dreamstate).
 
 **If the resolved class/spec combination isn't one of the five above: stop and
 tell the user clearly** — name the class and spec, say it isn't on the v2

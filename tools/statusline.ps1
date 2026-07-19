@@ -5,9 +5,10 @@
 # Pro/Max plans only, and only after the first API response in a session, so
 # this is displayed conditionally) and the live Warcraft Logs v2 GraphQL API
 # rate limit (points spent this hour / limit, next reset) whenever the current
-# session is working inside this repo. See WORKFLOW.md's "v2 GraphQL API"
-# section for why the WCL part matters - the hourly clock has caused a real
-# full lockout before (429 even on the rateLimitData diagnostic itself).
+# session is working inside this repo. See CLAUDE.md's "WCL v2 GraphQL API
+# reference" section for why the WCL part matters - the hourly clock has
+# caused a real full lockout before (429 even on the rateLimitData diagnostic
+# itself).
 #
 # Deliberately omits model name / directory (already visible elsewhere in the
 # UI) and uses compact abbreviations/units throughout - this line is meant to
@@ -19,6 +20,13 @@
 # therefore rate-limit points - on every single statusline render. Claude's
 # own rate_limits are handed to us directly in the payload, so no caching is
 # needed for that part.
+#
+# NOTE: this is not currently the active statusLine command (see the global
+# ~/.claude/settings.json, which points at a separate, simpler script) - kept
+# here as the WCL-aware version, moved out of the now-deleted scripts\ folder
+# (2026-07-19, end of the PowerShell->Python migration) along with its one
+# real dependency, tools\WclV2Api.psm1 (a trimmed copy of the old
+# scripts\lib\WclV2Api.psm1).
 
 $repoRoot = "C:\Users\raymo\wc_logs"
 $cacheFile = Join-Path $repoRoot ".wcl_ratelimit_cache.json"
@@ -96,7 +104,7 @@ if ($inProject) {
 
     if ($needsRefresh) {
         try {
-            Import-Module (Join-Path $repoRoot "scripts\lib\WclV2Api.psm1") -Force
+            Import-Module (Join-Path $repoRoot "tools\WclV2Api.psm1") -Force
             Push-Location $repoRoot
             $result = Invoke-WclGraphQL -Query 'query { rateLimitData { limitPerHour pointsSpentThisHour pointsResetIn } }'
             Pop-Location
