@@ -26,7 +26,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from pipeline import classes as classes_module
+from pipeline import character_themes, classes as classes_module
 from pipeline import jsonio, render_lib
 
 DISPLAY_NAME_TO_CLASS = {cfg.display_name: key for key, cfg in classes_module.CLASSES.items()}
@@ -178,6 +178,8 @@ def render_healer_hub(index_data: dict, docs_root: str = "docs", templates_root:
         healer_name=index_data["character_name"], healer_class_spec=cfg.display_name,
         server=index_data["server"], region=index_data["region"],
         raid_count_label=_raid_count_label(len(raid_rows)), raid_nights=raid_rows,
+        theme_style_block=character_themes.theme_style_block(index_data["character_name"], path_prefix=""),
+        theme_tag=character_themes.theme_tag(index_data["character_name"]),
     )
     out_path = Path(docs_root) / index_data["character_name"].lower() / "index.html"
     out_path.parent.mkdir(parents=True, exist_ok=True)

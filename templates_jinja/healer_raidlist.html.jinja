@@ -108,6 +108,7 @@
     color: rgba(19,42,44,0.4);
   }
 </style>
+{% if theme_style_block %}{{ theme_style_block|safe }}{% endif %}
 </head>
 <body>
 
@@ -116,7 +117,7 @@
   <div class="header">
     <p class="eyebrow"><a href="../index.html">← All healers</a> &nbsp;·&nbsp; {{ healer_class_spec }}</p>
     <h1>{{ healer_name }}</h1>
-    <p class="subline">{{ server }}-{{ region }} &nbsp;·&nbsp; <span>{{ raid_count_label }}</span></p>
+    <p class="subline">{{ server }}-{{ region }} &nbsp;·&nbsp; <span>{{ raid_count_label }}</span>{% if theme_tag %} &nbsp;·&nbsp; <span style="color:var(--copper);">{{ theme_tag }}</span>{% endif %}</p>
   </div>
 
   <div class="section">

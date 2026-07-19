@@ -167,6 +167,7 @@
     justify-content: space-between;
   }
 </style>
+{% if theme_style_block %}{{ theme_style_block|safe }}{% endif %}
 </head>
 <body>
 
@@ -175,7 +176,7 @@
   <div class="header">
     <p class="eyebrow"><a href="../index.html" style="color:var(--copper); text-decoration:none;">← All raids</a> &nbsp;·&nbsp; Raid Audit — {{ raid_title }} — {{ raid_date_display }}</p>
     <h1>{{ healer_name }}</h1>
-    <p class="subline">{{ healer_class_spec }} &nbsp;·&nbsp; ilvl {{ item_level }} &nbsp;·&nbsp; report <span>{{ report_code }}</span> &nbsp;·&nbsp; {{ bosses_killed_label }}</p>
+    <p class="subline">{{ healer_class_spec }} &nbsp;·&nbsp; ilvl {{ item_level }} &nbsp;·&nbsp; report <span>{{ report_code }}</span> &nbsp;·&nbsp; {{ bosses_killed_label }}{% if theme_tag %} &nbsp;·&nbsp; <span style="color:var(--copper);">{{ theme_tag }}</span>{% endif %}</p>
     {% if spec_coverage_note %}
     <p class="section-desc" style="margin:8px 0 0;">{{ spec_coverage_note }}</p>
     {% endif %}

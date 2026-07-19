@@ -24,7 +24,7 @@ import argparse
 from pathlib import Path
 from typing import Any
 
-from pipeline import classes as classes_module
+from pipeline import character_themes, classes as classes_module
 from pipeline import jsonio, paths, render_lib
 from pipeline.numeric import round_net
 
@@ -166,6 +166,12 @@ def render_healer_report(
     item_level = _compute_item_level(report_data)
     out_dir = Path(output_root) / healer_slug / raid_date_folder
     out_dir.mkdir(parents=True, exist_ok=True)
+
+    # Boss pages and the raid overview both render one level below
+    # docs/{healer_slug}/ (into docs/{healer_slug}/{report_code}/), so a
+    # theme's bg_image path needs a "../" prefix to resolve from here.
+    theme_style_block = character_themes.theme_style_block(character_name, path_prefix="../", bg_fill_viewport=True)
+    theme_tag = character_themes.theme_tag(character_name)
 
     env = render_lib.make_jinja_env(templates_root)
     boss_template = env.get_template(TEMPLATE_BY_CLASS[class_name])
@@ -365,6 +371,7 @@ def render_healer_report(
             "target_rows": target_rows, "target_finding": bf["TARGET_FINDING"],
             "healer_rank_rows": healer_rank_rows,
             "benchmark_n": sample_n,
+            "theme_style_block": theme_style_block, "theme_tag": theme_tag,
         }
 
         # Note: no post-render scan for a literal "{{" here (the PowerShell
@@ -505,6 +512,7 @@ def render_healer_report(
         "ilvl_healing_rank_summary": ilvl_summary_text, "raw_healing_rank_summary": raw_summary_text,
         "raid_warning_banner": warning_banner,
         "boss_summary_rows": boss_summary_rows, "raid_summary_finding": findings["RaidOverview"]["RAID_SUMMARY_FINDING"],
+        "theme_style_block": theme_style_block, "theme_tag": theme_tag,
     }
 
     overview_html = overview_template.render(**overview_context)

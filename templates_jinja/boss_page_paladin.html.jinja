@@ -282,6 +282,7 @@
     vertical-align: middle;
   }
 </style>
+{% if theme_style_block %}{{ theme_style_block|safe }}{% endif %}
 </head>
 <body>
 
@@ -291,7 +292,7 @@
     <div>
       <p class="eyebrow"><a href="index.html" style="color:var(--copper); text-decoration:none;">← Raid overview</a> &nbsp;·&nbsp; Healer Audit — {{ raid_title }} · {{ boss_name }}</p>
       <h1>{{ healer_name }}</h1>
-      <p class="subline">{{ healer_class_spec }} &nbsp;·&nbsp; ilvl {{ item_level }} &nbsp;·&nbsp; report <span>{{ report_code }}</span> &nbsp;·&nbsp; fight <span>{{ fight_id }}</span> &nbsp;·&nbsp; kill, {{ duration_s }}s</p>
+      <p class="subline">{{ healer_class_spec }} &nbsp;·&nbsp; ilvl {{ item_level }} &nbsp;·&nbsp; report <span>{{ report_code }}</span> &nbsp;·&nbsp; fight <span>{{ fight_id }}</span> &nbsp;·&nbsp; kill, {{ duration_s }}s{% if theme_tag %} &nbsp;·&nbsp; <span style="color:var(--copper);">{{ theme_tag }}</span>{% endif %}</p>
     </div>
     <div style="display:flex; flex-wrap:wrap; justify-content:flex-start; gap:12px 16px; align-items:flex-start;">
       <div class="seal-wrap">
