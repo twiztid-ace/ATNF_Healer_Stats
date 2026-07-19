@@ -1,0 +1,272 @@
+{
+  "entries": [
+    {
+      "name": "Døpamin",
+      "id": 1376,
+      "guid": 75012688,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 4947476,
+      "fight": 48,
+      "damage": {
+        "total": 9245,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3328,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9245,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Attumen the Huntsman",
+            "total": 9245,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2000,
+      "overkill": 686,
+      "events": [
+        {
+          "timestamp": 4947469,
+          "type": "damage",
+          "sourceID": 1846,
+          "sourceIsFriendly": false,
+          "targetID": 1376,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 3816,
+          "mitigated": 1621,
+          "unmitigatedAmount": 6123,
+          "overkill": 686,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4945469,
+          "type": "damage",
+          "sourceID": 1846,
+          "sourceIsFriendly": false,
+          "targetID": 1376,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 4743,
+          "mitigated": 1707,
+          "unmitigatedAmount": 6450,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Metteagel",
+      "id": 41,
+      "guid": 55685141,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 4960537,
+      "fight": 48,
+      "damage": {
+        "total": 20729,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5004,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 15019,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 5710,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Midnight",
+            "total": 15019,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 5710,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7853,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 4068,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 2246,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1539,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 4981,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 2872,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Grooti",
+            "total": 5607,
+            "type": "Druid"
+          },
+          {
+            "name": "Metteagel",
+            "total": 2246,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 15309,
+      "overkill": 3935,
+      "events": [
+        {
+          "timestamp": 4960515,
+          "type": "damage",
+          "sourceID": 1844,
+          "sourceIsFriendly": false,
+          "targetID": 41,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 15,
+          "amount": 1157,
+          "mitigated": 10,
+          "unmitigatedAmount": 5102,
+          "overkill": 3935,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4959526,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 41,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 2902,
+          "unmitigatedAmount": 2902,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 4959309,
+          "type": "damage",
+          "sourceID": 1844,
+          "sourceIsFriendly": false,
+          "targetID": 41,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 3422,
+          "mitigated": 1722,
+          "unmitigatedAmount": 5144,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

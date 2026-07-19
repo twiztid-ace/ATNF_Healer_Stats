@@ -1,0 +1,178 @@
+{
+  "entries": [
+    {
+      "name": "Oatzie",
+      "id": 7,
+      "guid": 77909166,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 2046554,
+      "fight": 12,
+      "damage": {
+        "total": 16315,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1992,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 16315,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Baron Rafe Dreuger",
+            "total": 5444,
+            "type": "Boss"
+          },
+          {
+            "name": "Baroness Dorothea Millstipe",
+            "total": 5139,
+            "type": "Boss"
+          },
+          {
+            "name": "Lady Keira Berrybuck",
+            "total": 3232,
+            "type": "NPC"
+          },
+          {
+            "name": "Lord Crispin Ference",
+            "total": 2500,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5318,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 4010,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 866,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 390,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          },
+          {
+            "guid": 20007,
+            "name": "Holy Strength",
+            "total": 52,
+            "type": 1,
+            "icon": "spell_holy_blessingofstrength.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 4655,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Xpeng",
+            "total": 4010,
+            "type": "Druid"
+          },
+          {
+            "name": "Oatzie",
+            "total": 1308,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 23427,
+      "overkill": 884,
+      "events": [
+        {
+          "timestamp": 2046526,
+          "type": "damage",
+          "sourceID": 51,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 12,
+          "hitType": 2,
+          "amount": 4560,
+          "unmitigatedAmount": 2900,
+          "overkill": 884,
+          "isAoE": false
+        },
+        {
+          "timestamp": 2046079,
+          "type": "damage",
+          "sourceID": 49,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 12,
+          "hitType": 1,
+          "amount": 3014,
+          "mitigated": 197,
+          "unmitigatedAmount": 3211,
+          "isAoE": false,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 2046079,
+          "type": "damage",
+          "sourceID": 48,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 12,
+          "hitType": 1,
+          "amount": 3232,
+          "mitigated": 211,
+          "unmitigatedAmount": 3443,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "entries": [
+    {
+      "name": "Mczauber",
+      "id": 6,
+      "guid": 45633263,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 10294600,
+      "fight": 66,
+      "damage": {
+        "total": 15459,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 518,
+        "abilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 7960,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 7499,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 7960,
+            "type": "Boss"
+          },
+          {
+            "name": "Conjured Elemental",
+            "total": 7499,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4277,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2247,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 2030,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 4277,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Gravebloom",
+            "total": 4277,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 21849,
+      "overkill": 1119,
+      "events": [
+        {
+          "timestamp": 10294568,
+          "type": "damage",
+          "sourceID": 119,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 66,
+          "hitType": 1,
+          "amount": 897,
+          "unmitigatedAmount": 2016,
+          "overkill": 1119,
+          "isAoE": false,
+          "sourceMarker": 3
+        },
+        {
+          "timestamp": 10294522,
+          "type": "damage",
+          "sourceID": 119,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 66,
+          "hitType": 1,
+          "amount": 1913,
+          "unmitigatedAmount": 1913,
+          "isAoE": false,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 10291039,
+          "type": "damage",
+          "sourceID": 119,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 66,
+          "hitType": 1,
+          "amount": 2016,
+          "unmitigatedAmount": 2016,
+          "isAoE": false,
+          "sourceMarker": 3
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    }
+  ]
+}

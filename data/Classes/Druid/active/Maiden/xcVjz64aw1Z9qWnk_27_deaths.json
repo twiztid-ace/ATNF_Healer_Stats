@@ -1,0 +1,99 @@
+{
+  "entries": [
+    {
+      "name": "Mamaro",
+      "id": 10,
+      "guid": 72982361,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 3395485,
+      "fight": 27,
+      "damage": {
+        "total": 10022,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9758,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29512,
+            "name": "Holy Ground",
+            "total": 264,
+            "type": 2,
+            "icon": "spell_holy_silence.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 10022,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 191,
+      "overkill": 83,
+      "events": [
+        {
+          "timestamp": 3395440,
+          "type": "damage",
+          "sourceID": 153,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Ground",
+            "guid": 29512,
+            "type": 2,
+            "abilityIcon": "spell_holy_silence.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 181,
+          "unmitigatedAmount": 264,
+          "overkill": 83,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3395249,
+          "type": "damage",
+          "sourceID": 153,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 27,
+          "hitType": 15,
+          "amount": 9758,
+          "unmitigatedAmount": 7504,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Holy Ground",
+        "guid": 29512,
+        "type": 2,
+        "abilityIcon": "spell_holy_silence.jpg"
+      }
+    }
+  ]
+}

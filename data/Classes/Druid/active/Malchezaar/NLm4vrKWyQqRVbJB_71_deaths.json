@@ -1,0 +1,249 @@
+{
+  "entries": [
+    {
+      "name": "Sagsheals",
+      "id": 4,
+      "guid": 57777956,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 6439540,
+      "fight": 71,
+      "damage": {
+        "total": 2564,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 2564,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 2564,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2563,
+      "events": [
+        {
+          "timestamp": 6439540,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 71,
+          "hitType": 1,
+          "amount": 1,
+          "unmitigatedAmount": 2564,
+          "overkill": 2563,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Word: Death",
+        "guid": 32409,
+        "type": 32,
+        "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+      }
+    },
+    {
+      "name": "Sagsheals",
+      "id": 4,
+      "guid": 57777956,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 6491974,
+      "fight": 71,
+      "damage": {
+        "total": 11442,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30898,
+            "name": "Shadow Word: Pain",
+            "total": 9144,
+            "type": 32,
+            "icon": "spell_shadow_shadowwordpain.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 2298,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 9144,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 2298,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3736,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 2625,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 1111,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30898,
+            "name": "Shadow Word: Pain",
+            "total": 3298,
+            "type": 32,
+            "icon": "spell_shadow_shadowwordpain.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 438,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Ceranation",
+            "total": 2625,
+            "type": "Druid"
+          },
+          {
+            "name": "Sagsheals",
+            "total": 1111,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 15007,
+      "overkill": 455,
+      "events": [
+        {
+          "timestamp": 6491953,
+          "type": "damage",
+          "sourceID": 139,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Pain",
+            "guid": 30898,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+          },
+          "fight": 71,
+          "hitType": 1,
+          "amount": 1069,
+          "unmitigatedAmount": 1524,
+          "overkill": 455,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 6491325,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 71,
+          "hitType": 1,
+          "amount": 2298,
+          "unmitigatedAmount": 2298,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 6488946,
+          "type": "damage",
+          "sourceID": 139,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Pain",
+            "guid": 30898,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+          },
+          "fight": 71,
+          "hitType": 1,
+          "amount": 1524,
+          "unmitigatedAmount": 1524,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Word: Pain",
+        "guid": 30898,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+      }
+    }
+  ]
+}

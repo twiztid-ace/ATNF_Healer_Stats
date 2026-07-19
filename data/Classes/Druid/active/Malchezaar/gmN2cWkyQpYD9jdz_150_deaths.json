@@ -1,0 +1,172 @@
+{
+  "entries": [
+    {
+      "name": "Takøi",
+      "id": 133,
+      "guid": 84716340,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 15792787,
+      "fight": 150,
+      "damage": {
+        "total": 8932,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 3252,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          },
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 2680,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar's Axes",
+            "total": 3252,
+            "type": "Pet"
+          },
+          {
+            "name": "Prince Malchezaar",
+            "total": 3000,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 2680,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 134,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 39373,
+            "name": "Shadowmend",
+            "total": 134,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 81,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 53,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Takøi",
+            "total": 134,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 5090,
+      "overkill": 1052,
+      "events": [
+        {
+          "timestamp": 15792754,
+          "type": "damage",
+          "sourceID": 585,
+          "sourceIsFriendly": false,
+          "targetID": 133,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 150,
+          "hitType": 15,
+          "amount": 690,
+          "unmitigatedAmount": 828,
+          "overkill": 1052,
+          "isAoE": false
+        },
+        {
+          "timestamp": 15791743,
+          "type": "damage",
+          "sourceID": 585,
+          "sourceIsFriendly": false,
+          "targetID": 133,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 150,
+          "hitType": 15,
+          "amount": 573,
+          "unmitigatedAmount": 545,
+          "isAoE": false
+        },
+        {
+          "timestamp": 15791486,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 133,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 150,
+          "hitType": 1,
+          "amount": 2680,
+          "unmitigatedAmount": 2680,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

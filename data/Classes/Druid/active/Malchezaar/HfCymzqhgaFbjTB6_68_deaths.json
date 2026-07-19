@@ -1,0 +1,73 @@
+{
+  "entries": [
+    {
+      "name": "Pipsill",
+      "id": 2,
+      "guid": 55551103,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 6050383,
+      "fight": 68,
+      "damage": {
+        "total": 6000,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 6000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 6000,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 411,
+      "events": [
+        {
+          "timestamp": 6050374,
+          "type": "damage",
+          "sourceID": 126,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 5589,
+          "unmitigatedAmount": 3000,
+          "overkill": 411,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}

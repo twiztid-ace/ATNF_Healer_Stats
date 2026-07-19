@@ -1,0 +1,151 @@
+{
+  "entries": [
+    {
+      "name": "Balles",
+      "id": 7,
+      "guid": 47186631,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 5729685,
+      "fight": 5,
+      "damage": {
+        "total": 13427,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5554,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10906,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 31012,
+            "name": "Water Bolt",
+            "total": 2521,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Strawman",
+            "total": 10906,
+            "type": "Boss"
+          },
+          {
+            "name": "Dorothee",
+            "total": 2521,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 790,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 790,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 395,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Balles",
+            "total": 790,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 16958,
+      "overkill": 3474,
+      "events": [
+        {
+          "timestamp": 5729667,
+          "type": "damage",
+          "sourceID": 30,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 5,
+          "hitType": 1,
+          "amount": 252,
+          "mitigated": 1898,
+          "unmitigatedAmount": 5624,
+          "overkill": 3474,
+          "isAoE": false,
+          "sourceMarker": 7
+        },
+        {
+          "timestamp": 5729476,
+          "type": "damage",
+          "sourceID": 28,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 31012,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 5,
+          "hitType": 1,
+          "amount": 2521,
+          "unmitigatedAmount": 2292,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 5727658,
+          "type": "damage",
+          "sourceID": 30,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 5,
+          "hitType": 1,
+          "amount": 3824,
+          "mitigated": 1947,
+          "unmitigatedAmount": 5771,
+          "isAoE": false,
+          "sourceMarker": 7
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

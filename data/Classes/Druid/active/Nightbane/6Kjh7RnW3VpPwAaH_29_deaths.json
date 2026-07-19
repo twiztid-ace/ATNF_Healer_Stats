@@ -1,0 +1,122 @@
+{
+  "entries": [
+    {
+      "name": "Dnecro",
+      "id": 192,
+      "guid": 74172396,
+      "type": "Druid",
+      "icon": "Druid-Feral",
+      "timestamp": 2556757,
+      "fight": 29,
+      "damage": {
+        "total": 14104,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 15016,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7526,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 6578,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 14104,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 5108,
+      "overkill": 353,
+      "events": [
+        {
+          "timestamp": 2556750,
+          "type": "damage",
+          "sourceID": 349,
+          "sourceIsFriendly": false,
+          "targetID": 192,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 29,
+          "hitType": 15,
+          "amount": 4485,
+          "mitigated": 5492,
+          "unmitigatedAmount": 10330,
+          "overkill": 353,
+          "isAoE": false
+        },
+        {
+          "timestamp": 2554735,
+          "type": "damage",
+          "sourceID": 349,
+          "sourceIsFriendly": false,
+          "targetID": 192,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 29,
+          "hitType": 1,
+          "amount": 2688,
+          "mitigated": 5922,
+          "unmitigatedAmount": 8610,
+          "isAoE": false
+        },
+        {
+          "timestamp": 2551642,
+          "type": "damage",
+          "sourceID": 349,
+          "sourceIsFriendly": false,
+          "targetID": 192,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 29,
+          "hitType": 1,
+          "amount": 6578,
+          "mitigated": 3602,
+          "unmitigatedAmount": 10180,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "entries": [
+    {
+      "name": "Zerjeager",
+      "id": 15,
+      "guid": 74436072,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 8070672,
+      "fight": 68,
+      "damage": {
+        "total": 15000,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30115,
+            "name": "Sacrifice",
+            "total": 15000,
+            "type": 32,
+            "icon": "spell_shadow_antimagicshell.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Terestian Illhoof",
+            "total": 15000,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6094,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 3936,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1120,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 1038,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30115,
+            "name": "Sacrifice",
+            "total": 6094,
+            "type": 32,
+            "icon": "spell_shadow_antimagicshell.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Solestra",
+            "total": 6094,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 8997,
+      "overkill": 111,
+      "events": [
+        {
+          "timestamp": 8070671,
+          "type": "damage",
+          "sourceID": 169,
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sacrifice",
+            "guid": 30115,
+            "type": 32,
+            "abilityIcon": "spell_shadow_antimagicshell.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 1389,
+          "unmitigatedAmount": 1500,
+          "overkill": 111,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 8069690,
+          "type": "damage",
+          "sourceID": 169,
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sacrifice",
+            "guid": 30115,
+            "type": 32,
+            "abilityIcon": "spell_shadow_antimagicshell.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 1500,
+          "unmitigatedAmount": 1500,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 8068664,
+          "type": "damage",
+          "sourceID": 169,
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sacrifice",
+            "guid": 30115,
+            "type": 32,
+            "abilityIcon": "spell_shadow_antimagicshell.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 1500,
+          "unmitigatedAmount": 1500,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Sacrifice",
+        "guid": 30115,
+        "type": 32,
+        "abilityIcon": "spell_shadow_antimagicshell.jpg"
+      }
+    }
+  ]
+}

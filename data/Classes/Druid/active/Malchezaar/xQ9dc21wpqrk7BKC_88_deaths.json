@@ -1,0 +1,200 @@
+{
+  "entries": [
+    {
+      "name": "Shïftycent",
+      "id": 12,
+      "guid": 68781765,
+      "type": "Druid",
+      "icon": "Druid-Feral",
+      "timestamp": 6731414,
+      "fight": 88,
+      "damage": {
+        "total": 13143,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5529,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          },
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 30898,
+            "name": "Shadow Word: Pain",
+            "total": 2638,
+            "type": 32,
+            "icon": "spell_shadow_shadowwordpain.jpg"
+          },
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 1976,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 5638,
+            "type": "Boss"
+          },
+          {
+            "name": "Prince Malchezaar's Axes",
+            "total": 5529,
+            "type": "Pet"
+          },
+          {
+            "name": "Netherspite Infernal",
+            "total": 1976,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5170,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1809,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1764,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1597,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 2101,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          },
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 1863,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 1206,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Nicksuzuki",
+            "total": 3361,
+            "type": "Druid"
+          },
+          {
+            "name": "Shïftycent",
+            "total": 1809,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 52097,
+      "overkill": 429,
+      "events": [
+        {
+          "timestamp": 6731407,
+          "type": "damage",
+          "sourceID": 167,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 88,
+          "hitType": 15,
+          "amount": 1543,
+          "unmitigatedAmount": 821,
+          "overkill": 429,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6730188,
+          "type": "damage",
+          "sourceID": 167,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 88,
+          "hitType": 1,
+          "amount": 691,
+          "unmitigatedAmount": 431,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6730178,
+          "type": "damage",
+          "sourceID": 161,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Pain",
+            "guid": 30898,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+          },
+          "fight": 88,
+          "hitType": 1,
+          "amount": 2638,
+          "unmitigatedAmount": 1319,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

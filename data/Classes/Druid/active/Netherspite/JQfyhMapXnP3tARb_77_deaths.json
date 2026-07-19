@@ -1,0 +1,134 @@
+{
+  "entries": [
+    {
+      "name": "Mattafix",
+      "id": 336,
+      "guid": 49950010,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 7802626,
+      "fight": 77,
+      "damage": {
+        "total": 10224,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 5313,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          },
+          {
+            "guid": 28865,
+            "name": "Consumption",
+            "total": 4911,
+            "type": 32,
+            "icon": "trade_engineering.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 5313,
+            "type": "Boss"
+          },
+          {
+            "name": "Void Zone",
+            "total": 4911,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3192,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2300,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 892,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 3192,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Celestíná",
+            "total": 3192,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 1368,
+      "overkill": 739,
+      "events": [
+        {
+          "timestamp": 7802592,
+          "type": "damage",
+          "sourceID": 458,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 336,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Consumption",
+            "guid": 28865,
+            "type": 32,
+            "abilityIcon": "trade_engineering.jpg"
+          },
+          "fight": 77,
+          "hitType": 1,
+          "amount": 4172,
+          "unmitigatedAmount": 1086,
+          "overkill": 739,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7801224,
+          "type": "damage",
+          "sourceID": 454,
+          "sourceIsFriendly": false,
+          "targetID": 336,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 77,
+          "hitType": 1,
+          "amount": 5313,
+          "unmitigatedAmount": 1196,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Consumption",
+        "guid": 28865,
+        "type": 32,
+        "abilityIcon": "trade_engineering.jpg"
+      }
+    }
+  ]
+}

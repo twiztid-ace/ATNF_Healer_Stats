@@ -1,0 +1,154 @@
+{
+  "entries": [
+    {
+      "name": "Byczar",
+      "id": 7,
+      "guid": 57186799,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 4899337,
+      "fight": 60,
+      "damage": {
+        "total": 17629,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 600,
+        "abilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 15048,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          },
+          {
+            "guid": 28865,
+            "name": "Consumption",
+            "total": 2581,
+            "type": 32,
+            "icon": "trade_engineering.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 15048,
+            "type": "Boss"
+          },
+          {
+            "name": "Void Zone",
+            "total": 2581,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 9038,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 4995,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 4043,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 9038,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Obivantaran",
+            "total": 9038,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 45001,
+      "overkill": 228,
+      "events": [
+        {
+          "timestamp": 4899324,
+          "type": "damage",
+          "sourceID": 182,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 2604,
+          "unmitigatedAmount": 1200,
+          "overkill": 228,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4898834,
+          "type": "damage",
+          "sourceID": 186,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Consumption",
+            "guid": 28865,
+            "type": 32,
+            "abilityIcon": "trade_engineering.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 2581,
+          "unmitigatedAmount": 1132,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4894317,
+          "type": "damage",
+          "sourceID": 182,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 2352,
+          "unmitigatedAmount": 1200,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Burn",
+        "guid": 30523,
+        "type": 32,
+        "abilityIcon": "spell_shadow_unholystrength.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "entries": [
+    {
+      "name": "Forrita",
+      "id": 6,
+      "guid": 65907392,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 2821491,
+      "fight": 28,
+      "damage": {
+        "total": 12533,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 29522,
+            "name": "Holy Fire",
+            "total": 10721,
+            "type": 4,
+            "icon": "spell_holy_searinglight.jpg"
+          },
+          {
+            "guid": 29511,
+            "name": "Repentance",
+            "total": 1812,
+            "type": 2,
+            "icon": "spell_holy_prayerofhealing.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 12533,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3483,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1473,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 911,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 874,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 225,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29522,
+            "name": "Holy Fire",
+            "total": 2930,
+            "type": 4,
+            "icon": "spell_holy_searinglight.jpg"
+          },
+          {
+            "guid": 29511,
+            "name": "Repentance",
+            "total": 553,
+            "type": 2,
+            "icon": "spell_holy_prayerofhealing.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Treelard",
+            "total": 2572,
+            "type": "Druid"
+          },
+          {
+            "name": "Kurobo",
+            "total": 911,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 8030,
+      "overkill": 1280,
+      "events": [
+        {
+          "timestamp": 2821489,
+          "type": "damage",
+          "sourceID": 69,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Fire",
+            "guid": 29522,
+            "type": 4,
+            "abilityIcon": "spell_holy_searinglight.jpg"
+          },
+          "fight": 28,
+          "hitType": 1,
+          "amount": 470,
+          "unmitigatedAmount": 1750,
+          "overkill": 1280,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 2819461,
+          "type": "damage",
+          "sourceID": 69,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Fire",
+            "guid": 29522,
+            "type": 4,
+            "abilityIcon": "spell_holy_searinglight.jpg"
+          },
+          "fight": 28,
+          "hitType": 1,
+          "amount": 1750,
+          "unmitigatedAmount": 1750,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 2818008,
+          "type": "damage",
+          "sourceID": 69,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Repentance",
+            "guid": 29511,
+            "type": 2,
+            "abilityIcon": "spell_holy_prayerofhealing.jpg"
+          },
+          "fight": 28,
+          "hitType": 1,
+          "amount": 1812,
+          "unmitigatedAmount": 1812,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Holy Fire",
+        "guid": 29522,
+        "type": 4,
+        "abilityIcon": "spell_holy_searinglight.jpg"
+      }
+    }
+  ]
+}

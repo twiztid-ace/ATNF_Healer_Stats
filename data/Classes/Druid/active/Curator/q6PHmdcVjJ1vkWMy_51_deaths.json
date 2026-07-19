@@ -1,0 +1,192 @@
+{
+  "entries": [
+    {
+      "name": "Mortârion",
+      "id": 9,
+      "guid": 53919384,
+      "type": "Paladin",
+      "icon": "Paladin-Protection",
+      "timestamp": 5932394,
+      "fight": 51,
+      "damage": {
+        "total": 18585,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 8443,
+        "blocked": 197,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6073,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30383,
+            "name": "Hateful Bolt",
+            "total": 5632,
+            "type": 64,
+            "icon": "spell_arcane_arcane04.jpg"
+          },
+          {
+            "guid": 30403,
+            "name": "Arcane Infusion",
+            "total": 3780,
+            "type": 64,
+            "icon": "spell_arcane_arcanepotency.jpg"
+          },
+          {
+            "guid": 30235,
+            "name": "Arcing Sear",
+            "total": 3100,
+            "type": 64,
+            "icon": "spell_arcane_arcane04.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Curator",
+            "total": 15485,
+            "type": "Boss"
+          },
+          {
+            "name": "Astral Flare",
+            "total": 3100,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4262,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2887,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 917,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 458,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30383,
+            "name": "Hateful Bolt",
+            "total": 1997,
+            "type": 64,
+            "icon": "spell_arcane_arcane04.jpg"
+          },
+          {
+            "guid": 30403,
+            "name": "Arcane Infusion",
+            "total": 1180,
+            "type": 64,
+            "icon": "spell_arcane_arcanepotency.jpg"
+          },
+          {
+            "guid": 30235,
+            "name": "Arcing Sear",
+            "total": 1085,
+            "type": 64,
+            "icon": "spell_arcane_arcane04.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Tìes",
+            "total": 4262,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 4592,
+      "overkill": 1456,
+      "events": [
+        {
+          "timestamp": 5932388,
+          "type": "damage",
+          "sourceID": 340,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Infusion",
+            "guid": 30403,
+            "type": 64,
+            "abilityIcon": "spell_arcane_arcanepotency.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 393,
+          "mitigated": 118,
+          "unmitigatedAmount": 1967,
+          "overkill": 1456,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5932357,
+          "type": "damage",
+          "sourceID": 340,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 51,
+          "hitType": 15,
+          "amount": 3783,
+          "mitigated": 2836,
+          "unmitigatedAmount": 6619,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5931801,
+          "type": "damage",
+          "sourceID": 347,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcing Sear",
+            "guid": 30235,
+            "type": 64,
+            "abilityIcon": "spell_arcane_arcane04.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 742,
+          "mitigated": 48,
+          "unmitigatedAmount": 790,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Infusion",
+        "guid": 30403,
+        "type": 64,
+        "abilityIcon": "spell_arcane_arcanepotency.jpg"
+      }
+    }
+  ]
+}

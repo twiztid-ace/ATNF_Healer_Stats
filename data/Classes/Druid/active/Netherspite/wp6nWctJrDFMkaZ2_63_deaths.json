@@ -1,0 +1,187 @@
+{
+  "entries": [
+    {
+      "name": "Máty",
+      "id": 156,
+      "guid": 53840962,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 13501222,
+      "fight": 63,
+      "damage": {
+        "total": 16588,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 9408,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 4099,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 3081,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 9408,
+            "type": "Boss"
+          },
+          {
+            "name": "Máty",
+            "total": 7180,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6766,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2873,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 2715,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 889,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 289,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 3106,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 2771,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 889,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Vovaness",
+            "total": 6766,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 7052,
+      "overkill": 2044,
+      "events": [
+        {
+          "timestamp": 13501186,
+          "type": "damage",
+          "sourceID": 252,
+          "sourceIsFriendly": false,
+          "targetID": 156,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 63,
+          "hitType": 1,
+          "amount": 2900,
+          "unmitigatedAmount": 1200,
+          "overkill": 2044,
+          "isAoE": true
+        },
+        {
+          "timestamp": 13500441,
+          "type": "damage",
+          "sourceID": 156,
+          "sourceIsFriendly": true,
+          "targetID": 156,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Judgement of Blood",
+            "guid": 32220,
+            "type": 2,
+            "abilityIcon": "spell_shadow_lifedrain.jpg"
+          },
+          "fight": 63,
+          "hitType": 1,
+          "amount": 4099,
+          "unmitigatedAmount": 995,
+          "isAoE": false
+        },
+        {
+          "timestamp": 13499678,
+          "type": "damage",
+          "sourceID": 156,
+          "sourceIsFriendly": true,
+          "targetID": 156,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 63,
+          "hitType": 1,
+          "amount": 711,
+          "unmitigatedAmount": 176,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Burn",
+        "guid": 30523,
+        "type": 32,
+        "abilityIcon": "spell_shadow_unholystrength.jpg"
+      }
+    }
+  ]
+}

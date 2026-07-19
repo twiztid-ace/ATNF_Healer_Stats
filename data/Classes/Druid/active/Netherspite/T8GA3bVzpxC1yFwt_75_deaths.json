@@ -1,0 +1,126 @@
+{
+  "entries": [
+    {
+      "name": "Shaxxy",
+      "id": 11,
+      "guid": 42639581,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 8409191,
+      "fight": 75,
+      "damage": {
+        "total": 10913,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 10913,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 10913,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3186,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27137,
+            "name": "Flash of Light",
+            "total": 1604,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 1582,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 3186,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Brycen",
+            "total": 1604,
+            "type": "Paladin"
+          },
+          {
+            "name": "Hapsii",
+            "total": 1582,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 5010,
+      "overkill": 374,
+      "events": [
+        {
+          "timestamp": 8409180,
+          "type": "damage",
+          "sourceID": 724,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 75,
+          "hitType": 1,
+          "amount": 5322,
+          "unmitigatedAmount": 1196,
+          "overkill": 374,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8404170,
+          "type": "damage",
+          "sourceID": 724,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 75,
+          "hitType": 1,
+          "amount": 5217,
+          "unmitigatedAmount": 1196,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Burn",
+        "guid": 30523,
+        "type": 32,
+        "abilityIcon": "spell_shadow_unholystrength.jpg"
+      }
+    }
+  ]
+}

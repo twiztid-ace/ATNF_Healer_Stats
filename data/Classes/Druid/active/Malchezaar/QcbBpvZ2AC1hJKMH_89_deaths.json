@@ -1,0 +1,186 @@
+{
+  "entries": [
+    {
+      "name": "Daemoe",
+      "id": 10,
+      "guid": 64996996,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 6366478,
+      "fight": 89,
+      "damage": {
+        "total": 4991,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 714,
+        "abilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 4991,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite Infernal",
+            "total": 4991,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 5013,
+      "overkill": 1033,
+      "events": [
+        {
+          "timestamp": 6366457,
+          "type": "damage",
+          "sourceID": 133,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 89,
+          "hitType": 1,
+          "amount": 1,
+          "unmitigatedAmount": 1034,
+          "overkill": 1033,
+          "isAoE": true
+        },
+        {
+          "timestamp": 6365449,
+          "type": "damage",
+          "sourceID": 133,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 89,
+          "hitType": 16,
+          "amount": 705,
+          "mitigated": 235,
+          "unmitigatedAmount": 940,
+          "resisted": 235,
+          "isAoE": true
+        },
+        {
+          "timestamp": 6364443,
+          "type": "damage",
+          "sourceID": 133,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 89,
+          "hitType": 1,
+          "amount": 938,
+          "unmitigatedAmount": 938,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Hellfire Effect",
+        "guid": 30860,
+        "type": 4,
+        "abilityIcon": "spell_fire_incinerate.jpg"
+      }
+    },
+    {
+      "name": "Simbini",
+      "id": 11,
+      "guid": 50648577,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 6372602,
+      "fight": 89,
+      "damage": {
+        "total": 3000,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 3000,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2999,
+      "events": [
+        {
+          "timestamp": 6372582,
+          "type": "damage",
+          "sourceID": 130,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 89,
+          "hitType": 1,
+          "amount": 1,
+          "unmitigatedAmount": 3000,
+          "overkill": 2999,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}

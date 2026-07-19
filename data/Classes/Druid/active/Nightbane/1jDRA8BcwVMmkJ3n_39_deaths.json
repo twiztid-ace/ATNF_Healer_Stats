@@ -1,0 +1,214 @@
+{
+  "entries": [
+    {
+      "name": "Emptáák",
+      "id": 10,
+      "guid": 53872310,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 3620849,
+      "fight": 39,
+      "damage": {
+        "total": 8604,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2267,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 8604,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 8604,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 795,
+      "events": [
+        {
+          "timestamp": 3620847,
+          "type": "damage",
+          "sourceID": 100,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 7809,
+          "mitigated": 2267,
+          "unmitigatedAmount": 10871,
+          "overkill": 795,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "Nadivecka",
+      "id": 3,
+      "guid": 47712453,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 3700351,
+      "fight": 39,
+      "damage": {
+        "total": 17483,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3983,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9418,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 8065,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 17483,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7104,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 6447,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 507,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 150,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7104,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Cycloo",
+            "total": 6954,
+            "type": "Druid"
+          },
+          {
+            "name": "Nadivecka",
+            "total": 150,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 14726,
+      "overkill": 916,
+      "events": [
+        {
+          "timestamp": 3700337,
+          "type": "damage",
+          "sourceID": 100,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 39,
+          "hitType": 1,
+          "amount": 7149,
+          "mitigated": 3810,
+          "unmitigatedAmount": 11875,
+          "overkill": 916,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3685611,
+          "type": "damage",
+          "sourceID": 100,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 39,
+          "hitType": 15,
+          "amount": 9418,
+          "mitigated": 173,
+          "unmitigatedAmount": 9591,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    }
+  ]
+}

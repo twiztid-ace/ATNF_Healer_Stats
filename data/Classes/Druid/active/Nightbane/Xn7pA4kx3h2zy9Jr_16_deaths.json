@@ -1,0 +1,416 @@
+{
+  "entries": [
+    {
+      "name": "Killsen",
+      "id": 14,
+      "guid": 75465325,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 1179515,
+      "fight": 16,
+      "damage": {
+        "total": 17435,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 6264,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 9092,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8343,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 17435,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 543,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 483,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 60,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 543,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Kiklitz",
+            "total": 483,
+            "type": "Druid"
+          },
+          {
+            "name": "Killsen",
+            "total": 60,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 3883,
+      "overkill": 6738,
+      "events": [
+        {
+          "timestamp": 1179514,
+          "type": "damage",
+          "sourceID": 49,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 16,
+          "hitType": 1,
+          "amount": 2354,
+          "mitigated": 3266,
+          "unmitigatedAmount": 12358,
+          "overkill": 6738,
+          "isAoE": true
+        },
+        {
+          "timestamp": 1175631,
+          "type": "damage",
+          "sourceID": 49,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 16,
+          "hitType": 1,
+          "amount": 8343,
+          "mitigated": 2998,
+          "unmitigatedAmount": 11341,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "Xâdar",
+      "id": 3,
+      "guid": 82223835,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 1272543,
+      "fight": 16,
+      "damage": {
+        "total": 13005,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 13005,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 13005,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 6706,
+      "events": [
+        {
+          "timestamp": 1272524,
+          "type": "damage",
+          "sourceID": 49,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 16,
+          "hitType": 15,
+          "amount": 6299,
+          "unmitigatedAmount": 11120,
+          "overkill": 6706,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Hátulról",
+      "id": 9,
+      "guid": 79574640,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 1273748,
+      "fight": 16,
+      "damage": {
+        "total": 9849,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3169,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 9849,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 9849,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 415,
+      "events": [
+        {
+          "timestamp": 1273747,
+          "type": "damage",
+          "sourceID": 49,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 16,
+          "hitType": 1,
+          "amount": 9434,
+          "mitigated": 3169,
+          "unmitigatedAmount": 13018,
+          "overkill": 415,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "Arnimani",
+      "id": 13,
+      "guid": 54297016,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 1276057,
+      "fight": 16,
+      "damage": {
+        "total": 14010,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 14010,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 14010,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 5801,
+      "events": [
+        {
+          "timestamp": 1276028,
+          "type": "damage",
+          "sourceID": 49,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 16,
+          "hitType": 2,
+          "amount": 8209,
+          "unmitigatedAmount": 10230,
+          "overkill": 5801,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Arnimani",
+      "id": 13,
+      "guid": 54297016,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 1374370,
+      "fight": 16,
+      "damage": {
+        "total": 8507,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3565,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8507,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 8507,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1428,
+      "events": [
+        {
+          "timestamp": 1374347,
+          "type": "damage",
+          "sourceID": 49,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 16,
+          "hitType": 1,
+          "amount": 7079,
+          "mitigated": 3565,
+          "unmitigatedAmount": 12072,
+          "overkill": 1428,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

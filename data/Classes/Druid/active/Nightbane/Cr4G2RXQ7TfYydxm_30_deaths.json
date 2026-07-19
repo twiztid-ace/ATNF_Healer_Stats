@@ -1,0 +1,279 @@
+{
+  "entries": [
+    {
+      "name": "Sminkdosan",
+      "id": 7,
+      "guid": 75970374,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 2129160,
+      "fight": 30,
+      "damage": {
+        "total": 11105,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1715,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 11105,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 11105,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 9747,
+      "events": [
+        {
+          "timestamp": 2129130,
+          "type": "damage",
+          "sourceID": 74,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 30,
+          "hitType": 1,
+          "amount": 1358,
+          "mitigated": 1715,
+          "unmitigatedAmount": 12820,
+          "overkill": 9747,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "Hexdoktor",
+      "id": 9,
+      "guid": 62170447,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 2165392,
+      "fight": 30,
+      "damage": {
+        "total": 9555,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1218,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9555,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 9555,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3743,
+      "events": [
+        {
+          "timestamp": 2165369,
+          "type": "damage",
+          "sourceID": 74,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 30,
+          "hitType": 15,
+          "amount": 5812,
+          "mitigated": 1218,
+          "unmitigatedAmount": 10773,
+          "overkill": 3743,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Staffman",
+      "id": 6,
+      "guid": 67886315,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 2175161,
+      "fight": 30,
+      "damage": {
+        "total": 10873,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 457,
+        "abilities": [
+          {
+            "guid": 30210,
+            "name": "Smoldering Breath",
+            "total": 10873,
+            "type": 4,
+            "icon": "spell_fire_fire.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 10873,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 360,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 360,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30210,
+            "name": "Smoldering Breath",
+            "total": 360,
+            "type": 4,
+            "icon": "spell_fire_fire.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Staffman",
+            "total": 360,
+            "type": "Hunter"
+          }
+        ]
+      },
+      "deathWindow": 11992,
+      "overkill": 1496,
+      "events": [
+        {
+          "timestamp": 2175159,
+          "type": "damage",
+          "sourceID": 74,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Smoldering Breath",
+            "guid": 30210,
+            "type": 4,
+            "abilityIcon": "spell_fire_fire.jpg"
+          },
+          "fight": 30,
+          "hitType": 1,
+          "amount": 336,
+          "unmitigatedAmount": 1832,
+          "overkill": 1496,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 2172164,
+          "type": "damage",
+          "sourceID": 74,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Smoldering Breath",
+            "guid": 30210,
+            "type": 4,
+            "abilityIcon": "spell_fire_fire.jpg"
+          },
+          "fight": 30,
+          "hitType": 1,
+          "amount": 1832,
+          "unmitigatedAmount": 1832,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 2169144,
+          "type": "damage",
+          "sourceID": 74,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Smoldering Breath",
+            "guid": 30210,
+            "type": 4,
+            "abilityIcon": "spell_fire_fire.jpg"
+          },
+          "fight": 30,
+          "hitType": 1,
+          "amount": 1832,
+          "unmitigatedAmount": 1832,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Smoldering Breath",
+        "guid": 30210,
+        "type": 4,
+        "abilityIcon": "spell_fire_fire.jpg"
+      }
+    }
+  ]
+}

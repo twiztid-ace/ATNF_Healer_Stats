@@ -1,0 +1,73 @@
+{
+  "entries": [
+    {
+      "name": "Kokssmongot",
+      "id": 16,
+      "guid": 57375541,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 7810611,
+      "fight": 70,
+      "damage": {
+        "total": 3000,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 3000,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2999,
+      "events": [
+        {
+          "timestamp": 7810604,
+          "type": "damage",
+          "sourceID": 174,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 70,
+          "hitType": 1,
+          "amount": 1,
+          "unmitigatedAmount": 3000,
+          "overkill": 2999,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,455 @@
+{
+  "entries": [
+    {
+      "name": "Svartafåret",
+      "id": 7,
+      "guid": 53681341,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 3606869,
+      "fight": 42,
+      "damage": {
+        "total": 8532,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2381,
+        "abilities": [
+          {
+            "guid": 15589,
+            "name": "Whirlwind",
+            "total": 6485,
+            "type": 1,
+            "icon": "ability_whirlwind.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 2047,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Lord Robin Daris",
+            "total": 6485,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 2047,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 41,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 39373,
+            "name": "Shadowmend",
+            "total": 41,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 41,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Svartafåret",
+            "total": 41,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 1012,
+      "overkill": 520,
+      "events": [
+        {
+          "timestamp": 3606866,
+          "type": "damage",
+          "sourceID": 417,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 15589,
+            "type": 1,
+            "abilityIcon": "ability_whirlwind.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 2852,
+          "mitigated": 1238,
+          "unmitigatedAmount": 4610,
+          "overkill": 520,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3606685,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 2047,
+          "unmitigatedAmount": 2047,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 3605854,
+          "type": "damage",
+          "sourceID": 417,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 15589,
+            "type": 1,
+            "abilityIcon": "ability_whirlwind.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 3113,
+          "mitigated": 1143,
+          "unmitigatedAmount": 4256,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Whirlwind",
+        "guid": 15589,
+        "type": 1,
+        "abilityIcon": "ability_whirlwind.jpg"
+      }
+    },
+    {
+      "name": "Dökxd",
+      "id": 408,
+      "guid": 53765827,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 3615191,
+      "fight": 42,
+      "damage": {
+        "total": 18517,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3300,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 18517,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 18517,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 7804,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 3744,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2185,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1875,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7804,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Backdoorlady",
+            "total": 4060,
+            "type": "Druid"
+          },
+          {
+            "name": "Dökxd",
+            "total": 3744,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 23254,
+      "overkill": 1744,
+      "events": [
+        {
+          "timestamp": 3615157,
+          "type": "damage",
+          "sourceID": 414,
+          "sourceIsFriendly": false,
+          "targetID": 408,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 15,
+          "amount": 3085,
+          "unmitigatedAmount": 3995,
+          "overkill": 1744,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 3614138,
+          "type": "damage",
+          "sourceID": 414,
+          "sourceIsFriendly": false,
+          "targetID": 408,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 5876,
+          "mitigated": 1416,
+          "unmitigatedAmount": 7292,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 3591939,
+          "type": "damage",
+          "sourceID": 414,
+          "sourceIsFriendly": false,
+          "targetID": 408,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 2708,
+          "mitigated": 653,
+          "unmitigatedAmount": 3361,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Tmilock",
+      "id": 2,
+      "guid": 51334609,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 3617859,
+      "fight": 42,
+      "damage": {
+        "total": 20188,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1723,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 13019,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 15589,
+            "name": "Whirlwind",
+            "total": 7169,
+            "type": 1,
+            "icon": "ability_whirlwind.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 13019,
+            "type": "Boss"
+          },
+          {
+            "name": "Lord Robin Daris",
+            "total": 7169,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4293,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 4293,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 15589,
+            "name": "Whirlwind",
+            "total": 4293,
+            "type": 1,
+            "icon": "ability_whirlwind.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Backdoorlady",
+            "total": 4293,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 11982,
+      "overkill": 5873,
+      "events": [
+        {
+          "timestamp": 3617836,
+          "type": "damage",
+          "sourceID": 414,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 15,
+          "amount": 3760,
+          "unmitigatedAmount": 7385,
+          "overkill": 5873,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 3617180,
+          "type": "damage",
+          "sourceID": 414,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 3386,
+          "mitigated": 507,
+          "unmitigatedAmount": 3893,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 3606865,
+          "type": "damage",
+          "sourceID": 417,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Whirlwind",
+            "guid": 15589,
+            "type": 1,
+            "abilityIcon": "ability_whirlwind.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 3458,
+          "mitigated": 587,
+          "unmitigatedAmount": 4045,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

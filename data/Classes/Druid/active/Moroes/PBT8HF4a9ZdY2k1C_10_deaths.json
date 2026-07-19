@@ -1,0 +1,100 @@
+{
+  "entries": [
+    {
+      "name": "Discountmage",
+      "id": 3,
+      "guid": 80607720,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 1321054,
+      "fight": 10,
+      "damage": {
+        "total": 5831,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 899,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5831,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Lord Robin Daris",
+            "total": 3249,
+            "type": "Boss"
+          },
+          {
+            "name": "Lord Crispin Ference",
+            "total": 2582,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 15,
+      "overkill": 2494,
+      "events": [
+        {
+          "timestamp": 1321048,
+          "type": "damage",
+          "sourceID": 50,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 10,
+          "hitType": 1,
+          "amount": 88,
+          "mitigated": 398,
+          "unmitigatedAmount": 2980,
+          "overkill": 2494,
+          "isAoE": false
+        },
+        {
+          "timestamp": 1321033,
+          "type": "damage",
+          "sourceID": 49,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 10,
+          "hitType": 1,
+          "amount": 3249,
+          "mitigated": 501,
+          "unmitigatedAmount": 3750,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

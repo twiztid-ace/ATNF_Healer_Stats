@@ -1,0 +1,146 @@
+{
+  "entries": [
+    {
+      "name": "Ricd",
+      "id": 3,
+      "guid": 75362092,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 1870732,
+      "fight": 26,
+      "damage": {
+        "total": 26818,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 772,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 26818,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Big Bad Wolf",
+            "total": 26818,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 15305,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 9482,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 5823,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 15305,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Sidut",
+            "total": 15305,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 9335,
+      "overkill": 2791,
+      "events": [
+        {
+          "timestamp": 1870702,
+          "type": "damage",
+          "sourceID": 68,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 26,
+          "hitType": 15,
+          "amount": 3859,
+          "unmitigatedAmount": 4603,
+          "overkill": 2791,
+          "isAoE": false,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 1867976,
+          "type": "damage",
+          "sourceID": 68,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 26,
+          "hitType": 1,
+          "amount": 4676,
+          "mitigated": 179,
+          "unmitigatedAmount": 4855,
+          "isAoE": false,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 1864276,
+          "type": "damage",
+          "sourceID": 68,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 26,
+          "hitType": 1,
+          "amount": 5442,
+          "mitigated": 208,
+          "unmitigatedAmount": 5650,
+          "isAoE": false,
+          "targetMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

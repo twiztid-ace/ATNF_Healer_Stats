@@ -1,0 +1,276 @@
+{
+  "entries": [
+    {
+      "name": "Deetzz",
+      "id": 6,
+      "guid": 56284871,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 3152722,
+      "fight": 33,
+      "damage": {
+        "total": 8908,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3095,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8908,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 8908,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1947,
+      "events": [
+        {
+          "timestamp": 3152701,
+          "type": "damage",
+          "sourceID": 78,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 33,
+          "hitType": 1,
+          "amount": 6961,
+          "mitigated": 3095,
+          "unmitigatedAmount": 12003,
+          "overkill": 1947,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Chengi",
+      "id": 18,
+      "guid": 55412818,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 3154715,
+      "fight": 33,
+      "damage": {
+        "total": 10930,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 4278,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 8300,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 30129,
+            "name": "Charred Earth",
+            "total": 2630,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 10930,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 491,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 246,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 245,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30129,
+            "name": "Charred Earth",
+            "total": 491,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Poppyseeds",
+            "total": 246,
+            "type": "Druid"
+          },
+          {
+            "name": "Yuki",
+            "total": 245,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 1148,
+      "overkill": 265,
+      "events": [
+        {
+          "timestamp": 3154691,
+          "type": "damage",
+          "sourceID": 78,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 33,
+          "hitType": 1,
+          "amount": 8035,
+          "mitigated": 4278,
+          "unmitigatedAmount": 12578,
+          "overkill": 265,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3153543,
+          "type": "damage",
+          "sourceID": 78,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Charred Earth",
+            "guid": 30129,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 33,
+          "hitType": 1,
+          "amount": 2630,
+          "unmitigatedAmount": 2390,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "Josifa",
+      "id": 16,
+      "guid": 52707906,
+      "type": "Hunter",
+      "icon": "Hunter-Marksmanship",
+      "timestamp": 3234010,
+      "fight": 33,
+      "damage": {
+        "total": 11393,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 11393,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 11393,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 9876,
+      "events": [
+        {
+          "timestamp": 3234001,
+          "type": "damage",
+          "sourceID": 78,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 33,
+          "hitType": 15,
+          "amount": 1517,
+          "unmitigatedAmount": 11238,
+          "overkill": 9876,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

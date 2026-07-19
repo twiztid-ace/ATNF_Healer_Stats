@@ -1,0 +1,146 @@
+{
+  "entries": [
+    {
+      "name": "Tiixi",
+      "id": 3,
+      "guid": 54239263,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 4997932,
+      "fight": 68,
+      "damage": {
+        "total": 8108,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1419,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 8108,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 8108,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1072,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 44206,
+            "name": "Tranquility",
+            "total": 1072,
+            "type": 8,
+            "icon": "spell_nature_cyclone.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 1072,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Magmoid",
+            "total": 1072,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 3850,
+      "overkill": 492,
+      "events": [
+        {
+          "timestamp": 4997913,
+          "type": "damage",
+          "sourceID": 110,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 1421,
+          "unmitigatedAmount": 1913,
+          "overkill": 492,
+          "isAoE": false,
+          "sourceMarker": 1,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 4997321,
+          "type": "damage",
+          "sourceID": 110,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 68,
+          "hitType": 16,
+          "amount": 1505,
+          "mitigated": 501,
+          "unmitigatedAmount": 2006,
+          "resisted": 502,
+          "isAoE": false,
+          "targetMarker": 8
+        },
+        {
+          "timestamp": 4997286,
+          "type": "damage",
+          "sourceID": 110,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 1857,
+          "unmitigatedAmount": 1857,
+          "isAoE": false,
+          "sourceMarker": 2,
+          "targetMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    }
+  ]
+}

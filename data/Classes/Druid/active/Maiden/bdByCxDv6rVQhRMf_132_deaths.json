@@ -1,0 +1,121 @@
+{
+  "entries": [
+    {
+      "name": "Redrockèt",
+      "id": 3,
+      "guid": 74505312,
+      "type": "Druid",
+      "icon": "Druid-Balance",
+      "timestamp": 12338217,
+      "fight": 132,
+      "damage": {
+        "total": 9848,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3184,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9534,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29512,
+            "name": "Holy Ground",
+            "total": 314,
+            "type": 2,
+            "icon": "spell_holy_silence.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 9848,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 1788,
+      "overkill": 1538,
+      "events": [
+        {
+          "timestamp": 12338193,
+          "type": "damage",
+          "sourceID": 147,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 132,
+          "hitType": 15,
+          "amount": 3977,
+          "mitigated": 561,
+          "unmitigatedAmount": 6076,
+          "overkill": 1538,
+          "isAoE": false
+        },
+        {
+          "timestamp": 12337558,
+          "type": "damage",
+          "sourceID": 147,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Ground",
+            "guid": 29512,
+            "type": 2,
+            "abilityIcon": "spell_holy_silence.jpg"
+          },
+          "fight": 132,
+          "hitType": 1,
+          "amount": 314,
+          "unmitigatedAmount": 314,
+          "isAoE": true
+        },
+        {
+          "timestamp": 12336405,
+          "type": "damage",
+          "sourceID": 147,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 132,
+          "hitType": 1,
+          "amount": 4019,
+          "mitigated": 2623,
+          "unmitigatedAmount": 6642,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

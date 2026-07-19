@@ -1,0 +1,157 @@
+{
+  "entries": [
+    {
+      "name": "Lowecaq",
+      "id": 19,
+      "guid": 45134659,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 6604761,
+      "fight": 70,
+      "damage": {
+        "total": 11971,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 275,
+        "abilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 5018,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          },
+          {
+            "guid": 30898,
+            "name": "Shadow Word: Pain",
+            "total": 3653,
+            "type": 32,
+            "icon": "spell_shadow_shadowwordpain.jpg"
+          },
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3300,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 6953,
+            "type": "Boss"
+          },
+          {
+            "name": "Netherspite Infernal",
+            "total": 5018,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 419,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 419,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 419,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lowecaq",
+            "total": 419,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 6864,
+      "overkill": 1078,
+      "events": [
+        {
+          "timestamp": 6604727,
+          "type": "damage",
+          "sourceID": 182,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 70,
+          "hitType": 1,
+          "amount": 2222,
+          "unmitigatedAmount": 3000,
+          "overkill": 1078,
+          "isAoE": true
+        },
+        {
+          "timestamp": 6603882,
+          "type": "damage",
+          "sourceID": 182,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Pain",
+            "guid": 30898,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+          },
+          "fight": 70,
+          "hitType": 1,
+          "amount": 1826,
+          "unmitigatedAmount": 1581,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 6601856,
+          "type": "damage",
+          "sourceID": 185,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 70,
+          "hitType": 16,
+          "amount": 886,
+          "mitigated": 136,
+          "unmitigatedAmount": 1022,
+          "resisted": 256,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}

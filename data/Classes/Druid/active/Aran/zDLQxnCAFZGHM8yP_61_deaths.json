@@ -1,0 +1,220 @@
+{
+  "entries": [
+    {
+      "name": "Reenpala",
+      "id": 266,
+      "guid": 53880853,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 11298761,
+      "fight": 61,
+      "damage": {
+        "total": 18568,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1894,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 9988,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 4522,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 1389,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": -16,
+            "name": "Melee",
+            "total": 1368,
+            "type": 16,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 1301,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 11356,
+            "type": "Pet"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 4522,
+            "type": "Boss"
+          },
+          {
+            "name": "Reenpala",
+            "total": 2690,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 8454,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 3358,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 2576,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 2520,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 5947,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 1069,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 860,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 424,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          },
+          {
+            "guid": -16,
+            "name": "Melee",
+            "total": 154,
+            "type": 16,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Ròit",
+            "total": 8454,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 54230,
+      "overkill": 377,
+      "events": [
+        {
+          "timestamp": 11298747,
+          "type": "damage",
+          "sourceID": 495,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 266,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 61,
+          "hitType": 1,
+          "amount": 1630,
+          "unmitigatedAmount": 2007,
+          "overkill": 377,
+          "isAoE": false,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 11297459,
+          "type": "damage",
+          "sourceID": 494,
+          "sourceIsFriendly": false,
+          "targetID": 266,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 29953,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 61,
+          "hitType": 1,
+          "amount": 4522,
+          "unmitigatedAmount": 4522,
+          "isAoE": false
+        },
+        {
+          "timestamp": 11297178,
+          "type": "damage",
+          "sourceID": 266,
+          "sourceIsFriendly": true,
+          "targetID": 266,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Judgement of Blood",
+            "guid": 32220,
+            "type": 2,
+            "abilityIcon": "spell_shadow_lifedrain.jpg"
+          },
+          "fight": 61,
+          "hitType": 1,
+          "amount": 441,
+          "unmitigatedAmount": 441,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    }
+  ]
+}

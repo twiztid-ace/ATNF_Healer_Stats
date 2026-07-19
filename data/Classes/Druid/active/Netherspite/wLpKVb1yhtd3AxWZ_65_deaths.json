@@ -1,0 +1,123 @@
+{
+  "entries": [
+    {
+      "name": "Domperrîî",
+      "id": 11,
+      "guid": 52354301,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 4764141,
+      "fight": 65,
+      "damage": {
+        "total": 13406,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1805,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12508,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 898,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 13406,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 10834,
+      "overkill": 5463,
+      "events": [
+        {
+          "timestamp": 4764132,
+          "type": "damage",
+          "sourceID": 121,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 65,
+          "hitType": 1,
+          "amount": 834,
+          "mitigated": 759,
+          "unmitigatedAmount": 7056,
+          "overkill": 5463,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4762120,
+          "type": "damage",
+          "sourceID": 121,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 65,
+          "hitType": 1,
+          "amount": 6211,
+          "mitigated": 748,
+          "unmitigatedAmount": 6959,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4753298,
+          "type": "damage",
+          "sourceID": 121,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 65,
+          "hitType": 16,
+          "amount": 898,
+          "mitigated": 298,
+          "unmitigatedAmount": 1196,
+          "resisted": 299,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

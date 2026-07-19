@@ -1,0 +1,235 @@
+{
+  "entries": [
+    {
+      "name": "Sennepsvein",
+      "id": 1,
+      "guid": 53751883,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 9876383,
+      "fight": 86,
+      "damage": {
+        "total": 6029,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 2409,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 620,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Sennepsvein",
+            "total": 3029,
+            "type": "Paladin"
+          },
+          {
+            "name": "Prince Malchezaar",
+            "total": 3000,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5248,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 5248,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 1846,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 402,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Naturesamuro",
+            "total": 5248,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 37425,
+      "overkill": 196,
+      "events": [
+        {
+          "timestamp": 9876353,
+          "type": "damage",
+          "sourceID": 1,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 1,
+          "unmitigatedAmount": 197,
+          "overkill": 196,
+          "isAoE": false
+        },
+        {
+          "timestamp": 9873685,
+          "type": "damage",
+          "sourceID": 1,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 109,
+          "unmitigatedAmount": 109,
+          "isAoE": false
+        },
+        {
+          "timestamp": 9873684,
+          "type": "damage",
+          "sourceID": 1,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 109,
+          "unmitigatedAmount": 109,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Seal of Blood",
+        "guid": 32221,
+        "type": 2,
+        "abilityIcon": "spell_holy_sealofblood.jpg"
+      }
+    },
+    {
+      "name": "Storsving",
+      "id": 6,
+      "guid": 54458092,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 9882917,
+      "fight": 86,
+      "damage": {
+        "total": 3465,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3465,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 3465,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3464,
+      "events": [
+        {
+          "timestamp": 9882895,
+          "type": "damage",
+          "sourceID": 1769,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 86,
+          "hitType": 1,
+          "amount": 1,
+          "unmitigatedAmount": 3000,
+          "overkill": 3464,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}

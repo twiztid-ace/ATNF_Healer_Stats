@@ -1,0 +1,164 @@
+{
+  "entries": [
+    {
+      "name": "Tutreak",
+      "id": 12,
+      "guid": 45533369,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 5405526,
+      "fight": 73,
+      "damage": {
+        "total": 9538,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 506,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 7380,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": -16,
+            "name": "Melee",
+            "total": 1136,
+            "type": 16,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 27869,
+            "name": "Dark Rune",
+            "total": 1022,
+            "type": 32,
+            "icon": "inv_misc_rune_04.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 8516,
+            "type": "Pet"
+          },
+          {
+            "name": "Tutreak",
+            "total": 1022,
+            "type": "Druid"
+          }
+        ]
+      },
+      "healing": {
+        "total": 994,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 994,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 27869,
+            "name": "Dark Rune",
+            "total": 994,
+            "type": 32,
+            "icon": "inv_misc_rune_04.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Tutreak",
+            "total": 994,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 9993,
+      "overkill": 1290,
+      "events": [
+        {
+          "timestamp": 5405525,
+          "type": "damage",
+          "sourceID": 116,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 73,
+          "hitType": 16,
+          "amount": 14,
+          "mitigated": 506,
+          "unmitigatedAmount": 1810,
+          "resisted": 453,
+          "overkill": 1290,
+          "isAoE": false,
+          "sourceMarker": 1
+        },
+        {
+          "timestamp": 5403402,
+          "type": "damage",
+          "sourceID": 116,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": -16,
+            "type": 16,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 73,
+          "hitType": 17,
+          "amount": 1136,
+          "unmitigatedAmount": 1136,
+          "resisted": 568,
+          "isAoE": false,
+          "sourceMarker": 2
+        },
+        {
+          "timestamp": 5402920,
+          "type": "damage",
+          "sourceID": 116,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 73,
+          "hitType": 1,
+          "amount": 2082,
+          "unmitigatedAmount": 2082,
+          "isAoE": false,
+          "sourceMarker": 3
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    }
+  ]
+}

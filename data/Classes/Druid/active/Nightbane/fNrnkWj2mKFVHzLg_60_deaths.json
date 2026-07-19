@@ -1,0 +1,614 @@
+{
+  "entries": [
+    {
+      "name": "Russao",
+      "id": 16,
+      "guid": 70284731,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 7564033,
+      "fight": 60,
+      "damage": {
+        "total": 14532,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5304,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7748,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37091,
+            "name": "Rain of Bones",
+            "total": 4326,
+            "type": 1,
+            "icon": "spell_nature_eyeofthestorm.jpg"
+          },
+          {
+            "guid": 30129,
+            "name": "Charred Earth",
+            "total": 2458,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Restless Skeleton",
+            "total": 7748,
+            "type": "NPC"
+          },
+          {
+            "name": "Nightbane",
+            "total": 6784,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4378,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1795,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1617,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 966,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30129,
+            "name": "Charred Earth",
+            "total": 1736,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1576,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37091,
+            "name": "Rain of Bones",
+            "total": 1066,
+            "type": 1,
+            "icon": "spell_nature_eyeofthestorm.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Healadruid",
+            "total": 4378,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 19226,
+      "overkill": 328,
+      "events": [
+        {
+          "timestamp": 7564002,
+          "type": "damage",
+          "sourceID": 103,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 1370,
+          "mitigated": 791,
+          "unmitigatedAmount": 2489,
+          "overkill": 328,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7561827,
+          "type": "damage",
+          "sourceID": 103,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 1500,
+          "mitigated": 698,
+          "unmitigatedAmount": 2198,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7560018,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Rain of Bones",
+            "guid": 37091,
+            "type": 1,
+            "abilityIcon": "spell_nature_eyeofthestorm.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 284,
+          "mitigated": 116,
+          "unmitigatedAmount": 400,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Bozzominion",
+      "id": 14,
+      "guid": 77361362,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 7589257,
+      "fight": 60,
+      "damage": {
+        "total": 10572,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 8478,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 6655,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 37091,
+            "name": "Rain of Bones",
+            "total": 3297,
+            "type": 1,
+            "icon": "spell_nature_eyeofthestorm.jpg"
+          },
+          {
+            "guid": 27869,
+            "name": "Dark Rune",
+            "total": 620,
+            "type": 32,
+            "icon": "inv_misc_rune_04.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 9952,
+            "type": "Boss"
+          },
+          {
+            "name": "Bozzominion",
+            "total": 620,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "healing": {
+        "total": 355,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 355,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 27869,
+            "name": "Dark Rune",
+            "total": 355,
+            "type": 32,
+            "icon": "inv_misc_rune_04.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Pelucinha",
+            "total": 355,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 62877,
+      "overkill": 1791,
+      "events": [
+        {
+          "timestamp": 7589233,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 4864,
+          "mitigated": 5668,
+          "unmitigatedAmount": 12323,
+          "overkill": 1791,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7558851,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Rain of Bones",
+            "guid": 37091,
+            "type": 1,
+            "abilityIcon": "spell_nature_eyeofthestorm.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 219,
+          "mitigated": 187,
+          "unmitigatedAmount": 406,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7558803,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Rain of Bones",
+            "guid": 37091,
+            "type": 1,
+            "abilityIcon": "spell_nature_eyeofthestorm.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 207,
+          "mitigated": 176,
+          "unmitigatedAmount": 383,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "Russao",
+      "id": 16,
+      "guid": 70284731,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 7606975,
+      "fight": 60,
+      "damage": {
+        "total": 8104,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2762,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 8104,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 8104,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 265,
+      "events": [
+        {
+          "timestamp": 7606946,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 7839,
+          "mitigated": 2762,
+          "unmitigatedAmount": 10866,
+          "overkill": 265,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "Aagraa",
+      "id": 15,
+      "guid": 76821751,
+      "type": "Paladin",
+      "icon": "Paladin",
+      "timestamp": 7616583,
+      "fight": 60,
+      "damage": {
+        "total": 10220,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30129,
+            "name": "Charred Earth",
+            "total": 10220,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 10220,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 8999,
+      "overkill": 2533,
+      "events": [
+        {
+          "timestamp": 7616553,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "target": {
+            "name": "Aagraa",
+            "id": 15,
+            "guid": 76821751,
+            "type": "Paladin",
+            "icon": "Paladin",
+            "server": "Nightslayer",
+            "region": "US"
+          },
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Charred Earth",
+            "guid": 30129,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 22,
+          "unmitigatedAmount": 2555,
+          "overkill": 2533,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 7613554,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "target": {
+            "name": "Aagraa",
+            "id": 15,
+            "guid": 76821751,
+            "type": "Paladin",
+            "icon": "Paladin",
+            "server": "Nightslayer",
+            "region": "US"
+          },
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Charred Earth",
+            "guid": 30129,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 2555,
+          "unmitigatedAmount": 2555,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 7610554,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "target": {
+            "name": "Aagraa",
+            "id": 15,
+            "guid": 76821751,
+            "type": "Paladin",
+            "icon": "Paladin",
+            "server": "Nightslayer",
+            "region": "US"
+          },
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Charred Earth",
+            "guid": 30129,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 2555,
+          "unmitigatedAmount": 2555,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Charred Earth",
+        "guid": 30129,
+        "type": 4,
+        "abilityIcon": "spell_fire_lavaspawn.jpg"
+      }
+    },
+    {
+      "name": "Pelucinha",
+      "id": 1,
+      "guid": 71072585,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 7693840,
+      "fight": 60,
+      "damage": {
+        "total": 8725,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1224,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 8725,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 8725,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1054,
+      "events": [
+        {
+          "timestamp": 7693806,
+          "type": "damage",
+          "sourceID": 101,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 7671,
+          "mitigated": 1224,
+          "unmitigatedAmount": 9949,
+          "overkill": 1054,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    }
+  ]
+}

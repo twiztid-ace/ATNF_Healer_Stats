@@ -1,0 +1,175 @@
+{
+  "entries": [
+    {
+      "name": "Quagga",
+      "id": 6,
+      "guid": 43653783,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 2375313,
+      "fight": 33,
+      "damage": {
+        "total": 13516,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2178,
+        "abilities": [
+          {
+            "guid": 32445,
+            "name": "Holy Wrath",
+            "total": 6475,
+            "type": 2,
+            "icon": "spell_shadow_siphonmana.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5643,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29512,
+            "name": "Holy Ground",
+            "total": 1398,
+            "type": 2,
+            "icon": "spell_holy_silence.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 13516,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3477,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 2234,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1033,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 210,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 32445,
+            "name": "Holy Wrath",
+            "total": 2386,
+            "type": 2,
+            "icon": "spell_shadow_siphonmana.jpg"
+          },
+          {
+            "guid": 29512,
+            "name": "Holy Ground",
+            "total": 1091,
+            "type": 2,
+            "icon": "spell_holy_silence.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Pifflan",
+            "total": 3267,
+            "type": "Druid"
+          },
+          {
+            "name": "Quagga",
+            "total": 210,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 7597,
+      "overkill": 815,
+      "events": [
+        {
+          "timestamp": 2375288,
+          "type": "damage",
+          "sourceID": 259,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 33,
+          "hitType": 1,
+          "amount": 4828,
+          "mitigated": 2178,
+          "unmitigatedAmount": 7821,
+          "overkill": 815,
+          "isAoE": false
+        },
+        {
+          "timestamp": 2373650,
+          "type": "damage",
+          "sourceID": 259,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Ground",
+            "guid": 29512,
+            "type": 2,
+            "abilityIcon": "spell_holy_silence.jpg"
+          },
+          "fight": 33,
+          "hitType": 1,
+          "amount": 378,
+          "unmitigatedAmount": 327,
+          "isAoE": true
+        },
+        {
+          "timestamp": 2371647,
+          "type": "damage",
+          "sourceID": 259,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Ground",
+            "guid": 29512,
+            "type": 2,
+            "abilityIcon": "spell_holy_silence.jpg"
+          },
+          "fight": 33,
+          "hitType": 1,
+          "amount": 411,
+          "unmitigatedAmount": 356,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

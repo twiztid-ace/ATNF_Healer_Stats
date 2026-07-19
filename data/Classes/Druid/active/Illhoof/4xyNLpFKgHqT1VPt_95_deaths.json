@@ -1,0 +1,121 @@
+{
+  "entries": [
+    {
+      "name": "Babavoss",
+      "id": 12,
+      "guid": 61293596,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 11630323,
+      "fight": 95,
+      "damage": {
+        "total": 11814,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7208,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30055,
+            "name": "Shadow Bolt",
+            "total": 4606,
+            "type": 32,
+            "icon": "spell_shadow_shadowbolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Terestian Illhoof",
+            "total": 11814,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 399,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 399,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30055,
+            "name": "Shadow Bolt",
+            "total": 399,
+            "type": 32,
+            "icon": "spell_shadow_shadowbolt.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Babavoss",
+            "total": 399,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 1383,
+      "overkill": 1451,
+      "events": [
+        {
+          "timestamp": 11630311,
+          "type": "damage",
+          "sourceID": 1283,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 95,
+          "hitType": 15,
+          "amount": 5757,
+          "unmitigatedAmount": 6848,
+          "overkill": 1451,
+          "isAoE": false
+        },
+        {
+          "timestamp": 11628928,
+          "type": "damage",
+          "sourceID": 1283,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Bolt",
+            "guid": 30055,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowbolt.jpg"
+          },
+          "fight": 95,
+          "hitType": 1,
+          "amount": 4606,
+          "unmitigatedAmount": 4187,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "entries": [
+    {
+      "name": "Aleara",
+      "id": 7,
+      "guid": 48341558,
+      "type": "Mage",
+      "icon": "Mage-Fire",
+      "timestamp": 3985903,
+      "fight": 49,
+      "damage": {
+        "total": 29661,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 29661,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 29661,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 18985,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 10233,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 3793,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 3185,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 1774,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 18985,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Pumbu",
+            "total": 18985,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 24993,
+      "overkill": 1903,
+      "events": [
+        {
+          "timestamp": 3985882,
+          "type": "damage",
+          "sourceID": 112,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 49,
+          "hitType": 1,
+          "amount": 4657,
+          "unmitigatedAmount": 1113,
+          "overkill": 1903,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3980888,
+          "type": "damage",
+          "sourceID": 112,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 49,
+          "hitType": 1,
+          "amount": 6102,
+          "unmitigatedAmount": 1113,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3975884,
+          "type": "damage",
+          "sourceID": 112,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 49,
+          "hitType": 16,
+          "amount": 2822,
+          "unmitigatedAmount": 1113,
+          "resisted": 557,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Burn",
+        "guid": 30523,
+        "type": 32,
+        "abilityIcon": "spell_shadow_unholystrength.jpg"
+      }
+    }
+  ]
+}

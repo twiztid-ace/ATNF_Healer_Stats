@@ -1,0 +1,124 @@
+{
+  "entries": [
+    {
+      "name": "Ghnoy",
+      "id": 19,
+      "guid": 45179960,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 17324653,
+      "fight": 27,
+      "damage": {
+        "total": 9192,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2252,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8087,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30127,
+            "name": "Searing Cinders",
+            "total": 1105,
+            "type": 4,
+            "icon": "spell_fire_windsofwoe.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 9192,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 6440,
+      "overkill": 473,
+      "events": [
+        {
+          "timestamp": 17324637,
+          "type": "damage",
+          "sourceID": 78,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 7614,
+          "mitigated": 1885,
+          "unmitigatedAmount": 9972,
+          "overkill": 473,
+          "isAoE": false
+        },
+        {
+          "timestamp": 17324196,
+          "type": "damage",
+          "sourceID": 78,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Searing Cinders",
+            "guid": 30127,
+            "type": 4,
+            "abilityIcon": "spell_fire_windsofwoe.jpg"
+          },
+          "fight": 27,
+          "hitType": 16,
+          "amount": 123,
+          "mitigated": 367,
+          "unmitigatedAmount": 490,
+          "resisted": 368,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 17321199,
+          "type": "damage",
+          "sourceID": 78,
+          "sourceIsFriendly": false,
+          "targetID": 19,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Searing Cinders",
+            "guid": 30127,
+            "type": 4,
+            "abilityIcon": "spell_fire_windsofwoe.jpg"
+          },
+          "fight": 27,
+          "hitType": 1,
+          "amount": 491,
+          "unmitigatedAmount": 491,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "entries": [
+    {
+      "name": "Pangko",
+      "id": 8,
+      "guid": 61743303,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 3722713,
+      "fight": 21,
+      "damage": {
+        "total": 10574,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1051,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10574,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Attumen the Huntsman",
+            "total": 10574,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 207,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 207,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 207,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Gloryol",
+            "total": 207,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 1207,
+      "overkill": 2614,
+      "events": [
+        {
+          "timestamp": 3722698,
+          "type": "damage",
+          "sourceID": 714,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 21,
+          "hitType": 1,
+          "amount": 2906,
+          "mitigated": 549,
+          "unmitigatedAmount": 6069,
+          "overkill": 2614,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3721491,
+          "type": "damage",
+          "sourceID": 714,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 21,
+          "hitType": 1,
+          "amount": 5054,
+          "mitigated": 502,
+          "unmitigatedAmount": 5556,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "entries": [
+    {
+      "name": "Doulyz",
+      "id": 13,
+      "guid": 63326538,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 5458005,
+      "fight": 62,
+      "damage": {
+        "total": 8269,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 4637,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          },
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 3632,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shade of Aran",
+            "total": 4637,
+            "type": "Boss"
+          },
+          {
+            "name": "Disrespect",
+            "total": 3632,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2059,
+      "overkill": 545,
+      "events": [
+        {
+          "timestamp": 5457995,
+          "type": "damage",
+          "sourceID": 115,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 29953,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 62,
+          "hitType": 1,
+          "amount": 4092,
+          "unmitigatedAmount": 4637,
+          "overkill": 545,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5455936,
+          "type": "damage",
+          "sourceID": 10,
+          "sourceIsFriendly": true,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Explosion",
+            "guid": 29949,
+            "type": 4,
+            "abilityIcon": "spell_fire_selfdestruct.jpg"
+          },
+          "fight": 62,
+          "hitType": 1,
+          "amount": 3632,
+          "unmitigatedAmount": 3632,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Fireball",
+        "guid": 29953,
+        "type": 4,
+        "abilityIcon": "spell_fire_flamebolt.jpg"
+      }
+    }
+  ]
+}

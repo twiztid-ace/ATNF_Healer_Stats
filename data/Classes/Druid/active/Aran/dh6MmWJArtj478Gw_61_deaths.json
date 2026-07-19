@@ -1,0 +1,141 @@
+{
+  "entries": [
+    {
+      "name": "Davdavshaman",
+      "id": 6,
+      "guid": 52076020,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 5161857,
+      "fight": 61,
+      "damage": {
+        "total": 11307,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1196,
+        "abilities": [
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 7716,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 3591,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Wegovy",
+            "total": 7716,
+            "type": "Warlock"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 3591,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2761,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25420,
+            "name": "Lesser Healing Wave",
+            "total": 2271,
+            "type": 8,
+            "icon": "spell_nature_healingwavelesser.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 490,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 2761,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Davdavshaman",
+            "total": 2271,
+            "type": "Shaman"
+          },
+          {
+            "name": "Fizzejo",
+            "total": 490,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 1979,
+      "overkill": 287,
+      "events": [
+        {
+          "timestamp": 5161846,
+          "type": "damage",
+          "sourceID": 450,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 29953,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 61,
+          "hitType": 16,
+          "amount": 3304,
+          "mitigated": 1196,
+          "unmitigatedAmount": 4787,
+          "resisted": 1197,
+          "overkill": 287,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5159867,
+          "type": "damage",
+          "sourceID": 142,
+          "sourceIsFriendly": true,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Explosion",
+            "guid": 29949,
+            "type": 4,
+            "abilityIcon": "spell_fire_selfdestruct.jpg"
+          },
+          "fight": 61,
+          "hitType": 2,
+          "amount": 7716,
+          "unmitigatedAmount": 4994,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Fireball",
+        "guid": 29953,
+        "type": 4,
+        "abilityIcon": "spell_fire_flamebolt.jpg"
+      }
+    }
+  ]
+}

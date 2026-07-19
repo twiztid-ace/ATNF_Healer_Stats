@@ -1,0 +1,224 @@
+{
+  "entries": [
+    {
+      "name": "Gunnerss",
+      "id": 7,
+      "guid": 55678988,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 2194847,
+      "fight": 31,
+      "damage": {
+        "total": 14831,
+        "totalReduced": 12993,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5800,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6564,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37091,
+            "name": "Rain of Bones",
+            "total": 3540,
+            "totalReduced": 3024,
+            "type": 1,
+            "icon": "spell_nature_eyeofthestorm.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 1967,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 30127,
+            "name": "Searing Cinders",
+            "total": 1500,
+            "totalReduced": 1438,
+            "type": 4,
+            "icon": "spell_fire_windsofwoe.jpg"
+          },
+          {
+            "guid": 30128,
+            "name": "Smoking Blast",
+            "total": 1260,
+            "totalReduced": 0,
+            "type": 1,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 12864,
+            "totalReduced": 11026,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 1967,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5085,
+        "totalReduced": 3247,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 1838,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1695,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1552,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 1967,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 37091,
+            "name": "Rain of Bones",
+            "total": 1796,
+            "totalReduced": 1280,
+            "type": 1,
+            "icon": "spell_nature_eyeofthestorm.jpg"
+          },
+          {
+            "guid": 30128,
+            "name": "Smoking Blast",
+            "total": 1260,
+            "totalReduced": 0,
+            "type": 1,
+            "icon": "spell_fire_lavaspawn.jpg"
+          },
+          {
+            "guid": 30127,
+            "name": "Searing Cinders",
+            "total": 62,
+            "totalReduced": 0,
+            "type": 4,
+            "icon": "spell_fire_windsofwoe.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Karst",
+            "total": 3247,
+            "type": "Druid"
+          },
+          {
+            "name": "Gunnerss",
+            "total": 1838,
+            "totalReduced": 0,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 32249,
+      "overkill": 665,
+      "events": [
+        {
+          "timestamp": 2194837,
+          "type": "damage",
+          "sourceID": 77,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 31,
+          "hitType": 1,
+          "amount": 5899,
+          "mitigated": 3350,
+          "unmitigatedAmount": 9914,
+          "overkill": 665,
+          "isAoE": false,
+          "targetMarker": 5
+        },
+        {
+          "timestamp": 2179646,
+          "type": "damage",
+          "sourceID": 77,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Searing Cinders",
+            "guid": 30127,
+            "type": 4,
+            "abilityIcon": "spell_fire_windsofwoe.jpg"
+          },
+          "fight": 31,
+          "hitType": 1,
+          "amount": 500,
+          "unmitigatedAmount": 500,
+          "isAoE": false,
+          "tick": true,
+          "targetMarker": 5
+        },
+        {
+          "timestamp": 2176647,
+          "type": "damage",
+          "sourceID": 77,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Searing Cinders",
+            "guid": 30127,
+            "type": 4,
+            "abilityIcon": "spell_fire_windsofwoe.jpg"
+          },
+          "fight": 31,
+          "hitType": 1,
+          "amount": 500,
+          "unmitigatedAmount": 500,
+          "isAoE": false,
+          "tick": true,
+          "targetMarker": 5
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

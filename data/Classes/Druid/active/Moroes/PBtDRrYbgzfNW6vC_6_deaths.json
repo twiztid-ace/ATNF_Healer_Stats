@@ -1,0 +1,253 @@
+{
+  "entries": [
+    {
+      "name": "Ethel",
+      "id": 7,
+      "guid": 50874213,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 895393,
+      "fight": 6,
+      "damage": {
+        "total": 9264,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1381,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7899,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 1365,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 7899,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 1365,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 732,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 599,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 19280,
+            "name": "Devouring Plague",
+            "total": 133,
+            "type": 32,
+            "icon": "spell_shadow_devouringplague.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 732,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Ethel",
+            "total": 732,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 5842,
+      "overkill": 1281,
+      "events": [
+        {
+          "timestamp": 895375,
+          "type": "damage",
+          "sourceID": 50,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 6,
+          "hitType": 2,
+          "amount": 2683,
+          "unmitigatedAmount": 2677,
+          "overkill": 1281,
+          "isAoE": false
+        },
+        {
+          "timestamp": 894451,
+          "type": "damage",
+          "sourceID": 50,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 6,
+          "hitType": 1,
+          "amount": 3935,
+          "mitigated": 1381,
+          "unmitigatedAmount": 5316,
+          "isAoE": false
+        },
+        {
+          "timestamp": 889533,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 6,
+          "hitType": 1,
+          "amount": 1365,
+          "unmitigatedAmount": 1365,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Jmto",
+      "id": 13,
+      "guid": 73983727,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 897393,
+      "fight": 6,
+      "damage": {
+        "total": 8563,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1182,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8563,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 8563,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 1186,
+      "overkill": 185,
+      "events": [
+        {
+          "timestamp": 897382,
+          "type": "damage",
+          "sourceID": 50,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 6,
+          "hitType": 2,
+          "amount": 4398,
+          "unmitigatedAmount": 2972,
+          "overkill": 185,
+          "isAoE": false,
+          "targetMarker": 4
+        },
+        {
+          "timestamp": 896196,
+          "type": "damage",
+          "sourceID": 50,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 6,
+          "hitType": 1,
+          "amount": 3980,
+          "mitigated": 1182,
+          "unmitigatedAmount": 5162,
+          "isAoE": false,
+          "targetMarker": 4
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

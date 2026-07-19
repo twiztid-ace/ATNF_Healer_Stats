@@ -1,0 +1,239 @@
+{
+  "entries": [
+    {
+      "name": "Valkur",
+      "id": 88,
+      "guid": 51924270,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 9779607,
+      "fight": 94,
+      "damage": {
+        "total": 20520,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 20520,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 20520,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 12044,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 6441,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 3571,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2032,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 12044,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Evizabeth",
+            "total": 12044,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 25020,
+      "overkill": 1343,
+      "events": [
+        {
+          "timestamp": 9779591,
+          "type": "damage",
+          "sourceID": 1143,
+          "sourceIsFriendly": false,
+          "targetID": 88,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 94,
+          "hitType": 16,
+          "amount": 2581,
+          "unmitigatedAmount": 1200,
+          "resisted": 300,
+          "overkill": 1343,
+          "isAoE": true
+        },
+        {
+          "timestamp": 9774578,
+          "type": "damage",
+          "sourceID": 1143,
+          "sourceIsFriendly": false,
+          "targetID": 88,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 94,
+          "hitType": 1,
+          "amount": 4752,
+          "unmitigatedAmount": 1200,
+          "isAoE": true
+        },
+        {
+          "timestamp": 9769584,
+          "type": "damage",
+          "sourceID": 1143,
+          "sourceIsFriendly": false,
+          "targetID": 88,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 94,
+          "hitType": 1,
+          "amount": 4272,
+          "unmitigatedAmount": 1200,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Burn",
+        "guid": 30523,
+        "type": 32,
+        "abilityIcon": "spell_shadow_unholystrength.jpg"
+      }
+    },
+    {
+      "name": "Notofear",
+      "id": 104,
+      "guid": 53595705,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 9795885,
+      "fight": 94,
+      "damage": {
+        "total": 14149,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2363,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 14149,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 14149,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2056,
+      "overkill": 5446,
+      "events": [
+        {
+          "timestamp": 9795884,
+          "type": "damage",
+          "sourceID": 1143,
+          "sourceIsFriendly": false,
+          "targetID": 104,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 94,
+          "hitType": 1,
+          "amount": 1600,
+          "mitigated": 1176,
+          "unmitigatedAmount": 8222,
+          "overkill": 5446,
+          "isAoE": false
+        },
+        {
+          "timestamp": 9793828,
+          "type": "damage",
+          "sourceID": 1143,
+          "sourceIsFriendly": false,
+          "targetID": 104,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 94,
+          "hitType": 1,
+          "amount": 7103,
+          "mitigated": 1187,
+          "unmitigatedAmount": 8290,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

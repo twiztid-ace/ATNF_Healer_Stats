@@ -1,0 +1,168 @@
+{
+  "entries": [
+    {
+      "name": "Boxlol",
+      "id": 14,
+      "guid": 50364213,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 899680,
+      "fight": 4,
+      "damage": {
+        "total": 15793,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1619,
+        "abilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 6366,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 4803,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29832,
+            "name": "Shadow Cleave",
+            "total": 4624,
+            "type": 32,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Attumen the Huntsman",
+            "total": 9427,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 6366,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3568,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1889,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1679,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 3568,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Melandru",
+            "total": 3568,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 30607,
+      "overkill": 4774,
+      "events": [
+        {
+          "timestamp": 899649,
+          "type": "damage",
+          "sourceID": 50,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 29,
+          "mitigated": 1619,
+          "unmitigatedAmount": 6422,
+          "overkill": 4774,
+          "isAoE": false
+        },
+        {
+          "timestamp": 898165,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 1586,
+          "unmitigatedAmount": 1586,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 897643,
+          "type": "damage",
+          "sourceID": 50,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Cleave",
+            "guid": 29832,
+            "type": 32,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 4624,
+          "unmitigatedAmount": 4624,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

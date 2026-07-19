@@ -1,0 +1,75 @@
+{
+  "entries": [
+    {
+      "name": "Zeota",
+      "id": 4,
+      "guid": 53770549,
+      "type": "Hunter",
+      "icon": "Hunter-Survival",
+      "timestamp": 5532970,
+      "fight": 72,
+      "damage": {
+        "total": 2880,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 120,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 2880,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 2880,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2879,
+      "events": [
+        {
+          "timestamp": 5532947,
+          "type": "damage",
+          "sourceID": 129,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 72,
+          "hitType": 1,
+          "amount": 1,
+          "mitigated": 120,
+          "unmitigatedAmount": 3000,
+          "overkill": 2879,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}

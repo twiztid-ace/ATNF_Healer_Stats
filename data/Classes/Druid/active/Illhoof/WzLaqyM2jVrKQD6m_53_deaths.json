@@ -1,0 +1,126 @@
+{
+  "entries": [
+    {
+      "name": "Bimladin",
+      "id": 1,
+      "guid": 78410763,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 7467212,
+      "fight": 53,
+      "damage": {
+        "total": 8331,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3546,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8255,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 76,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Terestian Illhoof",
+            "total": 8255,
+            "type": "Boss"
+          },
+          {
+            "name": "Bimladin",
+            "total": 76,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2046,
+      "overkill": 24,
+      "events": [
+        {
+          "timestamp": 7467201,
+          "type": "damage",
+          "sourceID": 1,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 52,
+          "unmitigatedAmount": 76,
+          "overkill": 24,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7466881,
+          "type": "damage",
+          "sourceID": 328,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 15,
+          "amount": 4647,
+          "mitigated": 805,
+          "unmitigatedAmount": 5452,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7465155,
+          "type": "damage",
+          "sourceID": 328,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 53,
+          "hitType": 1,
+          "amount": 3608,
+          "mitigated": 2741,
+          "unmitigatedAmount": 6349,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Seal of Blood",
+        "guid": 32221,
+        "type": 2,
+        "abilityIcon": "spell_holy_sealofblood.jpg"
+      }
+    }
+  ]
+}

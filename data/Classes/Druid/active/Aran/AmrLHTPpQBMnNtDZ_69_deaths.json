@@ -1,0 +1,182 @@
+{
+  "entries": [
+    {
+      "name": "Kaliosas",
+      "id": 3,
+      "guid": 44795578,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 5396356,
+      "fight": 69,
+      "damage": {
+        "total": 19066,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 610,
+        "abilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 5832,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 5184,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          },
+          {
+            "guid": 29954,
+            "name": "Frostbolt",
+            "total": 4080,
+            "type": 16,
+            "icon": "spell_frost_frostbolt02.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 3970,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shade of Aran",
+            "total": 13234,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 5832,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6080,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 4580,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1500,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 2914,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1966,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 1200,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Woodeez",
+            "total": 6080,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 28196,
+      "overkill": 2274,
+      "events": [
+        {
+          "timestamp": 5396355,
+          "type": "damage",
+          "sourceID": 151,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Frostbolt",
+            "guid": 29954,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt02.jpg"
+          },
+          "fight": 69,
+          "hitType": 1,
+          "amount": 1806,
+          "unmitigatedAmount": 4080,
+          "overkill": 2274,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5393094,
+          "type": "damage",
+          "sourceID": 151,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 29953,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 69,
+          "hitType": 1,
+          "amount": 5184,
+          "unmitigatedAmount": 5184,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5388988,
+          "type": "damage",
+          "sourceID": 151,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 69,
+          "hitType": 1,
+          "amount": 1966,
+          "mitigated": 302,
+          "unmitigatedAmount": 2268,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Frostbolt",
+        "guid": 29954,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt02.jpg"
+      }
+    }
+  ]
+}

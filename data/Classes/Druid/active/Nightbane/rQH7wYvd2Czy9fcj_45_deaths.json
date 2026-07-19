@@ -1,0 +1,264 @@
+{
+  "entries": [
+    {
+      "name": "Karathás",
+      "id": 124,
+      "guid": 79999569,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 3910897,
+      "fight": 45,
+      "damage": {
+        "total": 9049,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3244,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9049,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 9049,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1302,
+      "events": [
+        {
+          "timestamp": 3910875,
+          "type": "damage",
+          "sourceID": 314,
+          "sourceIsFriendly": false,
+          "targetID": 124,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 45,
+          "hitType": 1,
+          "amount": 7747,
+          "mitigated": 3244,
+          "unmitigatedAmount": 12293,
+          "overkill": 1302,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Dòtti",
+      "id": 234,
+      "guid": 79379579,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 3923101,
+      "fight": 45,
+      "damage": {
+        "total": 15206,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 15206,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 15206,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 7833,
+      "events": [
+        {
+          "timestamp": 3923079,
+          "type": "damage",
+          "sourceID": 314,
+          "sourceIsFriendly": false,
+          "targetID": 234,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 45,
+          "hitType": 15,
+          "amount": 7373,
+          "unmitigatedAmount": 11660,
+          "overkill": 7833,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Kriegerli",
+      "id": 2,
+      "guid": 51339749,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 4013148,
+      "fight": 45,
+      "damage": {
+        "total": 11159,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 4489,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 8551,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 30129,
+            "name": "Charred Earth",
+            "total": 2608,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 11159,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 120,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 120,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30129,
+            "name": "Charred Earth",
+            "total": 60,
+            "type": 4,
+            "icon": "spell_fire_lavaspawn.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Kriegerli",
+            "total": 120,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 1894,
+      "overkill": 366,
+      "events": [
+        {
+          "timestamp": 4013106,
+          "type": "damage",
+          "sourceID": 314,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 45,
+          "hitType": 1,
+          "amount": 8185,
+          "mitigated": 4489,
+          "unmitigatedAmount": 13040,
+          "overkill": 366,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4012266,
+          "type": "damage",
+          "sourceID": 314,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Charred Earth",
+            "guid": 30129,
+            "type": 4,
+            "abilityIcon": "spell_fire_lavaspawn.jpg"
+          },
+          "fight": 45,
+          "hitType": 1,
+          "amount": 2608,
+          "unmitigatedAmount": 2371,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    }
+  ]
+}

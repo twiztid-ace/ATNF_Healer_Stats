@@ -1,0 +1,114 @@
+{
+  "entries": [
+    {
+      "name": "Darkray",
+      "id": 3,
+      "guid": 64142113,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 4076723,
+      "fight": 44,
+      "damage": {
+        "total": 8228,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 209,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6338,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 1890,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Terestian Illhoof",
+            "total": 6338,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 1890,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 304,
+      "overkill": 537,
+      "events": [
+        {
+          "timestamp": 4076709,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 44,
+          "hitType": 1,
+          "amount": 1353,
+          "unmitigatedAmount": 1890,
+          "overkill": 537,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 4076405,
+          "type": "damage",
+          "sourceID": 105,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 44,
+          "hitType": 15,
+          "amount": 6338,
+          "mitigated": 209,
+          "unmitigatedAmount": 6547,
+          "isAoE": false,
+          "sourceMarker": 7
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Word: Death",
+        "guid": 32409,
+        "type": 32,
+        "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+      }
+    }
+  ]
+}

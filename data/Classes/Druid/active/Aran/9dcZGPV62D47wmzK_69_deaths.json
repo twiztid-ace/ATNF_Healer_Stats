@@ -1,0 +1,170 @@
+{
+  "entries": [
+    {
+      "name": "Freyastouch",
+      "id": 10,
+      "guid": 54869661,
+      "type": "Paladin",
+      "icon": "Paladin-Protection",
+      "timestamp": 6724709,
+      "fight": 69,
+      "damage": {
+        "total": 20275,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3311,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 11008,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 9267,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 11008,
+            "type": "Pet"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 9267,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5765,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 2996,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2769,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 3113,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 2652,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Hippopotomo",
+            "total": 5765,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 21660,
+      "overkill": 573,
+      "events": [
+        {
+          "timestamp": 6724707,
+          "type": "damage",
+          "sourceID": 103,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 69,
+          "hitType": 16,
+          "amount": 704,
+          "mitigated": 533,
+          "unmitigatedAmount": 1810,
+          "resisted": 453,
+          "overkill": 573,
+          "isAoE": false,
+          "sourceMarker": 2
+        },
+        {
+          "timestamp": 6724640,
+          "type": "damage",
+          "sourceID": 103,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 69,
+          "hitType": 1,
+          "amount": 1869,
+          "mitigated": 119,
+          "unmitigatedAmount": 1988,
+          "isAoE": false,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 6723306,
+          "type": "damage",
+          "sourceID": 102,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 29953,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 69,
+          "hitType": 1,
+          "amount": 4664,
+          "mitigated": 298,
+          "unmitigatedAmount": 4962,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    }
+  ]
+}

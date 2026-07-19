@@ -1,0 +1,74 @@
+{
+  "entries": [
+    {
+      "name": "Pòmpyró",
+      "id": 5,
+      "guid": 64176463,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 2048456,
+      "fight": 30,
+      "damage": {
+        "total": 8814,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8814,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Big Bad Wolf",
+            "total": 8814,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 621,
+      "events": [
+        {
+          "timestamp": 2048438,
+          "type": "damage",
+          "sourceID": 66,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 30,
+          "hitType": 15,
+          "amount": 8193,
+          "unmitigatedAmount": 6101,
+          "overkill": 621,
+          "isAoE": false,
+          "targetMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

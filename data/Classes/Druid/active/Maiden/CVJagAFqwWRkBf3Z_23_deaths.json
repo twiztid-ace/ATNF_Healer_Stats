@@ -1,0 +1,129 @@
+{
+  "entries": [
+    {
+      "name": "Smeden",
+      "id": 25,
+      "guid": 47937389,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 6026475,
+      "fight": 23,
+      "damage": {
+        "total": 9463,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1785,
+        "abilities": [
+          {
+            "guid": 29522,
+            "name": "Holy Fire",
+            "total": 7107,
+            "type": 4,
+            "icon": "spell_holy_searinglight.jpg"
+          },
+          {
+            "guid": 29511,
+            "name": "Repentance",
+            "total": 2027,
+            "type": 2,
+            "icon": "spell_holy_prayerofhealing.jpg"
+          },
+          {
+            "guid": 29512,
+            "name": "Holy Ground",
+            "total": 329,
+            "type": 2,
+            "icon": "spell_holy_silence.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 9463,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 5994,
+      "overkill": 660,
+      "events": [
+        {
+          "timestamp": 6026473,
+          "type": "damage",
+          "sourceID": 191,
+          "sourceIsFriendly": false,
+          "targetID": 25,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Fire",
+            "guid": 29522,
+            "type": 4,
+            "abilityIcon": "spell_holy_searinglight.jpg"
+          },
+          "fight": 23,
+          "hitType": 16,
+          "amount": 648,
+          "mitigated": 434,
+          "unmitigatedAmount": 1742,
+          "resisted": 436,
+          "overkill": 660,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 6025948,
+          "type": "damage",
+          "sourceID": 191,
+          "sourceIsFriendly": false,
+          "targetID": 25,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Ground",
+            "guid": 29512,
+            "type": 2,
+            "abilityIcon": "spell_holy_silence.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 329,
+          "unmitigatedAmount": 329,
+          "isAoE": true
+        },
+        {
+          "timestamp": 6024917,
+          "type": "damage",
+          "sourceID": 191,
+          "sourceIsFriendly": false,
+          "targetID": 25,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Repentance",
+            "guid": 29511,
+            "type": 2,
+            "abilityIcon": "spell_holy_prayerofhealing.jpg"
+          },
+          "fight": 23,
+          "hitType": 1,
+          "amount": 2027,
+          "unmitigatedAmount": 2027,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Holy Fire",
+        "guid": 29522,
+        "type": 4,
+        "abilityIcon": "spell_holy_searinglight.jpg"
+      }
+    }
+  ]
+}

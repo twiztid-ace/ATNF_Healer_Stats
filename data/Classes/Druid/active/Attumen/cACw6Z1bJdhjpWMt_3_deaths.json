@@ -1,0 +1,101 @@
+{
+  "entries": [
+    {
+      "name": "Gedefar",
+      "id": 13,
+      "guid": 55519041,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 415284,
+      "fight": 3,
+      "damage": {
+        "total": 8612,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 756,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 4736,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29832,
+            "name": "Shadow Cleave",
+            "total": 3876,
+            "type": 32,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Attumen the Huntsman",
+            "total": 8612,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 1245,
+      "overkill": 1859,
+      "events": [
+        {
+          "timestamp": 415283,
+          "type": "damage",
+          "sourceID": 31,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 3,
+          "hitType": 1,
+          "amount": 2877,
+          "mitigated": 756,
+          "unmitigatedAmount": 5492,
+          "overkill": 1859,
+          "isAoE": false
+        },
+        {
+          "timestamp": 414038,
+          "type": "damage",
+          "sourceID": 31,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Cleave",
+            "guid": 29832,
+            "type": 32,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 3,
+          "hitType": 1,
+          "amount": 3876,
+          "unmitigatedAmount": 3876,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "entries": [
+    {
+      "name": "Normandër",
+      "id": 18,
+      "guid": 54891169,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 1882670,
+      "fight": 29,
+      "damage": {
+        "total": 10930,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 766,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10930,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Midnight",
+            "total": 10930,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 127,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 127,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 127,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Disy",
+            "total": 127,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 1200,
+      "overkill": 9,
+      "events": [
+        {
+          "timestamp": 1882649,
+          "type": "damage",
+          "sourceID": 53,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 29,
+          "hitType": 1,
+          "amount": 4938,
+          "mitigated": 766,
+          "unmitigatedAmount": 5713,
+          "overkill": 9,
+          "isAoE": false
+        },
+        {
+          "timestamp": 1881449,
+          "type": "damage",
+          "sourceID": 53,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 29,
+          "hitType": 15,
+          "amount": 5983,
+          "unmitigatedAmount": 4606,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Disy",
+      "id": 2,
+      "guid": 54880050,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 1892378,
+      "fight": 29,
+      "damage": {
+        "total": 12749,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3513,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6999,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 5750,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Midnight",
+            "total": 6999,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 5750,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3538,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 2945,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 39373,
+            "name": "Shadowmend",
+            "total": 593,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 3538,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Disy",
+            "total": 3538,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 18061,
+      "overkill": 860,
+      "events": [
+        {
+          "timestamp": 1892376,
+          "type": "damage",
+          "sourceID": 53,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 29,
+          "hitType": 1,
+          "amount": 2309,
+          "mitigated": 1591,
+          "unmitigatedAmount": 4760,
+          "overkill": 860,
+          "isAoE": false
+        },
+        {
+          "timestamp": 1891166,
+          "type": "damage",
+          "sourceID": 53,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 29,
+          "hitType": 1,
+          "amount": 3830,
+          "mitigated": 1922,
+          "unmitigatedAmount": 5752,
+          "isAoE": false
+        },
+        {
+          "timestamp": 1889906,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 29,
+          "hitType": 1,
+          "amount": 2271,
+          "unmitigatedAmount": 2271,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

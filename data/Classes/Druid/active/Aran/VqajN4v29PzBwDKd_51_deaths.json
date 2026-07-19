@@ -1,0 +1,510 @@
+{
+  "entries": [
+    {
+      "name": "Alcé",
+      "id": 1,
+      "guid": 57436926,
+      "type": "Paladin",
+      "icon": "Paladin-Holy",
+      "timestamp": 3456879,
+      "fight": 51,
+      "damage": {
+        "total": 7849,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 7849,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 7849,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 7994,
+      "overkill": 172,
+      "events": [
+        {
+          "timestamp": 3456878,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blizzard",
+            "guid": 29951,
+            "type": 16,
+            "abilityIcon": "spell_frost_icestorm.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 1397,
+          "unmitigatedAmount": 1569,
+          "overkill": 172,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 3454883,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blizzard",
+            "guid": 29951,
+            "type": 16,
+            "abilityIcon": "spell_frost_icestorm.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 1570,
+          "unmitigatedAmount": 1570,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 3452879,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blizzard",
+            "guid": 29951,
+            "type": 16,
+            "abilityIcon": "spell_frost_icestorm.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 1570,
+          "unmitigatedAmount": 1570,
+          "isAoE": true,
+          "tick": true,
+          "targetMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Blizzard",
+        "guid": 29951,
+        "type": 16,
+        "abilityIcon": "spell_frost_icestorm.jpg"
+      }
+    },
+    {
+      "name": "Sorosch",
+      "id": 11,
+      "guid": 44683792,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 3459554,
+      "fight": 51,
+      "damage": {
+        "total": 15888,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 610,
+        "abilities": [
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 5636,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 5402,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 4850,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shade of Aran",
+            "total": 5636,
+            "type": "Boss"
+          },
+          {
+            "name": "Conjured Elemental",
+            "total": 5402,
+            "type": "Pet"
+          },
+          {
+            "name": "Alcé",
+            "total": 4850,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5437,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1491,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1416,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 27137,
+            "name": "Flash of Light",
+            "total": 1201,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 999,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 330,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 2589,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 2358,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 490,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Sasnica",
+            "total": 2907,
+            "type": "Druid"
+          },
+          {
+            "name": "Sorosch",
+            "total": 1329,
+            "type": "Warrior"
+          },
+          {
+            "name": "Alcé",
+            "total": 1201,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 24596,
+      "overkill": 419,
+      "events": [
+        {
+          "timestamp": 3459537,
+          "type": "damage",
+          "sourceID": 84,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 51,
+          "hitType": 16,
+          "amount": 1191,
+          "mitigated": 340,
+          "unmitigatedAmount": 1950,
+          "resisted": 488,
+          "overkill": 419,
+          "isAoE": false,
+          "sourceMarker": 1
+        },
+        {
+          "timestamp": 3456704,
+          "type": "damage",
+          "sourceID": 83,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 29953,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 5636,
+          "unmitigatedAmount": 4880,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3454684,
+          "type": "damage",
+          "sourceID": 84,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 2037,
+          "unmitigatedAmount": 1764,
+          "isAoE": false,
+          "sourceMarker": 1
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    },
+    {
+      "name": "Sasnica",
+      "id": 2,
+      "guid": 51690017,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 3467791,
+      "fight": 51,
+      "damage": {
+        "total": 8116,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1758,
+        "abilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 5351,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 2765,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 5351,
+            "type": "Boss"
+          },
+          {
+            "name": "Conjured Elemental",
+            "total": 2765,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 255,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 255,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 255,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Sasnica",
+            "total": 255,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 18890,
+      "overkill": 276,
+      "events": [
+        {
+          "timestamp": 3467774,
+          "type": "damage",
+          "sourceID": 84,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 51,
+          "hitType": 16,
+          "amount": 839,
+          "mitigated": 742,
+          "unmitigatedAmount": 1857,
+          "resisted": 464,
+          "overkill": 276,
+          "isAoE": false,
+          "sourceMarker": 2
+        },
+        {
+          "timestamp": 3466872,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blizzard",
+            "guid": 29951,
+            "type": 16,
+            "abilityIcon": "spell_frost_icestorm.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 1211,
+          "mitigated": 302,
+          "unmitigatedAmount": 1513,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 3464885,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blizzard",
+            "guid": 29951,
+            "type": 16,
+            "abilityIcon": "spell_frost_icestorm.jpg"
+          },
+          "fight": 51,
+          "hitType": 1,
+          "amount": 1211,
+          "mitigated": 302,
+          "unmitigatedAmount": 1513,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    }
+  ]
+}

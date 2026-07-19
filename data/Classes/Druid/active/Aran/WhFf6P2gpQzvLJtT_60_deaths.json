@@ -1,0 +1,188 @@
+{
+  "entries": [
+    {
+      "name": "Necrobiber",
+      "id": 9,
+      "guid": 53485899,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 5692674,
+      "fight": 60,
+      "damage": {
+        "total": 13863,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 359,
+        "abilities": [
+          {
+            "guid": 29956,
+            "name": "Arcane Missiles",
+            "total": 7270,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 4437,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 2156,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shade of Aran",
+            "total": 7270,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 4437,
+            "type": "Boss"
+          },
+          {
+            "name": "Conjured Elemental",
+            "total": 2156,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4416,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 3017,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 1399,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 4326,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          },
+          {
+            "guid": 29956,
+            "name": "Arcane Missiles",
+            "total": 56,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 34,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Flitzii",
+            "total": 3017,
+            "type": "Druid"
+          },
+          {
+            "name": "Mykir",
+            "total": 1399,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 41281,
+      "overkill": 176,
+      "events": [
+        {
+          "timestamp": 5692657,
+          "type": "damage",
+          "sourceID": 126,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 29956,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 1292,
+          "unmitigatedAmount": 1468,
+          "overkill": 176,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5691658,
+          "type": "damage",
+          "sourceID": 126,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 29956,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 60,
+          "hitType": 16,
+          "amount": 1082,
+          "mitigated": 359,
+          "unmitigatedAmount": 1441,
+          "resisted": 360,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5690656,
+          "type": "damage",
+          "sourceID": 126,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 29956,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 60,
+          "hitType": 1,
+          "amount": 1524,
+          "unmitigatedAmount": 1524,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Missiles",
+        "guid": 29956,
+        "type": 64,
+        "abilityIcon": "spell_nature_starfall.jpg"
+      }
+    }
+  ]
+}

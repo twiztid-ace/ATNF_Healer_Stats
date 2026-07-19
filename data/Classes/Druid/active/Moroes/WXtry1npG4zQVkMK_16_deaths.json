@@ -1,0 +1,120 @@
+{
+  "entries": [
+    {
+      "name": "Sisyphös",
+      "id": 1,
+      "guid": 53491344,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 1624963,
+      "fight": 16,
+      "damage": {
+        "total": 11559,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 458,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 11559,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 11559,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 186,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 186,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 186,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Esquizø",
+            "total": 186,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 1026,
+      "overkill": 929,
+      "events": [
+        {
+          "timestamp": 1624962,
+          "type": "damage",
+          "sourceID": 108,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 16,
+          "hitType": 1,
+          "amount": 2062,
+          "mitigated": 458,
+          "unmitigatedAmount": 3449,
+          "overkill": 929,
+          "isAoE": false,
+          "sourceMarker": 8,
+          "targetMarker": 3
+        },
+        {
+          "timestamp": 1623936,
+          "type": "damage",
+          "sourceID": 108,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 16,
+          "hitType": 15,
+          "amount": 8568,
+          "unmitigatedAmount": 6587,
+          "isAoE": false,
+          "sourceMarker": 8,
+          "targetMarker": 3
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

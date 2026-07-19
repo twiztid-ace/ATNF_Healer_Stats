@@ -1,0 +1,146 @@
+{
+  "entries": [
+    {
+      "name": "Agrosnab",
+      "id": 11,
+      "guid": 53535891,
+      "type": "Mage",
+      "icon": "Mage-Fire",
+      "timestamp": 9490652,
+      "fight": 45,
+      "damage": {
+        "total": 15832,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2206,
+        "abilities": [
+          {
+            "guid": 30235,
+            "name": "Arcing Sear",
+            "total": 10750,
+            "type": 64,
+            "icon": "spell_arcane_arcane04.jpg"
+          },
+          {
+            "guid": 30383,
+            "name": "Hateful Bolt",
+            "total": 5082,
+            "type": 64,
+            "icon": "spell_arcane_arcane04.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Astral Flare",
+            "total": 10750,
+            "type": "NPC"
+          },
+          {
+            "name": "The Curator",
+            "total": 5082,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6359,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 6359,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30235,
+            "name": "Arcing Sear",
+            "total": 6359,
+            "type": 64,
+            "icon": "spell_arcane_arcane04.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Yxoxy",
+            "total": 6359,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 23253,
+      "overkill": 2620,
+      "events": [
+        {
+          "timestamp": 9490650,
+          "type": "damage",
+          "sourceID": 89,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hateful Bolt",
+            "guid": 30383,
+            "type": 64,
+            "abilityIcon": "spell_arcane_arcane04.jpg"
+          },
+          "fight": 45,
+          "hitType": 1,
+          "amount": 2462,
+          "unmitigatedAmount": 4983,
+          "overkill": 2620,
+          "isAoE": false
+        },
+        {
+          "timestamp": 9485401,
+          "type": "damage",
+          "sourceID": 96,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcing Sear",
+            "guid": 30235,
+            "type": 64,
+            "abilityIcon": "spell_arcane_arcane04.jpg"
+          },
+          "fight": 45,
+          "hitType": 1,
+          "amount": 375,
+          "unmitigatedAmount": 367,
+          "isAoE": false
+        },
+        {
+          "timestamp": 9484400,
+          "type": "damage",
+          "sourceID": 96,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcing Sear",
+            "guid": 30235,
+            "type": 64,
+            "abilityIcon": "spell_arcane_arcane04.jpg"
+          },
+          "fight": 45,
+          "hitType": 1,
+          "amount": 384,
+          "unmitigatedAmount": 376,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Hateful Bolt",
+        "guid": 30383,
+        "type": 64,
+        "abilityIcon": "spell_arcane_arcane04.jpg"
+      }
+    }
+  ]
+}

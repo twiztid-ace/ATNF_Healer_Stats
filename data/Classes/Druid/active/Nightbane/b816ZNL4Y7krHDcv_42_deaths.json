@@ -1,0 +1,453 @@
+{
+  "entries": [
+    {
+      "name": "Ardhwawi",
+      "id": 3,
+      "guid": 58087140,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 3722987,
+      "fight": 42,
+      "damage": {
+        "total": 28445,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 10695,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 19249,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 5597,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 37091,
+            "name": "Rain of Bones",
+            "total": 3599,
+            "type": 1,
+            "icon": "spell_nature_eyeofthestorm.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 18593,
+            "type": "Boss"
+          },
+          {
+            "name": "Restless Skeleton",
+            "total": 9852,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 11945,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 7281,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 4664,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8383,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37091,
+            "name": "Rain of Bones",
+            "total": 3562,
+            "type": 1,
+            "icon": "spell_nature_eyeofthestorm.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Tfirstone",
+            "total": 11945,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 47412,
+      "overkill": 6563,
+      "events": [
+        {
+          "timestamp": 3722947,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 15,
+          "amount": 2834,
+          "mitigated": 137,
+          "unmitigatedAmount": 9534,
+          "overkill": 6563,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3721741,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 5597,
+          "mitigated": 2921,
+          "unmitigatedAmount": 8518,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3689744,
+          "type": "damage",
+          "sourceID": 66,
+          "sourceInstance": 13,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 1177,
+          "mitigated": 789,
+          "unmitigatedAmount": 1966,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Dileila",
+      "id": 1,
+      "guid": 54059849,
+      "type": "Warlock",
+      "icon": "Warlock-Demonology",
+      "timestamp": 3727376,
+      "fight": 42,
+      "damage": {
+        "total": 9266,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1349,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9266,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 9266,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 7733,
+      "events": [
+        {
+          "timestamp": 3727372,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 1533,
+          "mitigated": 1349,
+          "unmitigatedAmount": 10615,
+          "overkill": 7733,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Rhâzgor",
+      "id": 5,
+      "guid": 56993669,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 3731380,
+      "fight": 42,
+      "damage": {
+        "total": 8940,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2077,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8940,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 8940,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 6163,
+      "events": [
+        {
+          "timestamp": 3731371,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 15,
+          "amount": 2777,
+          "mitigated": 2077,
+          "unmitigatedAmount": 11017,
+          "overkill": 6163,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Voodoolorc",
+      "id": 6,
+      "guid": 53955769,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 3739175,
+      "fight": 42,
+      "damage": {
+        "total": 9456,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1422,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9456,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 9456,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 7993,
+      "events": [
+        {
+          "timestamp": 3739153,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 1,
+          "amount": 1463,
+          "mitigated": 1422,
+          "unmitigatedAmount": 10878,
+          "overkill": 7993,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Imusamá",
+      "id": 18,
+      "guid": 53659516,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 3742918,
+      "fight": 42,
+      "damage": {
+        "total": 10400,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10400,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 10400,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 5608,
+      "events": [
+        {
+          "timestamp": 3742907,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 18,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 42,
+          "hitType": 2,
+          "amount": 4792,
+          "unmitigatedAmount": 10248,
+          "overkill": 5608,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

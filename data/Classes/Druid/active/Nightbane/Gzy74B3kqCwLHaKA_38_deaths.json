@@ -1,0 +1,133 @@
+{
+  "entries": [
+    {
+      "name": "Ipally",
+      "id": 10,
+      "guid": 56230135,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 3285659,
+      "fight": 38,
+      "damage": {
+        "total": 12585,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 9053,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 6273,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6108,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 204,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 12381,
+            "type": "Boss"
+          },
+          {
+            "name": "Ipally",
+            "total": 204,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 1971,
+      "overkill": 4328,
+      "events": [
+        {
+          "timestamp": 3285650,
+          "type": "damage",
+          "sourceID": 73,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 38,
+          "hitType": 1,
+          "amount": 1780,
+          "mitigated": 4466,
+          "unmitigatedAmount": 10574,
+          "overkill": 4328,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3284449,
+          "type": "damage",
+          "sourceID": 73,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 38,
+          "hitType": 1,
+          "amount": 6273,
+          "mitigated": 4587,
+          "unmitigatedAmount": 10860,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3283679,
+          "type": "damage",
+          "sourceID": 10,
+          "sourceIsFriendly": true,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 38,
+          "hitType": 1,
+          "amount": 64,
+          "unmitigatedAmount": 64,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

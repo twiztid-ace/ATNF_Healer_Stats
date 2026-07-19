@@ -1,0 +1,218 @@
+{
+  "entries": [
+    {
+      "name": "Habyss",
+      "id": 24,
+      "guid": 80178853,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 7676470,
+      "fight": 61,
+      "damage": {
+        "total": 18392,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 8370,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 5870,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29954,
+            "name": "Frostbolt",
+            "total": 4152,
+            "type": 16,
+            "icon": "spell_frost_frostbolt02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 8370,
+            "type": "Boss"
+          },
+          {
+            "name": "Conjured Elemental",
+            "total": 5870,
+            "type": "Pet"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 4152,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 9038,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 44208,
+            "name": "Tranquility",
+            "total": 2604,
+            "type": 8,
+            "icon": "spell_nature_cyclone.jpg"
+          },
+          {
+            "guid": 27237,
+            "name": "Master Healthstone",
+            "total": 2496,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 1986,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 1952,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29951,
+            "name": "Blizzard",
+            "total": 4794,
+            "type": 16,
+            "icon": "spell_frost_icestorm.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 3954,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29954,
+            "name": "Frostbolt",
+            "total": 290,
+            "type": 16,
+            "icon": "spell_frost_frostbolt02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Mormwalfion",
+            "total": 4556,
+            "type": "Druid"
+          },
+          {
+            "name": "Habyss",
+            "total": 2496,
+            "type": "Shaman"
+          },
+          {
+            "name": "Pades",
+            "total": 1986,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 12879,
+      "overkill": 275,
+      "events": [
+        {
+          "timestamp": 7676453,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blizzard",
+            "guid": 29951,
+            "type": 16,
+            "abilityIcon": "spell_frost_icestorm.jpg"
+          },
+          "fight": 61,
+          "hitType": 1,
+          "amount": 1399,
+          "unmitigatedAmount": 1674,
+          "overkill": 275,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 7675401,
+          "type": "damage",
+          "sourceID": 285,
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Frostbolt",
+            "guid": 29954,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt02.jpg"
+          },
+          "fight": 61,
+          "hitType": 1,
+          "amount": 4152,
+          "unmitigatedAmount": 4152,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7674444,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 24,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Blizzard",
+            "guid": 29951,
+            "type": 16,
+            "abilityIcon": "spell_frost_icestorm.jpg"
+          },
+          "fight": 61,
+          "hitType": 1,
+          "amount": 1674,
+          "unmitigatedAmount": 1674,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Blizzard",
+        "guid": 29951,
+        "type": 16,
+        "abilityIcon": "spell_frost_icestorm.jpg"
+      }
+    }
+  ]
+}

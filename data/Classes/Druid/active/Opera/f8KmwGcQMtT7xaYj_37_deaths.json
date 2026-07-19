@@ -1,0 +1,300 @@
+{
+  "entries": [
+    {
+      "name": "Синичка",
+      "id": 3,
+      "guid": 65351350,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 4973511,
+      "fight": 37,
+      "damage": {
+        "total": 8934,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1594,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 4922,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 31043,
+            "name": "Cleave",
+            "total": 4012,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Tinhead",
+            "total": 8934,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 595,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 595,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 595,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Синичка",
+            "total": 595,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 714,
+      "overkill": 975,
+      "events": [
+        {
+          "timestamp": 4973480,
+          "type": "damage",
+          "sourceID": 70,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 31043,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 37,
+          "hitType": 1,
+          "amount": 3037,
+          "mitigated": 716,
+          "unmitigatedAmount": 4728,
+          "overkill": 975,
+          "isAoE": true,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 4972766,
+          "type": "damage",
+          "sourceID": 70,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 37,
+          "hitType": 1,
+          "amount": 4922,
+          "mitigated": 878,
+          "unmitigatedAmount": 5800,
+          "isAoE": false,
+          "sourceMarker": 6
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 31043,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "Разъеп",
+      "id": 12,
+      "guid": 78599702,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 4986472,
+      "fight": 37,
+      "damage": {
+        "total": 14178,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1902,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9937,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 31041,
+            "name": "Mangle",
+            "total": 4241,
+            "type": 1,
+            "icon": "ability_druid_disembowel.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Roar",
+            "total": 14178,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 6149,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25420,
+            "name": "Lesser Healing Wave",
+            "total": 4329,
+            "type": 8,
+            "icon": "spell_nature_healingwavelesser.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 966,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 854,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 31041,
+            "name": "Mangle",
+            "total": 3741,
+            "type": 1,
+            "icon": "ability_druid_disembowel.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 2408,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Разъеп",
+            "total": 4329,
+            "type": "Shaman"
+          },
+          {
+            "name": "Синичка",
+            "total": 966,
+            "type": "Druid"
+          },
+          {
+            "name": "Винничанка",
+            "total": 854,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 12001,
+      "overkill": 310,
+      "events": [
+        {
+          "timestamp": 4986471,
+          "type": "damage",
+          "sourceID": 68,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Mangle",
+            "guid": 31041,
+            "type": 1,
+            "abilityIcon": "ability_druid_disembowel.jpg"
+          },
+          "fight": 37,
+          "hitType": 1,
+          "amount": 190,
+          "unmitigatedAmount": 500,
+          "overkill": 310,
+          "isAoE": false,
+          "tick": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 4985968,
+          "type": "damage",
+          "sourceID": 68,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 37,
+          "hitType": 1,
+          "amount": 1889,
+          "mitigated": 1133,
+          "unmitigatedAmount": 3022,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 4984772,
+          "type": "damage",
+          "sourceID": 68,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 37,
+          "hitType": 15,
+          "amount": 3231,
+          "mitigated": 214,
+          "unmitigatedAmount": 3445,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Mangle",
+        "guid": 31041,
+        "type": 1,
+        "abilityIcon": "ability_druid_disembowel.jpg"
+      }
+    }
+  ]
+}

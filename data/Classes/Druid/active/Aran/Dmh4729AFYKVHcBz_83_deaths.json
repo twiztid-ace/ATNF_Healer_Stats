@@ -1,0 +1,220 @@
+{
+  "entries": [
+    {
+      "name": "Sadly",
+      "id": 4,
+      "guid": 62511630,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 10879330,
+      "fight": 83,
+      "damage": {
+        "total": 10678,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 29973,
+            "name": "Arcane Explosion",
+            "total": 10678,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shade of Aran",
+            "total": 10678,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3291,
+      "events": [
+        {
+          "timestamp": 10879294,
+          "type": "damage",
+          "sourceID": 223,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Explosion",
+            "guid": 29973,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 83,
+          "hitType": 1,
+          "amount": 7387,
+          "unmitigatedAmount": 10678,
+          "overkill": 3291,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Explosion",
+        "guid": 29973,
+        "type": 64,
+        "abilityIcon": "spell_nature_wispsplode.jpg"
+      }
+    },
+    {
+      "name": "Worsetahlen",
+      "id": 22,
+      "guid": 59299578,
+      "type": "Druid",
+      "icon": "Druid-Feral",
+      "timestamp": 10892207,
+      "fight": 83,
+      "damage": {
+        "total": 11399,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 7895,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29954,
+            "name": "Frostbolt",
+            "total": 3504,
+            "type": 16,
+            "icon": "spell_frost_frostbolt02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 7895,
+            "type": "Pet"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 3504,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 375,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 375,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 375,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Worsetahlen",
+            "total": 375,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 4956,
+      "overkill": 1643,
+      "events": [
+        {
+          "timestamp": 10892205,
+          "type": "damage",
+          "sourceID": 224,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 83,
+          "hitType": 1,
+          "amount": 233,
+          "unmitigatedAmount": 1876,
+          "overkill": 1643,
+          "isAoE": false,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 10890836,
+          "type": "damage",
+          "sourceID": 223,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Frostbolt",
+            "guid": 29954,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt02.jpg"
+          },
+          "fight": 83,
+          "hitType": 1,
+          "amount": 3504,
+          "unmitigatedAmount": 3504,
+          "isAoE": false
+        },
+        {
+          "timestamp": 10890669,
+          "type": "damage",
+          "sourceID": 224,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 83,
+          "hitType": 1,
+          "amount": 1885,
+          "unmitigatedAmount": 1885,
+          "isAoE": false,
+          "sourceMarker": 3
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    }
+  ]
+}

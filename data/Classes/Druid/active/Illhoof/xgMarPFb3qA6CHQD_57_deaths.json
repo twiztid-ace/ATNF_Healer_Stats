@@ -1,0 +1,127 @@
+{
+  "entries": [
+    {
+      "name": "Skillexe",
+      "id": 16,
+      "guid": 83359075,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 6015411,
+      "fight": 57,
+      "damage": {
+        "total": 8966,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 68,
+        "abilities": [
+          {
+            "guid": 30115,
+            "name": "Sacrifice",
+            "total": 8808,
+            "type": 32,
+            "icon": "spell_shadow_antimagicshell.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 158,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Terestian Illhoof",
+            "total": 8808,
+            "type": "Boss"
+          },
+          {
+            "name": "Fiendish Imp",
+            "total": 158,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 61757,
+      "overkill": 165,
+      "events": [
+        {
+          "timestamp": 6015395,
+          "type": "damage",
+          "sourceID": 99,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sacrifice",
+            "guid": 30115,
+            "type": 32,
+            "abilityIcon": "spell_shadow_antimagicshell.jpg"
+          },
+          "fight": 57,
+          "hitType": 1,
+          "amount": 1303,
+          "unmitigatedAmount": 1468,
+          "overkill": 165,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 6014390,
+          "type": "damage",
+          "sourceID": 99,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sacrifice",
+            "guid": 30115,
+            "type": 32,
+            "abilityIcon": "spell_shadow_antimagicshell.jpg"
+          },
+          "fight": 57,
+          "hitType": 1,
+          "amount": 1468,
+          "unmitigatedAmount": 1468,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 6013391,
+          "type": "damage",
+          "sourceID": 99,
+          "sourceIsFriendly": false,
+          "targetID": 16,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sacrifice",
+            "guid": 30115,
+            "type": 32,
+            "abilityIcon": "spell_shadow_antimagicshell.jpg"
+          },
+          "fight": 57,
+          "hitType": 1,
+          "amount": 1468,
+          "unmitigatedAmount": 1468,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Sacrifice",
+        "guid": 30115,
+        "type": 32,
+        "abilityIcon": "spell_shadow_antimagicshell.jpg"
+      }
+    }
+  ]
+}

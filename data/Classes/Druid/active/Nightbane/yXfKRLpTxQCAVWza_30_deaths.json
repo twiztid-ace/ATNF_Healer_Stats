@@ -1,0 +1,75 @@
+{
+  "entries": [
+    {
+      "name": "Clandestina",
+      "id": 20,
+      "guid": 57392998,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 3066916,
+      "fight": 30,
+      "damage": {
+        "total": 10149,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2594,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 10149,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 10149,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1151,
+      "events": [
+        {
+          "timestamp": 3066890,
+          "type": "damage",
+          "sourceID": 79,
+          "sourceIsFriendly": false,
+          "targetID": 20,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 30,
+          "hitType": 1,
+          "amount": 8998,
+          "mitigated": 2594,
+          "unmitigatedAmount": 12743,
+          "overkill": 1151,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    }
+  ]
+}

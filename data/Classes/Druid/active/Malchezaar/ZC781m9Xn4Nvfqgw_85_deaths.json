@@ -1,0 +1,74 @@
+{
+  "entries": [
+    {
+      "name": "Coreho",
+      "id": 10,
+      "guid": 50850504,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 10159494,
+      "fight": 85,
+      "damage": {
+        "total": 3300,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3300,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 3300,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 3286,
+      "events": [
+        {
+          "timestamp": 10159473,
+          "type": "damage",
+          "sourceID": 190,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 85,
+          "hitType": 1,
+          "amount": 14,
+          "unmitigatedAmount": 3000,
+          "overkill": 3286,
+          "isAoE": true,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}

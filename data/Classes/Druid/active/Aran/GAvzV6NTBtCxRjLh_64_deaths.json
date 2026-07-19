@@ -1,0 +1,1148 @@
+{
+  "entries": [
+    {
+      "name": "Phaseer",
+      "id": 4,
+      "guid": 43679586,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 5137314,
+      "fight": 64,
+      "damage": {
+        "total": 10016,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 5844,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          },
+          {
+            "guid": 29954,
+            "name": "Frostbolt",
+            "total": 4172,
+            "type": 16,
+            "icon": "spell_frost_frostbolt02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Phaseer",
+            "total": 5844,
+            "type": "Shaman"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 4172,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 505,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 505,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29954,
+            "name": "Frostbolt",
+            "total": 505,
+            "type": 16,
+            "icon": "spell_frost_frostbolt02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Bhopparn",
+            "total": 505,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 4096,
+      "overkill": 2302,
+      "events": [
+        {
+          "timestamp": 5137300,
+          "type": "damage",
+          "sourceID": 4,
+          "sourceIsFriendly": true,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Explosion",
+            "guid": 29949,
+            "type": 4,
+            "abilityIcon": "spell_fire_selfdestruct.jpg"
+          },
+          "fight": 64,
+          "hitType": 2,
+          "amount": 3542,
+          "unmitigatedAmount": 3896,
+          "overkill": 2302,
+          "isAoE": true,
+          "sourceMarker": 5,
+          "targetMarker": 5
+        },
+        {
+          "timestamp": 5133204,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Frostbolt",
+            "guid": 29954,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt02.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 4172,
+          "unmitigatedAmount": 4172,
+          "isAoE": false,
+          "targetMarker": 5
+        }
+      ],
+      "killingBlow": {
+        "name": "Explosion",
+        "guid": 29949,
+        "type": 4,
+        "abilityIcon": "spell_fire_selfdestruct.jpg"
+      }
+    },
+    {
+      "name": "Dustehm",
+      "id": 9,
+      "guid": 54668054,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 5140968,
+      "fight": 64,
+      "damage": {
+        "total": 9541,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 462,
+        "abilities": [
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 4450,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          },
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 3705,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 1386,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shade of Aran",
+            "total": 4450,
+            "type": "Boss"
+          },
+          {
+            "name": "Phaseer",
+            "total": 3705,
+            "type": "Shaman"
+          },
+          {
+            "name": "Conjured Elemental",
+            "total": 1386,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1968,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 984,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 984,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 1310,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 658,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Piids",
+            "total": 984,
+            "type": "Priest"
+          },
+          {
+            "name": "Bhopparn",
+            "total": 984,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 3667,
+      "overkill": 490,
+      "events": [
+        {
+          "timestamp": 5140967,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 29953,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 3960,
+          "unmitigatedAmount": 4450,
+          "overkill": 490,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5140224,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 16,
+          "amount": 1386,
+          "mitigated": 462,
+          "unmitigatedAmount": 1848,
+          "resisted": 462,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5137300,
+          "type": "damage",
+          "sourceID": 4,
+          "sourceIsFriendly": true,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Explosion",
+            "guid": 29949,
+            "type": 4,
+            "abilityIcon": "spell_fire_selfdestruct.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 3705,
+          "unmitigatedAmount": 3705,
+          "isAoE": true,
+          "sourceMarker": 5
+        }
+      ],
+      "killingBlow": {
+        "name": "Fireball",
+        "guid": 29953,
+        "type": 4,
+        "abilityIcon": "spell_fire_flamebolt.jpg"
+      }
+    },
+    {
+      "name": "Klass",
+      "id": 13,
+      "guid": 43383778,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 5143700,
+      "fight": 64,
+      "damage": {
+        "total": 9460,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1217,
+        "abilities": [
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 5807,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 3653,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Phaseer",
+            "total": 5807,
+            "type": "Shaman"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 3653,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 356,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 356,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 356,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Klass",
+            "total": 356,
+            "type": "Rogue"
+          }
+        ]
+      },
+      "deathWindow": 6400,
+      "overkill": 210,
+      "events": [
+        {
+          "timestamp": 5143685,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 29953,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 16,
+          "amount": 3443,
+          "mitigated": 1217,
+          "unmitigatedAmount": 4870,
+          "resisted": 1218,
+          "overkill": 210,
+          "isAoE": false,
+          "targetMarker": 7
+        },
+        {
+          "timestamp": 5137285,
+          "type": "damage",
+          "sourceID": 4,
+          "sourceIsFriendly": true,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Explosion",
+            "guid": 29949,
+            "type": 4,
+            "abilityIcon": "spell_fire_selfdestruct.jpg"
+          },
+          "fight": 64,
+          "hitType": 2,
+          "amount": 5807,
+          "unmitigatedAmount": 3871,
+          "isAoE": true,
+          "sourceMarker": 5,
+          "targetMarker": 7
+        }
+      ],
+      "killingBlow": {
+        "name": "Fireball",
+        "guid": 29953,
+        "type": 4,
+        "abilityIcon": "spell_fire_flamebolt.jpg"
+      }
+    },
+    {
+      "name": "Piids",
+      "id": 7,
+      "guid": 54723028,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 5150640,
+      "fight": 64,
+      "damage": {
+        "total": 22924,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 522,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 11404,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 4090,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          },
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 3878,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 3552,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 11404,
+            "type": "Pet"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 4090,
+            "type": "Boss"
+          },
+          {
+            "name": "Phaseer",
+            "total": 3878,
+            "type": "Shaman"
+          },
+          {
+            "name": "Environment",
+            "total": 3552,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 14496,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 10389,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 3153,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          },
+          {
+            "guid": 26981,
+            "name": "Rejuvenation",
+            "total": 954,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 7686,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 3552,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          },
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 3258,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Bhopparn",
+            "total": 11343,
+            "type": "Druid"
+          },
+          {
+            "name": "Piids",
+            "total": 3153,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 19063,
+      "overkill": 397,
+      "events": [
+        {
+          "timestamp": 5150624,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Fireball",
+            "guid": 29953,
+            "type": 4,
+            "abilityIcon": "spell_fire_flamebolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 3693,
+          "unmitigatedAmount": 4090,
+          "overkill": 397,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5149400,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 2007,
+          "unmitigatedAmount": 2007,
+          "isAoE": false,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 5146161,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 16,
+          "amount": 1568,
+          "mitigated": 522,
+          "unmitigatedAmount": 2090,
+          "resisted": 523,
+          "isAoE": false,
+          "sourceMarker": 4
+        }
+      ],
+      "killingBlow": {
+        "name": "Fireball",
+        "guid": 29953,
+        "type": 4,
+        "abilityIcon": "spell_fire_flamebolt.jpg"
+      }
+    },
+    {
+      "name": "Haderpala",
+      "id": 2,
+      "guid": 54801480,
+      "type": "Paladin",
+      "icon": "Paladin-Protection",
+      "timestamp": 5175545,
+      "fight": 64,
+      "damage": {
+        "total": 26309,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 7845,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 16760,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 5253,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          },
+          {
+            "guid": -16,
+            "name": "Melee",
+            "total": 4296,
+            "type": 16,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 21056,
+            "type": "Pet"
+          },
+          {
+            "name": "Phaseer",
+            "total": 5253,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "healing": {
+        "total": 11679,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 5026,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 4382,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 15290,
+            "name": "Vampiric Embrace",
+            "total": 2271,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 5808,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29949,
+            "name": "Explosion",
+            "total": 5217,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          },
+          {
+            "guid": -16,
+            "name": "Melee",
+            "total": 654,
+            "type": 16,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Bhopparn",
+            "total": 9408,
+            "type": "Druid"
+          },
+          {
+            "name": "Piids",
+            "total": 2271,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 38527,
+      "overkill": 553,
+      "events": [
+        {
+          "timestamp": 5175534,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 685,
+          "mitigated": 722,
+          "unmitigatedAmount": 1960,
+          "overkill": 553,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5175471,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": -16,
+            "type": 16,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 958,
+          "mitigated": 558,
+          "unmitigatedAmount": 1516,
+          "isAoE": false,
+          "sourceMarker": 2
+        },
+        {
+          "timestamp": 5173467,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": -16,
+            "type": 16,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 924,
+          "mitigated": 538,
+          "unmitigatedAmount": 1462,
+          "isAoE": false,
+          "sourceMarker": 2
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    },
+    {
+      "name": "Bhopparn",
+      "id": 5,
+      "guid": 43110948,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 5187318,
+      "fight": 64,
+      "damage": {
+        "total": 11422,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 9986,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29956,
+            "name": "Arcane Missiles",
+            "total": 1436,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 9986,
+            "type": "Pet"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 1436,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2497,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2497,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 2497,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Bhopparn",
+            "total": 2497,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 8343,
+      "overkill": 447,
+      "events": [
+        {
+          "timestamp": 5187298,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 1326,
+          "unmitigatedAmount": 1773,
+          "overkill": 447,
+          "isAoE": false,
+          "sourceMarker": 4
+        },
+        {
+          "timestamp": 5186979,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 29956,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 1436,
+          "unmitigatedAmount": 1436,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5185426,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 1960,
+          "unmitigatedAmount": 1960,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    },
+    {
+      "name": "Nixxis",
+      "id": 8,
+      "guid": 54708083,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 5199888,
+      "fight": 64,
+      "damage": {
+        "total": 12552,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 508,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 7657,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 4895,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 7657,
+            "type": "Pet"
+          },
+          {
+            "name": "Shade of Aran",
+            "total": 4895,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3566,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1850,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1716,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 2062,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          },
+          {
+            "guid": 29953,
+            "name": "Fireball",
+            "total": 1504,
+            "type": 4,
+            "icon": "spell_fire_flamebolt.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Bhopparn",
+            "total": 3566,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 14765,
+      "overkill": 397,
+      "events": [
+        {
+          "timestamp": 5199888,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 1656,
+          "unmitigatedAmount": 2053,
+          "overkill": 397,
+          "isAoE": false,
+          "sourceMarker": 2
+        },
+        {
+          "timestamp": 5198579,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 16,
+          "amount": 1526,
+          "mitigated": 508,
+          "unmitigatedAmount": 2034,
+          "resisted": 509,
+          "isAoE": false
+        },
+        {
+          "timestamp": 5195048,
+          "type": "damage",
+          "sourceID": 123,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 2016,
+          "unmitigatedAmount": 2016,
+          "isAoE": false,
+          "sourceMarker": 2
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    }
+  ]
+}

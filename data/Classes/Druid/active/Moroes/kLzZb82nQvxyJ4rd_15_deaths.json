@@ -1,0 +1,161 @@
+{
+  "entries": [
+    {
+      "name": "Vexshar",
+      "id": 9,
+      "guid": 72411611,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 1546619,
+      "fight": 15,
+      "damage": {
+        "total": 11388,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1583,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8238,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29570,
+            "name": "Mind Flay",
+            "total": 3150,
+            "type": 32,
+            "icon": "spell_shadow_siphonmana.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Baroness Dorothea Millstipe",
+            "total": 11388,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5025,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 4714,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 311,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 3139,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29570,
+            "name": "Mind Flay",
+            "total": 1361,
+            "type": 32,
+            "icon": "spell_shadow_siphonmana.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Aladincomf",
+            "total": 5025,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 13578,
+      "overkill": 1730,
+      "events": [
+        {
+          "timestamp": 1546607,
+          "type": "damage",
+          "sourceID": 54,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 15,
+          "hitType": 1,
+          "amount": 583,
+          "mitigated": 439,
+          "unmitigatedAmount": 2752,
+          "overkill": 1730,
+          "isAoE": false,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 1545605,
+          "type": "damage",
+          "sourceID": 54,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Mind Flay",
+            "guid": 29570,
+            "type": 32,
+            "abilityIcon": "spell_shadow_siphonmana.jpg"
+          },
+          "fight": 15,
+          "hitType": 1,
+          "amount": 1050,
+          "unmitigatedAmount": 1050,
+          "isAoE": false,
+          "tick": true,
+          "sourceMarker": 6
+        },
+        {
+          "timestamp": 1544604,
+          "type": "damage",
+          "sourceID": 54,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Mind Flay",
+            "guid": 29570,
+            "type": 32,
+            "abilityIcon": "spell_shadow_siphonmana.jpg"
+          },
+          "fight": 15,
+          "hitType": 1,
+          "amount": 1050,
+          "unmitigatedAmount": 1050,
+          "isAoE": false,
+          "tick": true,
+          "sourceMarker": 6
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

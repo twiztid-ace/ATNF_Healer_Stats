@@ -1,0 +1,102 @@
+{
+  "entries": [
+    {
+      "name": "Quenchie",
+      "id": 3,
+      "guid": 57421092,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 3151125,
+      "fight": 37,
+      "damage": {
+        "total": 14967,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 4257,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7513,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 7454,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 14967,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2008,
+      "overkill": 7028,
+      "events": [
+        {
+          "timestamp": 3151108,
+          "type": "damage",
+          "sourceID": 84,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 37,
+          "hitType": 1,
+          "amount": 426,
+          "mitigated": 2120,
+          "unmitigatedAmount": 9574,
+          "overkill": 7028,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3149100,
+          "type": "damage",
+          "sourceID": 84,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 37,
+          "hitType": 1,
+          "amount": 7513,
+          "mitigated": 2137,
+          "unmitigatedAmount": 9650,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    }
+  ]
+}

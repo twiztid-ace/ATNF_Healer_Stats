@@ -1,0 +1,157 @@
+{
+  "entries": [
+    {
+      "name": "Fingragøgg",
+      "id": 2,
+      "guid": 53829902,
+      "type": "Paladin",
+      "icon": "Paladin-Protection",
+      "timestamp": 5410209,
+      "fight": 50,
+      "damage": {
+        "total": 14216,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1396,
+        "abilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 14216,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Conjured Elemental",
+            "total": 14216,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1085,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 990,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 27163,
+            "name": "Judgement of Light",
+            "total": 95,
+            "type": 2,
+            "icon": "spell_holy_healingaura.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 1085,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Ritho",
+            "total": 990,
+            "type": "Druid"
+          },
+          {
+            "name": "Fingragøgg",
+            "total": 95,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 7197,
+      "overkill": 894,
+      "events": [
+        {
+          "timestamp": 5410190,
+          "type": "damage",
+          "sourceID": 522,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 50,
+          "hitType": 1,
+          "amount": 834,
+          "mitigated": 110,
+          "unmitigatedAmount": 1838,
+          "overkill": 894,
+          "isAoE": false,
+          "sourceMarker": 3
+        },
+        {
+          "timestamp": 5409709,
+          "type": "damage",
+          "sourceID": 522,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 50,
+          "hitType": 1,
+          "amount": 1764,
+          "mitigated": 112,
+          "unmitigatedAmount": 1876,
+          "isAoE": false,
+          "sourceMarker": 1
+        },
+        {
+          "timestamp": 5407905,
+          "type": "damage",
+          "sourceID": 522,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 50,
+          "hitType": 1,
+          "amount": 1922,
+          "mitigated": 122,
+          "unmitigatedAmount": 2044,
+          "isAoE": false,
+          "sourceMarker": 4
+        }
+      ],
+      "killingBlow": {
+        "name": "Water Bolt",
+        "guid": 37054,
+        "type": 16,
+        "abilityIcon": "spell_frost_frostbolt.jpg"
+      }
+    }
+  ]
+}

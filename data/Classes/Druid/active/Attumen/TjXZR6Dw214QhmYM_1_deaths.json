@@ -1,0 +1,201 @@
+{
+  "entries": [
+    {
+      "name": "Laetus",
+      "id": 8,
+      "guid": 54726109,
+      "type": "Paladin",
+      "icon": "Paladin-Protection",
+      "timestamp": 124211,
+      "fight": 1,
+      "damage": {
+        "total": 76742,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 108673,
+        "blocked": 7462,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 65238,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29832,
+            "name": "Shadow Cleave",
+            "total": 10914,
+            "type": 32,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 29711,
+            "name": "Knockdown",
+            "total": 590,
+            "type": 1,
+            "icon": "ability_warstomp.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Attumen the Huntsman",
+            "total": 47122,
+            "type": "Boss"
+          },
+          {
+            "name": "Midnight",
+            "total": 29620,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 61975,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 25048,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 16100,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 8214,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 26979,
+            "name": "Healing Touch",
+            "total": 5891,
+            "type": 8,
+            "icon": "spell_nature_healingtouch.jpg"
+          },
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 3571,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 55899,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29832,
+            "name": "Shadow Cleave",
+            "total": 5781,
+            "type": 32,
+            "icon": "ability_warrior_cleave.jpg"
+          },
+          {
+            "guid": 29711,
+            "name": "Knockdown",
+            "total": 295,
+            "type": 1,
+            "icon": "ability_warstomp.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Tigerbark",
+            "total": 61975,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 46022,
+      "overkill": 1040,
+      "events": [
+        {
+          "timestamp": 124205,
+          "type": "damage",
+          "sourceID": 18,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 1,
+          "hitType": 4,
+          "amount": 1713,
+          "mitigated": 4685,
+          "unmitigatedAmount": 7438,
+          "overkill": 1040,
+          "blocked": 287,
+          "isAoE": false
+        },
+        {
+          "timestamp": 122272,
+          "type": "damage",
+          "sourceID": 12,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 1,
+          "hitType": 1,
+          "amount": 2395,
+          "mitigated": 3466,
+          "unmitigatedAmount": 5861,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 122195,
+          "type": "damage",
+          "sourceID": 18,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Cleave",
+            "guid": 29832,
+            "type": 32,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 1,
+          "hitType": 1,
+          "amount": 5619,
+          "mitigated": 358,
+          "unmitigatedAmount": 5977,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

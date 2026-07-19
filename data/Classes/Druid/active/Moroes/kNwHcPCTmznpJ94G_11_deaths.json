@@ -1,0 +1,261 @@
+{
+  "entries": [
+    {
+      "name": "Vampyria",
+      "id": 1,
+      "guid": 55578647,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 1218820,
+      "fight": 11,
+      "damage": {
+        "total": 12088,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 7154,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 11978,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 110,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 11978,
+            "type": "Boss"
+          },
+          {
+            "name": "Vampyria",
+            "total": 110,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3124,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 2805,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 319,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 3014,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 110,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Asnebajs",
+            "total": 2805,
+            "type": "Druid"
+          },
+          {
+            "name": "Vampyria",
+            "total": 319,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 3264,
+      "overkill": 997,
+      "events": [
+        {
+          "timestamp": 1218812,
+          "type": "damage",
+          "sourceID": 55,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 11,
+          "hitType": 1,
+          "amount": 1108,
+          "mitigated": 1258,
+          "unmitigatedAmount": 3363,
+          "overkill": 997,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 1218457,
+          "type": "damage",
+          "sourceID": 55,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 11,
+          "hitType": 1,
+          "amount": 4916,
+          "mitigated": 2936,
+          "unmitigatedAmount": 7852,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 1215787,
+          "type": "damage",
+          "sourceID": 1,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 11,
+          "hitType": 1,
+          "amount": 55,
+          "unmitigatedAmount": 55,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Kvapik",
+      "id": 10,
+      "guid": 54138579,
+      "type": "Druid",
+      "icon": "Druid-Feral",
+      "timestamp": 1221297,
+      "fight": 11,
+      "damage": {
+        "total": 9368,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1815,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9368,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 9368,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 1203,
+      "overkill": 1237,
+      "events": [
+        {
+          "timestamp": 1221279,
+          "type": "damage",
+          "sourceID": 55,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 11,
+          "hitType": 15,
+          "amount": 2956,
+          "unmitigatedAmount": 3776,
+          "overkill": 1237,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 1220076,
+          "type": "damage",
+          "sourceID": 55,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 11,
+          "hitType": 1,
+          "amount": 5175,
+          "mitigated": 1815,
+          "unmitigatedAmount": 6990,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

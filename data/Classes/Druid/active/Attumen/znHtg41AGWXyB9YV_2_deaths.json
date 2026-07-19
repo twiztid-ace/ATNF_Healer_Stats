@@ -1,0 +1,94 @@
+{
+  "entries": [
+    {
+      "name": "Baragozer",
+      "id": 10,
+      "guid": 52468568,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 422466,
+      "fight": 2,
+      "damage": {
+        "total": 10200,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1787,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10200,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Attumen the Huntsman",
+            "total": 10200,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2005,
+      "overkill": 1761,
+      "events": [
+        {
+          "timestamp": 422449,
+          "type": "damage",
+          "sourceID": 37,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 2,
+          "hitType": 15,
+          "amount": 4008,
+          "unmitigatedAmount": 5396,
+          "overkill": 1761,
+          "isAoE": false
+        },
+        {
+          "timestamp": 420444,
+          "type": "damage",
+          "sourceID": 37,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 2,
+          "hitType": 1,
+          "amount": 4431,
+          "mitigated": 1787,
+          "unmitigatedAmount": 6218,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

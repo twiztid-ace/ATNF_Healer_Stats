@@ -22,6 +22,23 @@ class BossMeta:
 
 
 BOSSES: dict[int, BossMeta] = {
+    # Karazhan (Phase 0, zone 1047) - confirmed live 2026-07-19 against real
+    # report cd7hBa6WNG1gjDZy (all 10 encounterIDs matched data/zones.json's
+    # existing Karazhan snapshot exactly). Deliberately NOT included: the
+    # "Chess Event" (encounterID 660) that also appears in that report's real
+    # fight list - it's Netherspite's pre-fight mini-game, not one of the 10
+    # real Karazhan boss kills, so it's left unmapped and build_report_data.py
+    # will skip it with its normal "no known slug/display mapping" warning.
+    50652: BossMeta(50652, "attumen", "Attumen", "Attumen the Huntsman", "rankings_attumen.json"),
+    50653: BossMeta(50653, "moroes", "Moroes", "Moroes", "rankings_moroes.json"),
+    50654: BossMeta(50654, "maiden", "Maiden", "Maiden of Virtue", "rankings_maiden.json"),
+    50655: BossMeta(50655, "opera", "Opera", "Opera Hall", "rankings_opera.json"),
+    50656: BossMeta(50656, "curator", "Curator", "The Curator", "rankings_curator.json"),
+    50657: BossMeta(50657, "illhoof", "Illhoof", "Terestian Illhoof", "rankings_illhoof.json"),
+    50658: BossMeta(50658, "aran", "Aran", "Shade of Aran", "rankings_aran.json"),
+    50659: BossMeta(50659, "netherspite", "Netherspite", "Netherspite", "rankings_netherspite.json"),
+    50661: BossMeta(50661, "malchezaar", "Malchezaar", "Prince Malchezaar", "rankings_malchezaar.json"),
+    50662: BossMeta(50662, "nightbane", "Nightbane", "Nightbane", "rankings_nightbane.json"),
     50649: BossMeta(50649, "maulgar", "Maulgar", "High King Maulgar", "rankings_maulgar.json"),
     50650: BossMeta(50650, "gruul", "Gruul", "Gruul the Dragonkiller", "rankings_gruul.json"),
     50651: BossMeta(50651, "magtheridon", "Magtheridon", "Magtheridon", "rankings_magtheridon.json"),

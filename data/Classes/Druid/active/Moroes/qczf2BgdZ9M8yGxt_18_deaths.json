@@ -1,0 +1,234 @@
+{
+  "entries": [
+    {
+      "name": "Sennepsvein",
+      "id": 1,
+      "guid": 53751883,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 4869565,
+      "fight": 18,
+      "damage": {
+        "total": 13422,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 8598,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12222,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 921,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 279,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 12222,
+            "type": "Boss"
+          },
+          {
+            "name": "Sennepsvein",
+            "total": 1200,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4119,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 4119,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 3840,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 279,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Naturesamuro",
+            "total": 4119,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 12165,
+      "overkill": 746,
+      "events": [
+        {
+          "timestamp": 4869551,
+          "type": "damage",
+          "sourceID": 251,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 18,
+          "hitType": 1,
+          "amount": 2834,
+          "mitigated": 2542,
+          "unmitigatedAmount": 6122,
+          "overkill": 746,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 4869331,
+          "type": "damage",
+          "sourceID": 251,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 18,
+          "hitType": 1,
+          "amount": 1666,
+          "mitigated": 1181,
+          "unmitigatedAmount": 2847,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 4868364,
+          "type": "damage",
+          "sourceID": 1,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 18,
+          "hitType": 1,
+          "amount": 210,
+          "unmitigatedAmount": 210,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Dirtywiz",
+      "id": 5,
+      "guid": 53183408,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 4887576,
+      "fight": 18,
+      "damage": {
+        "total": 9694,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9694,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 9694,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1711,
+      "events": [
+        {
+          "timestamp": 4887555,
+          "type": "damage",
+          "sourceID": 251,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 18,
+          "hitType": 15,
+          "amount": 7983,
+          "unmitigatedAmount": 7822,
+          "overkill": 1711,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

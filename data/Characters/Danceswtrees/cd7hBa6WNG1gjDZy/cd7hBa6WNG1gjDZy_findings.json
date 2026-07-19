@@ -1,0 +1,79 @@
+{
+  "BossFindings": {
+    "attumen": {
+      "SCORECARD_FINDING": "852 HPS is only 60% of the Top 100 average (1426) for Attumen, but the 93rd percentile still holds up on strong active time (98.6%). The real issue is overheal at 57.6% - that's past even the Top 100 sample's worst comparator (51.0%), so this wasn't just bad luck. Two deaths (Takeitngo, Clippies) landed within about 3.5 seconds of each other early in the pull.",
+      "SPELL_COMPOSITION_FINDING": "Lifebloom carried 69.8% of healing here versus the benchmark's 40.5% share, while Regrowth sat well under its usual weight (10.9% vs. 29.9%). Leaning this hard on a rolling HoT while under-using the harder-hitting reactive heal is a plausible driver of the overheal above.",
+      "COOLDOWN_FINDING": "Nature's Swiftness went completely unused despite roughly half the Top 100 sample (52%) casting it on this fight - a real, flagged undercast. Given the double death and the overheal problem, an instant-cast boosted heal was on the table and wasn't used.",
+      "TARGET_FINDING": "Coverage across the top 5 targets was excellent at 99.6% (benchmark 97.4%), with 60.2% of healing going to the main tank - right in line with the Top 100's own 67.4% concentration on this fight.",
+      "IncludeRebirthRow": true
+    },
+    "moroes": {
+      "SCORECARD_FINDING": "1101 HPS is 54% of the Top 100 average (2022), the lowest HPS-to-average ratio among the raid's clearly-flagged kills, though the 88th percentile still reflects solid overall output. Overheal at 54.4% again cleared the Top 100 sample's worst comparator (44.4%) - the second kill in a row where that happened. One death (Ghostpepperx).",
+      "SPELL_COMPOSITION_FINDING": "Same directional pattern as Attumen: Lifebloom at 58.5% versus the benchmark's 35.2%, Regrowth under-used at 24.6% versus 34.7%.",
+      "COOLDOWN_FINDING": "Nature's Swiftness was unused again (64% of the Top 100 sample cast it here) - the second straight kill with this same real gap. Swiftmend was used 3 times, ahead of the benchmark's 1.5 average, which is reasonable given Moroes' rotating add damage.",
+      "TARGET_FINDING": "Coverage dropped to 87.5% (benchmark 97.2%) and concentration on the top target fell to 45.1%, well below the Top 100's 70.2% - healing was spread across 8 distinct targets instead of staying tank-focused, consistent with Moroes' garrote/gouge adds rotating who takes damage.",
+      "IncludeRebirthRow": false
+    },
+    "maiden": {
+      "SCORECARD_FINDING": "84th percentile is the raid's third-lowest, but this was actually one of the cleanest kills of the night - overheal sat at a healthy 23.5% (well inside the Top 100 range) and there were zero deaths. The 1198 HPS (60% of the 1985 average) reads low mostly because this was a short, low-intensity fight (64.5s).",
+      "SPELL_COMPOSITION_FINDING": "Lifebloom climbed to 63.0% of healing (benchmark 36.3%) while Regrowth fell to just 3.7% versus the benchmark's 28.9% - the largest single-spell gap seen on the raid's early kills, likely because Maiden's Repentance/Silence windows limit reactive-heal opportunities more than most fights.",
+      "COOLDOWN_FINDING": "Nothing deviates here - Innervate and Nature's Swiftness both sat unused, but the benchmark's own usage rates on this fight are modest too (16% and 45%), consistent with a short, clean kill needing less proactive cooldown use.",
+      "TARGET_FINDING": "Concentration on the tank (58.8%) actually ran above the Top 100 average (47.0%) with strong 96.9% coverage - tight, tank-focused healing on a fight that didn't demand much else.",
+      "IncludeRebirthRow": false
+    },
+    "opera": {
+      "SCORECARD_FINDING": "98th percentile - the best kill of the raid. HPS of 1080 is 78% of the 1393 average, and while the deviation flag reads 'below_avg' off that ratio alone, the percentile shows this fight's actual leaderboard shape didn't punish it. Zero deaths, 97.6% active time. The one real gap: this is the only kill of the raid where food (Well Fed) was not active - every other kill had it up.",
+      "SPELL_COMPOSITION_FINDING": "The now-familiar shape repeats - Lifebloom at 67.2% versus the benchmark's 39.7%, Regrowth under-used at 5.9% versus 28.0% - but on this particular fight it clearly wasn't holding output back.",
+      "COOLDOWN_FINDING": "Nothing deviates - Innervate, Nature's Swiftness, and Swiftmend were all used at least once, tracking the benchmark's own cast rates for this fight reasonably closely.",
+      "TARGET_FINDING": "Coverage of 84.3% ran slightly under the benchmark (87.8%) across 10 distinct targets - a wide spread that matches how this encounter's own damage pattern plays out in the Top 100 sample too.",
+      "IncludeRebirthRow": false
+    },
+    "nightbane": {
+      "SCORECARD_FINDING": "95th percentile on the raid's longest kill (365.8s). HPS of 950 (73% of the 1305 average) and overheal of 43.8% both sit inside the Top 100 range. One death (Uraj) - the nearest cooldown, Nature's Swiftness, landed only about 27 seconds before it, suggesting active engagement even though that target still went down.",
+      "SPELL_COMPOSITION_FINDING": "Lifebloom's overweight shrank to its smallest gap of the raid so far (62.0% vs. the benchmark's 46.0%, a 16-point gap) - the most benchmark-aligned composition to this point in the night.",
+      "COOLDOWN_FINDING": "Mana Potion was used twice - the only kill all raid where it appears - fitting this being by far the longest fight of the night and the real mana-management demand that comes with it. Nothing else deviates.",
+      "TARGET_FINDING": "Concentration on the top target (61.5%) ran well above the Top 100 average (43.6%) even while touching 10 distinct targets - heavy tank focus on a long, gear-check-style encounter.",
+      "IncludeRebirthRow": false
+    },
+    "curator": {
+      "SCORECARD_FINDING": "95th percentile. HPS of 1409 (74% of the 1917 average) and overheal of 35.5% both sit comfortably inside the Top 100 range. One death (Hezrun) - the nearest cooldown, Nature's Swiftness, landed just 3 seconds before it, about as fast a reactive response as this data can show, so this doesn't read as a missed-cooldown case.",
+      "SPELL_COMPOSITION_FINDING": "The smallest Lifebloom overweight of the raid outside Nightbane (44.2% vs. 37.3% benchmark, +6.9 points), with Regrowth also tracking close to its usual share (18.8% vs. 27.2%) - Curator's flare/evocation phases reward the more balanced mix the Top 100 sample tends to run, and this kill matched it more closely than almost any other.",
+      "COOLDOWN_FINDING": "Nothing deviates. Swiftmend was cast 4 times, above the benchmark's 2.1 average, consistent with soaking real flare damage through the fight.",
+      "TARGET_FINDING": "Coverage and concentration both sit in line with the Top 100 sample across 10 distinct targets - an unremarkable, healthy spread.",
+      "IncludeRebirthRow": false
+    },
+    "illhoof": {
+      "SCORECARD_FINDING": "90th percentile. HPS of 842 is 61% of the 1380 average. Overheal of 58.8% is the highest of the raid, and it clears even the Top 100 sample's worst comparator (56.9%) - the third kill this raid where overheal ran past the bottom of the benchmark's own range. Zero deaths despite that.",
+      "SPELL_COMPOSITION_FINDING": "The same recurring shape - Lifebloom at 60.4% versus the benchmark's 41.2%, Regrowth under-used at 14.4% versus 30.0%.",
+      "COOLDOWN_FINDING": "Nothing deviates - all four tracked cooldowns were used at rates that track the benchmark reasonably well for this fight.",
+      "TARGET_FINDING": "The heaviest single-target concentration of the raid: 74.8% of healing went to the main tank alone, above the Top 100's own 62.3% - Illhoof's imp-focused tank damage concentrates real healing need, and this tracked that correctly.",
+      "IncludeRebirthRow": false
+    },
+    "aran": {
+      "SCORECARD_FINDING": "74th percentile - tied for the lowest of the raid. HPS of 717 is only 49% of the 1455 average, the lowest ratio of the night. Zero deaths though, and active time held up fine at 95.7%.",
+      "SPELL_COMPOSITION_FINDING": "The largest spell-composition swing of the entire raid: Regrowth jumped to 61.8% of healing (benchmark only 29.5%, a 32.3-point gap - the raid's biggest) while Lifebloom collapsed to just 17.3% (benchmark 29.5%). That reads as a deliberate, fight-specific pivot away from rolling HoTs toward reactive direct healing, which makes sense given Aran's movement-heavy phases that punish standing still to refresh a HoT - but the percentile cost suggests the swap didn't fully make up for the raw throughput lost.",
+      "COOLDOWN_FINDING": "Swiftmend went completely unused despite being the single most-cast cooldown in the Top 100 sample on this fight (94% used it, averaging 2.4 casts) - a real, flagged undercast, and a notable one given how much this kill already leaned on reactive healing.",
+      "TARGET_FINDING": "The most even target spread of the raid - the top target took only 19.9% of total healing, tracking the Top 100's own 24.6% concentration on this fight, across 9 distinct targets including a real 19.9% self-heal share. Aran's raid-wide AoE damage spreads healing wide for everyone in the benchmark sample too.",
+      "IncludeRebirthRow": false
+    },
+    "netherspite": {
+      "SCORECARD_FINDING": "69th percentile - the single lowest of the raid. HPS of 953 is only 49% of the 1942 average, tied with Aran for the raid's lowest ratio. Zero deaths, and active time still held strong at 98.5%.",
+      "SPELL_COMPOSITION_FINDING": "Lifebloom climbed to 72.8% of healing here (benchmark 36.2%) - a 36.6-point gap, the single largest spell overweight of the entire raid - while Regrowth fell to just 4.3% (benchmark 31.6%).",
+      "COOLDOWN_FINDING": "Nothing deviates, though usage was light across the board (single casts of Innervate, Nature's Swiftness, Swiftmend, and Mana Potion) - consistent with a shorter, more static fight (160.5s) built around beam management rather than sustained raid damage.",
+      "TARGET_FINDING": "The most fragmented target distribution of the raid - the top target took only 21.5% of healing, tracking reasonably close to the Top 100's own 27.7% concentration, across 9 distinct targets including a real 15.5% share on Danceswtrees's own name. Netherspite's beam-room mechanic splits the raid up, so no single tank absorbs a majority share the way Illhoof or Nightbane's tank did.",
+      "IncludeRebirthRow": false
+    },
+    "malchezaar": {
+      "SCORECARD_FINDING": "94th percentile on the raid's final kill. HPS of 1056 (69% of the 1536 average) and overheal of 40.9% both sit inside the Top 100 range. One death (Makanya) - the nearest cooldown, a self-cast Swiftmend, landed only 3.2 seconds beforehand, too close to read as a missed response.",
+      "SPELL_COMPOSITION_FINDING": "One of the raid's smaller composition gaps: Lifebloom at 51.7% versus the benchmark's 42.6% (+9.1 points), Regrowth close behind at 17.9% versus 24.5% - a relatively benchmark-aligned mix to close out the night.",
+      "COOLDOWN_FINDING": "Nothing deviates - Innervate, Nature's Swiftness, Swiftmend (x4), and Mana Potion were all used at rates matching or exceeding the benchmark average.",
+      "TARGET_FINDING": "Heavy, expected tank focus (71.1% on the main tank, close to the Top 100's own 72.2% concentration) with strong 91.6% coverage - closely tracking the benchmark's own profile on this fight.",
+      "IncludeRebirthRow": false
+    }
+  },
+  "RaidOverview": {
+    "GEAR_CONSISTENCY_FINDING": "Gear was fully consistent across all 10 kills this raid night - no slot changed between pulls. 18 of 19 real equipment slots are filled (shirt and tabard are the expected empty cosmetic slots), and 8 of 9 enchantable slots carry a permanent enchant.",
+    "GEAR_FINDING_NOTE": "The one gap is the back slot (item 28765, item level 125) - it carries no permanent enchant. That's a cheap, easy fix at any enchanter and has been left on the table for at least this entire raid night.",
+    "RAID_SUMMARY_FINDING": "Danceswtrees cleared all 10 real Karazhan bosses this raid night (one wipe on the opening Attumen pull before it went down) and was clearly the stronger of the raid's two Restoration Druids, finishing #1 in both raw healing and item-level-adjusted rank on every single kill, averaging the 88th percentile by item level across the raid. The recurring throughline across almost every boss is a Lifebloom-heavy style that consistently outweighs the Top 100 benchmark's more Regrowth-inclusive mix - fine on its own, but the likely driver behind three kills (Attumen, Moroes, Illhoof) where overheal ran past even the Top 100 sample's own worst comparator. The two roughest kills by percentile, Aran (74th) and Netherspite (69th), both have real mechanical explanations rather than clear misplay - Aran's movement-heavy phases pushed a genuine reactive-healing pivot, and Netherspite's beam-split raid design fragments target concentration for every healer in the benchmark too. Nature's Swiftness sat unused on the raid's first two kills (Attumen, Moroes) despite roughly half the Top 100 sample using it on those same fights, and Rebirth was never cast all night despite a real, plausible opening on Attumen's early double-death."
+  }
+}

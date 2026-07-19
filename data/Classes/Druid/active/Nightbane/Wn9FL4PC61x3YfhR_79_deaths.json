@@ -1,0 +1,186 @@
+{
+  "entries": [
+    {
+      "name": "Oniyo",
+      "id": 22,
+      "guid": 63908272,
+      "type": "Warlock",
+      "icon": "Warlock-Affliction",
+      "timestamp": 8581443,
+      "fight": 79,
+      "damage": {
+        "total": 14241,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 14241,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 14241,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 5061,
+      "events": [
+        {
+          "timestamp": 8581421,
+          "type": "damage",
+          "sourceID": 200,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 79,
+          "hitType": 15,
+          "amount": 9180,
+          "unmitigatedAmount": 10954,
+          "overkill": 5061,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Floaky",
+      "id": 15,
+      "guid": 63760326,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 8593325,
+      "fight": 79,
+      "damage": {
+        "total": 19480,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 2937,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 19480,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 19480,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1961,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27223,
+            "name": "Death Coil",
+            "total": 1961,
+            "type": 32,
+            "icon": "spell_shadow_deathcoil.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1961,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Floaky",
+            "total": 1961,
+            "type": "Warlock"
+          }
+        ]
+      },
+      "deathWindow": 2015,
+      "overkill": 7251,
+      "events": [
+        {
+          "timestamp": 8593301,
+          "type": "damage",
+          "sourceID": 200,
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 79,
+          "hitType": 1,
+          "amount": 2856,
+          "mitigated": 1524,
+          "unmitigatedAmount": 11631,
+          "overkill": 7251,
+          "isAoE": false
+        },
+        {
+          "timestamp": 8591286,
+          "type": "damage",
+          "sourceID": 200,
+          "sourceIsFriendly": false,
+          "targetID": 15,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 79,
+          "hitType": 1,
+          "amount": 9373,
+          "mitigated": 1413,
+          "unmitigatedAmount": 10786,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

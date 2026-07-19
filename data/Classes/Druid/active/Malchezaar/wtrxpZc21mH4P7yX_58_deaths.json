@@ -1,0 +1,669 @@
+{
+  "entries": [
+    {
+      "name": "Maintanky",
+      "id": 1,
+      "guid": 55716361,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 7531198,
+      "fight": 58,
+      "damage": {
+        "total": 12441,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 671,
+        "abilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 9141,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          },
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3300,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite Infernal",
+            "total": 9141,
+            "type": "NPC"
+          },
+          {
+            "name": "Prince Malchezaar",
+            "total": 3300,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1117,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1117,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 1117,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Jaladru",
+            "total": 1117,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 20342,
+      "overkill": 470,
+      "events": [
+        {
+          "timestamp": 7531160,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 58,
+          "hitType": 16,
+          "amount": 441,
+          "mitigated": 193,
+          "unmitigatedAmount": 1104,
+          "resisted": 276,
+          "overkill": 470,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7530862,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 1098,
+          "unmitigatedAmount": 998,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7530166,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 1168,
+          "unmitigatedAmount": 1062,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Hellfire Effect",
+        "guid": 30860,
+        "type": 4,
+        "abilityIcon": "spell_fire_incinerate.jpg"
+      }
+    },
+    {
+      "name": "Beylor",
+      "id": 4,
+      "guid": 51674614,
+      "type": "Paladin",
+      "icon": "Paladin-Justicar",
+      "timestamp": 7533403,
+      "fight": 58,
+      "damage": {
+        "total": 43507,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 9255,
+        "blocked": 241,
+        "abilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 33205,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          },
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 8460,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 1842,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite Infernal",
+            "total": 33205,
+            "type": "NPC"
+          },
+          {
+            "name": "Prince Malchezaar",
+            "total": 8460,
+            "type": "Boss"
+          },
+          {
+            "name": "Prince Malchezaar's Axes",
+            "total": 1842,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 27456,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 8578,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 7388,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 25222,
+            "name": "Renew",
+            "total": 3175,
+            "type": 2,
+            "icon": "spell_holy_renew.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 3064,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 27136,
+            "name": "Holy Light",
+            "total": 2755,
+            "type": 2,
+            "icon": "spell_holy_holybolt.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 22555,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          },
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3927,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 974,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lolma",
+            "total": 11753,
+            "type": "Priest"
+          },
+          {
+            "name": "Jaladru",
+            "total": 10452,
+            "type": "Druid"
+          },
+          {
+            "name": "Beylor",
+            "total": 5251,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 53247,
+      "overkill": 977,
+      "events": [
+        {
+          "timestamp": 7533395,
+          "type": "damage",
+          "sourceID": 119,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 1843,
+          "mitigated": 180,
+          "unmitigatedAmount": 3000,
+          "overkill": 977,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7533147,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 58,
+          "hitType": 16,
+          "amount": 695,
+          "mitigated": 290,
+          "unmitigatedAmount": 985,
+          "resisted": 246,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7532865,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 1031,
+          "mitigated": 66,
+          "unmitigatedAmount": 1097,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Invinciblexx",
+      "id": 6,
+      "guid": 43085791,
+      "type": "Rogue",
+      "icon": "Rogue-Combat",
+      "timestamp": 7533404,
+      "fight": 58,
+      "damage": {
+        "total": 11461,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 220,
+        "abilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 8461,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          },
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite Infernal",
+            "total": 8461,
+            "type": "NPC"
+          },
+          {
+            "name": "Prince Malchezaar",
+            "total": 3000,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 4233,
+      "overkill": 897,
+      "events": [
+        {
+          "timestamp": 7533394,
+          "type": "damage",
+          "sourceID": 119,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 2103,
+          "unmitigatedAmount": 3000,
+          "overkill": 897,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7533147,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 922,
+          "unmitigatedAmount": 922,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7532864,
+          "type": "damage",
+          "sourceID": 122,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 947,
+          "unmitigatedAmount": 947,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Lolma",
+      "id": 5,
+      "guid": 49793393,
+      "type": "Priest",
+      "icon": "Priest-Holy",
+      "timestamp": 7571098,
+      "fight": 58,
+      "damage": {
+        "total": 16419,
+        "totalReduced": 14482,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 687,
+        "abilities": [
+          {
+            "guid": 30898,
+            "name": "Shadow Word: Pain",
+            "total": 13048,
+            "totalReduced": 11111,
+            "type": 32,
+            "icon": "spell_shadow_shadowwordpain.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 3371,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 13048,
+            "totalReduced": 11111,
+            "type": "Boss"
+          },
+          {
+            "name": "Prince Malchezaar's Axes",
+            "total": 3371,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 8352,
+        "totalReduced": 6415,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 2510,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 2256,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 1937,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1649,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30898,
+            "name": "Shadow Word: Pain",
+            "total": 5625,
+            "totalReduced": 3688,
+            "type": 32,
+            "icon": "spell_shadow_shadowwordpain.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 2727,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Lolma",
+            "total": 4193,
+            "totalReduced": 2256,
+            "type": "Priest"
+          },
+          {
+            "name": "Jaladru",
+            "total": 4159,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 20448,
+      "overkill": 1586,
+      "events": [
+        {
+          "timestamp": 7556065,
+          "type": "damage",
+          "sourceID": 119,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Pain",
+            "guid": 30898,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 1676,
+          "unmitigatedAmount": 1631,
+          "overkill": 1586,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 7553047,
+          "type": "damage",
+          "sourceID": 119,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Pain",
+            "guid": 30898,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 3262,
+          "unmitigatedAmount": 1631,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 7550063,
+          "type": "damage",
+          "sourceID": 119,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Pain",
+            "guid": 30898,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+          },
+          "fight": 58,
+          "hitType": 1,
+          "amount": 3262,
+          "unmitigatedAmount": 1631,
+          "isAoE": true,
+          "tick": true
+        }
+      ]
+    }
+  ]
+}

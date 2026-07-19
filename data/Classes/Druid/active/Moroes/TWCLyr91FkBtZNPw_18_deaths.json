@@ -1,0 +1,125 @@
+{
+  "entries": [
+    {
+      "name": "Xalate",
+      "id": 11,
+      "guid": 52709654,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 2152458,
+      "fight": 18,
+      "damage": {
+        "total": 12079,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1339,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7571,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 20424,
+            "name": "Seals of Command",
+            "total": 4508,
+            "type": 2,
+            "icon": "ability_warrior_innerrage.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Baron Rafe Dreuger",
+            "total": 9669,
+            "type": "Boss"
+          },
+          {
+            "name": "Lady Keira Berrybuck",
+            "total": 2410,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2019,
+      "overkill": 2181,
+      "events": [
+        {
+          "timestamp": 2152434,
+          "type": "damage",
+          "sourceID": 277,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seals of Command",
+            "guid": 20424,
+            "type": 2,
+            "abilityIcon": "ability_warrior_innerrage.jpg"
+          },
+          "fight": 18,
+          "hitType": 1,
+          "amount": 129,
+          "unmitigatedAmount": 2310,
+          "overkill": 2181,
+          "isAoE": false
+        },
+        {
+          "timestamp": 2152432,
+          "type": "damage",
+          "sourceID": 277,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 18,
+          "hitType": 1,
+          "amount": 2741,
+          "mitigated": 485,
+          "unmitigatedAmount": 3226,
+          "isAoE": false
+        },
+        {
+          "timestamp": 2150437,
+          "type": "damage",
+          "sourceID": 277,
+          "sourceIsFriendly": false,
+          "targetID": 11,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seals of Command",
+            "guid": 20424,
+            "type": 2,
+            "abilityIcon": "ability_warrior_innerrage.jpg"
+          },
+          "fight": 18,
+          "hitType": 1,
+          "amount": 2198,
+          "unmitigatedAmount": 2198,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Seals of Command",
+        "guid": 20424,
+        "type": 2,
+        "abilityIcon": "ability_warrior_innerrage.jpg"
+      }
+    }
+  ]
+}

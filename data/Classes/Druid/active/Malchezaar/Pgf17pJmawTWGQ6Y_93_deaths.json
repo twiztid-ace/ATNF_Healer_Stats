@@ -1,0 +1,75 @@
+{
+  "entries": [
+    {
+      "name": "Mayodenoche",
+      "id": 25,
+      "guid": 51518322,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 9516457,
+      "fight": 93,
+      "damage": {
+        "total": 2100,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 900,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 2100,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 2100,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2099,
+      "events": [
+        {
+          "timestamp": 9516448,
+          "type": "damage",
+          "sourceID": 193,
+          "sourceIsFriendly": false,
+          "targetID": 25,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 93,
+          "hitType": 1,
+          "amount": 1,
+          "mitigated": 900,
+          "unmitigatedAmount": 3000,
+          "overkill": 2099,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    }
+  ]
+}

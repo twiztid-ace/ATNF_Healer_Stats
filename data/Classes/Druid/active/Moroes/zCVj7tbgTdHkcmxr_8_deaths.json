@@ -1,0 +1,155 @@
+{
+  "entries": [
+    {
+      "name": "Bbcmakgora",
+      "id": 8,
+      "guid": 45991119,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 1066957,
+      "fight": 8,
+      "damage": {
+        "total": 10397,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 554,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9770,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 9080,
+            "name": "Hamstring",
+            "total": 627,
+            "type": 1,
+            "icon": "ability_shockwave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 6468,
+            "type": "Boss"
+          },
+          {
+            "name": "Baroness Dorothea Millstipe",
+            "total": 3302,
+            "type": "Boss"
+          },
+          {
+            "name": "Lord Robin Daris",
+            "total": 627,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 392,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 392,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 392,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Bbcmakgora",
+            "total": 392,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 1265,
+      "overkill": 211,
+      "events": [
+        {
+          "timestamp": 1066934,
+          "type": "damage",
+          "sourceID": 50,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hamstring",
+            "guid": 9080,
+            "type": 1,
+            "abilityIcon": "ability_shockwave.jpg"
+          },
+          "fight": 8,
+          "hitType": 1,
+          "amount": 416,
+          "mitigated": 49,
+          "unmitigatedAmount": 676,
+          "overkill": 211,
+          "isAoE": false
+        },
+        {
+          "timestamp": 1066614,
+          "type": "damage",
+          "sourceID": 47,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 8,
+          "hitType": 1,
+          "amount": 6468,
+          "mitigated": 243,
+          "unmitigatedAmount": 6711,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 1065669,
+          "type": "damage",
+          "sourceID": 48,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 8,
+          "hitType": 1,
+          "amount": 3302,
+          "mitigated": 262,
+          "unmitigatedAmount": 3564,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Hamstring",
+        "guid": 9080,
+        "type": 1,
+        "abilityIcon": "ability_shockwave.jpg"
+      }
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "entries": [
+    {
+      "name": "Allerialyn",
+      "id": 4,
+      "guid": 59930168,
+      "type": "Druid",
+      "icon": "Druid-Restoration",
+      "timestamp": 5744612,
+      "fight": 68,
+      "damage": {
+        "total": 11219,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1357,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6511,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 38524,
+            "name": "Netherbreath",
+            "total": 4708,
+            "type": 64,
+            "icon": "spell_arcane_massdispel.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 11219,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 503,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 503,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 503,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Allerialyn",
+            "total": 503,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 3043,
+      "overkill": 3750,
+      "events": [
+        {
+          "timestamp": 5744604,
+          "type": "damage",
+          "sourceID": 136,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Netherbreath",
+            "guid": 38524,
+            "type": 64,
+            "abilityIcon": "spell_arcane_massdispel.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 958,
+          "unmitigatedAmount": 4708,
+          "overkill": 3750,
+          "isAoE": true
+        },
+        {
+          "timestamp": 5741561,
+          "type": "damage",
+          "sourceID": 136,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 68,
+          "hitType": 1,
+          "amount": 6511,
+          "mitigated": 1357,
+          "unmitigatedAmount": 7868,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Netherbreath",
+        "guid": 38524,
+        "type": 64,
+        "abilityIcon": "spell_arcane_massdispel.jpg"
+      }
+    }
+  ]
+}

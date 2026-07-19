@@ -1,0 +1,143 @@
+{
+  "entries": [
+    {
+      "name": "Greymud",
+      "id": 22,
+      "guid": 52440721,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 8539313,
+      "fight": 48,
+      "damage": {
+        "total": 15023,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 7496,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 15023,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 15023,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3917,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1675,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1612,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 480,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 150,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 3917,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Samwellx",
+            "total": 3767,
+            "type": "Druid"
+          },
+          {
+            "name": "Greymud",
+            "total": 150,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 8100,
+      "overkill": 2798,
+      "events": [
+        {
+          "timestamp": 8539280,
+          "type": "damage",
+          "sourceID": 1381,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 3975,
+          "mitigated": 3379,
+          "unmitigatedAmount": 10152,
+          "overkill": 2798,
+          "isAoE": true
+        },
+        {
+          "timestamp": 8531180,
+          "type": "damage",
+          "sourceID": 1381,
+          "sourceIsFriendly": false,
+          "targetID": 22,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 48,
+          "hitType": 1,
+          "amount": 8250,
+          "mitigated": 4117,
+          "unmitigatedAmount": 12367,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    }
+  ]
+}

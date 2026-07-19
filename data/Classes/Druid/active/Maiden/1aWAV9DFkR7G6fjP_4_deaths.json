@@ -1,0 +1,140 @@
+{
+  "entries": [
+    {
+      "name": "Aleksandrit",
+      "id": 7,
+      "guid": 53214563,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 155119,
+      "fight": 4,
+      "damage": {
+        "total": 11129,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 32445,
+            "name": "Holy Wrath",
+            "total": 9016,
+            "type": 2,
+            "icon": "spell_shadow_siphonmana.jpg"
+          },
+          {
+            "guid": 29512,
+            "name": "Holy Ground",
+            "total": 2113,
+            "type": 2,
+            "icon": "spell_holy_silence.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 11129,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 180,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 180,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29512,
+            "name": "Holy Ground",
+            "total": 180,
+            "type": 2,
+            "icon": "spell_holy_silence.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Aleksandrit",
+            "total": 180,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 10771,
+      "overkill": 1235,
+      "events": [
+        {
+          "timestamp": 155117,
+          "type": "damage",
+          "sourceID": 22,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Wrath",
+            "guid": 32445,
+            "type": 2,
+            "abilityIcon": "spell_shadow_siphonmana.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 7781,
+          "unmitigatedAmount": 7806,
+          "overkill": 1235,
+          "isAoE": false
+        },
+        {
+          "timestamp": 154373,
+          "type": "damage",
+          "sourceID": 22,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Ground",
+            "guid": 29512,
+            "type": 2,
+            "abilityIcon": "spell_holy_silence.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 330,
+          "unmitigatedAmount": 285,
+          "isAoE": true
+        },
+        {
+          "timestamp": 152378,
+          "type": "damage",
+          "sourceID": 22,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Ground",
+            "guid": 29512,
+            "type": 2,
+            "abilityIcon": "spell_holy_silence.jpg"
+          },
+          "fight": 4,
+          "hitType": 1,
+          "amount": 376,
+          "unmitigatedAmount": 326,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Holy Wrath",
+        "guid": 32445,
+        "type": 2,
+        "abilityIcon": "spell_shadow_siphonmana.jpg"
+      }
+    }
+  ]
+}

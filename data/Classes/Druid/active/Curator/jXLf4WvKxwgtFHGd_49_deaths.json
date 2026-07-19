@@ -1,0 +1,153 @@
+{
+  "entries": [
+    {
+      "name": "Aedris",
+      "id": 3,
+      "guid": 42863333,
+      "type": "Paladin",
+      "icon": "Paladin-Protection",
+      "timestamp": 4428656,
+      "fight": 49,
+      "damage": {
+        "total": 13542,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 11573,
+        "blocked": 612,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8760,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30403,
+            "name": "Arcane Infusion",
+            "total": 4782,
+            "type": 64,
+            "icon": "spell_arcane_arcanepotency.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "The Curator",
+            "total": 13542,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1348,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 888,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 460,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30403,
+            "name": "Arcane Infusion",
+            "total": 1348,
+            "type": 64,
+            "icon": "spell_arcane_arcanepotency.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Starblind",
+            "total": 1348,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 3222,
+      "overkill": 247,
+      "events": [
+        {
+          "timestamp": 4428637,
+          "type": "damage",
+          "sourceID": 81,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Infusion",
+            "guid": 30403,
+            "type": 64,
+            "abilityIcon": "spell_arcane_arcanepotency.jpg"
+          },
+          "fight": 49,
+          "hitType": 1,
+          "amount": 1123,
+          "mitigated": 168,
+          "unmitigatedAmount": 1538,
+          "overkill": 247,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4428615,
+          "type": "damage",
+          "sourceID": 81,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 49,
+          "hitType": 4,
+          "amount": 2684,
+          "mitigated": 4638,
+          "unmitigatedAmount": 7322,
+          "blocked": 306,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4427435,
+          "type": "damage",
+          "sourceID": 81,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Infusion",
+            "guid": 30403,
+            "type": 64,
+            "abilityIcon": "spell_arcane_arcanepotency.jpg"
+          },
+          "fight": 49,
+          "hitType": 1,
+          "amount": 1599,
+          "mitigated": 182,
+          "unmitigatedAmount": 1781,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Infusion",
+        "guid": 30403,
+        "type": 64,
+        "abilityIcon": "spell_arcane_arcanepotency.jpg"
+      }
+    }
+  ]
+}

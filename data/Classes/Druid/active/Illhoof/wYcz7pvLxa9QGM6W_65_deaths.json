@@ -1,0 +1,302 @@
+{
+  "entries": [
+    {
+      "name": "Harken",
+      "id": 94,
+      "guid": 43324420,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 7560534,
+      "fight": 65,
+      "damage": {
+        "total": 14461,
+        "totalReduced": 12639,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 3627,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 14461,
+            "totalReduced": 12639,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Terestian Illhoof",
+            "total": 14461,
+            "totalReduced": 12639,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4047,
+        "totalReduced": 2225,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 2225,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 25218,
+            "name": "Power Word: Shield",
+            "total": 1822,
+            "totalReduced": 0,
+            "type": 2,
+            "icon": "spell_holy_powerwordshield.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 4047,
+            "totalReduced": 2225,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Hokabra",
+            "total": 2225,
+            "type": "Druid"
+          },
+          {
+            "name": "Wibli",
+            "total": 1822,
+            "totalReduced": 0,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 3596,
+      "overkill": 1959,
+      "events": [
+        {
+          "timestamp": 7560513,
+          "type": "damage",
+          "sourceID": 1539,
+          "sourceIsFriendly": false,
+          "targetID": 94,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 65,
+          "hitType": 2,
+          "amount": 4582,
+          "unmitigatedAmount": 5969,
+          "overkill": 1959,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7558932,
+          "type": "damage",
+          "sourceID": 1539,
+          "sourceIsFriendly": false,
+          "targetID": 94,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 65,
+          "hitType": 1,
+          "amount": 1321,
+          "mitigated": 2592,
+          "unmitigatedAmount": 5735,
+          "absorbed": 1822,
+          "isAoE": false
+        },
+        {
+          "timestamp": 7556917,
+          "type": "damage",
+          "sourceID": 1539,
+          "sourceIsFriendly": false,
+          "targetID": 94,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 65,
+          "hitType": 15,
+          "amount": 4777,
+          "mitigated": 1035,
+          "unmitigatedAmount": 5812,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Wibli",
+      "id": 1228,
+      "guid": 52815690,
+      "type": "Priest",
+      "icon": "Priest-Discipline",
+      "timestamp": 7591975,
+      "fight": 65,
+      "damage": {
+        "total": 15000,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30115,
+            "name": "Sacrifice",
+            "total": 15000,
+            "type": 32,
+            "icon": "spell_shadow_antimagicshell.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Terestian Illhoof",
+            "total": 15000,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5793,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 2657,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 2220,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 916,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30115,
+            "name": "Sacrifice",
+            "total": 5793,
+            "type": 32,
+            "icon": "spell_shadow_antimagicshell.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Hokabra",
+            "total": 5793,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 8998,
+      "overkill": 236,
+      "events": [
+        {
+          "timestamp": 7591943,
+          "type": "damage",
+          "sourceID": 1539,
+          "sourceIsFriendly": false,
+          "targetID": 1228,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sacrifice",
+            "guid": 30115,
+            "type": 32,
+            "abilityIcon": "spell_shadow_antimagicshell.jpg"
+          },
+          "fight": 65,
+          "hitType": 1,
+          "amount": 1264,
+          "unmitigatedAmount": 1500,
+          "overkill": 236,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 7590945,
+          "type": "damage",
+          "sourceID": 1539,
+          "sourceIsFriendly": false,
+          "targetID": 1228,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sacrifice",
+            "guid": 30115,
+            "type": 32,
+            "abilityIcon": "spell_shadow_antimagicshell.jpg"
+          },
+          "fight": 65,
+          "hitType": 1,
+          "amount": 1500,
+          "unmitigatedAmount": 1500,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 7589969,
+          "type": "damage",
+          "sourceID": 1539,
+          "sourceIsFriendly": false,
+          "targetID": 1228,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Sacrifice",
+            "guid": 30115,
+            "type": 32,
+            "abilityIcon": "spell_shadow_antimagicshell.jpg"
+          },
+          "fight": 65,
+          "hitType": 1,
+          "amount": 1500,
+          "unmitigatedAmount": 1500,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Sacrifice",
+        "guid": 30115,
+        "type": 32,
+        "abilityIcon": "spell_shadow_antimagicshell.jpg"
+      }
+    }
+  ]
+}

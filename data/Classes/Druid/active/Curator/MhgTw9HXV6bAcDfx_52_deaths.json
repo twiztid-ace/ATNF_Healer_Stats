@@ -1,0 +1,134 @@
+{
+  "entries": [
+    {
+      "name": "Pushlock",
+      "id": 14,
+      "guid": 56969274,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 4892999,
+      "fight": 52,
+      "damage": {
+        "total": 11217,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 750,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 4960,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": -64,
+            "name": "Melee",
+            "total": 3534,
+            "type": 64,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29885,
+            "name": "Arcane Volley",
+            "total": 2723,
+            "type": 64,
+            "icon": "spell_arcane_starfire.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Arcane Anomaly",
+            "total": 6257,
+            "type": "NPC"
+          },
+          {
+            "name": "The Curator",
+            "total": 4960,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2398,
+      "overkill": 1164,
+      "events": [
+        {
+          "timestamp": 4892966,
+          "type": "damage",
+          "sourceID": 206,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": -64,
+            "type": 64,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 2370,
+          "unmitigatedAmount": 3534,
+          "overkill": 1164,
+          "isAoE": false,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 4892817,
+          "type": "damage",
+          "sourceID": 208,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 4960,
+          "mitigated": 750,
+          "unmitigatedAmount": 5710,
+          "isAoE": false
+        },
+        {
+          "timestamp": 4890568,
+          "type": "damage",
+          "sourceID": 206,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Volley",
+            "guid": 29885,
+            "type": 64,
+            "abilityIcon": "spell_arcane_starfire.jpg"
+          },
+          "fight": 52,
+          "hitType": 1,
+          "amount": 2723,
+          "unmitigatedAmount": 2723,
+          "isAoE": true,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": -64,
+        "type": 64,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

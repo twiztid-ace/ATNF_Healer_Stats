@@ -1,0 +1,75 @@
+{
+  "entries": [
+    {
+      "name": "Whitecube",
+      "id": 14,
+      "guid": 54980742,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 10677946,
+      "fight": 30,
+      "damage": {
+        "total": 10896,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1139,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10896,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 10896,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 640,
+      "events": [
+        {
+          "timestamp": 10677943,
+          "type": "damage",
+          "sourceID": 75,
+          "sourceIsFriendly": false,
+          "targetID": 14,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 30,
+          "hitType": 15,
+          "amount": 10256,
+          "mitigated": 1139,
+          "unmitigatedAmount": 12035,
+          "overkill": 640,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

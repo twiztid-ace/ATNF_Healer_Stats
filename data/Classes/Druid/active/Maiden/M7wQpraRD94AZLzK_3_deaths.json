@@ -1,0 +1,264 @@
+{
+  "entries": [
+    {
+      "name": "Munchybow",
+      "id": 12,
+      "guid": 56803720,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 4480911,
+      "fight": 3,
+      "damage": {
+        "total": 7999,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1312,
+        "abilities": [
+          {
+            "guid": 29522,
+            "name": "Holy Fire",
+            "total": 7438,
+            "type": 4,
+            "icon": "spell_holy_searinglight.jpg"
+          },
+          {
+            "guid": 29512,
+            "name": "Holy Ground",
+            "total": 561,
+            "type": 2,
+            "icon": "spell_holy_silence.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 7999,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 283,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 283,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 29522,
+            "name": "Holy Fire",
+            "total": 283,
+            "type": 4,
+            "icon": "spell_holy_searinglight.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Munchybow",
+            "total": 283,
+            "type": "Hunter"
+          }
+        ]
+      },
+      "deathWindow": 8010,
+      "overkill": 638,
+      "events": [
+        {
+          "timestamp": 4480905,
+          "type": "damage",
+          "sourceID": 34,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Fire",
+            "guid": 29522,
+            "type": 4,
+            "abilityIcon": "spell_holy_searinglight.jpg"
+          },
+          "fight": 3,
+          "hitType": 16,
+          "amount": 675,
+          "mitigated": 437,
+          "unmitigatedAmount": 1750,
+          "resisted": 438,
+          "overkill": 638,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 4480175,
+          "type": "damage",
+          "sourceID": 34,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Ground",
+            "guid": 29512,
+            "type": 2,
+            "abilityIcon": "spell_holy_silence.jpg"
+          },
+          "fight": 3,
+          "hitType": 1,
+          "amount": 321,
+          "unmitigatedAmount": 321,
+          "isAoE": true
+        },
+        {
+          "timestamp": 4478905,
+          "type": "damage",
+          "sourceID": 34,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Fire",
+            "guid": 29522,
+            "type": 4,
+            "abilityIcon": "spell_holy_searinglight.jpg"
+          },
+          "fight": 3,
+          "hitType": 1,
+          "amount": 1750,
+          "unmitigatedAmount": 1750,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Holy Fire",
+        "guid": 29522,
+        "type": 4,
+        "abilityIcon": "spell_holy_searinglight.jpg"
+      }
+    },
+    {
+      "name": "Curselle",
+      "id": 10,
+      "guid": 53333391,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 4499167,
+      "fight": 3,
+      "damage": {
+        "total": 10024,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 437,
+        "abilities": [
+          {
+            "guid": 29522,
+            "name": "Holy Fire",
+            "total": 8154,
+            "type": 4,
+            "icon": "spell_holy_searinglight.jpg"
+          },
+          {
+            "guid": 29511,
+            "name": "Repentance",
+            "total": 1870,
+            "type": 2,
+            "icon": "spell_holy_prayerofhealing.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 10024,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 6010,
+      "overkill": 1605,
+      "events": [
+        {
+          "timestamp": 4499166,
+          "type": "damage",
+          "sourceID": 34,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Fire",
+            "guid": 29522,
+            "type": 4,
+            "abilityIcon": "spell_holy_searinglight.jpg"
+          },
+          "fight": 3,
+          "hitType": 1,
+          "amount": 145,
+          "unmitigatedAmount": 1750,
+          "overkill": 1605,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 4497160,
+          "type": "damage",
+          "sourceID": 34,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Fire",
+            "guid": 29522,
+            "type": 4,
+            "abilityIcon": "spell_holy_searinglight.jpg"
+          },
+          "fight": 3,
+          "hitType": 16,
+          "amount": 1313,
+          "mitigated": 437,
+          "unmitigatedAmount": 1750,
+          "resisted": 438,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 4495994,
+          "type": "damage",
+          "sourceID": 34,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Repentance",
+            "guid": 29511,
+            "type": 2,
+            "abilityIcon": "spell_holy_prayerofhealing.jpg"
+          },
+          "fight": 3,
+          "hitType": 1,
+          "amount": 1870,
+          "unmitigatedAmount": 1870,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Holy Fire",
+        "guid": 29522,
+        "type": 4,
+        "abilityIcon": "spell_holy_searinglight.jpg"
+      }
+    }
+  ]
+}

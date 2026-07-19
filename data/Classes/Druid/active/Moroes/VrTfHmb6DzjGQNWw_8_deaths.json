@@ -1,0 +1,194 @@
+{
+  "entries": [
+    {
+      "name": "Sinapz",
+      "id": 45,
+      "guid": 74477680,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 8363317,
+      "fight": 8,
+      "damage": {
+        "total": 18022,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5592,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12900,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29570,
+            "name": "Mind Flay",
+            "total": 3623,
+            "type": 32,
+            "icon": "spell_shadow_siphonmana.jpg"
+          },
+          {
+            "guid": 20424,
+            "name": "Seals of Command",
+            "total": 1499,
+            "type": 2,
+            "icon": "ability_warrior_innerrage.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Baron Rafe Dreuger",
+            "total": 10178,
+            "type": "Boss"
+          },
+          {
+            "name": "Baroness Dorothea Millstipe",
+            "total": 4976,
+            "type": "Boss"
+          },
+          {
+            "name": "Lord Robin Daris",
+            "total": 2868,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 8404,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 7818,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 376,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 210,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 4239,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29570,
+            "name": "Mind Flay",
+            "total": 2666,
+            "type": 32,
+            "icon": "spell_shadow_siphonmana.jpg"
+          },
+          {
+            "guid": 20424,
+            "name": "Seals of Command",
+            "total": 1499,
+            "type": 2,
+            "icon": "ability_warrior_innerrage.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Trophies",
+            "total": 7818,
+            "type": "Druid"
+          },
+          {
+            "name": "Sinapz",
+            "total": 586,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 9021,
+      "overkill": 214,
+      "events": [
+        {
+          "timestamp": 8363298,
+          "type": "damage",
+          "sourceID": 92,
+          "sourceIsFriendly": false,
+          "targetID": 45,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 8,
+          "hitType": 1,
+          "amount": 1430,
+          "mitigated": 934,
+          "unmitigatedAmount": 2578,
+          "overkill": 214,
+          "isAoE": false
+        },
+        {
+          "timestamp": 8362346,
+          "type": "damage",
+          "sourceID": 90,
+          "sourceIsFriendly": false,
+          "targetID": 45,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Mind Flay",
+            "guid": 29570,
+            "type": 32,
+            "abilityIcon": "spell_shadow_siphonmana.jpg"
+          },
+          "fight": 8,
+          "hitType": 1,
+          "amount": 1208,
+          "unmitigatedAmount": 1045,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 8361350,
+          "type": "damage",
+          "sourceID": 90,
+          "sourceIsFriendly": false,
+          "targetID": 45,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Mind Flay",
+            "guid": 29570,
+            "type": 32,
+            "abilityIcon": "spell_shadow_siphonmana.jpg"
+          },
+          "fight": 8,
+          "hitType": 1,
+          "amount": 1208,
+          "unmitigatedAmount": 1045,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

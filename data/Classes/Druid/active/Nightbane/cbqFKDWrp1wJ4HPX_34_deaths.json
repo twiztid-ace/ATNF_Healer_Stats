@@ -1,0 +1,175 @@
+{
+  "entries": [
+    {
+      "name": "Ajontis",
+      "id": 3,
+      "guid": 43850870,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 3453380,
+      "fight": 34,
+      "damage": {
+        "total": 10591,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1613,
+        "abilities": [
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 10591,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 10591,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 270,
+      "events": [
+        {
+          "timestamp": 3453364,
+          "type": "damage",
+          "sourceID": 72,
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 34,
+          "hitType": 1,
+          "amount": 10321,
+          "mitigated": 1613,
+          "unmitigatedAmount": 12204,
+          "overkill": 270,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Cleave",
+        "guid": 30131,
+        "type": 1,
+        "abilityIcon": "ability_warrior_cleave.jpg"
+      }
+    },
+    {
+      "name": "Antilove",
+      "id": 4,
+      "guid": 54736013,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 3454595,
+      "fight": 34,
+      "damage": {
+        "total": 13184,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 9911,
+        "blocked": 120,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 6608,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 30131,
+            "name": "Cleave",
+            "total": 6576,
+            "type": 1,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Nightbane",
+            "total": 13184,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 1198,
+      "overkill": 5665,
+      "events": [
+        {
+          "timestamp": 3454562,
+          "type": "damage",
+          "sourceID": 72,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 34,
+          "hitType": 1,
+          "amount": 943,
+          "mitigated": 4863,
+          "unmitigatedAmount": 11471,
+          "overkill": 5665,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3453364,
+          "type": "damage",
+          "sourceID": 72,
+          "sourceIsFriendly": false,
+          "targetID": 4,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Cleave",
+            "guid": 30131,
+            "type": 1,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 34,
+          "hitType": 4,
+          "amount": 6576,
+          "mitigated": 5048,
+          "unmitigatedAmount": 11624,
+          "blocked": 120,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

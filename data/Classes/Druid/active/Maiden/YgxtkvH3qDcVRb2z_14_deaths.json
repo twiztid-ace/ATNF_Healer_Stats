@@ -1,0 +1,248 @@
+{
+  "entries": [
+    {
+      "name": "Dâzzle",
+      "id": 5,
+      "guid": 53928292,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 3809883,
+      "fight": 14,
+      "damage": {
+        "total": 7926,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 32445,
+            "name": "Holy Wrath",
+            "total": 5485,
+            "type": 2,
+            "icon": "spell_shadow_siphonmana.jpg"
+          },
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 2441,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 5485,
+            "type": "Boss"
+          },
+          {
+            "name": "Environment",
+            "total": 2441,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 82,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 39373,
+            "name": "Shadowmend",
+            "total": 82,
+            "type": 32,
+            "icon": "spell_shadow_unsummonbuilding.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 32409,
+            "name": "Shadow Word: Death",
+            "total": 82,
+            "type": 32,
+            "icon": "spell_shadow_demonicfortitude.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Dâzzle",
+            "total": 82,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 1327,
+      "overkill": 43,
+      "events": [
+        {
+          "timestamp": 3809855,
+          "type": "damage",
+          "sourceID": 62,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Wrath",
+            "guid": 32445,
+            "type": 2,
+            "abilityIcon": "spell_shadow_siphonmana.jpg"
+          },
+          "fight": 14,
+          "hitType": 1,
+          "amount": 5442,
+          "unmitigatedAmount": 5485,
+          "overkill": 43,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3808528,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Death",
+            "guid": 32409,
+            "type": 32,
+            "abilityIcon": "spell_shadow_demonicfortitude.jpg"
+          },
+          "fight": 14,
+          "hitType": 1,
+          "amount": 2441,
+          "unmitigatedAmount": 2441,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Holy Wrath",
+        "guid": 32445,
+        "type": 2,
+        "abilityIcon": "spell_shadow_siphonmana.jpg"
+      }
+    },
+    {
+      "name": "Lanarae",
+      "id": 8,
+      "guid": 52388066,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 3809886,
+      "fight": 14,
+      "damage": {
+        "total": 9375,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 29522,
+            "name": "Holy Fire",
+            "total": 5359,
+            "type": 4,
+            "icon": "spell_holy_searinglight.jpg"
+          },
+          {
+            "guid": 32445,
+            "name": "Holy Wrath",
+            "total": 4016,
+            "type": 2,
+            "icon": "spell_shadow_siphonmana.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Maiden of Virtue",
+            "total": 9375,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 3879,
+      "overkill": 746,
+      "events": [
+        {
+          "timestamp": 3809868,
+          "type": "damage",
+          "sourceID": 62,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Wrath",
+            "guid": 32445,
+            "type": 2,
+            "abilityIcon": "spell_shadow_siphonmana.jpg"
+          },
+          "fight": 14,
+          "hitType": 1,
+          "amount": 3270,
+          "unmitigatedAmount": 4016,
+          "overkill": 746,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3807991,
+          "type": "damage",
+          "sourceID": 62,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Fire",
+            "guid": 29522,
+            "type": 4,
+            "abilityIcon": "spell_holy_searinglight.jpg"
+          },
+          "fight": 14,
+          "hitType": 1,
+          "amount": 1750,
+          "unmitigatedAmount": 1750,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 3805989,
+          "type": "damage",
+          "sourceID": 62,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Holy Fire",
+            "guid": 29522,
+            "type": 4,
+            "abilityIcon": "spell_holy_searinglight.jpg"
+          },
+          "fight": 14,
+          "hitType": 1,
+          "amount": 3609,
+          "unmitigatedAmount": 3609,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Holy Wrath",
+        "guid": 32445,
+        "type": 2,
+        "abilityIcon": "spell_shadow_siphonmana.jpg"
+      }
+    }
+  ]
+}

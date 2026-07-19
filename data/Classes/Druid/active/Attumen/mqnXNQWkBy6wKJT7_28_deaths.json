@@ -1,0 +1,490 @@
+{
+  "entries": [
+    {
+      "name": "Barrich",
+      "id": 7,
+      "guid": 54410254,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 3011536,
+      "fight": 28,
+      "damage": {
+        "total": 13502,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 13502,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Midnight",
+            "total": 13502,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2017,
+      "overkill": 5659,
+      "events": [
+        {
+          "timestamp": 3011519,
+          "type": "damage",
+          "sourceID": 62,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 28,
+          "hitType": 15,
+          "amount": 1374,
+          "unmitigatedAmount": 5373,
+          "overkill": 5659,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3009502,
+          "type": "damage",
+          "sourceID": 62,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 28,
+          "hitType": 15,
+          "amount": 6469,
+          "unmitigatedAmount": 4942,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Klaransa",
+      "id": 8,
+      "guid": 52951543,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 3067835,
+      "fight": 28,
+      "damage": {
+        "total": 16742,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1105,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 15448,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29711,
+            "name": "Knockdown",
+            "total": 1294,
+            "type": 1,
+            "icon": "ability_warstomp.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Attumen the Huntsman",
+            "total": 16742,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 4184,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1951,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1626,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 607,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 2890,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29711,
+            "name": "Knockdown",
+            "total": 1294,
+            "type": 1,
+            "icon": "ability_warstomp.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Bkanabe",
+            "total": 4184,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 2399,
+      "overkill": 3019,
+      "events": [
+        {
+          "timestamp": 3067803,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 28,
+          "hitType": 1,
+          "amount": 2654,
+          "mitigated": 899,
+          "unmitigatedAmount": 6572,
+          "overkill": 3019,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3065452,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Knockdown",
+            "guid": 29711,
+            "type": 1,
+            "abilityIcon": "ability_warstomp.jpg"
+          },
+          "fight": 28,
+          "hitType": 1,
+          "amount": 1294,
+          "mitigated": 206,
+          "unmitigatedAmount": 1500,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3065404,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 28,
+          "hitType": 2,
+          "amount": 9775,
+          "unmitigatedAmount": 5662,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Vâmpire",
+      "id": 9,
+      "guid": 47342384,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 3071757,
+      "fight": 28,
+      "damage": {
+        "total": 9980,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1845,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9980,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Attumen the Huntsman",
+            "total": 9980,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2433,
+      "overkill": 549,
+      "events": [
+        {
+          "timestamp": 3071747,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 28,
+          "hitType": 15,
+          "amount": 5907,
+          "mitigated": 46,
+          "unmitigatedAmount": 6502,
+          "overkill": 549,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3069314,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 28,
+          "hitType": 1,
+          "amount": 3524,
+          "mitigated": 1799,
+          "unmitigatedAmount": 5323,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Myasstro",
+      "id": 13,
+      "guid": 43147747,
+      "type": "Warlock",
+      "icon": "Warlock-Destruction",
+      "timestamp": 3088398,
+      "fight": 28,
+      "damage": {
+        "total": 15395,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1439,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 13111,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29832,
+            "name": "Shadow Cleave",
+            "total": 2284,
+            "type": 32,
+            "icon": "ability_warrior_cleave.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Attumen the Huntsman",
+            "total": 15395,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3996,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 18562,
+            "name": "Swiftmend",
+            "total": 3410,
+            "type": 8,
+            "icon": "inv_relics_idolofrejuvenation.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 586,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 3996,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Bkanabe",
+            "total": 3996,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 7044,
+      "overkill": 1212,
+      "events": [
+        {
+          "timestamp": 3088383,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 28,
+          "hitType": 2,
+          "amount": 7439,
+          "unmitigatedAmount": 4983,
+          "overkill": 1212,
+          "isAoE": false
+        },
+        {
+          "timestamp": 3086143,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Cleave",
+            "guid": 29832,
+            "type": 32,
+            "abilityIcon": "ability_warrior_cleave.jpg"
+          },
+          "fight": 28,
+          "hitType": 16,
+          "amount": 2284,
+          "mitigated": 761,
+          "unmitigatedAmount": 3045,
+          "resisted": 761,
+          "isAoE": true
+        },
+        {
+          "timestamp": 3081339,
+          "type": "damage",
+          "sourceID": 64,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 28,
+          "hitType": 1,
+          "amount": 4460,
+          "mitigated": 678,
+          "unmitigatedAmount": 5138,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

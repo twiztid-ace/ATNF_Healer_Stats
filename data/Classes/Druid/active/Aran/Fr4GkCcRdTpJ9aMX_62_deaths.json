@@ -1,0 +1,224 @@
+{
+  "entries": [
+    {
+      "name": "Stonegolem",
+      "id": 5,
+      "guid": 54822284,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 5358099,
+      "fight": 62,
+      "damage": {
+        "total": 9757,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 4180,
+        "abilities": [
+          {
+            "guid": 29973,
+            "name": "Arcane Explosion",
+            "total": 6928,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 2829,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shade of Aran",
+            "total": 6928,
+            "type": "Boss"
+          },
+          {
+            "name": "Conjured Elemental",
+            "total": 2829,
+            "type": "Pet"
+          }
+        ]
+      },
+      "healing": {
+        "total": 720,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 720,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 37054,
+            "name": "Water Bolt",
+            "total": 720,
+            "type": 16,
+            "icon": "spell_frost_frostbolt.jpg",
+            "petName": "Conjured Elemental"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Stonegolem",
+            "total": 720,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 8115,
+      "overkill": 38,
+      "events": [
+        {
+          "timestamp": 5358078,
+          "type": "damage",
+          "sourceID": 98,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Explosion",
+            "guid": 29973,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 62,
+          "hitType": 1,
+          "amount": 6890,
+          "mitigated": 2969,
+          "unmitigatedAmount": 9897,
+          "overkill": 38,
+          "isAoE": true
+        },
+        {
+          "timestamp": 5357869,
+          "type": "damage",
+          "sourceID": 99,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 62,
+          "hitType": 1,
+          "amount": 1424,
+          "mitigated": 610,
+          "unmitigatedAmount": 2034,
+          "isAoE": false,
+          "sourceMarker": 3
+        },
+        {
+          "timestamp": 5349963,
+          "type": "damage",
+          "sourceID": 99,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 5,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Water Bolt",
+            "guid": 37054,
+            "type": 16,
+            "abilityIcon": "spell_frost_frostbolt.jpg"
+          },
+          "fight": 62,
+          "hitType": 1,
+          "amount": 1405,
+          "mitigated": 601,
+          "unmitigatedAmount": 2006,
+          "isAoE": false,
+          "sourceMarker": 3
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Explosion",
+        "guid": 29973,
+        "type": 64,
+        "abilityIcon": "spell_nature_wispsplode.jpg"
+      }
+    },
+    {
+      "name": "Trrooper",
+      "id": 10,
+      "guid": 51262995,
+      "type": "Priest",
+      "icon": "Priest-Shadow",
+      "timestamp": 5358101,
+      "fight": 62,
+      "damage": {
+        "total": 9188,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 29973,
+            "name": "Arcane Explosion",
+            "total": 9188,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Shade of Aran",
+            "total": 9188,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 1857,
+      "events": [
+        {
+          "timestamp": 5358076,
+          "type": "damage",
+          "sourceID": 98,
+          "sourceIsFriendly": false,
+          "targetID": 10,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Explosion",
+            "guid": 29973,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 62,
+          "hitType": 1,
+          "amount": 7331,
+          "unmitigatedAmount": 9188,
+          "overkill": 1857,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Arcane Explosion",
+        "guid": 29973,
+        "type": 64,
+        "abilityIcon": "spell_nature_wispsplode.jpg"
+      }
+    }
+  ]
+}

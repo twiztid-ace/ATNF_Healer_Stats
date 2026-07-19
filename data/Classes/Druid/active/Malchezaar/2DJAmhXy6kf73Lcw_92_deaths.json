@@ -1,0 +1,521 @@
+{
+  "entries": [
+    {
+      "name": "Insein",
+      "id": 9,
+      "guid": 55164720,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 6462429,
+      "fight": 92,
+      "damage": {
+        "total": 1145,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 241,
+        "abilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 723,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 422,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite Infernal",
+            "total": 723,
+            "type": "NPC"
+          },
+          {
+            "name": "Insein",
+            "total": 422,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 374,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 374,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 374,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Insein",
+            "total": 374,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 33051,
+      "overkill": 124,
+      "events": [
+        {
+          "timestamp": 6462401,
+          "type": "damage",
+          "sourceID": 9,
+          "sourceIsFriendly": true,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 92,
+          "hitType": 1,
+          "amount": 1,
+          "unmitigatedAmount": 125,
+          "overkill": 124,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6459368,
+          "type": "damage",
+          "sourceID": 9,
+          "sourceIsFriendly": true,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 92,
+          "hitType": 1,
+          "amount": 29,
+          "unmitigatedAmount": 29,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6459367,
+          "type": "damage",
+          "sourceID": 9,
+          "sourceIsFriendly": true,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 92,
+          "hitType": 1,
+          "amount": 43,
+          "unmitigatedAmount": 43,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Seal of Blood",
+        "guid": 32221,
+        "type": 2,
+        "abilityIcon": "spell_holy_sealofblood.jpg"
+      }
+    },
+    {
+      "name": "Selestra",
+      "id": 8,
+      "guid": 55288729,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 6529674,
+      "fight": 92,
+      "damage": {
+        "total": 17284,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 13200,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 30898,
+            "name": "Shadow Word: Pain",
+            "total": 4084,
+            "type": 32,
+            "icon": "spell_shadow_shadowwordpain.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 17284,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5543,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 2760,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1495,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 838,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 30340,
+            "name": "Bloodthirst",
+            "total": 450,
+            "type": 1,
+            "icon": "spell_nature_bloodlust.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 4243,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 30898,
+            "name": "Shadow Word: Pain",
+            "total": 1300,
+            "type": 32,
+            "icon": "spell_shadow_shadowwordpain.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Edíí",
+            "total": 4255,
+            "type": "Druid"
+          },
+          {
+            "name": "Selestra",
+            "total": 1288,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "deathWindow": 19481,
+      "overkill": 1267,
+      "events": [
+        {
+          "timestamp": 6529665,
+          "type": "damage",
+          "sourceID": 129,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Nova",
+            "guid": 30852,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowfury.jpg"
+          },
+          "fight": 92,
+          "hitType": 1,
+          "amount": 5333,
+          "unmitigatedAmount": 3000,
+          "overkill": 1267,
+          "isAoE": true
+        },
+        {
+          "timestamp": 6527182,
+          "type": "damage",
+          "sourceID": 129,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Pain",
+            "guid": 30898,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+          },
+          "fight": 92,
+          "hitType": 16,
+          "amount": 2451,
+          "unmitigatedAmount": 1485,
+          "resisted": 371,
+          "isAoE": true,
+          "tick": true
+        },
+        {
+          "timestamp": 6524170,
+          "type": "damage",
+          "sourceID": 129,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Shadow Word: Pain",
+            "guid": 30898,
+            "type": 32,
+            "abilityIcon": "spell_shadow_shadowwordpain.jpg"
+          },
+          "fight": 92,
+          "hitType": 1,
+          "amount": 1633,
+          "unmitigatedAmount": 1485,
+          "isAoE": true,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Shadow Nova",
+        "guid": 30852,
+        "type": 32,
+        "abilityIcon": "spell_shadow_shadowfury.jpg"
+      }
+    },
+    {
+      "name": "Ðeekan",
+      "id": 7,
+      "guid": 52771958,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 6532165,
+      "fight": 92,
+      "damage": {
+        "total": 12453,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 664,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 6000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 3514,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          },
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 1986,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          },
+          {
+            "guid": 16666,
+            "name": "Demonic Rune",
+            "total": 953,
+            "type": 32,
+            "icon": "inv_misc_rune_04.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 6000,
+            "type": "Boss"
+          },
+          {
+            "name": "Prince Malchezaar's Axes",
+            "total": 3514,
+            "type": "Pet"
+          },
+          {
+            "name": "Netherspite Infernal",
+            "total": 1986,
+            "type": "NPC"
+          },
+          {
+            "name": "Ðeekan",
+            "total": 953,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "healing": {
+        "total": 3767,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1609,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33778,
+            "name": "Lifebloom",
+            "total": 1494,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 664,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 2035,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          },
+          {
+            "guid": 16666,
+            "name": "Demonic Rune",
+            "total": 953,
+            "type": 32,
+            "icon": "inv_misc_rune_04.jpg"
+          },
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 779,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Edíí",
+            "total": 3103,
+            "type": "Druid"
+          },
+          {
+            "name": "Ðeekan",
+            "total": 664,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 21950,
+      "overkill": 377,
+      "events": [
+        {
+          "timestamp": 6532134,
+          "type": "damage",
+          "sourceID": 132,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 92,
+          "hitType": 1,
+          "amount": 697,
+          "unmitigatedAmount": 1074,
+          "overkill": 377,
+          "isAoE": true
+        },
+        {
+          "timestamp": 6531414,
+          "type": "damage",
+          "sourceID": 134,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 92,
+          "hitType": 2,
+          "amount": 1479,
+          "unmitigatedAmount": 983,
+          "isAoE": false
+        },
+        {
+          "timestamp": 6531134,
+          "type": "damage",
+          "sourceID": 132,
+          "sourceInstance": 1,
+          "sourceIsFriendly": false,
+          "targetID": 7,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 92,
+          "hitType": 1,
+          "amount": 912,
+          "unmitigatedAmount": 912,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Hellfire Effect",
+        "guid": 30860,
+        "type": 4,
+        "abilityIcon": "spell_fire_incinerate.jpg"
+      }
+    }
+  ]
+}

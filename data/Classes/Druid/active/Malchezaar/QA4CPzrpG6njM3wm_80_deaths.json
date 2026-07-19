@@ -1,0 +1,229 @@
+{
+  "entries": [
+    {
+      "name": "Mcspankface",
+      "id": 118,
+      "guid": 72895734,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 11387960,
+      "fight": 80,
+      "damage": {
+        "total": 15056,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1976,
+        "abilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 6000,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 5332,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 2275,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 1383,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 20153,
+            "name": "Immolation",
+            "total": 66,
+            "type": 4,
+            "icon": "spell_shadow_summoninfernal.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Prince Malchezaar",
+            "total": 6000,
+            "type": "Boss"
+          },
+          {
+            "name": "Netherspite Infernal",
+            "total": 5332,
+            "type": "NPC"
+          },
+          {
+            "name": "Prince Malchezaar's Axes",
+            "total": 2275,
+            "type": "Pet"
+          },
+          {
+            "name": "Mcspankface",
+            "total": 1383,
+            "type": "Paladin"
+          },
+          {
+            "name": "Netherspite Infernal",
+            "total": 66,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 5670,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 5001,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 34866,
+            "name": "Circle of Healing",
+            "total": 669,
+            "type": 2,
+            "icon": "spell_holy_circleofrenewal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30852,
+            "name": "Shadow Nova",
+            "total": 3939,
+            "type": 32,
+            "icon": "spell_shadow_shadowfury.jpg"
+          },
+          {
+            "guid": 30860,
+            "name": "Hellfire Effect",
+            "total": 669,
+            "type": 4,
+            "icon": "spell_fire_incinerate.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 517,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 508,
+            "type": 1,
+            "icon": "inv_axe_02.jpg",
+            "petName": "Prince Malchezaar's Axes"
+          },
+          {
+            "guid": 20153,
+            "name": "Immolation",
+            "total": 37,
+            "type": 4,
+            "icon": "spell_shadow_summoninfernal.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Shyfter",
+            "total": 5001,
+            "type": "Druid"
+          },
+          {
+            "name": "Bilieve",
+            "total": 669,
+            "type": "Priest"
+          }
+        ]
+      },
+      "deathWindow": 69786,
+      "overkill": 309,
+      "events": [
+        {
+          "timestamp": 11387951,
+          "type": "damage",
+          "sourceID": 228,
+          "sourceIsFriendly": false,
+          "targetID": 118,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 8,
+          "mitigated": 228,
+          "unmitigatedAmount": 545,
+          "overkill": 309,
+          "isAoE": false
+        },
+        {
+          "timestamp": 11387940,
+          "type": "damage",
+          "sourceID": 226,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 118,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 80,
+          "hitType": 16,
+          "amount": 715,
+          "mitigated": 238,
+          "unmitigatedAmount": 953,
+          "resisted": 238,
+          "isAoE": true
+        },
+        {
+          "timestamp": 11386940,
+          "type": "damage",
+          "sourceID": 226,
+          "sourceInstance": 3,
+          "sourceIsFriendly": false,
+          "targetID": 118,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Hellfire Effect",
+            "guid": 30860,
+            "type": 4,
+            "abilityIcon": "spell_fire_incinerate.jpg"
+          },
+          "fight": 80,
+          "hitType": 1,
+          "amount": 898,
+          "unmitigatedAmount": 898,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

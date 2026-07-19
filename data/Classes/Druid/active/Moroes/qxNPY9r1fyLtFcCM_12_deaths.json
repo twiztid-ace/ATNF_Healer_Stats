@@ -1,0 +1,197 @@
+{
+  "entries": [
+    {
+      "name": "Desomon",
+      "id": 1,
+      "guid": 66666868,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 943984,
+      "fight": 12,
+      "damage": {
+        "total": 8596,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 8596,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Moroes",
+            "total": 8596,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 2063,
+      "events": [
+        {
+          "timestamp": 943968,
+          "type": "damage",
+          "sourceID": 42,
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 12,
+          "hitType": 15,
+          "amount": 6533,
+          "unmitigatedAmount": 6519,
+          "overkill": 2063,
+          "isAoE": false,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Shipfaced",
+      "id": 9,
+      "guid": 55755191,
+      "type": "Mage",
+      "icon": "Mage-Arcane",
+      "timestamp": 944367,
+      "fight": 12,
+      "damage": {
+        "total": 7271,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1145,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 5172,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 29570,
+            "name": "Mind Flay",
+            "total": 2099,
+            "type": 32,
+            "icon": "spell_shadow_siphonmana.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Lady Keira Berrybuck",
+            "total": 5172,
+            "type": "NPC"
+          },
+          {
+            "name": "Baroness Dorothea Millstipe",
+            "total": 2099,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 2569,
+      "overkill": 458,
+      "events": [
+        {
+          "timestamp": 944335,
+          "type": "damage",
+          "sourceID": 47,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Mind Flay",
+            "guid": 29570,
+            "type": 32,
+            "abilityIcon": "spell_shadow_siphonmana.jpg"
+          },
+          "fight": 12,
+          "hitType": 1,
+          "amount": 591,
+          "unmitigatedAmount": 1049,
+          "overkill": 458,
+          "isAoE": false,
+          "tick": true
+        },
+        {
+          "timestamp": 943968,
+          "type": "damage",
+          "sourceID": 44,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 12,
+          "hitType": 1,
+          "amount": 2642,
+          "mitigated": 585,
+          "unmitigatedAmount": 3227,
+          "isAoE": false
+        },
+        {
+          "timestamp": 943334,
+          "type": "damage",
+          "sourceID": 47,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Mind Flay",
+            "guid": 29570,
+            "type": 32,
+            "abilityIcon": "spell_shadow_siphonmana.jpg"
+          },
+          "fight": 12,
+          "hitType": 1,
+          "amount": 1050,
+          "unmitigatedAmount": 1050,
+          "isAoE": false,
+          "tick": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Mind Flay",
+        "guid": 29570,
+        "type": 32,
+        "abilityIcon": "spell_shadow_siphonmana.jpg"
+      }
+    }
+  ]
+}

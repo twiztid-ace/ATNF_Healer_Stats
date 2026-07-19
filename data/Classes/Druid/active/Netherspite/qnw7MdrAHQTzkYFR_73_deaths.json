@@ -1,0 +1,114 @@
+{
+  "entries": [
+    {
+      "name": "Creezyzz",
+      "id": 6,
+      "guid": 74396108,
+      "type": "Shaman",
+      "icon": "Shaman-Elemental",
+      "timestamp": 7957421,
+      "fight": 73,
+      "damage": {
+        "total": 10334,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 10334,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Netherspite",
+            "total": 10334,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 1480,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 1480,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 30523,
+            "name": "Nether Burn",
+            "total": 1480,
+            "type": 32,
+            "icon": "spell_shadow_unholystrength.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Basedtgirl",
+            "total": 1480,
+            "type": "Druid"
+          }
+        ]
+      },
+      "deathWindow": 5012,
+      "overkill": 655,
+      "events": [
+        {
+          "timestamp": 7957407,
+          "type": "damage",
+          "sourceID": 495,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 73,
+          "hitType": 1,
+          "amount": 4751,
+          "unmitigatedAmount": 1196,
+          "overkill": 655,
+          "isAoE": true
+        },
+        {
+          "timestamp": 7952395,
+          "type": "damage",
+          "sourceID": 495,
+          "sourceIsFriendly": false,
+          "targetID": 6,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Nether Burn",
+            "guid": 30523,
+            "type": 32,
+            "abilityIcon": "spell_shadow_unholystrength.jpg"
+          },
+          "fight": 73,
+          "hitType": 1,
+          "amount": 4928,
+          "unmitigatedAmount": 1196,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Nether Burn",
+        "guid": 30523,
+        "type": 32,
+        "abilityIcon": "spell_shadow_unholystrength.jpg"
+      }
+    }
+  ]
+}
