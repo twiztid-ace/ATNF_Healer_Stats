@@ -1,0 +1,731 @@
+{
+  "entries": [
+    {
+      "name": "Sullykek",
+      "id": 31,
+      "guid": 56576396,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 8345485,
+      "fight": 64,
+      "damage": {
+        "total": 29125,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 401,
+        "abilities": [
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 11684,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 9529,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 7031,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 30486,
+            "name": "Super Sapper Charge",
+            "total": 881,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 11684,
+            "type": "Boss"
+          },
+          {
+            "name": "High Astromancer Solarian",
+            "total": 9529,
+            "type": "Boss"
+          },
+          {
+            "name": "Bloodydeznut",
+            "total": 7031,
+            "type": "Warrior"
+          },
+          {
+            "name": "Sullykek",
+            "total": 881,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "healing": {
+        "total": 10353,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 25235,
+            "name": "Flash Heal",
+            "total": 2882,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 2761,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 1875,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 1402,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          },
+          {
+            "guid": 27137,
+            "name": "Flash of Light",
+            "total": 1178,
+            "type": 2,
+            "icon": "spell_holy_flashheal.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 39414,
+            "name": "Arcane Missiles",
+            "total": 6596,
+            "type": 64,
+            "icon": "spell_nature_starfall.jpg"
+          },
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 2613,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 30486,
+            "name": "Super Sapper Charge",
+            "total": 632,
+            "type": 4,
+            "icon": "spell_fire_selfdestruct.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Swagxdudu",
+            "total": 4636,
+            "type": "Druid"
+          },
+          {
+            "name": "Ripbigthonk",
+            "total": 2882,
+            "type": "Priest"
+          },
+          {
+            "name": "Sullykek",
+            "total": 1657,
+            "type": "Warrior"
+          },
+          {
+            "name": "Pallylegend",
+            "total": 1178,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 25528,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 8345485,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 11684,
+          "unmitigatedAmount": 11684,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 8341162,
+          "type": "damage",
+          "sourceID": 23,
+          "sourceIsFriendly": true,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Wrath of the Astromancer",
+            "guid": 42787,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 7031,
+          "unmitigatedAmount": 6087,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 8339865,
+          "type": "damage",
+          "sourceID": 415,
+          "sourceIsFriendly": false,
+          "targetID": 31,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Arcane Missiles",
+            "guid": 39414,
+            "type": 64,
+            "abilityIcon": "spell_nature_starfall.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 3465,
+          "unmitigatedAmount": 3000,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Ayoshammy",
+      "id": 2,
+      "guid": 63895393,
+      "type": "Shaman",
+      "icon": "Shaman-Enhancement",
+      "timestamp": 8347422,
+      "fight": 64,
+      "damage": {
+        "total": 16150,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 9629,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 6521,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 9629,
+            "type": "Boss"
+          },
+          {
+            "name": "Bloodydeznut",
+            "total": 6521,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2288,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 27236,
+            "name": "Master Healthstone",
+            "total": 2288,
+            "type": 1,
+            "icon": "inv_stone_04.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 2288,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Ayoshammy",
+            "total": 2288,
+            "type": "Shaman"
+          }
+        ]
+      },
+      "deathWindow": 6247,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 8347409,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 9629,
+          "unmitigatedAmount": 9629,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 8341162,
+          "type": "damage",
+          "sourceID": 23,
+          "sourceIsFriendly": true,
+          "targetID": 2,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Wrath of the Astromancer",
+            "guid": 42787,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 6521,
+          "unmitigatedAmount": 6521,
+          "isAoE": true,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Pavv",
+      "id": 32,
+      "guid": 60273919,
+      "type": "Warrior",
+      "icon": "Warrior-Arms",
+      "timestamp": 8347463,
+      "fight": 64,
+      "damage": {
+        "total": 17946,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 11574,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 6372,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 11574,
+            "type": "Boss"
+          },
+          {
+            "name": "Bloodydeznut",
+            "total": 6372,
+            "type": "Warrior"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 6279,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 8347441,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 32,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 11574,
+          "unmitigatedAmount": 11574,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 8341162,
+          "type": "damage",
+          "sourceID": 23,
+          "sourceIsFriendly": true,
+          "targetID": 32,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Wrath of the Astromancer",
+            "guid": 42787,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 6372,
+          "unmitigatedAmount": 5517,
+          "isAoE": true,
+          "sourceMarker": 8
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Crackulaw",
+      "id": 3,
+      "guid": 77427169,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 8347620,
+      "fight": 64,
+      "damage": {
+        "total": 8887,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 8887,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 8887,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 8347593,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 3,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 8887,
+          "unmitigatedAmount": 8887,
+          "overkill": 0,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Whiittep",
+      "id": 1,
+      "guid": 77873245,
+      "type": "Paladin",
+      "icon": "Paladin-Retribution",
+      "timestamp": 8347887,
+      "fight": 64,
+      "damage": {
+        "total": 18397,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 3,
+            "name": "Falling",
+            "total": 10167,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 5759,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 1936,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          },
+          {
+            "guid": 32220,
+            "name": "Judgement of Blood",
+            "total": 535,
+            "type": 2,
+            "icon": "spell_shadow_lifedrain.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Environment",
+            "total": 10167,
+            "type": "Boss"
+          },
+          {
+            "name": "Bloodydeznut",
+            "total": 5759,
+            "type": "Warrior"
+          },
+          {
+            "name": "Whiittep",
+            "total": 2471,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "healing": {
+        "total": 2803,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 1989,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          },
+          {
+            "guid": 34299,
+            "name": "Leader of the Pack",
+            "total": 814,
+            "type": 1,
+            "icon": "spell_nature_unyeildingstamina.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 42787,
+            "name": "Wrath of the Astromancer",
+            "total": 2396,
+            "type": 64,
+            "icon": "spell_nature_wispsplode.jpg"
+          },
+          {
+            "guid": 32221,
+            "name": "Seal of Blood",
+            "total": 407,
+            "type": 2,
+            "icon": "spell_holy_sealofblood.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Ripbigthonk",
+            "total": 1989,
+            "type": "Priest"
+          },
+          {
+            "name": "Whiittep",
+            "total": 814,
+            "type": "Paladin"
+          }
+        ]
+      },
+      "deathWindow": 20824,
+      "overkill": 0,
+      "events": [
+        {
+          "timestamp": 8347872,
+          "type": "damage",
+          "source": {
+            "name": "Environment",
+            "id": -1,
+            "guid": 0,
+            "type": "Boss",
+            "icon": "Boss"
+          },
+          "sourceIsFriendly": false,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Falling",
+            "guid": 3,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 10167,
+          "unmitigatedAmount": 10167,
+          "overkill": 0,
+          "isAoE": false
+        },
+        {
+          "timestamp": 8341163,
+          "type": "damage",
+          "sourceID": 23,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Wrath of the Astromancer",
+            "guid": 42787,
+            "type": 64,
+            "abilityIcon": "spell_nature_wispsplode.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 5759,
+          "unmitigatedAmount": 5759,
+          "isAoE": true,
+          "sourceMarker": 8
+        },
+        {
+          "timestamp": 8340842,
+          "type": "damage",
+          "sourceID": 1,
+          "sourceIsFriendly": true,
+          "targetID": 1,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Seal of Blood",
+            "guid": 32221,
+            "type": 2,
+            "abilityIcon": "spell_holy_sealofblood.jpg"
+          },
+          "fight": 64,
+          "hitType": 1,
+          "amount": 256,
+          "unmitigatedAmount": 256,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Falling",
+        "guid": 3,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}

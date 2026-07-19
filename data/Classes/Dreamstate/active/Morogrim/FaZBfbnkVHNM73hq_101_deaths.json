@@ -1,0 +1,569 @@
+{
+  "entries": [
+    {
+      "name": "Blåskalle",
+      "id": 8,
+      "guid": 43598337,
+      "type": "Shaman",
+      "icon": "Shaman-Restoration",
+      "timestamp": 16751360,
+      "fight": 101,
+      "damage": {
+        "total": 11924,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 277,
+        "abilities": [
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 6797,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          },
+          {
+            "guid": 37730,
+            "name": "Tidal Wave",
+            "total": 4837,
+            "type": 16,
+            "icon": "spell_frost_chillingblast.jpg"
+          },
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 290,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Water Globule",
+            "total": 7087,
+            "type": "NPC"
+          },
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 4837,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 5849,
+      "overkill": 3125,
+      "events": [
+        {
+          "timestamp": 16751358,
+          "type": "damage",
+          "sourceID": 231,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Tidal Wave",
+            "guid": 37730,
+            "type": 16,
+            "abilityIcon": "spell_frost_chillingblast.jpg"
+          },
+          "fight": 101,
+          "hitType": 1,
+          "amount": 1712,
+          "unmitigatedAmount": 4837,
+          "overkill": 3125,
+          "isAoE": true
+        },
+        {
+          "timestamp": 16749354,
+          "type": "damage",
+          "sourceID": 260,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Freeze",
+            "guid": 37871,
+            "type": 16,
+            "abilityIcon": "spell_frost_glacier.jpg"
+          },
+          "fight": 101,
+          "hitType": 1,
+          "amount": 6797,
+          "unmitigatedAmount": 6797,
+          "isAoE": false
+        },
+        {
+          "timestamp": 16747521,
+          "type": "damage",
+          "sourceID": 260,
+          "sourceInstance": 2,
+          "sourceIsFriendly": false,
+          "targetID": 8,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 101,
+          "hitType": 1,
+          "amount": 146,
+          "mitigated": 140,
+          "unmitigatedAmount": 286,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Tidal Wave",
+        "guid": 37730,
+        "type": 16,
+        "abilityIcon": "spell_frost_chillingblast.jpg"
+      }
+    },
+    {
+      "name": "Daveinwild",
+      "id": 9,
+      "guid": 54076659,
+      "type": "Druid",
+      "icon": "Druid-Guardian",
+      "timestamp": 16752158,
+      "fight": 101,
+      "damage": {
+        "total": 27746,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 40425,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 23792,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37730,
+            "name": "Tidal Wave",
+            "total": 3954,
+            "type": 16,
+            "icon": "spell_frost_chillingblast.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 27746,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 10084,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [
+          {
+            "guid": 33763,
+            "name": "Lifebloom",
+            "total": 4466,
+            "type": 8,
+            "icon": "inv_misc_herb_felblossom.jpg"
+          },
+          {
+            "guid": 33110,
+            "name": "Prayer of Mending",
+            "total": 2068,
+            "type": 2,
+            "icon": "spell_holy_prayerofmendingtga.jpg"
+          },
+          {
+            "guid": 26982,
+            "name": "Rejuvenation",
+            "total": 1880,
+            "type": 8,
+            "icon": "spell_nature_rejuvenation.jpg"
+          },
+          {
+            "guid": 379,
+            "name": "Earth Shield",
+            "total": 994,
+            "type": 8,
+            "icon": "spell_nature_skinofearth.jpg"
+          },
+          {
+            "guid": 26980,
+            "name": "Regrowth",
+            "total": 468,
+            "type": 8,
+            "icon": "spell_nature_resistnature.jpg"
+          }
+        ],
+        "damageAbilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 7219,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37730,
+            "name": "Tidal Wave",
+            "total": 2865,
+            "type": 16,
+            "icon": "spell_frost_chillingblast.jpg"
+          }
+        ],
+        "sources": [
+          {
+            "name": "Meowblyat",
+            "total": 6814,
+            "type": "Druid"
+          },
+          {
+            "name": "Decody",
+            "total": 2068,
+            "type": "Priest"
+          },
+          {
+            "name": "Blåskalle",
+            "total": 994,
+            "type": "Shaman"
+          },
+          {
+            "name": "zzOLDHealing Stream Totem VI",
+            "total": 208,
+            "type": "Pet"
+          }
+        ]
+      },
+      "deathWindow": 6467,
+      "overkill": 1372,
+      "events": [
+        {
+          "timestamp": 16752146,
+          "type": "damage",
+          "sourceID": 231,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 101,
+          "hitType": 1,
+          "amount": 1915,
+          "mitigated": 7363,
+          "unmitigatedAmount": 10650,
+          "overkill": 1372,
+          "isAoE": false
+        },
+        {
+          "timestamp": 16752109,
+          "type": "damage",
+          "sourceID": 231,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 101,
+          "hitType": 15,
+          "amount": 6440,
+          "mitigated": 7474,
+          "unmitigatedAmount": 13914,
+          "isAoE": false
+        },
+        {
+          "timestamp": 16751358,
+          "type": "damage",
+          "sourceID": 231,
+          "sourceIsFriendly": false,
+          "targetID": 9,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Tidal Wave",
+            "guid": 37730,
+            "type": 16,
+            "abilityIcon": "spell_frost_chillingblast.jpg"
+          },
+          "fight": 101,
+          "hitType": 1,
+          "amount": 3954,
+          "unmitigatedAmount": 3954,
+          "isAoE": true
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Clappie",
+      "id": 23,
+      "guid": 57217628,
+      "type": "Hunter",
+      "icon": "Hunter-BeastMastery",
+      "timestamp": 16753108,
+      "fight": 101,
+      "damage": {
+        "total": 16404,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 5468,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 9423,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          },
+          {
+            "guid": 37871,
+            "name": "Freeze",
+            "total": 6981,
+            "type": 16,
+            "icon": "spell_frost_glacier.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 9423,
+            "type": "Boss"
+          },
+          {
+            "name": "Water Globule",
+            "total": 6981,
+            "type": "NPC"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 490,
+      "overkill": 5922,
+      "events": [
+        {
+          "timestamp": 16753091,
+          "type": "damage",
+          "sourceID": 231,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 101,
+          "hitType": 1,
+          "amount": 3501,
+          "mitigated": 5468,
+          "unmitigatedAmount": 14891,
+          "overkill": 5922,
+          "isAoE": false
+        },
+        {
+          "timestamp": 16752601,
+          "type": "damage",
+          "sourceID": 260,
+          "sourceInstance": 4,
+          "sourceIsFriendly": false,
+          "targetID": 23,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Freeze",
+            "guid": 37871,
+            "type": 16,
+            "abilityIcon": "spell_frost_glacier.jpg"
+          },
+          "fight": 101,
+          "hitType": 1,
+          "amount": 6981,
+          "unmitigatedAmount": 6981,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Miilakunis",
+      "id": 13,
+      "guid": 43703976,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 16755534,
+      "fight": 101,
+      "damage": {
+        "total": 10953,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1540,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 10953,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 10953,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 115,
+      "events": [
+        {
+          "timestamp": 16755525,
+          "type": "damage",
+          "sourceID": 231,
+          "sourceIsFriendly": false,
+          "targetID": 13,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 101,
+          "hitType": 15,
+          "amount": 10838,
+          "mitigated": 1540,
+          "unmitigatedAmount": 12493,
+          "overkill": 115,
+          "isAoE": false
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    },
+    {
+      "name": "Oziach",
+      "id": 12,
+      "guid": 42838398,
+      "type": "Warrior",
+      "icon": "Warrior-Fury",
+      "timestamp": 16758645,
+      "fight": 101,
+      "damage": {
+        "total": 12280,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "overheal": 1560,
+        "abilities": [
+          {
+            "guid": 1,
+            "name": "Melee",
+            "total": 12280,
+            "type": 1,
+            "icon": "inv_axe_02.jpg"
+          }
+        ],
+        "damageAbilities": [],
+        "sources": [
+          {
+            "name": "Morogrim Tidewalker",
+            "total": 12280,
+            "type": "Boss"
+          }
+        ]
+      },
+      "healing": {
+        "total": 0,
+        "activeTime": 0,
+        "activeTimeReduced": 0,
+        "abilities": [],
+        "damageAbilities": [],
+        "sources": []
+      },
+      "deathWindow": 0,
+      "overkill": 10582,
+      "events": [
+        {
+          "timestamp": 16758633,
+          "type": "damage",
+          "sourceID": 231,
+          "sourceIsFriendly": false,
+          "targetID": 12,
+          "targetIsFriendly": true,
+          "ability": {
+            "name": "Melee",
+            "guid": 1,
+            "type": 1,
+            "abilityIcon": "inv_axe_02.jpg"
+          },
+          "fight": 101,
+          "hitType": 15,
+          "amount": 1698,
+          "mitigated": 1560,
+          "unmitigatedAmount": 13840,
+          "overkill": 10582,
+          "isAoE": false,
+          "targetMarker": 1
+        }
+      ],
+      "killingBlow": {
+        "name": "Melee",
+        "guid": 1,
+        "type": 1,
+        "abilityIcon": "inv_axe_02.jpg"
+      }
+    }
+  ]
+}
