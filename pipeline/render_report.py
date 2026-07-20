@@ -352,6 +352,12 @@ def render_healer_report(
         missed_second_potion_window = boss_coaching.get("MissedSecondPotionWindow", False)
         lifebloom_refresh = boss_coaching.get("LifebloomRefresh")
         lifebloom_target_name = boss_coaching.get("LifebloomTargetName")
+        peer_comparison = boss_coaching.get("PeerComparison")
+        peer_comparison_note = boss_coaching.get("PeerComparisonNote")
+        peer_value_class = ""
+        if peer_comparison:
+            peer_value_class = "good" if peer_comparison["Flag"] == "above_avg" else ("warn" if peer_comparison["Flag"] == "below_avg" else "")
+
         cooldown_opportunity_rows = [
             {
                 "seconds": round_net(o["Timestamp"] / 1000, 0),
@@ -404,6 +410,8 @@ def render_healer_report(
             "lifebloom_refresh_finding": bf.get("LIFEBLOOM_REFRESH_FINDING"),
             "cooldown_opportunity_rows": cooldown_opportunity_rows, "cooldown_opportunity_finding": bf["COOLDOWN_OPPORTUNITY_FINDING"],
             "hot_timing": hot_timing, "hot_timing_finding": bf["HOT_TIMING_FINDING"],
+            "peer_comparison": peer_comparison, "peer_comparison_note": peer_comparison_note,
+            "peer_value_class": peer_value_class,
         }
 
         # Note: no post-render scan for a literal "{{" here (the PowerShell

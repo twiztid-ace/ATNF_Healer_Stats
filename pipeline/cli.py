@@ -30,6 +30,7 @@ from pipeline import (
     paths,
     placeholder_findings as placeholder_findings_module,
     pull_character as pull_character_module,
+    pull_peer_group as pull_peer_group_module,
     pull_top100 as pull_top100_module,
     render_report as render_report_module,
     summarize_benchmarks as summarize_benchmarks_module,
@@ -93,7 +94,18 @@ def cmd_build_analysis(args: argparse.Namespace) -> int:
 
 
 def cmd_build_coaching(args: argparse.Namespace) -> int:
-    build_coaching_module.build_coaching(args.character_name, args.report_code, args.class_name, args.characters_root)
+    build_coaching_module.build_coaching(
+        args.character_name, args.report_code, args.class_name, args.characters_root,
+        args.with_peer_comparison, args.classes_root,
+    )
+    return 0
+
+
+def cmd_pull_peer_group(args: argparse.Namespace) -> int:
+    pull_peer_group_module.pull_peer_group(
+        args.class_name, args.boss_slug, args.target_duration_ms, args.target_size,
+        args.classes_root, args.force_refresh,
+    )
     return 0
 
 
@@ -155,8 +167,11 @@ def cmd_generate(args: argparse.Namespace) -> int:
     build_report_data_module.build_report_data(args.character_name, args.report_code, class_name, args.characters_root, args.classes_root)
     build_analysis_module.build_analysis(args.character_name, args.report_code, class_name, args.characters_root)
 
-    print("\n=== generate: step 5/7 - coaching-layer analysis (mana timing) ===")
-    build_coaching_module.build_coaching(args.character_name, args.report_code, class_name, args.characters_root)
+    print("\n=== generate: step 5/7 - coaching-layer analysis ===")
+    build_coaching_module.build_coaching(
+        args.character_name, args.report_code, class_name, args.characters_root,
+        args.with_peer_comparison, args.classes_root,
+    )
 
     char_root = args.characters_root
     report_data_file = paths.find_file_recursive(f"{char_root}/{args.character_name}", f"{args.report_code}_report_data.json")
@@ -268,7 +283,10 @@ def cmd_generate_all(args: argparse.Namespace) -> int:
 
         build_report_data_module.build_report_data(name, args.report_code, class_name, args.characters_root, args.classes_root)
         build_analysis_module.build_analysis(name, args.report_code, class_name, args.characters_root)
-        build_coaching_module.build_coaching(name, args.report_code, class_name, args.characters_root)
+        build_coaching_module.build_coaching(
+            name, args.report_code, class_name, args.characters_root,
+            args.with_peer_comparison, args.classes_root,
+        )
 
         report_data_file = paths.find_file_recursive(f"{args.characters_root}/{name}", f"{args.report_code}_report_data.json")
         char_dir = report_data_file.parent
@@ -350,12 +368,22 @@ def build_parser() -> argparse.ArgumentParser:
     _add_common_roots(p)
     p.set_defaults(func=cmd_build_analysis)
 
-    p = sub.add_parser("build-coaching", help="Pre-flag coaching-layer findings (mana timing, Phase 1) into coaching.json")
+    p = sub.add_parser("build-coaching", help="Pre-flag coaching-layer findings (mana timing, Lifebloom, damage correlation, opt-in peer comparison) into coaching.json")
     p.add_argument("--character-name", required=True)
     p.add_argument("--report-code", required=True)
     p.add_argument("--class-name", required=True)
-    _add_common_roots(p)
+    p.add_argument("--with-peer-comparison", action="store_true", help="Phase 4: real peer-group comparison - makes real new API calls, opt-in only")
+    _add_common_roots(p, classes=True)
     p.set_defaults(func=cmd_build_coaching)
+
+    p = sub.add_parser("pull-peer-group", help="Pull a real peer pool for one class/boss/size/duration (Phase 4, opt-in, real API cost)")
+    p.add_argument("--class-name", required=True)
+    p.add_argument("--boss-slug", required=True)
+    p.add_argument("--target-duration-ms", type=float, required=True)
+    p.add_argument("--target-size", type=int, required=True)
+    p.add_argument("--force-refresh", action="store_true")
+    _add_common_roots(p, characters=False, classes=True)
+    p.set_defaults(func=cmd_pull_peer_group)
 
     p = sub.add_parser("placeholder-findings", help="Write a placeholder findings.json (data-only, no LLM)")
     p.add_argument("--character-name", required=True)
@@ -397,6 +425,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--region", default="US")
     p.add_argument("--max-threads", type=int, default=10)
     p.add_argument("--placeholder-findings", action="store_true", help="Data-only run: stand in for the LLM findings-authoring step with placeholder text")
+    p.add_argument("--with-peer-comparison", action="store_true", help="Phase 4: real peer-group comparison - makes real new API calls, opt-in only")
     _add_common_roots(p, classes=True, templates=True, docs=True, data=True)
     p.set_defaults(func=cmd_generate)
 
@@ -408,6 +437,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--region", default="US")
     p.add_argument("--max-threads", type=int, default=10)
     p.add_argument("--placeholder-findings", action="store_true", help="Data-only run: stand in for the LLM findings-authoring step with placeholder text, for every healer that needs it")
+    p.add_argument("--with-peer-comparison", action="store_true", help="Phase 4: real peer-group comparison - makes real new API calls, opt-in only")
     _add_common_roots(p, classes=True, templates=True, docs=True, data=True)
     p.set_defaults(func=cmd_generate_all)
 

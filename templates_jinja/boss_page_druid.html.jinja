@@ -701,6 +701,38 @@
       {% endif %}
       <div class="coverage-note">{{ hot_timing_finding }}</div>
     </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Peer-group comparison</h2>
+      </div>
+      {% if peer_comparison %}
+      <p class="section-desc">{{ peer_comparison_note }}</p>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-label">HPS</div>
+          <div class="stat-value {{ peer_value_class }}">{{ peer_comparison.Value }}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Peer avg / median</div>
+          <div class="stat-value">{{ peer_comparison.PeerAvg }}</div>
+          <div class="stat-sub">median {{ peer_comparison.PeerMedian }}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Ratio to peer avg</div>
+          <div class="stat-value {{ peer_value_class }}">{{ peer_comparison.RatioToAvg }}x</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Rank among peers</div>
+          <div class="stat-value">{{ peer_comparison.RankAmongPeers }}</div>
+          <div class="stat-sub">of {{ peer_comparison.PeerGroupSize }}</div>
+        </div>
+      </div>
+      {% else %}
+      <p class="section-desc">No peer-group comparison run for this kill — real peer-matching makes real additional API calls, so it's opt-in only (<span class="placeholder-tag">--with-peer-comparison</span>), not part of the routine pipeline.</p>
+      {% endif %}
+    </div>
   </div>
 
   <div class="footer">

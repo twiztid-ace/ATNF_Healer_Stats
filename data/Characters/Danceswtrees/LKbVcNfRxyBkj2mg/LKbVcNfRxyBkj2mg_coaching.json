@@ -35,8 +35,19 @@
         "UnclassifiedCount": 0,
         "ProactivePct": 25.0
       },
+      "PeerComparison": {
+        "Value": 1274,
+        "PeerGroupSize": 40,
+        "PeerAvg": 1690,
+        "PeerMedian": 1633,
+        "RatioToAvg": 0.75,
+        "RankAmongPeers": 41,
+        "Flag": "below_avg"
+      },
+      "PeerComparisonNote": "Compared against 40 real Druid parses on High King Maulgar with the same raid size (24) and a similar fight duration (20-40s, +/-20%) - no attempt was made to match healing assignment (tank-healing vs. raid-healing) similarity.",
       "CannedCaveats": [
-        "hot_timing_mostly_reactive"
+        "hot_timing_mostly_reactive",
+        "peer_group_matching_caveat"
       ]
     },
     "gruul": {
@@ -98,10 +109,21 @@
         "UnclassifiedCount": 19,
         "ProactivePct": 18.8
       },
+      "PeerComparison": {
+        "Value": 650,
+        "PeerGroupSize": 40,
+        "PeerAvg": 1074,
+        "PeerMedian": 1039,
+        "RatioToAvg": 0.6,
+        "RankAmongPeers": 41,
+        "Flag": "below_avg"
+      },
+      "PeerComparisonNote": "Compared against 40 real Druid parses on Gruul the Dragonkiller with the same raid size (24) and a similar fight duration (160-180s, +/-20%) - no attempt was made to match healing assignment (tank-healing vs. raid-healing) similarity.",
       "CannedCaveats": [
         "lifebloom_early_refresh_present",
         "cooldown_opportunity_present",
-        "hot_timing_mostly_reactive"
+        "hot_timing_mostly_reactive",
+        "peer_group_matching_caveat"
       ]
     },
     "hydross": {
@@ -153,10 +175,21 @@
         "UnclassifiedCount": 12,
         "ProactivePct": 6.0
       },
+      "PeerComparison": {
+        "Value": 510,
+        "PeerGroupSize": 40,
+        "PeerAvg": 1078,
+        "PeerMedian": 1051,
+        "RatioToAvg": 0.47,
+        "RankAmongPeers": 41,
+        "Flag": "below_avg"
+      },
+      "PeerComparisonNote": "Compared against 40 real Druid parses on Hydross the Unstable with the same raid size (25) and a similar fight duration (140-160s, +/-20%) - no attempt was made to match healing assignment (tank-healing vs. raid-healing) similarity.",
       "CannedCaveats": [
         "lifebloom_early_refresh_present",
         "cooldown_opportunity_present",
-        "hot_timing_mostly_reactive"
+        "hot_timing_mostly_reactive",
+        "peer_group_matching_caveat"
       ]
     },
     "leotheras": {
@@ -228,10 +261,21 @@
         "UnclassifiedCount": 38,
         "ProactivePct": 34.3
       },
+      "PeerComparison": {
+        "Value": 834,
+        "PeerGroupSize": 40,
+        "PeerAvg": 1280,
+        "PeerMedian": 1252,
+        "RatioToAvg": 0.65,
+        "RankAmongPeers": 41,
+        "Flag": "below_avg"
+      },
+      "PeerComparisonNote": "Compared against 40 real Druid parses on Leotheras the Blind with the same raid size (25) and a similar fight duration (220-240s, +/-20%) - no attempt was made to match healing assignment (tank-healing vs. raid-healing) similarity.",
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
         "lifebloom_early_refresh_present",
-        "cooldown_opportunity_present"
+        "cooldown_opportunity_present",
+        "peer_group_matching_caveat"
       ]
     },
     "karathress": {
@@ -293,6 +337,8 @@
         "UnclassifiedCount": 29,
         "ProactivePct": 17.6
       },
+      "PeerComparison": null,
+      "PeerComparisonNote": null,
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
         "lifebloom_early_refresh_present",
@@ -373,6 +419,8 @@
         "UnclassifiedCount": 31,
         "ProactivePct": 9.8
       },
+      "PeerComparison": null,
+      "PeerComparisonNote": null,
       "CannedCaveats": [
         "mana_timing_missed_second_potion_window",
         "lifebloom_early_refresh_present",
@@ -473,6 +521,8 @@
         "UnclassifiedCount": 9,
         "ProactivePct": 14.5
       },
+      "PeerComparison": null,
+      "PeerComparisonNote": null,
       "CannedCaveats": [
         "mana_timing_missed_second_potion_window",
         "lifebloom_early_refresh_present",
@@ -629,6 +679,8 @@
         "UnclassifiedCount": 80,
         "ProactivePct": 18.8
       },
+      "PeerComparison": null,
+      "PeerComparisonNote": null,
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
         "lifebloom_early_refresh_present",
@@ -735,6 +787,8 @@
         "UnclassifiedCount": 26,
         "ProactivePct": 10.6
       },
+      "PeerComparison": null,
+      "PeerComparisonNote": null,
       "CannedCaveats": [
         "lifebloom_early_refresh_present",
         "cooldown_opportunity_present",
@@ -845,6 +899,8 @@
         "UnclassifiedCount": 22,
         "ProactivePct": 23.5
       },
+      "PeerComparison": null,
+      "PeerComparisonNote": null,
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
         "lifebloom_early_refresh_present",
@@ -884,6 +940,8 @@
         "UnclassifiedCount": 5,
         "ProactivePct": 12.5
       },
+      "PeerComparison": null,
+      "PeerComparisonNote": null,
       "CannedCaveats": [
         "hot_timing_mostly_reactive"
       ]
@@ -1037,6 +1095,8 @@
         "UnclassifiedCount": 85,
         "ProactivePct": 29.8
       },
+      "PeerComparison": null,
+      "PeerComparisonNote": null,
       "CannedCaveats": [
         "lifebloom_early_refresh_present",
         "cooldown_opportunity_present",

@@ -485,6 +485,35 @@ def hot_timing_proactive_reactive(
     }
 
 
+# ===== Peer-group comparison (Phase 4, cross-class, opt-in) =====
+
+def compute_peer_comparison(character_value: float, peer_values: list[float]) -> dict | None:
+    """Real peer-relative HPS comparison, same Value/RatioToAvg/Flag shape
+    as build_analysis.py's Deviations["HPS"] block, but against a real
+    peer pool (pull_peer_group.py's Candidates - matched by raid size and
+    fight duration, NOT healing-assignment similarity, which is explicitly
+    out of scope - see the caveat text build_coaching.py attaches
+    alongside this) instead of the Top 100 sample. Returns None when
+    there's no real peer data to compare against - never a 0-peer
+    "comparison" presented as if it meant something."""
+    if not peer_values:
+        return None
+    sorted_values = sorted(peer_values)
+    n = len(sorted_values)
+    peer_avg = sum(sorted_values) / n
+    peer_median = sorted_values[n // 2] if n % 2 else (sorted_values[n // 2 - 1] + sorted_values[n // 2]) / 2
+    rank = sum(1 for v in sorted_values if v > character_value) + 1
+    ratio = round_net(character_value / peer_avg, 2) if peer_avg > 0 else None
+    flag = "in_line"
+    if ratio is not None:
+        flag = "below_avg" if ratio < 0.9 else ("above_avg" if ratio > 1.1 else "in_line")
+    return {
+        "Value": round_net(character_value), "PeerGroupSize": n,
+        "PeerAvg": round_net(peer_avg), "PeerMedian": round_net(peer_median),
+        "RatioToAvg": ratio, "RankAmongPeers": rank, "Flag": flag,
+    }
+
+
 def test_missed_second_potion(potion_targets: list[dict], fight_end: float, potion_cooldown_ms: float = 120000) -> bool:
     """Real TBC mechanic, not a guess: potions share a fixed 120s internal
     cooldown. Fixed numeric rule (same style/shape as test_tranquility_include):

@@ -206,8 +206,33 @@ used, only that the window itself had none nearby) and
 as landing ahead of that target's next real damage, or shortly after their
 most recent real damage, using the character's own cast timestamps - not
 each resulting heal/HoT tick, which would multiply-count one real cast many
-times over). Zero LLM judgment calls of its own either way, any phase —
-same discipline as step 6.
+times over). Phase 4 adds real peer-group comparison — **genuinely opt-in**
+(`--with-peer-comparison`), unlike Phases 1-3: pass it to make this step
+fetch a real peer pool via `pull-peer-group` (same raid size, similar fight
+duration, NOT healing-assignment similarity — see `pipeline\pull_peer_group.py`)
+and compute a real `PeerComparison` block (Value/PeerAvg/PeerMedian/
+RatioToAvg/RankAmongPeers, same shape as `analysis.json`'s `Deviations["HPS"]`
+but against real peers instead of Top 100) plus a fully mechanical
+`PeerComparisonNote` disclosure sentence — no LLM authorship needed for this
+one, it's just describing the real matching parameters used. Omit the flag
+and this phase is a no-op (`PeerComparison`/`PeerComparisonNote` both `null`)
+— **this makes real new API calls of its own** (one `table(dataType: Summary)`
+per coarse-matched candidate, capped at 40), so never pass it as part of a
+routine/automated run without a real reason. **Real wall-clock cost, not
+just API-point cost**: a single boss's peer pool can take 1-5+ real minutes
+depending on how common its duration/size bucket is (confirmed live —
+`MAX_RANKING_PAGES` is 8, a real tested tradeoff after 20 pages made some
+buckets impractically slow) — running this for every boss in a raid night
+is a real multi-minute-per-boss operation, budget accordingly, and prefer
+running it for a handful of specific bosses via standalone `pull-peer-group`
+over blindly passing `--with-peer-comparison` to a whole-report `generate`
+call. **`pull_peer_group.py`'s own docstring records a real, already-fixed
+methodology bug worth reading before touching that file again**: an early
+version silently biased the peer sample toward only the highest-HPS
+matches (scanning `characterRankings`' HPS-descending pages and stopping
+as soon as enough coarse matches were found) — don't reintroduce a
+prefix-take of an HPS-ordered list without re-reading that fix. Zero LLM
+judgment calls of its own either way, any phase — same discipline as step 6.
 
 ### 8. Author findings.json (the only step touching an LLM)
 Read `<code>_report_data.json` **and** `<code>_analysis.json`. Write
@@ -241,7 +266,12 @@ kill; `hot_timing_mostly_reactive` in `CannedCaveats` flags a real
 proactive share under 30%). Same ground-rule discipline as Lifebloom above
 — state the real observable fact (a spike with nothing nearby, a real
 proactive/reactive split), never assert a specific cooldown should have
-fired or that a reactive cast was a mistake. Then a
+fired or that a reactive cast was a mistake. **Peer comparison (coaching-
+layer Phase 4) needs no findings.json key at all** — `PeerComparisonNote`
+is a fully mechanical disclosure sentence `build_coaching.py` generates
+itself (real peer count + real matching criteria, nothing interpretive),
+and the section renders its own "not run for this kill" text when
+`--with-peer-comparison` wasn't used. Then a
 `RaidOverview` object with `GEAR_CONSISTENCY_FINDING`, `GEAR_FINDING_NOTE`,
 `RAID_SUMMARY_FINDING`, an optional `RAID_WARNING_BANNER` (may contain `<strong>`
 tags — this is the one field the renderer doesn't escape), and an optional

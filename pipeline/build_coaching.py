@@ -19,10 +19,11 @@ damage-correlated coaching (cross-class): cooldown-opportunity windows
 proactive-vs-reactive healing timing (every real targeted cast classified
 against that target's own real damage-taken timeline) - both derived from
 the new fight*_damagetaken_events.json raw file pull_character.py now
-writes for every fight, every class. Later phases (peer-group comparison)
-extend this same module/sidecar rather than creating new ones - see the
-approved plan for the full breakdown.
-"""
+writes for every fight, every class. Phase 4 adds peer-group comparison
+(cross-class, genuinely OPT-IN via include_peer_comparison=False by
+default / --with-peer-comparison on the CLI) - unlike Phases 1-3, this one
+DOES make real new API calls of its own (via pull_peer_group.py), so it is
+never run silently as part of the default build-coaching pass."""
 
 from __future__ import annotations
 
@@ -30,7 +31,7 @@ import argparse
 from pathlib import Path
 from typing import Any
 
-from pipeline import paths, render_lib
+from pipeline import paths, pull_peer_group as pull_peer_group_module, render_lib, wcl_api
 from pipeline import jsonio
 from pipeline.numeric import round_net
 
@@ -68,11 +69,31 @@ def _primary_lifebloom_target(events: list[dict]) -> tuple[int, str] | None:
     return top_id, names.get(top_id, f"Unknown_{top_id}")
 
 
+def _get_own_raid_size(report_code: str, fight_id: int, access_token: str) -> int | None:
+    """One real Summary-table call to learn the character's own real raid
+    size for this specific kill (composition list length) - needed as the
+    real matching criterion for pull_peer_group.py, not guessed from a
+    healer-count heuristic. Only ever called when peer comparison is
+    explicitly requested (see include_peer_comparison below) - this is
+    real, additional API cost, not free."""
+    q = f'query {{ reportData {{ report(code: "{report_code}") {{ table(fightIDs: [{fight_id}], dataType: Summary) }} }} }}'
+    r = wcl_api.invoke_wcl_graphql(q, access_token=access_token)
+    if r.errors:
+        return None
+    table = r.data["reportData"]["report"].get("table")
+    if not table or not table.get("data"):
+        return None
+    comp = table["data"].get("composition") or []
+    return len(comp) or None
+
+
 def build_coaching(
     character_name: str,
     report_code: str,
     class_name: str,
     characters_root: str = "data/Characters",
+    include_peer_comparison: bool = False,
+    classes_root: str = "data/Classes",
 ) -> dict[str, Any]:
     char_root = Path(characters_root) / character_name
     if not char_root.exists():
@@ -162,6 +183,26 @@ def build_coaching(
         if hot_timing and hot_timing["ProactivePct"] < HOT_TIMING_MOSTLY_REACTIVE_THRESHOLD_PCT:
             tags.append("hot_timing_mostly_reactive")
 
+        peer_comparison = None
+        peer_comparison_note = None
+        if include_peer_comparison:
+            token = wcl_api.get_wcl_access_token()
+            own_size = _get_own_raid_size(report_code, fight_id, token)
+            if own_size is None:
+                print(f"  WARNING: {slug} - could not resolve this kill's own real raid size, skipping peer comparison for this boss.")
+            else:
+                peer_pool = pull_peer_group_module.pull_peer_group(class_name, slug, boss["Duration"], own_size, classes_root)
+                peer_values = [c["Amount"] for c in peer_pool["Candidates"] if c.get("Amount") is not None]
+                peer_comparison = render_lib.compute_peer_comparison(boss["HPS"], peer_values)
+                if peer_comparison:
+                    tags.append("peer_group_matching_caveat")
+                    peer_comparison_note = (
+                        f"Compared against {peer_comparison['PeerGroupSize']} real {class_name} parses on "
+                        f"{boss['Display']} with the same raid size ({own_size}) and a similar fight duration "
+                        f"({peer_pool['DurationBucket']}, +/-{int(peer_pool['DurationToleranceRatio'] * 100)}%) - "
+                        f"no attempt was made to match healing assignment (tank-healing vs. raid-healing) similarity."
+                    )
+
         boss_results[slug] = {
             "ManaTiming": mana_timing,
             "MissedSecondPotionWindow": missed_second_potion,
@@ -169,6 +210,8 @@ def build_coaching(
             "LifebloomTargetName": lifebloom_target_name,
             "CooldownOpportunities": cooldown_opps,
             "HotTimingProactiveReactive": hot_timing,
+            "PeerComparison": peer_comparison,
+            "PeerComparisonNote": peer_comparison_note,
             "CannedCaveats": tags,
         }
 
@@ -185,14 +228,19 @@ def build_coaching(
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Phase 1 coaching-layer analysis (mana timing)")
+    parser = argparse.ArgumentParser(description="Coaching-layer analysis (mana timing, Lifebloom, damage correlation, opt-in peer comparison)")
     parser.add_argument("--character-name", required=True)
     parser.add_argument("--report-code", required=True)
     parser.add_argument("--class-name", required=True)
     parser.add_argument("--characters-root", default="data/Characters")
+    parser.add_argument("--classes-root", default="data/Classes")
+    parser.add_argument("--with-peer-comparison", action="store_true", help="Phase 4: real peer-group comparison - makes real new API calls, opt-in only")
     args = parser.parse_args()
 
-    build_coaching(args.character_name, args.report_code, args.class_name, args.characters_root)
+    build_coaching(
+        args.character_name, args.report_code, args.class_name, args.characters_root,
+        args.with_peer_comparison, args.classes_root,
+    )
     return 0
 
 
