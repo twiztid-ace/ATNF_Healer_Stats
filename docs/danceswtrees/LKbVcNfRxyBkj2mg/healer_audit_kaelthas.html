@@ -787,6 +787,116 @@
       </div>
       <div class="coverage-note">Lifebloom coverage on Jotes was inconsistent this kill (44.9% uptime) - real gaps existed. 9 of 35 refreshes (26%) landed with more than 4s still remaining on the real 7s buff - a genuine pattern of early refreshing, not a one-off.</div>
     </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Cooldown-opportunity windows</h2>
+      </div>
+      <p class="section-desc">Real raid-wide damage bursts this kill (relative to its own baseline) with no tracked cooldown cast within 10s either side.</p>
+      <div class="target-list">
+        <div class="target-row">
+          <div>111s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
+          <div class="target-pct">7.45x avg</div>
+        </div>
+        <div class="target-row">
+          <div>141s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:42.6%"></div></div>
+          <div class="target-pct">2.84x avg</div>
+        </div>
+        <div class="target-row">
+          <div>150s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:43.4%"></div></div>
+          <div class="target-pct">2.89x avg</div>
+        </div>
+        <div class="target-row">
+          <div>159s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:83.2%"></div></div>
+          <div class="target-pct">5.55x avg</div>
+        </div>
+        <div class="target-row">
+          <div>162s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:55.6%"></div></div>
+          <div class="target-pct">3.71x avg</div>
+        </div>
+        <div class="target-row">
+          <div>327s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
+          <div class="target-pct">6.91x avg</div>
+        </div>
+        <div class="target-row">
+          <div>423s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:42.3%"></div></div>
+          <div class="target-pct">2.82x avg</div>
+        </div>
+        <div class="target-row">
+          <div>432s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:73.9%"></div></div>
+          <div class="target-pct">4.93x avg</div>
+        </div>
+        <div class="target-row">
+          <div>435s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:43.2%"></div></div>
+          <div class="target-pct">2.88x avg</div>
+        </div>
+        <div class="target-row">
+          <div>438s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:43.1%"></div></div>
+          <div class="target-pct">2.87x avg</div>
+        </div>
+        <div class="target-row">
+          <div>444s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:40.5%"></div></div>
+          <div class="target-pct">2.7x avg</div>
+        </div>
+        <div class="target-row">
+          <div>447s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:61.7%"></div></div>
+          <div class="target-pct">4.11x avg</div>
+        </div>
+        <div class="target-row">
+          <div>450s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
+          <div class="target-pct">6.8x avg</div>
+        </div>
+        <div class="target-row">
+          <div>468s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:100%"></div></div>
+          <div class="target-pct">6.95x avg</div>
+        </div>
+      </div>
+      <div class="coverage-note">14 real damage-spike windows this kill had no tracked cooldown cast nearby - the sharpest at 111s (7.45x this kill&#39;s own average).</div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Proactive vs. reactive healing</h2>
+      </div>
+      <p class="section-desc">Every real targeted cast this kill, classified by whether it landed ahead of that target's next real damage (proactive) or shortly after their most recent real damage (reactive).</p>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-label">Proactive</div>
+          <div class="stat-value">42</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Reactive</div>
+          <div class="stat-value">99</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Unclassified</div>
+          <div class="stat-value">85</div>
+          <div class="stat-sub">no nearby real damage signal either way</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Proactive share</div>
+          <div class="stat-value">29.8%</div>
+          <div class="stat-sub">of classified casts</div>
+        </div>
+      </div>
+      <div class="coverage-note">Casting leaned reactive this kill (29.8% proactive of 141 classified casts) - more often landing just after real damage than ahead of it.</div>
+    </div>
   </div>
 
   <div class="footer">

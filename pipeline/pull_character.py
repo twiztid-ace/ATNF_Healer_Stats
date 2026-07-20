@@ -222,6 +222,36 @@ def _tree_of_life_uptime_for_fight(tol_events: list[dict], fight_start: float, f
     return round_net((overlap / duration) * 100, 1)
 
 
+def _get_damage_taken_events(report_code: str, fight_id: int, start_time: float, end_time: float, access_token: str) -> list[dict] | None:
+    """Raid-wide damage-taken events for one fight, for Phase 3 of the
+    coaching layer (cooldown-opportunity detection, proactive/reactive
+    healing timing). Deliberately NOT scoped by sourceID (unlike the
+    Healing/Casts `get_events` closure inside _pull_one_fight below) -
+    this is about damage the whole RAID takes, not anything the healer
+    being pulled personally did. Confirmed live 2026-07-20 that
+    `dataType: DamageTaken` returns real per-hit `amount`/`mitigated`/
+    `unmitigatedAmount`/`targetID` data. Returns None (not []) on a real
+    API failure, so the caller can tell "no damage this fight" (real, rare
+    but possible on some encounter/attempt edge cases) apart from
+    "the fetch itself failed"."""
+    def query_builder(page_start_time: float) -> str:
+        return (
+            f'query {{ reportData {{ report(code: "{report_code}") {{ '
+            f"events(fightIDs: [{fight_id}], dataType: DamageTaken, "
+            f"startTime: {page_start_time}, endTime: {end_time}) "
+            f"{{ data nextPageTimestamp }} }} }} }}"
+        )
+
+    def extract_page(data: Any) -> wcl_api.PageResult:
+        ev = data["reportData"]["report"]["events"]
+        return wcl_api.PageResult(items=ev["data"], next_page_timestamp=ev.get("nextPageTimestamp"))
+
+    paged = wcl_api.invoke_wcl_graphql_paged(query_builder, extract_page, access_token=access_token, initial_start_time=start_time)
+    if paged.errors:
+        return None
+    return paged.items
+
+
 def _pull_one_fight(
     fight_id: int, boss_slug: str, start_time: float, end_time: float, report_code: str,
     character_id: int, character_name: str, actor_names: dict[int, str],
@@ -357,6 +387,17 @@ def _pull_one_fight(
             ev["targetName"] = resolve_actor_name(ev.get("targetID"))
         jsonio.write_json(lifebloom_out, {"sourceID": character_id, "sourceName": character_name, "events": fight_lifebloom})
         messages.append(f"  {label}_lifebloom_buffs_events.json - OK ({len(fight_lifebloom)} events)")
+
+    damagetaken_out = out_dir / f"{label}_damagetaken_events.json"
+    if not damagetaken_out.exists():
+        dt_events = _get_damage_taken_events(report_code, fight_id, start_time, end_time, access_token)
+        if dt_events is None:
+            messages.append(f"  {label}_damagetaken_events.json - FAILED (soft - coaching-layer data only, doesn't affect the rest of this pull)")
+        else:
+            for ev in dt_events:
+                ev["targetName"] = resolve_actor_name(ev.get("targetID"))
+            jsonio.write_json(damagetaken_out, {"events": dt_events})
+            messages.append(f"  {label}_damagetaken_events.json - OK ({len(dt_events)} events, raid-wide)")
 
     consumables_out = out_dir / f"{label}_consumables.json"
     gear_out = out_dir / f"{label}_gear.json"

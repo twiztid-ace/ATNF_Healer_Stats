@@ -84,9 +84,24 @@
         ]
       },
       "LifebloomTargetName": "Tauntt",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 51000,
+          "TotalDamage": 30510,
+          "RatioToAvg": 2.79
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 8,
+        "ReactiveCount": 97,
+        "UnclassifiedCount": 18,
+        "ProactivePct": 7.6
+      },
       "CannedCaveats": [
         "mana_timing_missed_second_potion_window",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "lurker": {
@@ -170,9 +185,59 @@
         ]
       },
       "LifebloomTargetName": "Zamnes",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 18000,
+          "TotalDamage": 40468,
+          "RatioToAvg": 3.38
+        },
+        {
+          "Timestamp": 21000,
+          "TotalDamage": 31617,
+          "RatioToAvg": 2.64
+        },
+        {
+          "Timestamp": 39000,
+          "TotalDamage": 34103,
+          "RatioToAvg": 2.85
+        },
+        {
+          "Timestamp": 66000,
+          "TotalDamage": 38087,
+          "RatioToAvg": 3.18
+        },
+        {
+          "Timestamp": 159000,
+          "TotalDamage": 42754,
+          "RatioToAvg": 3.58
+        },
+        {
+          "Timestamp": 177000,
+          "TotalDamage": 30374,
+          "RatioToAvg": 2.54
+        },
+        {
+          "Timestamp": 264000,
+          "TotalDamage": 30860,
+          "RatioToAvg": 2.58
+        },
+        {
+          "Timestamp": 315000,
+          "TotalDamage": 35569,
+          "RatioToAvg": 2.97
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 28,
+        "ReactiveCount": 86,
+        "UnclassifiedCount": 30,
+        "ProactivePct": 24.6
+      },
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "leotheras": {
@@ -226,9 +291,64 @@
         ]
       },
       "LifebloomTargetName": "Érel",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 9000,
+          "TotalDamage": 44260,
+          "RatioToAvg": 3.87
+        },
+        {
+          "Timestamp": 18000,
+          "TotalDamage": 43524,
+          "RatioToAvg": 3.81
+        },
+        {
+          "Timestamp": 57000,
+          "TotalDamage": 29124,
+          "RatioToAvg": 2.55
+        },
+        {
+          "Timestamp": 174000,
+          "TotalDamage": 30068,
+          "RatioToAvg": 2.63
+        },
+        {
+          "Timestamp": 321000,
+          "TotalDamage": 36551,
+          "RatioToAvg": 3.2
+        },
+        {
+          "Timestamp": 324000,
+          "TotalDamage": 28970,
+          "RatioToAvg": 2.54
+        },
+        {
+          "Timestamp": 330000,
+          "TotalDamage": 33381,
+          "RatioToAvg": 2.92
+        },
+        {
+          "Timestamp": 333000,
+          "TotalDamage": 29904,
+          "RatioToAvg": 2.62
+        },
+        {
+          "Timestamp": 339000,
+          "TotalDamage": 32381,
+          "RatioToAvg": 2.83
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 35,
+        "ReactiveCount": 103,
+        "UnclassifiedCount": 53,
+        "ProactivePct": 25.4
+      },
       "CannedCaveats": [
         "mana_timing_missed_second_potion_window",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "karathress": {
@@ -256,8 +376,33 @@
         "EarlyRefreshes": []
       },
       "LifebloomTargetName": "Zamnes",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 102000,
+          "TotalDamage": 71160,
+          "RatioToAvg": 4.59
+        },
+        {
+          "Timestamp": 144000,
+          "TotalDamage": 74800,
+          "RatioToAvg": 4.83
+        },
+        {
+          "Timestamp": 162000,
+          "TotalDamage": 65992,
+          "RatioToAvg": 4.26
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 34,
+        "ReactiveCount": 109,
+        "UnclassifiedCount": 29,
+        "ProactivePct": 23.8
+      },
       "CannedCaveats": [
-        "mana_timing_missed_second_potion_window"
+        "mana_timing_missed_second_potion_window",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "morogrim": {
@@ -381,8 +526,38 @@
         ]
       },
       "LifebloomTargetName": "Zamnes",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 42000,
+          "TotalDamage": 89798,
+          "RatioToAvg": 7.48
+        },
+        {
+          "Timestamp": 126000,
+          "TotalDamage": 87902,
+          "RatioToAvg": 7.32
+        },
+        {
+          "Timestamp": 180000,
+          "TotalDamage": 76158,
+          "RatioToAvg": 6.34
+        },
+        {
+          "Timestamp": 204000,
+          "TotalDamage": 34612,
+          "RatioToAvg": 2.88
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 16,
+        "ReactiveCount": 121,
+        "UnclassifiedCount": 52,
+        "ProactivePct": 11.7
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "vashj": {
@@ -536,8 +711,58 @@
         ]
       },
       "LifebloomTargetName": "Zamnes",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 39000,
+          "TotalDamage": 44697,
+          "RatioToAvg": 4.19
+        },
+        {
+          "Timestamp": 447000,
+          "TotalDamage": 52300,
+          "RatioToAvg": 4.9
+        },
+        {
+          "Timestamp": 456000,
+          "TotalDamage": 30703,
+          "RatioToAvg": 2.88
+        },
+        {
+          "Timestamp": 510000,
+          "TotalDamage": 30779,
+          "RatioToAvg": 2.88
+        },
+        {
+          "Timestamp": 540000,
+          "TotalDamage": 30681,
+          "RatioToAvg": 2.87
+        },
+        {
+          "Timestamp": 552000,
+          "TotalDamage": 32076,
+          "RatioToAvg": 3.01
+        },
+        {
+          "Timestamp": 573000,
+          "TotalDamage": 31219,
+          "RatioToAvg": 2.93
+        },
+        {
+          "Timestamp": 576000,
+          "TotalDamage": 36189,
+          "RatioToAvg": 3.39
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 36,
+        "ReactiveCount": 164,
+        "UnclassifiedCount": 74,
+        "ProactivePct": 18.0
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "alar": {
@@ -651,8 +876,58 @@
         ]
       },
       "LifebloomTargetName": "Turbozool",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 156000,
+          "TotalDamage": 45554,
+          "RatioToAvg": 6.11
+        },
+        {
+          "Timestamp": 258000,
+          "TotalDamage": 46775,
+          "RatioToAvg": 6.27
+        },
+        {
+          "Timestamp": 282000,
+          "TotalDamage": 20517,
+          "RatioToAvg": 2.75
+        },
+        {
+          "Timestamp": 312000,
+          "TotalDamage": 21336,
+          "RatioToAvg": 2.86
+        },
+        {
+          "Timestamp": 396000,
+          "TotalDamage": 52908,
+          "RatioToAvg": 7.1
+        },
+        {
+          "Timestamp": 450000,
+          "TotalDamage": 30243,
+          "RatioToAvg": 4.06
+        },
+        {
+          "Timestamp": 471000,
+          "TotalDamage": 19050,
+          "RatioToAvg": 2.56
+        },
+        {
+          "Timestamp": 474000,
+          "TotalDamage": 26324,
+          "RatioToAvg": 3.53
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 28,
+        "ReactiveCount": 192,
+        "UnclassifiedCount": 46,
+        "ProactivePct": 12.7
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "voidreaver": {
@@ -686,9 +961,73 @@
         ]
       },
       "LifebloomTargetName": "Danceswtrees",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 6000,
+          "TotalDamage": 58169,
+          "RatioToAvg": 2.73
+        },
+        {
+          "Timestamp": 21000,
+          "TotalDamage": 62952,
+          "RatioToAvg": 2.95
+        },
+        {
+          "Timestamp": 36000,
+          "TotalDamage": 64854,
+          "RatioToAvg": 3.04
+        },
+        {
+          "Timestamp": 48000,
+          "TotalDamage": 67201,
+          "RatioToAvg": 3.15
+        },
+        {
+          "Timestamp": 90000,
+          "TotalDamage": 61381,
+          "RatioToAvg": 2.88
+        },
+        {
+          "Timestamp": 105000,
+          "TotalDamage": 60726,
+          "RatioToAvg": 2.85
+        },
+        {
+          "Timestamp": 120000,
+          "TotalDamage": 74950,
+          "RatioToAvg": 3.52
+        },
+        {
+          "Timestamp": 147000,
+          "TotalDamage": 62620,
+          "RatioToAvg": 2.94
+        },
+        {
+          "Timestamp": 162000,
+          "TotalDamage": 96013,
+          "RatioToAvg": 4.51
+        },
+        {
+          "Timestamp": 219000,
+          "TotalDamage": 69578,
+          "RatioToAvg": 3.27
+        },
+        {
+          "Timestamp": 267000,
+          "TotalDamage": 53556,
+          "RatioToAvg": 2.51
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 44,
+        "ReactiveCount": 90,
+        "UnclassifiedCount": 35,
+        "ProactivePct": 32.8
+      },
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present"
       ]
     },
     "solarian": {
@@ -727,8 +1066,27 @@
         ]
       },
       "LifebloomTargetName": "Danceswtrees",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 93000,
+          "TotalDamage": 62625,
+          "RatioToAvg": 7.48
+        },
+        {
+          "Timestamp": 126000,
+          "TotalDamage": 51741,
+          "RatioToAvg": 6.18
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 12,
+        "ReactiveCount": 26,
+        "UnclassifiedCount": 25,
+        "ProactivePct": 31.6
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present"
       ]
     }
   }

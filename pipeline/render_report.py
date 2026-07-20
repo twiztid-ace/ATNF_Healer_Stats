@@ -77,7 +77,10 @@ def _format_cooldown_benchmark(avg_casts, used_pct, self_pct, show_self_pct: boo
 
 def _validate_findings(report_data: dict, findings: dict, class_name: str) -> None:
     boss_slugs = list(report_data["Bosses"].keys())
-    required_boss_keys = ["SCORECARD_FINDING", "SPELL_COMPOSITION_FINDING", "COOLDOWN_FINDING", "TARGET_FINDING", "MANA_TIMING_FINDING"]
+    required_boss_keys = [
+        "SCORECARD_FINDING", "SPELL_COMPOSITION_FINDING", "COOLDOWN_FINDING", "TARGET_FINDING",
+        "MANA_TIMING_FINDING", "COOLDOWN_OPPORTUNITY_FINDING", "HOT_TIMING_FINDING",
+    ]
     # Lifebloom refresh-timing (coaching Phase 2) is Druid-Restoration only -
     # confirmed absent from Dreamstate's real kit (CLAUDE.md) - never
     # required for any other pipeline class/build.
@@ -349,6 +352,15 @@ def render_healer_report(
         missed_second_potion_window = boss_coaching.get("MissedSecondPotionWindow", False)
         lifebloom_refresh = boss_coaching.get("LifebloomRefresh")
         lifebloom_target_name = boss_coaching.get("LifebloomTargetName")
+        cooldown_opportunity_rows = [
+            {
+                "seconds": round_net(o["Timestamp"] / 1000, 0),
+                "ratio": o["RatioToAvg"],
+                "bar_width": min(100, round_net(o["RatioToAvg"] * 15, 1)),
+            }
+            for o in (boss_coaching.get("CooldownOpportunities") or [])
+        ]
+        hot_timing = boss_coaching.get("HotTimingProactiveReactive")
 
         context = {
             "raid_title": full_raid_title_for_boss_pages, "boss_name": boss["Display"],
@@ -390,6 +402,8 @@ def render_healer_report(
             "mana_timing_finding": bf["MANA_TIMING_FINDING"],
             "lifebloom_refresh": lifebloom_refresh, "lifebloom_target_name": lifebloom_target_name,
             "lifebloom_refresh_finding": bf.get("LIFEBLOOM_REFRESH_FINDING"),
+            "cooldown_opportunity_rows": cooldown_opportunity_rows, "cooldown_opportunity_finding": bf["COOLDOWN_OPPORTUNITY_FINDING"],
+            "hot_timing": hot_timing, "hot_timing_finding": bf["HOT_TIMING_FINDING"],
         }
 
         # Note: no post-render scan for a literal "{{" here (the PowerShell

@@ -61,6 +61,8 @@ def build_placeholder_findings(
             "COOLDOWN_FINDING": PLACEHOLDER,
             "TARGET_FINDING": PLACEHOLDER,
             "MANA_TIMING_FINDING": PLACEHOLDER,
+            "COOLDOWN_OPPORTUNITY_FINDING": PLACEHOLDER,
+            "HOT_TIMING_FINDING": PLACEHOLDER,
         }
         # Lifebloom refresh-timing (coaching Phase 2) is Druid-Restoration
         # only - see render_report.py's _validate_findings for the matching

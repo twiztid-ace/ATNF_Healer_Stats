@@ -787,6 +787,86 @@
       </div>
       <div class="coverage-note">Lifebloom coverage on Turbarct was inconsistent this kill (42.8% uptime) - real gaps existed. 10 of 42 refreshes landed early (more than 4s remaining) - occasional, not a dominant pattern.</div>
     </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Cooldown-opportunity windows</h2>
+      </div>
+      <p class="section-desc">Real raid-wide damage bursts this kill (relative to its own baseline) with no tracked cooldown cast within 10s either side.</p>
+      <div class="target-list">
+        <div class="target-row">
+          <div>114s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:44.6%"></div></div>
+          <div class="target-pct">2.97x avg</div>
+        </div>
+        <div class="target-row">
+          <div>309s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:42.2%"></div></div>
+          <div class="target-pct">2.81x avg</div>
+        </div>
+        <div class="target-row">
+          <div>399s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:46.8%"></div></div>
+          <div class="target-pct">3.12x avg</div>
+        </div>
+        <div class="target-row">
+          <div>405s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:44.2%"></div></div>
+          <div class="target-pct">2.95x avg</div>
+        </div>
+        <div class="target-row">
+          <div>408s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:75.8%"></div></div>
+          <div class="target-pct">5.05x avg</div>
+        </div>
+        <div class="target-row">
+          <div>471s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:54.4%"></div></div>
+          <div class="target-pct">3.63x avg</div>
+        </div>
+        <div class="target-row">
+          <div>483s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:42.3%"></div></div>
+          <div class="target-pct">2.82x avg</div>
+        </div>
+        <div class="target-row">
+          <div>495s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:40.6%"></div></div>
+          <div class="target-pct">2.71x avg</div>
+        </div>
+      </div>
+      <div class="coverage-note">8 real damage-spike windows this kill had no tracked cooldown cast nearby - the sharpest at 408s (5.05x this kill&#39;s own average).</div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Proactive vs. reactive healing</h2>
+      </div>
+      <p class="section-desc">Every real targeted cast this kill, classified by whether it landed ahead of that target's next real damage (proactive) or shortly after their most recent real damage (reactive).</p>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-label">Proactive</div>
+          <div class="stat-value">33</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Reactive</div>
+          <div class="stat-value">102</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Unclassified</div>
+          <div class="stat-value">92</div>
+          <div class="stat-sub">no nearby real damage signal either way</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Proactive share</div>
+          <div class="stat-value">24.4%</div>
+          <div class="stat-sub">of classified casts</div>
+        </div>
+      </div>
+      <div class="coverage-note">Casting leaned reactive this kill (24.4% proactive of 135 classified casts) - more often landing just after real damage than ahead of it.</div>
+    </div>
   </div>
 
   <div class="footer">

@@ -773,6 +773,51 @@
       </div>
       <div class="coverage-note">Lifebloom coverage on Staubz (the target it was maintained on the most) held strong all kill at 80.8% uptime. 1 of 18 refreshes landed early (more than 4s remaining) - occasional, not a dominant pattern.</div>
     </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Cooldown-opportunity windows</h2>
+      </div>
+      <p class="section-desc">Real raid-wide damage bursts this kill (relative to its own baseline) with no tracked cooldown cast within 10s either side.</p>
+      <div class="target-list">
+        <div class="target-row">
+          <div>75s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:37.9%"></div></div>
+          <div class="target-pct">2.53x avg</div>
+        </div>
+      </div>
+      <div class="coverage-note">One real damage-spike window (at 75s, 2.53x this kill&#39;s own average) had no tracked cooldown cast within 10s either side.</div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Proactive vs. reactive healing</h2>
+      </div>
+      <p class="section-desc">Every real targeted cast this kill, classified by whether it landed ahead of that target's next real damage (proactive) or shortly after their most recent real damage (reactive).</p>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-label">Proactive</div>
+          <div class="stat-value">16</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Reactive</div>
+          <div class="stat-value">50</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Unclassified</div>
+          <div class="stat-value">13</div>
+          <div class="stat-sub">no nearby real damage signal either way</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Proactive share</div>
+          <div class="stat-value">24.2%</div>
+          <div class="stat-sub">of classified casts</div>
+        </div>
+      </div>
+      <div class="coverage-note">Casting leaned reactive this kill (24.2% proactive of 66 classified casts) - more often landing just after real damage than ahead of it.</div>
+    </div>
   </div>
 
   <div class="footer">

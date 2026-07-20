@@ -28,7 +28,16 @@
         "EarlyRefreshes": []
       },
       "LifebloomTargetName": "Turkeykin",
-      "CannedCaveats": []
+      "CooldownOpportunities": [],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 7,
+        "ReactiveCount": 21,
+        "UnclassifiedCount": 0,
+        "ProactivePct": 25.0
+      },
+      "CannedCaveats": [
+        "hot_timing_mostly_reactive"
+      ]
     },
     "gruul": {
       "ManaTiming": {
@@ -71,8 +80,28 @@
         ]
       },
       "LifebloomTargetName": "Jotes",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 51000,
+          "TotalDamage": 82303,
+          "RatioToAvg": 7.8
+        },
+        {
+          "Timestamp": 156000,
+          "TotalDamage": 27795,
+          "RatioToAvg": 2.63
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 9,
+        "ReactiveCount": 39,
+        "UnclassifiedCount": 19,
+        "ProactivePct": 18.8
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "hydross": {
@@ -106,8 +135,28 @@
         ]
       },
       "LifebloomTargetName": "Jotes",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 63000,
+          "TotalDamage": 41105,
+          "RatioToAvg": 4.89
+        },
+        {
+          "Timestamp": 66000,
+          "TotalDamage": 21889,
+          "RatioToAvg": 2.61
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 3,
+        "ReactiveCount": 47,
+        "UnclassifiedCount": 12,
+        "ProactivePct": 6.0
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "leotheras": {
@@ -161,9 +210,28 @@
         ]
       },
       "LifebloomTargetName": "Raezy",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 9000,
+          "TotalDamage": 80202,
+          "RatioToAvg": 4.67
+        },
+        {
+          "Timestamp": 207000,
+          "TotalDamage": 45348,
+          "RatioToAvg": 2.64
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 24,
+        "ReactiveCount": 46,
+        "UnclassifiedCount": 38,
+        "ProactivePct": 34.3
+      },
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present"
       ]
     },
     "karathress": {
@@ -207,9 +275,29 @@
         ]
       },
       "LifebloomTargetName": "Braila",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 21000,
+          "TotalDamage": 37177,
+          "RatioToAvg": 2.63
+        },
+        {
+          "Timestamp": 30000,
+          "TotalDamage": 44799,
+          "RatioToAvg": 3.17
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 13,
+        "ReactiveCount": 61,
+        "UnclassifiedCount": 29,
+        "ProactivePct": 17.6
+      },
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "morogrim": {
@@ -278,9 +366,17 @@
         ]
       },
       "LifebloomTargetName": "Turbarct",
+      "CooldownOpportunities": [],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 10,
+        "ReactiveCount": 92,
+        "UnclassifiedCount": 31,
+        "ProactivePct": 9.8
+      },
       "CannedCaveats": [
         "mana_timing_missed_second_potion_window",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "lurker": {
@@ -349,9 +445,39 @@
         ]
       },
       "LifebloomTargetName": "Turbarct",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 18000,
+          "TotalDamage": 45620,
+          "RatioToAvg": 3.99
+        },
+        {
+          "Timestamp": 33000,
+          "TotalDamage": 38575,
+          "RatioToAvg": 3.37
+        },
+        {
+          "Timestamp": 36000,
+          "TotalDamage": 32913,
+          "RatioToAvg": 2.88
+        },
+        {
+          "Timestamp": 84000,
+          "TotalDamage": 31229,
+          "RatioToAvg": 2.73
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 10,
+        "ReactiveCount": 59,
+        "UnclassifiedCount": 9,
+        "ProactivePct": 14.5
+      },
       "CannedCaveats": [
         "mana_timing_missed_second_potion_window",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "vashj": {
@@ -450,9 +576,64 @@
         ]
       },
       "LifebloomTargetName": "Turbarct",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 63000,
+          "TotalDamage": 39926,
+          "RatioToAvg": 4.14
+        },
+        {
+          "Timestamp": 210000,
+          "TotalDamage": 26812,
+          "RatioToAvg": 2.78
+        },
+        {
+          "Timestamp": 240000,
+          "TotalDamage": 24834,
+          "RatioToAvg": 2.57
+        },
+        {
+          "Timestamp": 375000,
+          "TotalDamage": 25261,
+          "RatioToAvg": 2.62
+        },
+        {
+          "Timestamp": 426000,
+          "TotalDamage": 28276,
+          "RatioToAvg": 2.93
+        },
+        {
+          "Timestamp": 444000,
+          "TotalDamage": 35132,
+          "RatioToAvg": 3.64
+        },
+        {
+          "Timestamp": 468000,
+          "TotalDamage": 30288,
+          "RatioToAvg": 3.14
+        },
+        {
+          "Timestamp": 471000,
+          "TotalDamage": 51640,
+          "RatioToAvg": 5.35
+        },
+        {
+          "Timestamp": 495000,
+          "TotalDamage": 36040,
+          "RatioToAvg": 3.73
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 25,
+        "ReactiveCount": 108,
+        "UnclassifiedCount": 80,
+        "ProactivePct": 18.8
+      },
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "alar": {
@@ -531,8 +712,33 @@
         ]
       },
       "LifebloomTargetName": "Paladanwood",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 153000,
+          "TotalDamage": 57714,
+          "RatioToAvg": 8.77
+        },
+        {
+          "Timestamp": 177000,
+          "TotalDamage": 23671,
+          "RatioToAvg": 3.6
+        },
+        {
+          "Timestamp": 252000,
+          "TotalDamage": 28712,
+          "RatioToAvg": 4.36
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 13,
+        "ReactiveCount": 110,
+        "UnclassifiedCount": 26,
+        "ProactivePct": 10.6
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "voidreaver": {
@@ -586,9 +792,64 @@
         ]
       },
       "LifebloomTargetName": "Turbarct",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 9000,
+          "TotalDamage": 113522,
+          "RatioToAvg": 4.41
+        },
+        {
+          "Timestamp": 36000,
+          "TotalDamage": 112438,
+          "RatioToAvg": 4.37
+        },
+        {
+          "Timestamp": 51000,
+          "TotalDamage": 113518,
+          "RatioToAvg": 4.41
+        },
+        {
+          "Timestamp": 66000,
+          "TotalDamage": 83234,
+          "RatioToAvg": 3.23
+        },
+        {
+          "Timestamp": 108000,
+          "TotalDamage": 68678,
+          "RatioToAvg": 2.67
+        },
+        {
+          "Timestamp": 123000,
+          "TotalDamage": 76477,
+          "RatioToAvg": 2.97
+        },
+        {
+          "Timestamp": 165000,
+          "TotalDamage": 69320,
+          "RatioToAvg": 2.69
+        },
+        {
+          "Timestamp": 180000,
+          "TotalDamage": 106744,
+          "RatioToAvg": 4.15
+        },
+        {
+          "Timestamp": 195000,
+          "TotalDamage": 67735,
+          "RatioToAvg": 2.63
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 16,
+        "ReactiveCount": 52,
+        "UnclassifiedCount": 22,
+        "ProactivePct": 23.5
+      },
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "solarian": {
@@ -616,7 +877,16 @@
         "EarlyRefreshes": []
       },
       "LifebloomTargetName": "Jotes",
-      "CannedCaveats": []
+      "CooldownOpportunities": [],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 4,
+        "ReactiveCount": 28,
+        "UnclassifiedCount": 5,
+        "ProactivePct": 12.5
+      },
+      "CannedCaveats": [
+        "hot_timing_mostly_reactive"
+      ]
     },
     "kaelthas": {
       "ManaTiming": {
@@ -689,8 +959,88 @@
         ]
       },
       "LifebloomTargetName": "Jotes",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 111000,
+          "TotalDamage": 51471,
+          "RatioToAvg": 7.45
+        },
+        {
+          "Timestamp": 141000,
+          "TotalDamage": 19621,
+          "RatioToAvg": 2.84
+        },
+        {
+          "Timestamp": 150000,
+          "TotalDamage": 19961,
+          "RatioToAvg": 2.89
+        },
+        {
+          "Timestamp": 159000,
+          "TotalDamage": 38393,
+          "RatioToAvg": 5.55
+        },
+        {
+          "Timestamp": 162000,
+          "TotalDamage": 25627,
+          "RatioToAvg": 3.71
+        },
+        {
+          "Timestamp": 327000,
+          "TotalDamage": 47746,
+          "RatioToAvg": 6.91
+        },
+        {
+          "Timestamp": 423000,
+          "TotalDamage": 19470,
+          "RatioToAvg": 2.82
+        },
+        {
+          "Timestamp": 432000,
+          "TotalDamage": 34093,
+          "RatioToAvg": 4.93
+        },
+        {
+          "Timestamp": 435000,
+          "TotalDamage": 19909,
+          "RatioToAvg": 2.88
+        },
+        {
+          "Timestamp": 438000,
+          "TotalDamage": 19823,
+          "RatioToAvg": 2.87
+        },
+        {
+          "Timestamp": 444000,
+          "TotalDamage": 18694,
+          "RatioToAvg": 2.7
+        },
+        {
+          "Timestamp": 447000,
+          "TotalDamage": 28406,
+          "RatioToAvg": 4.11
+        },
+        {
+          "Timestamp": 450000,
+          "TotalDamage": 47035,
+          "RatioToAvg": 6.8
+        },
+        {
+          "Timestamp": 468000,
+          "TotalDamage": 48043,
+          "RatioToAvg": 6.95
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 42,
+        "ReactiveCount": 99,
+        "UnclassifiedCount": 85,
+        "ProactivePct": 29.8
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     }
   }

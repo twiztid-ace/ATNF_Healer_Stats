@@ -367,6 +367,124 @@ def lifebloom_refresh_analysis(events: list[dict], target_id: int, fight_start: 
     }
 
 
+# ===== Damage-correlation coaching (Phase 3, cross-class) =====
+
+DAMAGE_SPIKE_WINDOW_MS = 3000
+# A window's real damage total needs to be at least this many times the
+# fight's own average per-window damage to count as a real burst - relative
+# to THIS fight's own baseline, not a fixed absolute number, since raid
+# size/boss/duration change what "normal" damage looks like fight to fight.
+DAMAGE_SPIKE_MULTIPLIER = 2.5
+COOLDOWN_OPPORTUNITY_TOLERANCE_MS = 10000
+HOT_TIMING_REACTIVE_WINDOW_MS = 2000
+HOT_TIMING_PROACTIVE_WINDOW_MS = 5000
+
+
+def detect_damage_spikes(
+    damage_events: list[dict], fight_start: float, fight_end: float,
+    window_ms: float = DAMAGE_SPIKE_WINDOW_MS, spike_multiplier: float = DAMAGE_SPIKE_MULTIPLIER,
+) -> list[dict]:
+    """Buckets real raid-wide damage-taken (`amount` - actual HP lost, not
+    `unmitigatedAmount` - a fully-mitigated hit that cost 0 real HP isn't
+    itself an emergency a healer needed to answer) into fixed windows
+    across the fight, flags any window whose total is a real multiple of
+    the fight's own average per-window damage as a burst-damage moment.
+    Returns real timestamps (report-relative, same as the raw event
+    stream) - the caller is responsible for converting to fight-relative
+    if that's what gets stored/displayed."""
+    duration = fight_end - fight_start
+    if duration <= 0 or not damage_events:
+        return []
+    num_windows = max(1, int(duration // window_ms) + 1)
+    totals = [0.0] * num_windows
+    for ev in damage_events:
+        amt = ev.get("amount", 0) or 0
+        idx = int((ev["timestamp"] - fight_start) // window_ms)
+        if 0 <= idx < num_windows:
+            totals[idx] += amt
+    avg = sum(totals) / num_windows
+    if avg <= 0:
+        return []
+    return [
+        {"Timestamp": fight_start + i * window_ms, "TotalDamage": round_net(total), "RatioToAvg": round_net(total / avg, 2)}
+        for i, total in enumerate(totals) if total >= avg * spike_multiplier
+    ]
+
+
+def cooldown_opportunities(damage_spikes: list[dict], cooldown_rows: dict, tolerance_ms: float = COOLDOWN_OPPORTUNITY_TOLERANCE_MS) -> list[dict]:
+    """For each real detected damage spike, checks whether ANY tracked
+    cooldown (from CooldownRows' real cast timestamps, already in
+    report_data.json - no re-pull needed) landed within `tolerance_ms`
+    either side. Flags spikes with none as a real, observable "cooldown-idle
+    high-damage window" - this NEVER claims a specific cooldown should have
+    been used (that would need to know which target was in danger and
+    whether the healer even had that cooldown off recharge, neither of
+    which this mechanism can determine), only that the window itself is a
+    real fact with no cooldown use nearby."""
+    all_cast_ts = [t["Timestamp"] for row in cooldown_rows.values() for t in row.get("Targets", []) if t.get("Timestamp") is not None]
+    return [
+        spike for spike in damage_spikes
+        if not any(abs(ts - spike["Timestamp"]) <= tolerance_ms for ts in all_cast_ts)
+    ]
+
+
+def hot_timing_proactive_reactive(
+    cast_events: list[dict], damage_events: list[dict],
+    reactive_window_ms: float = HOT_TIMING_REACTIVE_WINDOW_MS, proactive_window_ms: float = HOT_TIMING_PROACTIVE_WINDOW_MS,
+) -> dict | None:
+    """Classifies each real targeted cast this fight as proactive (landed
+    ahead of that target's next real damage-taken event, within
+    `proactive_window_ms`) or reactive (landed shortly after that target's
+    most recent real damage-taken event, within `reactive_window_ms`) -
+    using the character's own cast events (the moment the button was
+    pressed) rather than each resulting heal/HoT tick, which would
+    multiply-count one real cast many times over. A cast with real damage
+    both shortly before AND after is classified reactive only - it may ALSO
+    have prepared for what came next, but this mechanism can't distinguish
+    genuine preparation from coincidence, so it is never double-counted
+    into proactive too.
+
+    Covers every real targeted cast, cross-class, rather than a hand-curated
+    per-class "which spells count as a HoT" list (which would need new,
+    unvalidated per-class knowledge this phase doesn't have) - the damage
+    correlation itself naturally selects only casts that landed near real
+    damage; a self-only utility cast with no nearby damage signal either way
+    just falls into Unclassified, which is correct (there's no real
+    proactive/reactive question to ask about it). Returns None when there's
+    nothing classifiable at all (no real targeted casts, or no real damage
+    this fight)."""
+    by_target: dict[int, list[float]] = {}
+    for ev in damage_events:
+        tid = ev.get("targetID")
+        if tid is not None:
+            by_target.setdefault(tid, []).append(ev["timestamp"])
+
+    proactive = reactive = unclassified = 0
+    for ev in cast_events:
+        tid = ev.get("targetID")
+        if tid is None or tid == -1:
+            continue
+        ts = ev["timestamp"]
+        target_damage_ts = by_target.get(tid, [])
+        has_recent_before = any(0 <= ts - d <= reactive_window_ms for d in target_damage_ts)
+        has_soon_after = any(0 <= d - ts <= proactive_window_ms for d in target_damage_ts)
+        if has_recent_before:
+            reactive += 1
+        elif has_soon_after:
+            proactive += 1
+        else:
+            unclassified += 1
+
+    total_classified = proactive + reactive
+    if total_classified == 0:
+        return None
+
+    return {
+        "ProactiveCount": proactive, "ReactiveCount": reactive, "UnclassifiedCount": unclassified,
+        "ProactivePct": round_net((proactive / total_classified) * 100, 1),
+    }
+
+
 def test_missed_second_potion(potion_targets: list[dict], fight_end: float, potion_cooldown_ms: float = 120000) -> bool:
     """Real TBC mechanic, not a guess: potions share a fixed 120s internal
     cooldown. Fixed numeric rule (same style/shape as test_tranquility_include):

@@ -13,8 +13,13 @@ asserted here as fact.
 Phase 1 covers mana-timing (zero new API calls - classResources is already
 sitting unused in every existing casts_events.json file). Phase 2 adds
 Lifebloom refresh-timing (Druid-Restoration only - a new but low-cost
-report-wide Buffs pull already done by pull_character.py). Later phases
-(damage-correlated cooldown-opportunity detection, peer-group comparison)
+report-wide Buffs pull already done by pull_character.py). Phase 3 adds
+damage-correlated coaching (cross-class): cooldown-opportunity windows
+(real raid-wide damage spikes with no tracked cooldown cast nearby) and
+proactive-vs-reactive healing timing (every real targeted cast classified
+against that target's own real damage-taken timeline) - both derived from
+the new fight*_damagetaken_events.json raw file pull_character.py now
+writes for every fight, every class. Later phases (peer-group comparison)
 extend this same module/sidecar rather than creating new ones - see the
 approved plan for the full breakdown.
 """
@@ -27,12 +32,17 @@ from typing import Any
 
 from pipeline import paths, render_lib
 from pipeline import jsonio
+from pipeline.numeric import round_net
 
 # Fixed thresholds for tagging a boss's mana-timing pattern as caveat-worthy -
 # same "fixed numeric rule, not a per-page discovery" spirit as
 # render_lib.test_tranquility_include. Chosen to flag genuinely extended
 # low-mana stretches, not routine dips every healer experiences.
 LOW_MANA_TIME_CAVEAT_THRESHOLD_PCT = 15.0
+
+# Below this real proactive-share, a kill's overall casting pattern is
+# flagged as "mostly reactive" - a fixed threshold, not a per-page read.
+HOT_TIMING_MOSTLY_REACTIVE_THRESHOLD_PCT = 30.0
 
 
 def _primary_lifebloom_target(events: list[dict]) -> tuple[int, str] | None:
@@ -127,11 +137,38 @@ def build_coaching(
                     if lifebloom_refresh and lifebloom_refresh["EarlyRefreshCount"] > 0:
                         tags.append("lifebloom_early_refresh_present")
 
+        damagetaken_path = char_dir / f"{label}_damagetaken_events.json"
+        damagetaken_data = jsonio.read_json_if_exists(damagetaken_path)
+        cooldown_opps: list[dict] = []
+        hot_timing = None
+        if damagetaken_data is None:
+            print(f"  WARNING: {slug} - {damagetaken_path.name} not found, skipping cooldown-opportunity/hot-timing analysis for this boss.")
+        else:
+            damage_events = damagetaken_data.get("events", [])
+            spikes = render_lib.detect_damage_spikes(damage_events, fight_start, fight_end)
+            raw_opps = render_lib.cooldown_opportunities(spikes, boss.get("CooldownRows", {}))
+            # Stored fight-relative (ms since this fight's own start), not
+            # report-relative - matches how the rest of coaching.json's
+            # display-facing numbers are scoped to one kill.
+            cooldown_opps = [
+                {"Timestamp": round_net(o["Timestamp"] - fight_start), "TotalDamage": o["TotalDamage"], "RatioToAvg": o["RatioToAvg"]}
+                for o in raw_opps
+            ]
+            if casts_data is not None:
+                hot_timing = render_lib.hot_timing_proactive_reactive(casts_data.get("events", []), damage_events)
+
+        if cooldown_opps:
+            tags.append("cooldown_opportunity_present")
+        if hot_timing and hot_timing["ProactivePct"] < HOT_TIMING_MOSTLY_REACTIVE_THRESHOLD_PCT:
+            tags.append("hot_timing_mostly_reactive")
+
         boss_results[slug] = {
             "ManaTiming": mana_timing,
             "MissedSecondPotionWindow": missed_second_potion,
             "LifebloomRefresh": lifebloom_refresh,
             "LifebloomTargetName": lifebloom_target_name,
+            "CooldownOpportunities": cooldown_opps,
+            "HotTimingProactiveReactive": hot_timing,
             "CannedCaveats": tags,
         }
 

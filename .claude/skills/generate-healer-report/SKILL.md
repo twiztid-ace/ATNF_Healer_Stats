@@ -94,7 +94,10 @@ from the report title, resolves real per-fight SPEC from the report's own
 rankings data (added 2026-07-16 — see "Before starting" above), and pulls
 healing/casts/consumables/gear/activetime/deaths per boss kill (only for
 fights matching the resolved spec) plus the character's full parse history.
-Read its output carefully:
+Also pulls a raid-wide `fight*_damagetaken_events.json` per fight for every
+class (coaching-layer Phase 3 - real per-hit damage data, not scoped to the
+character being pulled) and, Druid-Restoration only, a report-wide
+`fight*_lifebloom_buffs_events.json` (coaching-layer Phase 2). Read its output carefully:
 - If it reports `0 boss kill(s) found` or the character wasn't found in
   `actors[]`, **stop here** — don't proceed to build pages from nothing. Tell
   the user what went wrong (wrong report code, character not in this report, etc.).
@@ -191,8 +194,20 @@ kill, plus an `EarlyRefreshCount` (a refresh landing with >4s still remaining
 on the real 7s buff) — reconstructed from `fight*_lifebloom_buffs_events.json`,
 a new raw file `pull-character` now writes (step 2) whenever the resolved
 class/spec is Druid-Restoration (one extra report-wide API call, gated the
-same way Tree of Life's fetch already is). Zero LLM judgment calls of its
-own either way — same discipline as step 6.
+same way Tree of Life's fetch already is). Phase 3 (all classes) adds
+damage-correlated coaching, from a new raid-wide `fight*_damagetaken_events.json`
+raw file `pull-character` now writes for every fight (real per-hit damage,
+NOT scoped to the healer being pulled - see `pull_character.py`'s
+`_get_damage_taken_events`): `CooldownOpportunities` (real damage-taken
+spikes, relative to this fight's own average, with no tracked cooldown cast
+within 10s either side - never claims a SPECIFIC cooldown should have been
+used, only that the window itself had none nearby) and
+`HotTimingProactiveReactive` (every real targeted cast this kill classified
+as landing ahead of that target's next real damage, or shortly after their
+most recent real damage, using the character's own cast timestamps - not
+each resulting heal/HoT tick, which would multiply-count one real cast many
+times over). Zero LLM judgment calls of its own either way, any phase —
+same discipline as step 6.
 
 ### 8. Author findings.json (the only step touching an LLM)
 Read `<code>_report_data.json` **and** `<code>_analysis.json`. Write
@@ -215,7 +230,18 @@ specific early refresh was a mistake versus a deliberate stack-refresh play
 — state the real count/timing, leave intent unjudged (see CLAUDE.md's
 ground rules). Every other pipeline class/build (Shaman, Priest, Paladin,
 Dreamstate) does NOT need this key — `render_report.py`'s validation only
-requires it when `--class-name` is `Druid`. Then a
+requires it when `--class-name` is `Druid`. **Every class** (coaching-layer
+Phase 3) also needs `COOLDOWN_OPPORTUNITY_FINDING` (read
+`Bosses.<slug>.CooldownOpportunities` - an empty list is real and means no
+real damage-spike window went without a nearby cooldown, not "no data";
+`cooldown_opportunity_present` in `CannedCaveats` flags a non-empty list)
+and `HOT_TIMING_FINDING` (read `Bosses.<slug>.HotTimingProactiveReactive` -
+`null` means no real casts were classifiable against damage timing this
+kill; `hot_timing_mostly_reactive` in `CannedCaveats` flags a real
+proactive share under 30%). Same ground-rule discipline as Lifebloom above
+— state the real observable fact (a spike with nothing nearby, a real
+proactive/reactive split), never assert a specific cooldown should have
+fired or that a reactive cast was a mistake. Then a
 `RaidOverview` object with `GEAR_CONSISTENCY_FINDING`, `GEAR_FINDING_NOTE`,
 `RAID_SUMMARY_FINDING`, an optional `RAID_WARNING_BANNER` (may contain `<strong>`
 tags — this is the one field the renderer doesn't escape), and an optional
@@ -251,7 +277,7 @@ saying and how to phrase it. Concretely, before writing each boss's findings:
   33074 — don't claim Holy Shock "doesn't heal" for a Paladin).
 
 **Validate before moving on**: every boss slug in `report_data.json.Bosses` has
-all 5 required keys non-empty in `BossFindings` (6 for Druid pages —
+all 7 required keys non-empty in `BossFindings` (8 for Druid pages —
 `LIFEBLOOM_REFRESH_FINDING` too), and `RaidOverview` has its 3
 required keys (`GEAR_CONSISTENCY_FINDING`, `GEAR_FINDING_NOTE`,
 `RAID_SUMMARY_FINDING`) non-empty. `pipeline\render_report.py` in the next step
@@ -259,9 +285,10 @@ also checks this and refuses to write a page on any gap — don't rely on it
 catching a typo'd boss slug for you, though; check the slug names match
 `report_data.json` exactly. **Note for any report pulled/rendered before this
 coaching layer existed**: its real `findings.json` won't have
-`MANA_TIMING_FINDING` (or, for Druid, `LIFEBLOOM_REFRESH_FINDING`) yet and
-will now fail this same validation on re-render — backfill a real sentence
-per boss (using step 7's `coaching.json` output) before re-running step 9
+`MANA_TIMING_FINDING`/`COOLDOWN_OPPORTUNITY_FINDING`/`HOT_TIMING_FINDING`
+(or, for Druid, `LIFEBLOOM_REFRESH_FINDING`) yet and will now fail this
+same validation on re-render — backfill a real sentence per boss (using
+step 7's `coaching.json` output) before re-running step 9
 for that report, don't
 silently skip the key.
 
@@ -371,7 +398,7 @@ For each `needs-findings` healer from step 2, follow single-healer step 8
 exactly — read that healer's own `<code>_report_data.json`, `<code>_analysis.json`,
 **and** `<code>_coaching.json`, write their own `<code>_findings.json` — using
 the same schema, the same `CannedCaveats`/`RebirthCandidates`/etc. rules, and
-the same validation ("every boss slug has all 5 required keys, 6 for Druid,
+the same validation ("every boss slug has all 7 required keys, 8 for Druid,
 `RaidOverview` has its 3 required keys") described there. **Each healer's findings are their
 own** — never reuse or copy prose across healers just because they share a
 report code; the same kill can look very different from a Druid's cooldown

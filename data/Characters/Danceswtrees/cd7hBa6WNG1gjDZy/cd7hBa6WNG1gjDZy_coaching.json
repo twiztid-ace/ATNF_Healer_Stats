@@ -49,8 +49,38 @@
         ]
       },
       "LifebloomTargetName": "Staubz",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 12000,
+          "TotalDamage": 9619,
+          "RatioToAvg": 2.71
+        },
+        {
+          "Timestamp": 18000,
+          "TotalDamage": 11186,
+          "RatioToAvg": 3.15
+        },
+        {
+          "Timestamp": 30000,
+          "TotalDamage": 9007,
+          "RatioToAvg": 2.54
+        },
+        {
+          "Timestamp": 96000,
+          "TotalDamage": 15866,
+          "RatioToAvg": 4.47
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 2,
+        "ReactiveCount": 83,
+        "UnclassifiedCount": 21,
+        "ProactivePct": 2.4
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "moroes": {
@@ -89,8 +119,33 @@
         ]
       },
       "LifebloomTargetName": "Sheriffgoose",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 18000,
+          "TotalDamage": 19430,
+          "RatioToAvg": 4.0
+        },
+        {
+          "Timestamp": 21000,
+          "TotalDamage": 17927,
+          "RatioToAvg": 3.69
+        },
+        {
+          "Timestamp": 45000,
+          "TotalDamage": 22638,
+          "RatioToAvg": 4.66
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 6,
+        "ReactiveCount": 46,
+        "UnclassifiedCount": 29,
+        "ProactivePct": 11.5
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "maiden": {
@@ -129,8 +184,23 @@
         ]
       },
       "LifebloomTargetName": "Staubz",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 36000,
+          "TotalDamage": 24151,
+          "RatioToAvg": 2.89
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 2,
+        "ReactiveCount": 30,
+        "UnclassifiedCount": 0,
+        "ProactivePct": 6.2
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "opera": {
@@ -174,8 +244,23 @@
         ]
       },
       "LifebloomTargetName": "Staubz",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 27000,
+          "TotalDamage": 14435,
+          "RatioToAvg": 3.08
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 7,
+        "ReactiveCount": 43,
+        "UnclassifiedCount": 26,
+        "ProactivePct": 14.0
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "nightbane": {
@@ -264,8 +349,38 @@
         ]
       },
       "LifebloomTargetName": "Staubz",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 0,
+          "TotalDamage": 11919,
+          "RatioToAvg": 2.78
+        },
+        {
+          "Timestamp": 273000,
+          "TotalDamage": 12957,
+          "RatioToAvg": 3.03
+        },
+        {
+          "Timestamp": 276000,
+          "TotalDamage": 13341,
+          "RatioToAvg": 3.11
+        },
+        {
+          "Timestamp": 282000,
+          "TotalDamage": 10789,
+          "RatioToAvg": 2.52
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 18,
+        "ReactiveCount": 114,
+        "UnclassifiedCount": 39,
+        "ProactivePct": 13.6
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "curator": {
@@ -299,8 +414,23 @@
         ]
       },
       "LifebloomTargetName": "Staubz",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 75000,
+          "TotalDamage": 16938,
+          "RatioToAvg": 2.53
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 16,
+        "ReactiveCount": 50,
+        "UnclassifiedCount": 13,
+        "ProactivePct": 24.2
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "illhoof": {
@@ -349,9 +479,17 @@
         ]
       },
       "LifebloomTargetName": "Staubz",
+      "CooldownOpportunities": [],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 9,
+        "ReactiveCount": 47,
+        "UnclassifiedCount": 21,
+        "ProactivePct": 16.1
+      },
       "CannedCaveats": [
         "mana_timing_extended_low_mana",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "hot_timing_mostly_reactive"
       ]
     },
     "aran": {
@@ -390,8 +528,32 @@
         ]
       },
       "LifebloomTargetName": "Danceswtrees",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 78000,
+          "TotalDamage": 9563,
+          "RatioToAvg": 2.71
+        },
+        {
+          "Timestamp": 93000,
+          "TotalDamage": 10494,
+          "RatioToAvg": 2.98
+        },
+        {
+          "Timestamp": 96000,
+          "TotalDamage": 11880,
+          "RatioToAvg": 3.37
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 8,
+        "ReactiveCount": 14,
+        "UnclassifiedCount": 13,
+        "ProactivePct": 36.4
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present"
       ]
     },
     "netherspite": {
@@ -445,8 +607,22 @@
         ]
       },
       "LifebloomTargetName": "Staubz",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 15000,
+          "TotalDamage": 24030,
+          "RatioToAvg": 2.57
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 27,
+        "ReactiveCount": 47,
+        "UnclassifiedCount": 18,
+        "ProactivePct": 36.5
+      },
       "CannedCaveats": [
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present"
       ]
     },
     "malchezaar": {
@@ -490,9 +666,29 @@
         ]
       },
       "LifebloomTargetName": "Staubz",
+      "CooldownOpportunities": [
+        {
+          "Timestamp": 168000,
+          "TotalDamage": 28278,
+          "RatioToAvg": 5.29
+        },
+        {
+          "Timestamp": 186000,
+          "TotalDamage": 27004,
+          "RatioToAvg": 5.06
+        }
+      ],
+      "HotTimingProactiveReactive": {
+        "ProactiveCount": 10,
+        "ReactiveCount": 75,
+        "UnclassifiedCount": 20,
+        "ProactivePct": 11.8
+      },
       "CannedCaveats": [
         "mana_timing_missed_second_potion_window",
-        "lifebloom_early_refresh_present"
+        "lifebloom_early_refresh_present",
+        "cooldown_opportunity_present",
+        "hot_timing_mostly_reactive"
       ]
     }
   }

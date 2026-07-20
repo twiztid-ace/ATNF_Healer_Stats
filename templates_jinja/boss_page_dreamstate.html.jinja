@@ -610,6 +610,61 @@
       {% endif %}
       <div class="coverage-note">{{ mana_timing_finding }}</div>
     </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Cooldown-opportunity windows</h2>
+      </div>
+      {% if cooldown_opportunity_rows %}
+      <p class="section-desc">Real raid-wide damage bursts this kill (relative to its own baseline) with no tracked cooldown cast within 10s either side.</p>
+      <div class="target-list">
+        {% for row in cooldown_opportunity_rows %}
+        <div class="target-row">
+          <div>{{ row.seconds }}s into fight</div>
+          <div class="target-bar-track"><div class="target-bar-fill" style="width:{{ row.bar_width }}%"></div></div>
+          <div class="target-pct">{{ row.ratio }}x avg</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="section-desc">No real damage-spike windows this kill went without a tracked cooldown nearby.</p>
+      {% endif %}
+      <div class="coverage-note">{{ cooldown_opportunity_finding }}</div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Proactive vs. reactive healing</h2>
+      </div>
+      {% if hot_timing %}
+      <p class="section-desc">Every real targeted cast this kill, classified by whether it landed ahead of that target's next real damage (proactive) or shortly after their most recent real damage (reactive).</p>
+      <div class="stat-grid">
+        <div class="stat">
+          <div class="stat-label">Proactive</div>
+          <div class="stat-value">{{ hot_timing.ProactiveCount }}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Reactive</div>
+          <div class="stat-value">{{ hot_timing.ReactiveCount }}</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Unclassified</div>
+          <div class="stat-value">{{ hot_timing.UnclassifiedCount }}</div>
+          <div class="stat-sub">no nearby real damage signal either way</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Proactive share</div>
+          <div class="stat-value">{{ hot_timing.ProactivePct }}%</div>
+          <div class="stat-sub">of classified casts</div>
+        </div>
+      </div>
+      {% else %}
+      <p class="section-desc">No real casts this kill could be classified against damage timing.</p>
+      {% endif %}
+      <div class="coverage-note">{{ hot_timing_finding }}</div>
+    </div>
   </div>
 
   <div class="footer">
