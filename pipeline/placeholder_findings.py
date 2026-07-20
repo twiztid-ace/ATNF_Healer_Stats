@@ -53,16 +53,21 @@ def build_placeholder_findings(
     if not boss_slugs:
         raise ValueError(f"{report_data_file} has no bosses - nothing to generate placeholder findings for.")
 
-    boss_findings = {
-        slug: {
+    boss_findings = {}
+    for slug in boss_slugs:
+        entry = {
             "SCORECARD_FINDING": PLACEHOLDER,
             "SPELL_COMPOSITION_FINDING": PLACEHOLDER,
             "COOLDOWN_FINDING": PLACEHOLDER,
             "TARGET_FINDING": PLACEHOLDER,
             "MANA_TIMING_FINDING": PLACEHOLDER,
         }
-        for slug in boss_slugs
-    }
+        # Lifebloom refresh-timing (coaching Phase 2) is Druid-Restoration
+        # only - see render_report.py's _validate_findings for the matching
+        # class-gated requirement.
+        if report_data.get("ClassName") == "Druid":
+            entry["LIFEBLOOM_REFRESH_FINDING"] = PLACEHOLDER
+        boss_findings[slug] = entry
 
     findings = {
         "CharacterName": character_name,

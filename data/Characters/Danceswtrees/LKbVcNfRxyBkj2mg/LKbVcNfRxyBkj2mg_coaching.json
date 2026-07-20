@@ -11,11 +11,23 @@
         "HighManaCastCount": 6,
         "TimeBelowLowThresholdPct": 0.0,
         "TimeAboveHighThresholdPct": 30.5,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 28
       },
       "MissedSecondPotionWindow": false,
+      "LifebloomRefresh": {
+        "UptimePct": 85.8,
+        "StackTimeMs": {
+          "1": 6337,
+          "2": 12784,
+          "3": 12371
+        },
+        "RefreshCount": 5,
+        "EarlyRefreshCount": 0,
+        "EarlyRefreshes": []
+      },
+      "LifebloomTargetName": "Turkeykin",
       "CannedCaveats": []
     },
     "gruul": {
@@ -26,12 +38,42 @@
         "HighManaCastCount": 12,
         "TimeBelowLowThresholdPct": 3.6,
         "TimeAboveHighThresholdPct": 12.2,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 74
       },
       "MissedSecondPotionWindow": false,
-      "CannedCaveats": []
+      "LifebloomRefresh": {
+        "UptimePct": 83.4,
+        "StackTimeMs": {
+          "1": 32862,
+          "2": 4660,
+          "3": 100180
+        },
+        "RefreshCount": 24,
+        "EarlyRefreshCount": 3,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 823482,
+            "RemainingMs": 5494,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 824980,
+            "RemainingMs": 5502,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 885557,
+            "RemainingMs": 4073,
+            "Stack": 3
+          }
+        ]
+      },
+      "LifebloomTargetName": "Jotes",
+      "CannedCaveats": [
+        "lifebloom_early_refresh_present"
+      ]
     },
     "hydross": {
       "ManaTiming": {
@@ -41,12 +83,32 @@
         "HighManaCastCount": 11,
         "TimeBelowLowThresholdPct": 11.9,
         "TimeAboveHighThresholdPct": 12.2,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 67
       },
       "MissedSecondPotionWindow": false,
-      "CannedCaveats": []
+      "LifebloomRefresh": {
+        "UptimePct": 54.3,
+        "StackTimeMs": {
+          "1": 17016,
+          "2": 1489,
+          "3": 61066
+        },
+        "RefreshCount": 14,
+        "EarlyRefreshCount": 1,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 2357698,
+            "RemainingMs": 5511,
+            "Stack": 3
+          }
+        ]
+      },
+      "LifebloomTargetName": "Jotes",
+      "CannedCaveats": [
+        "lifebloom_early_refresh_present"
+      ]
     },
     "leotheras": {
       "ManaTiming": {
@@ -56,13 +118,52 @@
         "HighManaCastCount": 3,
         "TimeBelowLowThresholdPct": 29.0,
         "TimeAboveHighThresholdPct": 5.6,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 114
       },
       "MissedSecondPotionWindow": false,
+      "LifebloomRefresh": {
+        "UptimePct": 20.1,
+        "StackTimeMs": {
+          "1": 9250,
+          "2": 13776,
+          "3": 23651
+        },
+        "RefreshCount": 8,
+        "EarlyRefreshCount": 5,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 4342127,
+            "RemainingMs": 5839,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 4343279,
+            "RemainingMs": 5848,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 4345916,
+            "RemainingMs": 4363,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 4362002,
+            "RemainingMs": 5823,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 4379227,
+            "RemainingMs": 5183,
+            "Stack": 3
+          }
+        ]
+      },
+      "LifebloomTargetName": "Raezy",
       "CannedCaveats": [
-        "mana_timing_extended_low_mana"
+        "mana_timing_extended_low_mana",
+        "lifebloom_early_refresh_present"
       ]
     },
     "karathress": {
@@ -73,13 +174,42 @@
         "HighManaCastCount": 19,
         "TimeBelowLowThresholdPct": 20.5,
         "TimeAboveHighThresholdPct": 15.4,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 109
       },
       "MissedSecondPotionWindow": false,
+      "LifebloomRefresh": {
+        "UptimePct": 65.7,
+        "StackTimeMs": {
+          "1": 3450,
+          "2": 14332,
+          "3": 113611
+        },
+        "RefreshCount": 23,
+        "EarlyRefreshCount": 3,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 5080507,
+            "RemainingMs": 4979,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 5117483,
+            "RemainingMs": 5347,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 5132587,
+            "RemainingMs": 5497,
+            "Stack": 2
+          }
+        ]
+      },
+      "LifebloomTargetName": "Braila",
       "CannedCaveats": [
-        "mana_timing_extended_low_mana"
+        "mana_timing_extended_low_mana",
+        "lifebloom_early_refresh_present"
       ]
     },
     "morogrim": {
@@ -90,13 +220,67 @@
         "HighManaCastCount": 10,
         "TimeBelowLowThresholdPct": 6.7,
         "TimeAboveHighThresholdPct": 7.9,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 142
       },
       "MissedSecondPotionWindow": true,
+      "LifebloomRefresh": {
+        "UptimePct": 84.6,
+        "StackTimeMs": {
+          "1": 26807,
+          "2": 27487,
+          "3": 157099
+        },
+        "RefreshCount": 37,
+        "EarlyRefreshCount": 8,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 5722255,
+            "RemainingMs": 4353,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 5749933,
+            "RemainingMs": 5848,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 5751574,
+            "RemainingMs": 5359,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 5763101,
+            "RemainingMs": 5832,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 5802036,
+            "RemainingMs": 5489,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 5823372,
+            "RemainingMs": 5506,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 5857905,
+            "RemainingMs": 5481,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 5938945,
+            "RemainingMs": 5496,
+            "Stack": 2
+          }
+        ]
+      },
+      "LifebloomTargetName": "Turbarct",
       "CannedCaveats": [
-        "mana_timing_missed_second_potion_window"
+        "mana_timing_missed_second_potion_window",
+        "lifebloom_early_refresh_present"
       ]
     },
     "lurker": {
@@ -107,13 +291,67 @@
         "HighManaCastCount": 7,
         "TimeBelowLowThresholdPct": 6.2,
         "TimeAboveHighThresholdPct": 6.1,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 85
       },
       "MissedSecondPotionWindow": true,
+      "LifebloomRefresh": {
+        "UptimePct": 69.4,
+        "StackTimeMs": {
+          "1": 18601,
+          "2": 9050,
+          "3": 107753
+        },
+        "RefreshCount": 27,
+        "EarlyRefreshCount": 8,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 6390963,
+            "RemainingMs": 5482,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 6392465,
+            "RemainingMs": 5498,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 6520573,
+            "RemainingMs": 5490,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 6522072,
+            "RemainingMs": 5501,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 6533751,
+            "RemainingMs": 5505,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 6535262,
+            "RemainingMs": 5489,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 6554394,
+            "RemainingMs": 5489,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 6555900,
+            "RemainingMs": 5494,
+            "Stack": 3
+          }
+        ]
+      },
+      "LifebloomTargetName": "Turbarct",
       "CannedCaveats": [
-        "mana_timing_missed_second_potion_window"
+        "mana_timing_missed_second_potion_window",
+        "lifebloom_early_refresh_present"
       ]
     },
     "vashj": {
@@ -124,13 +362,97 @@
         "HighManaCastCount": 12,
         "TimeBelowLowThresholdPct": 25.0,
         "TimeAboveHighThresholdPct": 4.5,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 237
       },
       "MissedSecondPotionWindow": false,
+      "LifebloomRefresh": {
+        "UptimePct": 38.8,
+        "StackTimeMs": {
+          "1": 23285,
+          "2": 7797,
+          "3": 179532
+        },
+        "RefreshCount": 41,
+        "EarlyRefreshCount": 14,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 7112247,
+            "RemainingMs": 5487,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 7113868,
+            "RemainingMs": 5379,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 7160761,
+            "RemainingMs": 5494,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 7162265,
+            "RemainingMs": 5496,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 7501692,
+            "RemainingMs": 5478,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 7503194,
+            "RemainingMs": 5498,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 7533827,
+            "RemainingMs": 4562,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 7536309,
+            "RemainingMs": 4518,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 7538924,
+            "RemainingMs": 4385,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 7541662,
+            "RemainingMs": 4262,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 7590468,
+            "RemainingMs": 5496,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 7591972,
+            "RemainingMs": 5496,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 7641576,
+            "RemainingMs": 5506,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 7643243,
+            "RemainingMs": 5333,
+            "Stack": 3
+          }
+        ]
+      },
+      "LifebloomTargetName": "Turbarct",
       "CannedCaveats": [
-        "mana_timing_extended_low_mana"
+        "mana_timing_extended_low_mana",
+        "lifebloom_early_refresh_present"
       ]
     },
     "alar": {
@@ -141,12 +463,77 @@
         "HighManaCastCount": 22,
         "TimeBelowLowThresholdPct": 3.4,
         "TimeAboveHighThresholdPct": 16.5,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 158
       },
       "MissedSecondPotionWindow": false,
-      "CannedCaveats": []
+      "LifebloomRefresh": {
+        "UptimePct": 84.6,
+        "StackTimeMs": {
+          "1": 17577,
+          "2": 19155,
+          "3": 233473
+        },
+        "RefreshCount": 50,
+        "EarlyRefreshCount": 10,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 9356876,
+            "RemainingMs": 5499,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 9390094,
+            "RemainingMs": 5489,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 9458537,
+            "RemainingMs": 5501,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 9473156,
+            "RemainingMs": 5488,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 9474736,
+            "RemainingMs": 5420,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 9518778,
+            "RemainingMs": 4088,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 9521775,
+            "RemainingMs": 4003,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 9567098,
+            "RemainingMs": 5478,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 9568601,
+            "RemainingMs": 5497,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 9619336,
+            "RemainingMs": 5491,
+            "Stack": 2
+          }
+        ]
+      },
+      "LifebloomTargetName": "Paladanwood",
+      "CannedCaveats": [
+        "lifebloom_early_refresh_present"
+      ]
     },
     "voidreaver": {
       "ManaTiming": {
@@ -156,13 +543,52 @@
         "HighManaCastCount": 7,
         "TimeBelowLowThresholdPct": 31.8,
         "TimeAboveHighThresholdPct": 9.3,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 98
       },
       "MissedSecondPotionWindow": false,
+      "LifebloomRefresh": {
+        "UptimePct": 27.9,
+        "StackTimeMs": {
+          "1": 8618,
+          "2": 13632,
+          "3": 35350
+        },
+        "RefreshCount": 10,
+        "EarlyRefreshCount": 5,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 10968777,
+            "RemainingMs": 5498,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 11041950,
+            "RemainingMs": 5487,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 11043917,
+            "RemainingMs": 5033,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 11056280,
+            "RemainingMs": 4399,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 11057940,
+            "RemainingMs": 5340,
+            "Stack": 3
+          }
+        ]
+      },
+      "LifebloomTargetName": "Turbarct",
       "CannedCaveats": [
-        "mana_timing_extended_low_mana"
+        "mana_timing_extended_low_mana",
+        "lifebloom_early_refresh_present"
       ]
     },
     "solarian": {
@@ -173,11 +599,23 @@
         "HighManaCastCount": 4,
         "TimeBelowLowThresholdPct": 0.0,
         "TimeAboveHighThresholdPct": 12.7,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 40
       },
       "MissedSecondPotionWindow": false,
+      "LifebloomRefresh": {
+        "UptimePct": 4.5,
+        "StackTimeMs": {
+          "1": 6157,
+          "2": 0,
+          "3": 0
+        },
+        "RefreshCount": 0,
+        "EarlyRefreshCount": 0,
+        "EarlyRefreshes": []
+      },
+      "LifebloomTargetName": "Jotes",
       "CannedCaveats": []
     },
     "kaelthas": {
@@ -188,12 +626,72 @@
         "HighManaCastCount": 48,
         "TimeBelowLowThresholdPct": 1.7,
         "TimeAboveHighThresholdPct": 26.3,
-        "LowThreshold": 20.0,
-        "HighThreshold": 90.0,
+        "LowThreshold": 20,
+        "HighThreshold": 90,
         "ReadingCount": 242
       },
       "MissedSecondPotionWindow": false,
-      "CannedCaveats": []
+      "LifebloomRefresh": {
+        "UptimePct": 44.9,
+        "StackTimeMs": {
+          "1": 58968,
+          "2": 32383,
+          "3": 127331
+        },
+        "RefreshCount": 35,
+        "EarlyRefreshCount": 9,
+        "EarlyRefreshes": [
+          {
+            "Timestamp": 12862675,
+            "RemainingMs": 5465,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 12868900,
+            "RemainingMs": 4296,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 12876977,
+            "RemainingMs": 4354,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 12882448,
+            "RemainingMs": 4664,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 12911370,
+            "RemainingMs": 4357,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 12970880,
+            "RemainingMs": 5503,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 13026964,
+            "RemainingMs": 5509,
+            "Stack": 2
+          },
+          {
+            "Timestamp": 13031472,
+            "RemainingMs": 5505,
+            "Stack": 3
+          },
+          {
+            "Timestamp": 13046936,
+            "RemainingMs": 4001,
+            "Stack": 3
+          }
+        ]
+      },
+      "LifebloomTargetName": "Jotes",
+      "CannedCaveats": [
+        "lifebloom_early_refresh_present"
+      ]
     }
   }
 }

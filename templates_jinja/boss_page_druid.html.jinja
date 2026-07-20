@@ -610,6 +610,42 @@
       {% endif %}
       <div class="coverage-note">{{ mana_timing_finding }}</div>
     </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Lifebloom refresh timing</h2>
+      </div>
+      {% if lifebloom_refresh %}
+      <p class="section-desc">Real Lifebloom coverage on {{ lifebloom_target_name }} — the target it was maintained on the most this kill — reconstructed from real apply/refresh/stack events (7s base duration per real cast).</p>
+      <div class="stat-grid stat-grid-5">
+        <div class="stat">
+          <div class="stat-label">Uptime on {{ lifebloom_target_name }}</div>
+          <div class="stat-value">{{ lifebloom_refresh.UptimePct }}%</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Time at 1 stack</div>
+          <div class="stat-value">{{ (lifebloom_refresh.StackTimeMs['1'] / 1000) | round(1) }}s</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Time at 2 stacks</div>
+          <div class="stat-value">{{ (lifebloom_refresh.StackTimeMs['2'] / 1000) | round(1) }}s</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Time at 3 stacks</div>
+          <div class="stat-value">{{ (lifebloom_refresh.StackTimeMs['3'] / 1000) | round(1) }}s</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Refreshes</div>
+          <div class="stat-value">{{ lifebloom_refresh.RefreshCount }}</div>
+          <div class="stat-sub">{{ lifebloom_refresh.EarlyRefreshCount }} flagged early (&gt;4s remaining of a 7s buff)</div>
+        </div>
+      </div>
+      {% else %}
+      <p class="section-desc">No real Lifebloom events for this kill (either it wasn't the primary tool used, or the raw data predates this feature — re-run <span class="placeholder-tag">pull-character</span> + <span class="placeholder-tag">build-coaching</span>).</p>
+      {% endif %}
+      <div class="coverage-note">{{ lifebloom_refresh_finding }}</div>
+    </div>
   </div>
 
   <div class="footer">

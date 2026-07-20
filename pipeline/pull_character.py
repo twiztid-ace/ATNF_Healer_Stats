@@ -45,6 +45,7 @@ class PullCharacterResult(TypedDict):
 TREE_OF_LIFE_GUID = 33891
 IMPROVED_FAERIE_FIRE_GUID = 26993
 HEALING_TOUCH_GUID = 26979
+LIFEBLOOM_HOT_GUID = 33763
 TRACKED_HEALER_ICONS = {
     "Druid-Restoration", "Druid-Dreamstate", "Shaman-Restoration",
     "Priest-Holy", "Priest-Discipline", "Paladin-Holy",
@@ -127,6 +128,45 @@ def _get_tree_of_life_events(report_code: str, character_id: int, report_start: 
     return tol_events
 
 
+def _get_lifebloom_events(report_code: str, character_id: int, report_start: int, report_end: int, access_token: str) -> list[dict]:
+    """Fetches the report-wide real Lifebloom HoT-tick buff events (one API
+    call, reused across every fight below) - Phase 2 of the coaching layer
+    (see CLAUDE.md/the approved plan). Guid 33763 is the real HoT-tick
+    effect (confirmed live 2026-07-20 via a real full-fight reconstruction
+    that produced a sane uptime/stack-time/early-refresh result) - NOT 33778
+    (the separate bloom-burst heal), a genuinely different mechanical effect
+    never merged with this one, per CLAUDE.md's "Group by ability guid"
+    ground rule (see render_lib.KNOWN_SPELL_RANK_LABELS). Unlike
+    _get_tree_of_life_events (which fetches every real Buffs event and
+    filters client-side), this one filters server-side via abilityID - a
+    Restoration Druid's Lifebloom volume is high enough across a whole
+    report that pulling every buff event first would be real wasted
+    transfer for no benefit here."""
+    print(f"  Fetching report-wide Lifebloom buff events (guid {LIFEBLOOM_HOT_GUID})...")
+    report_end_offset = report_end - report_start
+
+    def query_builder(start_time: float) -> str:
+        return (
+            f'query {{ reportData {{ report(code: "{report_code}") {{ '
+            f"events(sourceID: {character_id}, dataType: Buffs, abilityID: {LIFEBLOOM_HOT_GUID}, "
+            f"startTime: {start_time}, endTime: {report_end_offset}) "
+            f"{{ data nextPageTimestamp }} }} }} }}"
+        )
+
+    def extract_page(data: Any) -> wcl_api.PageResult:
+        ev = data["reportData"]["report"]["events"]
+        return wcl_api.PageResult(items=ev["data"], next_page_timestamp=ev.get("nextPageTimestamp"))
+
+    paged = wcl_api.invoke_wcl_graphql_paged(query_builder, extract_page, access_token=access_token)
+    if paged.errors:
+        print(f"  FAILED fetching report-wide Lifebloom buff events - {paged.errors}")
+        return []
+
+    events = sorted(paged.items, key=lambda e: e["timestamp"])
+    print(f"  Fetched {len(events)} real Lifebloom buff event(s) report-wide")
+    return events
+
+
 def _tree_of_life_uptime_for_fight(tol_events: list[dict], fight_start: float, fight_end: float, fight_casts_events: list[dict]) -> float:
     """Per-fight uptime, evidence-based rather than assumed from a report-wide
     chain. Real rule, confirmed against real Danceswtrees data (see
@@ -187,6 +227,7 @@ def _pull_one_fight(
     character_id: int, character_name: str, actor_names: dict[int, str],
     tree_of_life_events: list[dict], out_dir: Path, access_token: str,
     compute_improved_faerie_fire: bool, report_end_time: float,
+    lifebloom_events: list[dict],
 ) -> dict:
     label = f"fight{fight_id:02d}_{boss_slug}"
     messages: list[str] = []
@@ -308,6 +349,14 @@ def _pull_one_fight(
     casts_out = out_dir / f"{label}_casts_events.json"
     if not get_events("Casts", casts_out):
         fight_ok = False
+
+    lifebloom_out = out_dir / f"{label}_lifebloom_buffs_events.json"
+    if lifebloom_events and not lifebloom_out.exists():
+        fight_lifebloom = [e for e in lifebloom_events if start_time <= e["timestamp"] <= end_time]
+        for ev in fight_lifebloom:
+            ev["targetName"] = resolve_actor_name(ev.get("targetID"))
+        jsonio.write_json(lifebloom_out, {"sourceID": character_id, "sourceName": character_name, "events": fight_lifebloom})
+        messages.append(f"  {label}_lifebloom_buffs_events.json - OK ({len(fight_lifebloom)} events)")
 
     consumables_out = out_dir / f"{label}_consumables.json"
     gear_out = out_dir / f"{label}_gear.json"
@@ -600,6 +649,15 @@ def pull_character(
     if character_id:
         tree_of_life_events = _get_tree_of_life_events(report_code, character_id, fights_data["start"], fights_data["end"], token)
 
+    # Lifebloom refresh-timing coaching data (Phase 2) - Druid-Restoration
+    # only. Confirmed absent from Dreamstate's real kit (CLAUDE.md's "Per-
+    # build real cooldown/utility kits"), so gated on the real WCL
+    # (class_name, resolved_spec) pair, not just class_name alone (Shaman's
+    # real WCL specName is also "Restoration").
+    lifebloom_events: list[dict] = []
+    if character_id and class_name == "Druid" and resolved_spec == "Restoration":
+        lifebloom_events = _get_lifebloom_events(report_code, character_id, fights_data["start"], fights_data["end"], token)
+
     if not character_id:
         print("  SKIPPED - no report-local actor ID for the character (see warning above).")
         boss_fights = []
@@ -619,7 +677,7 @@ def pull_character(
                 executor.submit(
                     _pull_one_fight, fight["id"], _get_boss_slug(fight["boss"], fight["name"]), fight["start_time"], fight["end_time"],
                     report_code, character_id, character_name, actor_names, tree_of_life_events, out_dir, token, compute_improved_faerie_fire,
-                    fights_data["end"],
+                    fights_data["end"], lifebloom_events,
                 )
                 for fight in boss_fights
             ]

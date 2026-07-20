@@ -75,9 +75,14 @@ def _format_cooldown_benchmark(avg_casts, used_pct, self_pct, show_self_pct: boo
     return f"{avg_casts} avg ({self_display}% self)"
 
 
-def _validate_findings(report_data: dict, findings: dict) -> None:
+def _validate_findings(report_data: dict, findings: dict, class_name: str) -> None:
     boss_slugs = list(report_data["Bosses"].keys())
     required_boss_keys = ["SCORECARD_FINDING", "SPELL_COMPOSITION_FINDING", "COOLDOWN_FINDING", "TARGET_FINDING", "MANA_TIMING_FINDING"]
+    # Lifebloom refresh-timing (coaching Phase 2) is Druid-Restoration only -
+    # confirmed absent from Dreamstate's real kit (CLAUDE.md) - never
+    # required for any other pipeline class/build.
+    if class_name == "Druid":
+        required_boss_keys.append("LIFEBLOOM_REFRESH_FINDING")
     missing = []
     boss_findings = findings.get("BossFindings", {})
     for slug in boss_slugs:
@@ -164,7 +169,7 @@ def render_healer_report(
         except ValueError:
             raid_date_display = folder_name
 
-    _validate_findings(report_data, findings)
+    _validate_findings(report_data, findings, class_name)
 
     item_level = _compute_item_level(report_data)
     out_dir = Path(output_root) / healer_slug / raid_date_folder
@@ -342,6 +347,8 @@ def render_healer_report(
         boss_coaching = coaching.get("Bosses", {}).get(slug, {})
         mana_timing = boss_coaching.get("ManaTiming")
         missed_second_potion_window = boss_coaching.get("MissedSecondPotionWindow", False)
+        lifebloom_refresh = boss_coaching.get("LifebloomRefresh")
+        lifebloom_target_name = boss_coaching.get("LifebloomTargetName")
 
         context = {
             "raid_title": full_raid_title_for_boss_pages, "boss_name": boss["Display"],
@@ -381,6 +388,8 @@ def render_healer_report(
             "theme_style_block": theme_style_block, "theme_tag": theme_tag,
             "mana_timing": mana_timing, "missed_second_potion_window": missed_second_potion_window,
             "mana_timing_finding": bf["MANA_TIMING_FINDING"],
+            "lifebloom_refresh": lifebloom_refresh, "lifebloom_target_name": lifebloom_target_name,
+            "lifebloom_refresh_finding": bf.get("LIFEBLOOM_REFRESH_FINDING"),
         }
 
         # Note: no post-render scan for a literal "{{" here (the PowerShell

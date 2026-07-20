@@ -1,19 +1,22 @@
-"""Phase 1 of the additive "coaching-style" analysis layer (see
-Restoration Druid Healing Analysis.pdf and the approved plan for the full
-phased rollout). Reads a character's already-pulled data - {code}_report_data.json
-plus the raw fight*_casts_events.json files pull_character.py already writes
-- and writes a companion {code}_coaching.json, following the exact same
-zero-API, zero-LLM discipline as build_analysis.py: every judgment call is a
-pure predicate in render_lib.py, every result is a structured field (never
-free text), and anything that would require guessing intent (not just
-describing what happened) is gated behind a tag string for findings.json to
-pick up, never asserted here as fact.
+"""Additive "coaching-style" analysis layer (see Restoration Druid Healing
+Analysis.pdf and the approved plan for the full phased rollout). Reads a
+character's already-pulled data - {code}_report_data.json plus the raw
+fight*_casts_events.json / fight*_lifebloom_buffs_events.json files
+pull_character.py already writes - and writes a companion
+{code}_coaching.json, following the exact same zero-API, zero-LLM discipline
+as build_analysis.py: every judgment call is a pure predicate in
+render_lib.py, every result is a structured field (never free text), and
+anything that would require guessing intent (not just describing what
+happened) is gated behind a tag string for findings.json to pick up, never
+asserted here as fact.
 
-Phase 1 covers mana-timing only (zero new API calls - classResources is
-already sitting unused in every existing casts_events.json file). Later
-phases (Lifebloom refresh timing, damage-correlated cooldown-opportunity
-detection, peer-group comparison) extend this same module/sidecar rather
-than creating new ones - see the approved plan for the full breakdown.
+Phase 1 covers mana-timing (zero new API calls - classResources is already
+sitting unused in every existing casts_events.json file). Phase 2 adds
+Lifebloom refresh-timing (Druid-Restoration only - a new but low-cost
+report-wide Buffs pull already done by pull_character.py). Later phases
+(damage-correlated cooldown-opportunity detection, peer-group comparison)
+extend this same module/sidecar rather than creating new ones - see the
+approved plan for the full breakdown.
 """
 
 from __future__ import annotations
@@ -30,6 +33,29 @@ from pipeline import jsonio
 # render_lib.test_tranquility_include. Chosen to flag genuinely extended
 # low-mana stretches, not routine dips every healer experiences.
 LOW_MANA_TIME_CAVEAT_THRESHOLD_PCT = 15.0
+
+
+def _primary_lifebloom_target(events: list[dict]) -> tuple[int, str] | None:
+    """The real target Lifebloom was maintained on the most this fight,
+    resolved directly from the Lifebloom event stream itself (most real
+    apply/refresh/stack events for one targetID) - not inferred from overall
+    healing distribution, which can be skewed by heavy raid-wide Rejuvenation
+    volume even when Lifebloom itself was single-target on the tank the
+    whole kill. Returns (targetID, targetName) or None if the fight has no
+    real Lifebloom events at all."""
+    counts: dict[int, int] = {}
+    names: dict[int, str] = {}
+    for e in events:
+        tid = e.get("targetID")
+        if tid is None:
+            continue
+        counts[tid] = counts.get(tid, 0) + 1
+        if tid not in names and e.get("targetName"):
+            names[tid] = e["targetName"]
+    if not counts:
+        return None
+    top_id = max(counts, key=counts.get)
+    return top_id, names.get(top_id, f"Unknown_{top_id}")
 
 
 def build_coaching(
@@ -88,9 +114,24 @@ def build_coaching(
         if missed_second_potion:
             tags.append("mana_timing_missed_second_potion_window")
 
+        lifebloom_refresh = None
+        lifebloom_target_name = None
+        if class_name == "Druid":
+            lifebloom_path = char_dir / f"{label}_lifebloom_buffs_events.json"
+            lifebloom_data = jsonio.read_json_if_exists(lifebloom_path)
+            if lifebloom_data and lifebloom_data.get("events"):
+                primary = _primary_lifebloom_target(lifebloom_data["events"])
+                if primary:
+                    target_id, lifebloom_target_name = primary
+                    lifebloom_refresh = render_lib.lifebloom_refresh_analysis(lifebloom_data["events"], target_id, fight_start, fight_end)
+                    if lifebloom_refresh and lifebloom_refresh["EarlyRefreshCount"] > 0:
+                        tags.append("lifebloom_early_refresh_present")
+
         boss_results[slug] = {
             "ManaTiming": mana_timing,
             "MissedSecondPotionWindow": missed_second_potion,
+            "LifebloomRefresh": lifebloom_refresh,
+            "LifebloomTargetName": lifebloom_target_name,
             "CannedCaveats": tags,
         }
 

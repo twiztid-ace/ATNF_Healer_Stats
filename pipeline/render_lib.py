@@ -274,6 +274,99 @@ def compute_mana_timing(
     }
 
 
+# ===== Lifebloom refresh-timing coaching (Phase 2, Druid-Restoration only) =====
+
+LIFEBLOOM_BASE_DURATION_MS = 7000
+# A refresh landing with more than this much of the buff's 7s base duration
+# still remaining is flagged as an "early refresh" candidate - real ticks
+# get wasted this way. This is a fixed observable-fact threshold, not a
+# judgment call about whether it was a mistake (e.g. a deliberate stack
+# refresh before a known damage spike can look identical) - see
+# CLAUDE.md's ground rules on never presenting a guess about intent as fact.
+LIFEBLOOM_EARLY_REFRESH_THRESHOLD_MS = 4000
+
+
+def lifebloom_refresh_analysis(events: list[dict], target_id: int, fight_start: float, fight_end: float) -> dict | None:
+    """Reconstructs one target's real Lifebloom coverage/stack-time/refresh-
+    timing for one boss kill, from real apply/applybuffstack(stack)/
+    refreshbuff/removebuff events (same interval-reconstruction technique
+    already proven for Tree of Life - _tree_of_life_uptime_for_fight in
+    pull_character.py - generalized here to a STACKED buff instead of a
+    simple on/off toggle). `target_id` scopes to one real target (the one
+    Lifebloom was actually maintained on the most this fight, resolved by
+    the caller) - a Druid can run Lifebloom on more than one target across a
+    fight, and merging their intervals together would misrepresent
+    per-target coverage. Returns None when there are no real events for
+    this target in this window (never fabricate a 0% row for an untouched
+    target).
+
+    If the buff was already up when the fight window opened (the first real
+    event inside the window is anything other than a fresh `applybuff`),
+    this floors the incoming stack at 1 (a real fact can't be recovered
+    from data before this window) and leaves the refresh-timing baseline
+    (`last_refresh_ts`) unset until a real refresh/apply is actually
+    observed inside the window - an "early refresh" is never flagged
+    against an assumed, not-really-known prior refresh time."""
+    in_window = sorted(
+        (e for e in events if e.get("targetID") == target_id and fight_start <= e["timestamp"] <= fight_end),
+        key=lambda e: e["timestamp"],
+    )
+    if not in_window:
+        return None
+
+    first = in_window[0]
+    active, stack = (False, 0) if first["type"] == "applybuff" else (True, 1)
+    last_ts = fight_start
+    last_refresh_ts: float | None = None
+
+    total_active_ms = 0.0
+    stack_time_ms = {1: 0.0, 2: 0.0, 3: 0.0}
+    refresh_count = 0
+    early_refreshes: list[dict] = []
+
+    for ev in in_window:
+        ts = ev["timestamp"]
+        gap = ts - last_ts
+        if active:
+            total_active_ms += gap
+            if stack in stack_time_ms:
+                stack_time_ms[stack] += gap
+
+        if ev["type"] == "applybuff":
+            active, stack = True, 1
+            last_refresh_ts = ts
+        elif ev["type"] == "applybuffstack":
+            stack = ev.get("stack", stack)
+        elif ev["type"] == "refreshbuff":
+            if last_refresh_ts is not None:
+                remaining = LIFEBLOOM_BASE_DURATION_MS - (ts - last_refresh_ts)
+                if remaining > LIFEBLOOM_EARLY_REFRESH_THRESHOLD_MS:
+                    early_refreshes.append({"Timestamp": ts, "RemainingMs": round_net(remaining), "Stack": stack})
+            refresh_count += 1
+            last_refresh_ts = ts
+        elif ev["type"] == "removebuff":
+            active, stack = False, 0
+
+        last_ts = ts
+
+    if active:
+        gap = fight_end - last_ts
+        total_active_ms += gap
+        if stack in stack_time_ms:
+            stack_time_ms[stack] += gap
+
+    duration = fight_end - fight_start
+    uptime_pct = round_net((total_active_ms / duration) * 100, 1) if duration > 0 else 0
+
+    return {
+        "UptimePct": uptime_pct,
+        "StackTimeMs": {str(k): round_net(v) for k, v in stack_time_ms.items()},
+        "RefreshCount": refresh_count,
+        "EarlyRefreshCount": len(early_refreshes),
+        "EarlyRefreshes": early_refreshes,
+    }
+
+
 def test_missed_second_potion(potion_targets: list[dict], fight_end: float, potion_cooldown_ms: float = 120000) -> bool:
     """Real TBC mechanic, not a guess: potions share a fixed 120s internal
     cooldown. Fixed numeric rule (same style/shape as test_tranquility_include):

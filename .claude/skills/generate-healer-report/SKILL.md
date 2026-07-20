@@ -175,29 +175,47 @@ everywhere else in this pipeline. Zero API calls, zero judgment calls of its own
 ```
 python -m pipeline.cli build-coaching --character-name "<name>" --report-code "<code>" --class-name "<Class>"
 ```
-Writes `<code>_coaching.json` next to `analysis.json` — Phase 1 of an additive
+Writes `<code>_coaching.json` next to `analysis.json` — an additive
 "coaching-style" analysis layer (see `CLAUDE.md`'s writeup of the approved
-phased plan). Currently covers mana-timing only: per-boss starting/ending mana
-%, low/high-mana cast counts and time-share, and a fixed-rule
-`MissedSecondPotionWindow` flag, all derived from `classResources` already
-sitting in the existing `fight*_casts_events.json` files (see
+phased plan). Phase 1 (all classes) covers mana-timing: per-boss
+starting/ending mana %, low/high-mana cast counts and time-share, and a
+fixed-rule `MissedSecondPotionWindow` flag, all derived from `classResources`
+already sitting in the existing `fight*_casts_events.json` files (see
 `pipeline\render_lib.py`'s `parse_mana_readings`/`compute_mana_timing` for the
 real, non-obvious field mapping WCL uses there — don't "fix" those field
-names without re-reading that docstring first). Zero API calls, zero
-judgment calls of its own — same discipline as step 6.
+names without re-reading that docstring first). Zero API calls of its own.
+Phase 2 (**Druid-Restoration only** — confirmed absent from Dreamstate's real
+kit) adds Lifebloom refresh-timing: per-boss uptime/stack-time/refresh-count
+on whichever real target Lifebloom was actually maintained on the most that
+kill, plus an `EarlyRefreshCount` (a refresh landing with >4s still remaining
+on the real 7s buff) — reconstructed from `fight*_lifebloom_buffs_events.json`,
+a new raw file `pull-character` now writes (step 2) whenever the resolved
+class/spec is Druid-Restoration (one extra report-wide API call, gated the
+same way Tree of Life's fetch already is). Zero LLM judgment calls of its
+own either way — same discipline as step 6.
 
 ### 8. Author findings.json (the only step touching an LLM)
 Read `<code>_report_data.json` **and** `<code>_analysis.json`. Write
 `data\Characters\<name>\<code>\<code>_findings.json` containing only the
 free-text strings the analysis script can't produce on its own — per boss slug,
 `SCORECARD_FINDING`, `SPELL_COMPOSITION_FINDING`, `COOLDOWN_FINDING`,
-`TARGET_FINDING`, and (new, Phase 1 of the coaching layer)
+`TARGET_FINDING`, and (new, coaching-layer Phase 1, every class)
 `MANA_TIMING_FINDING` (each 1-2 plain-text sentences, no markup) — read
 `<code>_coaching.json`'s `Bosses.<slug>.ManaTiming` for the real numbers
 (`null` means no usable mana readings this kill, e.g. a non-mana build; say
 so plainly rather than inventing a mana story) and
 `Bosses.<slug>.MissedSecondPotionWindow`/`CannedCaveats` for the one
-fixed-rule flag this phase computes, plus a
+fixed-rule flag this phase computes. **Druid pages only** (coaching-layer
+Phase 2) also need `LIFEBLOOM_REFRESH_FINDING` per boss slug — read
+`Bosses.<slug>.LifebloomRefresh` (`null` means no real Lifebloom events this
+kill) and `Bosses.<slug>.LifebloomTargetName` (the real target it was
+resolved against); the `lifebloom_early_refresh_present` tag in
+`CannedCaveats` flags when `EarlyRefreshCount > 0`, but never claim a
+specific early refresh was a mistake versus a deliberate stack-refresh play
+— state the real count/timing, leave intent unjudged (see CLAUDE.md's
+ground rules). Every other pipeline class/build (Shaman, Priest, Paladin,
+Dreamstate) does NOT need this key — `render_report.py`'s validation only
+requires it when `--class-name` is `Druid`. Then a
 `RaidOverview` object with `GEAR_CONSISTENCY_FINDING`, `GEAR_FINDING_NOTE`,
 `RAID_SUMMARY_FINDING`, an optional `RAID_WARNING_BANNER` (may contain `<strong>`
 tags — this is the one field the renderer doesn't escape), and an optional
@@ -233,16 +251,18 @@ saying and how to phrase it. Concretely, before writing each boss's findings:
   33074 — don't claim Holy Shock "doesn't heal" for a Paladin).
 
 **Validate before moving on**: every boss slug in `report_data.json.Bosses` has
-all 5 required keys non-empty in `BossFindings`, and `RaidOverview` has its 3
+all 5 required keys non-empty in `BossFindings` (6 for Druid pages —
+`LIFEBLOOM_REFRESH_FINDING` too), and `RaidOverview` has its 3
 required keys (`GEAR_CONSISTENCY_FINDING`, `GEAR_FINDING_NOTE`,
 `RAID_SUMMARY_FINDING`) non-empty. `pipeline\render_report.py` in the next step
 also checks this and refuses to write a page on any gap — don't rely on it
 catching a typo'd boss slug for you, though; check the slug names match
 `report_data.json` exactly. **Note for any report pulled/rendered before this
-Phase 1 coaching layer existed**: its real `findings.json` won't have
-`MANA_TIMING_FINDING` yet and will now fail this same validation on
-re-render — backfill a real sentence per boss (using step 7's
-`coaching.json` output) before re-running step 9 for that report, don't
+coaching layer existed**: its real `findings.json` won't have
+`MANA_TIMING_FINDING` (or, for Druid, `LIFEBLOOM_REFRESH_FINDING`) yet and
+will now fail this same validation on re-render — backfill a real sentence
+per boss (using step 7's `coaching.json` output) before re-running step 9
+for that report, don't
 silently skip the key.
 
 ### 9. Render boss pages + raid overview (script, no LLM)
@@ -351,8 +371,8 @@ For each `needs-findings` healer from step 2, follow single-healer step 8
 exactly — read that healer's own `<code>_report_data.json`, `<code>_analysis.json`,
 **and** `<code>_coaching.json`, write their own `<code>_findings.json` — using
 the same schema, the same `CannedCaveats`/`RebirthCandidates`/etc. rules, and
-the same validation ("every boss slug has all 5 required keys, `RaidOverview` has
-its 3 required keys") described there. **Each healer's findings are their
+the same validation ("every boss slug has all 5 required keys, 6 for Druid,
+`RaidOverview` has its 3 required keys") described there. **Each healer's findings are their
 own** — never reuse or copy prose across healers just because they share a
 report code; the same kill can look very different from a Druid's cooldown
 kit than from a Shaman's, and a coverage note is specific to the person it's
